@@ -1,1 +1,1 @@
-###Quantum Mixed-state cloning
+## Quantum Mixed-state cloning
