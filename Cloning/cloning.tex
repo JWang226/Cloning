@@ -694,7 +694,100 @@ set
   \frac{\Re z_{jk}\,T_{jk}+\Im z_{jk}\,T_{kj}}
        {\sqrt{p_j-p_k}}.
 \end{equation}
-The matrix \(X_p(z)\) is anti-Hermitian, so \(\exp(X_p(z))\) is unitary.  The complex coordinate \(z_{jk}\) contains the two real infinitesimal rotations that mix the \(j\)-th and \(k\)-th eigenvectors.  The factor \((p_j-p_k)^{-1/2}\) is the LAN normalization: with this convention, \(z_{jk}\) becomes exactly the displacement coordinate of the corresponding oscillator mode in \cref{def:gaussian-families}.
+
+The normalization in \(X_p(z)\) deserves explanation.  Let
+\[
+\delta_{jk}=p_j-p_k.
+\]
+Then
+\[
+X_p(z)
+=
+\sum_{j<k}
+\frac{
+z_{jk}E_{kj}-\overline z_{jk}E_{jk}
+}{
+\sqrt{\delta_{jk}}
+}.
+\]
+Consequently,
+\[
+[X_p(z),\rho_p]_{kj}
+=
+\sqrt{\delta_{jk}}\,z_{jk}.
+\]
+Thus \(z_{jk}\) is not the raw off-diagonal matrix perturbation:
+the latter is \(\sqrt{\delta_{jk}}\,z_{jk}/\sqrt n\).
+The gap normalization is chosen instead to match the oscillator
+normalization in the LAN limit.
+
+Indeed, in a typical Schur sector \(\mu\), let
+\[
+\Delta_{jk}^{\mu}=\mu_j-\mu_k,
+\qquad
+a_{jk}^{(\mu)\dagger}
+=
+\frac{E_{kj}^{(\mu)}}{\sqrt{\Delta_{jk}^{\mu}}},
+\qquad
+a_{jk}^{(\mu)}
+=
+\frac{E_{jk}^{(\mu)}}{\sqrt{\Delta_{jk}^{\mu}}}.
+\]
+Then
+\[
+\frac{d\pi_\mu(X_p(z))}{\sqrt n}
+=
+\sum_{j<k}
+\sqrt{
+\frac{\Delta_{jk}^{\mu}}
+     {n(p_j-p_k)}
+}
+\left(
+z_{jk}a_{jk}^{(\mu)\dagger}
+-
+\overline z_{jk}a_{jk}^{(\mu)}
+\right).
+\]
+For typical \(\mu\),
+\[
+\frac{\Delta_{jk}^{\mu}}{n(p_j-p_k)}
+\to1,
+\]
+so the right-hand side converges on fixed excitation cutoffs to
+\[
+\sum_{j<k}
+\left(
+z_{jk}a_{jk}^\dagger-\overline z_{jk}a_{jk}
+\right).
+\]
+Hence
+\[
+U_\mu\!\left(
+\exp(X_p(z)/\sqrt n)
+\right)
+\longrightarrow
+\bigotimes_{j<k}D(z_{jk}).
+\]
+This is the precise sense in which \(z_{jk}\) is the limiting
+oscillator displacement amplitude.
+
+Moreover,
+\[
+\frac{X_p(z)}{\sqrt n}
+=
+\frac{
+X_p(\sqrt{m_n/n}\,z)
+}{
+\sqrt{m_n}
+}.
+\]
+Thus in the \(m_n\)-copy LAN chart the same physical unitary has
+coordinate \(\sqrt{m_n/n}\,z\to\sqrt\gamma z\).  This gives the
+amplitude gain \(\sqrt\gamma\) in the Gaussian cloning target.
+
+
+The matrix \(X_p(z)\) is anti-Hermitian, so \(\exp(X_p(z))\) is unitary.  The complex coordinate \(z_{jk}\) contains the two real infinitesimal rotations that mix the \(j\)-th and \(k\)-th eigenvectors.  The factor \((p_j-p_k)^{-1/2}\) is chosen so that, after normalizing the Schur-sector root operators by\(\sqrt{\mu_j-\mu_k}\), the local unitary converges to the Weyl displacement \(D(z_{jk})\).
+
 
 For spectral perturbations, let
 \[
