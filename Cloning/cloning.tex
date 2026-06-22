@@ -246,6 +246,13 @@ For classical probability distributions \(P,Q\), root fidelity is the Hellinger 
   B(P,Q)=\sum_x\sqrt{P(x)Q(x)}
 \]
 or the corresponding integral.  The squared classical fidelity is \(F(P,Q)=B(P,Q)^2\).
+For probability distributions we use the total-variation distance
+\begin{equation}\label{eq:TV-definition}
+  \|P-Q\|_{\TV}
+  :=\sup_A|P(A)-Q(A)|
+  =\frac12\|P-Q\|_1.
+\end{equation}
+Thus total variation is the classical trace distance; the factor \(1/2\) is a convention that we fix once and use throughout.
 
 We will use the following standard facts.
 
@@ -627,32 +634,104 @@ Later \(G=\gamma=m_n/n\).  Notice that the amplifier reproduces the correct enla
 
 A general phase-insensitive amplifier in the converse need not be Gaussian.  It means any quantum channel satisfying the displacement covariance \eqref{eq:amplifier-displacement-covariance} and phase covariance above.  The Guță--Matsumoto theorem used below says that, on displaced thermal inputs, the quantum-limited amplifier is least noisy among all such channels \cite{GutaMatsumoto2006}.
 
+
+\begin{definition}[Gaussian input, target, and least-noise output families]\label{def:gaussian-families}
+For one oscillator mode, thermal parameter \(q\in(0,1)\), displacement \(u\in\C\), and gain \(\gamma>1\), define
+\begin{align}
+  \phi_u^{(q)}
+  &:=D(u)\tau_qD(u)^*,\label{eq:one-mode-input-family}\\
+  \psi_u^{(q,\gamma)}
+  &:=D(\sqrt\gamma\,u)\tau_qD(\sqrt\gamma\,u)^*,\label{eq:one-mode-target-family}\\
+  \omega_u^{(q,\gamma)}
+  &:=D(\sqrt\gamma\,u)\tau_{q^{(\gamma)}}D(\sqrt\gamma\,u)^*,\label{eq:one-mode-output-family}
+\end{align}
+where
+\[
+  q^{(\gamma)}=1-\frac{1-q}{\gamma}.
+\]
+The state \(\psi_u^{(q,\gamma)}\) is the ideal amplified target: it has the desired displacement \(\sqrt\gamma u\) but the original thermal noise.  The state \(\omega_u^{(q,\gamma)}\) is the output of the quantum-limited amplifier; it has the correct displacement but necessarily larger thermal noise.
+
+For the fixed-spectrum orbit, let
+\[
+  R=\frac{d(d-1)}2,
+  \qquad
+  z=(z_{ij})_{i<j}\in\C^R,
+  \qquad
+  q_{ij}=\frac{p_j}{p_i}.
+\]
+Define the multimode input, ideal target, and least-noise output families by
+\begin{align}
+  \Phi_z^{(p)}
+  &:=\bigotimes_{i<j}\phi_{z_{ij}}^{(q_{ij})},\label{eq:Phi-family-def}\\
+  \Psi_z^{(p,\gamma)}
+  &:=\bigotimes_{i<j}\psi_{z_{ij}}^{(q_{ij},\gamma)},\label{eq:Psi-family-def}\\
+  \Omega_z^{(p,\gamma)}
+  &:=\bigotimes_{i<j}\omega_{z_{ij}}^{(q_{ij},\gamma)}.\label{eq:Omega-family-def}
+\end{align}
+When \(p\) and \(\gamma\) are fixed, we suppress the superscripts and write simply \(\Phi_z,\Psi_z,\Omega_z\).
+\end{definition}
+
 \subsection{Local asymptotic normality}\label{subsec:LAN-models}
 
 We now explain how bosonic modes arise from many finite-dimensional copies.  The results in this subsection are the finite-dimensional quantum LAN theorem of Kahn and Guță, specialized to the parameterizations used here \cite{KahnGuta2009}.  Fix a full-rank state \(\rho_p=\diag(p_1,\ldots,p_d)\) with strictly ordered eigenvalues.  A local perturbation of size \(1/\sqrt n\) is statistically visible from \(n\) copies: smaller perturbations disappear asymptotically, while larger perturbations become perfectly distinguishable.  LAN describes the \(n\)-copy family on exactly this scale.
 
-For off-diagonal perturbations, choose real-linear local coordinates
+We now choose local coordinates for the two kinds of perturbations of \(\rho_p\): changes of eigenvectors and changes of eigenvalues.  Let \(E_{jk}=\ket{j}\!\bra{k}\), and for \(j<k\) define the Hermitian generators
 \[
-  z=(z_{ij})_{i<j}\in\C^R,
+  T_{jk}=i(E_{jk}-E_{kj}),
+  \qquad
+  T_{kj}=E_{jk}+E_{kj}.
+\]
+For
+\[
+  z=(z_{jk})_{j<k}\in\C^R,
   \qquad
   R=\frac{d(d-1)}2,
 \]
-and an anti-Hermitian matrix \(X(z)\) with zero diagonal.  The normalization of \(X(z)\) is chosen so that the limiting displacement of the \((i,j)\) oscillator is \(z_{ij}\).  For spectral perturbations, let
+set
+\begin{equation}\label{eq:X-p-z-definition}
+  X_p(z)
+  =i\sum_{j<k}
+  \frac{\Re z_{jk}\,T_{jk}+\Im z_{jk}\,T_{kj}}
+       {\sqrt{p_j-p_k}}.
+\end{equation}
+The matrix \(X_p(z)\) is anti-Hermitian, so \(\exp(X_p(z))\) is unitary.  The complex coordinate \(z_{jk}\) contains the two real infinitesimal rotations that mix the \(j\)-th and \(k\)-th eigenvectors.  The factor \((p_j-p_k)^{-1/2}\) is the LAN normalization: with this convention, \(z_{jk}\) becomes exactly the displacement coordinate of the corresponding oscillator mode in \cref{def:gaussian-families}.
+
+For spectral perturbations, let
 \[
   \mathsf H=\left\{h\in\R^d:\sum_i h_i=0\right\},
   \qquad
   p_{n,h}=p+\frac h{\sqrt n}.
 \]
-The covariance matrix of the spectral fluctuations is
+The condition \(\sum_i h_i=0\) preserves normalization.  For every bounded set of \(h\)'s, positivity and strict ordering are automatic for all sufficiently large \(n\), because \(p_d>0\) and \(\min_i(p_i-p_{i+1})>0\).  More explicitly, if \(\|h\|_\infty\le L\), then it is enough that
+\[
+  \frac{L}{\sqrt n}<p_d,
+  \qquad
+  \frac{2L}{\sqrt n}<\min_i(p_i-p_{i+1}).
+\]
+Thus the phrase ``\(p+h/\sqrt n\) is a state'' simply means that its entries are nonnegative and sum to one; in the compact local regimes used below, this holds automatically once \(n\) is large.  The covariance matrix of the spectral fluctuations is
 \[
   V_p=\diag(p)-pp^T
 \]
 restricted to \(\mathsf H\).
 
-\begin{theorem}[Fixed-spectrum LAN]\label{thm:LAN-known}
-Fix \(p\in\Delta_d^\circ\).  With
+The corresponding one-copy local state is
+\begin{equation}\label{eq:local-state-definition}
+  \rho_{p,h,z}^{(n)}
+  =g_{n,z}\,\diag\!\left(p+\frac h{\sqrt n}\right)g_{n,z}^*,
+  \qquad
+  g_{n,z}=\exp\!\left(\frac{X_p(z)}{\sqrt n}\right).
+\end{equation}
+Expanding to first order,
 \[
-  g_{n,z}=\exp(X(z)/\sqrt n),
+  \rho_{p,h,z}^{(n)}
+  =\rho_p+\frac1{\sqrt n}\Bigl(\diag(h)+[X_p(z),\rho_p]\Bigr)+O(n^{-1}).
+\]
+Hence \(h\) changes the eigenvalues while \(z\) changes the eigenbasis.  The scale \(n^{-1/2}\) is the local statistical scale on which \(n\) copies have a nontrivial Gaussian limit.
+
+\begin{theorem}[Fixed-spectrum LAN]\label{thm:LAN-known}
+Fix \(p\in\Delta_d^\circ\), and let \(\Phi_z=\Phi_z^{(p)}\) and \(\Psi_z=\Psi_z^{(p,\gamma)}\) be the Gaussian input and target families from \cref{def:gaussian-families}.  With
+\[
+  g_{n,z}=\exp(X_p(z)/\sqrt n),
   \qquad
   \rho_{n,z}=\rho_{p,g_{n,z}}^{\ot n},
 \]
@@ -665,39 +744,26 @@ there are quantum channels
 such that, uniformly for \(z\) in every fixed compact subset of \(\C^R\),
 \begin{align}
   \|T_n(\rho_{n,z})-\Phi_z\|_1&\longrightarrow0,\label{eq:LAN-known-forward}\\
-  \|S_n(\Phi_z)-\rho_{n,z}\|_1&\longrightarrow0,\label{eq:LAN-known-inverse}
+  \|S_n(\Phi_z)-\rho_{n,z}\|_1&\longrightarrow0.\label{eq:LAN-known-inverse}
 \end{align}
-where
-\begin{equation}\label{eq:Phi-z}
-  \Phi_z
-  =
-  \bigotimes_{i<j}
-  D(z_{ij})\tau_{q_{ij}}D(z_{ij})^*,
-  \qquad
-  q_{ij}=\frac{p_j}{p_i}.
-\end{equation}
-For \(m_n/n\to\gamma\), the same physical state on \(m_n\) copies satisfies
+If \(m_n/n\to\gamma\), then the same physical group element, acting on \(m_n\) copies, satisfies
 \begin{equation}\label{eq:Psi-z}
-  T_{m_n}(\rho_{p,g_{n,z}}^{\ot m_n})
-  \longrightarrow
-  \Psi_z
-  :=
-  \bigotimes_{i<j}
-  D(\sqrt\gamma z_{ij})\tau_{q_{ij}}D(\sqrt\gamma z_{ij})^*
+  \bigl\|T_{m_n}(\rho_{p,g_{n,z}}^{\ot m_n})-\Psi_z\bigr\|_1
+  \longrightarrow0
 \end{equation}
 uniformly on compact \(z\)-sets.
 \end{theorem}
 
 The maps \(T_n\) and \(S_n\) are called the forward and inverse LAN channels.  The first converts the finite-dimensional experiment into its oscillator approximation; the second reconstructs finite-dimensional states from the Gaussian model.  The two trace-norm limits mean that, for bounded local parameters, neither model contains asymptotically more statistical information than the other.
 
-The factor \(\sqrt\gamma\) in \eqref{eq:Psi-z} is simply a change of local scale.  The group element is written as \(\exp(X(z)/\sqrt n)\).  In an \(m_n\)-copy chart normalized by \(1/\sqrt{m_n}\), the same group element has coordinate \(\sqrt{m_n/n}\,z\to\sqrt\gamma z\).  The thermal parameter remains \(q_{ij}\), since it depends only on \(p\).
+The factor \(\sqrt\gamma\) in \eqref{eq:Psi-z} is simply a change of local scale.  The group element is written as \(\exp(X_p(z)/\sqrt n)\).  In an \(m_n\)-copy chart normalized by \(1/\sqrt{m_n}\), the same group element has coordinate \(\sqrt{m_n/n}\,z\to\sqrt\gamma z\).  The thermal parameter remains \(q_{ij}\), since it depends only on \(p\).
 
 \begin{theorem}[Full mixed-state LAN]\label{thm:LAN-unknown}
 Fix \(p\in\Delta_d^\circ\).  For
 \[
   p_{n,h}=p+h/\sqrt n,
   \qquad
-  g_{n,z}=\exp(X(z)/\sqrt n),
+  g_{n,z}=\exp(X_p(z)/\sqrt n),
 \]
 the \(n\)-copy quantum statistical model converges, uniformly for \((h,z)\) in compact subsets of \(\mathsf H\times\C^R\), to the hybrid classical--quantum model
 \begin{equation}\label{eq:hybrid-input}
@@ -723,7 +789,7 @@ Fix \(\kappa>0\) and \(L<\infty\).  The convergences in \cref{thm:LAN-known,thm:
     \sum_i p_i=1
   \right\}
 \]
-and \((h,z)\in C_L\), provided \(p+h/\sqrt n\) remains a state.
+and \((h,z)\in C_L\).  For all sufficiently large \(n\), every such \(p+h/\sqrt n\) is automatically a full-rank, strictly ordered probability vector.
 \end{corollary}
 
 \begin{proof}
@@ -788,20 +854,7 @@ Taking the infimum over \(\theta\in K\) proves \eqref{eq:LAN-transfer-main}.
 
 \subsection{The displaced-thermal Gaussian cloning problem}\label{sec:gaussian}
 
-The finite-dimensional converse will now follow from a cloning theorem for the limit model.  For one mode, the input family is
-\[
-  \Phi_z=D(z)\tau_qD(z)^*,
-\]
-and the ideal amplified target is
-\[
-  \Psi_z=D(\sqrt\gamma z)\tau_qD(\sqrt\gamma z)^*.
-\]
-The quantum-limited amplifier produces the correct displacement but the noisier thermal state
-\[
-  \cA_\gamma(\Phi_z)
-  =
-  D(\sqrt\gamma z)\tau_{q^{(\gamma)}}D(\sqrt\gamma z)^*.
-\]
+The finite-dimensional converse will now follow from a cloning theorem for the limit model.  We use the notation introduced in \cref{def:gaussian-families}.  For one mode, \(\phi_u^{(q)}\) is the displaced thermal input, \(\psi_u^{(q,\gamma)}\) is the ideal target with amplified displacement, and \(\omega_u^{(q,\gamma)}\) is the output of the quantum-limited amplifier.  For the fixed-spectrum multimode model, the corresponding product families are \(\Phi_z,\Psi_z,\Omega_z\).
 
 A probability distribution \(P\) on \(\N\) is said to be stochastically larger than \(P^*\) if
 \[
@@ -854,15 +907,15 @@ By \cref{lem:uniform-trace-reduction},
 \[
   \Tr\mathcal J(X)=c\,\Tr X
 \]
-for some \(c\in[0,1]\).  If \(c=0\), the map is zero.  If \(c>0\), then \(c^{-1}\mathcal J\) is a trace-preserving phase-insensitive displacement-covariant amplifier.  The Guță--Matsumoto stochastic-order theorem bounds the expectation of every decreasing photon-number function by the quantum-limited output \(\tau_{q^{(\gamma)}}\).  Multiplying by \(c\) proves \eqref{eq:one-mode-conic}.
+for some \(c\in[0,1]\).  If \(c=0\), the map is zero.  If \(c>0\), then \(c^{-1}\mathcal J\) is a trace-preserving phase-insensitive displacement-covariant amplifier.  Guță and Matsumoto characterize displacement-covariant amplifiers by an idler state; phase covariance reduces the idler to a number-diagonal state.  Their stochastic-order definition and least-noise lemma \cite[Definition~2.2 and Lemma~2.3]{GutaMatsumoto2006}, together with the arbitrary-gain extension stated in \cite[Sec.~III]{GutaMatsumoto2006}, imply that the output photon-number law of \(c^{-1}\mathcal J(\tau_q)\) stochastically dominates the geometric law of \(\tau_{q^{(\gamma)}}\).  Equivalently, the expectation of every bounded decreasing photon-number function is no larger than for the quantum-limited output.  Multiplying by \(c\) proves \eqref{eq:one-mode-conic}.
 \end{proof}
 
 \begin{remark}[The one external Gaussian input]\label{rem:one-external-GM}
-The only stochastic-order statement imported from \cite{GutaMatsumoto2006} is the one-mode trace-preserving result used in the preceding proof.  The multimode bound below is derived from it by a peeling argument; no separate multivariate stochastic-order theorem is assumed.
+The only stochastic-order statement imported from Guță--Matsumoto is their one-mode trace-preserving result, namely Definition~2.2 and Lemma~2.3 together with the arbitrary-gain extension in their Section~III \cite{GutaMatsumoto2006}.  Their Theorem~2.5 uses that order to optimize trace distance; our Uhlmann-fidelity bound is derived separately in \cref{lem:one-mode-gaussian}.  The multimode estimate below is proved internally by a peeling argument, so no independent multivariate stochastic-order theorem is assumed.
 \end{remark}
 
 \begin{lemma}[Fidelity optimality in one mode]\label{lem:one-mode-gaussian}
-Among displacement-covariant amplifiers of gain \(\gamma\), the quantum-limited amplifier maximizes root fidelity with the target family \(\Psi_z\).  The optimal squared fidelity is
+Among displacement-covariant amplifiers of gain \(\gamma\), the quantum-limited amplifier maximizes root fidelity with the one-mode target family \(\psi_u^{(q,\gamma)}\).  The optimal squared fidelity is
 \begin{equation}\label{eq:one-mode-f}
   f_\gamma(q)
   =
@@ -872,7 +925,7 @@ Among displacement-covariant amplifiers of gain \(\gamma\), the quantum-limited 
 \end{lemma}
 
 \begin{proof}
-Covariance makes the fidelity independent of \(z\), so set \(z=0\).  Average the channel over phase rotations.  Because the input and target are phase invariant and root fidelity is concave, this cannot lower the fidelity.  The output is therefore diagonal:
+Covariance makes the fidelity independent of \(u\), so set \(u=0\).  Average the channel over phase rotations.  Because the input and target are phase invariant and root fidelity is concave, this cannot lower the fidelity.  The output is therefore diagonal:
 \[
   \sigma=\sum_kP_k\proj{k}.
 \]
@@ -978,7 +1031,7 @@ For the fixed-spectrum LAN model define
 These equal \(\Borb(\gamma,p)\) and \(\Forb(\gamma,p)\).
 
 \begin{theorem}[Gaussian fidelity converse]\label{thm:gaussian-converse}
-Let \(C_L\subset\C^R\) be the cube
+Let \(\Phi_z=\Phi_z^{(p)}\) and \(\Psi_z=\Psi_z^{(p,\gamma)}\) be the multimode Gaussian input and ideal target families from \cref{def:gaussian-families}.  Let \(C_L\subset\C^R\) be the cube
 \[
   |\Re z_\alpha|,|\Im z_\alpha|\le L.
 \]
@@ -1039,7 +1092,7 @@ The minimax bound follows because the infimum of a function over \(z\) is no lar
 
 \section{Known-spectrum cloning}\label{sec:known}
 
-In this section the spectrum \(p\) is fixed and known.  Only the orbit element \(g\) is unknown.
+In this section the spectrum \(p\) is fixed and known.  Only the orbit element \(g\) is unknown.  The argument proceeds in four steps.  First, we define the global Schur--PRV cloner and prove that its classical Young-label kernel reproduces the target Young distribution asymptotically.  Second, we analyze large highest-weight sectors and prove that the PRV map contracts to the beam-splitter dilation of the least-noise Gaussian amplifier.  Third, we combine the classical label and conditional sector fidelities to prove achievability.  Finally, we use LAN and the Gaussian fidelity converse from \cref{thm:gaussian-converse} to prove the global upper bound for arbitrary cloning channels.
 
 \subsection{The known-spectrum Schur--PRV channel}
 
@@ -1780,7 +1833,7 @@ By the Gaussian converse \eqref{eq:flat-prior-gaussian}, choose a finite cube \(
 \end{equation}
 The local orbit points
 \[
-  g_{n,z}=\exp(X(z)/\sqrt n),
+  g_{n,z}=\exp(X_p(z)/\sqrt n),
   \qquad z\in C_L,
 \]
 belong to the original orbit, so \eqref{eq:contradict-known} applies to each of them.
@@ -2136,7 +2189,7 @@ Fix a compact local parameter set \(K\Subset\mathsf H\times\C^R\).  For \((h,z)\
 \[
   p_{n,h}=p+h/\sqrt n,
   \qquad
-  g_{n,z}=\exp(X(z)/\sqrt n),
+  g_{n,z}=\exp(X_p(z)/\sqrt n),
 \]
 and define
 \[
