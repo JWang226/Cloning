@@ -3,13 +3,13 @@
 \usepackage[margin=1in]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-\usepackage{newpxtext}
+\usepackage{lmodern}
 \usepackage{amsmath,amssymb,amsfonts,amsthm,mathtools}
-\usepackage{newpxmath}
 \usepackage{mathrsfs}
 \usepackage{enumitem}
 \usepackage{microtype}
 \usepackage{xcolor}
+\usepackage{aliascnt}
 \usepackage[colorlinks=true,linkcolor=teal,citecolor=teal,urlcolor=teal]{hyperref}
 \usepackage[nameinlink,capitalize]{cleveref}
 
@@ -17,11 +17,21 @@
 \sloppy
 
 \newtheorem{theorem}{Theorem}[section]
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{corollary}[theorem]{Corollary}
-\newtheorem{definition}[theorem]{Definition}
-\newtheorem{remark}[theorem]{Remark}
+\newaliascnt{lemma}{theorem}
+\newtheorem{lemma}[lemma]{Lemma}
+\aliascntresetthe{lemma}
+\newaliascnt{proposition}{theorem}
+\newtheorem{proposition}[proposition]{Proposition}
+\aliascntresetthe{proposition}
+\newaliascnt{corollary}{theorem}
+\newtheorem{corollary}[corollary]{Corollary}
+\aliascntresetthe{corollary}
+\newaliascnt{definition}{theorem}
+\newtheorem{definition}[definition]{Definition}
+\aliascntresetthe{definition}
+\newaliascnt{remark}{theorem}
+\newtheorem{remark}[remark]{Remark}
+\aliascntresetthe{remark}
 
 \crefname{theorem}{Theorem}{Theorems}
 \Crefname{theorem}{Theorem}{Theorems}
@@ -217,11 +227,9 @@ Other mixed-state cloning and broadcasting results address different operational
 
 \subsection{Organization}
 
-The paper is organized as follows.  \Cref{sec:preliminaries} fixes notation, recalls Werner's pure-state cloner, reviews the Schur--Weyl block form, Young concentration, PRV sector maps, LAN models, and the displaced-thermal Gaussian fidelity converse.  \Cref{sec:known} gives the known-spectrum Schur--PRV protocol, its achievability proof, and the global converse.  \Cref{sec:unknown} treats the adaptive unknown-spectrum protocol, the expanding-window local converse, and the compact strict-chamber global corollary.  \Cref{sec:comparison} compares the resulting fidelities with random purification followed by pure-state cloning, and \cref{sec:outlook} discusses extensions.
+\Cref{sec:preliminaries} collects the finite-dimensional representation-theoretic background: fidelity, Werner's pure-state cloner, Schur--Weyl decomposition, Young concentration, and the PRV sector channel.  \Cref{sec:LAN-Gaussian} introduces classical and quantum statistical models, bosonic Gaussian states, quantum-limited amplification, finite-dimensional local asymptotic normality, and the Gaussian cloning converse.  \Cref{sec:known} proves known-spectrum achievability and the global converse.  \Cref{sec:unknown} treats the adaptive unknown-spectrum protocol, the expanding-window local converse, and the compact strict-chamber global result.  \Cref{sec:comparison} compares with earlier cloning and broadcasting results, and \cref{sec:outlook} discusses extensions.  The only technical proof deferred to the appendix is the hybrid classical--quantum Gaussian product converse used in the unknown-spectrum upper bound.
 
-\JW{Internal revision note: earlier drafts used a stronger PRV-to-amplifier channel-convergence assumption and kept several proof-status appendices.  In this version the known-spectrum achievability uses only the thermal PRV sector theorem, and the unknown-spectrum converse uses the hybrid product converse proved in the appendix.  Finite-\(n\) rates and boundary/degenerate spectra remain outside the stated theorem.}
-
-\section{Preliminaries and Gaussian amplification}\label{sec:preliminaries}
+\section{Representation-theoretic preliminaries}\label{sec:preliminaries}
 
 \subsection{Fidelity conventions}
 
@@ -271,6 +279,75 @@ then
 \begin{equation}\label{eq:block-fidelity}
   B(\rho,\sigma)=\sum_x\sqrt{P_xQ_x}\,B(\rho_x,\sigma_x).
 \end{equation}
+
+The following elementary lemma will be used twice: once for the Young labels in the known-spectrum protocol and once for the classical label in the adaptive protocol.
+
+\begin{lemma}[Combining a classical label with conditional quantum fidelities]\label{lem:block-good-set}
+For each \(n\), let \(J_n(x,y)\) be a joint probability distribution with \(y\)-marginal \(Q_n(y)\), let \(P_n(y)\) be a target label distribution, and let \(\sigma_{n,x,y}\) and \(\tau_{n,y}\) be quantum states.  Define
+\[
+  \bar\sigma_{n,y}
+  =
+  \sum_x \frac{J_n(x,y)}{Q_n(y)}\,\sigma_{n,x,y}
+\]
+when \(Q_n(y)>0\), with an arbitrary value otherwise.  Suppose there are good sets \(G_n\) such that
+\[
+  J_n(G_n^c)\longrightarrow0
+\]
+and
+\[
+  \inf_{(x,y)\in G_n}B(\sigma_{n,x,y},\tau_{n,y})
+  \ge b-o(1)
+\]
+for some \(b\in[0,1]\).  Then
+\begin{equation}\label{eq:block-good-set-bound}
+  \liminf_{n\to\infty}
+  B\!\left(
+    \bigoplus_y Q_n(y)\bar\sigma_{n,y},
+    \bigoplus_y P_n(y)\tau_{n,y}
+  \right)
+  \ge
+  b\,
+  \liminf_{n\to\infty} B(Q_n,P_n).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+By \eqref{eq:block-fidelity} and joint concavity of root fidelity,
+\[
+  B\!\left(
+    \bigoplus_y Q_n(y)\bar\sigma_{n,y},
+    \bigoplus_y P_n(y)\tau_{n,y}
+  \right)
+  \ge
+  \sum_y\sqrt{Q_n(y)P_n(y)}
+  \sum_x\frac{J_n(x,y)}{Q_n(y)}
+  B(\sigma_{n,x,y},\tau_{n,y}).
+\]
+Let
+\[
+  r_n(y)=
+  \sum_{x:(x,y)\notin G_n}\frac{J_n(x,y)}{Q_n(y)}
+\]
+be the conditional bad probability.  The last display is at least
+\[
+  (b-o(1))
+  \left[
+    B(Q_n,P_n)
+    -
+    \sum_y\sqrt{Q_n(y)P_n(y)}\,r_n(y)
+  \right].
+\]
+By Cauchy--Schwarz,
+\[
+  \sum_y\sqrt{Q_n(y)P_n(y)}\,r_n(y)
+  \le
+  \left(\sum_y Q_n(y)r_n(y)\right)^{1/2}
+  \left(\sum_y P_n(y)r_n(y)\right)^{1/2}
+  \le
+  \sqrt{J_n(G_n^c)}.
+\]
+This tends to zero and proves \eqref{eq:block-good-set-bound}.
+\end{proof}
 
 
 \subsection{Werner's universal pure-state cloner}\label{subsec:Werner-cloner}
@@ -391,13 +468,79 @@ The associated sector channel, used later in \cref{def:sector-PRV}, is
 \end{equation}
 This is a channel from \(\cB(\cH_\mu)\) to \(\cB(\cH_\nu)\).  Complete positivity is immediate from the Kraus form obtained by inserting an orthonormal basis of \(\cH_\omega\); trace preservation follows from Schur's lemma because \(\Tr_\omega(V_{\mu,\omega}V_{\mu,\omega}^*)\) is a scalar multiple of the identity on the irreducible space \(\cH_\mu\), and its trace fixes the scalar to \(\dim\cH_\nu/\dim\cH_\mu\).  This early definition is repeated in the protocol section only to keep the construction self-contained.
 
-\subsection{Oscillator notation and thermal fidelities}
 
-Let \(\cF\) be one-mode Fock space with annihilation operator \(a\).  For \(0<q<1\), define the thermal state
+\section{Quantum statistical models, LAN, and Gaussian cloning}\label{sec:LAN-Gaussian}
+
+This section introduces the limiting statistical models used in the converse proofs.  The terminology is standard in quantum statistics, but we give the definitions needed here because the finite-dimensional Schur--Weyl problem and its Gaussian limit live on rather different Hilbert spaces.
+
+\subsection{Classical and quantum statistical models}
+
+\begin{definition}[Statistical model]\label{def:statistical-model}
+A \emph{classical statistical model} is a family of probability distributions
+\[
+  \mathcal P=\{P_\theta:\theta\in\Theta\}
+\]
+indexed by an unknown parameter \(\theta\).  A \emph{quantum statistical model} is a family of density operators
+\[
+  \mathcal Q=\{\rho_\theta:\theta\in\Theta\}
+\]
+on a common Hilbert space.  In both cases the word ``model'' means the whole parameterized family, not a single distribution or state.
+\end{definition}
+
+A randomized classical procedure is described by a Markov kernel.  If \(X\) is an input space and \(Y\) an output space, a Markov kernel \(K(dy|x)\) assigns to every input \(x\) a probability distribution on \(Y\), measurably in \(x\).  On finite spaces it is simply a stochastic matrix:
+\[
+  K(y|x)\ge0,
+  \qquad
+  \sum_yK(y|x)=1.
+\]
+Thus the kernel \(K_n(\nu|\mu)\) used later is just a conditional probability for the output Young diagram \(\nu\) given the measured input diagram \(\mu\).  The quantum analogue is a quantum channel: a completely positive trace-preserving linear map on trace-class operators.
+
+A channel transforms one statistical model into another by acting on every member of the family.  Two sequences of models are asymptotically equivalent if there are channels in both directions whose worst-case trace-norm errors tend to zero.  Local asymptotic normality is such an equivalence after zooming into a \(1/\sqrt n\) neighborhood of a fixed state.
+
+\subsection{Bosonic modes and displaced thermal states}\label{subsec:bosonic-basics}
+
+A single bosonic mode has Fock space
+\[
+  \cF=\Span\{\ket{k}:k=0,1,2,\ldots\}.
+\]
+The annihilation and creation operators are defined by
+\[
+  a\ket{k}=\sqrt{k}\ket{k-1},
+  \qquad
+  a^*\ket{k}=\sqrt{k+1}\ket{k+1},
+\]
+and satisfy the canonical commutation relation
+\[
+  [a,a^*]=I.
+\]
+The number operator \(N=a^*a\) has eigenvalue \(k\) on \(\ket{k}\).  Phase rotations are
+\[
+  R(\theta)=e^{i\theta N}.
+\]
+
+For \(z\in\C\), the Weyl displacement operator is
+\begin{equation}\label{eq:Weyl-displacement}
+  D(z)=\exp(za^*-\bar z a).
+\end{equation}
+It translates the canonical mode:
+\[
+  D(z)^*aD(z)=a+z.
+\]
+For \(0<q<1\), the thermal state is
 \begin{equation}\label{eq:thermal}
   \tau_q=(1-q)\sum_{k\ge0}q^k\proj{k}.
 \end{equation}
-The root fidelity between two such thermal states is classical:
+Its mean photon number is
+\[
+  \bar n_q=\Tr(\tau_qN)=\frac{q}{1-q}.
+\]
+A displaced thermal state is \(D(z)\tau_qD(z)^*\).  These are quantum Gaussian states: their Weyl characteristic function
+\[
+  \chi_\rho(w)=\Tr[\rho D(w)]
+\]
+is a Gaussian function of the real and imaginary parts of \(w\).  No other class of Gaussian states is needed in this paper.
+
+Because two thermal states are diagonal in the same number basis, their root fidelity is the classical Hellinger affinity of two geometric distributions:
 \begin{equation}\label{eq:thermal-root-fid}
   B(\tau_q,\tau_{q'})
   =
@@ -405,214 +548,425 @@ The root fidelity between two such thermal states is classical:
   =
   \frac{\sqrt{(1-q)(1-q')}}{1-\sqrt{qq'}}.
 \end{equation}
-Thus
+Consequently,
 \begin{equation}\label{eq:thermal-squared-fid}
   F(\tau_q,\tau_{q'})
   =
   \frac{(1-q)(1-q')}{(1-\sqrt{qq'})^2}.
 \end{equation}
 
-The quantum-limited phase-insensitive amplifier of gain \(G\ge1\) has the Stinespring form
+For \(R\) independent modes we write
+\[
+  \cF^{\ot R},
+  \qquad
+  D(z)=\bigotimes_{\alpha=1}^R D(z_\alpha),
+  \qquad
+  z=(z_1,\ldots,z_R)\in\C^R.
+\]
+All oscillator modes appearing in the LAN limit below are of this independent product form.
+
+\subsection{Phase-insensitive quantum amplification}\label{subsec:amplifier-basics}
+
+We next define the Gaussian channel that appears both in the achievable limit of the PRV map and in the converse.
+
+\begin{definition}[Quantum-limited phase-insensitive amplifier]\label{def:quantum-limited-amplifier}
+Let \(G\ge1\).  Introduce an environment mode \(b\), initially in its vacuum state \(\ket0\), and a two-mode squeezing unitary \(U_G\) satisfying
 \begin{equation}\label{eq:amplifier-heisenberg}
-  a_{\mathrm{out}}=\sqrt G\,a_{\mathrm{in}}+\sqrt{G-1}\,b_{\mathrm{env}}^*,
+  U_G^*(a\ot I)U_G
+  =
+  \sqrt G\,a\ot I+\sqrt{G-1}\,I\ot b^*.
 \end{equation}
-with the environment in the vacuum.  It sends
+The \emph{quantum-limited phase-insensitive amplifier} of intensity gain \(G\) is
+\[
+  \cA_G(\rho)
+  =
+  \Tr_{\mathrm{env}}
+  \left[
+    U_G(\rho\ot\proj0)U_G^*
+  \right].
+\]
+\end{definition}
+
+The coefficient \(\sqrt{G-1}\) is forced by preservation of the commutation relation:
+\[
+  [\sqrt G\,a+\sqrt{G-1}\,b^*,
+   \sqrt G\,a^*+\sqrt{G-1}\,b]
+  =G-(G-1)=1.
+\]
+The term ``quantum limited'' means that the environment is in the vacuum, so the channel adds the minimum noise compatible with this commutation relation.  The channel is \emph{phase insensitive} because it treats all phase-space directions equally:
+\[
+  \cA_G(R(\theta)\rho R(\theta)^*)
+  =
+  R(\theta)\cA_G(\rho)R(\theta)^*.
+\]
+It is also displacement covariant with amplitude gain \(\sqrt G\):
+\begin{equation}\label{eq:amplifier-displacement-covariance}
+  \cA_G(D(z)\rho D(z)^*)
+  =
+  D(\sqrt G z)\cA_G(\rho)D(\sqrt G z)^*.
+\end{equation}
+
+On a thermal input, the output mean photon number is
+\[
+  \bar n_{\mathrm{out}}
+  =
+  G\bar n_q+(G-1).
+\]
+Writing the output again as a thermal state, \(q_G=\bar n_{\mathrm{out}}/(1+\bar n_{\mathrm{out}})\), gives
 \begin{equation}\label{eq:amplifier-thermal}
-  D(z)\tau_qD(z)^*
-  \longmapsto
-  D(\sqrt G z)\tau_{q_G}D(\sqrt G z)^*,
+  \cA_G\!\left(D(z)\tau_qD(z)^*\right)
+  =
+  D(\sqrt Gz)\tau_{q_G}D(\sqrt Gz)^*,
   \qquad
   q_G=1-\frac{1-q}{G}.
 \end{equation}
-For \(G=\gamma\), this is exactly \(q^{(\gamma)}\).
+Later \(G=\gamma=m_n/n\).  Notice that the amplifier reproduces the correct enlarged displacement \(\sqrt\gamma z\), but it necessarily changes \(q\) to the noisier value
+\[
+  q^{(\gamma)}:=1-\frac{1-q}{\gamma}.
+\]
 
-\subsection{LAN models}
+A general phase-insensitive amplifier in the converse need not be Gaussian.  It means any quantum channel satisfying the displacement covariance \eqref{eq:amplifier-displacement-covariance} and phase covariance above.  The Guță--Matsumoto theorem used below says that, on displaced thermal inputs, the quantum-limited amplifier is least noisy among all such channels \cite{GutaMatsumoto2006}.
 
-For a full-rank finite-dimensional state, the Kahn--Guta local asymptotic normality theorem says that the \(n\)-copy model converges to a product of a classical Gaussian model for eigenvalue perturbations and independent displaced thermal oscillators for off-diagonal perturbations \cite{KahnGuta2009}.  We use two specializations.
+\subsection{Local asymptotic normality}\label{subsec:LAN-models}
+
+We now explain how bosonic modes arise from many finite-dimensional copies.  The results in this subsection are the finite-dimensional quantum LAN theorem of Kahn and Guță, specialized to the parameterizations used here \cite{KahnGuta2009}.  Fix a full-rank state \(\rho_p=\diag(p_1,\ldots,p_d)\) with strictly ordered eigenvalues.  A local perturbation of size \(1/\sqrt n\) is statistically visible from \(n\) copies: smaller perturbations disappear asymptotically, while larger perturbations become perfectly distinguishable.  LAN describes the \(n\)-copy family on exactly this scale.
+
+For off-diagonal perturbations, choose real-linear local coordinates
+\[
+  z=(z_{ij})_{i<j}\in\C^R,
+  \qquad
+  R=\frac{d(d-1)}2,
+\]
+and an anti-Hermitian matrix \(X(z)\) with zero diagonal.  The normalization of \(X(z)\) is chosen so that the limiting displacement of the \((i,j)\) oscillator is \(z_{ij}\).  For spectral perturbations, let
+\[
+  \mathsf H=\left\{h\in\R^d:\sum_i h_i=0\right\},
+  \qquad
+  p_{n,h}=p+\frac h{\sqrt n}.
+\]
+The covariance matrix of the spectral fluctuations is
+\[
+  V_p=\diag(p)-pp^T
+\]
+restricted to \(\mathsf H\).
 
 \begin{theorem}[Fixed-spectrum LAN]\label{thm:LAN-known}
-Fix \(p\in\Delta_d^\circ\).  Let \(R=d(d-1)/2\).  There is a local coordinate map \(z\in\C^R\mapsto X(z)\in\mathfrak u(d)\) for off-diagonal tangent directions such that, with
+Fix \(p\in\Delta_d^\circ\).  With
 \[
   g_{n,z}=\exp(X(z)/\sqrt n),
   \qquad
   \rho_{n,z}=\rho_{p,g_{n,z}}^{\ot n},
 \]
-there exist channels \(T_n\) and \(S_n\) satisfying, uniformly for \(z\) in compact subsets of \(\C^R\),
+there are quantum channels
+\[
+  T_n:(\C^d)^{\ot n}\longrightarrow\cF^{\ot R},
+  \qquad
+  S_n:\cF^{\ot R}\longrightarrow(\C^d)^{\ot n},
+\]
+such that, uniformly for \(z\) in every fixed compact subset of \(\C^R\),
 \begin{align}
-  \|T_n(\rho_{n,z})-\Phi_z\|_1&\to0,\label{eq:LAN-known-forward}\\
-  \|S_n(\Phi_z)-\rho_{n,z}\|_1&\to0,\label{eq:LAN-known-inverse}
+  \|T_n(\rho_{n,z})-\Phi_z\|_1&\longrightarrow0,\label{eq:LAN-known-forward}\\
+  \|S_n(\Phi_z)-\rho_{n,z}\|_1&\longrightarrow0,\label{eq:LAN-known-inverse}
 \end{align}
 where
 \begin{equation}\label{eq:Phi-z}
-  \Phi_z=\bigotimes_{i<j}D(z_{ij})\tau_{q_{ij}}D(z_{ij})^*.
+  \Phi_z
+  =
+  \bigotimes_{i<j}
+  D(z_{ij})\tau_{q_{ij}}D(z_{ij})^*,
+  \qquad
+  q_{ij}=\frac{p_j}{p_i}.
 \end{equation}
-For \(m_n/n\to\gamma\), the corresponding output target satisfies
+For \(m_n/n\to\gamma\), the same physical state on \(m_n\) copies satisfies
 \begin{equation}\label{eq:Psi-z}
   T_{m_n}(\rho_{p,g_{n,z}}^{\ot m_n})
-  \to
-  \Psi_z:=\bigotimes_{i<j}D(\sqrt\gamma z_{ij})\tau_{q_{ij}}D(\sqrt\gamma z_{ij})^*
+  \longrightarrow
+  \Psi_z
+  :=
+  \bigotimes_{i<j}
+  D(\sqrt\gamma z_{ij})\tau_{q_{ij}}D(\sqrt\gamma z_{ij})^*
 \end{equation}
-in trace norm, uniformly on compact sets.  The same group element is written with the input normalization \(g_{n,z}=\exp(X(z)/\sqrt n)\); in the \(m_n\)-copy LAN chart this corresponds to the local parameter \(\sqrt{m_n/n}\,z\to\sqrt\gamma z\), which is the source of the displacement gain.  The thermal parameter remains \(q_{ij}\), since it depends only on the underlying spectrum \(p\).
+uniformly on compact \(z\)-sets.
 \end{theorem}
 
+The maps \(T_n\) and \(S_n\) are called the forward and inverse LAN channels.  The first converts the finite-dimensional experiment into its oscillator approximation; the second reconstructs finite-dimensional states from the Gaussian model.  The two trace-norm limits mean that, for bounded local parameters, neither model contains asymptotically more statistical information than the other.
+
+The factor \(\sqrt\gamma\) in \eqref{eq:Psi-z} is simply a change of local scale.  The group element is written as \(\exp(X(z)/\sqrt n)\).  In an \(m_n\)-copy chart normalized by \(1/\sqrt{m_n}\), the same group element has coordinate \(\sqrt{m_n/n}\,z\to\sqrt\gamma z\).  The thermal parameter remains \(q_{ij}\), since it depends only on \(p\).
+
 \begin{theorem}[Full mixed-state LAN]\label{thm:LAN-unknown}
-Fix \(p\in\Delta_d^\circ\).  Let \(V_p=\diag(p)-pp^T\), restricted to the tangent space
-\[
-  \mathsf H=\{h\in\R^d:\sum_i h_i=0\}.
-\]
-For local perturbations
+Fix \(p\in\Delta_d^\circ\).  For
 \[
   p_{n,h}=p+h/\sqrt n,
   \qquad
   g_{n,z}=\exp(X(z)/\sqrt n),
 \]
-the \(n\)-copy model converges, uniformly for \((h,z)\) in compact subsets of \(\mathsf H\times\C^R\), to
+the \(n\)-copy quantum statistical model converges, uniformly for \((h,z)\) in compact subsets of \(\mathsf H\times\C^R\), to the hybrid classical--quantum model
 \begin{equation}\label{eq:hybrid-input}
-  \mathsf N_{h,V_p}\ot\Phi_z,
+  \mathsf N_{h,V_p}\ot\Phi_z.
 \end{equation}
-where \(\mathsf N_{h,V_p}\) denotes a classical normal distribution on \(\mathsf H\) with mean \(h\) and covariance \(V_p\).  The \(m_n\)-copy target corresponds to
+Here \(\mathsf N_{h,V_p}\) is the ordinary Gaussian probability distribution on \(\mathsf H\) with mean \(h\) and covariance \(V_p\).  The product symbol means that this classical variable and the oscillator state are independent components of one hybrid classical--quantum statistical model.  The \(m_n\)-copy target converges to
 \begin{equation}\label{eq:hybrid-target}
   \mathsf N_{\sqrt\gamma h,V_p}\ot\Psi_z.
 \end{equation}
-There are forward and inverse LAN channels implementing this convergence in Le Cam deficiency, uniformly on compact sets.
+There are forward and inverse channels whose worst-case trace-norm errors tend to zero on every compact local parameter set.
 \end{theorem}
 
+Thus the full LAN model separates into two independent pieces.  The classical Gaussian variable records \(1/\sqrt n\)-scale changes of the eigenvalues.  The \(R\) oscillator modes record the noncommuting changes of eigenvectors.  The fixed-spectrum theorem is the restriction obtained by freezing \(h=0\).
+
 \begin{corollary}[Compact-uniform LAN on strict chambers]\label{cor:LAN-uniform-compact}
-Fix \(\kappa>0\) and \(L<\infty\).  The LAN convergence in \cref{thm:LAN-known,thm:LAN-unknown} is uniform for all base spectra
+Fix \(\kappa>0\) and \(L<\infty\).  The convergences in \cref{thm:LAN-known,thm:LAN-unknown} are uniform over
 \[
   p\in\Delta_{d,\kappa}
-  =\{p:\ p_d\ge\kappa,\ p_i-p_{i+1}\ge\kappa,\ \sum_i p_i=1\}
+  =
+  \left\{
+    p:\ p_d\ge\kappa,\;
+    p_i-p_{i+1}\ge\kappa,\;
+    \sum_i p_i=1
+  \right\}
 \]
-and all local parameters \((h,z)\in C_L\) for which \(p+h/\sqrt n\) is a state.  In particular, the forward, inverse, and output LAN errors can be chosen so that their suprema over \(p\in\Delta_{d,\kappa}\) and \((h,z)\in C_L\) tend to zero.
+and \((h,z)\in C_L\), provided \(p+h/\sqrt n\) remains a state.
 \end{corollary}
 
 \begin{proof}
-This is a compactness consequence of the Kahn--Guta LAN theorem.  Their construction is local and uniform on compact parameter sets inside the full-rank state space.  On \(\Delta_{d,\kappa}\), all eigenvalues and all eigenvalue gaps are bounded away from zero, so the coordinate charts, covariance matrices, oscillator temperatures, and error estimates appearing in the LAN proof vary continuously with uniformly bounded derivatives.  Cover \(\Delta_{d,\kappa}\) by finitely many such LAN neighborhoods and take the maximum of the corresponding error functions.  Since each tends to zero, the finite maximum tends to zero.  The fixed-spectrum orbit statement is the restriction of the same uniform full model to the off-diagonal coordinates.
+Kahn--Guță's construction and error bounds are local-uniform on compact subsets of the full-rank, nondegenerate state space \cite{KahnGuta2009}.  On \(\Delta_{d,\kappa}\), all eigenvalues and all spectral gaps are bounded away from zero.  The coordinate charts, the classical covariance \(V_p\), and the oscillator temperatures \(q_{ij}=p_j/p_i\) therefore range over compact sets.  Cover \(\Delta_{d,\kappa}\) by finitely many LAN neighborhoods and take the maximum of the corresponding error functions.
 \end{proof}
 
-\JW{Internal citation note: the compactness argument above uses that the Kahn--Guta construction is locally uniform, with LAN channels chosen consistently on each chart; cite the locally uniform statements of \cite{KahnGuta2009} explicitly in the final version.}
+\subsection{Transferring a cloning bound through LAN}\label{subsec:LAN-transfer-main}
 
-The fixed-spectrum theorem is obtained from the full theorem by freezing the classical eigenvalue parameter.  The unknown-spectrum result below uses the full hybrid model.
+The converse proofs use a simple but important stability statement.  It is stated separately so that every use of LAN later reduces to an explicit inequality.
 
-\subsection{LAN fidelity transfer}\label{subsec:LAN-transfer-main}
-
-We will repeatedly use the following elementary consequence of trace-norm LAN convergence.  Suppose finite-dimensional local models \(\rho_{n,\theta}\), \(\sigma_{n,\theta}\) and Gaussian models \(\Phi_\theta\), \(\Psi_\theta\) satisfy, uniformly on a compact parameter set \(K\),
+\begin{lemma}[LAN fidelity transfer]\label{lem:LAN-fidelity-transfer}
+Let \(\{\rho_{n,\theta}\}_{\theta\in K}\) and \(\{\sigma_{n,\theta}\}_{\theta\in K}\) be finite-dimensional input and target models on a compact parameter set \(K\).  Let \(\{\Phi_\theta\}\) and \(\{\Psi_\theta\}\) be limiting models, and suppose channels \(S_n,T_n\) satisfy
 \[
   \sup_{\theta\in K}\|S_n(\Phi_\theta)-\rho_{n,\theta}\|_1\to0,
   \qquad
   \sup_{\theta\in K}\|T_n(\sigma_{n,\theta})-\Psi_\theta\|_1\to0.
 \]
-For an arbitrary finite-dimensional channel \(\cM_n\), set
+For any sequence of finite-dimensional channels \(\cM_n\), define
 \[
   \Gamma_n=T_n\circ\cM_n\circ S_n.
 \]
 Then
 \begin{equation}\label{eq:LAN-transfer-main}
-  \inf_{\theta\in K}B(\Gamma_n(\Phi_\theta),\Psi_\theta)
+  \inf_{\theta\in K}
+  B(\Gamma_n(\Phi_\theta),\Psi_\theta)
   \ge
-  \inf_{\theta\in K}B(\cM_n(\rho_{n,\theta}),\sigma_{n,\theta})-o(1).
+  \inf_{\theta\in K}
+  B(\cM_n(\rho_{n,\theta}),\sigma_{n,\theta})
+  -o(1).
 \end{equation}
-Indeed, replace \(S_n(\Phi_\theta)\) by \(\rho_{n,\theta}\) using trace-norm contractivity and \cref{lem:fid-cont}; apply monotonicity under \(T_n\); then replace \(T_n(\sigma_{n,\theta})\) by \(\Psi_\theta\).  Thus a finite-dimensional cloner whose fidelity is uniformly above a Gaussian benchmark on a local window induces, through the LAN maps, a Gaussian cloner with the same excess fidelity up to \(o(1)\).  This is the finite-dimensional-to-Gaussian contradiction template used in the known-spectrum and unknown-spectrum converses below.
-
-
-\subsection{Gaussian amplification and the fidelity converse}\label{sec:gaussian}
-
-This section proves the Gaussian root-fidelity bound used by the finite-dimensional converse.  The structural input is the one-mode stochastic-ordering theorem of Guta--Matsumoto for displaced thermal amplification \cite{GutaMatsumoto2006}.  We use it in a conic form and tensorize it by a peeling argument, so the proof does not require a separate multivariate stochastic-order theorem.
-
-\begin{lemma}[Uniform trace reduction for covariant CP maps]\label{lem:uniform-trace-reduction}
-Let \(\mathcal J\) be a normal completely positive trace-nonincreasing map on an oscillator trace class.  Suppose \(\mathcal J\) is displacement covariant with gain \(\sqrt\gamma\):
-\[
-  \mathcal J(D(z)XD(z)^*)=D(\sqrt\gamma z)\mathcal J(X)D(\sqrt\gamma z)^*
-\]
-for all displacements \(z\).  Then there is a constant \(c\in[0,1]\) such that
-\[
-  \Tr\mathcal J(X)=c\Tr X
-\]
-for every trace-class operator \(X\).
 \end{lemma}
 
 \begin{proof}
-The output trace is a positive normal linear functional on the trace class, so \(\Tr\mathcal J(X)=\Tr[AX]\) for a bounded operator \(0\le A\le I\).  Covariance and cyclicity give \(D(z)^*AD(z)=A\) for all \(z\).  The Weyl representation is irreducible, so its von Neumann commutant is the scalar algebra.  Hence \(A=cI\), with \(c\in[0,1]\), proving the claim.
+Let
+\[
+  \delta_n=
+  \sup_{\theta\in K}\|S_n(\Phi_\theta)-\rho_{n,\theta}\|_1,
+  \qquad
+  \eta_n=
+  \sup_{\theta\in K}\|T_n(\sigma_{n,\theta})-\Psi_\theta\|_1.
+\]
+Trace-norm contractivity gives
+\[
+  \|\Gamma_n(\Phi_\theta)-T_n\cM_n(\rho_{n,\theta})\|_1
+  \le\delta_n.
+\]
+By continuity of root fidelity from \cref{lem:fid-cont},
+\[
+  B(\Gamma_n(\Phi_\theta),\Psi_\theta)
+  \ge
+  B(T_n\cM_n(\rho_{n,\theta}),T_n(\sigma_{n,\theta}))
+  -C(\sqrt{\delta_n}+\sqrt{\eta_n}).
+\]
+Monotonicity under the channel \(T_n\) gives
+\[
+  B(T_n\cM_n(\rho_{n,\theta}),T_n(\sigma_{n,\theta}))
+  \ge
+  B(\cM_n(\rho_{n,\theta}),\sigma_{n,\theta}).
+\]
+Taking the infimum over \(\theta\in K\) proves \eqref{eq:LAN-transfer-main}.
 \end{proof}
 
-\begin{lemma}[Hunt--Stein reduction for the Gaussian covariant problems]\label{lem:Hunt-Stein}
-For the flat-prior Gaussian cloning problems considered in this paper, with covariance group \(\C^R\) in the fixed-spectrum case, \(\mathsf H\) in the classical spectral case, and \(\mathsf H\times\C^R\) in the hybrid unknown-spectrum case, the expanding-window minimax value is unchanged if the supremum over all channels is restricted to exactly covariant channels.
-\end{lemma}
+\subsection{The displaced-thermal Gaussian cloning problem}\label{sec:gaussian}
 
-\begin{proof}
-The covariance groups are locally compact abelian, hence amenable.  The payoff is root fidelity averaged over a Haar-uniform prior on expanding Følner cubes, and root fidelity is concave in the channel output.  The Hunt--Stein theorem for amenable covariance groups therefore gives an invariant, equivalently covariant, decision rule with value at least the limiting flat-prior value of any noncovariant rule; see the standard quantum decision-theoretic formulation in Holevo's treatment of covariant statistical decision problems~\cite{Holevo2011}.  Equivalently, one may average a channel over Følner cubes and use joint concavity; the amenability theorem is the clean way to pass from approximate covariance of the averages to an exactly covariant optimizer without weak-limit normalization subtleties.
-\end{proof}
-
-\subsubsection{One oscillator mode}
-
-Fix \(0<q<1\) and \(\gamma>1\).  The input family is
+The finite-dimensional converse will now follow from a cloning theorem for the limit model.  For one mode, the input family is
 \[
   \Phi_z=D(z)\tau_qD(z)^*,
 \]
-and the ideal cloning target is
+and the ideal amplified target is
 \[
   \Psi_z=D(\sqrt\gamma z)\tau_qD(\sqrt\gamma z)^*.
 \]
-The least-noise amplifier produces
+The quantum-limited amplifier produces the correct displacement but the noisier thermal state
 \[
-  D(\sqrt\gamma z)\tau_{q^{(\gamma)}}D(\sqrt\gamma z)^*,
-  \qquad
-  q^{(\gamma)}=1-\frac{1-q}{\gamma}.
+  \cA_\gamma(\Phi_z)
+  =
+  D(\sqrt\gamma z)\tau_{q^{(\gamma)}}D(\sqrt\gamma z)^*.
 \]
-Its squared fidelity with the target is \eqref{eq:thermal-squared-fid} with \(q'=q^{(\gamma)}\).
+
+A probability distribution \(P\) on \(\N\) is said to be stochastically larger than \(P^*\) if
+\[
+  \sum_k\phi(k)P_k\ge\sum_k\phi(k)P_k^*
+\]
+for every bounded increasing function \(\phi\).  Equivalently, expectations of bounded decreasing functions are no larger under \(P\).  Guță and Matsumoto show that, among phase-insensitive displacement-covariant amplifiers of fixed gain, the quantum-limited output photon-number distribution is smallest in this stochastic order \cite{GutaMatsumoto2006}.
+
+\begin{lemma}[Uniform trace reduction for covariant CP maps]\label{lem:uniform-trace-reduction}
+Let \(\mathcal J\) be a normal completely positive trace-nonincreasing map on an oscillator trace class and suppose
+\[
+  \mathcal J(D(z)XD(z)^*)
+  =
+  D(\sqrt\gamma z)\mathcal J(X)D(\sqrt\gamma z)^*.
+\]
+Then there is \(c\in[0,1]\) such that
+\[
+  \Tr\mathcal J(X)=c\,\Tr X
+\]
+for every trace-class \(X\).
+\end{lemma}
+
+\begin{proof}
+The output trace is a positive normal linear functional, so
+\[
+  \Tr\mathcal J(X)=\Tr[AX]
+\]
+for a bounded operator \(0\le A\le I\).  Covariance and cyclicity imply \(D(z)^*AD(z)=A\) for all \(z\).  The Weyl representation on Fock space is irreducible, so its commutant is the scalar algebra.  Hence \(A=cI\).
+\end{proof}
+
+\begin{lemma}[Hunt--Stein reduction for the Gaussian models]\label{lem:Hunt-Stein}
+For the flat-prior cloning problems considered below, the asymptotic value over expanding cubes is unchanged if one restricts the optimization to exactly covariant channels.
+\end{lemma}
+
+\begin{proof}
+The relevant covariance groups are \(\C^R\) and \(\mathsf H\times\C^R\).  They are locally compact abelian groups and hence amenable.  The Hunt--Stein theorem for amenable covariant decision problems applies because the loss is invariant and root fidelity is concave in the output state; see \cite{Holevo2011}.  Equivalently, one may average a channel over a Følner sequence of cubes.  Amenability guarantees an exactly covariant decision rule with value at least the limiting flat-prior value, avoiding normalization issues in informal weak-limit arguments.
+\end{proof}
 
 \begin{lemma}[One-mode conic stochastic order]\label{lem:one-mode-conic}
-Let \(\mathcal J\) be a normal completely positive trace-nonincreasing map on one oscillator mode, displacement covariant with gain \(\sqrt\gamma\), and phase covariant.  Then, for every bounded nonnegative decreasing function \(w:\N\to\R_+\),
+Let \(\mathcal J\) be a normal completely positive trace-nonincreasing one-mode map that is displacement covariant with gain \(\sqrt\gamma\) and phase covariant.  Then, for every bounded nonnegative decreasing function \(w:\N\to\R_+\),
 \begin{equation}\label{eq:one-mode-conic}
-  \Tr[\mathcal J(\tau_q) w(N)]
+  \Tr[\mathcal J(\tau_q)w(N)]
   \le
-  \Tr[\mathcal J(\tau_q)]\,\Tr[\tau_{q^{(\gamma)}} w(N)].
+  \Tr[\mathcal J(\tau_q)]
+  \Tr[\tau_{q^{(\gamma)}}w(N)].
 \end{equation}
 \end{lemma}
 
 \begin{proof}
-The trace functional of \(\mathcal J\) has the form \(X\mapsto\Tr[AX]\), with \(0\le A\le I\).  Exact displacement covariance and cyclicity of trace imply \(D(z)^*AD(z)=A\) for all Weyl displacements.  By irreducibility of the Weyl representation, \(A=cI\), so \(\Tr\mathcal J(X)=c\Tr X\).  If \(c=0\), the claim is trivial.  If \(c>0\), then \(c^{-1}\mathcal J\) is a trace-preserving phase-insensitive displacement-covariant amplifier of gain \(\gamma\).  The Guta--Matsumoto stochastic-ordering theorem says that its output photon-number distribution on \(\tau_q\) is stochastically larger than the least-noise geometric distribution with parameter \(q^{(\gamma)}\).  Therefore the expectation of every bounded decreasing photon-number function is no larger than for \(\tau_{q^{(\gamma)}}\).  Multiplying by \(c\) gives \eqref{eq:one-mode-conic}.
+By \cref{lem:uniform-trace-reduction},
+\[
+  \Tr\mathcal J(X)=c\,\Tr X
+\]
+for some \(c\in[0,1]\).  If \(c=0\), the map is zero.  If \(c>0\), then \(c^{-1}\mathcal J\) is a trace-preserving phase-insensitive displacement-covariant amplifier.  The Guță--Matsumoto stochastic-order theorem bounds the expectation of every decreasing photon-number function by the quantum-limited output \(\tau_{q^{(\gamma)}}\).  Multiplying by \(c\) proves \eqref{eq:one-mode-conic}.
 \end{proof}
 
-\begin{lemma}[Fidelity optimality of the least-noise amplifier]\label{lem:one-mode-gaussian}
-Among displacement-covariant amplifiers of gain \(\gamma\), the root fidelity with the target displaced thermal family is maximized by the quantum-limited amplifier.  The optimal squared fidelity is
+\begin{remark}[The one external Gaussian input]\label{rem:one-external-GM}
+The only stochastic-order statement imported from \cite{GutaMatsumoto2006} is the one-mode trace-preserving result used in the preceding proof.  The multimode bound below is derived from it by a peeling argument; no separate multivariate stochastic-order theorem is assumed.
+\end{remark}
+
+\begin{lemma}[Fidelity optimality in one mode]\label{lem:one-mode-gaussian}
+Among displacement-covariant amplifiers of gain \(\gamma\), the quantum-limited amplifier maximizes root fidelity with the target family \(\Psi_z\).  The optimal squared fidelity is
 \begin{equation}\label{eq:one-mode-f}
-  f_\gamma(q)=
+  f_\gamma(q)
+  =
   \frac{(1-q)(1-q^{(\gamma)})}
        {(1-\sqrt{q q^{(\gamma)}})^2}.
 \end{equation}
 \end{lemma}
 
 \begin{proof}
-By displacement covariance, it suffices to evaluate the output at \(z=0\).  Since \(\tau_q\) is phase invariant, phase-twirling an output cannot decrease root fidelity, by joint concavity and phase invariance.  Hence the optimizer may be assumed diagonal, say \(\sigma=\sum_k P_k\proj{k}\).  Let \(P_k^*=(1-q^{(\gamma)})(q^{(\gamma)})^k\) and \(T_k=(1-q)q^k\).  The root fidelity is \(B(P,T)=\sum_k\sqrt{P_kT_k}\).  At \(P^*\), the first variation has weights
+Covariance makes the fidelity independent of \(z\), so set \(z=0\).  Average the channel over phase rotations.  Because the input and target are phase invariant and root fidelity is concave, this cannot lower the fidelity.  The output is therefore diagonal:
 \[
-  w_k=\sqrt{T_k/P_k^*}
-  =\sqrt{\frac{1-q}{1-q^{(\gamma)}}}
-   \left(\frac{q}{q^{(\gamma)}}\right)^{k/2},
+  \sigma=\sum_kP_k\proj{k}.
 \]
-which are decreasing.  Applying \cref{lem:one-mode-conic} to this bounded decreasing weight gives
+Let
 \[
-  \sum_k w_k(P_k-P_k^*)\le0.
+  T_k=(1-q)q^k,
+  \qquad
+  P_k^*=(1-q^{(\gamma)})(q^{(\gamma)})^k.
 \]
-Concavity of \(P\mapsto B(P,T)\) then gives
+For every \(x,x_0>0\),
 \[
-  B(P,T)\le B(P^*,T)+\frac12\sum_k w_k(P_k-P_k^*)\le B(P^*,T).
+  \sqrt x\le\sqrt{x_0}+\frac{x-x_0}{2\sqrt{x_0}}.
 \]
-The value \(B(P^*,T)\) is \eqref{eq:thermal-root-fid} with \(q'=q^{(\gamma)}\), proving \eqref{eq:one-mode-f}.
+Applying this pointwise to \(x=P_kT_k\) and \(x_0=P_k^*T_k\), and summing over \(k\), gives
+\[
+  B(P,T)
+  \le
+  B(P^*,T)
+  +
+  \frac12\sum_k
+  \sqrt{\frac{T_k}{P_k^*}}(P_k-P_k^*).
+\]
+The weight
+\[
+  w_k=
+  \sqrt{\frac{T_k}{P_k^*}}
+  =
+  \sqrt{\frac{1-q}{1-q^{(\gamma)}}}
+  \left(\frac{q}{q^{(\gamma)}}\right)^{k/2}
+\]
+is bounded and decreasing.  The one-mode conic order makes the last sum nonpositive.  Hence \(B(P,T)\le B(P^*,T)\), and \eqref{eq:thermal-squared-fid} gives \eqref{eq:one-mode-f}.
 \end{proof}
 
-The equivalent closed form in \eqref{eq:intro-known-answer-clean} follows directly from \(q^{(\gamma)}=(\gamma-1+q)/\gamma\).  Since \(1-q^{(\gamma)}=(1-q)/\gamma\),
-\[
+The equivalent form
+\begin{equation}\label{eq:one-mode-f-closed}
   f_\gamma(q)
-  =\frac{(1-q)^2/\gamma}{(1-\sqrt{q(\gamma-1+q)/\gamma})^2}
   =
-  \left(\frac{\sqrt\gamma+\sqrt{q(\gamma-1+q)}}{\gamma+q}\right)^2.
+  \left(
+  \frac{\sqrt\gamma+\sqrt{q(\gamma-1+q)}}
+       {\gamma+q}
+  \right)^2
+\end{equation}
+follows from \(q^{(\gamma)}=(\gamma-1+q)/\gamma\).
+
+\begin{lemma}[Tensorization of the one-mode conic order]\label{lem:tensor-conic}
+Let \(\mathcal A\) be an \(R\)-mode normal completely positive trace-nonincreasing map, displacement covariant with gain \(\sqrt\gamma\) and phase covariant in each mode.  Let
+\[
+  \Phi_0=\bigotimes_{\alpha=1}^R\tau_{q_\alpha},
+  \qquad
+  \Omega_{*,Q}=
+  \bigotimes_{\alpha=1}^R\tau_{q_\alpha^{(\gamma)}}.
 \]
-Multiplying this identity over all positive roots gives \eqref{eq:intro-known-answer-clean}.
+For every product weight
+\[
+  W(\mathbf N)=\prod_{\alpha=1}^R w_\alpha(N_\alpha)
+\]
+with each \(w_\alpha\) bounded, nonnegative, and decreasing,
+\begin{equation}\label{eq:tensor-conic}
+  \Tr[\mathcal A(\Phi_0)W(\mathbf N)]
+  \le
+  \Tr[\mathcal A(\Phi_0)]
+  \Tr[\Omega_{*,Q}W(\mathbf N)].
+\end{equation}
+\end{lemma}
 
-\subsubsection{Tensorization and flat-prior minimax form}
+\begin{proof}
+By rescaling, assume \(0\le w_\alpha\le1\).  Put
+\[
+  W_{>1}=\prod_{\alpha=2}^R w_\alpha(N_\alpha),
+  \qquad
+  \Phi_{0,>1}=\bigotimes_{\alpha=2}^R\tau_{q_\alpha}.
+\]
+Define the one-mode CP map
+\[
+  \mathcal J_1(X)
+  =
+  \Tr_{2,\ldots,R}
+  \left[
+    (I\ot W_{>1}^{1/2})
+    \mathcal A(X\ot\Phi_{0,>1})
+    (I\ot W_{>1}^{1/2})
+  \right].
+\]
+Since \(0\le W_{>1}\le I\), this map is trace nonincreasing.  The covariance of \(\mathcal A\) and phase invariance of \(W_{>1}\) imply that \(\mathcal J_1\) has the one-mode covariance required in \cref{lem:one-mode-conic}.  Therefore
+\[
+  \Tr[\mathcal A(\Phi_0)w_1(N_1)W_{>1}]
+  \le
+  \Tr[\tau_{q_1^{(\gamma)}}w_1(N_1)]
+  \Tr[\mathcal A(\Phi_0)W_{>1}].
+\]
+Repeat this argument for modes \(2,\ldots,R\).  The resulting product is exactly \eqref{eq:tensor-conic}.
+\end{proof}
 
-For the fixed-spectrum orbit, the Gaussian input and target are \(\Phi_z\) and \(\Psi_z\) from \eqref{eq:Phi-z} and \eqref{eq:Psi-z}.  Define
+For the fixed-spectrum LAN model define
 \begin{align}
   \Bgauss(\gamma,p)
   &:=
@@ -621,82 +975,66 @@ For the fixed-spectrum orbit, the Gaussian input and target are \(\Phi_z\) and \
        {1-\sqrt{q_{ij}q_{ij}^{(\gamma)}}},\label{eq:BG-def}\\
   \Fgauss(\gamma,p)&:=\Bgauss(\gamma,p)^2.\label{eq:FG-def}
 \end{align}
-This is the same quantity as \(\Borb,\Forb\).
-
-\begin{lemma}[Tensorization of the one-mode conic order]\label{lem:tensor-conic}
-Let \(\mathcal A\) be an \(R\)-mode normal completely positive trace-nonincreasing map,
-displacement covariant with gain \(\sqrt\gamma\) in every mode and phase covariant in every
-mode.  Let
-\[
-  \Phi_0=\bigotimes_{\alpha=1}^R\tau_{q_\alpha},
-  \qquad
-  \Omega_{*,Q}=\bigotimes_{\alpha=1}^R\tau_{q_\alpha^{(\gamma)}}.
-\]
-For every bounded product weight \(W(\mathbf N)=\prod_{\alpha=1}^R w_\alpha(N_\alpha)\), with each \(w_\alpha\ge0\) decreasing,
-\begin{equation}\label{eq:tensor-conic}
-  \Tr[\mathcal A(\Phi_0)W(\mathbf N)]
-  \le
-  \Tr[\mathcal A(\Phi_0)]\,\Tr[\Omega_{*,Q}W(\mathbf N)].
-\end{equation}
-In particular, if \(\mathcal A\) is trace preserving, then the prefactor \(\Tr[\mathcal A(\Phi_0)]\) is one.
-\end{lemma}
-
-\begin{proof}
-By homogeneity, scale the weights so that \(0\le w_\alpha\le1\).  Write \(W_{>1}=\prod_{\alpha=2}^R w_\alpha(N_\alpha)\).  From \(\mathcal A\), construct a one-mode completely positive trace-nonincreasing map \(\mathcal J_1\) by the dual identity
-\[
-  \Tr[\mathcal J_1(X)Y]
-  :=
-  \Tr[\mathcal A(X\otimes\Phi_{0,>1})(Y\otimes W_{>1})],
-  \qquad 0\le Y\in\cB(\cF_1).
-\]
-Since \(0\le W_{>1}\le I\) and \(\mathcal A\) is trace-nonincreasing, \(\mathcal J_1\) is trace-nonincreasing.  It is displacement covariant with gain \(\sqrt\gamma\) and phase covariant in the first mode, because \(\mathcal A\) has those covariances and \(W_{>1}\) commutes with the phase rotations of the other output modes.  Applying \cref{lem:one-mode-conic} gives
-\[
-  \Tr[\mathcal A(\Phi_0)w_1(N_1)W_{>1}]
-  \le
-  \Tr[\tau_{q_1^{(\gamma)}}w_1(N_1)]\,\Tr[\mathcal A(\Phi_0)W_{>1}].
-\]
-Repeating the same argument for modes \(2,\ldots,R\) gives
-\[
-  \Tr[\mathcal A(\Phi_0)W]
-  \le
-  \left(\prod_{\alpha=1}^R\Tr[\tau_{q_\alpha^{(\gamma)}}w_\alpha(N_\alpha)]\right)
-  \Tr[\mathcal A(\Phi_0)],
-\]
-which is exactly \eqref{eq:tensor-conic}.
-\end{proof}
-
-\begin{remark}[The single external analytic input]\label{rem:single-input}
-After the tensorization above, the entire Gaussian converse rests on a single one-mode statement, namely \cref{lem:one-mode-conic}: for a trace-preserving, phase-insensitive, displacement-covariant map of gain \(\gamma\), the output photon-number distribution on \(\tau_q\) stochastically dominates the least-noise geometric law with parameter \(q^{(\gamma)}\).  We import this stochastic-ordering statement from the displaced-thermal amplification analysis of Guta--Matsumoto~\cite{GutaMatsumoto2006}.  The logical order matters: the fidelity optimality in \cref{lem:one-mode-gaussian} is derived from the stochastic order, not conversely.  No separate multivariate stochastic-order theorem is needed, since the multimode case is reduced to the one-mode statement by the peeling argument of \cref{lem:tensor-conic}.
-\end{remark}
-
-\JW{Internal citation note: pin the precise statement in Guta--Matsumoto that asserts the photon-number stochastic ordering for covariant gain-\(\gamma\) channels, as opposed to its fidelity-optimality corollary.  If their published form is fidelity optimality only, the one-mode stochastic order should be stated and proved directly at \cref{lem:one-mode-conic} to avoid circularity.}
+These equal \(\Borb(\gamma,p)\) and \(\Forb(\gamma,p)\).
 
 \begin{theorem}[Gaussian fidelity converse]\label{thm:gaussian-converse}
-For the displaced-thermal cloning problem \(\Phi_z\mapsto\Psi_z\), no channel can have asymptotic flat-prior, and hence no channel can have minimax, squared fidelity exceeding \(\Fgauss(\gamma,p)\).  More precisely, if \(C_L\subset\C^R\) is the cube \(|\Re z_{ij}|,|\Im z_{ij}|\le L\), then
+Let \(C_L\subset\C^R\) be the cube
+\[
+  |\Re z_\alpha|,|\Im z_\alpha|\le L.
+\]
+Then
 \begin{equation}\label{eq:flat-prior-gaussian}
-  \lim_{L\to\infty}\sup_\Lambda
-  \int_{C_L}B(\Lambda(\Phi_z),\Psi_z)\frac{\dd z}{|C_L|}
-  =\Bgauss(\gamma,p).
+  \lim_{L\to\infty}
+  \sup_\Lambda
+  \int_{C_L}
+  B(\Lambda(\Phi_z),\Psi_z)\frac{\dd z}{|C_L|}
+  =
+  \Bgauss(\gamma,p).
 \end{equation}
+Consequently no channel can have minimax squared fidelity larger than \(\Fgauss(\gamma,p)\).
 \end{theorem}
 
 \begin{proof}
-The lower bound is achieved by the product of quantum-limited amplifiers.  For the upper bound, \cref{lem:Hunt-Stein} allows us to restrict to displacement-covariant channels.  Covariance reduces the fidelity to \(z=0\).  Phase twirling cannot decrease fidelity with the phase-invariant product thermal target, so the output may be taken diagonal in the joint number basis.  Let
+The product quantum-limited amplifier attains the lower bound, with constant root fidelity \(\Bgauss(\gamma,p)\).  For the upper bound, \cref{lem:Hunt-Stein} permits restriction to exactly displacement-covariant channels.  Covariance reduces the fidelity to \(z=0\).  Phase averaging may again be applied, so the origin output is diagonal in the joint number basis:
 \[
-  T_{\mathbf k}=\prod_\alpha(1-q_\alpha)q_\alpha^{k_\alpha},
+  P_{\mathbf k}
+  =
+  \bra{\mathbf k}\Lambda(\Phi_0)\ket{\mathbf k}.
+\]
+Let
+\[
+  T_{\mathbf k}
+  =
+  \prod_\alpha(1-q_\alpha)q_\alpha^{k_\alpha},
   \qquad
-  P^*_{\mathbf k}=\prod_\alpha(1-q_\alpha^{(\gamma)})(q_\alpha^{(\gamma)})^{k_\alpha}.
+  P_{\mathbf k}^*
+  =
+  \prod_\alpha
+  (1-q_\alpha^{(\gamma)})
+  (q_\alpha^{(\gamma)})^{k_\alpha}.
 \]
-The first-variation weight at \(P^*\) is
+Applying the scalar tangent inequality from the proof of \cref{lem:one-mode-gaussian} to every \(\mathbf k\) gives
 \[
-  W_{\mathbf k}=\sqrt{T_{\mathbf k}/P^*_{\mathbf k}}
-  =C\prod_\alpha\left(\frac{q_\alpha}{q_\alpha^{(\gamma)}}\right)^{k_\alpha/2},
+  B(P,T)
+  \le
+  B(P^*,T)
+  +
+  \frac12
+  \sum_{\mathbf k}
+  W_{\mathbf k}(P_{\mathbf k}-P_{\mathbf k}^*),
 \]
-a bounded product of decreasing one-mode weights.  By \cref{lem:tensor-conic}, the expectation of \(W\) under any admissible covariant amplifier output is no larger than under \(P^*\).  Concavity of the Bhattacharyya functional \(P\mapsto\sum_{\mathbf k}\sqrt{P_{\mathbf k}T_{\mathbf k}}\) gives the supporting-hyperplane bound
+where
 \[
-  B(P,T)\le B(P^*,T)+\frac12\sum_{\mathbf k}W_{\mathbf k}(P_{\mathbf k}-P^*_{\mathbf k})\le B(P^*,T).
+  W_{\mathbf k}
+  =
+  C\prod_\alpha
+  \left(\frac{q_\alpha}{q_\alpha^{(\gamma)}}\right)^{k_\alpha/2}
 \]
-The value \(B(P^*,T)\) is exactly \(\Bgauss(\gamma,p)\).  This proves \eqref{eq:flat-prior-gaussian}.
+is a bounded product of decreasing weights.  By \cref{lem:tensor-conic}, the second term is nonpositive.  Hence
+\[
+  B(P,T)\le B(P^*,T)=\Bgauss(\gamma,p).
+\]
+The minimax bound follows because the infimum of a function over \(z\) is no larger than its average over \(C_L\).
 \end{proof}
 
 \section{Known-spectrum cloning}\label{sec:known}
@@ -705,21 +1043,107 @@ In this section the spectrum \(p\) is fixed and known.  Only the orbit element \
 
 \subsection{The known-spectrum Schur--PRV channel}
 
-Let \(m=m_n\), \(m/n\to\gamma>1\).  For a typical input Young diagram \(\mu\vdash n\), define the admissible output set
-\begin{equation}\label{eq:A-mu}
-  \mathsf A(\mu)=\{\nu\vdash m:\nu\in\mathsf T_m(p),\;\omega:=\nu-\mu\text{ is dominant}\}.
-\end{equation}
-If \(\mu\in\mathsf T_n(p)\) and \(\nu\in\mathsf T_m(p)\), then
+Let \(m=m_n\), with \(m_n/n\to\gamma>1\).  Once the input Young diagram \(\mu\) has been measured, the protocol must choose an output diagram \(\nu\vdash m\).  This is a purely classical randomized step, hence it is described by a Markov kernel \(K_n(\nu|\mu)\) in the sense of \cref{def:statistical-model}: for each fixed \(\mu\), the numbers \(K_n(\nu|\mu)\) form a probability distribution over \(\nu\).
+
+The PRV sector channel is available only when
 \[
-  (\nu_i-\mu_i)-(\nu_{i+1}-\mu_{i+1})
-  =(m-n)(p_i-p_{i+1})+O(n^{2/3})>0
+  \omega=\nu-\mu
 \]
-for all large \(n\).  Hence \(P_{m,p}(\mathsf A(\mu)^c)=o(1)\), uniformly over typical \(\mu\).  Define the Markov kernel
+is again a dominant weight.  For a typical input diagram, define the admissible set
+\begin{equation}\label{eq:A-mu}
+  \mathsf A_n(\mu)
+  =
+  \left\{
+    \nu\vdash m:\;
+    \nu\in\mathsf T_m(p),\;
+    \nu-\mu\text{ is dominant}
+  \right\}.
+\end{equation}
+For \(\mu\in\mathsf T_n(p)\), set
 \begin{equation}\label{eq:known-kernel}
   K_n(\nu|\mu)
-  =\frac{P_{m,p}(\nu)}{P_{m,p}(\mathsf A(\mu))}\1_{\nu\in\mathsf A(\mu)}.
+  =
+  \frac{P_{m,p}(\nu)}
+       {P_{m,p}(\mathsf A_n(\mu))}
+  \1_{\{\nu\in\mathsf A_n(\mu)\}}.
 \end{equation}
-For atypical \(\mu\), choose any fallback kernel and channel.
+Thus \(K_n(\cdot|\mu)\) is the ideal target Young law conditioned on the event that the sector pair is admissible.  On atypical input diagrams we use any fixed fallback output; its choice is asymptotically irrelevant.
+
+\begin{lemma}[Admissibility and simulation of the target Young law]\label{lem:known-label-simulation}
+For all sufficiently large \(n\),
+\[
+  \mathsf T_m(p)\subseteq\mathsf A_n(\mu)
+\]
+for every \(\mu\in\mathsf T_n(p)\).  Consequently,
+\begin{align}
+  \sup_{\mu\in\mathsf T_n(p)}
+  \|K_n(\cdot|\mu)-P_{m,p}\|_{\TV}
+  &\longrightarrow0,\label{eq:kernel-TV}\\
+  \|Q_m-P_{m,p}\|_{\TV}
+  &\longrightarrow0,\label{eq:Q-TV}
+\end{align}
+where
+\[
+  Q_m(\nu)=\sum_\mu P_{n,p}(\mu)K_n(\nu|\mu)
+\]
+is the output Young-label law.  Moreover, under the joint law
+\[
+  J_n(\mu,\nu)=P_{n,p}(\mu)K_n(\nu|\mu),
+\]
+the complement of the good-pair set
+\[
+  G_n=\mathsf T_n(p)\times\mathsf T_m(p)
+\]
+has probability \(J_n(G_n^c)=o(1)\).
+\end{lemma}
+
+\begin{proof}
+Write
+\[
+  \delta_i=p_i-p_{i+1}>0.
+\]
+If \(\mu\in\mathsf T_n(p)\), then
+\[
+  \mu_i-\mu_{i+1}
+  \le n\delta_i+2n^{2/3}.
+\]
+Likewise, if \(\nu\in\mathsf T_m(p)\), then
+\[
+  \nu_i-\nu_{i+1}
+  \ge m\delta_i-2m^{2/3}.
+\]
+Therefore
+\[
+  (\nu_i-\mu_i)-(\nu_{i+1}-\mu_{i+1})
+  \ge
+  (m-n)\delta_i-2m^{2/3}-2n^{2/3}.
+\]
+Since \(m/n\to\gamma>1\), the first term is of order \(n\), whereas the error is \(O(n^{2/3})\).  The right-hand side is positive for every \(i<d\) and all sufficiently large \(n\).  Hence \(\nu-\mu\) is dominant and \(\mathsf T_m(p)\subseteq\mathsf A_n(\mu)\).
+
+For a probability distribution \(P\) conditioned on an event \(A\),
+\[
+  \|P(\cdot|A)-P\|_{\TV}=P(A^c).
+\]
+Thus, uniformly for typical \(\mu\),
+\[
+  \|K_n(\cdot|\mu)-P_{m,p}\|_{\TV}
+  =
+  P_{m,p}(\mathsf A_n(\mu)^c)
+  \le
+  P_{m,p}(\mathsf T_m(p)^c)
+  =o(1)
+\]
+by \cref{lem:young-concentration}.  Averaging over \(\mu\), and adding the atypical input mass \(P_{n,p}(\mathsf T_n(p)^c)=o(1)\), proves \eqref{eq:Q-TV}.  The same two exceptional events give
+\[
+  J_n(G_n^c)
+  \le
+  P_{n,p}(\mathsf T_n(p)^c)
+  +
+  \sup_{\mu\in\mathsf T_n(p)}
+  K_n(\mathsf T_m(p)^c|\mu)
+  =o(1).
+\]
+\end{proof}
 
 For \(\nu\in\mathsf A(\mu)\), set \(\omega=\nu-\mu\).  As recalled in \cref{subsec:PRV-prelim}, the tensor product \(\cH_\mu\ot\cH_\omega\) contains the Cartan/PRV component of highest weight \(\mu+\omega=\nu\).  Let
 \begin{equation}\label{eq:PRV-inclusion}
@@ -799,165 +1223,284 @@ Then, up to the harmless fallback choices on atypical or inadmissible sectors,
 followed by the inverse Schur transform.  Formula \eqref{eq:known-output} is the specialization of \eqref{eq:known-channel-arbitrary-input} to \(R=\rho_{p,g}^{\ot n}\), for which \(R_\mu=P_{n,p}(\mu)\rho_{p,g,\mu}\).
 
 
-\subsection{Thermal PRV sector limit}\label{subsec:thermal-PRV}
 
-The full displaced-state PRV-to-amplifier contraction is stronger than what is needed for all-site fidelity.  Since the global Schur--PRV channel is \(\U(d)\)-covariant, the fidelity with \(\rho_{p,g}^{\ot m}\) is independent of \(g\).  For achievability we may therefore set \(g=I\).  The necessary sector statement is purely thermal: it identifies the PRV output on \(\rho_{p,\mu}\) with the thermal output of the least-noise amplifier.
+\subsection{From large highest weights to oscillators}\label{subsec:thermal-PRV}
 
-Let
+This subsection proves the representation-theoretic input used by the Schur--PRV protocol.  The basic idea is simple.  A typical Young diagram has row gaps of order \(n\).  Excitations obtained by moving only \(O(1)\) boxes away from its highest weight then behave like bosonic excitations after the root operators are divided by the square roots of those gaps.  The PRV inclusion becomes a beam splitter between these limiting modes.
+
+We spell out the construction because three pieces of terminology are otherwise easy to encounter too abruptly: root operators, PBW monomials, and the Fock-space contraction.
+
+\subsubsection*{Root excitations and PBW coordinates}
+
+For \(\U(d)\), the positive roots are indexed by pairs
 \[
   R_+=\{(i,j):1\le i<j\le d\}.
 \]
-For \(\alpha=(i,j)\in R_+\), write
+For \(\alpha=(i,j)\), define the lowering and raising operators
 \[
-  F_\alpha=E_{ji},\qquad E_\alpha=E_{ij},\qquad
-  \Delta_\alpha^\lambda=\lambda_i-\lambda_j,
-  \qquad q_\alpha=q_{ij}=p_j/p_i .
+  F_\alpha=E_{ji},
+  \qquad
+  E_\alpha=E_{ij},
 \]
-We fix once and for all a convex PBW ordering of the negative root vectors \(F_\alpha\).  For a multi-index \(\mathbf r=(r_\alpha)_{\alpha\in R_+}\), set
+and the corresponding highest-weight gap
 \[
-  F^{\mathbf r}=\prod_{\alpha\in R_+}^{\prec}F_\alpha^{r_\alpha},
-  \qquad |\mathbf r|=\sum_\alpha r_\alpha .
+  \Delta_\alpha^\lambda=\lambda_i-\lambda_j.
 \]
+Acting with \(F_{ij}\) lowers the \(i\)-th weight and raises the \(j\)-th weight by one.  Thus it creates one excitation in the root direction \((i,j)\).
 
+The Poincaré--Birkhoff--Witt (PBW) theorem says that, after choosing an order on the positive roots, ordered monomials in the lowering operators form a basis of the universal enveloping algebra of the lower-triangular Lie algebra \cite{FultonHarris1991}.  Applied to a highest-weight vector \(v_\lambda\), these monomials span the irreducible representation \(\cH_\lambda\).  We fix a convex root order and write
+\[
+  F^{\mathbf r}
+  =
+  \prod_{\alpha\in R_+}^{\prec}F_\alpha^{r_\alpha},
+  \qquad
+  |\mathbf r|=\sum_\alpha r_\alpha.
+\]
+The multi-index \(\mathbf r\) records the occupation number of each root mode.  For fixed \(L\), the low-excitation subspace is
+\[
+  \cH_{\lambda,\le L}
+  =
+  \Span\{F^{\mathbf r}v_\lambda:|\mathbf r|\le L\}.
+\]
+Only such fixed cutoffs are needed, because the limiting thermal states have exponentially decaying occupation tails.
 
 \begin{lemma}[Heisenberg contraction of gap-rescaled root operators]\label{lem:heisenberg-contraction}
-Fix \(L<\infty\), and let \(\lambda=\lambda^{(N)}\) range over a compact subcone of the strict Weyl chamber, so that \(cN\le\Delta_\alpha^\lambda\le CN\) for all \(\alpha\in R_+\).  Put
+Let \(\lambda=\lambda^{(N)}\) range over dominant weights in a compact subcone of the strict Weyl chamber:
 \[
-  \widehat F_\alpha=F_\alpha/\sqrt{\Delta_\alpha^\lambda},
-  \qquad
-  \widehat E_\alpha=E_\alpha/\sqrt{\Delta_\alpha^\lambda}.
+  cN\le\Delta_\alpha^\lambda\le CN
+  \qquad(\alpha\in R_+)
 \]
-On every fixed excitation cutoff \(|\mathbf r|\le L\), uniformly over such \(\lambda\),
+for constants \(0<c<C<\infty\).  Define
+\[
+  \widehat F_\alpha
+  =
+  \frac{F_\alpha}{\sqrt{\Delta_\alpha^\lambda}},
+  \qquad
+  \widehat E_\alpha
+  =
+  \frac{E_\alpha}{\sqrt{\Delta_\alpha^\lambda}}.
+\]
+On every fixed cutoff \(\cH_{\lambda,\le L}\),
 \begin{align}
-  [\widehat F_\alpha,\widehat F_\beta]&=O_L(N^{-1/2}),&
-  [\widehat E_\alpha,\widehat E_\beta]&=O_L(N^{-1/2}),\label{eq:root-root-contraction}\\
-  [\widehat E_\alpha,\widehat F_\beta]&=\delta_{\alpha\beta}I+O_L(N^{-1/2}).\label{eq:root-dual-contraction}
+  [\widehat F_\alpha,\widehat F_\beta]
+  &=O_L(N^{-1/2}),&
+  [\widehat E_\alpha,\widehat E_\beta]
+  &=O_L(N^{-1/2}),\label{eq:root-root-contraction}\\
+  [\widehat E_\alpha,\widehat F_\beta]
+  &=\delta_{\alpha\beta}I+O_L(N^{-1/2})\label{eq:root-dual-contraction}
 \end{align}
-Consequently the rescaled generators converge on cutoffs to independent oscillator creation and annihilation operators indexed by \(R_+\).
+in operator norm, uniformly over \(\lambda\).  Hence the rescaled root operators converge on fixed cutoffs to independent bosonic creation and annihilation operators.
 \end{lemma}
 
 \begin{proof}
-In type \(A\), \([F_\alpha,F_\beta]=N_{\alpha\beta}F_{\alpha+\beta}\), with \(N_{\alpha\beta}\in\{0,\pm1\}\), and the bracket is zero unless \(\alpha+\beta\) is a root.  If \(\alpha+\beta\) is a root, then
+Each root \(\alpha\) generates an \(\mathfrak{sl}_2\) subalgebra.  On a weight vector lying at most \(L\) lowering steps below \(v_\lambda\), the usual \(\mathfrak{sl}_2\) string formula shows
+\[
+  \|F_\alpha\psi\|
+  \le C_L\sqrt{\Delta_\alpha^\lambda}\,\|\psi\|,
+  \qquad
+  \|E_\alpha\psi\|
+  \le C_L\sqrt{\Delta_\alpha^\lambda}\,\|\psi\|.
+\]
+Thus \(\widehat F_\alpha\) and \(\widehat E_\alpha\) are uniformly bounded on \(\cH_{\lambda,\le L}\).
+
+In type \(A\),
+\[
+  [F_\alpha,F_\beta]
+  =
+  N_{\alpha\beta}F_{\alpha+\beta},
+  \qquad
+  N_{\alpha\beta}\in\{0,\pm1\},
+\]
+with the bracket zero unless \(\alpha+\beta\) is a root.  When it is a root,
 \[
   [\widehat F_\alpha,\widehat F_\beta]
-  =N_{\alpha\beta}
+  =
+  N_{\alpha\beta}
   \frac{\sqrt{\Delta_{\alpha+\beta}^\lambda}}
        {\sqrt{\Delta_\alpha^\lambda\Delta_\beta^\lambda}}
   \widehat F_{\alpha+\beta}.
 \]
-On a fixed cutoff, \(\widehat F_{\alpha+\beta}\) has uniformly bounded matrix elements, while the scalar prefactor is \(O(N^{-1/2})\).  This gives the first bound in \eqref{eq:root-root-contraction}; the second is its adjoint.
+All gaps are of order \(N\), while \(\widehat F_{\alpha+\beta}\) is uniformly bounded on the cutoff, so the norm is \(O_L(N^{-1/2})\).  The estimate for two raising operators is the adjoint statement.
 
-For \(\alpha=\beta\), \([\widehat E_\alpha,\widehat F_\alpha]=H_\alpha/\Delta_\alpha^\lambda\).  On a vector of weight \(\lambda-\sum_\beta r_\beta\beta\) with \(|\mathbf r|\le L\), the Cartan element \(H_\alpha\) acts by \(\Delta_\alpha^\lambda+O_L(1)\).  Hence \(H_\alpha/\Delta_\alpha^\lambda=I+O_L(N^{-1})\) on the cutoff.  For \(\alpha\ne\beta\), \([E_\alpha,F_\beta]\) is either zero or a single root vector, and the same gap-counting argument gives \(O_L(N^{-1/2})\).  This proves \eqref{eq:root-dual-contraction}.
+For \(\alpha=\beta\),
+\[
+  [\widehat E_\alpha,\widehat F_\alpha]
+  =
+  \frac{H_\alpha}{\Delta_\alpha^\lambda}.
+\]
+On a vector of weight \(\lambda-\sum_\beta r_\beta\beta\) with \(|\mathbf r|\le L\), the Cartan element \(H_\alpha\) acts by
+\[
+  \Delta_\alpha^\lambda
+  -
+  \sum_\beta r_\beta\langle\beta,\alpha^\vee\rangle
+  =
+  \Delta_\alpha^\lambda+O_L(1).
+\]
+Hence the normalized commutator is \(I+O_L(N^{-1})\).  If \(\alpha\ne\beta\), then \([E_\alpha,F_\beta]\) is either zero or a single root operator; the same gap normalization gives \(O_L(N^{-1/2})\).  This proves the lemma.
 \end{proof}
 
-\begin{remark}[The same-weight monomial issue in type \(A_2\)]\label{rem:A2-check}
-The order \(N^{-1/2}\) is exactly what occurs in the basic same-weight example.  In \(\mathfrak{gl}_3\), the normalized composite-root vector \(F_{13}v_\lambda/\sqrt{\Delta_{13}}\) and the normalized product \(F_{12}F_{23}v_\lambda/\sqrt{\Delta_{12}\Delta_{23}}\) have inner product of order
+\begin{remark}[Same-weight PBW monomials]\label{rem:A2-check}
+Different PBW monomials can have the same total weight.  In \(\mathfrak{gl}_3\), for example, \(F_{13}v_\lambda\) and \(F_{12}F_{23}v_\lambda\) have the same weight.  After normalization their overlap is
 \[
-  -\sqrt{\frac{\Delta_{23}}{\Delta_{12}\Delta_{13}}}=O(N^{-1/2}),
+  -\sqrt{
+    \frac{\Delta_{23}}
+         {\Delta_{12}\Delta_{13}}
+  }
+  =
+  O(N^{-1/2})
 \]
-up to the convention-dependent sign.  Thus same-weight but distinct PBW monomials become orthogonal in the contraction limit.
+up to the sign convention.  Thus the contraction also separates same-weight monomials.
 \end{remark}
 
 \begin{lemma}[Uniform PBW/Fock normal form]\label{lem:PBW-Fock}
-Fix \(L<\infty\).  Let \(\lambda=\lambda^{(N)}\) range over dominant weights in a compact subcone of the strict Weyl chamber, so that
-\[
-  cN\le \Delta_\alpha^\lambda\le CN
-  \qquad (\alpha\in R_+)
-\]
-for constants \(0<c<C<\infty\).  Define
+Under the assumptions of \cref{lem:heisenberg-contraction}, define
 \begin{equation}\label{eq:xi-PBW}
   \xi_{\mathbf r}^\lambda
   =
   \prod_{\alpha\in R_+}^{\prec}
   \frac{F_\alpha^{r_\alpha}}
-       {\sqrt{r_\alpha!}\, (\Delta_\alpha^\lambda)^{r_\alpha/2}}
+       {\sqrt{r_\alpha!}
+        (\Delta_\alpha^\lambda)^{r_\alpha/2}}
   v_\lambda,
-  \qquad |\mathbf r|\le L .
+  \qquad
+  |\mathbf r|\le L.
 \end{equation}
-Then, uniformly over such \(\lambda\),
+Then
 \begin{equation}\label{eq:PBW-Gram}
-  \langle \xi_{\mathbf r}^\lambda,\xi_{\mathbf s}^\lambda\rangle
-  =\delta_{\mathbf r,\mathbf s}+O_L(N^{-1/2}).
+  \langle\xi_{\mathbf r}^\lambda,
+         \xi_{\mathbf s}^\lambda\rangle
+  =
+  \delta_{\mathbf r,\mathbf s}
+  +
+  O_L(N^{-1/2})
 \end{equation}
-After Gram--Schmidt there are orthonormal vectors \(e_{\mathbf r}^\lambda\) with
-\[
-  e_{\mathbf r}^\lambda=\xi_{\mathbf r}^\lambda+O_L(N^{-1/2}),
-  \qquad |\mathbf r|\le L,
-\]
-and the normalized root operators satisfy, on the cutoff \(|\mathbf r|\le L\),
+uniformly on the cutoff.  After orthonormalizing separately in each weight space, one obtains vectors \(e_{\mathbf r}^\lambda\) such that
 \begin{align}
-  \frac{F_\alpha}{\sqrt{\Delta_\alpha^\lambda}}e_{\mathbf r}^\lambda
-  &=\sqrt{r_\alpha+1}\,e_{\mathbf r+\mathbf e_\alpha}^\lambda+O_L(N^{-1/2}),\label{eq:F-action}\\
-  \frac{E_\alpha}{\sqrt{\Delta_\alpha^\lambda}}e_{\mathbf r}^\lambda
-  &=\sqrt{r_\alpha}\,e_{\mathbf r-\mathbf e_\alpha}^\lambda+O_L(N^{-1/2}).\label{eq:E-action}
+  \widehat F_\alpha e_{\mathbf r}^\lambda
+  &=
+  \sqrt{r_\alpha+1}\,
+  e_{\mathbf r+\mathbf e_\alpha}^\lambda
+  +
+  O_L(N^{-1/2}),\label{eq:F-action}\\
+  \widehat E_\alpha e_{\mathbf r}^\lambda
+  &=
+  \sqrt{r_\alpha}\,
+  e_{\mathbf r-\mathbf e_\alpha}^\lambda
+  +
+  O_L(N^{-1/2}).\label{eq:E-action}
 \end{align}
+Thus \(\cH_{\lambda,\le L}\) converges to the \(L\)-excitation cutoff of a product of \(|R_+|\) Fock spaces.
 \end{lemma}
 
 \begin{proof}
-The inner products are Shapovalov-form matrix elements
+Consider the Shapovalov matrix element
 \[
-  \langle F^{\mathbf r}v_\lambda,F^{\mathbf s}v_\lambda\rangle
-  =\langle v_\lambda,(F^{\mathbf r})^*F^{\mathbf s}v_\lambda\rangle .
+  \langle F^{\mathbf r}v_\lambda,
+          F^{\mathbf s}v_\lambda\rangle
+  =
+  \langle v_\lambda,
+          (F^{\mathbf r})^*F^{\mathbf s}v_\lambda\rangle.
 \]
-Move all raising operators to the right using the commutation relations in \(\mathfrak{gl}_d\).  Only Cartan terms survive on the highest-weight vector.  The top-degree part in the gaps occurs when every \(E_\alpha\) is paired with the corresponding \(F_\alpha\), giving
+Commute every raising operator in \((F^{\mathbf r})^*\) to the right.  Only terms containing Cartan operators survive on \(v_\lambda\).  The term of highest total degree in the gaps is obtained by pairing each \(E_\alpha\) directly with a matching \(F_\alpha\).  If \(\mathbf r=\mathbf s\), repeated use of
 \[
-  \delta_{\mathbf r,\mathbf s}
-  \prod_\alpha r_\alpha!\,(\Delta_\alpha^\lambda)^{r_\alpha}.
+  [E_\alpha,F_\alpha^r]
+  =
+  rF_\alpha^{r-1}
+  (H_\alpha-r+1)
 \]
-Every commutator either lowers the total number of root factors or replaces a direct pairing by a composite-root expression; on the fixed cutoff it therefore has degree at most one less in the gaps.  This also treats the only delicate possibility, namely distinct PBW monomials with the same total weight, such as the type \(A_2\) relation between a composite root vector and a product of simple root vectors.  In the associated graded calculation these are distinct PBW monomials; their overlap can only be produced by commutator terms and hence by lower-degree gap polynomials.  Since all gaps are comparable to \(N\), the normalized error is \(O_L(N^{-1/2})\), in fact often \(O_L(N^{-1})\).  This proves \eqref{eq:PBW-Gram}.  Gram--Schmidt changes the cutoff vectors by the same order.  The creation and annihilation formulas \eqref{eq:F-action}--\eqref{eq:E-action} follow by applying the same commutator estimate to \(F_\alpha F^{\mathbf r}v_\lambda\) and to \(E_\alpha F^{\mathbf r}v_\lambda\).  The constants are uniform because \(L\) is fixed and the chamber constants \(c,C\) bound all denominators away from zero.
+gives the leading term
+\[
+  \prod_\alpha
+  r_\alpha!
+  (\Delta_\alpha^\lambda)^{r_\alpha}.
+\]
+If \(\mathbf r\ne\mathbf s\), at least one nonmatching commutator is required, even when the two monomials have the same total weight.  Such a commutator replaces two root operators by one root operator or produces a composite root.  Therefore it lowers the total degree in the gaps by at least one.  Since every gap is comparable to \(N\), division by the normalization in \eqref{eq:xi-PBW} gives the uniform error \(O_L(N^{-1/2})\); the weaker half-power is sufficient for all later arguments.
+
+The cutoff Gram matrix is therefore \(G_\lambda=I+O_L(N^{-1/2})\).  Because its dimension depends only on \(L\) and \(d\), functional calculus gives
+\[
+  G_\lambda^{-1/2}
+  =
+  I+O_L(N^{-1/2}).
+\]
+Applying \(G_\lambda^{-1/2}\) within each weight space produces the orthonormal basis \(e_{\mathbf r}^\lambda\).  Multiplication by \(F_\alpha\), followed by the same commutator calculation, has leading coefficient \(\sqrt{r_\alpha+1}\); its adjoint has leading coefficient \(\sqrt{r_\alpha}\).  This proves \eqref{eq:F-action} and \eqref{eq:E-action}.
 \end{proof}
 
+\subsubsection*{Thermal Weyl-sector states}
+
 \begin{lemma}[Thermal limit of a Weyl-sector Gibbs state]\label{lem:sector-thermal}
-Let \(\lambda^{(N)}/N\to p\) with \(p_1>\cdots>p_d>0\).  In the PBW/Fock realization of Lemma~\ref{lem:PBW-Fock},
+Let \(|\lambda_N|=N\) and \(\lambda_N/N\to p\), where \(p_1>\cdots>p_d>0\).  Under the PBW/Fock identification above,
 \begin{equation}\label{eq:sector-thermal-limit}
-  \rho_{p,\lambda}
-  =\frac{\pi_\lambda(\rho_p)}{s_\lambda(p)}
+  \rho_{p,\lambda_N}
   \longrightarrow
-  \bigotimes_{\alpha=(i,j)\in R_+}\tau_{q_\alpha}
+  \bigotimes_{\alpha\in R_+}\tau_{q_\alpha},
+  \qquad
+  q_{ij}=\frac{p_j}{p_i},
 \end{equation}
-in trace norm, where \(\tau_q=(1-q)\sum_{r\ge0}q^r\proj r\).
+in trace norm.
 \end{lemma}
 
 \begin{proof}
 The vector \(F^{\mathbf r}v_\lambda\) has weight
 \[
-  \lambda-\sum_{\alpha=(i,j)}r_\alpha(e_i-e_j).
+  \lambda-\sum_\alpha r_\alpha\alpha.
 \]
-Therefore
+Since \(\rho_p=\diag(p)\), the representation \(\pi_\lambda(\rho_p)\) acts on this entire weight space as the scalar
 \[
-  \pi_\lambda(\rho_p)F^{\mathbf r}v_\lambda
-  =p^\lambda \prod_{\alpha=(i,j)}\left(\frac{p_j}{p_i}\right)^{r_\alpha}F^{\mathbf r}v_\lambda
-  =p^\lambda\prod_\alpha q_\alpha^{r_\alpha}F^{\mathbf r}v_\lambda .
+  p^\lambda\prod_{\alpha=(i,j)}
+  \left(\frac{p_j}{p_i}\right)^{r_\alpha}
+  =
+  p^\lambda\prod_\alpha q_\alpha^{r_\alpha}.
 \]
-Because \(p\) lies in the strict chamber, the Weyl character formula gives, uniformly for \(\lambda/N\) in a compact set around \(p\),
-\begin{equation}\label{eq:schur-strict-asymp}
+The scalar depends only on the total weight, so orthonormalization within a weight space does not change it.
+
+It remains to normalize.  The Weyl character formula gives
+\[
   s_\lambda(p)
-  =p^\lambda \prod_{\alpha\in R_+}(1-q_\alpha)^{-1}(1+o(1)).
-\end{equation}
-Indeed all non-identity Weyl terms are exponentially smaller, since permuting a strict decreasing \(p\) lowers the exponential weight.  Combining this with Lemma~\ref{lem:PBW-Fock}, the matrix of \(\rho_{p,\lambda}\) on every fixed excitation cutoff converges to the diagonal product distribution
-\[
-  \prod_\alpha (1-q_\alpha)q_\alpha^{r_\alpha}.
+  =
+  \frac{\det[p_i^{\lambda_j+d-j}]_{i,j}}
+       {\det[p_i^{d-j}]_{i,j}}.
 \]
-The limiting product thermal state has an exponentially small tail outside \(|\mathbf r|\le L\), uniformly as \(L\to\infty\).  The same tail bound for \(\rho_{p,\lambda}\) follows from \eqref{eq:schur-strict-asymp} and the fact that all \(q_\alpha<1\).  Taking first \(N\to\infty\) on a fixed cutoff and then \(L\to\infty\) proves trace-norm convergence.
+Because both \(p_1>\cdots>p_d\) and \(\lambda_1>\cdots>\lambda_d\) are separated at order \(N\), the identity permutation is the unique exponentially dominant term in the numerator.  Therefore
+\begin{equation}\label{eq:character-asymptotic}
+  s_\lambda(p)
+  =
+  p^\lambda
+  \prod_{i<j}
+  \left(1-\frac{p_j}{p_i}\right)^{-1}
+  (1+o(1)).
+\end{equation}
+On every fixed cutoff, \(\rho_{p,\lambda}\) thus converges to the diagonal probabilities
+\[
+  \prod_\alpha(1-q_\alpha)q_\alpha^{r_\alpha},
+\]
+which are exactly the occupation probabilities of
+\(\bigotimes_\alpha\tau_{q_\alpha}\).
+
+To pass from cutoff convergence to trace-norm convergence, choose \(L\) so that the limiting product thermal state has mass at least \(1-\eps\) on total excitation \(|\mathbf r|\le L\).  The finite-sector cutoff mass converges to the same number, hence is at least \(1-2\eps\) for large \(N\).  On the finite-dimensional cutoff, entrywise convergence implies trace-norm convergence.  Compressing both states to the cutoff and using the gentle-measurement bound controls the discarded tails by \(O(\sqrt\eps)\).  Letting \(\eps\to0\) proves \eqref{eq:sector-thermal-limit}.
 \end{proof}
 
+\subsubsection*{The PRV inclusion becomes a beam splitter}
+
 \begin{proposition}[Thermal PRV sector limit]\label{prop:thermal-PRV-sector}
-Let \(\mu_n\vdash n\), \(\nu_n\vdash m_n\), \(m_n/n\to\gamma>1\), satisfy
+Let \(\mu_n\vdash n\), \(\nu_n\vdash m_n\), with \(m_n/n\to\gamma>1\), satisfy
 \[
   \mu_n/n\to p,
   \qquad
-  \nu_n/m_n\to p,
+  \nu_n/m_n\to p.
 \]
-and set \(\omega_n=\nu_n-\mu_n\).  Then \(\omega_n\) is dominant for all large \(n\).  In the PBW/Fock realization of \(\cH_{\nu_n}\),
+Set \(\omega_n=\nu_n-\mu_n\).  Then \(\omega_n\) is dominant for all large \(n\), and
 \begin{equation}\label{eq:thermal-PRV-sector-limit}
-  \cC_{\mu_n\to\nu_n}^{\PRV}(\rho_{p,\mu_n})
+  \cC_{\mu_n\to\nu_n}^{\PRV}
+  (\rho_{p,\mu_n})
   \longrightarrow
-  \bigotimes_{i<j}\tau_{q_{ij}^{(\gamma)}}
+  \bigotimes_{\alpha\in R_+}
+  \tau_{q_\alpha^{(\gamma)}}
 \end{equation}
 in trace norm, where
 \[
-  q_{ij}^{(\gamma)}=1-\frac{1-q_{ij}}{\gamma},
-  \qquad q_{ij}=p_j/p_i.
+  q_\alpha^{(\gamma)}
+  =
+  1-\frac{1-q_\alpha}{\gamma}.
 \]
 Consequently,
 \begin{equation}\label{eq:sector-fidelity-limit}
@@ -968,94 +1511,135 @@ Consequently,
   \longrightarrow
   \Forb(\gamma,p).
 \end{equation}
-Both convergences are uniform over all sequences \((\mu_n,\nu_n)\) satisfying \(\|\mu_n/n-p\|_\infty\le\delta_n\) and \(\|\nu_n/m_n-p\|_\infty\le\delta_n\) for any fixed sequence \(\delta_n\to0\).
+The convergence is uniform when \(p\) and the normalized weights range over compact subsets of the strict Weyl chamber.
 \end{proposition}
 
 \begin{proof}
 Dominance follows from
 \[
-  (\omega_i-\omega_{i+1})
-  = (\nu_i-\nu_{i+1})-(\mu_i-\mu_{i+1})
-  = (m_n-n)(p_i-p_{i+1})+o(n)>0.
+  \omega_{n,i}-\omega_{n,i+1}
+  =
+  (m_n-n)(p_i-p_{i+1})+o(n)>0.
 \]
-Let \(V=V_{\mu,\omega}:\cH_\nu\hookrightarrow\cH_\mu\ot\cH_\omega\).  The exact intertwining identity is
-\begin{equation}\label{eq:coproduct-intertwine}
-  (\dd\pi_\mu(Y)\ot I+I\ot\dd\pi_\omega(Y))V
-  =V\dd\pi_\nu(Y)
-\end{equation}
-for every \(Y\in\mathfrak{gl}_d\).  Taking \(Y=F_\alpha\) gives
-\begin{equation}\label{eq:exact-beamsplitter-algebra}
-  V F_\alpha^{(\nu)}
-  = (F_\alpha^{(\mu)}\ot I+I\ot F_\alpha^{(\omega)})V .
-\end{equation}
-Put
-\[
-  \eta_\alpha^{(n)}=\frac{\Delta_\alpha^\mu}{\Delta_\alpha^\nu},
-  \qquad
-  1-\eta_\alpha^{(n)}=\frac{\Delta_\alpha^\omega}{\Delta_\alpha^\nu}.
-\]
-Since \(\Delta_\alpha^\nu=\Delta_\alpha^\mu+\Delta_\alpha^\omega\) and the sectors are typical, \(\eta_\alpha^{(n)}\to1/\gamma\).
 
-Apply \eqref{eq:exact-beamsplitter-algebra} to PBW monomials and reorder into the fixed PBW order.  By Lemma~\ref{lem:PBW-Fock}, commutator terms are \(O_L(n^{-1/2})\) on every fixed excitation cutoff.  Hence, uniformly for \(|\mathbf r|\le L\),
+Let \(V=V_{\mu,\omega}\).  Because \(V\) intertwines the \(\U(d)\) representations,
+\begin{equation}\label{eq:coproduct-intertwine}
+  (\dd\pi_\mu(Y)\ot I
+   +I\ot\dd\pi_\omega(Y))V
+  =
+  V\dd\pi_\nu(Y)
+\end{equation}
+for every \(Y\in\mathfrak{gl}_d\).  Taking \(Y=F_\alpha\) gives the exact identity
+\begin{equation}\label{eq:exact-beamsplitter-algebra}
+  VF_\alpha^{(\nu)}
+  =
+  (F_\alpha^{(\mu)}\ot I
+   +I\ot F_\alpha^{(\omega)})V.
+\end{equation}
+Define
+\[
+  \eta_\alpha^{(n)}
+  =
+  \frac{\Delta_\alpha^\mu}
+       {\Delta_\alpha^\nu}.
+\]
+Since
+\[
+  \Delta_\alpha^\nu
+  =
+  \Delta_\alpha^\mu+\Delta_\alpha^\omega
+\]
+and the normalized weights converge to \(p\),
+\[
+  \eta_\alpha^{(n)}
+  \longrightarrow
+  \frac1\gamma.
+\]
+
+Apply \eqref{eq:exact-beamsplitter-algebra} repeatedly to the normalized PBW monomials.  Reordering into the fixed PBW order produces commutators, but \cref{lem:heisenberg-contraction,lem:PBW-Fock} show that all such terms are \(o_L(1)\) on a fixed cutoff.  Hence
 \begin{equation}\label{eq:PRV-beamsplitter-cutoff}
-  V e_{\mathbf r}^{\nu}
+  Ve_{\mathbf r}^{\nu}
   =
   \sum_{\mathbf a\le\mathbf r}
-  \prod_{\alpha\in R_+}
-  \sqrt{\binom{r_\alpha}{a_\alpha}
-  (\eta_\alpha^{(n)})^{a_\alpha}
-  (1-\eta_\alpha^{(n)})^{r_\alpha-a_\alpha}}
-  \;e_{\mathbf a}^{\mu}\ot e_{\mathbf r-\mathbf a}^{\omega}
-  +O_L(n^{-1/2}).
+  \prod_\alpha
+  \sqrt{
+    \binom{r_\alpha}{a_\alpha}
+    (\eta_\alpha^{(n)})^{a_\alpha}
+    (1-\eta_\alpha^{(n)})^{r_\alpha-a_\alpha}
+  }\,
+  e_{\mathbf a}^{\mu}
+  \ot
+  e_{\mathbf r-\mathbf a}^{\omega}
+  +o_L(1).
 \end{equation}
-This is the finite-cutoff beam-splitter binomial law, but we only use it at the thermal point.
+This is precisely the number-basis action of independent beam splitters with transmissivities \(\eta_\alpha^{(n)}\).
 
 Let
 \[
-  \sigma_{\mu,\nu}=\cC_{\mu\to\nu}^{\PRV}(\rho_{p,\mu}).
+  \sigma_{\mu,\nu}
+  =
+  \cC_{\mu\to\nu}^{\PRV}(\rho_{p,\mu}).
 \]
 For fixed \(\mathbf r,\mathbf s\),
 \[
-  \langle e_{\mathbf r}^{\nu},\sigma_{\mu,\nu}e_{\mathbf s}^{\nu}\rangle
-  =\frac{d_\mu}{d_\nu}
-  \left\langle
-  V e_{\mathbf r}^{\nu},(\rho_{p,\mu}\ot I)V e_{\mathbf s}^{\nu}
-  \right\rangle .
+  \langle e_{\mathbf r}^{\nu},
+          \sigma_{\mu,\nu}
+          e_{\mathbf s}^{\nu}\rangle
+  =
+  \frac{d_\mu}{d_\nu}
+  \langle
+    Ve_{\mathbf r}^{\nu},
+    (\rho_{p,\mu}\ot I)
+    Ve_{\mathbf s}^{\nu}
+  \rangle.
 \]
-Using \eqref{eq:PRV-beamsplitter-cutoff} and Lemma~\ref{lem:sector-thermal}, off-diagonal entries tend to zero.  For \(\mathbf r=\mathbf s\), the Weyl dimension formula gives
+Use \eqref{eq:PRV-beamsplitter-cutoff} and \cref{lem:sector-thermal}.  Off-diagonal entries vanish.  For \(\mathbf r=\mathbf s\), the Weyl dimension formula
+\[
+  d_\lambda
+  =
+  \prod_{i<j}
+  \frac{\lambda_i-\lambda_j+j-i}{j-i}
+\]
+gives
 \[
   \frac{d_\mu}{d_\nu}
-  =\prod_{\alpha\in R_+}\frac{\Delta_\alpha^\mu+O(1)}{\Delta_\alpha^\nu+O(1)}
-  =\prod_\alpha \eta_\alpha^{(n)}+o(1).
+  =
+  \prod_\alpha\eta_\alpha^{(n)}+o(1).
 \]
-Therefore
+The limiting diagonal entry is therefore
 \begin{align*}
-  \langle e_{\mathbf r}^{\nu},\sigma_{\mu,\nu}e_{\mathbf r}^{\nu}\rangle
-  &\to
+  &\prod_\alpha
+  \eta_\alpha(1-q_\alpha)
+  \sum_{a=0}^{r_\alpha}
+  \binom{r_\alpha}{a}
+  (\eta_\alpha q_\alpha)^a
+  (1-\eta_\alpha)^{r_\alpha-a}\\
+  &\qquad=
   \prod_\alpha
   \eta_\alpha(1-q_\alpha)
-  \sum_{a_\alpha=0}^{r_\alpha}
-  \binom{r_\alpha}{a_\alpha}
-  (\eta_\alpha q_\alpha)^{a_\alpha}
-  (1-\eta_\alpha)^{r_\alpha-a_\alpha} \\
-  &=
-  \prod_\alpha
-  \eta_\alpha(1-q_\alpha)
-  (1-\eta_\alpha+\eta_\alpha q_\alpha)^{r_\alpha},
+  (1-\eta_\alpha+\eta_\alpha q_\alpha)^{r_\alpha}.
 \end{align*}
-where \(\eta_\alpha=\lim\eta_\alpha^{(n)}=1/\gamma\).  Define
+Set
 \[
-  q_\alpha'=1-\eta_\alpha(1-q_\alpha).
+  q_\alpha'
+  =
+  1-\eta_\alpha(1-q_\alpha).
 \]
-Then \(1-q_\alpha'=\eta_\alpha(1-q_\alpha)\), and the last display is
+Then the last expression is
 \[
-  \prod_\alpha (1-q_\alpha')(q_\alpha')^{r_\alpha}.
+  \prod_\alpha
+  (1-q_\alpha')(q_\alpha')^{r_\alpha}.
 \]
-Thus \(\sigma_{\mu,\nu}\) converges on every fixed cutoff to \(\bigotimes_\alpha\tau_{q_\alpha'}\).  Since the limiting thermal state has exponentially small cutoff tail, and the same geometric bound follows for \(\sigma_{\mu,\nu}\) from the displayed diagonal formula with \(q_\alpha'<1\), the convergence is in trace norm.  Finally \(q_\alpha'=1-(1-q_\alpha)/\gamma\), proving \eqref{eq:thermal-PRV-sector-limit}.  Combining this with Lemma~\ref{lem:sector-thermal} for \(\nu_n\) and the explicit formula for thermal fidelity gives \eqref{eq:sector-fidelity-limit}.  For the uniformity claim, observe that every estimate above depends only on the cutoff \(L\), on the chamber constants \(c,C\) of Lemma~\ref{lem:PBW-Fock}, and on the ratios \(\eta_\alpha^{(n)}\).  Under \(\|\mu_n/n-p\|_\infty\le\delta_n\) and \(\|\nu_n/m_n-p\|_\infty\le\delta_n\), the gaps satisfy \(\Delta_\alpha^{\mu_n}=n(p_i-p_j)+O(n\delta_n)\) and \(\Delta_\alpha^{\nu_n}=m_n(p_i-p_j)+O(m_n\delta_n)\), so \(\eta_\alpha^{(n)}\to1/\gamma\) uniformly over such sequences, and all limits above are attained uniformly.
+Since \(\eta_\alpha=1/\gamma\), this is the product thermal law with
+\[
+  q_\alpha'=q_\alpha^{(\gamma)}.
+\]
+
+As in \cref{lem:sector-thermal}, convergence on every fixed cutoff implies tightness: choose \(L\) so that the limiting product thermal state has cutoff mass at least \(1-\eps\); the corresponding cutoff mass of \(\sigma_{\mu,\nu}\) converges to it.  Finite-dimensional trace-norm convergence on the cutoff and the gentle-measurement bound then yield full trace-norm convergence.  Finally, combine \eqref{eq:thermal-PRV-sector-limit} with \cref{lem:sector-thermal} and the thermal fidelity formula \eqref{eq:thermal-squared-fid} to obtain \eqref{eq:sector-fidelity-limit}.
 \end{proof}
 
-\begin{remark}[Optional stronger channel statement]
-The stronger statement that the PRV channel converges on displaced local states to the quantum-limited amplifier follows from the same PBW normal form plus the action of local Lie algebra perturbations.  It is useful conceptually, but the known-spectrum all-site fidelity theorem only uses Proposition~\ref{prop:thermal-PRV-sector}.
+\begin{remark}[Stronger displaced-state interpretation]
+The same contraction also implies, after tracking local unitary displacements, that the PRV channel converges on local displaced states to the quantum-limited amplifier.  The global-fidelity achievability theorem does not require this stronger statement because covariance allows us to evaluate at the diagonal representative \(g=I\).
 \end{remark}
 
 \subsection{Known-spectrum achievability}
@@ -1063,60 +1647,101 @@ The stronger statement that the PRV channel converges on displaced local states 
 \begin{theorem}[Known-spectrum achievability]\label{thm:known-achievability}
 The Schur--PRV cloner satisfies
 \begin{equation}\label{eq:known-achievability}
-  \lim_{n\to\infty}
+  \liminf_{n\to\infty}
   \inf_{g\in\U(d)}
   F\!\left(
     \cC_{n\to m}^{\PRV,p}(\rho_{p,g}^{\ot n}),
     \rho_{p,g}^{\ot m}
   \right)
-  =\Forb(\gamma,p).
+  \ge
+  \Forb(\gamma,p).
 \end{equation}
 \end{theorem}
 
 \begin{proof}
-The channel is \(\U(d)\)-covariant, so the fidelity is independent of \(g\).  We take \(g=I\).  Let
+The channel is \(\U(d)\)-covariant, as are the target states.  Hence the fidelity in \eqref{eq:known-achievability} is independent of \(g\), and it is enough to take \(g=I\).
+
+Let
 \[
-  Q_m(\nu)=\sum_\mu P_{n,p}(\mu)K_n(\nu|\mu)
+  J_n(\mu,\nu)
+  =
+  P_{n,p}(\mu)K_n(\nu|\mu)
 \]
-be the output Young-label distribution.  By Lemma~\ref{lem:young-concentration} and the dominance estimate preceding \eqref{eq:known-kernel},
+be the joint law of the measured input diagram and the sampled output diagram, and let
 \[
+  Q_m(\nu)=\sum_\mu J_n(\mu,\nu)
+\]
+be its output marginal.  The output and target states are block diagonal in the output Schur label:
+\begin{align*}
+  \cC_{n\to m}^{\PRV,p}(\rho_p^{\ot n})
+  &=
+  \bigoplus_\nu
+  Q_m(\nu)\,
+  \bar\sigma_\nu
+  \ot
+  \frac{I_{\cS_\nu}}{\dim\cS_\nu},\\
+  \rho_p^{\ot m}
+  &=
+  \bigoplus_\nu
+  P_{m,p}(\nu)\,
+  \rho_{p,\nu}
+  \ot
+  \frac{I_{\cS_\nu}}{\dim\cS_\nu},
+\end{align*}
+where
+\[
+  \bar\sigma_\nu
+  =
+  \sum_\mu
+  \frac{J_n(\mu,\nu)}{Q_m(\nu)}
+  \cC_{\mu\to\nu}^{\PRV}(\rho_{p,\mu})
+\]
+when \(Q_m(\nu)>0\).  The Specht factors are identical, so they contribute fidelity one.
+
+Take the good-pair set
+\[
+  G_n=\mathsf T_n(p)\times\mathsf T_m(p).
+\]
+By \cref{lem:known-label-simulation},
+\[
+  J_n(G_n^c)=o(1)
+  \qquad\text{and}\qquad
   \|Q_m-P_{m,p}\|_{\TV}=o(1).
 \]
-Indeed, for typical \(\mu\), the conditional law \(K_n(\cdot|\mu)\) differs from \(P_{m,p}\) by \(o(1)\) in total variation; atypical \(\mu\)'s have \(o(1)\) probability.
-
-The target state is
+The second relation implies
 \[
-  \rho_p^{\ot m}
-  =
-  \bigoplus_{\nu\vdash m}
-  P_{m,p}(\nu)\rho_{p,\nu}\ot\frac{I_{\cS_\nu}}{\dim\cS_\nu}.
+  B(Q_m,P_{m,p})\longrightarrow1,
 \]
-For every typical admissible pair \((\mu,\nu)\), Proposition~\ref{prop:thermal-PRV-sector} implies
+because \(1-B(P,Q)\le\|P-Q\|_{\TV}\).
+
+For every \((\mu,\nu)\in G_n\), the pair is admissible for all sufficiently large \(n\), and \cref{prop:thermal-PRV-sector} gives
 \[
   B\!\left(
     \cC_{\mu\to\nu}^{\PRV}(\rho_{p,\mu}),
     \rho_{p,\nu}
   \right)
-  \to \Borb(\gamma,p)
+  \longrightarrow
+  \Borb(\gamma,p)
 \]
-uniformly.  The Specht factors agree exactly.
-
-Using the block formula \eqref{eq:block-fidelity}, and then concavity of root fidelity inside each output block,
-\begin{align*}
-  &B\!\left(
+uniformly over the good set.  We can therefore apply \cref{lem:block-good-set} with
+\[
+  b=\Borb(\gamma,p),
+  \qquad
+  P_n=P_{m,p},
+  \qquad
+  Q_n=Q_m.
+\]
+It yields
+\[
+  \liminf_{n\to\infty}
+  B\!\left(
     \cC_{n\to m}^{\PRV,p}(\rho_p^{\ot n}),
     \rho_p^{\ot m}
-  \right) \\
-  &\quad\ge
-  \sum_{\nu}\sqrt{Q_m(\nu)P_{m,p}(\nu)}
-  \sum_\mu w(\mu|\nu)
-  B\!\left(\cC_{\mu\to\nu}^{\PRV}(\rho_{p,\mu}),\rho_{p,\nu}\right),
-\end{align*}
-where \(w(\mu|\nu)\) is the posterior weight of \(\mu\) given \(\nu\) in the protocol.  The atypical/admissibility complement contributes \(o(1)\), while
-\[
-  \sum_\nu\sqrt{Q_m(\nu)P_{m,p}(\nu)}=1-o(1).
+  \right)
+  \ge
+  \Borb(\gamma,p).
 \]
-Thus the liminf of the root fidelity is at least \(\Borb(\gamma,p)\).  Conversely, the LAN converse in \cref{thm:known-converse} below gives the matching upper bound for all channels, including the Schur--PRV channel.  Squaring proves \eqref{eq:known-achievability}.
+Squaring proves \eqref{eq:known-achievability}.
 \end{proof}
 
 \subsection{Known-spectrum global converse}
@@ -1134,30 +1759,60 @@ For arbitrary channels
 \end{theorem}
 
 \begin{proof}
-It is enough to prove the root-fidelity statement.  Suppose, for contradiction, that for some \(\eps>0\), a subsequence and channels \(\cM_n\) satisfy
+It is enough to prove the corresponding root-fidelity bound.  If the squared-fidelity statement failed, continuity of \(x\mapsto\sqrt x\) on \([0,1]\) would give \(\eps>0\), a subsequence, and channels \(\cM_n\) such that
 \begin{equation}\label{eq:contradict-known}
-  \inf_{g\in\U(d)}B\!\left(\cM_n(\rho_{p,g}^{\ot n}),\rho_{p,g}^{\ot m_n}\right)
-  \ge \Borb(\gamma,p)+3\eps.
+  \inf_{g\in\U(d)}
+  B\!\left(
+    \cM_n(\rho_{p,g}^{\ot n}),
+    \rho_{p,g}^{\ot m_n}
+  \right)
+  \ge
+  \Borb(\gamma,p)+3\eps.
 \end{equation}
-Fix a cube \(C_L\subset\C^R\).  For every \(z\in C_L\), the local state \(\rho_{p,g_{n,z}}^{\ot n}\) belongs to the original orbit family, hence \eqref{eq:contradict-known} applies.
 
-Let \(T_{m_n}\) be the output LAN channel and \(S_n\) the inverse input LAN channel from \cref{thm:LAN-known}.  Define the induced oscillator channel
+By the Gaussian converse \eqref{eq:flat-prior-gaussian}, choose a finite cube \(C_L\subset\C^R\) so large that
+\begin{equation}\label{eq:finite-L-gaussian-bound}
+  \sup_\Lambda
+  \int_{C_L}
+  B(\Lambda(\Phi_z),\Psi_z)\frac{\dd z}{|C_L|}
+  \le
+  \Borb(\gamma,p)+\eps.
+\end{equation}
+The local orbit points
 \[
-  \Gamma_n=T_{m_n}\circ\cM_n\circ S_n.
+  g_{n,z}=\exp(X(z)/\sqrt n),
+  \qquad z\in C_L,
 \]
-By the LAN transfer principle \eqref{eq:LAN-transfer-main}, uniformly for \(z\in C_L\),
-\begin{align*}
+belong to the original orbit, so \eqref{eq:contradict-known} applies to each of them.
+
+Let \(S_n\) be the inverse input LAN channel and \(T_{m_n}\) the forward output LAN channel from \cref{thm:LAN-known}.  Define
+\[
+  \Gamma_n
+  =
+  T_{m_n}\circ\cM_n\circ S_n.
+\]
+Apply \cref{lem:LAN-fidelity-transfer} on the fixed compact set \(C_L\).  Uniformly for \(z\in C_L\),
+\[
   B(\Gamma_n(\Phi_z),\Psi_z)
-  &\ge
-  B\!\left(\cM_n(\rho_{p,g_{n,z}}^{\ot n}),\rho_{p,g_{n,z}}^{\ot m_n}\right)-o(1)\\
-  &\ge \Borb(\gamma,p)+2\eps
-\end{align*}
-for all large \(n\).  The first line uses \eqref{eq:LAN-known-inverse}, monotonicity under \(T_{m_n}\), \eqref{eq:Psi-z}, and Lemma~\ref{lem:fid-cont}.  Therefore
-\[
-  \int_{C_L}B(\Gamma_n(\Phi_z),\Psi_z)\frac{\dd z}{|C_L|}
-  \ge \Borb(\gamma,p)+2\eps.
+  \ge
+  B\!\left(
+    \cM_n(\rho_{p,g_{n,z}}^{\ot n}),
+    \rho_{p,g_{n,z}}^{\ot m_n}
+  \right)
+  -o(1).
 \]
-Since \(\Gamma_n\) is an arbitrary oscillator channel, this contradicts the flat-prior Gaussian bound \eqref{eq:flat-prior-gaussian} after choosing \(L\) large enough.  Hence no such finite-dimensional cloner exists.  Squaring the root-fidelity bound proves \eqref{eq:known-converse}.
+For all sufficiently large \(n\), the right-hand side is at least
+\[
+  \Borb(\gamma,p)+2\eps.
+\]
+Averaging over \(C_L\) therefore gives
+\[
+  \int_{C_L}
+  B(\Gamma_n(\Phi_z),\Psi_z)\frac{\dd z}{|C_L|}
+  \ge
+  \Borb(\gamma,p)+2\eps,
+\]
+contradicting \eqref{eq:finite-L-gaussian-bound}, since \(\Gamma_n\) is an admissible oscillator channel.  This proves the root-fidelity upper bound, and squaring gives \eqref{eq:known-converse}.
 \end{proof}
 
 Combining \cref{thm:known-achievability,thm:known-converse} gives the known-spectrum optimality theorem.
@@ -1260,12 +1915,64 @@ whereas the target \(m\)-copy Young-label experiment converges uniformly to \(\m
 \end{lemma}
 
 \begin{proof}
-The Schur label is the classical component of the full mixed-state LAN model.  By \cref{cor:LAN-uniform-compact}, this classical component satisfies a local central limit theorem uniformly on \(\Delta_{d,\kappa}\) and bounded \(h\).  The rounding map obeys
+The Young diagram is the classical component of the full LAN model in \cref{thm:LAN-unknown}.  Concretely, after centering and scaling,
 \[
-  \frac{R_{n,m}(\mu)-m p}{\sqrt m}
-  =\sqrt{\frac mn}\,\frac{\mu-np}{\sqrt n}+o(1),
+  X_n=\frac{\mu-np}{\sqrt n}
 \]
-with an \(o(1)\) term uniform in the stated compact set because the rounding error is \(O_d(1)\).  Hellinger affinity is continuous under total-variation convergence of the local experiments, and the Gaussian value is given by \cref{lem:classical-factor}.  This proves the uniform convergence of the classical factor.
+takes values on a lattice in \(\mathsf H\).  The classical part of compact-uniform LAN implies a local central limit theorem: after replacing each lattice point by its fundamental cell, the corresponding piecewise-constant density converges in \(L^1(\mathsf H)\), uniformly in \(p\in\Delta_{d,\kappa}\) and \(\|h\|\le L\), to the density of \(\mathsf N_{h,V_p}\).
+
+The rounded dilation obeys
+\[
+  R_{n,m}(\mu)
+  =
+  \frac mn\mu+\delta_n(\mu),
+  \qquad
+  \|\delta_n(\mu)\|_\infty\le C_d.
+\]
+Hence
+\begin{align*}
+  \frac{R_{n,m}(\mu)-mp}{\sqrt m}
+  &=
+  \sqrt{\frac mn}\,
+  \frac{\mu-np}{\sqrt n}
+  +
+  \frac{\delta_n(\mu)}{\sqrt m}\\
+  &=
+  \sqrt{\frac mn}\,X_n+o(1),
+\end{align*}
+uniformly in \(\mu\).  Under the local spectrum \(p+h/\sqrt n\), the limiting mean is therefore \(\sqrt\gamma h\), and the limiting covariance is \(\gamma V_p\).  Thus the adaptive output-label experiment converges in total variation to
+\[
+  \mathsf N_{\sqrt\gamma h,\gamma V_p}.
+\]
+The target \(m\)-copy Young label converges to
+\[
+  \mathsf N_{\sqrt\gamma h,V_p}.
+\]
+
+If probability densities \(f_n,g_n\) converge in \(L^1\) to \(f,g\), then
+\[
+  \int|\sqrt{f_n}-\sqrt f|^2
+  \le
+  \|f_n-f\|_1,
+\]
+and similarly for \(g_n\).  Their Hellinger affinities therefore converge:
+\[
+  \int\sqrt{f_ng_n}
+  \longrightarrow
+  \int\sqrt{fg}.
+\]
+Applying this to the two rescaled Young-label distributions gives the uniform limit
+\[
+  B_{\mathrm{labels}}
+  \longrightarrow
+  B\!\left(
+    \mathsf N_{\sqrt\gamma h,\gamma V_p},
+    \mathsf N_{\sqrt\gamma h,V_p}
+  \right)
+  =
+  \Bcl(\gamma,d).
+\]
+Squaring and using \cref{lem:classical-factor} gives the stated factor \(\Fcl(\gamma,d)\).
 \end{proof}
 
 A tempting but suboptimal alternative is to set \(\hat p=\mu/n\) and then sample \(\nu\sim P_{m,\hat p}\).  At LAN scale this gives
@@ -1290,43 +1997,6 @@ Define
        {(1-\sqrt{q_{ij}q_{ij}^{(\gamma)}})^2}.
 \end{equation}
 
-\begin{proposition}[Classical Gaussian amplification converse]\label{prop:classical-converse}
-For the classical Gaussian shift problem
-\[
-  X\sim\mathsf N_{h,V_p}
-  \longmapsto
-  Y\sim\mathsf N_{\sqrt\gamma h,V_p},
-  \qquad h\in\mathsf H,
-\]
-the flat-prior/minimax squared Hellinger fidelity is \(\Fcl(\gamma,d)\).  It is achieved by the deterministic Markov kernel \(Y=\sqrt\gamma X\).
-\end{proposition}
-
-\begin{proof}
-The deterministic kernel gives output law \(\mathsf N_{\sqrt\gamma h,\gamma V_p}\), whose squared Hellinger fidelity with the target is \(\Fcl(\gamma,d)\) by \cref{lem:classical-factor}.  Conversely, by the Hunt--Stein reduction of \cref{lem:Hunt-Stein}, applied to the amenable translation group \(\mathsf H\), a flat-prior optimizer may be assumed translation covariant.  A translation-covariant Markov kernel has the form \(Y=\sqrt\gamma X+Z\), with \(Z\) independent of the input.  At the origin the output density is \(f_\eta:=\mathsf N_{0,\gamma V_p}*\eta\), where \(\eta\) is the law of \(Z\), and the target density is \(g:=\mathsf N_{0,V_p}\).
-
-Write \(f_0:=\mathsf N_{0,\gamma V_p}\) and apply the variational formula of \cref{lem:fid-variational} with the witness \(a_*:=\sqrt{g/f_0}\), the optimizer for the pair \((f_0,g)\); by construction
-\[
-  \int a_*^{-1}\,g\,\dd y=\int\sqrt{f_0\,g}\,\dd y=\Bcl(\gamma,d).
-\]
-Since \(\gamma>1\), the witness \(a_*\) is a centered Gaussian function, and \(f_0\) is a centered Gaussian density, so the convolution
-\[
-  (a_**f_0)(r)=\int a_*(y)\,f_0(y-r)\,\dd y
-\]
-is again a centered Gaussian function of \(r\), maximized at \(r=0\), with maximal value \((a_**f_0)(0)=\int\sqrt{f_0\,g}\,\dd y=\Bcl(\gamma,d)\).  Hence
-\[
-  \int a_*\,f_\eta\,\dd y
-  =\int_{\mathsf H}(a_**f_0)(r)\,\eta(\dd r)
-  \le\Bcl(\gamma,d).
-\]
-The variational formula then gives
-\[
-  B(f_\eta,g)
-  \le\frac12\left\{\int a_*\,f_\eta\,\dd y+\int a_*^{-1}\,g\,\dd y\right\}
-  \le\Bcl(\gamma,d),
-\]
-with equality for \(\eta=\delta_0\).  Squaring shows that the deterministic kernel is optimal, with value \(\Fcl(\gamma,d)\).  This argument is the \(R=0\) specialization of the classical-factor bound in the hybrid converse of \cref{app:hybrid-gap}.
-\end{proof}
-
 \begin{lemma}[Variational form of root fidelity]\label{lem:fid-variational}
 For faithful normal states \(\rho,\tau\),
 \[
@@ -1340,22 +2010,125 @@ For commuting classical states this is the scalar identity \(\sqrt{xy}=\inf_{a>0
 This is the standard operator arithmetic--geometric mean variational formula for Uhlmann root fidelity.  In the commuting case it reduces pointwise to the scalar formula.
 \end{proof}
 
-\begin{theorem}[Hybrid classical--quantum Gaussian product converse]\label{thm:hybrid-converse}
-For the hybrid LAN problem
+
+\begin{proposition}[Classical Gaussian amplification converse]\label{prop:classical-converse}
+For the classical Gaussian shift problem
 \[
-  \mathsf N_{h,V_p}\ot\Phi_z
+  X\sim\mathsf N_{h,V_p}
   \longmapsto
-  \mathsf N_{\sqrt\gamma h,V_p}\ot\Psi_z,
+  Y\sim\mathsf N_{\sqrt\gamma h,V_p},
+  \qquad h\in\mathsf H,
 \]
-the flat-prior/minimax optimal squared fidelity is
+the flat-prior/minimax squared Hellinger fidelity is \(\Fcl(\gamma,d)\).  It is achieved by the deterministic Markov kernel \(Y=\sqrt\gamma X\).
+\end{proposition}
+
+\begin{proof}
+The deterministic kernel \(Y=\sqrt\gamma X\) gives output law
+\(\mathsf N_{\sqrt\gamma h,\gamma V_p}\), whose squared Hellinger fidelity with the target
+\(\mathsf N_{\sqrt\gamma h,V_p}\) is \(\Fcl(\gamma,d)\) by \cref{lem:classical-factor}.
+For the converse, the Hunt--Stein reduction of \cref{lem:Hunt-Stein} reduces the flat-prior
+problem to translation-covariant kernels.  Such a kernel has the form
+\[
+  Y=\sqrt\gamma X+Z,
+\]
+where \(Z\sim\eta\) is independent of \(X\).  At \(h=0\), the output density is
+\(f_\eta=\mathsf N_{0,\gamma V_p}*\eta\) and the target density is
+\(g=\mathsf N_{0,V_p}\).  Let \(f_0=\mathsf N_{0,\gamma V_p}\).  Apply the variational formula
+of \cref{lem:fid-variational} with the scalar witness
+\[
+  a_* = \sqrt{dg/df_0},
+\]
+which is optimal for the pair \((f_0,g)\).  Then
+\[
+  \int a_*^{-1}\,dg=\int\sqrt{f_0g}=\Bcl(\gamma,d).
+\]
+The function \(a_*\) is an even Gaussian function and \(f_0\) is an even Gaussian density.
+Therefore
+\[
+  r\longmapsto \int a_*(y)f_0(y-r)\,dy=(a_* * f_0)(r)
+\]
+is a centered Gaussian in \(r\), maximized at \(r=0\), with value
+\[
+  (a_* * f_0)(0)=\int\sqrt{f_0g}=\Bcl(\gamma,d).
+\]
+Consequently
+\[
+  \int a_*\,df_\eta
+  =\int_{\mathsf H}\eta(dr)\,(a_* * f_0)(r)
+  \le \Bcl(\gamma,d).
+\]
+Hence
+\[
+  B(f_\eta,g)
+  \le \frac12\left\{\int a_*\,df_\eta+\int a_*^{-1}\,dg\right\}
+  \le \Bcl(\gamma,d).
+\]
+Equality is attained by \(\eta=\delta_0\), i.e. by \(Y=\sqrt\gamma X\).  Squaring gives the
+claimed value \(\Fcl(\gamma,d)\).
+\end{proof}
+
+\begin{theorem}[Hybrid classical--quantum Gaussian product converse]\label{thm:hybrid-converse}
+Let
+\[
+  \Theta_{h,z}^{\mathrm{in}}
+  =
+  \mathsf N_{h,V_p}\ot\Phi_z,
+  \qquad
+  \Theta_{h,z}^{\mathrm{tar}}
+  =
+  \mathsf N_{\sqrt\gamma h,V_p}\ot\Psi_z.
+\]
+For the expanding cubes \(C_L\subset\mathsf H\times\C^R\) defined below,
+\begin{equation}\label{eq:hybrid-flat-prior-value}
+  \lim_{L\to\infty}
+  \sup_\Lambda
+  \int_{C_L}
+  B\!\left(
+    \Lambda(\Theta_{h,z}^{\mathrm{in}}),
+    \Theta_{h,z}^{\mathrm{tar}}
+  \right)
+  \frac{\dd h\,\dd z}{|C_L|}
+  =
+  \Bcl(\gamma,d)\Borb(\gamma,p).
+\end{equation}
+Consequently the optimal squared flat-prior/minimax fidelity is
 \[
   \Fcl(\gamma,d)\Forb(\gamma,p).
 \]
-The optimum is achieved by the product of the deterministic classical amplifier \(X\mapsto\sqrt\gamma X\) and the product least-noise oscillator amplifier.
+The value is achieved by the product of the deterministic classical amplifier \(X\mapsto\sqrt\gamma X\) and the product quantum-limited oscillator amplifier.
 \end{theorem}
 
 \begin{proof}
-The lower bound is the product channel.  The upper bound is proved in \cref{app:hybrid-gap}: the amenable Hunt--Stein reduction and a per-mode phase average reduce the flat-prior problem to an exactly covariant, phase-covariant hybrid channel; \cref{lem:residual-instrument-form} gives the residual-instrument decomposition; \cref{lem:fid-variational} supplies the linear witness at the least-noise product output; and the tensorized one-mode conic order, \cref{lem:tensor-conic}, bounds each covariant oscillator branch, including trace-nonincreasing branches.  Thus correlations between the classical residual and the oscillator noise cannot improve the product fidelity.
+The product of the deterministic classical amplifier
+\[
+  X\longmapsto\sqrt\gamma X
+\]
+and the product quantum-limited oscillator amplifier achieves the lower bound.  Its origin output is
+\[
+  \mathsf N_{0,\gamma V_p}
+  \ot
+  \bigotimes_\alpha\tau_{q_\alpha^{(\gamma)}},
+\]
+whose root fidelity with the target factors as
+\[
+  \Bcl(\gamma,d)\Borb(\gamma,p).
+\]
+
+For the upper bound, \cref{lem:Hunt-Stein} reduces the expanding flat-prior problem to exactly covariant hybrid channels.  After phase averaging at the channel level, the oscillator branches are also phase covariant.  The residual-instrument lemma in Appendix~\ref{app:hybrid-gap} then writes the origin output as
+\[
+  \Xi(dy)
+  =
+  \int_{\mathsf H}
+  \mathsf N_{r,\gamma V_p}(dy)\,
+  \mathcal I(dr)(\Phi_0),
+\]
+where every \(\mathcal I(dr)\) is a trace-nonincreasing covariant oscillator amplifier branch.  The variational witness for the least-noise product output factors into a classical Gaussian function and a decreasing product photon-number weight.  The classical factor is maximized at \(r=0\), while \cref{lem:tensor-conic} bounds each quantum branch by the least-noise amplifier.  Integrating over the residual instrument gives
+\[
+  B(\Xi,\Theta)
+  \le
+  \Bcl(\gamma,d)\Borb(\gamma,p).
+\]
+The full branchwise calculation is given in \cref{prop:hybrid-from-residual}.  This proves \eqref{eq:hybrid-flat-prior-value}, and squaring gives the stated optimal fidelity.
 \end{proof}
 
 \begin{theorem}[Unknown-spectrum local achievability]\label{thm:unknown-achievability}
@@ -1384,7 +2157,99 @@ Then the adaptive Schur--PRV channel satisfies
 \end{theorem}
 
 \begin{proof}
-By \cref{lem:uniform-young-adaptive-factor}, the Young-label component of the adaptive protocol converges uniformly on \(K\) to the deterministic classical amplifier \(X\mapsto\sqrt\gamma X\), hence contributes \(\Fcl(\gamma,d)\).  The channel is \(\U(d)\)-covariant, so for each local spectrum \(p_{n,h}\) the fidelity is independent of the orbit coordinate \(z\); thus the PRV sector fidelity may be evaluated at \(z=0\).  Conditional on typical labels, \(\nu=R_{n,m}(\mu)\) satisfies \(\Delta_{ij}^{\nu}/\Delta_{ij}^{\mu}\to\gamma\), so \cref{prop:thermal-PRV-sector} gives the orbit factor \(\Forb(\gamma,p)\), uniformly on compact LAN windows.  Atypical Young labels have probability \(o(1)\), and the rounding error in \eqref{eq:R-nm} is \(o(\sqrt n)\), hence invisible at LAN scale.  Multiplying the root-fidelity factors and squaring proves \eqref{eq:unknown-achievability-statement}.
+Fix the compact set \(K\).  Since \(p\) is in the strict chamber, all local spectra
+\[
+  p_{n,h}=p+h/\sqrt n,
+  \qquad
+  (h,z)\in K,
+\]
+remain in a common compact strict chamber for sufficiently large \(n\).
+
+First remove the orbit coordinate.  The adaptive channel is \(\U(d)\)-covariant, and the target transforms under the same representation.  Therefore, for each fixed \(h\), the fidelity is independent of \(z\).  We may set \(z=0\) and work with the diagonal state \(\rho_{p_{n,h}}\).
+
+Let \(P_{n,h}(\mu)\) denote the input Young law at spectrum \(p_{n,h}\).  The adaptive protocol chooses
+\[
+  \nu=R_{n,m}(\mu)
+\]
+deterministically, so its joint label law is
+\[
+  J_{n,h}(\mu,\nu)
+  =
+  P_{n,h}(\mu)\,
+  \1_{\{\nu=R_{n,m}(\mu)\}}.
+\]
+Let \(Q_{n,h}\) be the resulting output-label law and let \(P^{\mathrm{tar}}_{m,h}\) be the Young law of the ideal \(m_n\)-copy target.
+
+By \cref{lem:uniform-young-adaptive-factor},
+\begin{equation}\label{eq:unknown-label-affinity}
+  \inf_{(h,z)\in K}
+  B(Q_{n,h},P^{\mathrm{tar}}_{m,h})
+  \longrightarrow
+  \Bcl(\gamma,d).
+\end{equation}
+Now define the good set by
+\[
+  G_{n,h}
+  =
+  \left\{
+    (\mu,\nu):\;
+    \nu=R_{n,m}(\mu),\;
+    \mu\in\mathsf T_n(p_{n,h}),\;
+    \nu\in\mathsf T_m(p_{n,h})
+  \right\}.
+\]
+Uniform Young concentration gives
+\[
+  \sup_{(h,z)\in K}
+  J_{n,h}(G_{n,h}^c)
+  \longrightarrow0.
+\]
+Indeed, if \(\mu/n\) is within \(n^{-1/3}\) of \(p_{n,h}\), then
+\[
+  \frac{R_{n,m}(\mu)}m
+  =
+  \frac\mu n+O(1/m),
+\]
+so the output diagram is also typical, after an inessential enlargement of the typical window.  The same gap estimate as in \cref{lem:known-label-simulation} shows that
+\[
+  \omega=R_{n,m}(\mu)-\mu
+\]
+is dominant uniformly on the good set.
+
+Conditional on a good pair \((\mu,\nu)\), the normalized weights satisfy
+\[
+  \frac{\mu}{n}\to p,
+  \qquad
+  \frac{\nu}{m_n}\to p,
+  \qquad
+  \frac{\Delta_{ij}^{\nu}}
+       {\Delta_{ij}^{\mu}}
+  \to\gamma
+\]
+uniformly for \((h,z)\in K\).  The thermal PRV sector theorem therefore gives
+\begin{equation}\label{eq:unknown-sector-affinity}
+  \inf_{\substack{(h,z)\in K\\(\mu,\nu)\in G_{n,h}}}
+  B\!\left(
+    \cC_{\mu\to\nu}^{\PRV}
+    (\rho_{p_{n,h},\mu}),
+    \rho_{p_{n,h},\nu}
+  \right)
+  \longrightarrow
+  \Borb(\gamma,p).
+\end{equation}
+Replacing \(p_{n,h}\) by \(p\) in the limiting factor is valid uniformly because \(p_{n,h}\to p\) and \(\Borb(\gamma,\cdot)\) is continuous in the strict chamber.
+
+The output and target have the same maximally mixed Specht factors.  Apply \cref{lem:block-good-set} to the label law \(J_{n,h}\), the label affinity \eqref{eq:unknown-label-affinity}, and the conditional sector bound \eqref{eq:unknown-sector-affinity}.  Uniformly on \(K\),
+\[
+  \liminf_{n\to\infty}
+  B\!\left(
+    \cC_{n\to m}^{\mathrm{adPRV}}(\rho_{n,h,z}),
+    \sigma_{m,h,z}
+  \right)
+  \ge
+  \Bcl(\gamma,d)\Borb(\gamma,p).
+\]
+Squaring gives \eqref{eq:unknown-achievability-statement}.
 \end{proof}
 
 For the converse, a fixed compact local window is not least favorable: on a singleton one can prepare the target and get fidelity one.  The correct local minimax converse uses expanding windows.  Let
@@ -1411,7 +2276,82 @@ Together with \cref{thm:unknown-achievability}, this identifies \(\Funiv(\gamma,
 \end{theorem}
 
 \begin{proof}
-Suppose the root-fidelity version of \eqref{eq:unknown-window-converse} fails by \(3\epsilon\).  Then, for arbitrarily large \(L\), there is a subsequence and finite-dimensional channels \(\cM_n\) whose fidelity is at least \(\Buniv(\gamma,p)+3\epsilon\) uniformly on \(C_L\).  Compose \(\cM_n\) with the inverse input LAN channel and the output LAN channel from \cref{thm:LAN-unknown}.  The trace-norm-to-fidelity transfer in \cref{subsec:LAN-transfer-main} gives a hybrid Gaussian channel with root fidelity at least \(\Buniv(\gamma,p)+2\epsilon\) uniformly on \(C_L\).  Averaging over the uniform prior on \(C_L\) gives a flat-prior hybrid Gaussian cloner beating \cref{thm:hybrid-converse}.  Letting \(L\to\infty\) yields a contradiction.  Squaring gives \eqref{eq:unknown-window-converse}.
+We prove the root-fidelity form.  Define
+\[
+  v_{n,L}
+  =
+  \sup_{\cM_n}
+  \inf_{(h,z)\in C_L}
+  B\!\left(
+    \cM_n(\rho_{n,h,z}),
+    \sigma_{m,h,z}
+  \right).
+\]
+Suppose, contrary to the theorem, that
+\[
+  \lim_{L\to\infty}\limsup_{n\to\infty}v_{n,L}
+  >
+  \Buniv(\gamma,p).
+\]
+Then there is \(\eps>0\) such that the left-hand side is at least
+\[
+  \Buniv(\gamma,p)+4\eps.
+\]
+
+By the hybrid Gaussian theorem \eqref{eq:hybrid-flat-prior-value}, choose \(L<\infty\) large enough that
+\begin{equation}\label{eq:finite-L-hybrid-bound}
+  \sup_\Lambda
+  \int_{C_L}
+  B\!\left(
+    \Lambda(\Theta_{h,z}^{\mathrm{in}}),
+    \Theta_{h,z}^{\mathrm{tar}}
+  \right)
+  \frac{\dd h\,\dd z}{|C_L|}
+  \le
+  \Buniv(\gamma,p)+\eps.
+\end{equation}
+For this fixed \(L\), the definition of the limsup provides a subsequence, still denoted \(n\), and channels \(\cM_n\) satisfying
+\begin{equation}\label{eq:unknown-local-contradiction}
+  \inf_{(h,z)\in C_L}
+  B\!\left(
+    \cM_n(\rho_{n,h,z}),
+    \sigma_{m,h,z}
+  \right)
+  \ge
+  \Buniv(\gamma,p)+3\eps.
+\end{equation}
+If the supremum is not attained, choose a channel within \(\eps/2\) of it; this only changes the numerical margin.
+
+Let \(S_n\) be the inverse input LAN channel and \(T_{m_n}\) the forward output LAN channel from \cref{thm:LAN-unknown}.  Set
+\[
+  \Gamma_n
+  =
+  T_{m_n}\circ\cM_n\circ S_n.
+\]
+Apply \cref{lem:LAN-fidelity-transfer} on the fixed compact set \(C_L\).  Uniformly for \((h,z)\in C_L\),
+\[
+  B\!\left(
+    \Gamma_n(\Theta_{h,z}^{\mathrm{in}}),
+    \Theta_{h,z}^{\mathrm{tar}}
+  \right)
+  \ge
+  B\!\left(
+    \cM_n(\rho_{n,h,z}),
+    \sigma_{m,h,z}
+  \right)
+  -o(1).
+\]
+For all sufficiently large \(n\), \eqref{eq:unknown-local-contradiction} therefore implies
+\[
+  \inf_{(h,z)\in C_L}
+  B\!\left(
+    \Gamma_n(\Theta_{h,z}^{\mathrm{in}}),
+    \Theta_{h,z}^{\mathrm{tar}}
+  \right)
+  \ge
+  \Buniv(\gamma,p)+2\eps.
+\]
+Averaging this inequality over \(C_L\) contradicts \eqref{eq:finite-L-hybrid-bound}.  Hence the expanding-window root-fidelity value is at most \(\Buniv(\gamma,p)\).  Squaring proves \eqref{eq:unknown-window-converse}.
 \end{proof}
 
 The expanding-window local converse implies a genuine global worst-case statement on compact subsets of the strict Weyl chamber.  The needed uniformity is supplied by \cref{lem:young-concentration,cor:LAN-uniform-compact,lem:PBW-Fock,lem:uniform-young-adaptive-factor}.
@@ -1437,13 +2377,54 @@ The adaptive Schur--PRV channel achieves the lower bound.
 \end{corollary}
 
 \begin{proof}
-Achievability follows from \cref{thm:unknown-achievability}, the uniform estimates \cref{lem:young-concentration,cor:LAN-uniform-compact,lem:PBW-Fock,lem:uniform-young-adaptive-factor}, and continuity of \(p\mapsto\Funiv(\gamma,p)\) on \(\Delta_{d,\kappa}\).  For the converse, suppose a global channel beats the right-hand side by \(3\epsilon\).  Choose \(p_0\in\Delta_{d,\kappa}\) with
+For achievability, use the same adaptive Schur--PRV channel for every spectrum.  The Young concentration, compact-uniform LAN, PBW/Fock contraction, and adaptive label estimates are uniform on \(\Delta_{d,\kappa}\) by
+\[
+  \cref{lem:young-concentration,cor:LAN-uniform-compact,lem:PBW-Fock,lem:uniform-young-adaptive-factor}.
+\]
+The proof of \cref{thm:unknown-achievability} is therefore uniform in \(p\in\Delta_{d,\kappa}\), giving
+\[
+  \liminf_{n\to\infty}
+  \inf_{\substack{p\in\Delta_{d,\kappa}\\g\in\U(d)}}
+  F\!\left(
+    \cC_{n\to m}^{\mathrm{adPRV}}(\rho_{p,g}^{\ot n}),
+    \rho_{p,g}^{\ot m_n}
+  \right)
+  \ge
+  \inf_{p\in\Delta_{d,\kappa}}\Funiv(\gamma,p).
+\]
+
+For the converse, suppose there are \(\eps>0\), a subsequence, and channels \(\cM_n\) such that
+\begin{equation}\label{eq:global-unknown-contradiction}
+  \inf_{\substack{p\in\Delta_{d,\kappa}\\g\in\U(d)}}
+  F\!\left(
+    \cM_n(\rho_{p,g}^{\ot n}),
+    \rho_{p,g}^{\ot m_n}
+  \right)
+  \ge
+  \inf_{p\in\Delta_{d,\kappa}}\Funiv(\gamma,p)+4\eps.
+\end{equation}
+The relative interior of \(\Delta_{d,\kappa}\) is dense in \(\Delta_{d,\kappa}\), and \(\Funiv(\gamma,p)\) is continuous there.  Choose an interior point \(p_0\) such that
 \[
   \Funiv(\gamma,p_0)
   \le
-  \inf_{p\in\Delta_{d,\kappa}}\Funiv(\gamma,p)+\epsilon.
+  \inf_{p\in\Delta_{d,\kappa}}\Funiv(\gamma,p)+\eps.
 \]
-For every fixed \(L\), the local perturbations \(p_0+h/\sqrt n\) with \((h,z)\in C_L\) remain in \(\Delta_{d,\kappa}\) for all sufficiently large \(n\).  The assumed global worst-case bound therefore gives a local expanding-window cloner beating \(\Funiv(\gamma,p_0)\), contradicting \cref{thm:unknown-window-converse}.
+Because \(p_0\) has positive distance from the boundary of \(\Delta_{d,\kappa}\), for every fixed \(L\) all local perturbations
+\[
+  p_0+h/\sqrt n,
+  \qquad
+  (h,z)\in C_L,
+\]
+remain in \(\Delta_{d,\kappa}\) for sufficiently large \(n\).  The global bound \eqref{eq:global-unknown-contradiction} then implies, on every fixed local cube,
+\[
+  F\!\left(
+    \cM_n(\rho_{n,h,z}^{(p_0)}),
+    \sigma_{m,h,z}^{(p_0)}
+  \right)
+  \ge
+  \Funiv(\gamma,p_0)+3\eps,
+\]
+where the superscript indicates that the local model is centered at \(p_0\).  Taking the expanding-window limit contradicts \cref{thm:unknown-window-converse} at \(p_0\).  This proves the upper bound and hence \eqref{eq:compact-global-unknown}.
 \end{proof}
 
 A global worst-case statement over the entire full-rank simplex without a gap condition is not covered by \eqref{eq:compact-global-unknown}: as \(p\) approaches degeneracy or the boundary, the LAN model changes and the formula \(\Funiv(\gamma,p)\) need not remain the correct local value.
@@ -1586,7 +2567,21 @@ Several extensions remain natural.  First, one can ask for quantitative finite-\
 
 \section{The hybrid product converse: residual instruments and conic order}\label{app:hybrid-gap}
 
-This appendix proves the hybrid classical--quantum Gaussian product converse used in \cref{thm:hybrid-converse}.  The proof combines the Hunt--Stein reduction for the amenable product group, a per-mode phase average, a residual-instrument decomposition of exactly covariant hybrid channels, and the tensorized one-mode conic order from \cref{lem:tensor-conic}.
+This appendix proves the hybrid classical--quantum Gaussian product converse used in \cref{thm:hybrid-converse}.  The main issue is that a channel could correlate its classical spectral error with the quantum amplifier noise.  We show that product covariance forces a much simpler structure: the classical output is the correctly amplified Gaussian input plus an additive residual \(r\), and, conditional on that residual, the oscillator output is a covariant trace-nonincreasing amplifier branch.  The classical and quantum witness bounds can then be applied branch by branch.
+
+We first recall the language used in the proof.  A classical--quantum output with classical value \(y\in\mathsf H\) is represented by a positive operator-valued measure
+\[
+  E\longmapsto\Xi(E)
+\]
+on Borel sets \(E\subseteq\mathsf H\).  Its trace \(\Tr\Xi(E)\) is the probability that the classical output lies in \(E\), and \(\Xi(E)/\Tr\Xi(E)\), when defined, is the corresponding conditional quantum state.
+
+A \emph{quantum instrument} is a countably additive assignment
+\[
+  E\longmapsto\mathcal I_E
+\]
+of completely positive trace-nonincreasing maps such that \(\mathcal I_{\mathsf H}\) is trace preserving.  It simultaneously describes a classical outcome and the conditional quantum output.  The notation \(\mathcal I(dr)\) below is the usual measure notation for this Borel instrument; all identities are understood after integration over Borel sets or against bounded measurable test functions.
+
+The proof combines the Hunt--Stein reduction from \cref{lem:Hunt-Stein}, the residual-instrument decomposition below, the variational formula \cref{lem:fid-variational}, and the tensorized conic order \cref{lem:tensor-conic}.
 
 \begin{lemma}[Residual-instrument form of covariant hybrid channels]\label{lem:residual-instrument-form}
 Let \(\Lambda\) be a normal channel from the hybrid classical--quantum input model to the hybrid output model, exactly covariant under \(G=\mathsf H\times\C^R\).  The input action translates the classical variable by \(s\) and displaces the oscillator by \(w\); the output action translates the classical variable by \(\sqrt\gamma s\) and displaces the oscillator by \(\sqrt\gamma w\).  Then there is a Borel quantum instrument \(E\mapsto\mathcal I_E\) on \(\mathsf H\), whose values are trace-nonincreasing CP maps on the oscillators and are displacement covariant with gain \(\sqrt\gamma\), such that for every bounded measurable test function \(a\) and every bounded oscillator observable \(M\), the output \(\Xi\) of \(\Lambda\) at the centered input \(\mathsf N_{0,V_p}\ot\Phi_0\) satisfies
@@ -1606,7 +2601,7 @@ Equivalently, in measure notation,
 \end{lemma}
 
 \begin{proof}
-We use the standard classical--quantum Markov-kernel formulation; the existence of a Borel-measurable family of conditional instruments below is the usual disintegration of a normal channel with classical input and classical--quantum output, see e.g.\ the treatment of covariant instruments in~\cite{Holevo2011}.  For a classical input point \(x\in\mathsf H\), the channel induces a quantum instrument \(E\mapsto\Lambda_E^x\) on the oscillator system, where \(E\subseteq\mathsf H\) is a Borel output event.  Product covariance gives, for all Borel \(E\), classical shifts \(s\), oscillator displacements \(w\), and oscillator trace-class inputs \(X\),
+We use the standard classical--quantum Markov-kernel formulation.  For a classical input point \(x\in\mathsf H\), the channel induces a quantum instrument \(E\mapsto\Lambda_E^x\) on the oscillator system, where \(E\subseteq\mathsf H\) is a Borel output event.  Product covariance gives, for all Borel \(E\), classical shifts \(s\), oscillator displacements \(w\), and oscillator trace-class inputs \(X\),
 \begin{equation}\label{eq:cov-instrument}
   \Lambda_{E+\sqrt\gamma s}^{x+s}(D(w)XD(w)^*)
   =D(\sqrt\gamma w)\Lambda_E^x(X)D(\sqrt\gamma w)^* .
@@ -1630,7 +2625,11 @@ The hybrid Gaussian product converse, \cref{thm:hybrid-converse}, holds.
 \end{proposition}
 
 \begin{proof}
-By \cref{lem:Hunt-Stein} for the amenable product group \(\mathsf H\times\C^R\), it suffices to prove the origin bound for exactly product-covariant channels.  Next, average such a channel over the per-mode phase group \(\U(1)^R\): conjugate the oscillator input by \(\bigotimes_\alpha R(\theta_\alpha)\), conjugate the oscillator output by the same rotations, and integrate over \(\theta\) with the Haar measure.  Phase rotations act trivially on the classical registers and satisfy \(R(\theta)D(w)R(\theta)^*=D(e^{i\theta}w)\), so this average preserves the exact \(\mathsf H\times\C^R\) covariance with gain \(\sqrt\gamma\); and since the origin input and the target below are phase invariant, joint concavity of root fidelity shows that the average does not decrease the origin fidelity.  The averaged channel is phase covariant in every oscillator mode, and because the phase group does not move the classical outcome, the average is implemented branchwise on the associated instrument.  Hence the residual branches \(\mathcal I(dr)\) produced by \cref{lem:residual-instrument-form} are displacement covariant with gain \(\sqrt\gamma\) \emph{and} phase covariant in every mode, which are exactly the hypotheses of \cref{lem:tensor-conic}; in particular the oscillator output at the origin is diagonal in the joint number basis.
+By \cref{lem:Hunt-Stein} for the amenable product group \(\mathsf H\times\C^R\), it suffices to prove the origin bound for exactly product-covariant channels.  We first average the channel, not merely its output, over the per-mode phase group \(\U(1)^R\), conjugating oscillator input and output by \(\bigotimes_\alpha R(\theta_\alpha)\) and integrating over \(\theta\).  This averaging preserves the product covariance and the gain \(\sqrt\gamma\), because phase rotations satisfy
+\[
+  R(\theta)D(\sqrt\gamma w)R(\theta)^*=D(\sqrt\gamma e^{i\theta}w).
+\]
+Since the thermal input and target are phase invariant and root fidelity is concave in the channel output, this channel twirl cannot decrease the origin fidelity.  The resulting channel is phase covariant in every oscillator mode.  Therefore the residual branches supplied by \cref{lem:residual-instrument-form} are both displacement covariant with gain \(\sqrt\gamma\) and phase covariant, exactly as required by \cref{lem:tensor-conic}; in particular the oscillator output is diagonal in the joint number basis.
 
 Let
 \[
