@@ -129,7 +129,7 @@ where the prefactor is the optimal classical Gaussian amplification fidelity for
 
 \section{Introduction}
 
-The no-cloning theorem says that an arbitrary unknown quantum state cannot be copied perfectly \cite{WoottersZurek1982,Dieks1982}.  Approximate cloning asks instead for the best physical channel which maps \(n\) identical input systems into \(m\) output systems whose joint state is as close as possible to \(m\) ideal copies.  For pure states, this problem is well understood: after the first universal qubit machines, Werner gave a covariant construction that solves universal pure-state cloning in arbitrary finite dimension with global fidelity equal to a symmetric-subspace dimension ratio \cite{BuzekHillery1996,GisinMassar1997,BrussDiVincenzoEkertFuchsMacchiavelloSmolin1998,Werner1998}.  We recall this construction and its global and one-site fidelities in \cref{subsec:Werner-cloner}.  In the decades since Werner's theorem, no comparably general solution has been available for genuinely mixed finite-dimensional states with a global all-site product fidelity.  The main contribution of this paper is to give such a solution in the asymptotic proportional-output regime, for full-rank nondegenerate states.  \JW{Possible referee-sensitive wording: ``to our knowledge, the first sharp asymptotic solution for global all-site mixed-state cloning in arbitrary fixed finite dimension.''}
+The no-cloning theorem says that an arbitrary unknown quantum state cannot be copied perfectly \cite{WoottersZurek1982,Dieks1982}.  Approximate cloning asks instead for the best physical channel which maps \(n\) identical input systems into \(m\) output systems whose joint state is as close as possible to \(m\) ideal copies.  For pure states, this problem is well understood: after the first universal qubit machines, Werner gave a covariant construction that solves universal pure-state cloning in arbitrary finite dimension with global fidelity equal to a symmetric-subspace dimension ratio \cite{BuzekHillery1996,GisinMassar1997,BrussDiVincenzoEkertFuchsMacchiavelloSmolin1998,Werner1998,KeylWerner1999}.  Broader cloning variants, reviews, and asymptotic/state-estimation connections are treated in \cite{MassarPopescu1995,BrussEkertMacchiavello1998,ScaraniIblisdirGisinAcin2005,FanWangJingYueShiZhangMu2014,BaeAcin2006,ChiribellaDAriano2006,ChiribellaYang2014Optimal}.  We recall this construction and its global and one-site fidelities in \cref{subsec:Werner-cloner}.  In the decades since Werner's theorem, no comparably general solution has been available for genuinely mixed finite-dimensional states with a global all-site product fidelity.  The main contribution of this paper is to give such a solution in the asymptotic proportional-output regime, for full-rank nondegenerate states.  \JW{Possible referee-sensitive wording: ``to our knowledge, the first sharp asymptotic solution for global all-site mixed-state cloning in arbitrary fixed finite dimension.''}
 
 It is important to separate \emph{cloning} from \emph{broadcasting}.  A cloning channel aims to approximate the full product state \(\rho^{\otimes m}\).  A broadcasting channel only asks that selected one-site marginals equal, or approximate, the input state; the joint output may be strongly correlated and far from a product.  The single-copy no-broadcasting theorem says that a set of states can be broadcast exactly only when the states commute \cite{BarnumCavesFuchsJozsaSchumacher1996}.  This theorem should not be confused with multi-input broadcasting: with several input copies, the obstruction is different.  In particular, D'Ariano--Macchiavello--Perinotti showed for mixed qubit states that the no-broadcasting theorem does not extend directly beyond a single input copy, and that for four or more input copies one can even increase the local purity while broadcasting, a phenomenon they called superbroadcasting \cite{DArianoMacchiavelloPerinotti2005}.  Subsequent work developed universal and phase-covariant superbroadcasting and optimal mixed-qubit broadcasting maps \cite{BuscemiDArianoMacchiavelloPerinotti2005Optimal,BuscemiDArianoMacchiavelloPerinotti2006,DangFan2007}.  In regimes where the one-site output is more pure than the input, exact marginal broadcasting is obtained by adding local depolarizing noise; this still does not produce independent product copies.  For displaced thermal oscillator states, D'Ariano--Perinotti--Sacchi also give an explicit exact broadcasting construction when the input thermal photon number is known \cite{DArianoPerinottiSacchi2006Continuous}.  These results are about marginal outputs, not global product fidelity.  They therefore do not solve the cloning problem studied here.
 
@@ -2586,6 +2586,9 @@ The present work is about cloning in the global product sense: the target is \(\
 \paragraph{Earlier mixed-state cloning bounds.}
 Rastegin studied global-fidelity, relative-error, and state-dependent limits for mixed-state cloning \cite{Rastegin2003Upper,Rastegin2002Relative,Rastegin2003StateDependent}.  Fan and collaborators constructed mixed-state cloners in symmetric subspaces and for identical mixed qubits \cite{Fan2003,FanLiuShi2007}; Kazakov studied partial cloning and mixed-qubit copying in another restricted setting \cite{Kazakov2007}.  These works are useful benchmarks, but they do not provide a sharp arbitrary-dimensional proportional-output all-site asymptotic formula.  The Gaussian setting is an exception in infinite dimension: Guta--Matsumoto solved displaced mixed Gaussian cloning via least-noise amplification \cite{GutaMatsumoto2006}.  Our finite-dimensional converse reduces to that theorem through LAN.
 
+\paragraph{Other cloning models.}
+Several other cloning-related settings are operationally distinct from the global product-fidelity problem considered here.  Examples include probabilistic cloning \cite{DuanGuo1998}, economical, phase-covariant, asymmetric, and telecloning models \cite{NiuGriffiths1998,BrussCinchettiDArianoMacchiavello2000,Cerf2000Asymmetric,MuraoJonathanPlenioVedral1999}, transformation cloning and superreplication \cite{ChiribellaDArianoPerinotti2008,ChiribellaYangYao2013,GendraCalsamigliaMunozTapiaBaganChiribella2014,DurSekatskiSkotiniotis2015,ChiribellaYangHuang2015,ChiribellaYang2016}, channel cloning \cite{SekatskiGuryanovaKothakondaSkotiniotis2025}, and recent limitation or structural results for cloning maps \cite{HuTomamichel2024,BrzicGrinkoStudzinskiQuintino2026}.  They provide useful context, but they do not identify the mixed-state \(\rho^{\otimes n}\mapsto\rho^{\otimes m}\) global-fidelity asymptotics addressed in this paper.
+
 \paragraph{Random purification plus pure-state cloning.}
 The coherent-inference construction of \cite{LiTheilHarrowChuang2026} treats rank-\(r\) mixed states by first applying a random-purification channel and then the optimal pure-state cloner in dimension \(dr\).  Tracing out the purifying registers gives mixed-state clones.  Their stated all-site guarantee has the pure-state-cloning form
 \begin{equation}\label{eq:RP-finite}
@@ -2674,6 +2677,7 @@ we have
   >\gamma^{-(d^2-1)}.
 \end{equation}
 Again, this compares our sharp local full-rank asymptotics to the universal purify-and-clone guarantee, not to a proven exact fidelity formula for that specific channel restricted to a fixed orbit.
+The companion QPA work treats coherent amplification of eigenstates rather than direct mixed-state product cloning, and is therefore a related purification benchmark rather than a substitute for the comparison above \cite{LiTheilHarrowChuangQPA2026}.
 
 \subsection{Large-gamma and near-identity expansions}
 
@@ -2854,7 +2858,7 @@ Optimal cloning of pure states,
 
 \bibitem[BGSQ26]{BrzicGrinkoStudzinskiQuintino2026}
 V. Brzi\'c, D. Grinko, M. Studzi\'nski, and M. T. Quintino,
-Optimal pure state cloning and quantum transposition are related by complementary channels,
+Optimal pure state cloning and transposition are complementary channels,
 \arxiv{2603.23628} (2026).
 
 \bibitem[MP95]{MassarPopescu1995}
@@ -2903,13 +2907,13 @@ Probabilistic cloning and identification of linearly independent quantum states,
 
 \bibitem[HT24]{HuTomamichel2024}
 Y. Hu and M. Tomamichel,
-Fundamental limitations on quantum cloning from the no-signalling principle,
+Fundamental limits on quantum cloning from the no-signaling principle,
 \doi{10.1103/PhysRevA.109.022221}{\emph{Phys. Rev. A} \textbf{109}, 022221 (2024)},
 \arxiv{2305.02002}.
 
 \bibitem[NG98]{NiuGriffiths1998}
 C.-S. Niu and R. B. Griffiths,
-Two-qubit copying machine for economical quantum eavesdropping,
+Optimal copying of one quantum bit,
 \doi{10.1103/PhysRevA.58.4377}{\emph{Phys. Rev. A} \textbf{58}, 4377--4393 (1998)},
 \arxiv{quant-ph/9805063}.
 
@@ -2922,7 +2926,7 @@ Phase-covariant quantum cloning,
 \bibitem[Cer00]{Cerf2000Asymmetric}
 N. J. Cerf,
 Asymmetric quantum cloning in any dimension,
-\doi{10.1080/09500340008244035}{\emph{J. Mod. Opt.} \textbf{47}, 187--209 (2000)},
+\doi{10.1080/09500340008244036}{\emph{J. Mod. Opt.} \textbf{47}, 187--209 (2000)},
 \arxiv{quant-ph/9805024}.
 
 \bibitem[MJPV99]{MuraoJonathanPlenioVedral1999}
@@ -2938,7 +2942,7 @@ Quantum information becomes classical when distributed to many users,
 
 \bibitem[CDP08]{ChiribellaDArianoPerinotti2008}
 G. Chiribella, G. M. D'Ariano, and P. Perinotti,
-Optimal cloning of unitary transformations,
+Optimal cloning of unitary transformation,
 \doi{10.1103/PhysRevLett.101.180504}{\emph{Phys. Rev. Lett.} \textbf{101}, 180504 (2008)},
 \arxiv{0804.0129}.
 
@@ -3020,7 +3024,7 @@ Upper bound on the global fidelity for mixed-state cloning,
 \bibitem[Ras02]{Rastegin2002Relative}
 A. E. Rastegin,
 A lower bound on the relative error of mixed-state cloning and related operations,
-\emph{J. Opt. B: Quantum Semiclass. Opt.} \textbf{5}, S647--S650 (2003),
+\doi{10.1088/1464-4266/5/6/017}{\emph{J. Opt. B: Quantum Semiclass. Opt.} \textbf{5}, S647--S650 (2003)},
 \arxiv{quant-ph/0208159}.
 
 \bibitem[Ras03c]{Rastegin2003StateDependent}
@@ -3031,7 +3035,7 @@ Global-fidelity limits of state-dependent cloning of mixed states,
 
 \bibitem[Fan03]{Fan2003}
 H. Fan,
-Quantum cloning of mixed states in symmetric subspace,
+Quantum cloning of mixed states in symmetric subspaces,
 \doi{10.1103/PhysRevA.68.054301}{\emph{Phys. Rev. A} \textbf{68}, 054301 (2003)},
 \arxiv{quant-ph/0308058}.
 
@@ -3043,8 +3047,8 @@ Quantum cloning of identical mixed qubits,
 
 \bibitem[Kaz07]{Kazakov2007}
 A. Ya. Kazakov,
-``Partial'' quantum cloning and quantum cloning of mixed states,
-\emph{Int. J. Quantum Inf.} \textbf{8}, 435--442 (2010),
+``Partial'' quantum cloning and quantum cloning of the mixed states,
+\doi{10.1142/S0219749910006186}{\emph{Int. J. Quantum Inf.} \textbf{8}, 435--442 (2010)},
 \arxiv{0711.2860}.
 
 
