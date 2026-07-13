@@ -45,6 +45,8 @@
 \Crefname{definition}{Definition}{Definitions}
 \crefname{remark}{Remark}{Remarks}
 \Crefname{remark}{Remark}{Remarks}
+\crefname{equation}{equation}{equations}
+\Crefname{equation}{Equation}{Equations}
 
 \newcommand{\C}{\mathbb C}
 \newcommand{\R}{\mathbb R}
@@ -95,7 +97,11 @@
 \newcommand{\typ}{\mathrm{typ}}
 \newcommand{\doi}[2]{\href{https://doi.org/#1}{#2}}
 \newcommand{\arxiv}[1]{\href{https://arxiv.org/abs/#1}{\texttt{arXiv:#1}}}
-\long\def\JW#1{{\color{brown}[#1]}}
+\let\amsmatheqref\eqref
+\renewcommand{\eqref}[1]{\hyperref[#1]{\textup{(\ref*{#1})}}}
+\newcommand{\Eqref}[1]{\hyperref[#1]{Equation~\textup{(\ref*{#1})}}}
+\long\def\JW#1{{\normalfont\color{brown}[#1]}}
+\long\def\JF#1{{\normalfont\color{red}[#1]}}
 
 \title{Asymptotically Optimal Mixed-State Cloning}
 \author{}
@@ -129,11 +135,11 @@ where the prefactor is the optimal classical Gaussian amplification fidelity for
 
 \section{Introduction}
 
-The no-cloning theorem says that an arbitrary unknown quantum state cannot be copied perfectly \cite{WoottersZurek1982,Dieks1982}.  Approximate cloning asks instead for the best physical channel which maps \(n\) identical input systems into \(m\) output systems whose joint state is as close as possible to \(m\) ideal copies.  For pure states, this problem is well understood: after the first universal qubit machines, Werner gave a covariant construction that solves universal pure-state cloning in arbitrary finite dimension with global fidelity equal to a symmetric-subspace dimension ratio \cite{BuzekHillery1996,GisinMassar1997,BrussDiVincenzoEkertFuchsMacchiavelloSmolin1998,Werner1998,KeylWerner1999}.  Broader cloning variants, reviews, and asymptotic/state-estimation connections are treated in \cite{MassarPopescu1995,BrussEkertMacchiavello1998,ScaraniIblisdirGisinAcin2005,FanWangJingYueShiZhangMu2014,BaeAcin2006,ChiribellaDAriano2006,ChiribellaYang2014Optimal}.  We recall this construction and its global and one-site fidelities in \cref{subsec:Werner-cloner}.  In the decades since Werner's theorem, no comparably general solution has been available for genuinely mixed finite-dimensional states with a global all-site product fidelity.  The main contribution of this paper is to give such a solution in the asymptotic proportional-output regime, for full-rank nondegenerate states.  \JW{Possible referee-sensitive wording: ``to our knowledge, the first sharp asymptotic solution for global all-site mixed-state cloning in arbitrary fixed finite dimension.''}
+The no-cloning theorem says that an arbitrary unknown quantum state cannot be copied perfectly \cite{WoottersZurek1982,Dieks1982}.  Approximate cloning asks instead for the best physical channel which maps \(n\) identical input systems into \(m\) output systems whose joint state is as close as possible to \(m\) ideal copies.  For pure states, this problem is well understood: after the first universal qubit machines, Werner gave a covariant construction that solves universal pure-state cloning in arbitrary finite dimension with global fidelity equal to a symmetric-subspace dimension ratio \cite{BuzekHillery1996,GisinMassar1997,BrussDiVincenzoEkertFuchsMacchiavelloSmolin1998,Werner1998}.  We recall this construction and its global and one-site fidelities in \cref{subsec:Werner-cloner}.  In the decades since Werner's theorem, no comparably general solution has been available for genuinely mixed finite-dimensional states with a global all-site product fidelity.  The main contribution of this paper is to give such a solution in the asymptotic proportional-output regime, for full-rank nondegenerate states.  \JW{Possible referee-sensitive wording: ``to our knowledge, the first sharp asymptotic solution for global all-site mixed-state cloning in arbitrary fixed finite dimension.''}
 
 It is important to separate \emph{cloning} from \emph{broadcasting}.  A cloning channel aims to approximate the full product state \(\rho^{\otimes m}\).  A broadcasting channel only asks that selected one-site marginals equal, or approximate, the input state; the joint output may be strongly correlated and far from a product.  The single-copy no-broadcasting theorem says that a set of states can be broadcast exactly only when the states commute \cite{BarnumCavesFuchsJozsaSchumacher1996}.  This theorem should not be confused with multi-input broadcasting: with several input copies, the obstruction is different.  In particular, D'Ariano--Macchiavello--Perinotti showed for mixed qubit states that the no-broadcasting theorem does not extend directly beyond a single input copy, and that for four or more input copies one can even increase the local purity while broadcasting, a phenomenon they called superbroadcasting \cite{DArianoMacchiavelloPerinotti2005}.  Subsequent work developed universal and phase-covariant superbroadcasting and optimal mixed-qubit broadcasting maps \cite{BuscemiDArianoMacchiavelloPerinotti2005Optimal,BuscemiDArianoMacchiavelloPerinotti2006,DangFan2007}.  In regimes where the one-site output is more pure than the input, exact marginal broadcasting is obtained by adding local depolarizing noise; this still does not produce independent product copies.  For displaced thermal oscillator states, D'Ariano--Perinotti--Sacchi also give an explicit exact broadcasting construction when the input thermal photon number is known \cite{DArianoPerinottiSacchi2006Continuous}.  These results are about marginal outputs, not global product fidelity.  They therefore do not solve the cloning problem studied here.
 
-Much of the previous finite-dimensional approximate mixed-state cloning and broadcasting literature focuses on qubits, special covariance classes, purification, partial cloning, or marginal figures of merit.  Cirac--Ekert--Macchiavello introduced a decomposition of \(\rho^{\otimes N}\) for optimal single-qubit purification and noted its connection with optimal cloning and estimation of mixed states \cite{CiracEkertMacchiavello1999}.  Rastegin developed global-fidelity, relative-error, and state-dependent bounds for mixed-state cloning \cite{Rastegin2003Upper,Rastegin2002Relative,Rastegin2003StateDependent}; Fan constructed cloners for mixed states supported on symmetric subspaces and for identical mixed qubits \cite{Fan2003,FanLiuShi2007}; and Kazakov studied partial cloning and mixed-state cloning in a related finite-dimensional setting \cite{Kazakov2007}.  The LAN approach has also been used for asymptotic purification and dilution of mixed qubits \cite{BowlesGutaAdesso2011}.  Continuous-variable cloning provides another comparison point: optimal coherent-state cloners are realized by linear amplification and beam splitters \cite{CerfIpeRottenberg2000,BraunsteinCerfIblisdirVanLoockMassar2001}, and Guta--Matsumoto solved optimal cloning of displaced mixed Gaussian states by reducing it to least-noise amplification \cite{GutaMatsumoto2006}.  Our converse uses precisely this Gaussian amplification theorem after finite-dimensional local asymptotic normality reduces the mixed-state orbit to independent oscillator modes.
+Much of the previous finite-dimensional approximate mixed-state cloning and broadcasting literature focuses on qubits, special covariance classes, purification, partial cloning, or marginal figures of merit.  Cirac--Ekert--Macchiavello introduced a decomposition of \(\rho^{\otimes N}\) for optimal single-qubit purification and noted its connection with optimal cloning and estimation of mixed states \cite{CiracEkertMacchiavello1999}.  Rastegin developed global-fidelity, relative-error, and state-dependent bounds for mixed-state cloning \cite{Rastegin2003Upper,Rastegin2002Relative,Rastegin2003StateDependent}; Fan constructed cloners for mixed states supported on symmetric subspaces and for identical mixed qubits \cite{Fan2003,FanLiuShi2007}; and Kazakov studied partial cloning and mixed-state cloning in a related finite-dimensional setting \cite{Kazakov2007}.  The LAN approach has also been used for asymptotic purification and dilution of mixed qubits \cite{BowlesGutaAdesso2011PurificationDilution}.  Continuous-variable cloning provides another comparison point: optimal coherent-state cloners are realized by linear amplification and beam splitters \cite{CerfIpeRottenberg2000,BraunsteinCerfIblisdirVanLoockMassar2001}, and Guta--Matsumoto solved optimal cloning of displaced mixed Gaussian states by reducing it to least-noise amplification \cite{GutaMatsumoto2006MixedGaussianCloning}.  Our converse uses precisely this Gaussian amplification theorem after finite-dimensional local asymptotic normality reduces the mixed-state orbit to independent oscillator modes.
 
 We consider two finite-dimensional regimes.  In the known-spectrum problem, the spectrum \(p=(p_1,\ldots,p_d)\), \(p_1>\cdots>p_d>0\), is fixed and known, and one clones the unitary orbit
 \[
@@ -183,7 +189,7 @@ Equivalently,
        {\gamma+q_{ij}}
   \right)^2.
 \end{equation}
-The Schur--PRV protocol achieves \eqref{eq:intro-known-answer}.  Conversely, any global channel that beat \eqref{eq:intro-known-answer} would, through the Kahn--Guta LAN maps, induce a displaced-thermal Gaussian cloner beating the least-noise Gaussian amplifier.  That contradicts the Gaussian cloning theorem of Guta--Matsumoto together with the fidelity optimality argument given below \cite{KahnGuta2009,GutaMatsumoto2006}.
+The Schur--PRV protocol achieves \eqref{eq:intro-known-answer}.  Conversely, any global channel that beat \eqref{eq:intro-known-answer} would, through the Kahn--Guta LAN maps, induce a displaced-thermal Gaussian cloner beating the least-noise Gaussian amplifier.  That contradicts the Gaussian cloning theorem of Guta--Matsumoto together with the fidelity optimality argument given below \cite{KahnGuta2009LANFiniteDimensional,GutaMatsumoto2006MixedGaussianCloning}.
 
 If the spectrum is unknown, the optimal local asymptotic fidelity at a fixed nondegenerate spectrum \(p\) becomes
 \begin{equation}\label{eq:intro-unknown-answer}
@@ -221,7 +227,7 @@ with strict inequality for every \(\gamma>1\) and full-rank \(p\).  Even in the 
 \]
 This comparison should be read carefully: \eqref{eq:intro-rp} is a universal rank-\(r\) guarantee for a different, harder task, not the exact fidelity of that channel on a fixed-spectrum orbit.
 
-Other mixed-state cloning and broadcasting results address different operational criteria.  Rastegin's bounds apply to mixed-state cloning, relative-error criteria, and state-dependent cloning, but they do not identify the sharp arbitrary-dimensional proportional-output all-site asymptotics considered here \cite{Rastegin2003Upper,Rastegin2002Relative,Rastegin2003StateDependent}.  Fan's mixed-state cloners treat symmetric-subspace inputs and identical mixed qubits, again with criteria different from our global product fidelity \cite{Fan2003,FanLiuShi2007}; Kazakov's partial-cloning construction is another qubit-level mixed-state copying model \cite{Kazakov2007}.  The superbroadcasting literature optimizes one-site marginals of correlated outputs; it demonstrates that marginal broadcasting can be exact, or even locally purifying, when multiple input copies are available, but it does not require the joint output to approximate \(\rho^{\otimes m}\) \cite{DArianoMacchiavelloPerinotti2005,BuscemiDArianoMacchiavelloPerinotti2006,DangFan2007,DArianoPerinottiSacchi2006Continuous}.  Mixed Gaussian cloning, by contrast, is very close in spirit to our LAN limit; Guta--Matsumoto's displaced-thermal amplifier theorem is the Gaussian converse used in this paper \cite{GutaMatsumoto2006}.
+Other mixed-state cloning and broadcasting results address different operational criteria.  Rastegin's bounds apply to mixed-state cloning, relative-error criteria, and state-dependent cloning, but they do not identify the sharp arbitrary-dimensional proportional-output all-site asymptotics considered here \cite{Rastegin2003Upper,Rastegin2002Relative,Rastegin2003StateDependent}.  Fan's mixed-state cloners treat symmetric-subspace inputs and identical mixed qubits, again with criteria different from our global product fidelity \cite{Fan2003,FanLiuShi2007}; Kazakov's partial-cloning construction is another qubit-level mixed-state copying model \cite{Kazakov2007}.  The superbroadcasting literature optimizes one-site marginals of correlated outputs; it demonstrates that marginal broadcasting can be exact, or even locally purifying, when multiple input copies are available, but it does not require the joint output to approximate \(\rho^{\otimes m}\) \cite{DArianoMacchiavelloPerinotti2005,BuscemiDArianoMacchiavelloPerinotti2006,DangFan2007,DArianoPerinottiSacchi2006Continuous}.  Mixed Gaussian cloning, by contrast, is very close in spirit to our LAN limit; Guta--Matsumoto's displaced-thermal amplifier theorem is the Gaussian converse used in this paper \cite{GutaMatsumoto2006MixedGaussianCloning}.
 
 \JW{Possible addition for final introduction: mention explicitly that the finite-\(n\) universal mixed-state analogue of Werner's theorem remains open; our statement is the sharp asymptotic proportional-output solution for the full-rank nondegenerate finite-dimensional regime.}
 
@@ -443,7 +449,7 @@ one has \(P_{n,p}(\mathsf T_n(p)^c)\le \exp(-c'n^{1/3})\).
 \end{lemma}
 
 \begin{proof}
-This is the Keyl--Werner spectrum-estimation bound applied to the Young-frame measurement \cite{KeylWerner2001}.  The polynomial prefactor and the exponential rate follow from their large-deviation estimate.  The final statement follows by setting \(\delta=d n^{-1/3}\) and absorbing the polynomial factor into the exponential.
+This is the Keyl--Werner spectrum-estimation bound applied to the Young-frame measurement \cite{KeylWerner2001Spectrum}.  The polynomial prefactor and the exponential rate follow from their large-deviation estimate.  The final statement follows by setting \(\delta=d n^{-1/3}\) and absorbing the polynomial factor into the exponential.
 \end{proof}
 
 
@@ -632,7 +638,7 @@ Later \(G=\gamma=m_n/n\).  Notice that the amplifier reproduces the correct enla
   q^{(\gamma)}:=1-\frac{1-q}{\gamma}.
 \]
 
-A general phase-insensitive amplifier in the converse need not be Gaussian.  It means any quantum channel satisfying the displacement covariance \eqref{eq:amplifier-displacement-covariance} and phase covariance above.  The Guță--Matsumoto theorem used below says that, on displaced thermal inputs, the quantum-limited amplifier is least noisy among all such channels \cite{GutaMatsumoto2006}.
+A general phase-insensitive amplifier in the converse need not be Gaussian.  It means any quantum channel satisfying the displacement covariance \eqref{eq:amplifier-displacement-covariance} and phase covariance above.  The Guță--Matsumoto theorem used below says that, on displaced thermal inputs, the quantum-limited amplifier is least noisy among all such channels \cite{GutaMatsumoto2006MixedGaussianCloning}.
 
 
 \begin{definition}[Gaussian input, target, and least-noise output families]\label{def:gaussian-families}
@@ -673,7 +679,9 @@ When \(p\) and \(\gamma\) are fixed, we suppress the superscripts and write simp
 
 \subsection{Local asymptotic normality}\label{subsec:LAN-models}
 
-We now explain how bosonic modes arise from many finite-dimensional copies.  The results in this subsection are the finite-dimensional quantum LAN theorem of Kahn and Guță, specialized to the parameterizations used here \cite{KahnGuta2009}.  Fix a full-rank state \(\rho_p=\diag(p_1,\ldots,p_d)\) with strictly ordered eigenvalues.  A local perturbation of size \(1/\sqrt n\) is statistically visible from \(n\) copies: smaller perturbations disappear asymptotically, while larger perturbations become perfectly distinguishable.  LAN describes the \(n\)-copy family on exactly this scale.
+We now explain how bosonic modes arise from many finite-dimensional copies.  The results in this subsection are the finite-dimensional quantum LAN theorem of Kahn and Guță, specialized to the parameterizations used here \cite{GutaKahn2006LANQubits,KahnGuta2009LANFiniteDimensional}.  Fix a full-rank state \(\rho_p=\diag(p_1,\ldots,p_d)\) with strictly ordered eigenvalues.  A local perturbation of size \(1/\sqrt n\) is statistically visible from \(n\) copies: smaller perturbations disappear asymptotically, while larger perturbations become perfectly distinguishable.  LAN describes the \(n\)-copy family on exactly this scale.
+
+In the Schur--Weyl decomposition of \(\rho_p^{\otimes n}\), the Young diagram carries the classical spectral fluctuation \cite{KeylWerner2001Spectrum}, while the irreducible \(\U(d)\)-factor carries the orbital degrees of freedom.  Around a regular spectrum \(p_1>\cdots>p_d>0\), the latter contract, after gap normalization, to independent oscillator modes.  At the diagonal base point these modes are undisplaced thermal modes with parameters \(q_{ij}=p_j/p_i\).  This LAN-to-Gaussian reduction also underlies Gaussian mixed-state cloning and mixed-qubit purification/dilution \cite{GutaMatsumoto2006MixedGaussianCloning,BowlesGutaAdesso2011PurificationDilution}.
 
 We now choose local coordinates for the two kinds of perturbations of \(\rho_p\): changes of eigenvectors and changes of eigenvalues.  Let \(E_{jk}=\ket{j}\!\bra{k}\), and for \(j<k\) define the Hermitian generators
 \[
@@ -767,7 +775,7 @@ U_\mu\!\left(
 \right)
 \longrightarrow
 \bigotimes_{j<k}D(z_{jk}).
-\]
+\] 
 This is the precise sense in which \(z_{jk}\) is the limiting
 oscillator displacement amplitude.
 
@@ -886,7 +894,7 @@ and \((h,z)\in C_L\).  For all sufficiently large \(n\), every such \(p+h/\sqrt 
 \end{corollary}
 
 \begin{proof}
-Kahn--Guță's construction and error bounds are local-uniform on compact subsets of the full-rank, nondegenerate state space \cite{KahnGuta2009}.  On \(\Delta_{d,\kappa}\), all eigenvalues and all spectral gaps are bounded away from zero.  The coordinate charts, the classical covariance \(V_p\), and the oscillator temperatures \(q_{ij}=p_j/p_i\) therefore range over compact sets.  Cover \(\Delta_{d,\kappa}\) by finitely many LAN neighborhoods and take the maximum of the corresponding error functions.
+Kahn--Guță's construction and error bounds are local-uniform on compact subsets of the full-rank, nondegenerate state space \cite{KahnGuta2009LANFiniteDimensional}.  On \(\Delta_{d,\kappa}\), all eigenvalues and all spectral gaps are bounded away from zero.  The coordinate charts, the classical covariance \(V_p\), and the oscillator temperatures \(q_{ij}=p_j/p_i\) therefore range over compact sets.  Cover \(\Delta_{d,\kappa}\) by finitely many LAN neighborhoods and take the maximum of the corresponding error functions.
 \end{proof}
 
 \subsection{Transferring a cloning bound through LAN}\label{subsec:LAN-transfer-main}
@@ -953,7 +961,7 @@ A probability distribution \(P\) on \(\N\) is said to be stochastically larger t
 \[
   \sum_k\phi(k)P_k\ge\sum_k\phi(k)P_k^*
 \]
-for every bounded increasing function \(\phi\).  Equivalently, expectations of bounded decreasing functions are no larger under \(P\).  Guță and Matsumoto show that, among phase-insensitive displacement-covariant amplifiers of fixed gain, the quantum-limited output photon-number distribution is smallest in this stochastic order \cite{GutaMatsumoto2006}.
+for every bounded increasing function \(\phi\).  Equivalently, expectations of bounded decreasing functions are no larger under \(P\).  Guță and Matsumoto show that, among phase-insensitive displacement-covariant amplifiers of fixed gain, the quantum-limited output photon-number distribution is smallest in this stochastic order \cite{GutaMatsumoto2006MixedGaussianCloning}.
 
 \begin{lemma}[Uniform trace reduction for covariant CP maps]\label{lem:uniform-trace-reduction}
 Let \(\mathcal J\) be a normal completely positive trace-nonincreasing map on an oscillator trace class and suppose
@@ -1000,11 +1008,11 @@ By \cref{lem:uniform-trace-reduction},
 \[
   \Tr\mathcal J(X)=c\,\Tr X
 \]
-for some \(c\in[0,1]\).  If \(c=0\), the map is zero.  If \(c>0\), then \(c^{-1}\mathcal J\) is a trace-preserving phase-insensitive displacement-covariant amplifier.  Guță and Matsumoto characterize displacement-covariant amplifiers by an idler state; phase covariance reduces the idler to a number-diagonal state.  Their stochastic-order definition and least-noise lemma \cite[Definition~2.2 and Lemma~2.3]{GutaMatsumoto2006}, together with the arbitrary-gain extension stated in \cite[Sec.~III]{GutaMatsumoto2006}, imply that the output photon-number law of \(c^{-1}\mathcal J(\tau_q)\) stochastically dominates the geometric law of \(\tau_{q^{(\gamma)}}\).  Equivalently, the expectation of every bounded decreasing photon-number function is no larger than for the quantum-limited output.  Multiplying by \(c\) proves \eqref{eq:one-mode-conic}.
+for some \(c\in[0,1]\).  If \(c=0\), the map is zero.  If \(c>0\), then \(c^{-1}\mathcal J\) is a trace-preserving phase-insensitive displacement-covariant amplifier.  Guță and Matsumoto characterize displacement-covariant amplifiers by an idler state; phase covariance reduces the idler to a number-diagonal state.  Their stochastic-order definition and least-noise lemma \cite[Definition~2.2 and Lemma~2.3]{GutaMatsumoto2006MixedGaussianCloning}, together with the arbitrary-gain extension stated in \cite[Sec.~III]{GutaMatsumoto2006MixedGaussianCloning}, imply that the output photon-number law of \(c^{-1}\mathcal J(\tau_q)\) stochastically dominates the geometric law of \(\tau_{q^{(\gamma)}}\).  Equivalently, the expectation of every bounded decreasing photon-number function is no larger than for the quantum-limited output.  Multiplying by \(c\) proves \eqref{eq:one-mode-conic}.
 \end{proof}
 
 \begin{remark}[The one external Gaussian input]\label{rem:one-external-GM}
-The only stochastic-order statement imported from Guță--Matsumoto is their one-mode trace-preserving result, namely Definition~2.2 and Lemma~2.3 together with the arbitrary-gain extension in their Section~III \cite{GutaMatsumoto2006}.  Their Theorem~2.5 uses that order to optimize trace distance; our Uhlmann-fidelity bound is derived separately in \cref{lem:one-mode-gaussian}.  The multimode estimate below is proved internally by a peeling argument, so no independent multivariate stochastic-order theorem is assumed.
+The only stochastic-order statement imported from Guță--Matsumoto is their one-mode trace-preserving result, namely Definition~2.2 and Lemma~2.3 together with the arbitrary-gain extension in their Section~III \cite{GutaMatsumoto2006MixedGaussianCloning}.  Their Theorem~2.5 uses that order to optimize trace distance; our Uhlmann-fidelity bound is derived separately in \cref{lem:one-mode-gaussian}.  The multimode estimate below is proved internally by a peeling argument, so no independent multivariate stochastic-order theorem is assumed.
 \end{remark}
 
 \begin{lemma}[Fidelity optimality in one mode]\label{lem:one-mode-gaussian}
@@ -1387,6 +1395,8 @@ For \(\alpha=(i,j)\), define the lowering and raising operators
   F_\alpha=E_{ji},
   \qquad
   E_\alpha=E_{ij},
+  \qquad
+  H_\alpha=[E_\alpha,F_\alpha]=E_{ii}-E_{jj},
 \]
 and the corresponding highest-weight gap
 \[
@@ -1417,6 +1427,7 @@ Let \(\lambda=\lambda^{(N)}\) range over dominant weights in a compact subcone o
   \qquad(\alpha\in R_+)
 \]
 for constants \(0<c<C<\infty\).  Define
+\JF{Remember to link this compact-subcone hypothesis to the typical Young diagrams used later, where \(\lambda/N\) stays in a compact strict chamber.}
 \[
   \widehat F_\alpha
   =
@@ -1426,7 +1437,7 @@ for constants \(0<c<C<\infty\).  Define
   =
   \frac{E_\alpha}{\sqrt{\Delta_\alpha^\lambda}}.
 \]
-On every fixed cutoff \(\cH_{\lambda,\le L}\),
+On every fixed cutoff \(\cH_{\lambda,\le L}\), the following operator-norm estimates hold uniformly over \(\lambda\):
 \begin{align}
   [\widehat F_\alpha,\widehat F_\beta]
   &=O_L(N^{-1/2}),&
@@ -1435,29 +1446,54 @@ On every fixed cutoff \(\cH_{\lambda,\le L}\),
   [\widehat E_\alpha,\widehat F_\beta]
   &=\delta_{\alpha\beta}I+O_L(N^{-1/2})\label{eq:root-dual-contraction}
 \end{align}
-in operator norm, uniformly over \(\lambda\).  Hence the rescaled root operators converge on fixed cutoffs to independent bosonic creation and annihilation operators.
+Here \(O_L(\cdot)\) denotes a bound whose constant may depend on \(L,d,c,C\), but not on \(N\) or \(\lambda\).
+Hence the rescaled root operators converge on fixed cutoffs to independent bosonic creation and annihilation operators.
 \end{lemma}
 
 \begin{proof}
-Each root \(\alpha\) generates an \(\mathfrak{sl}_2\) subalgebra.  On a weight vector lying at most \(L\) lowering steps below \(v_\lambda\), the usual \(\mathfrak{sl}_2\) string formula shows
+All norms below are operator norms of restrictions with domain \(\cH_{\lambda,\le L}\).  We first record a uniform bound for one root.  Let \(\mathrm{ht}\) denote simple-root height.  Every weight occurring in \(\cH_{\lambda,\le L}\) has the form
 \[
-  \|F_\alpha\psi\|
-  \le C_L\sqrt{\Delta_\alpha^\lambda}\,\|\psi\|,
+  \chi=\lambda-\eta,
   \qquad
-  \|E_\alpha\psi\|
-  \le C_L\sqrt{\Delta_\alpha^\lambda}\,\|\psi\|.
+  \eta=\sum_{\beta\in R_+}r_\beta\beta,
+  \qquad
+  |\mathbf r|\le L,
 \]
-Thus \(\widehat F_\alpha\) and \(\widehat E_\alpha\) are uniformly bounded on \(\cH_{\lambda,\le L}\).
+so \(\mathrm{ht}(\eta)=O_L(1)\).  Fix \(\alpha\), and decompose \(\cH_\lambda\) into \(\mathfrak{sl}_2(\alpha)\)-strings.  If \(\chi=\theta-j\alpha\) in such a string, with \(\theta\) the \(\alpha\)-highest weight, then \(\lambda-\theta=\eta-j\alpha\) is a nonnegative sum of simple roots.  Hence \(j=O_L(1)\), and
+\[
+  \langle\theta,\alpha^\vee\rangle
+  =
+  \Delta_\alpha^\lambda+O_L(1).
+\]
+On an \(\mathfrak{sl}_2(\alpha)\)-string of highest weight \(m=\langle\theta,\alpha^\vee\rangle\), choose the standard orthonormal string basis \(e_0,\ldots,e_m\).  Then
+\[
+  \|F_\alpha e_j\|^2=(j+1)(m-j),
+  \qquad
+  \|E_\alpha e_j\|^2=j(m-j+1).
+\]
+Here \(j=O_L(1)\) and \(m=\Delta_\alpha^\lambda+O_L(1)\).  Applying this on each orthogonal string gives, for \(F_\alpha\) and \(E_\alpha\) restricted to domain \(\cH_{\lambda,\le L}\),
+\[
+  \|F_\alpha\|+\|E_\alpha\|
+  =
+  O_L\!\left(\sqrt{\Delta_\alpha^\lambda}\right).
+\]
+After division by \(\sqrt{\Delta_\alpha^\lambda}\), the same restricted norms satisfy \(\|\widehat F_\alpha\|+\|\widehat E_\alpha\|=O_L(1)\).
 
-In type \(A\),
+The matrix-unit identity
+\[
+  [E_{ab},E_{cd}]
+  =
+  \delta_{bc}E_{ad}-\delta_{ad}E_{cb}
+\]
+fixes all structure constants.  For positive roots \(\alpha,\beta\), define \(N_{\alpha\beta}\in\{0,\pm1\}\) by
 \[
   [F_\alpha,F_\beta]
   =
-  N_{\alpha\beta}F_{\alpha+\beta},
+  N_{\alpha\beta}F_{\alpha+\beta}
   \qquad
-  N_{\alpha\beta}\in\{0,\pm1\},
+  \text{when }\alpha+\beta\in R_+,
 \]
-with the bracket zero unless \(\alpha+\beta\) is a root.  When it is a root,
+and set \(N_{\alpha\beta}=0\) when \(\alpha+\beta\notin R_+\), in which case the bracket is zero.  If \(\alpha+\beta\in R_+\), then
 \[
   [\widehat F_\alpha,\widehat F_\beta]
   =
@@ -1466,23 +1502,61 @@ with the bracket zero unless \(\alpha+\beta\) is a root.  When it is a root,
        {\sqrt{\Delta_\alpha^\lambda\Delta_\beta^\lambda}}
   \widehat F_{\alpha+\beta}.
 \]
-All gaps are of order \(N\), while \(\widehat F_{\alpha+\beta}\) is uniformly bounded on the cutoff, so the norm is \(O_L(N^{-1/2})\).  The estimate for two raising operators is the adjoint statement.
+The prefactor is \(O(N^{-1/2})\), since all gaps are comparable to \(N\), and \(\widehat F_{\alpha+\beta}\) is uniformly bounded by the preceding paragraph.  Hence \([\widehat F_\alpha,\widehat F_\beta]=O_L(N^{-1/2})\).  The same argument gives the estimate for \([\widehat E_\alpha,\widehat E_\beta]\).
 
+Recall that \(H_\alpha=[E_\alpha,F_\alpha]=\alpha^\vee\).  On the weight space of weight \(\lambda-\eta\), \(H_\alpha\) acts by the scalar
+\[
+  \langle\lambda-\eta,\alpha^\vee\rangle
+  =
+  \Delta_\alpha^\lambda-\langle\eta,\alpha^\vee\rangle
+  =
+  \Delta_\alpha^\lambda+O_L(1).
+\]
 For \(\alpha=\beta\),
 \[
   [\widehat E_\alpha,\widehat F_\alpha]
   =
   \frac{H_\alpha}{\Delta_\alpha^\lambda}.
 \]
-On a vector of weight \(\lambda-\sum_\beta r_\beta\beta\) with \(|\mathbf r|\le L\), the Cartan element \(H_\alpha\) acts by
+Thus, on every weight space appearing in \(\cH_{\lambda,\le L}\),
 \[
-  \Delta_\alpha^\lambda
-  -
-  \sum_\beta r_\beta\langle\beta,\alpha^\vee\rangle
+  \frac{H_\alpha}{\Delta_\alpha^\lambda}
   =
-  \Delta_\alpha^\lambda+O_L(1).
+  I+O_L(N^{-1})
 \]
-Hence the normalized commutator is \(I+O_L(N^{-1})\).  If \(\alpha\ne\beta\), then \([E_\alpha,F_\beta]\) is either zero or a single root operator; the same gap normalization gives \(O_L(N^{-1/2})\).  This proves the lemma.
+since \(\Delta_\alpha^\lambda\ge cN\).  Hence the same operator estimate holds on \(\cH_{\lambda,\le L}\).
+
+It remains to consider \(\alpha\ne\beta\).  For a nonzero root \(\gamma\), write
+\[
+  X_\gamma
+  =
+  \begin{cases}
+    E_\gamma, & \gamma\in R_+,\\
+    F_{-\gamma}, & \gamma\in -R_+.
+  \end{cases}
+\]
+The matrix-unit formula gives
+\[
+  [E_\alpha,F_\beta]
+  =
+  M_{\alpha\beta}X_{\alpha-\beta}
+  \qquad
+  \text{when }\alpha-\beta\in R,
+  \qquad
+  M_{\alpha\beta}\in\{0,\pm1\},
+\]
+and the bracket is zero otherwise.  If the bracket is nonzero, the one-root bound gives
+\[
+  \bigl\|[\widehat E_\alpha,\widehat F_\beta]\bigr\|
+  =
+  O_L\!\left(
+  \frac{\sqrt{\Delta_{|\alpha-\beta|}^\lambda}}
+       {\sqrt{\Delta_\alpha^\lambda\Delta_\beta^\lambda}}
+  \right)
+  =
+  O_L(N^{-1/2}),
+\]
+where \(|\alpha-\beta|\in R_+\) denotes the positive root underlying \(\alpha-\beta\).  This proves all three estimates.
 \end{proof}
 
 \begin{remark}[Same-weight PBW monomials]\label{rem:A2-check}
@@ -1509,7 +1583,7 @@ Under the assumptions of \cref{lem:heisenberg-contraction}, define
         (\Delta_\alpha^\lambda)^{r_\alpha/2}}
   v_\lambda,
   \qquad
-  |\mathbf r|\le L.
+  |\mathbf r|\le L+1.
 \end{equation}
 Then
 \begin{equation}\label{eq:PBW-Gram}
@@ -1520,7 +1594,7 @@ Then
   +
   O_L(N^{-1/2})
 \end{equation}
-uniformly on the cutoff.  After orthonormalizing separately in each weight space, one obtains vectors \(e_{\mathbf r}^\lambda\) such that
+for all \(|\mathbf r|,|\mathbf s|\le L+1\).  Hence, for each fixed \(L\) and all sufficiently large \(N\), the corresponding Gram matrices in each weight space are invertible.  For such \(N\), orthonormalize the vectors \(\xi_{\mathbf r}^\lambda\), \(|\mathbf r|\le L+1\), separately inside each weight space, and denote the resulting vectors by \(e_{\mathbf r}^\lambda\).  Then, for \(|\mathbf r|\le L\),
 \begin{align}
   \widehat F_\alpha e_{\mathbf r}^\lambda
   &=
@@ -1535,254 +1609,924 @@ uniformly on the cutoff.  After orthonormalizing separately in each weight space
   +
   O_L(N^{-1/2}).\label{eq:E-action}
 \end{align}
+In \eqref{eq:E-action}, the leading term is absent when \(r_\alpha=0\).
 Thus \(\cH_{\lambda,\le L}\) converges to the \(L\)-excitation cutoff of a product of \(|R_+|\) Fock spaces.
 \end{lemma}
 
 \begin{proof}
-Consider the Shapovalov matrix element
+Write
 \[
-  \langle F^{\mathbf r}v_\lambda,
-          F^{\mathbf s}v_\lambda\rangle
+  \widehat F^{\mathbf r}
   =
-  \langle v_\lambda,
-          (F^{\mathbf r})^*F^{\mathbf s}v_\lambda\rangle.
-\]
-Commute every raising operator in \((F^{\mathbf r})^*\) to the right.  Only terms containing Cartan operators survive on \(v_\lambda\).  The term of highest total degree in the gaps is obtained by pairing each \(E_\alpha\) directly with a matching \(F_\alpha\).  If \(\mathbf r=\mathbf s\), repeated use of
-\[
-  [E_\alpha,F_\alpha^r]
+  \prod_{\alpha\in R_+}^{\prec}
+  \widehat F_\alpha^{r_\alpha},
+  \qquad
+  c_{\mathbf r}
   =
-  rF_\alpha^{r-1}
-  (H_\alpha-r+1)
+  \prod_{\alpha\in R_+}(r_\alpha!)^{-1/2},
 \]
-gives the leading term
+so that \(\xi_{\mathbf r}^\lambda=c_{\mathbf r}\widehat F^{\mathbf r}v_\lambda\).  By \cref{lem:heisenberg-contraction}, in operator norm,
 \[
-  \prod_\alpha
-  r_\alpha!
-  (\Delta_\alpha^\lambda)^{r_\alpha}.
+  [\widehat E_\alpha,\widehat F_\beta]
+  =
+  \delta_{\alpha\beta}I+O_L(N^{-1/2}),
+  \qquad
+  [\widehat F_\alpha,\widehat F_\beta]=O_L(N^{-1/2}),
+  \qquad
+  [\widehat E_\alpha,\widehat E_\beta]=O_L(N^{-1/2}),
 \]
-If \(\mathbf r\ne\mathbf s\), at least one nonmatching commutator is required, even when the two monomials have the same total weight.  Such a commutator replaces two root operators by one root operator or produces a composite root.  Therefore it lowers the total degree in the gaps by at least one.  Since every gap is comparable to \(N\), division by the normalization in \eqref{eq:xi-PBW} gives the uniform error \(O_L(N^{-1/2})\); the weaker half-power is sufficient for all later arguments.
+and the normalized root operators have norm \(O_L(1)\).  Since each word has length \(O_L(1)\), every reordering produces only \(O_L(1)\) error terms, each \(O_L(N^{-1/2})\).
 
-The cutoff Gram matrix is therefore \(G_\lambda=I+O_L(N^{-1/2})\).  Because its dimension depends only on \(L\) and \(d\), functional calculus gives
+For the Gram matrix, since \((\widehat F_\alpha)^*=\widehat E_\alpha\),
+\[
+  (\widehat F^{\mathbf r})^*
+  =
+  \prod_{\alpha\in R_+}^{\succ}
+  \widehat E_\alpha^{r_\alpha},
+\]
+where \(\succ\) is the reverse order.  Hence
+\[
+  \langle\xi_{\mathbf r}^\lambda,\xi_{\mathbf s}^\lambda\rangle
+  =
+  c_{\mathbf r}c_{\mathbf s}
+  \langle v_\lambda,
+          \Bigl(\prod_{\alpha\in R_+}^{\succ}
+          \widehat E_\alpha^{r_\alpha}\Bigr)
+          \Bigl(\prod_{\alpha\in R_+}^{\prec}
+          \widehat F_\alpha^{s_\alpha}\Bigr)
+          v_\lambda\rangle .
+\]
+Use
+\[
+  \widehat E_\alpha\widehat F_\beta
+  =
+  \widehat F_\beta\widehat E_\alpha
+  +
+  \delta_{\alpha\beta}I
+  +
+  O_L(N^{-1/2}),
+  \qquad
+  \widehat E_\alpha v_\lambda=0,
+  \qquad
+  \langle v_\lambda,\widehat F^{\mathbf t}v_\lambda\rangle=0
+  \quad(\mathbf t\ne0).
+\]
+Thus only complete same-root contractions survive:
+\[
+  \langle v_\lambda,
+          \Bigl(\prod_{\alpha}^{\succ}
+          \widehat E_\alpha^{r_\alpha}\Bigr)
+          \Bigl(\prod_{\alpha}^{\prec}
+          \widehat F_\alpha^{s_\alpha}\Bigr)
+          v_\lambda\rangle
+  =
+  \begin{cases}
+    \prod_\alpha r_\alpha!+O_L(N^{-1/2}),& \mathbf r=\mathbf s,\\
+    O_L(N^{-1/2}),& \mathbf r\ne\mathbf s.
+  \end{cases}
+\]
+Multiplying by \(c_{\mathbf r}c_{\mathbf s}\) gives \eqref{eq:PBW-Gram}.
+
+For the actions on \(\xi_{\mathbf r}^\lambda\), the same commutation rules give, in norm,
+\[
+  \widehat F_\alpha\widehat F^{\mathbf r}v_\lambda
+  =
+  \widehat F^{\mathbf r+\mathbf e_\alpha}v_\lambda
+  +
+  O_L(N^{-1/2}),
+  \qquad
+  \widehat E_\alpha\widehat F^{\mathbf r}v_\lambda
+  =
+  r_\alpha\widehat F^{\mathbf r-\mathbf e_\alpha}v_\lambda
+  +
+  O_L(N^{-1/2}).
+\]
+After multiplying by \(c_{\mathbf r}\),
+\begin{align*}
+  \widehat F_\alpha\xi_{\mathbf r}^\lambda
+  &=
+  \sqrt{r_\alpha+1}\,
+  \xi_{\mathbf r+\mathbf e_\alpha}^\lambda
+  +
+  O_L(N^{-1/2}),\\
+  \widehat E_\alpha\xi_{\mathbf r}^\lambda
+  &=
+  \sqrt{r_\alpha}\,
+  \xi_{\mathbf r-\mathbf e_\alpha}^\lambda
+  +
+  O_L(N^{-1/2}),
+\end{align*}
+where the second leading term is omitted if \(r_\alpha=0\).
+
+Vectors of different \(\U(d)\)-weights are orthogonal, so the Gram matrix is block diagonal by weight.  On each fixed block \(G_\lambda=I+O_L(N^{-1/2})\).  Since the block dimensions depend only on \(L\) and \(d\), \(G_\lambda\) is invertible for all sufficiently large \(N\), and functional calculus gives
 \[
   G_\lambda^{-1/2}
   =
   I+O_L(N^{-1/2}).
 \]
-Applying \(G_\lambda^{-1/2}\) within each weight space produces the orthonormal basis \(e_{\mathbf r}^\lambda\).  Multiplication by \(F_\alpha\), followed by the same commutator calculation, has leading coefficient \(\sqrt{r_\alpha+1}\); its adjoint has leading coefficient \(\sqrt{r_\alpha}\).  This proves \eqref{eq:F-action} and \eqref{eq:E-action}.
+Applying \(G_\lambda^{-1/2}\) within each weight space gives \(e_{\mathbf r}^\lambda=\xi_{\mathbf r}^\lambda+O_L(N^{-1/2})\) in norm.  Since \(\widehat F_\alpha\) and \(\widehat E_\alpha\) are \(O_L(1)\) on the enlarged cutoff, replacing \(\xi\)'s by \(e\)'s in the two action estimates preserves the \(O_L(N^{-1/2})\) error.  This proves \eqref{eq:F-action} and \eqref{eq:E-action}.
 \end{proof}
+
 
 \subsubsection*{Thermal Weyl-sector states}
 
-\begin{lemma}[Thermal limit of a Weyl-sector Gibbs state]\label{lem:sector-thermal}
-Let \(|\lambda_N|=N\) and \(\lambda_N/N\to p\), where \(p_1>\cdots>p_d>0\).  Under the PBW/Fock identification above,
-\begin{equation}\label{eq:sector-thermal-limit}
-  \rho_{p,\lambda_N}
-  \longrightarrow
-  \bigotimes_{\alpha\in R_+}\tau_{q_\alpha},
-  \qquad
-  q_{ij}=\frac{p_j}{p_i},
-\end{equation}
-in trace norm.
-\end{lemma}
+The next lemma records the zero-displacement fixed-sector thermal limit in
+the PBW/Fock normalization used for the PRV-sector cloning construction.
 
-\begin{proof}
-The vector \(F^{\mathbf r}v_\lambda\) has weight
-\[
-  \lambda-\sum_\alpha r_\alpha\alpha.
-\]
-Since \(\rho_p=\diag(p)\), the representation \(\pi_\lambda(\rho_p)\) acts on this entire weight space as the scalar
-\[
-  p^\lambda\prod_{\alpha=(i,j)}
-  \left(\frac{p_j}{p_i}\right)^{r_\alpha}
-  =
-  p^\lambda\prod_\alpha q_\alpha^{r_\alpha}.
-\]
-The scalar depends only on the total weight, so orthonormalization within a weight space does not change it.
+\begin{lemma}[Thermal limit of a Weyl-sector Gibbs state]
+  \label{lem:sector-thermal}
+  Let $\lambda_N$ be dominant weights with $|\lambda_N|=N$ and
+  $\lambda_N/N\to p$, where
+  \[
+          p_1>\cdots>p_d>0 .
+  \]
+  For $\alpha=(i,j)\in R_+$, set
+  \[
+          q_\alpha=q_{ij}:=\frac{p_j}{p_i}.
+  \]
+  Let
+  \[
+          \mathcal F_{R_+}:=
+          \bigotimes_{\alpha\in R_+}\ell^2(\mathbb N)
+  \]
+  with number basis $\{|\mathbf r\rangle:\mathbf r\in\mathbb N^{R_+}\}$.
+  For $0<q<1$, write
+  \[
+          \tau_q=(1-q)\sum_{r\ge0}q^r|r\rangle\langle r|.
+  \]
+  Then there exist isometries
+  \[
+          J_N:\mathcal H_{\lambda_N}\longrightarrow \mathcal F_{R_+}
+  \]
+  such that
+  \[
+          \left\|
+          J_N\rho_{p,\lambda_N}J_N^*
+          -
+          \bigotimes_{\alpha\in R_+}\tau_{q_\alpha}
+          \right\|_1
+          \longrightarrow0 .
+  \]
+  \end{lemma}
+  
+  \begin{proof}
+  Set
+  \[
+          \tau:=
+          \bigotimes_{\alpha\in R_+}\tau_{q_\alpha}
+          =
+          \sum_{\mathbf r\in\mathbb N^{R_+}}
+          \left[
+          \prod_{\alpha\in R_+}(1-q_\alpha)q_\alpha^{r_\alpha}
+          \right]
+          |\mathbf r\rangle\langle\mathbf r|,
+  \]
+  and
+  \[
+          P_{\le L}:=
+          \sum_{|\mathbf r|\le L}|\mathbf r\rangle\langle\mathbf r|
+          \qquad(L=0,1,2,\ldots).
+  \]
+  The proof is a cutoff argument.  We first construct a single sequence
+  \(J_N\), once and for all.  For every fixed \(L\), this same sequence
+  satisfies \(J_Ne_{\mathbf r}^{\lambda_N}=|\mathbf r\rangle\) for all
+  sufficiently large \(N\) and all \(|\mathbf r|\le L\).  Given
+  \(\varepsilon>0\), we then choose \(L\) so that \(\tau\) has small mass
+  outside \(P_{\le L}\).  For this fixed \(L\), the states
+  \(P_{\le L}J_N\rho_{p,\lambda_N}J_N^*P_{\le L}\) and
+  \(P_{\le L}\tau P_{\le L}\) are diagonal in
+  \(\{|\mathbf r\rangle:|\mathbf r|\le L\}\) for all large \(N\), and their
+  diagonal coefficients converge termwise as \(N\to\infty\).
 
-It remains to normalize.  The Weyl character formula gives
-\[
-  s_\lambda(p)
-  =
-  \frac{\det[p_i^{\lambda_j+d-j}]_{i,j}}
-       {\det[p_i^{d-j}]_{i,j}}.
-\]
-Because both \(p_1>\cdots>p_d\) and \(\lambda_1>\cdots>\lambda_d\) are separated at order \(N\), the identity permutation is the unique exponentially dominant term in the numerator.  Therefore
-\begin{equation}\label{eq:character-asymptotic}
-  s_\lambda(p)
-  =
-  p^\lambda
-  \prod_{i<j}
-  \left(1-\frac{p_j}{p_i}\right)^{-1}
-  (1+o(1)).
-\end{equation}
-On every fixed cutoff, \(\rho_{p,\lambda}\) thus converges to the diagonal probabilities
-\[
-  \prod_\alpha(1-q_\alpha)q_\alpha^{r_\alpha},
-\]
-which are exactly the occupation probabilities of
-\(\bigotimes_\alpha\tau_{q_\alpha}\).
+  We first construct \(J_N\).  By \eqref{eq:PBW-Gram}, for each fixed \(L\), the
+  Gram matrix of the vectors \(\xi_{\mathbf r}^{\lambda_N}\),
+  \(|\mathbf r|\le L\), is \(I+O_L(N^{-1/2})\) on every weight block.  Hence
+  there are thresholds \(N_L\) such that these Gram matrices are invertible for
+  \(N\ge N_L\).  Choose them so that
+  \[
+          N_0=0,\qquad N_L\ge N_{L-1}+1\quad(L\ge1).
+  \]
+  \[
+          L_N:=\max\{L\ge0:N\ge N_L\}.
+  \]
+  \(L_N\) is finite, because induction gives \(N_L\ge L\).  Also
+  \(L_N\to\infty\), because for every fixed \(L\), all \(N\ge N_L\) satisfy
+  \(L_N\ge L\).
 
-To pass from cutoff convergence to trace-norm convergence, choose \(L\) so that the limiting product thermal state has mass at least \(1-\eps\) on total excitation \(|\mathbf r|\le L\).  The finite-sector cutoff mass converges to the same number, hence is at least \(1-2\eps\) for large \(N\).  On the finite-dimensional cutoff, entrywise convergence implies trace-norm convergence.  Compressing both states to the cutoff and using the gentle-measurement bound controls the discarded tails by \(O(\sqrt\eps)\).  Letting \(\eps\to0\) proves \eqref{eq:sector-thermal-limit}.
-\end{proof}
+  For each \(N\), orthonormalize
+  \(\xi_{\mathbf r}^{\lambda_N}\), \(|\mathbf r|\le L_N\), inside each weight
+  space; write the resulting exact weight vectors as
+  \(e_{\mathbf r}^{\lambda_N}\).  The assignment
+  \[
+          e_{\mathbf r}^{\lambda_N}\longmapsto|\mathbf r\rangle
+          \qquad(|\mathbf r|\le L_N)
+  \]
+  is unitary between the corresponding finite spans.  Extend it by any
+  isometric embedding
+  \[
+          \Span\{e_{\mathbf r}^{\lambda_N}:|\mathbf r|\le L_N\}^{\perp}
+          \longrightarrow
+          \Span\{|\mathbf r\rangle:|\mathbf r|\le L_N\}^{\perp},
+  \]
+  and denote the resulting isometry by
+  \(J_N:\mathcal H_{\lambda_N}\to\mathcal F_{R_+}\).
+
+  Write
+  \[
+          \rho_{p,\lambda}
+          =
+          \frac{\pi_\lambda(\rho_p)}{s_\lambda(p)},
+          \qquad
+          \rho_p=\operatorname{diag}(p_1,\ldots,p_d),
+          \qquad
+          s_\lambda(p)=\operatorname{Tr}\pi_\lambda(\rho_p).
+  \]
+  If \(|\mathbf r|\le L_N\), then \(e_{\mathbf r}^{\lambda_N}\) has weight
+  \(\lambda_N-\sum_\alpha r_\alpha\alpha\).  For a weight \(\mu\),
+  \(\pi_{\lambda_N}(\rho_p)\) acts by the scalar
+  \(p^\mu:=\prod_i p_i^{\mu_i}\).  Since
+  \(p^{-\alpha}=p_j/p_i=q_\alpha\) for \(\alpha=(i,j)\),
+  \[
+          \rho_{p,\lambda_N}e_{\mathbf r}^{\lambda_N}
+          =
+          c_N
+          \prod_{\alpha\in R_+}q_\alpha^{r_\alpha}
+          e_{\mathbf r}^{\lambda_N},
+          \qquad
+          c_N:=\frac{p^{\lambda_N}}{s_{\lambda_N}(p)} .
+  \]
+  Recall that \(s_\lambda(p)=\operatorname{Tr}\pi_\lambda(\rho_p)\).  The Weyl
+  character formula gives
+  \[
+          s_{\lambda_N}(p)
+          =
+          \frac{\det(p_i^{\lambda_{N,j}+d-j})_{i,j=1}^d}
+               {\det(p_i^{d-j})_{i,j=1}^d}.
+  \]
+  For the numerator, set
+  \[
+          A_N(\sigma):=
+          \prod_i p_i^{\lambda_{N,\sigma(i)}+d-\sigma(i)} .
+  \]
+  Then
+  \[
+          \det(p_i^{\lambda_{N,j}+d-j})_{i,j=1}^d
+          =
+          \sum_{\sigma\in S_d}\operatorname{sgn}(\sigma)A_N(\sigma).
+  \]
+  For \(\sigma\ne\mathrm{id}\),
+  \[
+          \log\frac{A_N(\mathrm{id})}{A_N(\sigma)}
+          =
+          N\left[
+          \sum_i p_i\log p_i-\sum_i p_{\sigma(i)}\log p_i
+          \right]+o(N).
+  \]
+  The bracket is positive by strict rearrangement, and there are only finitely
+  many \(\sigma\ne\mathrm{id}\).  Hence, for some \(c>0\),
+  \[
+          A_N(\sigma)\le e^{-cN}A_N(\mathrm{id})
+          \qquad(\sigma\ne\mathrm{id}),
+  \]
+  and therefore
+  \[
+          \det(p_i^{\lambda_{N,j}+d-j})_{i,j=1}^d
+          =
+          A_N(\mathrm{id})(1+O(e^{-cN})).
+  \]
+  Here
+  \[
+          A_N(\mathrm{id})
+          =
+          \prod_i p_i^{\lambda_{N,i}+d-i}
+          =
+          p^{\lambda_N}\prod_i p_i^{d-i}.
+  \]
+  The denominator is
+  \[
+          \det(p_i^{d-j})_{i,j=1}^d
+          =
+          \prod_{i<j}(p_i-p_j)
+          =
+          \prod_{i<j}p_i\left(1-\frac{p_j}{p_i}\right)
+          =
+          \prod_i p_i^{d-i}
+          \prod_{i<j}\left(1-\frac{p_j}{p_i}\right).
+  \]
+  Therefore
+  \[
+          s_{\lambda_N}(p)
+          =
+          \frac{A_N(\mathrm{id})(1+O(e^{-cN}))}
+               {\det(p_i^{d-j})_{i,j=1}^d}
+          =
+          p^{\lambda_N}
+          \prod_{i<j}\left(1-\frac{p_j}{p_i}\right)^{-1}
+          (1+o(1)).
+  \]
+  Hence
+  \[
+          c_N=\frac{p^{\lambda_N}}{s_{\lambda_N}(p)}
+          \longrightarrow
+          \prod_{i<j}\left(1-\frac{p_j}{p_i}\right)
+          =
+          \prod_{\alpha\in R_+}(1-q_\alpha).
+  \]
+
+  Let
+  \[
+          \omega_N:=J_N\rho_{p,\lambda_N}J_N^* .
+  \]
+  For fixed \(L\) and all \(N\ge N_L\),
+  \[
+          P_{\le L}\omega_NP_{\le L}
+          =
+          \sum_{|\mathbf r|\le L}
+          c_N
+          \prod_{\alpha\in R_+}q_\alpha^{r_\alpha}
+          |\mathbf r\rangle\langle\mathbf r|,
+  \]
+  while
+  \[
+          P_{\le L}\tau P_{\le L}
+          =
+          \sum_{|\mathbf r|\le L}
+          \prod_{\alpha\in R_+}(1-q_\alpha)q_\alpha^{r_\alpha}
+          |\mathbf r\rangle\langle\mathbf r|.
+  \]
+  Therefore, for every fixed \(L\),
+  \[
+          \left\|
+          P_{\le L}\omega_NP_{\le L}
+          -
+          P_{\le L}\tau P_{\le L}
+          \right\|_1
+          \longrightarrow0,
+          \qquad
+          \operatorname{Tr}[P_{\le L}\omega_N]
+          \longrightarrow
+          \operatorname{Tr}[P_{\le L}\tau].
+  \]
+
+  Now fix \(\varepsilon>0\).  Choose \(L\) such that
+  \[
+          \operatorname{Tr}[(I-P_{\le L})\tau]<\varepsilon.
+  \]
+  For all sufficiently large \(N\),
+  \[
+          \left|
+          \operatorname{Tr}[P_{\le L}(\omega_N-\tau)]
+          \right|<\varepsilon,
+          \qquad
+          \left\|
+          P_{\le L}\omega_NP_{\le L}
+          -
+          P_{\le L}\tau P_{\le L}
+          \right\|_1
+          <\varepsilon .
+  \]
+  Since \(\operatorname{Tr}\omega_N=\operatorname{Tr}\tau=1\),
+  \[
+          \operatorname{Tr}[(I-P_{\le L})\omega_N]
+          =
+          \operatorname{Tr}[(I-P_{\le L})\tau]
+          -
+          \operatorname{Tr}[P_{\le L}(\omega_N-\tau)]
+          <2\varepsilon.
+  \]
+  The gentle-measurement estimate
+  \[
+          \|\sigma-P\sigma P\|_1
+          \le
+          2\sqrt{\operatorname{Tr}[(I-P)\sigma]}
+  \]
+  applied with \(P=P_{\le L}\) gives
+  \[
+  \begin{aligned}
+          \|\omega_N-\tau\|_1
+          &\le
+          \|\omega_N-P_{\le L}\omega_NP_{\le L}\|_1
+          +
+          \left\|
+          P_{\le L}\omega_NP_{\le L}
+          -
+          P_{\le L}\tau P_{\le L}
+          \right\|_1
+          +
+          \|\tau-P_{\le L}\tau P_{\le L}\|_1                 \\
+          &<
+          2\sqrt{2\varepsilon}
+          +
+          \varepsilon
+          +
+          2\sqrt{\varepsilon}.
+  \end{aligned}
+  \]
+  Since \(\varepsilon\) is arbitrary, \(\|\omega_N-\tau\|_1\to0\).
+  \end{proof}
 
 \subsubsection*{The PRV inclusion becomes a beam splitter}
 
-\begin{proposition}[Thermal PRV sector limit]\label{prop:thermal-PRV-sector}
-Let \(\mu_n\vdash n\), \(\nu_n\vdash m_n\), with \(m_n/n\to\gamma>1\), satisfy
-\[
-  \mu_n/n\to p,
-  \qquad
-  \nu_n/m_n\to p.
-\]
-Set \(\omega_n=\nu_n-\mu_n\).  Then \(\omega_n\) is dominant for all large \(n\), and
-\begin{equation}\label{eq:thermal-PRV-sector-limit}
-  \cC_{\mu_n\to\nu_n}^{\PRV}
-  (\rho_{p,\mu_n})
-  \longrightarrow
-  \bigotimes_{\alpha\in R_+}
-  \tau_{q_\alpha^{(\gamma)}}
-\end{equation}
-in trace norm, where
-\[
-  q_\alpha^{(\gamma)}
-  =
-  1-\frac{1-q_\alpha}{\gamma}.
-\]
-Consequently,
-\begin{equation}\label{eq:sector-fidelity-limit}
-  F\!\left(
-    \cC_{\mu_n\to\nu_n}^{\PRV}(\rho_{p,\mu_n}),
-    \rho_{p,\nu_n}
-  \right)
-  \longrightarrow
-  \Forb(\gamma,p).
-\end{equation}
-The convergence is uniform when \(p\) and the normalized weights range over compact subsets of the strict Weyl chamber.
-\end{proposition}
+\begin{proposition}[Thermal PRV sector limit]
+  \label{prop:thermal-PRV-sector}
+  Let \(\mu_n\vdash n\) and \(\nu_n\vdash m_n\), where
+  \(m_n/n\to\gamma>1\), and suppose that
+  \[
+          \frac{\mu_n}{n}\longrightarrow p,
+          \qquad
+          \frac{\nu_n}{m_n}\longrightarrow p,
+          \qquad
+          p_1>\cdots>p_d>0.
+  \]
+  Set
+  \[
+          \omega_n:=\nu_n-\mu_n .
+  \]
+  Then \(\omega_n\vdash m_n-n\) for all sufficiently large \(n\).
+  
+  Let
+  \[
+          J_{\nu_n}:\cH_{\nu_n}\longrightarrow\mathcal F_{R_+}
+  \]
+  be the PBW/Fock isometries from
+  \cref{lem:sector-thermal}, chosen from the same weight-preserving
+  orthonormal PBW vectors \(e_{\mathbf r}^{\nu_n}\) as in
+  \cref{lem:PBW-Fock}.  Then
+  \begin{equation}\label{eq:thermal-PRV-sector-limit}
+          \left\|
+          J_{\nu_n}
+          \cC_{\mu_n\to\nu_n}^{\PRV}(\rho_{p,\mu_n})
+          J_{\nu_n}^*
+          -
+          \bigotimes_{\alpha\in R_+}
+          \tau_{q_\alpha^{(\gamma)}}
+          \right\|_1
+          \longrightarrow0,
+  \end{equation}
+  where \(\tau_q\) is the thermal state in \eqref{eq:thermal} and, for
+  \(\alpha=(i,j)\),
+  \[
+          q_\alpha=\frac{p_j}{p_i},
+          \qquad
+          q_\alpha^{(\gamma)}
+          =
+          1-\frac{1-q_\alpha}{\gamma}.
+  \]
+  Consequently,
+  \begin{equation}\label{eq:sector-fidelity-limit}
+          F\!\left(
+          \cC_{\mu_n\to\nu_n}^{\PRV}(\rho_{p,\mu_n}),
+          \rho_{p,\nu_n}
+          \right)
+          \longrightarrow
+          \Forb(\gamma,p).
+  \end{equation}
+  More explicitly, let
+  \[
+          \Delta_d:=\{x\in\R^d:x_i\ge0,\ \sum_i x_i=1\}.
+  \]
+  Fix a compact \(K\subset\{x\in\Delta_d:x_1>\cdots>x_d>0\}\)
+  and \(\delta_n\downarrow0\).  The convergences in
+  \eqref{eq:thermal-PRV-sector-limit} and \eqref{eq:sector-fidelity-limit} are
+  uniform over all \(p,\mu_n,\nu_n,m_n\) such that
+  \(p,\mu_n/n,\nu_n/m_n\in K\),
+  \[
+          \left|\frac{m_n}{n}-\gamma\right|\le\delta_n,\qquad
+          \left\|\frac{\mu_n}{n}-p\right\|\le\delta_n,\qquad
+          \left\|\frac{\nu_n}{m_n}-p\right\|\le\delta_n .
+  \]
+  \end{proposition}
+  
+  \begin{proof}
+  It is enough to prove the compact-uniform assertion at the end of the
+  statement.  Indeed, the pointwise assertion follows by choosing a compact
+  \(K\) in the strict chamber which contains \(p\) and, for all large \(n\),
+  also contains \(\mu_n/n\) and \(\nu_n/m_n\), and then taking
+  \[
+          \delta_n
+          =
+          \sup_{k\ge n}
+          \max\left\{
+          \left|\frac{m_k}{k}-\gamma\right|,
+          \left\|\frac{\mu_k}{k}-p\right\|,
+          \left\|\frac{\nu_k}{m_k}-p\right\|
+          \right\}.
+  \]
 
-\begin{proof}
-Dominance follows from
-\[
-  \omega_{n,i}-\omega_{n,i+1}
-  =
-  (m_n-n)(p_i-p_{i+1})+o(n)>0.
-\]
+  We therefore fix \(K\) and \(\delta_n\) as in the uniform statement.  Below,
+  \(\sup\) means the supremum over all admissible \(p,\mu_n,\nu_n,m_n\) at the
+  fixed \(n\).  Thus \(A_n=o(1)\) means
+  \[
+          \sup |A_n|\longrightarrow0,
+  \]
+  and \(A_{n,L}=o_L(1)\) means the same for each fixed cutoff \(L\), with the
+  rate allowed to depend on \(L\).
+  Write
+  \[
+          m=m_n,\qquad
+          \mu=\mu_n,\qquad
+          \nu=\nu_n,\qquad
+          \omega=\nu-\mu .
+  \]
+  Let
+  \[
+          \kappa_K
+          :=
+          \min_{x\in K}
+          \min\{x_d,\ x_i-x_{i+1}:1\le i<d\}>0 .
+  \]
+  Since \(|m/n-\gamma|\le\delta_n\), \(\gamma>1\), and \(\delta_n\to0\),
+  the denominators \(m/n-1\) are bounded below by \((\gamma-1)/2\) for all
+  large \(n\).  Hence, using
+  \(\|\mu/n-p\|,\|\nu/m-p\|\le\delta_n\),
+  \[
+  \begin{aligned}
+          \left\|\frac{\omega}{m-n}-p\right\|
+          &=
+          \left\|
+          \frac{m/n}{m/n-1}\left(\frac{\nu}{m}-p\right)
+          -
+          \frac1{m/n-1}\left(\frac{\mu}{n}-p\right)
+          \right\|  \\
+          &\le
+          C_\gamma\delta_n
+          =
+          O(\delta_n)
+          =
+          o(1).
+  \end{aligned}
+  \]
+  Thus \(\omega\) is dominant for all large \(n\).  Moreover, for
+  \(\alpha=(i,j)\in R_+\),
+  \[
+          \eta_\alpha^{(n)}
+          :=
+          \frac{\Delta_\alpha^\mu}
+               {\Delta_\alpha^\nu}
+          =
+          \frac{n}{m}
+          \frac{\mu_i/n-\mu_j/n}{\nu_i/m-\nu_j/m}
+          =
+          \frac1\gamma+o(1),
+          \qquad
+          1-\eta_\alpha^{(n)}
+          =
+          \frac{\Delta_\alpha^\omega}
+               {\Delta_\alpha^\nu}.
+  \]
+  The bounds above, \(p\in K\), and \(m/n\to\gamma>1\) give constants
+  \(0<c_K<C_K<\infty\), depending only on \(K\) and \(\gamma\), such that
+  \begin{equation}\label{eq:uniform-sector-gaps}
+          c_Kn
+          \le
+          \Delta_\alpha^\mu,
+          \Delta_\alpha^\nu,
+          \Delta_\alpha^\omega
+          \le
+          C_Kn
+          \qquad(\alpha\in R_+)
+  \end{equation}
+  for all large \(n\).
 
-Let \(V=V_{\mu,\omega}\).  Because \(V\) intertwines the \(\U(d)\) representations,
-\begin{equation}\label{eq:coproduct-intertwine}
-  (\dd\pi_\mu(Y)\ot I
-   +I\ot\dd\pi_\omega(Y))V
-  =
-  V\dd\pi_\nu(Y)
-\end{equation}
-for every \(Y\in\mathfrak{gl}_d\).  Taking \(Y=F_\alpha\) gives the exact identity
-\begin{equation}\label{eq:exact-beamsplitter-algebra}
-  VF_\alpha^{(\nu)}
-  =
-  (F_\alpha^{(\mu)}\ot I
-   +I\ot F_\alpha^{(\omega)})V.
-\end{equation}
-Define
-\[
-  \eta_\alpha^{(n)}
-  =
-  \frac{\Delta_\alpha^\mu}
-       {\Delta_\alpha^\nu}.
-\]
-Since
-\[
-  \Delta_\alpha^\nu
-  =
-  \Delta_\alpha^\mu+\Delta_\alpha^\omega
-\]
-and the normalized weights converge to \(p\),
-\[
-  \eta_\alpha^{(n)}
-  \longrightarrow
-  \frac1\gamma.
-\]
+  Let \(V=V_{\mu,\omega}:\cH_\nu\to\cH_\mu\ot\cH_\omega\) be the PRV
+  inclusion from \eqref{eq:PRV-inclusion}.  It is an intertwiner and sends \(v_\nu\) to
+  \(v_\mu\ot v_\omega\), so
+  \[
+          VF_\alpha^{(\nu)}
+          =
+          \bigl(F_\alpha^{(\mu)}\ot I+I\ot F_\alpha^{(\omega)}\bigr)V .
+  \]
+  Recall the normalized PBW vectors from \eqref{eq:xi-PBW}: for
+  \(\lambda=\mu,\nu,\omega\),
+  \[
+          \xi_{\mathbf r}^{\lambda}
+          =
+          \prod_{\alpha\in R_+}^{\prec}
+          \frac{(F_\alpha^{(\lambda)})^{r_\alpha}}
+               {\sqrt{r_\alpha!}
+                (\Delta_\alpha^\lambda)^{r_\alpha/2}}
+          v_\lambda .
+  \]
+  Expanding this formula gives, exactly,
+  \begin{equation}\label{eq:exact-PBW-beamsplitter}
+  \begin{aligned}
+          V\xi_{\mathbf r}^{\nu}
+          &=
+          \sum_{\mathbf a\le\mathbf r}
+          b_{\mathbf r,\mathbf a}^{(n)}
+          \xi_{\mathbf a}^{\mu}
+          \ot
+          \xi_{\mathbf r-\mathbf a}^{\omega},\\
+          b_{\mathbf r,\mathbf a}^{(n)}
+          &:=
+          \prod_{\alpha\in R_+}
+          \sqrt{
+          \binom{r_\alpha}{a_\alpha}
+          \bigl(\eta_\alpha^{(n)}\bigr)^{a_\alpha}
+          \bigl(1-\eta_\alpha^{(n)}\bigr)^{
+          r_\alpha-a_\alpha}
+          } .
+  \end{aligned}
+  \end{equation}
+  The fixed PBW order is preserved, because the coproduct of each
+  \(F_\alpha\) is \(F_\alpha\ot I+I\ot F_\alpha\).
+  By \cref{lem:PBW-Fock} and the gap bounds
+  \eqref{eq:uniform-sector-gaps}, for every fixed
+  \(L\),
+  \[
+          e_{\mathbf r}^{\lambda}
+          =
+          \xi_{\mathbf r}^{\lambda}+o_L(1),
+          \qquad
+          \lambda\in\{\mu,\nu,\omega\},\quad |\mathbf r|\le L .
+  \]
+  Hence, uniformly for \(|\mathbf r|\le L\),
+  \begin{equation}\label{eq:PRV-beamsplitter-cutoff}
+          Ve_{\mathbf r}^{\nu}
+          =
+          \sum_{\mathbf a\le\mathbf r}
+          b_{\mathbf r,\mathbf a}^{(n)}
+          e_{\mathbf a}^{\mu}
+          \ot
+          e_{\mathbf r-\mathbf a}^{\omega}
+          +o_L(1).
+  \end{equation}
 
-Apply \eqref{eq:exact-beamsplitter-algebra} repeatedly to the normalized PBW monomials.  Reordering into the fixed PBW order produces commutators, but \cref{lem:heisenberg-contraction,lem:PBW-Fock} show that all such terms are \(o_L(1)\) on a fixed cutoff.  Hence
-\begin{equation}\label{eq:PRV-beamsplitter-cutoff}
-  Ve_{\mathbf r}^{\nu}
-  =
-  \sum_{\mathbf a\le\mathbf r}
-  \prod_\alpha
-  \sqrt{
-    \binom{r_\alpha}{a_\alpha}
-    (\eta_\alpha^{(n)})^{a_\alpha}
-    (1-\eta_\alpha^{(n)})^{r_\alpha-a_\alpha}
-  }\,
-  e_{\mathbf a}^{\mu}
-  \ot
-  e_{\mathbf r-\mathbf a}^{\omega}
-  +o_L(1).
-\end{equation}
-This is precisely the number-basis action of independent beam splitters with transmissivities \(\eta_\alpha^{(n)}\).
+  Set
+  \[
+          \sigma_n
+          :=
+          \cC_{\mu\to\nu}^{\PRV}(\rho_{p,\mu}),
+          \qquad
+          \widetilde\sigma_n
+          :=
+          J_\nu\sigma_nJ_\nu^* .
+  \]
+  By the sector PRV channel formula \eqref{eq:sector-PRV},
+  \[
+          \sigma_n
+          =
+          \frac{d_\mu}{d_\nu}
+          V^*(\rho_{p,\mu}\ot I_\omega)V,
+          \qquad
+          d_\lambda:=\dim\cH_\lambda .
+  \]
+  By \eqref{eq:Young-prob-and-Weyl-state},
+  \(\rho_{p,\mu}=\pi_\mu(\rho_p)/s_\mu(p)\).  The vector
+  \(e_{\mathbf a}^{\mu}\) has weight
+  \(\mu-\sum_\alpha a_\alpha\alpha\).  Therefore
+  \[
+          \rho_{p,\mu}e_{\mathbf a}^{\mu}
+          =
+          c_\mu
+          \prod_{\alpha\in R_+}q_\alpha^{a_\alpha}
+          e_{\mathbf a}^{\mu},
+          \qquad
+          c_\mu:=\frac{p^\mu}{s_\mu(p)} .
+  \]
+  Using \eqref{eq:sector-PRV} and \eqref{eq:PRV-beamsplitter-cutoff},
+  with \(d_\mu/d_\nu=O_K(1)\) from the Weyl dimension formula and
+  \eqref{eq:uniform-sector-gaps}, gives
+  \[
+  \begin{aligned}
+          \left\langle
+          e_{\mathbf r}^{\nu},
+          \sigma_n e_{\mathbf s}^{\nu}
+          \right\rangle
+          &=
+          \frac{d_\mu}{d_\nu}
+          \sum_{\mathbf a\le\mathbf r,\ \mathbf b\le\mathbf s}
+          b_{\mathbf r,\mathbf a}^{(n)}
+          b_{\mathbf s,\mathbf b}^{(n)}
+          \left\langle
+          e_{\mathbf a}^{\mu},
+          \rho_{p,\mu}e_{\mathbf b}^{\mu}
+          \right\rangle
+          \left\langle
+          e_{\mathbf r-\mathbf a}^{\omega},
+          e_{\mathbf s-\mathbf b}^{\omega}
+          \right\rangle
+          +o_L(1)  \\
+          &=
+          \delta_{\mathbf r,\mathbf s}
+          \frac{d_\mu}{d_\nu}
+          c_\mu
+          \sum_{\mathbf a\le\mathbf r}
+          \bigl(b_{\mathbf r,\mathbf a}^{(n)}\bigr)^2
+          \prod_{\alpha\in R_+}q_\alpha^{a_\alpha}
+          +o_L(1).
+	  \end{aligned}
+	  \]
+  Here
+  \[
+          \left\langle e_{\mathbf a}^{\mu},
+          \rho_{p,\mu}e_{\mathbf b}^{\mu}\right\rangle
+          =
+          \delta_{\mathbf a,\mathbf b}
+          c_\mu\prod_{\alpha\in R_+}q_\alpha^{a_\alpha},
+          \qquad
+          \left\langle
+          e_{\mathbf r-\mathbf a}^{\omega},
+          e_{\mathbf s-\mathbf b}^{\omega}
+          \right\rangle
+          =
+          \delta_{\mathbf r-\mathbf a,\mathbf s-\mathbf b}.
+  \]
+  The last sum factors over roots:
+  \[
+          \sum_{\mathbf a\le\mathbf r}
+          \bigl(b_{\mathbf r,\mathbf a}^{(n)}\bigr)^2
+          \prod_{\alpha\in R_+}q_\alpha^{a_\alpha}
+          =
+          \prod_{\alpha\in R_+}
+          \sum_{a=0}^{r_\alpha}
+          \binom{r_\alpha}{a}
+          \bigl(\eta_\alpha^{(n)}q_\alpha\bigr)^a
+          \bigl(1-\eta_\alpha^{(n)}\bigr)^{r_\alpha-a}.
+  \]
+  Hence
+  \begin{equation}\label{eq:PRV-output-matrix-elements}
+          \left\langle
+          e_{\mathbf r}^{\nu},
+          \sigma_n e_{\mathbf s}^{\nu}
+          \right\rangle
+          =
+          \delta_{\mathbf r,\mathbf s}
+          \frac{d_\mu}{d_\nu}
+          c_\mu
+          \prod_{\alpha\in R_+}
+          \left(
+          1-\eta_\alpha^{(n)}
+          +
+          \eta_\alpha^{(n)}q_\alpha
+          \right)^{r_\alpha}
+          +o_L(1)
+  \end{equation}
+  for \(|\mathbf r|,|\mathbf s|\le L\).
 
-Let
-\[
-  \sigma_{\mu,\nu}
-  =
-  \cC_{\mu\to\nu}^{\PRV}(\rho_{p,\mu}).
-\]
-For fixed \(\mathbf r,\mathbf s\),
-\[
-  \langle e_{\mathbf r}^{\nu},
-          \sigma_{\mu,\nu}
-          e_{\mathbf s}^{\nu}\rangle
-  =
-  \frac{d_\mu}{d_\nu}
-  \langle
-    Ve_{\mathbf r}^{\nu},
-    (\rho_{p,\mu}\ot I)
-    Ve_{\mathbf s}^{\nu}
-  \rangle.
-\]
-Use \eqref{eq:PRV-beamsplitter-cutoff} and \cref{lem:sector-thermal}.  Off-diagonal entries vanish.  For \(\mathbf r=\mathbf s\), the Weyl dimension formula
-\[
-  d_\lambda
-  =
-  \prod_{i<j}
-  \frac{\lambda_i-\lambda_j+j-i}{j-i}
-\]
-gives
-\[
-  \frac{d_\mu}{d_\nu}
-  =
-  \prod_\alpha\eta_\alpha^{(n)}+o(1).
-\]
-The limiting diagonal entry is therefore
-\begin{align*}
-  &\prod_\alpha
-  \eta_\alpha(1-q_\alpha)
-  \sum_{a=0}^{r_\alpha}
-  \binom{r_\alpha}{a}
-  (\eta_\alpha q_\alpha)^a
-  (1-\eta_\alpha)^{r_\alpha-a}\\
-  &\qquad=
-  \prod_\alpha
-  \eta_\alpha(1-q_\alpha)
-  (1-\eta_\alpha+\eta_\alpha q_\alpha)^{r_\alpha}.
-\end{align*}
-Set
-\[
-  q_\alpha'
-  =
-  1-\eta_\alpha(1-q_\alpha).
-\]
-Then the last expression is
-\[
-  \prod_\alpha
-  (1-q_\alpha')(q_\alpha')^{r_\alpha}.
-\]
-Since \(\eta_\alpha=1/\gamma\), this is the product thermal law with
-\[
-  q_\alpha'=q_\alpha^{(\gamma)}.
-\]
+  The Weyl-character estimate in \cref{lem:sector-thermal} is uniform here:
+  \[
+          \sum_i \frac{\mu_i}{n}\log p_i
+          -
+          \sum_i \frac{\mu_{\sigma(i)}}{n}\log p_i
+          \ge c_K
+          \qquad(\sigma\ne\mathrm{id}),
+  \]
+  because \(\mu/n,p\in K\).  Hence
+  \[
+          \sum_{\sigma\ne\mathrm{id}}
+          \left|
+          \frac{\prod_i p_i^{\mu_{\sigma(i)}+d-\sigma(i)}}
+               {\prod_i p_i^{\mu_i+d-i}}
+          \right|
+          =
+          O_K(e^{-c_Kn}).
+  \]
+  Thus
+  \[
+          s_\mu(p)
+          =
+          p^\mu
+          \prod_{\alpha\in R_+}(1-q_\alpha)^{-1}
+          (1+o(1)),
+          \qquad
+          c_\mu
+          =
+          \prod_{\alpha\in R_+}(1-q_\alpha)+o(1).
+  \]
+  The Weyl dimension formula gives
+  \[
+          \frac{d_\mu}{d_\nu}
+          =
+          \prod_{\alpha=(i,j)\in R_+}
+          \frac{\Delta_\alpha^\mu+j-i}
+               {\Delta_\alpha^\nu+j-i}
+          =
+          \prod_{\alpha\in R_+}
+          \left(\eta_\alpha^{(n)}+O_K(n^{-1})\right)
+          =
+          \prod_{\alpha\in R_+}\frac1\gamma+o(1).
+  \]
+  Therefore, for \(|\mathbf r|,|\mathbf s|\le L\),
+  \[
+          \left\langle
+          e_{\mathbf r}^{\nu},
+          \sigma_n e_{\mathbf s}^{\nu}
+          \right\rangle
+          =
+          \delta_{\mathbf r,\mathbf s}
+          \prod_{\alpha\in R_+}
+          \bigl(1-q_\alpha^{(\gamma)}\bigr)
+          \bigl(q_\alpha^{(\gamma)}\bigr)^{r_\alpha}
+          +o_L(1),
+  \]
+  because \(1-q_\alpha^{(\gamma)}=(1-q_\alpha)/\gamma\).
 
-As in \cref{lem:sector-thermal}, convergence on every fixed cutoff implies tightness: choose \(L\) so that the limiting product thermal state has cutoff mass at least \(1-\eps\); the corresponding cutoff mass of \(\sigma_{\mu,\nu}\) converges to it.  Finite-dimensional trace-norm convergence on the cutoff and the gentle-measurement bound then yield full trace-norm convergence.  Finally, combine \eqref{eq:thermal-PRV-sector-limit} with \cref{lem:sector-thermal} and the thermal fidelity formula \eqref{eq:thermal-squared-fid} to obtain \eqref{eq:sector-fidelity-limit}.
-\end{proof}
+  Let
+  \[
+          \tau^{(\gamma)}
+          :=
+          \bigotimes_{\alpha\in R_+}\tau_{q_\alpha^{(\gamma)}},
+          \qquad
+          P_{\le L}
+          :=
+          \sum_{|\mathbf r|\le L}|\mathbf r\rangle\langle\mathbf r|.
+  \]
+  Choose the PBW/Fock isometries \(J_\nu\) by the construction in
+  \cref{lem:sector-thermal}, with the thresholds chosen from the uniform gap
+  bounds \eqref{eq:uniform-sector-gaps}.  Then, for each fixed \(L\) and all
+  large \(n\),
+  \[
+          J_\nu e_{\mathbf r}^{\nu}=|\mathbf r\rangle
+          \qquad(|\mathbf r|\le L).
+  \]
+  Since \(P_{\le L}\mathcal F_{R_+}\) is finite-dimensional, the preceding
+  matrix-element convergence implies, for each fixed \(L\),
+  \[
+          \sup
+          \left\|
+          P_{\le L}\widetilde\sigma_nP_{\le L}
+          -
+          P_{\le L}\tau^{(\gamma)}P_{\le L}
+          \right\|_1
+          \longrightarrow0.
+  \]
+  The thermal parameters \(q_\alpha\) and \(q_\alpha^{(\gamma)}\) range in a
+  compact subset of \((0,1)\), so for every \(\eps>0\) one can choose \(L\)
+  such that
+  \[
+          \sup_{p\in K}
+          \Tr[(I-P_{\le L})\tau^{(\gamma)}]<\eps,
+          \qquad
+          \sup_{p\in K}
+          \Tr\!\left[
+          (I-P_{\le L})
+          \bigotimes_{\alpha\in R_+}\tau_{q_\alpha}
+          \right]<\eps .
+  \]
+  For this \(L\), finite-cutoff convergence also gives
+  \[
+  \begin{aligned}
+          \sup
+          \left|
+          \Tr[P_{\le L}(\widetilde\sigma_n-\tau^{(\gamma)})]
+          \right|
+          &\le
+          \sup
+          \left\|
+          P_{\le L}\widetilde\sigma_nP_{\le L}
+          -
+          P_{\le L}\tau^{(\gamma)}P_{\le L}
+          \right\|_1
+          \longrightarrow0 .
+  \end{aligned}
+  \]
+  Applying the cutoff argument of \cref{lem:sector-thermal}, with the supremum
+  carried through the estimates, gives
+  \[
+          \sup
+          \left\|
+          \widetilde\sigma_n-\tau^{(\gamma)}
+          \right\|_1
+          \longrightarrow0 .
+  \]
+  This is the uniform form of \eqref{eq:thermal-PRV-sector-limit}.  The same
+  cutoff argument applied to the target sector gives
+  \[
+          \sup
+          \left\|
+          J_\nu\rho_{p,\nu}J_\nu^*
+          -
+          \bigotimes_{\alpha\in R_+}\tau_{q_\alpha}
+          \right\|_1
+          \longrightarrow0 .
+  \]
+  Root fidelity is invariant under the common isometry \(J_\nu\), and
+  \cref{lem:fid-cont} gives
+  \[
+          \sup
+          \left|
+          B(\sigma_n,\rho_{p,\nu})
+          -
+          B\!\left(
+          \bigotimes_{\alpha\in R_+}\tau_{q_\alpha^{(\gamma)}},
+          \bigotimes_{\alpha\in R_+}\tau_{q_\alpha}
+          \right)
+          \right|
+          \longrightarrow0 .
+  \]
+  By the one-mode thermal fidelity formula \eqref{eq:thermal-root-fid},
+  \[
+          B\!\left(
+          \bigotimes_{\alpha\in R_+}\tau_{q_\alpha^{(\gamma)}},
+          \bigotimes_{\alpha\in R_+}\tau_{q_\alpha}
+          \right)
+          =
+          \Borb(\gamma,p).
+  \]
+  Since \(F=B^2\) and \(\Forb=\Borb^2\), this proves the uniform form of
+  \eqref{eq:sector-fidelity-limit}.
+  \end{proof}
 
 \begin{remark}[Stronger displaced-state interpretation]
 The same contraction also implies, after tracking local unitary displacements, that the PRV channel converges on local displaced states to the quantum-limited amplifier.  The global-fidelity achievability theorem does not require this stronger statement because covariance allows us to evaluate at the diagonal representative \(g=I\).
@@ -2555,7 +3299,7 @@ The relative interior of \(\Delta_{d,\kappa}\) is dense in \(\Delta_{d,\kappa}\)
   \le
   \inf_{p\in\Delta_{d,\kappa}}\Funiv(\gamma,p)+\eps.
 \]
-Because \(p_0\) has positive distance from the boundary of \(\Delta_{d,\kappa}\), for every fixed \(L\) all local perturbations
+Because \(p_0\) has positive distance from the boundary of \(\Delta_{d,\kappa}\), \(L\) all local perturbations
 \[
   p_0+h/\sqrt n,
   \qquad
@@ -2584,10 +3328,7 @@ If the spectrum is supplied externally to accuracy \(o(n^{-1/2})\), the classica
 The present work is about cloning in the global product sense: the target is \(\rho^{\otimes m}\).  Broadcasting is weaker: it requires only that selected output marginals reproduce the input state.  A perfect broadcaster can have strong correlations among the outputs, and therefore may have poor global fidelity with \(\rho^{\otimes m}\).  This distinction is essential for interpreting the mixed-state literature.  The single-copy no-broadcasting theorem rules out exact broadcasting of noncommuting families from one input copy \cite{BarnumCavesFuchsJozsaSchumacher1996}.  With several input copies, however, exact marginal broadcasting can be possible.  In particular, \cite{DArianoMacchiavelloPerinotti2005} showed that the no-broadcasting theorem does not extend directly to more than one input copy for mixed qubits and introduced superbroadcasting, where the output one-site marginals can even be purer than the input for sufficiently many input copies.  Such purifying marginal maps can be degraded by local depolarization to exact broadcasting, and exact broadcasting was also constructed explicitly for displaced thermal oscillator states with known thermal photon number in \cite{DArianoPerinottiSacchi2006Continuous}.  The review/extension \cite{BuscemiDArianoMacchiavelloPerinotti2005Optimal} states explicitly that for sufficiently many input copies ideal broadcasting of noncommuting mixed states is possible, and the universal and phase-covariant maps are developed further in \cite{BuscemiDArianoMacchiavelloPerinotti2006}.  These results are not contradicted by no-cloning, because they do not produce an uncorrelated product \(\rho^{\otimes m}\).
 
 \paragraph{Earlier mixed-state cloning bounds.}
-Rastegin studied global-fidelity, relative-error, and state-dependent limits for mixed-state cloning \cite{Rastegin2003Upper,Rastegin2002Relative,Rastegin2003StateDependent}.  Fan and collaborators constructed mixed-state cloners in symmetric subspaces and for identical mixed qubits \cite{Fan2003,FanLiuShi2007}; Kazakov studied partial cloning and mixed-qubit copying in another restricted setting \cite{Kazakov2007}.  These works are useful benchmarks, but they do not provide a sharp arbitrary-dimensional proportional-output all-site asymptotic formula.  The Gaussian setting is an exception in infinite dimension: Guta--Matsumoto solved displaced mixed Gaussian cloning via least-noise amplification \cite{GutaMatsumoto2006}.  Our finite-dimensional converse reduces to that theorem through LAN.
-
-\paragraph{Other cloning models.}
-Several other cloning-related settings are operationally distinct from the global product-fidelity problem considered here.  Examples include probabilistic cloning \cite{DuanGuo1998}, economical, phase-covariant, asymmetric, and telecloning models \cite{NiuGriffiths1998,BrussCinchettiDArianoMacchiavello2000,Cerf2000Asymmetric,MuraoJonathanPlenioVedral1999}, transformation cloning and superreplication \cite{ChiribellaDArianoPerinotti2008,ChiribellaYangYao2013,GendraCalsamigliaMunozTapiaBaganChiribella2014,DurSekatskiSkotiniotis2015,ChiribellaYangHuang2015,ChiribellaYang2016}, channel cloning \cite{SekatskiGuryanovaKothakondaSkotiniotis2025}, and recent limitation or structural results for cloning maps \cite{HuTomamichel2024,BrzicGrinkoStudzinskiQuintino2026}.  They provide useful context, but they do not identify the mixed-state \(\rho^{\otimes n}\mapsto\rho^{\otimes m}\) global-fidelity asymptotics addressed in this paper.
+Rastegin studied global-fidelity, relative-error, and state-dependent limits for mixed-state cloning \cite{Rastegin2003Upper,Rastegin2002Relative,Rastegin2003StateDependent}.  Fan and collaborators constructed mixed-state cloners in symmetric subspaces and for identical mixed qubits \cite{Fan2003,FanLiuShi2007}; Kazakov studied partial cloning and mixed-qubit copying in another restricted setting \cite{Kazakov2007}.  These works are useful benchmarks, but they do not provide a sharp arbitrary-dimensional proportional-output all-site asymptotic formula.  The Gaussian setting is an exception in infinite dimension: Guta--Matsumoto solved displaced mixed Gaussian cloning via least-noise amplification \cite{GutaMatsumoto2006MixedGaussianCloning}.  Our finite-dimensional converse reduces to that theorem through LAN.
 
 \paragraph{Random purification plus pure-state cloning.}
 The coherent-inference construction of \cite{LiTheilHarrowChuang2026} treats rank-\(r\) mixed states by first applying a random-purification channel and then the optimal pure-state cloner in dimension \(dr\).  Tracing out the purifying registers gives mixed-state clones.  Their stated all-site guarantee has the pure-state-cloning form
@@ -2677,7 +3418,6 @@ we have
   >\gamma^{-(d^2-1)}.
 \end{equation}
 Again, this compares our sharp local full-rank asymptotics to the universal purify-and-clone guarantee, not to a proven exact fidelity formula for that specific channel restricted to a fixed orbit.
-The companion QPA work treats coherent amplification of eigenstates rather than direct mixed-state product cloning, and is therefore a related purification benchmark rather than a substitute for the comparison above \cite{LiTheilHarrowChuangQPA2026}.
 
 \subsection{Large-gamma and near-identity expansions}
 
@@ -2858,7 +3598,7 @@ Optimal cloning of pure states,
 
 \bibitem[BGSQ26]{BrzicGrinkoStudzinskiQuintino2026}
 V. Brzi\'c, D. Grinko, M. Studzi\'nski, and M. T. Quintino,
-Optimal pure state cloning and transposition are complementary channels,
+Optimal pure state cloning and quantum transposition are related by complementary channels,
 \arxiv{2603.23628} (2026).
 
 \bibitem[MP95]{MassarPopescu1995}
@@ -2907,13 +3647,13 @@ Probabilistic cloning and identification of linearly independent quantum states,
 
 \bibitem[HT24]{HuTomamichel2024}
 Y. Hu and M. Tomamichel,
-Fundamental limits on quantum cloning from the no-signaling principle,
+Fundamental limitations on quantum cloning from the no-signalling principle,
 \doi{10.1103/PhysRevA.109.022221}{\emph{Phys. Rev. A} \textbf{109}, 022221 (2024)},
 \arxiv{2305.02002}.
 
 \bibitem[NG98]{NiuGriffiths1998}
 C.-S. Niu and R. B. Griffiths,
-Optimal copying of one quantum bit,
+Two-qubit copying machine for economical quantum eavesdropping,
 \doi{10.1103/PhysRevA.58.4377}{\emph{Phys. Rev. A} \textbf{58}, 4377--4393 (1998)},
 \arxiv{quant-ph/9805063}.
 
@@ -2926,7 +3666,7 @@ Phase-covariant quantum cloning,
 \bibitem[Cer00]{Cerf2000Asymmetric}
 N. J. Cerf,
 Asymmetric quantum cloning in any dimension,
-\doi{10.1080/09500340008244036}{\emph{J. Mod. Opt.} \textbf{47}, 187--209 (2000)},
+\doi{10.1080/09500340008244035}{\emph{J. Mod. Opt.} \textbf{47}, 187--209 (2000)},
 \arxiv{quant-ph/9805024}.
 
 \bibitem[MJPV99]{MuraoJonathanPlenioVedral1999}
@@ -2942,7 +3682,7 @@ Quantum information becomes classical when distributed to many users,
 
 \bibitem[CDP08]{ChiribellaDArianoPerinotti2008}
 G. Chiribella, G. M. D'Ariano, and P. Perinotti,
-Optimal cloning of unitary transformation,
+Optimal cloning of unitary transformations,
 \doi{10.1103/PhysRevLett.101.180504}{\emph{Phys. Rev. Lett.} \textbf{101}, 180504 (2008)},
 \arxiv{0804.0129}.
 
@@ -3024,7 +3764,7 @@ Upper bound on the global fidelity for mixed-state cloning,
 \bibitem[Ras02]{Rastegin2002Relative}
 A. E. Rastegin,
 A lower bound on the relative error of mixed-state cloning and related operations,
-\doi{10.1088/1464-4266/5/6/017}{\emph{J. Opt. B: Quantum Semiclass. Opt.} \textbf{5}, S647--S650 (2003)},
+\emph{J. Opt. B: Quantum Semiclass. Opt.} \textbf{5}, S647--S650 (2003),
 \arxiv{quant-ph/0208159}.
 
 \bibitem[Ras03c]{Rastegin2003StateDependent}
@@ -3035,7 +3775,7 @@ Global-fidelity limits of state-dependent cloning of mixed states,
 
 \bibitem[Fan03]{Fan2003}
 H. Fan,
-Quantum cloning of mixed states in symmetric subspaces,
+Quantum cloning of mixed states in symmetric subspace,
 \doi{10.1103/PhysRevA.68.054301}{\emph{Phys. Rev. A} \textbf{68}, 054301 (2003)},
 \arxiv{quant-ph/0308058}.
 
@@ -3047,8 +3787,8 @@ Quantum cloning of identical mixed qubits,
 
 \bibitem[Kaz07]{Kazakov2007}
 A. Ya. Kazakov,
-``Partial'' quantum cloning and quantum cloning of the mixed states,
-\doi{10.1142/S0219749910006186}{\emph{Int. J. Quantum Inf.} \textbf{8}, 435--442 (2010)},
+``Partial'' quantum cloning and quantum cloning of mixed states,
+\emph{Int. J. Quantum Inf.} \textbf{8}, 435--442 (2010),
 \arxiv{0711.2860}.
 
 
@@ -3086,34 +3826,39 @@ Superbroadcasting of continuous variable mixed states,
 \arxiv{quant-ph/0601114}.
 
 
-\bibitem[BGA11]{BowlesGutaAdesso2011}
-J. Bowles, M. Guta, and G. Adesso,
-Asymptotically optimal purification and dilution of mixed qubit and Gaussian states,
-\doi{10.1103/PhysRevA.84.022320}{\emph{Phys. Rev. A} \textbf{84}, 022320 (2011)},
-\arxiv{1102.2341}.
-
-
 \bibitem[Hol11]{Holevo2011}
 A. S. Holevo,
 \emph{Probabilistic and Statistical Aspects of Quantum Theory}, 2nd ed., Edizioni della Normale (2011).
 
-\bibitem[KW01]{KeylWerner2001}
-M. Keyl and R. F. Werner,
-Estimating the spectrum of a density operator,
-\doi{10.1103/PhysRevA.64.052311}{\emph{Phys. Rev. A} \textbf{64}, 052311 (2001)},
-\arxiv{quant-ph/0102027}.
+\bibitem[GK06]{GutaKahn2006LANQubits}
+M. Gu{\c t}{\u a} and J. Kahn,
+Local asymptotic normality for qubit states,
+\doi{10.1103/PhysRevA.73.052108}{\emph{Phys. Rev. A} \textbf{73}, 052108 (2006)},
+\arxiv{quant-ph/0512075}.
 
-\bibitem[KG09]{KahnGuta2009}
-J. Kahn and M. Guta,
+\bibitem[KG09]{KahnGuta2009LANFiniteDimensional}
+J. Kahn and M. Gu{\c t}{\u a},
 Local asymptotic normality for finite dimensional quantum systems,
 \doi{10.1007/s00220-009-0787-3}{\emph{Commun. Math. Phys.} \textbf{289}, 597--652 (2009)},
 \arxiv{0804.3876}.
 
-\bibitem[GM06]{GutaMatsumoto2006}
-M. Guta and K. Matsumoto,
+\bibitem[GM06]{GutaMatsumoto2006MixedGaussianCloning}
+M. Gu{\c t}{\u a} and K. Matsumoto,
 Optimal cloning of mixed Gaussian states,
 \doi{10.1103/PhysRevA.74.032305}{\emph{Phys. Rev. A} \textbf{74}, 032305 (2006)},
 \arxiv{quant-ph/0605161}.
+
+\bibitem[BGA11]{BowlesGutaAdesso2011PurificationDilution}
+P. Bowles, M. Gu{\c t}{\u a}, and G. Adesso,
+Asymptotically optimal purification and dilution of mixed qubit and Gaussian states,
+\doi{10.1103/PhysRevA.84.022320}{\emph{Phys. Rev. A} \textbf{84}, 022320 (2011)},
+\arxiv{1102.2341}.
+
+\bibitem[KW01]{KeylWerner2001Spectrum}
+M. Keyl and R. F. Werner,
+Estimating the spectrum of a density operator,
+\doi{10.1103/PhysRevA.64.052311}{\emph{Phys. Rev. A} \textbf{64}, 052311 (2001)},
+\arxiv{quant-ph/0102027}.
 
 \bibitem[PRV67]{ParthasarathyRangaRaoVaradarajan1967}
 K. R. Parthasarathy, R. Ranga Rao, and V. S. Varadarajan,
