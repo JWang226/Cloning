@@ -1,0 +1,266 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=teal,urlcolor=teal]{hyperref}
+
+\newcommand{\F}{\mathcal F}
+\newcommand{\Hc}{\mathcal H}
+\newcommand{\T}{\mathcal T_1}
+\newcommand{\Bop}{\mathcal B}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Tr}{\operatorname{Tr}}
+
+\newtheorem*{lemmaD}{Lemma D.1 (rephrased)}
+
+\title{A Short Guide to Lemma D.1\\
+\large Why a covariant quantum operation has constant success probability}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Lemma D.1 says that a displacement-covariant, trace-nonincreasing quantum
+operation can lose only a fixed fraction of the trace: its success
+probability cannot depend on the input state.  The proof is a short
+operator-theoretic version of Schur's lemma.  This note explains the duality
+behind the proof, the irreducibility of the Weyl representation, and the
+lemma's role in the Gaussian stochastic-order argument.
+\end{abstract}
+
+\section{The content in one sentence}
+
+Let $\Gamma$ be a possibly probabilistic operation on one or finitely many
+oscillator modes.  If displacing the input by $z$ merely displaces the output
+by $\sqrt\gamma z$, then no displacement can change the probability that the
+operation succeeds.  Because the Weyl displacement representation is
+irreducible, this invariance is strong enough to make the success probability
+the same for \emph{every} input state, not only for states on one displacement
+orbit.
+
+Equivalently, there is a single number $c\in[0,1]$ such that
+\[
+  \Tr\Gamma(\rho)=c
+\]
+for every normalized state $\rho$.  When $c>0$, the rescaled map
+$c^{-1}\Gamma$ is a deterministic channel.
+
+\section{Background}
+
+\subsection{Trace class and bounded operators}
+
+For $s<\infty$ oscillator modes, let
+\[
+  \Hc=\F^{\otimes s},
+  \qquad
+  \T(\Hc)=\{\text{trace-class operators on }\Hc\},
+  \qquad
+  \Bop(\Hc)=\{\text{bounded operators on }\Hc\}.
+\]
+The two spaces are in duality:
+\[
+  \T(\Hc)^*=\Bop(\Hc),
+  \qquad
+  \langle X,A\rangle=\Tr(XA).
+\]
+Thus every bounded linear functional $\ell$ on the trace class has a unique
+representing operator $A\in\Bop(\Hc)$:
+\begin{equation}\label{eq:dual-representation}
+  \ell(X)=\Tr(AX).
+\end{equation}
+Moreover, $\ell$ is positive exactly when $A\geq0$.
+
+If $\Gamma:\T(\Hc)\to\T(\Hc)$ is bounded, its Banach adjoint is the map
+\[
+  \Gamma^*:\Bop(\Hc)\longrightarrow\Bop(\Hc),
+  \qquad
+  \Tr[\Gamma(X)A]=\Tr[X\Gamma^*(A)].
+\]
+In particular, the functional recording the output trace is represented by
+the \emph{effect}
+\begin{equation}\label{eq:effect}
+  A=\Gamma^*(I),
+  \qquad
+  \Tr\Gamma(X)=\Tr(AX).
+\end{equation}
+If $\Gamma$ is completely positive and trace nonincreasing, then
+\[
+  0\leq A\leq I.
+\]
+Indeed, positivity gives $A\geq0$, while
+$\Tr[\Gamma(X)]\leq\Tr X$ for every $X\geq0$ gives $A\leq I$ by duality.
+For a normalized input $\rho$, $\Tr(A\rho)$ is precisely the success
+probability of the operation.
+
+\subsection{Weyl displacements}
+
+On one mode,
+\[
+  D(z)=\exp(za^*-\bar z a),\qquad z\in\C.
+\]
+On $s$ modes, $z=(z_1,\ldots,z_s)\in\C^s$ and
+\[
+  D(z)=\bigotimes_{j=1}^sD(z_j).
+\]
+The Weyl relation contains a scalar phase,
+\[
+  D(z)D(w)=e^{\mathrm i\operatorname{Im}(z\cdot\bar w)}D(z+w),
+\]
+but this phase disappears under conjugation.  Consequently,
+$X\mapsto D(z)XD(z)^*$ is an ordinary action of the additive phase-space
+group.
+
+The Weyl representation on the $s$-mode Fock space is irreducible.  Its
+commutant is therefore
+\begin{equation}\label{eq:weyl-commutant}
+  \{A\in\Bop(\Hc):AD(z)=D(z)A\text{ for every }z\in\C^s\}
+  =\C I.
+\end{equation}
+This is the Stone--von Neumann irreducibility statement, followed by Schur's
+lemma.  Informally, commuting with all position and momentum translations
+leaves an operator no nontrivial degree of freedom.
+
+\subsection{Displacement covariance}
+
+The covariance condition in the paper is
+\begin{equation}\label{eq:covariance}
+  \Gamma\bigl(D(z)XD(z)^*\bigr)
+  =D(\sqrt\gamma z)\Gamma(X)D(\sqrt\gamma z)^*.
+\end{equation}
+The factor $\sqrt\gamma$ is the amplitude gain.  Its value will not enter the
+proof: only the fact that the output transformation is unitary, and hence
+trace preserving, is needed.
+
+\section{Statement of Lemma D.1}
+
+\begin{lemmaD}
+Let $\Gamma:\T(\Hc)\to\T(\Hc)$ be completely positive and trace
+nonincreasing, and suppose that \eqref{eq:covariance} holds for every
+$z\in\C^s$.  Then there is a constant $c\in[0,1]$ such that
+\begin{equation}\label{eq:constant-trace}
+  \Tr\Gamma(X)=c\,\Tr X
+\end{equation}
+for every trace-class operator $X$.
+\end{lemmaD}
+
+The statement includes subnormalized and nonpositive $X$.  It is enough to
+prove the identity first for positive $X$; linearity then extends it to all
+trace-class operators.
+
+\section{Proof, line by line}
+
+\subsection*{Step 1: encode the output trace by one operator}
+
+Let $A=\Gamma^*(I)$.  By \eqref{eq:effect},
+\[
+  \Tr\Gamma(X)=\Tr(AX),
+\]
+and trace nonincrease gives $0\leq A\leq I$.  Thus all possible
+input-dependence of the success probability is stored in the single effect
+$A$.
+
+\subsection*{Step 2: covariance makes the effect invariant}
+
+Take the trace of both sides of \eqref{eq:covariance}.  Unitary invariance of
+the trace gives
+\[
+  \Tr\Gamma(D(z)XD(z)^*)=\Tr\Gamma(X).
+\]
+Using the representation by $A$ and cyclicity of the trace,
+\begin{align*}
+  \Tr\bigl[A D(z)XD(z)^*\bigr]
+  &=\Tr(AX),\\
+  \Tr\bigl[(D(z)^*AD(z)-A)X\bigr]&=0.
+\end{align*}
+This holds for every trace-class $X$.  Since trace class separates bounded
+operators,
+\begin{equation}\label{eq:A-invariant}
+  D(z)^*AD(z)=A
+  \qquad(z\in\C^s).
+\end{equation}
+
+\subsection*{Step 3: irreducibility forces a scalar}
+
+Equation \eqref{eq:A-invariant} says that $A$ belongs to the Weyl commutant.
+By \eqref{eq:weyl-commutant}, $A=cI$ for some scalar $c$.  The order bounds
+$0\leq A\leq I$ imply $0\leq c\leq1$.  Substitution into
+\eqref{eq:effect} yields
+\[
+  \Tr\Gamma(X)=\Tr(cIX)=c\,\Tr X,
+\]
+which is \eqref{eq:constant-trace}.
+
+This also covers the endpoint cases.  If $c=1$, $\Gamma$ is trace
+preserving.  If $c=0$, then $\Gamma(X)$ is a positive trace-class operator of
+trace zero for every $X\geq0$, hence $\Gamma=0$.
+
+\section{Intuition and examples}
+
+The effect $A$ is the quantum analogue of a state-dependent acceptance
+function.  Covariance says this function cannot distinguish any two points
+connected by a phase-space displacement.  The representation is
+irreducible, so there are no hidden invariant sectors on which different
+acceptance probabilities could be assigned.  Therefore $A$ must be
+constant.
+
+For example, if $\mathcal A_\gamma$ is the quantum-limited amplifier, then
+\[
+  \Gamma=c\,\mathcal A_\gamma,
+  \qquad 0\leq c\leq1,
+\]
+satisfies the lemma.  It performs the amplifier with an input-independent
+probability $c$.  By contrast, a filter that accepts according to the vacuum
+effect,
+\[
+  \Tr\Gamma(\rho)=\langle0|\rho|0\rangle,
+\]
+is not displacement covariant: displacing the state changes its vacuum
+overlap.
+
+Irreducibility is essential.  If a symmetry representation decomposed into
+two invariant sectors, an effect of the form
+$c_1P_1+c_2P_2$ would commute with the symmetry while assigning different
+success probabilities to the two sectors.  Weyl displacements exclude this
+possibility.
+
+\section{Dependencies and role in the paper}
+
+The proof uses only three standard facts:
+\begin{enumerate}
+  \item trace-class/bounded-operator duality, which gives
+  $A=\Gamma^*(I)$;
+  \item invariance and cyclicity of the trace;
+  \item irreducibility of the finite-mode Weyl representation.
+\end{enumerate}
+It does not use the Gaussian fidelity bound or the stochastic-order lemmas
+that follow it.
+
+Lemma D.1 is used immediately in Lemma D.3.  There one starts with a
+trace-nonincreasing covariant map.  Lemma D.1 writes it as
+\[
+  \Gamma=c\,\Gamma_0,
+\]
+where either $c=0$ and the claim is trivial, or $\Gamma_0=c^{-1}\Gamma$ is a
+trace-preserving displacement-covariant amplifier.  The Gu\c{t}\u{a}--Matsumoto
+least-noise theorem applies to $\Gamma_0$.  Multiplication by $c$ then turns
+their normalized stochastic-order statement into the conic inequality needed
+for a subnormalized output.  Lemma D.1 is therefore the bridge between
+probabilistic limit maps and the usual theory of deterministic Gaussian
+amplifiers.
+
+\section{Minimal prerequisite checklist}
+
+To read Lemma D.1, it is enough to know that a completely positive
+trace-nonincreasing map represents a possibly probabilistic quantum
+operation, that its success effect is $\Gamma^*(I)$, and that the multimode
+Weyl displacement representation is irreducible.  The proof is precisely
+Schur's lemma applied to the success effect.
+
+\end{document}

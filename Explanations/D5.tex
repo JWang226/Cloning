@@ -1,0 +1,357 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=teal,urlcolor=teal]{hyperref}
+
+\newcommand{\F}{\mathcal F}
+\newcommand{\T}{\mathcal T_1}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\B}{\mathrm B}
+\newcommand{\ketbra}[1]{\lvert #1\rangle\!\langle #1\rvert}
+
+\newtheorem*{lemmaD}{Lemma D.5 (rephrased)}
+
+\title{A Short Guide to Lemma D.5\\
+\large The tangent witness for the multimode Gaussian fidelity bound}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Lemma D.5 converts the product stochastic inequality of Lemma D.4 into the
+sharp multimode root-fidelity bound needed for Gaussian amplification.  Its
+key step is a tangent-line inequality for the square root.  The tangent is
+taken at the photon-number law of the quantum-limited amplifier, and its
+slope is exactly a bounded product of decreasing weights, so Lemma D.4
+controls the linear correction.  This note derives that step explicitly and
+separates it from the external least-noise theorem used earlier in the
+dependency chain.
+\end{abstract}
+
+\section{Purpose of the lemma}
+
+At the origin, the desired amplified state is the original product thermal
+state $\Phi_0$, while every physical amplifier of gain $\gamma>1$ must add
+noise.  The quantum-limited amplifier produces a hotter product thermal state
+$\tau^{(\gamma)}$.  Lemma D.5 proves that no displacement- and
+phase-covariant operation, even a trace-decreasing one, can have larger root
+fidelity with $\Phi_0$ than this quantum-limited output.
+
+The proof has a useful convex-analytic form.  Root fidelity with a fixed
+diagonal target is a concave function of the output probabilities.  Its
+tangent plane at the quantum-limited distribution is a linear
+photon-number test.  Earlier stochastic-order lemmas show that every allowed
+output lies on the correct side of that test.
+
+\section{Background}
+
+\subsection{Root fidelity for diagonal positive operators}
+
+For positive trace-class operators $R,S$, possibly subnormalized, the paper
+uses root fidelity
+\[
+  \B(R,S)=\Tr\sqrt{R^{1/2}SR^{1/2}}.
+\]
+If $R$ and $S$ are diagonal in the same basis, with masses
+$P=(P_{\mathbf k})$ and $t=(t_{\mathbf k})$, then
+\begin{equation}\label{eq:classical-B}
+  \B(R,S)=\B(P,t):=
+  \sum_{\mathbf k}\sqrt{P_{\mathbf k}t_{\mathbf k}}.
+\end{equation}
+This is the classical Hellinger affinity.  The formula remains valid when
+$\sum_{\mathbf k}P_{\mathbf k}<1$.
+
+For tensor products, root fidelity is multiplicative:
+\begin{equation}\label{eq:multiplicative}
+  \B\!\left(\bigotimes_\ell R_\ell,
+             \bigotimes_\ell S_\ell\right)
+  =\prod_\ell\B(R_\ell,S_\ell).
+\end{equation}
+
+\subsection{Thermal laws and the one-mode factor}
+
+For $0<q<1$,
+\[
+  \tau_q=(1-q)\sum_{k\geq0}q^k\ketbra{k}.
+\]
+At intensity gain $\gamma>1$, define
+\begin{equation}\label{eq:qgamma}
+  q^{(\gamma)}=1-\frac{1-q}{\gamma}.
+\end{equation}
+The quantum-limited amplifier sends $\tau_q$ to
+$\tau_{q^{(\gamma)}}$.  Summing a geometric series gives
+\begin{align}
+  b_\gamma(q)
+  &:=\B(\tau_{q^{(\gamma)}},\tau_q)\notag\\
+  &=\frac{\sqrt{(1-q)(1-q^{(\gamma)})}}
+          {1-\sqrt{q q^{(\gamma)}}}
+   =\frac{\sqrt\gamma+\sqrt{q(\gamma-1+q)}}{\gamma+q}.
+  \label{eq:bgamma}
+\end{align}
+The last expression follows by substituting \eqref{eq:qgamma} and
+rationalizing the denominator.
+
+For $r$ modes, set
+\begin{equation}\label{eq:product-states}
+  \Phi_0=\bigotimes_{\ell=1}^r\tau_{q_\ell},
+  \qquad
+  \tau^{(\gamma)}
+  =\bigotimes_{\ell=1}^r\tau_{q_\ell^{(\gamma)}}.
+\end{equation}
+Their joint number distributions are
+\begin{align}
+  t_{\mathbf k}
+  &=\prod_{\ell=1}^r(1-q_\ell)q_\ell^{k_\ell},
+  \label{eq:t}\\
+  t_{\mathbf k}^{(\gamma)}
+  &=\prod_{\ell=1}^r
+      (1-q_\ell^{(\gamma)})(q_\ell^{(\gamma)})^{k_\ell}.
+  \label{eq:tgamma}
+\end{align}
+
+\subsection{Why the output is diagonal}
+
+Suppose $\Gamma$ is covariant under independent phase rotations in every
+mode.  Since $\Phi_0$ is invariant under those rotations, so is
+$\Gamma(\Phi_0)$.  The joint eigenspaces of the independent number operators
+$(\widehat N_1,\ldots,\widehat N_r)$ are one-dimensional.  Therefore
+\begin{equation}\label{eq:P-output}
+  \Gamma(\Phi_0)
+  =\sum_{\mathbf k}P_{\mathbf k}\ketbra{\mathbf k},
+  \qquad
+  c:=\sum_{\mathbf k}P_{\mathbf k}\leq1.
+\end{equation}
+Independent phase covariance is stronger than covariance under only the
+total phase rotation; the latter has degenerate eigenspaces and would not by
+itself force diagonality in the joint number basis.
+
+\section{The input from Lemma D.4}
+
+Lemma D.4 says that for every bounded product weight
+\[
+  W(\widehat{\mathbf N})
+  =\prod_{\ell=1}^r w_\ell(\widehat N_\ell),
+\]
+with each $w_\ell$ nonnegative and decreasing,
+\begin{equation}\label{eq:D4}
+  \sum_{\mathbf k}P_{\mathbf k}w_{\mathbf k}
+  \leq
+  c\sum_{\mathbf k}t_{\mathbf k}^{(\gamma)}w_{\mathbf k},
+  \qquad
+  w_{\mathbf k}=\prod_\ell w_\ell(k_\ell).
+\end{equation}
+This is a conic inequality because it includes the output mass $c$.
+
+Lemma D.4 ultimately depends on the Gu\c{t}\u{a}--Matsumoto least-noise
+stochastic-order theorem through Lemma D.3.  That external theorem is not
+invoked anew in D.5.  The choice of weight, tangent calculation, and fidelity
+argument below are all proved within the manuscript.
+
+\section{Statement of Lemma D.5}
+
+\begin{lemmaD}
+Under the assumptions and notation of Lemma D.4,
+\begin{equation}\label{eq:D5}
+  \B(\Gamma(\Phi_0),\Phi_0)
+  \leq\prod_{\ell=1}^r b_\gamma(q_\ell).
+\end{equation}
+Equality is attained by the product quantum-limited amplifier.
+\end{lemmaD}
+
+\section{The tangent inequality}
+
+The scalar function $x\mapsto\sqrt{x}$ is concave, so its tangent line at
+$y>0$ lies above its graph.  In the scaled form needed here, for
+$x\geq0$ and $s,y>0$,
+\begin{equation}\label{eq:tangent-scalar}
+  \sqrt{xs}
+  \leq
+  \sqrt{ys}+\frac12\sqrt{\frac{s}{y}}(x-y).
+\end{equation}
+There is also a direct identity for the gap:
+\begin{equation}\label{eq:tangent-gap}
+  \sqrt{ys}+\frac12\sqrt{\frac{s}{y}}(x-y)-\sqrt{xs}
+  =\frac12\sqrt{\frac{s}{y}}(\sqrt{x}-\sqrt{y})^2\geq0.
+\end{equation}
+
+Apply \eqref{eq:tangent-scalar} separately at every $\mathbf k$ with
+\[
+  x=P_{\mathbf k},
+  \qquad y=t_{\mathbf k}^{(\gamma)},
+  \qquad s=t_{\mathbf k}.
+\]
+All thermal masses are strictly positive.  Define the tangent slope, apart
+from the common factor $1/2$, by
+\begin{equation}\label{eq:weight}
+  w_{\mathbf k}
+  :=\sqrt{\frac{t_{\mathbf k}}{t_{\mathbf k}^{(\gamma)}}}.
+\end{equation}
+Summing the pointwise tangent inequalities gives
+\begin{equation}\label{eq:tangent-sum}
+  \B(P,t)
+  \leq
+  \B(t^{(\gamma)},t)
+  +\frac12\sum_{\mathbf k}w_{\mathbf k}
+      (P_{\mathbf k}-t_{\mathbf k}^{(\gamma)}).
+\end{equation}
+This is the ``tangent inequality for the square root'' in the paper.  There
+is no hidden operator inequality: it is the elementary scalar inequality
+\eqref{eq:tangent-scalar}, applied after phase covariance has made all states
+diagonal.
+
+The infinite sums are legitimate.  The weights will be bounded, so the two
+weighted sums in the correction term are absolutely convergent; the
+fidelity sums are finite by Cauchy--Schwarz.
+
+\section{Why the tangent slope is an admissible stochastic weight}
+
+Using \eqref{eq:t}--\eqref{eq:tgamma}, the weight factorizes:
+\begin{align}
+  w_{\mathbf k}
+  &=\prod_{\ell=1}^r w_\ell(k_\ell),
+  \label{eq:weight-product}\\
+  w_\ell(k)
+  &=\sqrt{\frac{1-q_\ell}{1-q_\ell^{(\gamma)}}}
+    \left(\frac{q_\ell}{q_\ell^{(\gamma)}}\right)^{k/2}.
+  \label{eq:one-weight}
+\end{align}
+Moreover,
+\[
+  q_\ell^{(\gamma)}-q_\ell
+  =\frac{(\gamma-1)(1-q_\ell)}{\gamma}>0.
+\]
+Hence $0<q_\ell/q_\ell^{(\gamma)}<1$, and every $w_\ell(k)$ is bounded,
+positive, and decreasing.  Thus \eqref{eq:weight-product} belongs exactly to
+the product class controlled by Lemma D.4.
+
+This matching is the central design of the proof: the derivative of
+fidelity at the quantum-limited output happens to be a decreasing product
+observable.
+
+\section{Proof walkthrough}
+
+\subsection*{Step 1: apply Lemma D.4 to the tangent slope}
+
+For the weight \eqref{eq:weight}, equation \eqref{eq:D4} gives
+\begin{equation}\label{eq:weighted-order}
+  \sum_{\mathbf k}w_{\mathbf k}P_{\mathbf k}
+  \leq
+  c\sum_{\mathbf k}w_{\mathbf k}t_{\mathbf k}^{(\gamma)}.
+\end{equation}
+Because $c\leq1$ and every summand is nonnegative,
+\begin{equation}\label{eq:correction-negative}
+  \sum_{\mathbf k}w_{\mathbf k}
+      (P_{\mathbf k}-t_{\mathbf k}^{(\gamma)})
+  \leq(c-1)
+      \sum_{\mathbf k}w_{\mathbf k}t_{\mathbf k}^{(\gamma)}
+  \leq0.
+\end{equation}
+This also explains why allowing trace-decreasing maps causes no problem:
+lost mass only makes the tangent correction smaller.
+
+\subsection*{Step 2: return to the fidelity}
+
+Insert \eqref{eq:correction-negative} into \eqref{eq:tangent-sum}:
+\begin{equation}\label{eq:B-reference}
+  \B(P,t)\leq\B(t^{(\gamma)},t).
+\end{equation}
+By \eqref{eq:classical-B}, the left side is
+$\B(\Gamma(\Phi_0),\Phi_0)$.  By multiplicativity and
+\eqref{eq:bgamma},
+\begin{equation}\label{eq:factorize-B}
+  \B(t^{(\gamma)},t)
+  =\prod_{\ell=1}^r
+    \B(\tau_{q_\ell^{(\gamma)}},\tau_{q_\ell})
+  =\prod_{\ell=1}^r b_\gamma(q_\ell).
+\end{equation}
+Equations \eqref{eq:B-reference} and \eqref{eq:factorize-B} prove
+\eqref{eq:D5}.
+
+\subsection*{Step 3: check sharpness}
+
+The product quantum-limited amplifier is trace preserving and has the
+required displacement and phase covariance.  It maps
+\[
+  \Phi_0\longmapsto\tau^{(\gamma)},
+\]
+so its fidelity is exactly the right side of \eqref{eq:factorize-B}.
+Therefore the bound is attained.
+
+\section{A one-mode numerical illustration}
+
+Take $q=1/2$ and $\gamma=2$.  Then $q^{(\gamma)}=3/4$, and
+\[
+  b_2(1/2)
+  =\frac{\sqrt{(1/2)(1/4)}}{1-\sqrt{3/8}}
+  \approx0.912.
+\]
+The tangent weight is
+\[
+  w_k=\sqrt2\left(\sqrt{\frac23}\right)^k,
+\]
+which decreases with photon number.  The stochastic result says that no
+admissible output can have a larger expectation of this low-photon-number
+witness than the quantum-limited distribution, after accounting for its
+trace.  The tangent inequality then converts precisely that one linear
+comparison into the nonlinear fidelity bound.
+
+\section{Imported facts versus the D.5 argument}
+
+\begin{center}
+\begin{tabular}{p{0.49\textwidth}p{0.37\textwidth}}
+\hline
+Fact & Status\\
+\hline
+Vacuum-idler amplifier is least noisy in photon-number stochastic order &
+Imported from Gu\c{t}\u{a}--Matsumoto and used through Lemma D.3\\
+One-mode conic inequality and its tensorization & Proved in Lemmas D.3 and
+D.4\\
+Scalar tangent inequality \eqref{eq:tangent-scalar} & Proved directly; its
+nonnegative gap is \eqref{eq:tangent-gap}\\
+Factorization and monotonicity of the tangent weight & Checked directly from
+the thermal probabilities\\
+Sharp fidelity bound and equality case & Proved in Lemma D.5\\
+\hline
+\end{tabular}
+\end{center}
+
+\section{Dependencies and role in the paper}
+
+The full logical chain is
+\[
+  \text{Lemma D.1}
+  +\text{Gu\c{t}\u{a}--Matsumoto}
+  \longrightarrow\text{Lemma D.3}
+  \longrightarrow\text{Lemma D.4}
+  \longrightarrow\text{Lemma D.5}.
+\]
+For Theorem 3.4, the F\o lner reduction first replaces the flat-prior problem
+by an exactly displacement-covariant map evaluated at the origin.  Phase
+twirling supplies the phase covariance required here and cannot decrease the
+origin fidelity.  Lemma D.5 then gives the upper bound
+\[
+  \prod_{i<j}b_\gamma(q_{ij})=\mathrm B_{\mathrm{orb}}(\gamma,p).
+\]
+The product quantum-limited amplifier gives the matching lower bound.
+
+The hybrid converse later uses Lemma D.4 directly rather than D.5: its
+branchwise stochastic witness is combined with a separate classical Gaussian
+witness.  Thus D.5 is the final step for the purely orbital theorem, while
+D.4 is the reusable stochastic component.
+
+The minimal prerequisites are root fidelity for commuting states,
+multiplicativity, thermal distributions, phase covariance, and Lemma D.4.
+The only calculus idea is the tangent bound for a concave square root;
+identity \eqref{eq:tangent-gap} verifies it algebraically.  The specialized
+least-noise theorem enters earlier through Lemma D.3, not in the tangent
+argument itself.
+
+\end{document}

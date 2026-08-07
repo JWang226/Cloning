@@ -1,0 +1,295 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=teal,urlcolor=teal]{hyperref}
+
+\newcommand{\F}{\mathcal F}
+\newcommand{\T}{\mathcal T_1}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\ketbra}[1]{\lvert #1\rangle\!\langle #1\rvert}
+\newcommand{\R}{\mathbb R}
+
+\newtheorem*{lemmaD}{Lemma D.3 (rephrased)}
+
+\title{A Short Guide to Lemma D.3\\
+\large From least-noise Gaussian amplification to a conic stochastic bound}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Lemma D.3 turns a least-noise theorem for trace-preserving phase-insensitive
+displacement-covariant amplifiers into an inequality valid for
+trace-nonincreasing completely positive maps.  The main external input is a
+stochastic-order result of Gu\c{t}\u{a} and Matsumoto.  The normalization of a
+covariant subchannel, and the conversion of stochastic order into the
+displayed weighted inequality, are proved in the manuscript.  This note
+separates those ingredients and explains each step.
+\end{abstract}
+
+\section{What the lemma says informally}
+
+Among phase-insensitive amplifiers with a prescribed gain, the
+quantum-limited amplifier adds the least photon-number noise.  Therefore, if
+one tests the output with a function that rewards low photon numbers, no
+other such amplifier can score better.
+
+Lemma D.3 also allows a probabilistic operation, whose output can have trace
+less than one.  Displacement covariance forces its success probability to be
+a state-independent constant $c$.  After division by $c$, the operation is
+an ordinary channel to which the least-noise theorem applies; multiplication
+by $c$ then gives the desired conic, or subnormalized, inequality.
+
+\section{Background}
+
+\subsection{One bosonic mode and thermal states}
+
+Let $\F$ be the one-mode Fock space, with number basis
+$\{\lvert k\rangle:k\geq0\}$ and number operator
+\[
+  \widehat N=\sum_{k\geq0}k\ketbra{k}.
+\]
+For $0<q<1$, the thermal state is
+\begin{equation}\label{eq:thermal}
+  \tau_q=(1-q)\sum_{k\geq0}q^k\ketbra{k}.
+\end{equation}
+Its photon number has the geometric law
+$t_k=(1-q)q^k$, and its mean is $q/(1-q)$.
+
+The Weyl displacement operators are denoted by $D(z)$, $z\in\mathbb C$.
+A map $\Gamma:\T(\F)\to\T(\F)$ has amplitude gain $\sqrt\gamma$ if
+\begin{equation}\label{eq:disp-cov}
+  \Gamma\!\left(D(z)XD(z)^*\right)
+  =D(\sqrt\gamma\,z)\Gamma(X)D(\sqrt\gamma\,z)^*.
+\end{equation}
+It is phase covariant if the analogous identity holds for the rotations
+$e^{\mathrm i\theta\widehat N}$.  ``Phase insensitive'' is the customary
+physical term for this phase symmetry.
+
+The quantum-limited amplifier has a vacuum environment.  At intensity gain
+$\gamma>1$, it maps
+\begin{equation}\label{eq:thermal-output}
+  \tau_q\longmapsto\tau_{q^{(\gamma)}},
+  \qquad
+  q^{(\gamma)}=1-\frac{1-q}{\gamma}.
+\end{equation}
+Indeed, its mean output occupation is
+$\gamma q/(1-q)+(\gamma-1)$, which equals
+$q^{(\gamma)}/(1-q^{(\gamma)})$.  Notice that
+\begin{equation}\label{eq:q-order}
+  q^{(\gamma)}-q
+  =\frac{(\gamma-1)(1-q)}{\gamma}>0;
+\end{equation}
+amplification makes the thermal distribution broader.
+
+\subsection{First-order stochastic order}
+
+For probability laws $P,Q$ on $\mathbb Z_{\geq0}$, say that $P$ is
+stochastically larger than $Q$ if
+\[
+  \sum_k\phi(k)P_k\geq\sum_k\phi(k)Q_k
+\]
+for every bounded increasing function $\phi$.  Equivalently,
+\begin{equation}\label{eq:decreasing-test}
+  \sum_k w(k)P_k\leq\sum_k w(k)Q_k
+\end{equation}
+for every bounded nonnegative decreasing function $w$.
+Thus ``larger'' means that probability is shifted toward higher photon
+numbers.  Useful decreasing tests include
+\[
+  w(k)=\boldsymbol 1_{\{k\leq K\}},
+  \qquad w(k)=e^{-sk}\quad(s>0).
+\]
+
+This is an order on photon-number distributions, not an operator order
+between density matrices.  Phase covariance matters because the invariant
+output on the phase-invariant input $\tau_q$ is diagonal in the number basis,
+so it has an unambiguous photon-number law.
+
+\subsection{Why a covariant subchannel has constant success probability}
+
+Suppose $\Gamma$ is completely positive and trace nonincreasing.  There is
+an effect $0\leq A\leq I$ such that
+\begin{equation}\label{eq:effect}
+  \Tr\Gamma(X)=\Tr(AX).
+\end{equation}
+Equation \eqref{eq:disp-cov} and cyclicity of trace imply
+$D(z)^*AD(z)=A$ for every $z$.  The Weyl representation on $\F$ is
+irreducible, so its commutant consists only of scalars.  Hence
+\begin{equation}\label{eq:constant-trace}
+  A=cI,
+  \qquad
+  \Tr\Gamma(X)=c\Tr X,
+  \qquad 0\leq c\leq1.
+\end{equation}
+This is Lemma D.1 of the manuscript.  In operational language, exact
+displacement covariance prevents the probability of success from depending
+on the input state.
+
+\section{The external least-noise input}
+
+The nontrivial fact imported from Gu\c{t}\u{a} and Matsumoto is the
+following:
+
+\medskip
+\noindent
+\emph{For a trace-preserving, phase-insensitive,
+displacement-covariant amplifier of fixed gain, the output photon-number law
+on a thermal input $\tau_q$ stochastically dominates the output law of the
+vacuum-idler amplifier, namely the geometric law of
+$\tau_{q^{(\gamma)}}$.}
+\medskip
+
+Their characterization represents a covariant amplifier by an idler state;
+phase covariance makes the relevant idler number diagonal.  Their
+least-noise lemma then identifies the vacuum idler as the stochastic
+minimum.  The manuscript invokes Definition 2.2, Lemma 2.3, and the
+arbitrary-gain discussion in Section III of their paper.  This classification
+and least-noise theorem are \emph{not} reproved in Appendix D.
+
+The imported statement is stronger than a comparison of mean photon number:
+it controls the expectation of every bounded increasing, or equivalently
+every bounded decreasing, test function.  It is exactly this stronger form
+that is needed in Lemmas D.3--D.5.
+
+\section{Statement of Lemma D.3}
+
+\begin{lemmaD}
+Let $\Gamma$ be a completely positive trace-nonincreasing one-mode map that
+is displacement covariant with gain $\sqrt\gamma$ and phase covariant.  Then,
+for every bounded nonnegative decreasing
+$w:\mathbb Z_{\geq0}\to\R_+$,
+\begin{equation}\label{eq:D3}
+  \Tr\!\left[\Gamma(\tau_q)w(\widehat N)\right]
+  \leq
+  \Tr\Gamma(\tau_q)\,
+  \Tr\!\left[\tau_{q^{(\gamma)}}w(\widehat N)\right].
+\end{equation}
+\end{lemmaD}
+
+The right side is the mass of the possibly subnormalized output multiplied
+by the decreasing-test expectation under the least-noise thermal output.
+
+\section{Proof walkthrough}
+
+\subsection*{Step 1: isolate the trace factor}
+
+By \eqref{eq:constant-trace}, there is $c\in[0,1]$ such that
+$\Tr\Gamma(X)=c\Tr X$.  In particular,
+\begin{equation}\label{eq:mass-c}
+  \Tr\Gamma(\tau_q)=c.
+\end{equation}
+
+If $c=0$, then $\Gamma$ is the zero map.  To see this, positivity gives
+$\Gamma(X)\geq0$ and $\Tr\Gamma(X)=0$ for every $X\geq0$, hence
+$\Gamma(X)=0$ on the positive cone and therefore everywhere by linearity.
+Both sides of \eqref{eq:D3} are then zero.
+
+\subsection*{Step 2: normalize the subchannel}
+
+Assume $c>0$ and define
+\[
+  \Lambda=c^{-1}\Gamma.
+\]
+This map remains completely positive and retains both covariance properties.
+Moreover,
+\[
+  \Tr\Lambda(X)=\Tr X,
+\]
+so $\Lambda$ is a trace-preserving, phase-insensitive,
+displacement-covariant amplifier of gain $\sqrt\gamma$.
+
+\subsection*{Step 3: apply the imported stochastic-order theorem}
+
+Let $P$ be the photon-number law of $\Lambda(\tau_q)$ and let
+\[
+  Q_k=(1-q^{(\gamma)})(q^{(\gamma)})^k
+\]
+be the law of $\tau_{q^{(\gamma)}}$.  The Gu\c{t}\u{a}--Matsumoto result
+says that $P$ is stochastically larger than $Q$.  Applying the equivalent
+decreasing-test formulation \eqref{eq:decreasing-test} gives
+\begin{equation}\label{eq:normalized-bound}
+  \Tr\!\left[\Lambda(\tau_q)w(\widehat N)\right]
+  \leq
+  \Tr\!\left[\tau_{q^{(\gamma)}}w(\widehat N)\right].
+\end{equation}
+
+\subsection*{Step 4: restore the trace factor}
+
+Multiplying \eqref{eq:normalized-bound} by $c$ and using
+$\Gamma=c\Lambda$ and \eqref{eq:mass-c} yields precisely \eqref{eq:D3}.
+No additional Gaussian calculation is needed.
+
+\section{How to read the inequality}
+
+Taking $w=1$ gives equality $c=c$.  Taking
+$w(k)=\boldsymbol 1_{\{k\leq K\}}$ gives
+\[
+  \Pr_{\Gamma,\mathrm{sub}}\{N\leq K\}
+  \leq c\,\Pr_{\tau_{q^{(\gamma)}}}\{N\leq K\}.
+\]
+After dividing by $c$ when $c>0$, the left side becomes the low-energy tail
+probability of $\Lambda(\tau_q)$.  The inequality says that even a
+probabilistic covariant operation cannot conditionally produce a quieter
+amplified output than the vacuum-idler amplifier.
+
+The specific weight later needed for fidelity is
+\[
+  w_k=\sqrt{\frac{(1-q)q^k}
+                       {(1-q^{(\gamma)})(q^{(\gamma)})^k}}
+  =\sqrt{\frac{1-q}{1-q^{(\gamma)}}}
+   \left(\frac{q}{q^{(\gamma)}}\right)^{k/2}.
+\]
+By \eqref{eq:q-order}, this is bounded, nonnegative, and decreasing, so it
+falls exactly within Lemma D.3.
+
+\section{What is imported and what is proved}
+
+Lemma D.1 internally proves $\Tr\Gamma(X)=c\Tr X$ from Weyl
+irreducibility.  Lemma D.3 proves the normalization by $c$ and converts the
+decreasing-test definition into \eqref{eq:D3}.  The sole imported input is
+Gu\c{t}\u{a}--Matsumoto's stochastic minimality of the vacuum-idler output.
+
+\section{Dependencies and role in the paper}
+
+The logical chain is
+\[
+  \text{Lemma D.1}
+  +\text{Gu\c{t}\u{a}--Matsumoto least-noise theorem}
+  \longrightarrow \text{Lemma D.3}.
+\]
+Lemma D.3 is then applied one mode at a time in Lemma D.4.  Lemma D.4
+controls the tangent weight used in Lemma D.5, which gives the multimode
+fidelity upper bound in Theorem 3.4.  The same tensorized inequality is also
+applied branchwise to the residual subinstrument in the hybrid Gaussian
+product bound.
+
+The hypothesis of phase covariance is normally arranged by phase twirling.
+At the origin, both the thermal input and thermal target are phase invariant,
+and concavity of root fidelity ensures that this twirling does not decrease
+the payoff.
+
+\section{Minimal prerequisite checklist}
+
+To follow the internal proof, it is enough to know completely positive maps,
+Weyl covariance, irreducibility and commutants, and first-order stochastic
+dominance.  The specialized ingredient is the Gu\c{t}\u{a}--Matsumoto
+least-noise theorem, which Appendix D uses as a black box.
+
+\medskip
+\noindent
+\textbf{Primary source.}
+M. Gu\c{t}\u{a} and K. Matsumoto,
+``Optimal cloning of mixed Gaussian states,''
+\emph{Physical Review A} \textbf{74}, 032305 (2006),
+\href{https://arxiv.org/abs/quant-ph/0605161}{arXiv:quant-ph/0605161}.
+
+\end{document}

@@ -1,0 +1,373 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=teal,urlcolor=teal]{hyperref}
+
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Hc}{\mathsf H}
+\newcommand{\F}{\mathcal F_{\mathrm{orb}}}
+\newcommand{\T}{\mathcal T_1}
+\newcommand{\K}{\mathcal K}
+\newcommand{\A}{\mathfrak A}
+\newcommand{\M}{\mathfrak M}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\dd}{\,\mathrm d}
+\newcommand{\sh}{\operatorname{sh}}
+\newcommand{\N}{\mathsf N}
+
+\newtheorem*{lemmaC}{Lemma C.3 (rephrased)}
+
+\title{A Short Guide to Lemma C.3\\
+\large The residual subinstrument of a covariant hybrid map}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Lemma C.3 describes every exactly covariant hybrid map as a convolution of
+the translated input with one residual quantum subinstrument.  Informally,
+the deterministic part of the classical output is
+$\sqrt\gamma$ times the classical input, while a residual variable records
+all additional classical error and its correlated quantum operation.  This
+note explains measure-valued instruments, the approximate-identity
+construction of the residual object, the proof of the convolution formula,
+and the specialization to the Gaussian input used in Proposition C.4.
+\end{abstract}
+
+\section{The structural question}
+
+Let
+\[
+  \mathfrak T=L^1(\Hc;\T(\F)),
+  \qquad
+  \A=C_0(\Hc;\K(\F)),
+  \qquad
+  \M=\A^*.
+\]
+An element $R\in\mathfrak T$ is a classical--quantum input: at the
+classical value $x\in\Hc$, it carries the trace-class operator $R(x)$.
+A positive element of $\M$ is an operator-valued Radon measure on the output
+classical space.
+
+Suppose
+\[
+  \Gamma:\mathfrak T\longrightarrow\M
+\]
+is completely positive, trace nonincreasing, and covariant under both
+classical translations and oscillator displacements.  Classical covariance
+has gain $\sqrt\gamma$: translating the input by $x$ translates the output
+by $\sqrt\gamma x$.  The question is whether the part of the output that
+remains after removing this forced translation can be described by one
+object independent of $x$.  Lemma C.3 answers yes.
+
+\section{Background: quantum instruments and subinstruments}
+
+A quantum instrument assigns to every Borel event $E\subset\Hc$ a completely
+positive map $\mathcal I_E$ on trace-class operators.  For an input state
+$X$, the number
+\[
+  \Tr\mathcal I_E(X)
+\]
+is the probability that the classical outcome lies in $E$, and the positive
+operator $\mathcal I_E(X)$ is the corresponding unnormalized posterior
+quantum state.  Countable additivity in $E$ is required in trace norm.
+
+A \emph{subinstrument} permits total probability below one:
+\[
+  \Tr\mathcal I_{\Hc}(X)\leq\Tr X
+  \qquad(X\geq0).
+\]
+This is appropriate here because the weak-* limiting map obtained in Lemma
+C.2 may lose mass at infinity.  It is convenient to package all branches as
+a measure-valued completely positive map
+\[
+  \mathcal I:\T(\F)\longrightarrow
+  C_0(\Hc;\K(\F))^*.
+\]
+The value $\mathcal I(X)(E)$ is exactly $\mathcal I_E(X)$.
+
+\section{The expected convolution formula}
+
+Imagine first that the input is concentrated at one classical point $x$ and
+has quantum part $X$.  Translation covariance says that its output should be
+a translate by $\sqrt\gamma x$ of the output obtained at $x=0$.  If
+$\mathcal I(X)$ denotes this origin output, then
+\[
+  \Gamma(\delta_x X)(E)
+  =\mathcal I(X)(E-\sqrt\gamma x).
+\]
+An $L^1$ input is a continuous mixture of such point inputs, so one expects
+\begin{equation}\label{eq:convolution-intuition}
+  [\Gamma(R)](E)
+  =\int_{\Hc}
+  [\mathcal I(R(x))](E-\sqrt\gamma x)\dd x.
+\end{equation}
+
+There is one technical obstruction: $\delta_xX$ is not an element of
+$L^1(\Hc;\T(\F))$.  Therefore $\Gamma(\delta_0X)$ is not directly defined.
+The proof replaces the point mass by shrinking $L^1$ bumps and extracts a
+weak-* limit.
+
+\section{Statement of Lemma C.3}
+
+\begin{lemmaC}
+Let $\Gamma:\mathfrak T\to\M$ be completely positive, trace
+nonincreasing, and exactly covariant under the hybrid translation--Weyl
+group.  There exists a completely positive, trace-nonincreasing
+measure-valued map
+\[
+  \mathcal I:\T(\F)\longrightarrow C_0(\Hc;\K(\F))^*
+\]
+whose Borel branches $\mathcal I_E$ form a subinstrument and such that
+\begin{equation}\label{eq:convolution}
+  [\Gamma(R)](E)
+  =\int_{\Hc}
+  [\mathcal I(R(x))](E-\sqrt\gamma x)\dd x.
+\end{equation}
+Each branch is displacement covariant with amplitude gain $\sqrt\gamma$.
+If $\Gamma$ is covariant under independent oscillator phase rotations, then
+every branch is phase covariant as well.
+
+For the input
+$R(x)=\varphi_{0,\Sigma_p}(x)\Phi_0$, if
+$\Xi=\Gamma(R)$, then for bounded measurable $a$ and bounded oscillator
+observable $M$,
+\begin{equation}\label{eq:test}
+  \int a(y)\Tr[M\,\Xi(\dd y)]
+  =\int_{\Hc}
+    \left(\int_{\Hc}a(y)
+      \varphi_{0,\gamma\Sigma_p}(y-r)\dd y\right)
+    \Tr[M\,\mathcal I(\Phi_0)(\dd r)].
+\end{equation}
+\end{lemmaC}
+
+Equation \eqref{eq:convolution} is an equality of trace-class-valued Radon
+measures.  Equation \eqref{eq:test} is its weak form against a classical test
+function and a quantum observable.
+
+\section{Proof, step by step}
+
+\subsection{Step 1: approximate an input at the origin}
+
+Choose nonnegative functions $u_j\in C_c(\Hc)$ such that
+\[
+  \int_{\Hc}u_j(x)\dd x=1,
+  \qquad
+  \operatorname{supp}u_j\downarrow\{0\}.
+\]
+For $X\in\T(\F)$, define
+\begin{equation}\label{eq:Ij}
+  \mathcal I_j(X)=\Gamma(u_jX),
+  \qquad (u_jX)(x)=u_j(x)X.
+\end{equation}
+The field $u_jX$ is a normalized bump around the origin with quantum state
+$X$.  Each $\mathcal I_j$ is completely positive.  For $X\geq0$,
+\[
+  \Tr\mathcal I_j(X)
+  \leq\|u_jX\|_1
+  =\Tr X,
+\]
+so it is trace nonincreasing.
+
+The sequence need not converge in norm.  Pass to adjoints
+\[
+  \mathcal I_j^*:
+  C_0(\Hc;\K(\F))\longrightarrow\mathcal B(\F).
+\]
+They are completely positive contractions.  Separability and a diagonal
+weak-* extraction on a countable dense operator system give a pointwise
+weak-* limit $\mathcal I^*$.  Because every matrix positive cone is weak-*
+closed, $\mathcal I^*$ is completely positive.  Define $\mathcal I$ by
+duality.
+
+If $(e_\ell)$ is a contractive approximate identity of the test algebra,
+then for $X\geq0$,
+\[
+  \Tr\mathcal I(X)
+  =\sup_\ell\langle X,\mathcal I^*(e_\ell)\rangle
+  \leq\Tr X.
+\]
+Thus the limit is still trace nonincreasing.  This is the residual
+measure-valued map.
+
+\subsection{Step 2: prove the convolution identity on simple tensors}
+
+First take
+\[
+  R(x)=f(x)X,
+  \qquad f\in L^1(\Hc),\quad X\in\T(\F).
+\]
+Let
+\[
+  (\sh_xu_j)(v)=u_j(v-x).
+\]
+Since
+\[
+  (f*u_j)(v)X
+  =\int_{\Hc}f(x)(\sh_xu_j)(v)X\dd x,
+\]
+bounded linearity, Fubini's theorem, and classical translation covariance
+give
+\begin{equation}\label{eq:before-limit}
+  \Gamma((f*u_j)X)
+  =\int_{\Hc}f(x)\,
+    \sh_{\sqrt\gamma x}\mathcal I_j(X)\dd x,
+\end{equation}
+where
+\[
+  (\sh_s\Xi)(E)=\Xi(E-s).
+\]
+
+The left side converges in measure norm because $f*u_j\to f$ in $L^1$ and
+$\Gamma$ is bounded.  To pass to the limit on the right, pair with any
+$A\in C_0(\Hc;\K(\F))$.  For each $x$, weak-* convergence of
+$\mathcal I_j(X)$ gives convergence of the pairing.  The integrand is
+bounded in absolute value by
+\[
+  |f(x)|\,\|X\|_1\,\|A\|,
+\]
+which is integrable.  Dominated convergence therefore changes
+$\mathcal I_j$ to $\mathcal I$ in \eqref{eq:before-limit}.  Uniqueness of the
+representing Radon measure gives
+\[
+  [\Gamma(fX)](E)
+  =\int f(x)[\mathcal I(X)](E-\sqrt\gamma x)\dd x.
+\]
+
+Finite sums of simple tensors are dense in
+$L^1(\Hc;\T(\F))$.  Both sides are bounded by $\|R\|_1$, so the formula
+extends by continuity to every $R$, proving \eqref{eq:convolution}.
+
+\subsection{Step 3: verify that the Borel branches form a subinstrument}
+
+Complete positivity of the measure-valued map means that, whenever
+$[X_{kl}]\geq0$, the matrix
+\[
+  [\mathcal I(X_{kl})]
+\]
+is a positive matrix-valued measure.  Approximate the indicator of a Borel
+set $E$ by nonnegative continuous functions.  Evaluation on $E$ preserves
+matrix positivity, hence
+\[
+  [\mathcal I_E(X_{kl})]\geq0.
+\]
+Therefore every branch $\mathcal I_E$ is completely positive.
+
+For $X\geq0$, positivity of the measure implies
+\[
+  0\leq\mathcal I_E(X)\leq\mathcal I_{\Hc}(X),
+\]
+and consequently
+\[
+  \Tr\mathcal I_E(X)\leq\Tr X.
+\]
+Thus every branch is trace nonincreasing and bounded.  For disjoint events,
+countable additivity holds in trace norm on positive inputs because the
+increments are positive and their traces add.  Decomposing a general
+trace-class operator into linear combinations of positive ones extends the
+claim to all inputs.
+
+\subsection{Step 4: pass quantum covariance to every branch}
+
+Let $D(w)$ be a Weyl displacement.  The full covariance of $\Gamma$ implies,
+already for the approximants,
+\[
+  \mathcal I_j(D(w)XD(w)^*)
+  =D(\sqrt\gamma w)\mathcal I_j(X)D(\sqrt\gamma w)^*.
+\]
+Here the equality is one of operator-valued measures; the classical event is
+not moved by a purely quantum displacement.  Passing to the weak-* limit and
+evaluating on $E$ gives
+\[
+  \mathcal I_E(D(w)XD(w)^*)
+  =D(\sqrt\gamma w)\mathcal I_E(X)D(\sqrt\gamma w)^*.
+\]
+The same argument applies to independent phase rotations.  This branchwise
+covariance is essential: Proposition C.4 applies a quantum stochastic-order
+bound separately to every residual event $E$.
+
+\subsection{Step 5: specialize to the Gaussian input}
+
+Set
+\[
+  R(x)=\varphi_{0,\Sigma_p}(x)\Phi_0.
+\]
+The convolution formula says that one may generate the output by the
+following formal procedure:
+\begin{enumerate}
+  \item draw $X\sim\N(0,\Sigma_p)$;
+  \item draw the residual outcome and quantum output according to
+  $\mathcal I(\Phi_0)$;
+  \item report the classical value $Y=\sqrt\gamma X+r$.
+\end{enumerate}
+Since $\sqrt\gamma X\sim\N(0,\gamma\Sigma_p)$, conditioning on $r$ gives
+the density
+\[
+  y\longmapsto\varphi_{0,\gamma\Sigma_p}(y-r).
+\]
+Testing this measure against $a(y)M$ yields exactly \eqref{eq:test}.  The
+calculation is initially justified for continuous compactly supported $a$;
+a monotone-class argument extends it to bounded measurable $a$.
+
+\section{A classical analogy}
+
+Ignore the quantum component and suppose $K$ is a Markov kernel satisfying
+\[
+  K(E\mid x+s)=K(E-\sqrt\gamma s\mid x).
+\]
+Taking $s=-x$ gives
+\[
+  K(E\mid x)=K(E-\sqrt\gamma x\mid0).
+\]
+Thus every such kernel has the form
+\[
+  Y=\sqrt\gamma X+R,
+\]
+where the residual law of $R$ is independent of $X$.  Lemma C.3 is the
+classical--quantum version: the residual outcome $r$ may be correlated with
+a quantum operation, so its law and posterior state must be encoded by an
+instrument rather than an ordinary probability measure.
+
+\section{Dependencies and role in the paper}
+
+The construction uses weak-* compactness in much the same way as Lemma C.2,
+but for a localized family $\Gamma(u_jX)$ rather than for group-averaged
+channels.  It also uses:
+\begin{itemize}
+  \item approximate identities in $L^1(\Hc)$;
+  \item covariance and convolution;
+  \item density of finite sums $f(x)X$ in the Bochner $L^1$ space;
+  \item Radon-measure regularity and trace-norm countable additivity; and
+  \item dominated convergence after testing against $\A$.
+\end{itemize}
+
+In Proposition C.4, the residual subinstrument isolates all deviations from
+the ideal classical dilation.  Every branch has precisely the displacement
+and phase covariance needed for Lemma D.4.  The Gaussian specialization
+\eqref{eq:test} then separates the final estimate into a classical Gaussian
+overlap and a quantum thermal-state overlap.  This is the source of the
+product
+\[
+  B_{\mathrm{cl}}(\gamma,d)B_{\mathrm{orb}}(\gamma,p).
+\]
+
+\section{Minimal prerequisite checklist}
+
+At an intuitive level, the lemma says only that translation covariance
+forces an additive-noise representation.  A rigorous reading additionally
+requires operator-valued Radon measures, completely positive instruments,
+weak-* compactness of adjoints, approximate identities, Bochner $L^1$
+spaces, and trace-norm countable additivity.  The approximate identity is not
+an optional complication: it is what makes sense of ``the output at a
+classical point'' when the original domain contains only $L^1$ densities.
+
+\end{document}

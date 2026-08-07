@@ -1,0 +1,379 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=teal,urlcolor=teal]{hyperref}
+
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Hc}{\mathsf H}
+\newcommand{\G}{\mathsf G}
+\newcommand{\F}{\mathcal F_{\mathrm{orb}}}
+\newcommand{\T}{\mathcal T_1}
+\newcommand{\K}{\mathcal K}
+\newcommand{\A}{\mathfrak A}
+\newcommand{\At}{\widetilde{\mathfrak A}}
+\newcommand{\M}{\mathfrak M}
+\newcommand{\Tin}{\Theta^{\mathrm{in}}}
+\newcommand{\Ttar}{\Theta^{\mathrm{tar}}}
+\newcommand{\Uin}{\mathcal U^{\mathrm{in}}}
+\newcommand{\Uout}{\mathcal U^{\mathrm{out}}}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\dd}{\,\mathrm d}
+\newcommand{\B}{\mathrm B}
+
+\newtheorem*{lemmaC}{Lemma C.2 (rephrased)}
+
+\title{A Short Guide to Lemma C.2\\
+\large F\o lner averaging, compactness, and exact covariance}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Lemma C.2 turns an optimization over arbitrary hybrid channels, averaged on
+larger and larger parameter cubes, into an optimization at the origin over
+exactly covariant maps.  The proof combines four ideas: group averaging,
+the F\o lner property of Euclidean cubes, weak-* compactness of channel
+adjoints, and upper semicontinuity of fidelity.  This note develops those
+ideas and explains why the limiting map may lose trace when mass escapes in
+the noncompact classical coordinate.
+\end{abstract}
+
+\section{What the lemma accomplishes}
+
+The hybrid Gaussian experiment has a classical coordinate
+$h\in\Hc$ and a quantum displacement coordinate $z\in\C^{r_d}$.  Write
+\[
+  \G=\Hc\times\C^{r_d},\qquad \xi=(h,z).
+\]
+The input and desired target form two covariant families
+\[
+  \Tin_\xi=\Uin_\xi(\Tin_0),
+  \qquad
+  \Ttar_\xi=\Uout_\xi(\Ttar_0).
+\]
+For a channel $\Lambda$, the paper studies the average payoff
+\[
+  \frac1{|\Omega_L|}\int_{\Omega_L}
+  \B\bigl(\Lambda(\Tin_\xi),\Ttar_\xi\bigr)\dd\xi
+\]
+over a large centered cube $\Omega_L\subset\G$.  An arbitrary channel can
+behave differently at different parameter values.  Lemma C.2 says that its
+asymptotic average performance cannot exceed the performance at the origin
+of some map $\Gamma$ satisfying the exact intertwining relation
+\[
+  \Gamma\Uin_\xi=\Uout_\xi\Gamma
+  \qquad(\xi\in\G).
+\]
+Thus a noncompact, many-parameter optimization is reduced to a single-state
+optimization with a strong symmetry constraint.
+
+\section{The hybrid state spaces}
+
+Let $\F$ be the multimode Fock space.  An ordinary hybrid state is a
+Bochner-integrable field of trace-class operators,
+\[
+  \mathfrak T=L^1(\Hc;\T(\F)).
+\]
+Its natural test algebra is
+\[
+  \A=C_0(\Hc;\K(\F)),
+  \qquad \M=\A^*.
+\]
+Positive elements of $\M$ are finite positive $\T(\F)$-valued Radon
+measures.  Allowing outputs in $\M$, rather than only in $\mathfrak T$, is
+important: weak limits may have singular classical parts such as point
+masses.
+
+The group actions used in the paper are
+\begin{align*}
+  (\Uin_\xi R)(x)
+  &=D(z)R(x-h)D(z)^*,\\
+  (\Uout_\xi\Xi)(E)
+  &=D(\sqrt\gamma z)\,
+    \Xi(E-\sqrt\gamma h)\,
+    D(\sqrt\gamma z)^*.
+\end{align*}
+They translate the classical component and conjugate the quantum component
+by Weyl displacements.  Both preserve positivity and total trace.  Root
+fidelity is invariant under these reversible actions.
+
+Since $\A$ is nonunital, the proof also uses its unitization
+\[
+  \At=\A\oplus\C I.
+\]
+A normalized hybrid measure has a canonical state extension to $\At$.  The
+extra quotient character of $\At$ represents a point at infinity.  This
+compactifies the state space sufficiently for weak-* extraction.
+
+\section{Background idea I: F\o lner sets}
+
+A locally compact group is amenable if it possesses sets whose relative
+boundary becomes negligible under every fixed translation.  Here the group
+is a Euclidean vector group, and centered cubes form a F\o lner family:
+\begin{equation}\label{eq:folner}
+  \frac{|(\Omega_L+v)\mathbin\triangle\Omega_L|}{|\Omega_L|}
+  \longrightarrow0
+  \qquad(L\to\infty)
+\end{equation}
+for every fixed $v\in\G$.  The symbol $\triangle$ denotes symmetric
+difference.
+
+Geometrically, translation by a fixed vector changes only slabs near the
+faces of a large cube.  Their volume is of order $L^{\dim\G-1}$, whereas the
+cube has volume of order $L^{\dim\G}$.  Their ratio therefore tends to zero.
+Equation \eqref{eq:folner} is the mechanism that turns approximate covariance
+of averaged channels into exact covariance of a limit.
+
+\section{Background idea II: compactness through adjoints}
+
+There is no useful norm compactness for a sequence of infinite-dimensional
+channels.  Instead one passes to adjoints.  A trace-preserving completely
+positive map induces a unital completely positive contraction
+\[
+  \widehat\Lambda^*: \At\longrightarrow\mathfrak T^*,
+  \qquad
+  \mathfrak T^*=L^\infty(\Hc;\mathcal B(\F)).
+\]
+The unit balls of the dual space $\mathfrak T^*$ are weak-* compact.  Because
+$\At$ and the predual $\mathfrak T$ are separable, weak-* compactness is
+metrizable on bounded subsets.  One may therefore choose a countable dense
+operator system in $\At$ and diagonalize to obtain pointwise weak-* convergence
+of the adjoints.
+
+Complete positivity survives this limit.  Indeed, for every matrix size
+$r$, positivity of a map means
+\[
+  [A_{kl}]\geq0
+  \quad\Longrightarrow\quad
+  [\widehat\Lambda^*(A_{kl})]\geq0.
+\]
+The positive cone of the dual matrix space is weak-* closed, so this property
+passes to the limiting adjoint at every $r$.  This is why the proof checks
+matrix positivity, rather than only ordinary positivity.
+
+\section{Statement of Lemma C.2}
+
+\begin{lemmaC}
+Let $\Omega_L$ be the centered cubes in $\G$.  Then
+\begin{equation}\label{eq:statement}
+  \limsup_{L\to\infty}\sup_\Lambda
+  \frac1{|\Omega_L|}\int_{\Omega_L}
+  \B\bigl(\Lambda(\Tin_\xi),\Ttar_\xi\bigr)\dd\xi
+  \leq
+  \sup_\Gamma \B\bigl(\Gamma(\Tin_0),\Ttar_0\bigr),
+\end{equation}
+where $\Lambda$ ranges over hybrid channels and $\Gamma$ ranges over
+completely positive, trace-nonincreasing maps
+$\mathfrak T\to\M$ such that
+\[
+  \Gamma\Uin_\xi=\Uout_\xi\Gamma
+  \qquad(\xi\in\G).
+\]
+The output of $\Gamma$ is allowed to be a measure rather than an ordinary
+$L^1$ density.
+\end{lemmaC}
+
+The direction of \eqref{eq:statement} matters.  The lemma supplies an upper
+bound: every nearly optimal sequence of arbitrary channels produces an
+exactly covariant limiting competitor whose origin fidelity is at least the
+limiting average payoff.
+
+\section{Proof, step by step}
+
+\subsection{Step 1: average the channel in a moving frame}
+
+Define
+\begin{equation}\label{eq:average-map}
+  \overline\Lambda_L
+  =\frac1{|\Omega_L|}\int_{\Omega_L}
+  \Uout_{-\xi}\circ\Lambda\circ\Uin_\xi\dd\xi.
+\end{equation}
+For a parameter $\xi$, the input is first shifted from the origin to $\xi$,
+then processed by $\Lambda$, and finally shifted back in the output
+coordinates.  Thus every parameter point is viewed from the origin before
+the results are averaged.
+
+Because $\Tin_\xi=\Uin_\xi(\Tin_0)$ and
+$\Ttar_\xi=\Uout_\xi(\Ttar_0)$, invariance of root fidelity gives
+\[
+  \B\bigl(
+    \Uout_{-\xi}\Lambda(\Tin_\xi),\Ttar_0
+  \bigr)
+  =\B\bigl(\Lambda(\Tin_\xi),\Ttar_\xi\bigr).
+\]
+Root fidelity is jointly concave, hence concave in its first argument with
+the target fixed.  Applying this to \eqref{eq:average-map} yields
+\begin{equation}\label{eq:concavity}
+  \frac1{|\Omega_L|}\int_{\Omega_L}
+  \B\bigl(\Lambda(\Tin_\xi),\Ttar_\xi\bigr)\dd\xi
+  \leq
+  \B\bigl(\overline\Lambda_L(\Tin_0),\Ttar_0\bigr).
+\end{equation}
+This is the first decisive reduction: an average of fidelities is bounded by
+one fidelity at the origin.
+
+\subsection{Step 2: extract a weak-* limiting map}
+
+Choose $L_j\to\infty$ and channels whose left side in
+\eqref{eq:statement} approaches the limsup.  For brevity, use
+$\overline\Lambda_j$ for their averages.  The unitized adjoints
+\[
+  \widehat\Lambda_j^*: \At\to\mathfrak T^*
+\]
+are unital completely positive contractions.  The diagonal compactness
+argument described above gives, after passing to a subsequence,
+\[
+  \widehat\Lambda_j^*(A)
+  \stackrel{w^*}{\longrightarrow}
+  \widehat\Gamma^*(A)
+  \qquad(A\in\At).
+\]
+Contractivity first defines the limit on a countable dense operator system
+and then extends it uniquely to all of $\At$.  Weak-* closedness of every
+matrix positive cone makes $\widehat\Gamma^*$ completely positive, and
+convergence at $I$ makes it unital.
+
+Restrict $\widehat\Gamma^*$ to the ideal $\A$ and define
+$\Gamma:\mathfrak T\to\M$ by
+\begin{equation}\label{eq:duality}
+  \langle\Gamma(R),A\rangle
+  =\langle R,\widehat\Gamma^*(A)\rangle,
+  \qquad A\in\A.
+\end{equation}
+This restriction is the measure-valued limiting map needed on the right side
+of \eqref{eq:statement}.
+
+\subsection{Step 3: explain why only trace nonincrease remains}
+
+Let $(e_\ell)$ be an increasing contractive approximate identity for $\A$.
+For $R\geq0$, the total mass of the positive measure $\Gamma(R)$ is
+\[
+  \Tr\Gamma(R)
+  =\sup_\ell\langle\Gamma(R),e_\ell\rangle.
+\]
+Using \eqref{eq:duality}, positivity, and $0\leq e_\ell\leq I$ gives
+\begin{align*}
+  \Tr\Gamma(R)
+  &=\sup_\ell\langle R,\widehat\Gamma^*(e_\ell)\rangle\\
+  &\leq\langle R,\widehat\Gamma^*(I)\rangle
+   =\Tr R.
+\end{align*}
+Thus $\Gamma$ is trace nonincreasing.
+
+The apparent loss is not a defect in the argument.  The unitized limit is
+still normalized, but part of its classical mass may sit at the quotient
+point at infinity.  Restricting from $\At$ to $\A$ discards precisely that
+part.  Requiring the restricted limit to remain trace preserving would
+incorrectly assume tightness of all output measures.
+
+\subsection{Step 4: the limiting map is exactly covariant}
+
+For a fixed $v\in\G$, translating the integration variable in
+\eqref{eq:average-map} shows that the two maps
+$\overline\Lambda_j\Uin_v$ and
+$\Uout_v\overline\Lambda_j$ differ only on the symmetric difference of the
+two averaging cubes.  Consequently, for $R\in\mathfrak T$,
+\begin{equation}\label{eq:cov-error}
+  \left\|
+  \overline\Lambda_j(\Uin_vR)
+  -\Uout_v\overline\Lambda_j(R)
+  \right\|_{\M}
+  \leq
+  \frac{|(\Omega_{L_j}+v)\triangle\Omega_{L_j}|}{|\Omega_{L_j}|}
+  \|R\|_1.
+\end{equation}
+The F\o lner ratio tends to zero by \eqref{eq:folner}.  Pairing
+\eqref{eq:cov-error} with $A\in\A$ and passing to the pointwise weak-* limit
+gives
+\[
+  \Gamma\Uin_vR=\Uout_v\Gamma(R).
+\]
+Since $v$ was arbitrary, $\Gamma$ is exactly covariant under all of $\G$.
+
+\subsection{Step 5: pass the fidelity payoff to the limit}
+
+Weak-* convergence does not generally imply convergence of fidelity.  The
+needed one-sided statement follows from the Alberti--Uhlmann variational
+formula on a unital $C^*$-algebra:
+\begin{equation}\label{eq:AU}
+  \B(\phi,\psi)
+  =\inf_{A>0\ \mathrm{invertible}}
+  \frac12\bigl(\phi(A)+\psi(A^{-1})\bigr).
+\end{equation}
+For fixed $\psi$, each expression inside the infimum is weak-* continuous in
+$\phi$.  An infimum of continuous functions is upper semicontinuous, so
+\[
+  \phi_j\stackrel{w^*}{\longrightarrow}\phi
+  \quad\Longrightarrow\quad
+  \limsup_j\B(\phi_j,\psi)\leq\B(\phi,\psi).
+\]
+Apply this on $\At$ to the unitized origin outputs.  Lemma C.1 then removes
+any mass at infinity: the target is normalized on $\A$, so its overlap with
+the quotient component is zero.  Therefore
+\[
+  \limsup_j
+  \B\bigl(\overline\Lambda_j(\Tin_0),\Ttar_0\bigr)
+  \leq
+  \B\bigl(\Gamma(\Tin_0),\Ttar_0\bigr).
+\]
+Combining this inequality with \eqref{eq:concavity} proves
+\eqref{eq:statement}.
+
+\section{A finite-dimensional analogy}
+
+For a finite group $G$, one may average a channel exactly:
+\[
+  \overline\Lambda
+  =\frac1{|G|}\sum_{g\in G}
+  \Uout_{g^{-1}}\Lambda\Uin_g.
+\]
+This average is already exactly covariant, so no limit or compactness
+argument is required.  Lemma C.2 is the noncompact analogue.  A large
+F\o lner cube plays the role of an approximate uniform distribution on
+$\G$, and weak-* compactness supplies a limiting average because no finite
+translation-invariant probability measure exists on $\G$.
+
+\section{Dependencies and role in the paper}
+
+Lemma C.2 uses:
+\begin{itemize}
+  \item joint concavity and invariance of root fidelity;
+  \item the F\o lner property of Euclidean cubes;
+  \item weak-* compactness and separability to extract channel adjoints;
+  \item weak-* closedness of matrix positive cones;
+  \item the Alberti--Uhlmann variational formula; and
+  \item Lemma C.1 to discard fidelity-invisible mass at infinity.
+\end{itemize}
+
+Its output is the starting point for Lemma C.3 and Proposition C.4.  Lemma
+C.3 describes the structure of an exactly covariant hybrid map through a
+residual subinstrument.  Proposition C.4 then bounds the origin fidelity of
+every such map by
+\[
+  B_{\mathrm{univ}}(\gamma,p)
+  =B_{\mathrm{cl}}(\gamma,d)B_{\mathrm{orb}}(\gamma,p).
+\]
+Together, C.2 and C.4 give the upper bound in the hybrid Gaussian flat-prior
+theorem.
+
+\section{Minimal prerequisite checklist}
+
+The conceptual core requires only covariance, concavity of root fidelity,
+and the fact that the boundary-to-volume ratio of a large cube vanishes.
+For the rigorous compactness step, one additionally needs dual Banach spaces,
+the weak-* topology, adjoints of completely positive maps, unitization of a
+nonunital $C^*$-algebra, and the variational characterization
+\eqref{eq:AU}.  The main message is simple: average a channel in the moving
+frame, take a compact limit, and use vanishing boundary effects to make the
+limit exactly symmetric.
+
+\end{document}

@@ -1,0 +1,311 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=teal,urlcolor=teal]{hyperref}
+
+\newcommand{\F}{\mathcal F}
+\newcommand{\T}{\mathcal T_1}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\ketbra}[1]{\lvert #1\rangle\!\langle #1\rvert}
+\newcommand{\R}{\mathbb R}
+
+\newtheorem*{lemmaD}{Lemma D.4 (rephrased)}
+
+\title{A Short Guide to Lemma D.4\\
+\large Tensorizing the one-mode conic stochastic bound}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Lemma D.4 lifts the one-mode stochastic inequality of Lemma D.3 to a
+multimode map, even when that map couples the modes.  It does not assert a
+full multivariate stochastic order.  It proves exactly what is needed later:
+an inequality for products of decreasing photon-number weights.  The proof
+turns all but one mode into a weighted environment, applies Lemma D.3, and
+then repeats the construction mode by mode.
+\end{abstract}
+
+\section{The issue addressed by the lemma}
+
+Let
+\[
+  \Phi_0=\tau_{q_1}\otimes\cdots\otimes\tau_{q_r}
+\]
+be a product of thermal states.  A multimode channel $\Gamma$ need not be a
+product channel: it may create correlations among the output modes.  Hence a
+one-mode result cannot be tensorized merely by multiplying $r$ inequalities.
+
+Lemma D.4 overcomes this by inserting the weights on the untested modes into
+a new one-mode completely positive map.  The trace of that map records the
+weighted expectation still left to control.  Applying the one-mode result
+successively strips off one factor at a time.
+
+\section{Background and notation}
+
+\subsection{Thermal modes and their amplified reference states}
+
+For the number operator $\widehat N$ on one-mode Fock space $\F$, let
+\[
+  \tau_q=(1-q)\sum_{k\geq0}q^k\ketbra{k},
+  \qquad 0<q<1.
+\]
+Fix an intensity gain $\gamma>1$ and write
+\[
+  q^{(\gamma)}=1-\frac{1-q}{\gamma}.
+\]
+For $r$ modes, define
+\begin{equation}\label{eq:states}
+  \Phi_0=\bigotimes_{\ell=1}^r\tau_{q_\ell},
+  \qquad
+  \tau^{(\gamma)}
+  =\bigotimes_{\ell=1}^r\tau_{q_\ell^{(\gamma)}}.
+\end{equation}
+The joint number basis is indexed by
+$\mathbf k=(k_1,\ldots,k_r)$.
+
+\subsection{Separate covariance in every mode}
+
+Write
+\[
+  D(z)=\bigotimes_{\ell=1}^r D(z_\ell),
+  \qquad z\in\mathbb C^r.
+\]
+The multimode map $\Gamma$ is displacement covariant with amplitude gain
+$\sqrt\gamma$ when
+\begin{equation}\label{eq:multicov}
+  \Gamma(D(z)XD(z)^*)
+  =D(\sqrt\gamma\,z)\Gamma(X)D(\sqrt\gamma\,z)^*.
+\end{equation}
+It is phase covariant in each mode when it intertwines all independent
+rotations
+\[
+  \bigotimes_{\ell=1}^r e^{\mathrm i\theta_\ell\widehat N_\ell}.
+\]
+Setting all coordinates of $z$ except $z_j$ equal to zero shows that
+\eqref{eq:multicov} contains a one-mode covariance relation for each mode.
+This observation is what makes the reduction below work.
+
+\subsection{Product test functions}
+
+The lemma considers
+\begin{equation}\label{eq:product-weight}
+  W(\widehat{\mathbf N})
+  =\prod_{\ell=1}^r w_\ell(\widehat N_\ell),
+\end{equation}
+where each $w_\ell:\mathbb Z_{\geq0}\to\R_+$ is bounded and decreasing.
+Because the factors act on different modes, they commute and the product is
+a bounded positive operator.
+
+This restricted class is important.  Ordinary one-dimensional stochastic
+orders do not automatically imply an order for every decreasing function of
+the vector $(N_1,\ldots,N_r)$ when the output modes may be correlated.  The
+factorization in \eqref{eq:product-weight} is precisely what permits a
+one-mode-at-a-time proof.
+
+\section{The one-mode input: Lemma D.3}
+
+If $\Lambda$ is a one-mode, completely positive trace-nonincreasing map with
+the same displacement and phase covariance, Lemma D.3 states that
+\begin{equation}\label{eq:D3}
+  \Tr[\Lambda(\tau_q)w(\widehat N)]
+  \leq
+  \Tr\Lambda(\tau_q)\,
+  \Tr[\tau_{q^{(\gamma)}}w(\widehat N)]
+\end{equation}
+for every bounded nonnegative decreasing $w$.  That lemma uses the external
+Gu\c{t}\u{a}--Matsumoto least-noise stochastic-order theorem, together with
+the internally proved constant-trace Lemma D.1.  Lemma D.4 introduces no new
+external input.
+
+\section{Statement of Lemma D.4}
+
+\begin{lemmaD}
+Let $\Gamma$ be an $r$-mode completely positive trace-nonincreasing map,
+displacement covariant with gain $\sqrt\gamma$, and phase covariant in every
+mode.  For the states in \eqref{eq:states} and every product weight
+\eqref{eq:product-weight},
+\begin{equation}\label{eq:D4}
+  \Tr[\Gamma(\Phi_0)W(\widehat{\mathbf N})]
+  \leq
+  \Tr\Gamma(\Phi_0)\,
+  \Tr[\tau^{(\gamma)}W(\widehat{\mathbf N})].
+\end{equation}
+\end{lemmaD}
+
+Since both the state and the weight on the right are products,
+\begin{equation}\label{eq:right-factor}
+  \Tr[\tau^{(\gamma)}W]
+  =\prod_{\ell=1}^r
+    \Tr[\tau_{q_\ell^{(\gamma)}}w_\ell(\widehat N_\ell)].
+\end{equation}
+
+\section{Proof walkthrough}
+
+\subsection*{Step 1: normalize the weights}
+
+By multiplying back their suprema after the proof, it is enough to treat
+$0\leq w_\ell\leq1$.  If one of the weights is identically zero, the claim
+is immediate.  Otherwise replace $w_\ell$ by
+$w_\ell/\lVert w_\ell\rVert_\infty$; both sides of \eqref{eq:D4} acquire the
+same factor $\prod_\ell\lVert w_\ell\rVert_\infty$.
+
+The upper bound by one ensures that every product of the weights is an
+effect.  Inserting its square root therefore preserves the
+trace-nonincreasing property.
+
+\subsection*{Step 2: package the remaining modes into a one-mode map}
+
+The manuscript first treats mode $1$.  Put
+\[
+  W_{>1}=\prod_{\ell=2}^r w_\ell(\widehat N_\ell),
+  \qquad
+  \Phi_{0,>1}=\bigotimes_{\ell=2}^r\tau_{q_\ell},
+\]
+and define
+\begin{equation}\label{eq:induced-map}
+  \Gamma_1(X)
+  =\Tr_{2,\ldots,r}\!\left[
+    (I\otimes W_{>1}^{1/2})
+    \Gamma(X\otimes\Phi_{0,>1})
+    (I\otimes W_{>1}^{1/2})
+  \right].
+\end{equation}
+This is a one-mode map: prepare the other input modes thermally, apply
+$\Gamma$, test the other output modes with $W_{>1}$, and discard them.
+
+Every operation in \eqref{eq:induced-map} is completely positive.  For
+$X\geq0$,
+\begin{align*}
+  \Tr\Gamma_1(X)
+  &=\Tr\!\left[\Gamma(X\otimes\Phi_{0,>1})
+                 (I\otimes W_{>1})\right]\\
+  &\leq\Tr\Gamma(X\otimes\Phi_{0,>1})
+   \leq\Tr X.
+\end{align*}
+Thus $\Gamma_1$ is trace nonincreasing.
+
+\subsection*{Step 3: verify that the induced map has the right symmetries}
+
+Apply the multimode covariance relation with displacement vector
+$(z,0,\ldots,0)$.  The resulting output displacement acts only on mode $1$,
+so it commutes with $I\otimes W_{>1}^{1/2}$ and passes through the partial
+trace.  Consequently,
+\[
+  \Gamma_1(D(z)XD(z)^*)
+  =D(\sqrt\gamma\,z)\Gamma_1(X)D(\sqrt\gamma\,z)^*.
+\]
+The same calculation with a phase rotation in mode $1$ proves phase
+covariance.  Therefore $\Gamma_1$ satisfies every hypothesis of Lemma D.3.
+
+\subsection*{Step 4: remove the first weight}
+
+The two traces associated with \eqref{eq:induced-map} are
+\begin{align}
+  \Tr[\Gamma_1(\tau_{q_1})w_1(\widehat N_1)]
+  &=\Tr[\Gamma(\Phi_0)W(\widehat{\mathbf N})],
+  \label{eq:left-id}\\
+  \Tr\Gamma_1(\tau_{q_1})
+  &=\Tr[\Gamma(\Phi_0)W_{>1}].
+  \label{eq:mass-id}
+\end{align}
+Applying \eqref{eq:D3} and substituting these identities gives
+\begin{equation}\label{eq:strip-one}
+  \Tr[\Gamma(\Phi_0)W]
+  \leq
+  \Tr[\tau_{q_1^{(\gamma)}}w_1(\widehat N_1)]
+  \Tr[\Gamma(\Phi_0)W_{>1}].
+\end{equation}
+
+\subsection*{Step 5: iterate}
+
+For complete precision, define
+\[
+  W_{\geq j}=\prod_{\ell=j}^r w_\ell(\widehat N_\ell),
+  \qquad W_{>j}:=W_{\geq j+1},
+  \qquad W_{\geq r+1}=I,
+\]
+with identity factors on the modes not displayed.  The one-mode map used at
+stage $j$ is explicitly
+\[
+  \Gamma_j(X)=\Tr_{\ell\ne j}\!\left[
+    W_{>j}^{1/2}\,
+    \Gamma\!\left(
+      \bigotimes_{\ell<j}\tau_{q_\ell}\otimes X\otimes
+      \bigotimes_{\ell>j}\tau_{q_\ell}
+    \right)
+    W_{>j}^{1/2}
+  \right].
+\]
+Here the partial trace discards every output mode except $j$.  The same
+complete-positivity, trace, and covariance checks used for $\Gamma_1$ apply.
+The weighted and unweighted traces in Lemma D.3 are respectively the two
+terms in
+\begin{equation}\label{eq:recursion}
+  \Tr[\Gamma(\Phi_0)W_{\geq j}]
+  \leq
+  a_j\,\Tr[\Gamma(\Phi_0)W_{\geq j+1}],
+  \qquad
+  a_j:=\Tr[\tau_{q_j^{(\gamma)}}w_j(\widehat N_j)].
+\end{equation}
+
+Iterating \eqref{eq:recursion} yields
+\[
+  \Tr[\Gamma(\Phi_0)W]
+  \leq
+  \left(\prod_{j=1}^r a_j\right)\Tr\Gamma(\Phi_0).
+\]
+Equation \eqref{eq:right-factor} identifies the product with
+$\Tr[\tau^{(\gamma)}W]$, proving \eqref{eq:D4}.
+
+\section{A two-mode version}
+
+For $r=2$, the proof is especially transparent.  It first gives
+\[
+  \Tr[\Gamma(\tau_{q_1}\otimes\tau_{q_2})(w_1\otimes w_2)]
+  \leq a_1\,
+  \Tr[\Gamma(\tau_{q_1}\otimes\tau_{q_2})(I\otimes w_2)].
+\]
+Applying the same construction to mode $2$ gives
+\[
+  \Tr[\Gamma(\tau_{q_1}\otimes\tau_{q_2})(I\otimes w_2)]
+  \leq a_2\Tr\Gamma(\tau_{q_1}\otimes\tau_{q_2}).
+\]
+The output may be correlated throughout; the proof never assumes that
+$\Gamma$ factors.  It uses only the product form of the input and test
+weight, plus separate covariance in each mode.
+
+\section{What the lemma does not claim}
+
+Lemma D.4 proves a conic inequality: the factor
+$\Tr\Gamma(\Phi_0)\leq1$ keeps track of subnormalization.  It does not claim
+that $\Gamma(\Phi_0)$ is below $\tau^{(\gamma)}$ in operator order, nor that
+its full joint photon-number law stochastically dominates the product
+geometric law for every multivariate decreasing test.  The product class in
+\eqref{eq:product-weight} is sufficient because the fidelity witness in
+Lemma D.5 factorizes mode by mode.
+
+\section{Dependencies and role in the paper}
+
+The dependency chain is
+\[
+  \text{Lemma D.1}
+  +\text{external least-noise theorem}
+  \longrightarrow\text{Lemma D.3}
+  \longrightarrow\text{Lemma D.4}.
+\]
+Beyond D.3, the proof is internal: it constructs the induced map, checks its
+covariance, and iterates.  D.4 supplies the factorized fidelity witness in
+D.5, hence Theorem 3.4, and is also applied branchwise in the hybrid converse.
+Its prerequisites are completely positive maps, partial trace, product
+thermal states, covariance, and Lemma D.3.
+
+\end{document}
