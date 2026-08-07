@@ -213,8 +213,8 @@ models and solves the limiting Gaussian amplification problems.
 \cref{sec:unknown} treats the spectrum-independent dithered protocol.
 \Cref{sec:comparison} compares the results with earlier cloning and
 broadcasting work.  The appendices contain the PBW--Fock contraction, the
-Young local limit, the noncompact covariant compactness argument, and the
-Gaussian stochastic-order estimates.
+Young local limit, and a weighted Gaussian converse that treats the orbital
+and hybrid limit models in one framework.
 
 \section{Fidelity, Schur--Weyl duality, and the Cartan channel}\label{sec:preliminaries}
 
@@ -236,16 +236,28 @@ Hellinger affinity,
 \]
 where $\lambda$ is any common dominating measure.  The value is independent
 of this choice.  On a countable space,
-$B(P,Q)=\sum_x\sqrt{P(x)Q(x)}$.  We use $\|\cdot\|_1$ for trace norm,
-$\ell^1$-distance, or $L^1$-distance according to context.
+$B(P,Q)=\sum_x\sqrt{P(x)Q(x)}$.  More generally, for positive
+trace-class-valued densities $R,S$ on the same classical space, set
+\[
+  B(R,S)=\int B(R(x),S(x))\,\dd x.
+\]
+This is the continuous direct-sum formula and is unchanged by replacing the
+reference measure and the two densities simultaneously.  A
+classical--quantum channel is a completely positive trace-preserving map on
+these $L^1$ state spaces, equivalently the preadjoint of a normal unital
+completely positive map on the corresponding $L^\infty$ observable spaces.
+We use $\|\cdot\|_1$ for trace norm, $\ell^1$-distance, or $L^1$-distance
+according to context.
 
 \begin{lemma}[Basic properties of root fidelity]\label{lem:fid-cont}
-Let $A,C$ be positive trace-class operators and let $\Lambda$ be a quantum
-channel.  Then
+The following statements hold both for quantum states and for
+classical--quantum states with the direct-integral fidelity above.  Let
+$A,C$ be positive elements of the corresponding state space and let
+$\Lambda$ be a channel.  Then
 \[
   B(\Lambda(A),\Lambda(C))\ge B(A,C),
 \]
-and $B$ is jointly concave on the positive trace-class cone.  If
+and $B$ is jointly concave on the positive cone of that state space.  If
 $\rho,\sigma,\rho',\sigma'$ are states, then
 \begin{equation}\label{eq:B-continuity}
   |B(\rho,\sigma)-B(\rho',\sigma')|
@@ -257,8 +269,9 @@ $\rho,\sigma,\rho',\sigma'$ are states, then
 \end{lemma}
 
 \begin{proof}
-Monotonicity and joint concavity follow from Uhlmann's theorem.  For
-\eqref{eq:B-continuity}, let
+Monotonicity and joint concavity are the standard fidelity properties for
+normal states; the classical--quantum formula above is their direct-integral
+specialization.  For \eqref{eq:B-continuity}, let
 $d_B(\rho,\sigma)=\sqrt{2(1-B(\rho,\sigma))}$ be the Bures distance.  The
 Fuchs--van de Graaf inequalities give
 $d_B(\rho,\rho')\le\|\rho-\rho'\|_1^{1/2}$ and likewise for
@@ -538,8 +551,8 @@ Gu\c{t}\u{a} and Matsumoto prove that the vacuum-idler amplifier is
 least noisy, in stochastic order, among phase-insensitive
 displacement-covariant amplifiers of the same gain
 \cite{GutaMatsumoto2006MixedGaussianCloning}.  In
-\cref{app:gaussian-bounds} we convert that order statement into the
-root-fidelity bound needed here.
+\cref{app:gaussian-converse} we convert that order statement into the
+root-fidelity bounds needed here.
 
 \subsection{Local asymptotic normality}
 
@@ -569,25 +582,9 @@ The normalization is chosen so that
 \[
   [X_p(z),\rho_p]_{kj}=\sqrt{p_j-p_k}\,z_{jk}.
 \]
-It also gives the standard oscillator normalization in a typical Schur
-sector \(\mu\).  If \(\Delta_{jk}^{\mu}=\mu_j-\mu_k\), write
-\[
-  a_{jk}^{(\mu)*}
-  =\frac{d\pi_\mu(E_{kj})}{\sqrt{\Delta_{jk}^{\mu}}},
-  \qquad
-  a_{jk}^{(\mu)}
-  =\frac{d\pi_\mu(E_{jk})}{\sqrt{\Delta_{jk}^{\mu}}}.
-\]
-Then
-\[
-  \frac{d\pi_\mu(X_p(z))}{\sqrt n}
-  =\sum_{j<k}
-  \sqrt{\frac{\Delta_{jk}^{\mu}}{n(p_j-p_k)}}
-  \left(z_{jk}a_{jk}^{(\mu)*}
-        -\bar z_{jk}a_{jk}^{(\mu)}\right),
-\]
-and the square-root coefficient tends to one on typical sectors.  Thus
-\(\exp(X_p(z)/\sqrt n)\) becomes the displacement \(D(z)\).
+This is the oscillator normalization in the Kahn--Gu\c{t}\u{a} LAN
+coordinates.  The proof of \cref{thm:LAN-full} records the corresponding
+modewise CCR--Fock identification.
 
 For \(h\in\mathsf H\), set
 \[
@@ -607,10 +604,10 @@ Uniformly for bounded \((h,z)\), moreover,
     \bigl(\diag(h)+[X_p(z),\rho_p]\bigr)+O(n^{-1})
 \]
 in operator norm.
-If \(\mu\) denotes the Young label of
-\((\rho_{p,h,z}^{(n)})^{\ot n}\), then
-\(\sqrt n(\mu/n-p)\to\mathsf N_{h,\Sigma_p}\), where
-\(\Sigma_p=\left.(\diag(p)-p p^{\mathsf T})\right|_{\mathsf H}>0\).
+The covariance of the classical component of the LAN limit is
+\[
+  \Sigma_p=\left.(\diag(p)-p p^{\mathsf T})\right|_{\mathsf H}>0.
+\]
 
 The next theorem is Kahn and Gu\c{t}\u{a}'s finite-dimensional LAN theorem,
 restricted to compact local parameter sets and written in the coordinates
@@ -914,14 +911,8 @@ The product quantum-limited amplifier attains the value.
 The product quantum-limited amplifier maps each input mode to
 \(\tau_{q_{ij}^{(\gamma)}}\) with the correct displacement and therefore has
 constant fidelity \(\Borb(\gamma,p)\) by
-\cref{eq:thermal-root-fid,eq:Borb-def}.  For the upper bound,
-\cref{lem:orbital-folner} reduces the flat-prior limsup to the origin output of
-an exactly displacement-covariant completely positive trace-nonincreasing
-map.  Phase twirling cannot decrease the origin fidelity.  Since
-$\Psi_0=\Phi_0$, the explicit multimode bound in
-\cref{lem:multimode-gaussian} bounds the origin fidelity by
-$\Borb(\gamma,p)$.  The compactness and stochastic-order details are given in
-\cref{app:covariant-compactness,app:gaussian-bounds}.
+\cref{eq:thermal-root-fid,eq:Borb-def}.  The matching upper bound is
+\cref{prop:orbital-flat-prior-upper}.
 \end{proof}
 
 \subsection{Hybrid Gaussian amplification}
@@ -961,19 +952,18 @@ Lebesgue measure on $\C^{r_d}$, and set
   \Theta_{h,z}^{\mathrm{tar}}
   =\mathsf N_{\sqrt{\gamma}\,h,\Sigma_p}\ot\Psi_z^{(p,\gamma)}.
 \]
-A hybrid channel is a completely positive trace-preserving map between
-these classical--quantum $L^1$-spaces.  The measure-valued extension
-used for weak limits is developed in \cref{app:covariant-compactness}.
+A hybrid channel is a classical--quantum channel between these $L^1$
+state spaces, in the sense fixed in \cref{sec:preliminaries}.
 
 \begin{theorem}[Hybrid Gaussian flat-prior optimum]\label{thm:hybrid-gaussian}
 For every $p\in\Delta_d^\circ$,
-\begin{equation}\label{eq:hybrid-flat-prior-value}
+\[
   \lim_{L\to\infty}
   \sup_\Lambda\frac1{|\Omega_L|}\int_{\Omega_L}
   B\!\left(\Lambda(\Theta_{h,z}^{\mathrm{in}}),
   \Theta_{h,z}^{\mathrm{tar}}\right)\,\dd h\,\dd z
-  =\Buniv(\gamma,p),
-\end{equation}
+  =\Buniv(\gamma,p).
+\]
 where the supremum is over all hybrid channels.  The product of the classical
 dilation $x\mapsto\sqrt{\gamma}\,x$ and the product quantum-limited amplifier
 attains the value.
@@ -987,8 +977,8 @@ displaced product of the thermal states $\tau_{q_{ij}^{(\gamma)}}$.
 Multiplicativity of root fidelity and
 \cref{eq:classical-gaussian-factor,eq:thermal-root-fid} therefore give the
 constant value $\Bcl(\gamma,d)\Borb(\gamma,p)$.  The matching upper bound is
-proved in \cref{prop:hybrid-from-residual}; that proof does not assume that a
-competing hybrid channel factors.
+\cref{prop:hybrid-flat-prior-upper}; its proof does not assume that a competing
+hybrid channel factors.
 \end{proof}
 
 \section{Known-spectrum cloning}\label{sec:known}
@@ -1130,7 +1120,7 @@ tail control, is given in \cref{app:sector-limit}.
   sufficiently large \(n\), the
   conditions below imply \(\nu-\mu\vdash m-n\), and both convergences are
   uniform over all \(p\in K\), integers \(m\), and partitions
-  \(\mu\vdash n\), \(\nu\vdash m_n\) satisfying
+  \(\mu\vdash n\), \(\nu\vdash m\) satisfying
   \[
           \frac\mu n,\frac\nu m\in K,\qquad
           \left|\frac mn-\gamma\right|\le\delta_n,\qquad
@@ -1254,23 +1244,25 @@ $\mathsf H$.  Let
 \[
   \mathsf L_N=\left\{x\in\mathbb Z^d:\sum_i x_i=N\right\}.
 \]
-For $\mu\in\mathsf L_n$ and $\widetilde\nu\in\mathsf L_{m_n}$, define
+Given $\mu\in\mathsf L_n$, choose $U$ uniformly in $\mathsf C$ and let
+$\widetilde\nu\in\mathsf L_{m_n}$ be the unique lattice point such that
+\[
+  \gamma_n(\mu+U)\in\widetilde\nu+\mathsf C
+\]
+(up to a null set of cell boundaries).  The induced kernel is
 \begin{equation}\label{eq:dithered-kernel}
   \mathsf D_n(\widetilde\nu\mid\mu)
   =\frac{|\gamma_n(\mu+\mathsf C)\cap(\widetilde\nu+\mathsf C)|}
   {\gamma_n^{d-1}|\mathsf C|}.
 \end{equation}
-Equivalently, choose a point uniformly in $\mu+\mathsf C$, multiply it by
-$\gamma_n$, and record the target-lattice cell containing the image.  For
-$\mu\vdash n$, call $(\mu,\widetilde\nu)$ admissible when
+For $\mu\vdash n$, call $(\mu,\widetilde\nu)$ admissible when
 $\widetilde\nu-\mu$ is a partition.  In that case
 $\widetilde\nu=\mu+(\widetilde\nu-\mu)\vdash m_n$, so
 $\cC_{\mu,\widetilde\nu}$ is defined.  The proof of the following proposition,
 including the required Young local limit, is given in \cref{app:young-dither}.
 
 \begin{proposition}[Dithered Young-label kernel]\label{prop:young-dither}
-The formula \eqref{eq:dithered-kernel} defines a Markov kernel.  There is a
-constant $c_{\mathrm{dit}}<\infty$, independent of $n$, such that
+There is a constant $c_{\mathrm{dit}}<\infty$, independent of $n$, such that
 \[
   \mathsf D_n(\widetilde\nu\mid\mu)>0
   \quad\Longrightarrow\quad
@@ -1299,8 +1291,8 @@ $\nu=\widetilde\nu$ and applies $\cC_{\mu,\widetilde\nu}$ to the resulting
 state on $\cH_\mu$.  Otherwise it sets $\nu=\nu_n^{\mathrm{fb}}$ and prepares
 $I_{\cH_{\nu_n^{\mathrm{fb}}}}/\dim\cH_{\nu_n^{\mathrm{fb}}}$.  It then adjoins the maximally
 mixed Specht factor and applies the inverse Schur transform.
-By \cref{prop:young-dither}, \(\mathsf D_n\) is a Markov kernel, and both
-conditional operations are channels.  The kernel is independent of the
+The sampling rule is a Markov kernel, and both conditional operations are
+channels.  The kernel is independent of the
 spectrum and eigenbasis, the sector maps are \(\U(d)\)-covariant, and the
 fallback state is invariant.
 Hence $\cC_n^{\mathrm{univ}}$ is a spectrum-independent,
@@ -2155,6 +2147,12 @@ the PBW/Fock normalization used for the Cartan-sector cloning construction.
           =
           \prod_{\alpha\in \mathsf R_+}(1-q_\alpha).
   \]
+  The same estimate is uniform when $p$ ranges over a compact
+  $K\Subset\Delta_d^\circ$ and $\lambda_N/N$ approaches $p$ uniformly.  Indeed,
+  at $\lambda_N/N=p$ the strict rearrangement gap has a positive minimum over
+  $p\in K$ and the finitely many nonidentity permutations; continuity
+  preserves this lower bound when $\lambda_N/N$ is sufficiently close to
+  $p$.
 
   Let
   \[
@@ -2325,6 +2323,7 @@ the PBW/Fock normalization used for the Cartan-sector cloning construction.
   \end{equation}
   for all large \(n\).
 
+  \paragraph{Finite-cutoff Cartan coefficients.}
   Let \(V=V_{\mu,\omega}:\cH_\nu\to\cH_\mu\ot\cH_\omega\) be the Cartan
   inclusion from \eqref{eq:cartan-inclusion}.  Write
   \(F_\alpha^{(\lambda)}=d\pi_\lambda(F_\alpha)\) for the root operator
@@ -2346,7 +2345,7 @@ the PBW/Fock normalization used for the Cartan-sector cloning construction.
                 (\Delta_\alpha^\lambda)^{r_\alpha/2}}
           v_\lambda\,.
   \]
-  Expanding this formula gives, exactly,
+  Expanding each root block gives the exact identity
   \[
   \begin{aligned}
           V\widetilde e_{\mathbf r}^{\nu}
@@ -2389,6 +2388,7 @@ the PBW/Fock normalization used for the Cartan-sector cloning construction.
           +o_L(1).
   \end{equation}
 
+  \paragraph{Limiting diagonal weights.}
   Set
   \[
           \sigma_n:=\cC_{\mu,\nu}(\rho_{p,\mu}),
@@ -2428,7 +2428,7 @@ the PBW/Fock normalization used for the Cartan-sector cloning construction.
           \frac{\dim\cH_\mu}{\dim\cH_\nu}
           \sum_{\mathbf a\le\mathbf r,\ \mathbf b\le\mathbf s}
           \beta_{\mathbf r,\mathbf a}^{(n)}
-          b_{\mathbf s,\mathbf b}^{(n)}
+          \beta_{\mathbf s,\mathbf b}^{(n)}
           \left\langle
           e_{\mathbf a}^{\mu},
           \rho_{p,\mu}e_{\mathbf b}^{\mu}
@@ -2495,35 +2495,13 @@ the PBW/Fock normalization used for the Cartan-sector cloning construction.
   \]
   for \(|\mathbf r|,|\mathbf s|\le L\).
 
-  The Weyl-character estimate in \cref{lem:sector-thermal} is uniform here:
+  The compact-uniform character estimate established in the proof of
+  \cref{lem:sector-thermal} applies because $p,\mu/n\in K$ and
+  $\|\mu/n-p\|_\infty\to0$.  Therefore
   \[
-          \sum_i \frac{\mu_i}{n}\log p_i
-          -
-          \sum_i \frac{\mu_{\sigma(i)}}{n}\log p_i
-          \ge a_K
-          \qquad(\sigma\ne\mathrm{id}),
-  \]
-  because \(\mu/n,p\in K\).  Hence
-  \[
-          \sum_{\sigma\ne\mathrm{id}}
-          \left|
-          \frac{\prod_i p_i^{\mu_{\sigma(i)}+d-\sigma(i)}}
-               {\prod_i p_i^{\mu_i+d-i}}
-          \right|
-          =
-          O_K(e^{-a_K n}).
-  \]
-  Thus
-  \[
-          s_\mu(p)
-          =
-          p^\mu
-          \prod_{\alpha\in \mathsf R_+}(1-q_\alpha)^{-1}
-          (1+o(1)),
-          \qquad
           c_\mu
-          =
-          \prod_{\alpha\in \mathsf R_+}(1-q_\alpha)+o(1).
+          =\frac{p^\mu}{s_\mu(p)}
+          =\prod_{\alpha\in \mathsf R_+}(1-q_\alpha)+o(1).
   \]
   The Weyl dimension formula gives
   \[
@@ -2553,6 +2531,7 @@ the PBW/Fock normalization used for the Cartan-sector cloning construction.
   \]
   because \(1-q_\alpha^{(\gamma)}=(1-q_\alpha)/\gamma\).
 
+  \paragraph{Removing the cutoff.}
   Let
   \[
           \tau^{(\gamma)}
@@ -2885,771 +2864,515 @@ for $p\in K$,
 \]
 \end{proof}
 
-\section{The hybrid Gaussian converse}\label{app:covariant-compactness}
+\section{Weighted Gaussian converses}\label{app:gaussian-converse}
 
-This appendix proves the upper bound in \cref{thm:hybrid-gaussian}.
+This appendix proves the upper bounds in
+\cref{thm:gaussian-flat-prior,thm:hybrid-gaussian}.  We first average over
+large parameter cubes, but apply a compact product witness before taking any
+limit.  The proof therefore uses only a completely positive map on oscillator
+trace class and, in the hybrid case, one scalar convolution kernel.
 
-\subsection{Hybrid measures and fidelity}
+\subsection{Weighted fidelity and compact limits}
 
-Use
+\begin{lemma}[Weighted root-fidelity bound]\label{lem:weighted-fidelity}
+Let $R,T$ be positive trace-class operators, and let $W$ be bounded,
+positive, and injective.  Define
 \[
-  \mathfrak T=L^1(\mathsf H;\cT_1(\cF_{\mathrm{orb}})),
-  \qquad
-  \mathfrak T^*=L^\infty(\mathsf H;\mathcal B(\cF_{\mathrm{orb}})),
+  \Tr(TW^{-1})
+  :=\lim_{\varepsilon\downarrow0}
+  \Tr\bigl(T(W+\varepsilon I)^{-1}\bigr)\in[0,\infty].
 \]
-\[
-  \mathfrak A=C_0(\mathsf H;\mathcal K(\cF_{\mathrm{orb}})),
-  \qquad
-  \mathfrak M=\mathfrak A^*.
-\]
-A positive element of \(\mathfrak M\) is a finite positive
-\(\cT_1(\cF_{\mathrm{orb}})\)-valued Radon measure.  For a bounded map
-\(\Gamma:\mathfrak T\to\mathfrak M\), the pairing
-\[
-  \langle R,\Gamma^*(A)\rangle
-  =\langle\Gamma(R),A\rangle,
-  \qquad R\in\mathfrak T,\quad A\in\mathfrak A,
-\]
-defines the restriction of its Banach transpose to the canonical copy of
-\(\mathfrak A\subset\mathfrak M^*\).  We call \(\Gamma\) completely
-positive when this map \(\Gamma^*:\mathfrak A\to\mathfrak T^*\) is
-completely positive.  It is trace nonincreasing when
-\[
-  \Tr\Gamma(R)\le\Tr R
-  \qquad(R\ge0),
-\]
-where \(\Tr R=\int\Tr R(x)\,\dd x\), and the trace of a positive measure is
-its total scalar mass.  The
-measure-valued output is needed because a weak limit may have a singular
-classical part.
-
-\begin{lemma}[Hybrid-measure fidelity and mass at infinity]
-\label{lem:hybrid-measure-B}
-If positive functionals \(\Xi,\Upsilon\in\mathfrak A^*\) have
-\(\cT_1(\cF_{\mathrm{orb}})\)-valued Radon measures with densities
-\(X_y,Y_y\) relative to a common scalar dominating measure \(\lambda\)
-(for instance, the sum of their trace measures), then
-\begin{equation}\label{eq:hybrid-measure-fidelity}
-  B(\Xi,\Upsilon)
-  =
-  \int_{\mathsf H}
-  \Tr\sqrt{X_y^{1/2}Y_yX_y^{1/2}}\,\dd\lambda(y).
+If this quantity is finite, then
+\begin{equation}\label{eq:weighted-quantum-fidelity}
+  B(R,T)^2\le \Tr(RW)\,\Tr(TW^{-1}).
 \end{equation}
-The right side is independent of \(\lambda\) and equals the
-Alberti--Uhlmann transition amplitude of the two positive functionals on
-\(\mathfrak A\).
 
-Let \(\widetilde{\mathfrak A}\) be the unitization.  Suppose that
-\(\widehat\Xi\) is a state on \(\widetilde{\mathfrak A}\), let
-\(\Xi=\widehat\Xi|_{\mathfrak A}\), and let \(\Upsilon\) be normalized on
-\(\mathfrak A\).  Its canonical state extension is
-\[
-  \widehat\Upsilon(A+tI)=\Upsilon(A)+t,
-  \qquad A\in\mathfrak A,\quad t\in\C.
-\]
-Then
-\begin{equation}\label{eq:mass-infinity-orthogonal}
-  B_{\widetilde{\mathfrak A}}(\widehat\Xi,\widehat\Upsilon)
-  =B_{\mathfrak A}(\Xi,\Upsilon).
-\end{equation}
-Thus mass of \(\widehat\Xi\) on the quotient character at infinity has zero
-overlap with the target; the payoff is exactly that of the restricted
-functional \(\Xi\).
-\end{lemma}
-
-\begin{proof}
-Under a change of dominating measure, both operator densities acquire the
-same Radon--Nikodym factor, and the integrand in
-\eqref{eq:hybrid-measure-fidelity} transforms as a density.  Thus the
-integral is intrinsic.
-
-For the transition-amplitude identity, represent both functionals on the
-standard direct integral of Hilbert--Schmidt spaces over \(\mathsf H\).  The
-fiberwise Uhlmann theorem gives the integrand in
-\eqref{eq:hybrid-measure-fidelity}; a measurable maximizing polar field is
-obtained from Borel functional calculus for measurable operator fields.
-Conversely, the fiberwise Uhlmann bound applies to every pair of implementing
-fields.  Integrating proves the first assertion.
-
-For the second, let \(e\) be the central support projection of the ideal
-\(\mathfrak A\) in \(\widetilde{\mathfrak A}^{**}\).  The canonical target
-extension satisfies \(\widehat\Upsilon(1-e)=0\).  Transition amplitude is
-additive over orthogonal central summands, and therefore
-\[
-  B_{\widetilde{\mathfrak A}}(\widehat\Xi,\widehat\Upsilon)
-  =B(e\widehat\Xi,e\widehat\Upsilon)
-   +B((1-e)\widehat\Xi,0)
-  =B_{\mathfrak A}(\Xi,\Upsilon).
-\]
-The first term is exactly the transition amplitude of the restrictions to
-\(\mathfrak A\), by the first part.
-\end{proof}
-
-\subsection{F{\o}lner covariantization}
-
-Let \(\mathsf G=\mathsf H\times\C^{r_d}\).  For \(\xi=(h,z)\in\mathsf G\),
-define the input and target actions
-\begin{align*}
-  (\mathcal U_\xi^{\mathrm{in}}R)(x)
-  &=D(z)R(x-h)D(z)^*,\\
-  (\mathcal U_\xi^{\mathrm{out}}\Xi)(E)
-  &=D(\sqrt{\gamma}\,z)\,
-    \Xi(E-\sqrt{\gamma}\,h)\,
-    D(\sqrt{\gamma}\,z)^*.
-\end{align*}
-Then
-\[
-  \Theta_\xi^{\mathrm{in}}=\mathcal U_\xi^{\mathrm{in}}(\Theta_0^{\mathrm{in}}),
-  \qquad
-  \Theta_\xi^{\mathrm{tar}}=\mathcal U_\xi^{\mathrm{out}}(\Theta_0^{\mathrm{tar}}).
-\]
-The induced action on \(\widetilde{\mathfrak A}\) is norm continuous on
-each fixed element: translations are norm continuous on
-\(C_0(\mathsf H)\), and strongly continuous Weyl conjugations are norm
-continuous on compact operators.
-
-\begin{lemma}[F{\o}lner reduction for the hybrid model]\label{lem:gaussian-folner}
-For the cubes \(\Omega_L\subset\mathsf G\),
-\begin{equation}\label{eq:hybrid-folner-bound}
-  \limsup_{L\to\infty}
-  \sup_\Lambda
-  \frac1{|\Omega_L|}\int_{\Omega_L}
-  B\!\left(\Lambda(\Theta_\xi^{\mathrm{in}}),
-  \Theta_\xi^{\mathrm{tar}}\right)\,\dd\xi
+More generally, let
+$R\in L^1(\mathsf H;\cT_1(\cF_{\mathrm{orb}}))$ be positive, let $g$ be a
+probability density on $\mathsf H$, and let $\chi>0$ be measurable.  Whenever
+the three factors on the right are finite,
+\begin{equation}\label{eq:weighted-hybrid-fidelity}
+  B(R,gT)^2
   \le
-  \sup_{\Gamma}
-  B\!\left(\Gamma(\Theta_0^{\mathrm{in}}),
-  \Theta_0^{\mathrm{tar}}\right),
-\end{equation}
-where the right supremum is over completely positive trace-nonincreasing maps
-\(\Gamma:\mathfrak T\to\mathfrak M\) satisfying
-\[
-  \Gamma\circ\mathcal U_\xi^{\mathrm{in}}=\mathcal U_\xi^{\mathrm{out}}\circ\Gamma
-  \qquad(\xi\in\mathsf G).
-\]
-\end{lemma}
-
-\begin{proof}
-For a channel \(\Lambda\), define
-\[
-  \overline\Lambda_L
-  =\frac1{|\Omega_L|}\int_{\Omega_L}
-  \mathcal U_{-\xi}^{\mathrm{out}}\circ\Lambda\circ\mathcal U_\xi^{\mathrm{in}}\,\dd\xi.
-\]
-Joint concavity and covariance of root fidelity give
-\begin{equation}\label{eq:folner-concavity}
-  \frac1{|\Omega_L|}\int_{\Omega_L}
-  B\!\left(\Lambda(\Theta_\xi^{\mathrm{in}}),
-  \Theta_\xi^{\mathrm{tar}}\right)\,\dd\xi
-  \le
-  B\!\left(\overline\Lambda_L(\Theta_0^{\mathrm{in}}),
-  \Theta_0^{\mathrm{tar}}\right).
-\end{equation}
-Choose a sequence \(L_j\to\infty\) and nearly optimal channels for the
-left-hand limsup.  Here \(\mathfrak T^*\) consists of essentially bounded
-weak-* measurable operator fields, with its canonical duality against
-\(\mathfrak T\).
-The adjoint of each averaged channel, restricted to the unitization, is a
-unital completely positive contraction
-\[
-  \widehat\Lambda_j^*:
-  \widetilde{\mathfrak A}\longrightarrow\mathfrak T^*.
-\]
-Both \(\widetilde{\mathfrak A}\) and the predual \(\mathfrak T\) are
-separable.  Choose a countable, rationally linear, self-adjoint operator system
-\(\mathcal D\subset\widetilde{\mathfrak A}\) containing the unit and
-norm dense in the unitization.  Bounded
-weak-* subsets of \(\mathfrak T^*\) are metrizable, so a diagonal extraction
-gives weak-* convergence of \(\widehat\Lambda_j^*(A)\) for every
-\(A\in\mathcal D\).  Contractivity extends the limit uniquely to a linear
-contraction
-\[
-  \widehat\Gamma^{*}:
-  \widetilde{\mathfrak A}\longrightarrow\mathfrak T^*
-\]
-and gives pointwise weak-* convergence on the whole unitization.  To verify
-complete positivity, fix \(r\) and a positive matrix
-\([A_{kl}]\in M_r(\widetilde{\mathfrak A})\).  Entrywise weak-* convergence
-implies
-\[
-  [\widehat\Lambda_j^*(A_{kl})]
-  \stackrel{w^*}{\longrightarrow}
-  [\widehat\Gamma^*(A_{kl})]
-  \quad\text{in }M_r(\mathfrak T^*).
-\]
-The positive cone of this dual operator space is weak-* closed, so the limit
-matrix is positive.  Since \(r\) is arbitrary,
-\(\widehat\Gamma^{*}\) is completely positive; convergence at the unit
-shows that it is unital.
-
-Restrict \(\widehat\Gamma^{*}\) to the ideal \(\mathfrak A\), and
-define \(\Gamma:\mathfrak T\to\mathfrak M\) directly by duality:
-\[
-  \langle\Gamma(R),A\rangle
-  =\langle R,\widehat\Gamma^{*}(A)\rangle,
-  \qquad A\in\mathfrak A.
-\]
-This is a bounded completely positive map in the sense fixed above.  If
-\((e_\ell)\) is an increasing contractive approximate unit of
-\(\mathfrak A\), then for \(R\ge0\),
-\[
-  \Tr\Gamma(R)
-  =\sup_\ell\langle\Gamma(R),e_\ell\rangle
-  =\sup_\ell\langle R,\widehat\Gamma^{*}(e_\ell)\rangle
-  \le\langle R,\widehat\Gamma^{*}(I)\rangle
-  =\Tr R.
-\]
-Thus \(\Gamma\) is trace nonincreasing.  The possible trace defect is
-the quotient mass lost when the weak-* limit is restricted from the
-unitization to the ideal \(\mathfrak A\).
-
-For every fixed \(v\in\mathsf G\) and \(R\in\mathfrak T\), translation of the
-averaging domain gives the measure-norm estimate
-\[
-  \left\|
-  \overline\Lambda_{L_j}(\mathcal U_v^{\mathrm{in}} R)
-  -\mathcal U_v^{\mathrm{out}}\overline\Lambda_{L_j}(R)
-  \right\|_{\mathfrak M}
-  \le
-  \frac{|(\Omega_{L_j}+v)\triangle \Omega_{L_j}|}
-       {|\Omega_{L_j}|}\,\|R\|_1.
-\]
-The ratio tends to zero.  Pairing with \(\mathfrak A\) and passing to the
-pointwise weak-* limit proves
-\(\Gamma\circ\mathcal U_v^{\mathrm{in}}
-=\mathcal U_v^{\mathrm{out}}\circ\Gamma\).  The same argument works for every
-fixed \(v\); alternatively, equality first on a countable dense subgroup
-extends to all \(v\) by norm continuity of
-\(v\mapsto\mathcal U_v^{\mathrm{in}}R\) and weak-* continuity of
-\(v\mapsto\mathcal U_v^{\mathrm{out}}\Xi\).
-
-It remains to pass the payoff to the limit.  The Alberti--Uhlmann
-variational formula \cite{AlbertiUhlmann2000} expresses the transition
-amplitude of positive functionals on a unital \(C^*\)-algebra as
-\[
-  B(\phi,\psi)
-  =
-  \inf_{A>0\ \mathrm{invertible}}
-  \frac12\bigl(\phi(A)+\psi(A^{-1})\bigr).
-\]
-For fixed \(\psi\), this is an infimum of weak-* continuous affine functions
-of \(\phi\), and is therefore weak-* upper semicontinuous.  Apply this on
-\(\widetilde{\mathfrak A}\) to the unitized averaged outputs and the
-unitized target.  The pointwise convergence of the adjoints gives weak-*
-convergence of those output states, while
-\cref{lem:hybrid-measure-B,eq:mass-infinity-orthogonal} identifies the
-transition amplitude of the limiting state with that of its restricted
-hybrid measure.  Hence
-\[
-  \limsup_j
-  B\!\left(\overline\Lambda_{L_j}(\Theta_0^{\mathrm{in}}),
-  \Theta_0^{\mathrm{tar}}\right)
-  \le
-  B\!\left(\Gamma(\Theta_0^{\mathrm{in}}),
-  \Theta_0^{\mathrm{tar}}\right).
-\]
-Together with \eqref{eq:folner-concavity}, this proves
-\eqref{eq:hybrid-folner-bound}.
-\end{proof}
-
-\subsection{The residual subinstrument}
-
-\begin{lemma}[Residual subinstrument of a covariant hybrid map]\label{lem:residual-instrument-form}
-Let \(\Gamma:\mathfrak T\to\mathfrak M\) be completely positive,
-trace nonincreasing, and exactly covariant under \(\mathsf G\).  Then there is a
-completely positive trace-nonincreasing measure map
-\[
-  \mathcal I:\cT_1(\cF_{\mathrm{orb}})\longrightarrow
-  C_0(\mathsf H;\mathcal K(\cF_{\mathrm{orb}}))^*,
-\]
-whose Borel restrictions \(E\mapsto\mathcal I_E\) form a subinstrument:
-for every Borel set \(E\),
-\(\mathcal I_E:\cT_1(\cF_{\mathrm{orb}})\to
-\cT_1(\cF_{\mathrm{orb}})\) is bounded, completely positive, and trace
-nonincreasing.  For every trace-class input, the branches are countably
-additive in trace norm.  For every \(R\in\mathfrak T\),
-\begin{equation}\label{eq:residual-convolution-kernel}
-  [\Gamma(R)](E)
-  =
-  \int_{\mathsf H}
-  [\mathcal I(R(x))](E-\sqrt{\gamma}\,x)\,\dd x
-\end{equation}
-as an equality of \(\cT_1(\cF_{\mathrm{orb}})\)-valued measures.  Every
-branch \(\mathcal I_E\) is displacement covariant with gain
-\(\sqrt{\gamma}\).  If \(\Gamma\) is also covariant under
-independent oscillator phase rotations, then every branch \(\mathcal I_E\)
-is phase covariant.
-
-In particular, if \(\Xi=\Gamma(\mathsf N_{0,\Sigma_p}\ot\Phi_0)\), then for
-bounded measurable \(a\) and bounded oscillator observables \(M\),
-\begin{equation}\label{eq:residual-form-test}
-  \int a(y)\,\Tr[M\,\Xi(\dd y)]
-  =
-  \int_{\mathsf H}
-  \left(\int a(y)\varphi_{0,\gamma \Sigma_p}(y-r)\,\dd y\right)
-  \Tr[M\,\mathcal I(\Phi_0)(\dd r)].
+  \left(\int_{\mathsf H}\chi(y)\Tr[R(y)W] \,\dd y\right)
+  \left(\int_{\mathsf H}\frac{g(y)}{\chi(y)}\,\dd y\right)
+  \Tr(TW^{-1}).
 \end{equation}
 \end{lemma}
 
 \begin{proof}
-Choose a nonnegative approximate identity
-\(u_j\in C_c(\mathsf H)\) with \(\int u_j=1\) and supports shrinking to the
-origin.  For \(X\in\cT_1(\cF_{\mathrm{orb}})\), set
+For $\varepsilon>0$, put $W_\varepsilon=W+\varepsilon I$.  The Schatten
+Cauchy--Schwarz inequality gives
 \[
-  \mathcal I_j(X)=\Gamma(u_j X),
-  \qquad
-  (u_j X)(x)=u_j(x)X.
+  B(R,T)
+  =\|R^{1/2}T^{1/2}\|_1
+  \le
+  \|R^{1/2}W_\varepsilon^{1/2}\|_2
+  \|W_\varepsilon^{-1/2}T^{1/2}\|_2.
 \]
-Each \(\mathcal I_j\) is completely positive and trace nonincreasing, and its
-adjoint is a completely positive contraction from
-\(C_0(\mathsf H;\mathcal K(\cF_{\mathrm{orb}}))\) to
-\(\mathcal B(\cF_{\mathrm{orb}})\).  Both the domain and the trace-class predual are
-separable.  As in the proof of \cref{lem:gaussian-folner}, a diagonal weak-*
-extraction on a countable operator system gives a pointwise weak-* limit
-\(\mathcal I^*\); weak-* closedness of every matrix positive cone makes this
-limit completely positive.  Define \(\mathcal I\) by duality.  If
-\((e_\ell)\) is a contractive approximate unit, then for \(X\ge0\),
-\[
-  \Tr\mathcal I(X)
-  =\sup_\ell\langle X,\mathcal I^*(e_\ell)\rangle
-  \le\Tr X.
-\]
-Thus \(\mathcal I\) is a completely positive trace-nonincreasing
-measure-valued map.
+Squaring and letting $\varepsilon\downarrow0$ proves
+\eqref{eq:weighted-quantum-fidelity} by the definition above and monotone
+convergence.
 
-We next prove the convolution formula.  First take \(R(x)=f(x)X\), with
-\(f\in L^1(\mathsf H)\).  Put
-\((\operatorname{sh}_x u_j)(v)=u_j(v-x)\).  Then
+By the direct-integral definition of classical--quantum fidelity,
 \[
-  (f*u_j)(v)X
-  =\int f(x)(\operatorname{sh}_x u_j)(v)X\,\dd x.
+  B(R,gT)=\int_{\mathsf H}\sqrt{g(y)}\,B(R(y),T)\,\dd y.
 \]
-Classical translation covariance, bounded linearity, and Fubini's theorem
-therefore give, as an equality of functionals on
-\(C_0(\mathsf H;\mathcal K(\cF_{\mathrm{orb}}))\),
+Apply \eqref{eq:weighted-quantum-fidelity} pointwise and then use
+Cauchy--Schwarz in $y$ after writing
 \[
-  \Gamma((f*u_j)X)
-  =\int f(x)\,\operatorname{sh}_{\sqrt{\gamma}\,x}\mathcal I_j(X)\,\dd x,
+  \sqrt{g(y)\Tr[R(y)W]}
+  =\sqrt{\chi(y)\Tr[R(y)W]}
+   \sqrt{\frac{g(y)}{\chi(y)}}.
 \]
-where \((\operatorname{sh}_s\Xi)(E)=\Xi(E-s)\).  The left side converges in measure norm
-to \(\Gamma(fX)\), because \(f*u_j\to f\) in \(L^1\).  Pair the right
-side with an arbitrary
-\(A\in C_0(\mathsf H;\mathcal K(\cF_{\mathrm{orb}}))\).  Pointwise weak-*
-convergence of \(\mathcal I_j(X)\), the bound by
-\(\|f\|_1\|X\|_1\|A\|\), and dominated convergence give
-\[
-  \Gamma(fX)
-  =\int f(x)\,\operatorname{sh}_{\sqrt{\gamma}\,x}\mathcal I(X)\,\dd x
-\]
-as functionals.  Uniqueness of the representing Radon measure now gives
-\eqref{eq:residual-convolution-kernel} for simple tensors.  Finite sums of
-simple tensors are dense in \(\mathfrak T\), and both sides are bounded by
-\(\|R\|_1\), so the identity extends to every \(R\).
-
-It remains to record the branch properties.  Complete positivity of the
-measure-valued map means that for every positive
-\([X_{kl}]\in M_r(\cT_1)\), the matrix
-\([\mathcal I(X_{kl})]\) is a positive matrix-valued Radon measure.  By
-regular approximation of a Borel indicator by nonnegative continuous
-functions, \([\mathcal I_E(X_{kl})]\ge0\) for every Borel set \(E\).  Hence
-each \(\mathcal I_E\) is completely positive.  Moreover,
-\(0\le\mathcal I_E(X)\le\mathcal I_{\mathsf H}(X)\) for \(X\ge0\), so
-\[
-  \Tr\mathcal I_E(X)\le\Tr X.
-\]
-Thus every branch is bounded and trace nonincreasing.  Countable additivity
-holds first in trace norm for positive
-inputs, because the increments are positive and their traces add, and then
-for arbitrary inputs by linearity.
-
-For a Weyl displacement \(w\), full covariance of \(\Gamma\) gives for
-every \(j\)
-\[
-  \mathcal I_j(D(w)XD(w)^*)
-  =D(\sqrt{\gamma}\,w)\mathcal I_j(X)D(\sqrt{\gamma}\,w)^*
-\]
-as an equality of measures.  Passing to the weak-* limit proves the same
-identity for \(\mathcal I\), and evaluating on \(E\) proves it for every
-branch \(\mathcal I_E\).  The identical argument applies to independent
-phase rotations when \(\Gamma\) is phase covariant.
-
-Finally, substitute
-\(R(x)=\varphi_{0,\Sigma_p}(x)\Phi_0\) into
-\eqref{eq:residual-convolution-kernel}.  Changing variables
-\(y=r+\sqrt{\gamma}\,x\) and using
-\(\sqrt{\gamma}\,x\sim\mathsf N_{0,\gamma \Sigma_p}\) proves
-\eqref{eq:residual-form-test} first for continuous compactly supported test
-functions.  A monotone-class argument extends it to the bounded measurable
-\(a\) and bounded \(M\) stated in the lemma.
+This proves \eqref{eq:weighted-hybrid-fidelity}.
 \end{proof}
 
-\subsection{The product bound}
+\begin{lemma}[Compact-observable limits of completely positive maps]
+\label{lem:compact-cp-limit}
+Let $\cH_0,\cH_1$ be separable Hilbert spaces and let
+$\Gamma_j:\cT_1(\cH_0)\to\cT_1(\cH_1)$ be completely positive maps whose
+trace-norm operator norms are uniformly bounded.  There are a subsequence and
+a completely positive map $\Gamma:\cT_1(\cH_0)\to\cT_1(\cH_1)$ such that
+\begin{equation}\label{eq:compact-map-convergence}
+  \Tr[\Gamma_j(X)K]\longrightarrow\Tr[\Gamma(X)K]
+\end{equation}
+for every $X\in\cT_1(\cH_0)$ and every compact operator
+$K\in\mathcal K(\cH_1)$.  If
+$\Tr\Gamma_j(X)\le c\Tr X$ for all $X\ge0$, then
+$\Tr\Gamma(X)\le c\Tr X$.
 
-\begin{proposition}[Hybrid Gaussian product bound]\label{prop:hybrid-from-residual}
-Every exactly covariant completely positive trace-nonincreasing map
-\(\Gamma:\mathfrak T\to\mathfrak M\) satisfies
+Suppose also that $U_g$ and $V_g$ are unitary representations on
+$\cH_0$ and $\cH_1$ and, for every fixed $g$ and $X$,
 \[
-  B\!\left(\Gamma(\Theta_0^{\mathrm{in}}),
-  \Theta_0^{\mathrm{tar}}\right)
-  \le\Buniv(\gamma,p).
+  \|\Gamma_j(U_gXU_g^*)-V_g\Gamma_j(X)V_g^*\|_1\longrightarrow0.
 \]
-Consequently, the upper bound in \eqref{eq:hybrid-flat-prior-value} holds.
+Then $\Gamma(U_gXU_g^*)=V_g\Gamma(X)V_g^*$.
+\end{lemma}
+
+\begin{proof}
+Restrict the adjoints $\Gamma_j^*$ to $\mathcal K(\cH_1)$.  On a countable
+norm-dense self-adjoint subspace, Banach--Alaoglu and a diagonal argument give
+pointwise weak-* convergence in $\mathcal B(\cH_0)$.  Uniform boundedness
+extends the limit to a bounded map
+$\Gamma^*:\mathcal K(\cH_1)\to\mathcal B(\cH_0)$.  At every matrix level the
+positive cone is weak-* closed, so $\Gamma^*$ is completely positive.  The
+duality $\mathcal K(\cH_1)^*=\cT_1(\cH_1)$ defines $\Gamma$ and gives
+\eqref{eq:compact-map-convergence}.
+
+Let $P_N\uparrow I$ be finite-rank projections on $\cH_1$.  For $X\ge0$,
+\[
+  \Tr\Gamma(X)
+  =\sup_N\Tr[\Gamma(X)P_N]
+  =\sup_N\lim_j\Tr[\Gamma_j(X)P_N]
+  \le c\Tr X.
+\]
+For the covariance assertion, pair the assumed trace-norm defect with a
+compact $K$, pass to the limit, and use that $V_g^*KV_g$ is compact.
+\end{proof}
+
+\subsection{The multimode least-noise moment}
+
+For $s\ge1$, choose $q_1,\ldots,q_s\in(0,1)$ and set
+\[
+  q_\ell^{(\gamma)}=1-\frac{1-q_\ell}{\gamma},
+  \qquad
+  \tau=\bigotimes_{\ell=1}^s\tau_{q_\ell},
+  \qquad
+  \tau_\gamma=\bigotimes_{\ell=1}^s\tau_{q_\ell^{(\gamma)}}.
+\]
+
+\begin{proposition}[Least-noise moment]
+\label{prop:least-noise-moment}
+Let $\Gamma$ be a completely positive trace-nonincreasing map on the
+$s$-mode trace class.  Assume that it is displacement covariant with gain
+$\sqrt\gamma$:
+\[
+  \Gamma(D(z)XD(z)^*)
+  =D(\sqrt\gamma\,z)\Gamma(X)D(\sqrt\gamma\,z)^*
+  \qquad(z\in\C^s).
+\]
+If
+\[
+  W(\widehat{\mathbf N})
+  =\prod_{\ell=1}^s w_\ell(\widehat N_\ell),
+\]
+where every $w_\ell$ is bounded, nonnegative, and decreasing on
+$\mathbb Z_{\ge0}$, then
+\begin{equation}\label{eq:least-noise-moment}
+  \Tr[\Gamma(\tau)W(\widehat{\mathbf N})]
+  \le
+  \Tr[\Gamma(\tau)]\,
+  \Tr[\tau_\gamma W(\widehat{\mathbf N})].
+\end{equation}
 \end{proposition}
 
 \begin{proof}
-Let \(\Gamma\) be an exactly covariant completely positive
-trace-nonincreasing measure kernel.  Enumerate the pairs \(i<j\) by
-\(\ell=1,\ldots,r_d\), write \(q_\ell\) for the corresponding \(q_{ij}\),
-and let \(\widehat N_\ell\) be the number operator in mode \(\ell\).  Put
+Let $R_\theta$ denote the independent phase rotations and replace $\Gamma$
+by
 \[
-  \widehat{\mathbf N}:=(\widehat N_1,\ldots,\widehat N_{r_d}).
-\]
-Write \(\mathbb T=\R/(2\pi\mathbb Z)\).  For \(\theta\in\mathbb T^{r_d}\), set
-\[
-  U_\theta^{\mathrm{ph}}
-  =\bigotimes_{\ell=1}^{r_d}e^{\mathrm i\theta_\ell \widehat N_\ell}.
-\]
-Let \(\vartheta_\theta^{\mathrm{in}}\) and
-\(\vartheta_\theta^{\mathrm{out}}\) denote conjugation by
-\(U_\theta^{\mathrm{ph}}\) on the oscillator part of the input and output,
-respectively.  Twirl
-\(\Gamma\) over these rotations:
-\[
-  \Gamma^{\mathrm{ph}}
-  =
-  \int_{\mathbb T^{r_d}}
-  \vartheta_{-\theta}^{\mathrm{out}}
-  \circ\Gamma\circ
-  \vartheta_{\theta}^{\mathrm{in}}\,\dd\theta,
-\]
-where $\dd\theta$ is normalized Haar measure.
-The origin input and target are phase invariant, so concavity of root fidelity
-shows that the twirl cannot decrease the origin payoff.  It retains classical
-translation covariance and gain-\(\sqrt{\gamma}\) displacement covariance
-and is phase covariant.  Replacing \(\Gamma\) by
-\(\Gamma^{\mathrm{ph}}\), we may therefore assume from now on that
-\(\Gamma\) is phase covariant.  Apply
-\cref{lem:residual-instrument-form} to this map.  Its residual
-subinstrument is then branchwise displacement and phase covariant.  Since
-\(\Phi_0\) is phase invariant, every positive operator
-\(\mathcal I_E(\Phi_0)\) is diagonal in the joint number basis.
+  \Gamma^{\mathrm{ph}}(X)
+  =\frac1{(2\pi)^s}\int_{[0,2\pi]^s}
+    R_{-\theta}\Gamma(R_\theta X R_\theta^*)R_{-\theta}^*\,\dd\theta.
+\]  This twirl preserves displacement
+covariance and leaves both traces in \eqref{eq:least-noise-moment}
+unchanged.  We may therefore assume that $\Gamma$ is phase covariant in
+every mode.
 
-Write
-\[
-  f_\gamma=\varphi_{0,\gamma \Sigma_p},
-  \qquad f_1=\varphi_{0,\Sigma_p},
-\]
-\[
-  t_{\mathbf k}=\prod_\ell(1-q_\ell)q_\ell^{k_\ell},
-  \qquad
-  t_{\mathbf k}^{(\gamma)}=\prod_\ell
-  (1-q_\ell^{(\gamma)})(q_\ell^{(\gamma)})^{k_\ell},
-  \qquad
-  \tau^{(\gamma)}
-  =\sum_{\mathbf k}t_{\mathbf k}^{(\gamma)}\proj{\mathbf k}
-  =\bigotimes_\ell\tau_{q_\ell^{(\gamma)}},
-\]
-and set
-\[
-  \chi(y)=\sqrt{\frac{f_1(y)}{f_\gamma(y)}},
-  \qquad
-  w_{\mathbf k}=\sqrt{\frac{t_{\mathbf k}}{t_{\mathbf k}^{(\gamma)}}},
-  \qquad
-  W(\widehat{\mathbf N})=\sum_{\mathbf k}w_{\mathbf k}\proj{\mathbf k}.
-\]
-The function \(\chi\) is bounded and positive, while
-\(W(\widehat{\mathbf N})\) is a bounded product of nonnegative decreasing
-photon-number weights.  Direct
-factorization gives
-\begin{equation}\label{eq:hybrid-target-witness}
-  \sum_{\mathbf k}\int
-  \frac{f_1(y)t_{\mathbf k}}{\chi(y)w_{\mathbf k}}\,\dd y
-  =\Bcl(\gamma,d)\Borb(\gamma,p).
-\end{equation}
-
-Define finite positive measures
-\[
-  \mu_1(E)=\Tr[\mathcal I_E(\Phi_0)],
-  \qquad
-  \mu_W(E)=\Tr[\mathcal I_E(\Phi_0)W(\widehat{\mathbf N})].
-\]
-For every Borel set \(E\), the branch \(\mathcal I_E\) satisfies the
-hypotheses of \cref{lem:tensor-conic}.  Therefore
-\[
-  \mu_W(E)
-  \le
-  \Tr[\tau^{(\gamma)} W(\widehat{\mathbf N})]\,\mu_1(E)
-  =\Borb(\gamma,p)\mu_1(E).
-\]
-Thus \(\mu_W\le\Borb(\gamma,p)\mu_1\) as measures, and
-\(\mu_1(\mathsf H)\le1\).  Using the inverse of \(\Sigma_p\) on \(\mathsf H\),
-a direct completion of the square gives
-\[
-\begin{aligned}
-  c_\gamma(r)
-  &:=\int \chi(y)f_\gamma(y-r)\,\dd y\\
-  &=\Bcl(\gamma,d)
-  \exp\!\left[-\frac{\gamma-1}{2\gamma(\gamma+1)}
-  \langle r,\Sigma_p^{-1}r\rangle\right]
-  \le c_\gamma(0)=\Bcl(\gamma,d).
-\end{aligned}
-\]
-
-The convolution formula \eqref{eq:residual-form-test} shows that the origin
-output is absolutely continuous with respect to Lebesgue measure in its
-classical coordinate.  Write its diagonal operator density as
-\[
-  X(y)=\sum_{\mathbf k}x_{\mathbf k}(y)\proj{\mathbf k}.
-\]
-Then
-\begin{align}
-  \sum_{\mathbf k}\int \chi(y)w_{\mathbf k}x_{\mathbf k}(y)\,\dd y
-  &=\int c_\gamma(r)\,\mu_W(\dd r)\notag\\
-  &\le \Borb(\gamma,p)\int c_\gamma(r)\,\mu_1(\dd r)\notag\\
-  &\le\Bcl(\gamma,d)\Borb(\gamma,p).
-  \label{eq:hybrid-output-witness}
-\end{align}
-Apply \(\sqrt{uv}\le(Au+v/A)/2\) pointwise with
-\(A=\chi(y)w_{\mathbf k}\), \(u=x_{\mathbf k}(y)\), and
-\(v=f_1(y)t_{\mathbf k}\).  Summing over \(\mathbf k\), integrating over the
-classical variable, and using
-\cref{eq:hybrid-target-witness,eq:hybrid-output-witness} yields
-\[
-  B\!\left(\Gamma(\Theta_0^{\mathrm{in}}),
-  \Theta_0^{\mathrm{tar}}\right)
-  \le\Bcl(\gamma,d)\Borb(\gamma,p)
-  =\Buniv(\gamma,p).
-\]
-This proves the asserted origin bound.  The flat-prior upper bound follows
-from \cref{lem:gaussian-folner}.
-\end{proof}
-
-\section{Gaussian stochastic-order estimates}\label{app:gaussian-bounds}
-
-This appendix proves the stochastic-order and fidelity bounds used in
-\cref{thm:gaussian-flat-prior,prop:hybrid-from-residual}.
-
-A probability distribution \(P\) on \(\mathbb Z_{\ge0}\) is
-stochastically larger than \(Q\) if
-\[
-  \sum_k\phi(k)P_k\ge\sum_k\phi(k)Q_k
-\]
-for every bounded increasing function \(\phi\).  Equivalently, every bounded
-decreasing function has no larger expectation under \(P\) than under \(Q\).
-Gu\c{t}\u{a} and Matsumoto
-show that, among phase-insensitive
-displacement-covariant amplifiers of fixed gain, the vacuum-idler output
-photon-number distribution is minimal in this stochastic order
-\cite{GutaMatsumoto2006MixedGaussianCloning}.  We use this order statement,
-not the distance criterion optimized in that reference.
-
-\begin{lemma}[Constant trace factor for covariant CP maps]\label{lem:uniform-trace-reduction}
-Let \(\Gamma\) be a completely positive trace-nonincreasing map on the
-trace class of one or finitely many oscillator modes and suppose
-\[
-  \Gamma(D(z)XD(z)^*)
-  =
-  D(\sqrt{\gamma}\,z)\Gamma(X)D(\sqrt{\gamma}\,z)^*.
-\]
-Then there is \(c\in[0,1]\) such that
-\[
-  \Tr\Gamma(X)=c\,\Tr X
-\]
-for every trace-class \(X\).
-\end{lemma}
-
-\begin{proof}
-The output trace is a positive normal linear functional, so
-\[
-  \Tr\Gamma(X)=\Tr[AX]
-\]
-for a bounded operator \(0\le A\le I\).  Covariance and cyclicity imply
-\(D(z)^*AD(z)=A\) for all \(z\).  The
-Weyl representation on Fock space is irreducible, so its commutant is the
-scalar algebra.  Hence \(A=cI\).
-\end{proof}
-
-\begin{lemma}[F{\o}lner covariantization for the Gaussian model]\label{lem:orbital-folner}
-Let \(\mathsf Z_L\subset\C^{r_d}\) be the centered cubes used below.  For the
-Gaussian input and target families \(\Phi_z,\Psi_z\),
-\begin{equation}\label{eq:gaussian-folner-reduction}
-  \limsup_{L\to\infty}\sup_\Lambda
-  \frac1{|\mathsf Z_L|}\int_{\mathsf Z_L}B\!\left(\Lambda(\Phi_z),\Psi_z\right)\,\dd z
-  \le
-  \sup_{\Gamma}B\!\left(\Gamma(\Phi_0),\Psi_0\right),
-\end{equation}
-where the right supremum is over completely positive trace-nonincreasing
-maps \(\Gamma\) satisfying exact displacement covariance with gain
-\(\sqrt{\gamma}\).  The output of \(\Gamma\) may be subnormalized.
-\end{lemma}
-
-\begin{proof}
-The proof of \cref{lem:gaussian-folner} specializes after omitting the
-classical coordinate and taking the translation group to be
-\(\C^{r_d}\).  The input and output actions are
-\(X\mapsto D(z)XD(z)^*\) and
-\(X\mapsto D(\sqrt{\gamma}\,z)XD(\sqrt{\gamma}\,z)^*\), respectively.  The
-covariant limiting
-maps supplied by that lemma are exactly the completely positive
-trace-nonincreasing maps appearing on the right of
-\eqref{eq:gaussian-folner-reduction}.  This specialization gives the stated
-inequality.
-\end{proof}
-
-\begin{lemma}[One-mode conic stochastic order]\label{lem:one-mode-conic}
-Let \(\Gamma\) be a completely positive trace-nonincreasing one-mode map
-that is displacement covariant with gain \(\sqrt{\gamma}\) and phase
-covariant.  Then, for every bounded nonnegative decreasing
-function \(w:\mathbb Z_{\ge0}\to\R_+\),
-\begin{equation}\label{eq:one-mode-conic}
-  \Tr[\Gamma(\tau_q)w(\widehat N)]
-  \le
-  \Tr[\Gamma(\tau_q)]
-  \Tr[\tau_{q^{(\gamma)}}w(\widehat N)].
-\end{equation}
-\end{lemma}
-
-\begin{proof}
-By \cref{lem:uniform-trace-reduction},
-\[
-  \Tr\Gamma(X)=c\,\Tr X
-\]
-for some \(c\in[0,1]\).  If \(c=0\), the map is zero.  If \(c>0\), then
-\(c^{-1}\Gamma\) is a trace-preserving, phase-insensitive,
-displacement-covariant amplifier.  Gu\c{t}\u{a} and Matsumoto
-characterize displacement-covariant amplifiers by an idler state; phase
-covariance reduces the idler to a number-diagonal state.  Their
-stochastic-order definition and least-noise lemma
+For one mode, the positive functional $X\mapsto\Tr\Gamma(X)$ has the form
+$\Tr(AX)$ for a bounded $0\le A\le I$.  Displacement covariance implies that
+$A$ commutes with every Weyl displacement.  Irreducibility gives $A=cI$,
+where $0\le c\le1$.  If $c=0$, the claim is trivial.  Otherwise
+$c^{-1}\Gamma$ is a phase-insensitive, displacement-covariant channel.
+Gu\c{t}\u{a} and Matsumoto's stochastic-order argument
 \cite[Definition~2.2 and Lemma~2.3]{GutaMatsumoto2006MixedGaussianCloning},
-together with the arbitrary-gain extension stated in
-\cite[Sec.~III]{GutaMatsumoto2006MixedGaussianCloning}, imply that the output
-photon-number law of \(c^{-1}\Gamma(\tau_q)\) stochastically dominates
-the geometric law of \(\tau_{q^{(\gamma)}}\).  Equivalently, the
-expectation of every bounded decreasing photon-number function is no larger
-than for the quantum-limited output.  Multiplying by \(c\) proves
-\eqref{eq:one-mode-conic}.
-\end{proof}
+with the arbitrary-gain extension described in their Sec.~III, shows that
+the output photon-number law on $\tau_q$ stochastically dominates the
+geometric law of $\tau_{q^{(\gamma)}}$.  Hence the expectation of every bounded decreasing
+function is no larger for the former law.  Multiplication by $c$ proves
+\eqref{eq:least-noise-moment} for $s=1$.
 
-
-
-\begin{lemma}[Tensorization of the one-mode conic order]\label{lem:tensor-conic}
-Fix \(q_1,\ldots,q_{r_d}\in(0,1)\).  Let \(\Gamma\) be an
-\(r_d\)-mode completely positive trace-nonincreasing map, displacement
-covariant with gain
-\(\sqrt{\gamma}\), and phase covariant in each mode.  Let
+For $s>1$, the assertion is immediate if some $w_\ell$ vanishes identically.
+Otherwise divide each weight by its positive supremum, so that
+$0\le w_\ell\le1$.  Put
 \[
-  \Phi_0=\bigotimes_{\ell=1}^{r_d}\tau_{q_\ell},
+  W_{>1}=\prod_{\ell=2}^s w_\ell(\widehat N_\ell),
   \qquad
-  \tau^{(\gamma)}=
-  \bigotimes_{\ell=1}^{r_d}\tau_{q_\ell^{(\gamma)}},
-  \qquad
-  \widehat{\mathbf N}=(\widehat N_1,\ldots,\widehat N_{r_d}).
+  \tau_{>1}=\bigotimes_{\ell=2}^s\tau_{q_\ell},
 \]
-For every product weight
-\[
-  W(\widehat{\mathbf N})=\prod_{\ell=1}^{r_d} w_\ell(\widehat N_\ell)
-\]
-with each \(w_\ell\) bounded, nonnegative, and decreasing,
-\begin{equation}\label{eq:tensor-conic}
-  \Tr[\Gamma(\Phi_0)W(\widehat{\mathbf N})]
-  \le
-  \Tr[\Gamma(\Phi_0)]
-  \Tr[\tau^{(\gamma)} W(\widehat{\mathbf N})].
-\end{equation}
-\end{lemma}
-
-\begin{proof}
-For \(r_d=1\), the claim is \cref{lem:one-mode-conic}.  Assume
-\(r_d\ge2\).  By rescaling, we may take \(0\le w_\ell\le1\).  Put
-\[
-  W_{>1}=\prod_{\ell=2}^{r_d} w_\ell(\widehat N_\ell),
-  \qquad
-  \Phi_{0,>1}=\bigotimes_{\ell=2}^{r_d}\tau_{q_\ell}.
-\]
-Define the one-mode CP map
+and define the one-mode completely positive trace-nonincreasing map
 \[
   \Gamma_1(X)
-  =
-  \Tr_{2,\ldots,r_d}
-  \left[
+  =\Tr_{2,\ldots,s}\!\left[
     (I\ot W_{>1}^{1/2})
-    \Gamma(X\ot\Phi_{0,>1})
+    \Gamma(X\ot\tau_{>1})
     (I\ot W_{>1}^{1/2})
   \right].
 \]
-Since \(0\le W_{>1}\le I\), this map is trace nonincreasing.  Varying
-only the first input mode, displacement covariance of \(\Gamma\),
-invariance of \(\Phi_{0,>1}\) under the unused phase rotations, and phase
-invariance of \(W_{>1}\) show that \(\Gamma_1\) inherits both
-gain-\(\sqrt{\gamma}\) displacement covariance and phase covariance in the
-first mode.  Thus it has exactly the covariance required in
-\cref{lem:one-mode-conic}.  Therefore
+It inherits displacement and phase covariance in the first mode.  The
+one-mode result therefore gives
 \[
-  \Tr[\Gamma(\Phi_0)w_1(\widehat N_1)W_{>1}]
+  \Tr[\Gamma(\tau)W]
   \le
   \Tr[\tau_{q_1^{(\gamma)}}w_1(\widehat N_1)]
-  \Tr[\Gamma(\Phi_0)W_{>1}].
+  \Tr[\Gamma(\tau)W_{>1}].
 \]
-Repeat this argument for modes \(2,\ldots,r_d\).  The resulting product
-is exactly \eqref{eq:tensor-conic}.
+Repeating the same argument for modes $2,\ldots,s$ proves
+\eqref{eq:least-noise-moment}.
 \end{proof}
 
-\begin{lemma}[Multimode Gaussian fidelity bound]
-\label{lem:multimode-gaussian}
-Under the assumptions and notation of \cref{lem:tensor-conic},
-\begin{equation}\label{eq:multimode-gaussian-bound}
-  B\!\left(\Gamma(\Phi_0),\Phi_0\right)
-  \le \prod_{\ell=1}^{r_d} b_\gamma(q_\ell).
+For the Gaussian families in the paper, write
+\[
+  \tau:=\Phi_0,
+  \qquad
+  \tau_\gamma:=\bigotimes_{i<j}\tau_{q_{ij}^{(\gamma)}}.
+\]
+In their joint number basis, let
+\[
+  \tau=\sum_{\mathbf k}t_{\mathbf k}\proj{\mathbf k},
+  \qquad
+  \tau_\gamma=\sum_{\mathbf k}t_{\mathbf k}^{(\gamma)}\proj{\mathbf k},
+\]
+and define
+\[
+  W_\gamma
+  =\sum_{\mathbf k}
+  \sqrt{\frac{t_{\mathbf k}}{t_{\mathbf k}^{(\gamma)}}}
+  \proj{\mathbf k}.
+\]
+The eigenvalues of $W_\gamma$ are positive, bounded, and form a product of
+decreasing geometric sequences; in particular, $W_\gamma$ is compact and
+injective.  Moreover,
+\begin{equation}\label{eq:quantum-witness-identities}
+  \Tr(\tau_\gamma W_\gamma)
+  =\Tr(\tau W_\gamma^{-1})
+  =\sum_{\mathbf k}\sqrt{t_{\mathbf k}t_{\mathbf k}^{(\gamma)}}
+  =\Borb(\gamma,p).
 \end{equation}
-Equality is attained by the product quantum-limited amplifier.
+
+\subsection{Orbital flat-prior bound}
+
+\begin{proposition}[Orbital flat-prior upper bound]
+\label{prop:orbital-flat-prior-upper}
+With the notation of \cref{thm:gaussian-flat-prior},
+\[
+  \limsup_{L\to\infty}\sup_\Lambda
+  \int_{\mathsf Z_L}B(\Lambda(\Phi_z),\Psi_z)
+  \frac{\dd z}{|\mathsf Z_L|}
+  \le\Borb(\gamma,p).
+\]
+\end{proposition}
+
+\begin{proof}
+For a channel $\Lambda$, define its finite F\o lner average
+\[
+  \overline\Lambda_L
+  =\frac1{|\mathsf Z_L|}\int_{\mathsf Z_L}
+  \operatorname{Ad}_{D(-\sqrt\gamma z)}\circ\Lambda\circ
+  \operatorname{Ad}_{D(z)}\,\dd z.
+\]
+Joint concavity and displacement covariance of the Gaussian families give
+\begin{equation}\label{eq:orbital-folner-concavity}
+  \int_{\mathsf Z_L}B(\Lambda(\Phi_z),\Psi_z)
+  \frac{\dd z}{|\mathsf Z_L|}
+  \le B(\overline\Lambda_L(\tau),\tau).
+\end{equation}
+Choose $L_j\to\infty$ and channels approaching the left-hand limsup, and set
+$\Gamma_j=\overline\Lambda_{L_j}$.  Translation of the averaging cube gives,
+for every fixed $w\in\C^{r_d}$,
+\[
+  \|\Gamma_j(D(w)XD(w)^*)
+  -D(\sqrt\gamma w)\Gamma_j(X)D(\sqrt\gamma w)^*\|_1
+  \le
+  \frac{|(\mathsf Z_{L_j}+w)\triangle\mathsf Z_{L_j}|}
+       {|\mathsf Z_{L_j}|}\,\|X\|_1.
+\]
+By \cref{lem:compact-cp-limit}, after passing to a subsequence there is a
+completely positive trace-nonincreasing, exactly displacement-covariant map
+$\Gamma$ such that
+\[
+  \Tr[\Gamma_j(X)K]\longrightarrow\Tr[\Gamma(X)K]
+\]
+for every trace-class $X$ and compact $K$.
+
+Apply \cref{lem:weighted-fidelity} with $W=W_\gamma$.  Since $W_\gamma$ is
+compact, \cref{prop:least-noise-moment,eq:quantum-witness-identities} yield
+\[
+\begin{aligned}
+  \limsup_j B(\Gamma_j(\tau),\tau)^2
+  &\le
+  \Tr[\Gamma(\tau)W_\gamma]\,
+  \Tr(\tau W_\gamma^{-1})\\
+  &\le
+  \Tr[\Gamma(\tau)]\,
+  \Tr(\tau_\gamma W_\gamma)\,
+  \Borb(\gamma,p)\\
+  &\le \Borb(\gamma,p)^2.
+\end{aligned}
+\]
+Together with \eqref{eq:orbital-folner-concavity}, this proves the claim.
+\end{proof}
+
+\subsection{Hybrid flat-prior bound}
+
+\begin{lemma}[Translation-covariant scalar kernels]\label{lem:scalar-convolution}
+Let $K:L^1(\mathsf H)\to C_0(\mathsf H)^*$ be a positive contraction and
+suppose
+\[
+  K(u(\,\cdot-h))(E)=K(u)(E-\sqrt\gamma h)
+  \qquad(h\in\mathsf H)
+\]
+for every Borel set $E$.
+Then there is a finite positive measure $\mu$, with $\mu(\mathsf H)\le1$,
+such that
+\begin{equation}\label{eq:scalar-convolution}
+  K(u)(E)
+  =\int_{\mathsf H}u(x)\,\mu(E-\sqrt\gamma x)\,\dd x
+\end{equation}
+for every $u\in L^1(\mathsf H)$.
 \end{lemma}
 
 \begin{proof}
-Phase covariance makes
+Choose a nonnegative approximate identity $u_j\in C_c(\mathsf H)$ with
+$\int u_j=1$.  The measures $K(u_j)$ have norm at most one.  Since
+$C_0(\mathsf H)$ is separable, a subsequence converges weak-* to a positive
+measure $\mu$ with $\mu(\mathsf H)\le1$.  For $u\in L^1(\mathsf H)$, $u*u_j\to u$ in $L^1$,
+while covariance and bounded linearity give, as finite measures,
 \[
-  \Gamma(\Phi_0)
-  =\sum_{\mathbf k}P_{\mathbf k}\proj{\mathbf k},
-  \qquad c:=\sum_{\mathbf k}P_{\mathbf k}\le1.
+  K(u*u_j)(E)
+  =\int_{\mathsf H}u(x)\,K(u_j)(E-\sqrt\gamma x)\,\dd x.
 \]
-Let
+Pairing with an arbitrary function in $C_0(\mathsf H)$ and using dominated
+convergence proves \eqref{eq:scalar-convolution}.
+\end{proof}
+
+\begin{proposition}[Hybrid flat-prior upper bound]
+\label{prop:hybrid-flat-prior-upper}
+With the notation of \cref{thm:hybrid-gaussian},
 \[
-  t_{\mathbf k}=\prod_\ell(1-q_\ell)q_\ell^{k_\ell},
+  \limsup_{L\to\infty}\sup_\Lambda
+  \frac1{|\Omega_L|}\int_{\Omega_L}
+  B(\Lambda(\Theta_{h,z}^{\mathrm{in}}),
+    \Theta_{h,z}^{\mathrm{tar}})\,\dd h\,\dd z
+  \le\Buniv(\gamma,p).
+\]
+\end{proposition}
+
+\begin{proof}
+Put
+\[
+  f_1=\varphi_{0,\Sigma_p},
   \qquad
-  t_{\mathbf k}^{(\gamma)}=\prod_\ell
-  (1-q_\ell^{(\gamma)})(q_\ell^{(\gamma)})^{k_\ell},
+  f_\gamma=\varphi_{0,\gamma\Sigma_p}.
 \]
-and set \(w_{\mathbf k}=\sqrt{t_{\mathbf k}/t_{\mathbf k}^{(\gamma)}}\).
-View \(P=(P_{\mathbf k})\), \(t=(t_{\mathbf k})\), and
-\(t^{(\gamma)}=(t_{\mathbf k}^{(\gamma)})\) as finite positive measures on
-\(\mathbb Z_{\ge0}^{r_d}\).  The weights \(w_{\mathbf k}\) form a bounded
-product of nonnegative decreasing functions of the individual occupation
-numbers.  The tangent inequality for the square root gives
+For a trace-class operator $X$, write $f_1X$ for the density
+$x\mapsto f_1(x)X$.  The classical witness
 \[
-  B(P,t)
-  \le B(t^{(\gamma)},t)
-  +\frac12\sum_{\mathbf k}w_{\mathbf k}
-  (P_{\mathbf k}-t_{\mathbf k}^{(\gamma)}).
+  \chi(y)=\sqrt{\frac{f_1(y)}{f_\gamma(y)}}
+  =\gamma^{(d-1)/4}
+  \exp\!\left[-\frac{\gamma-1}{4\gamma}
+  \langle y,\Sigma_p^{-1}y\rangle\right]
 \]
-By \cref{lem:tensor-conic},
+is bounded, strictly positive, and belongs to $C_0(\mathsf H)$.  Moreover,
+\begin{equation}\label{eq:classical-witness-identity}
+  \int_{\mathsf H}\frac{f_1(y)}{\chi(y)}\,\dd y
+  =\int_{\mathsf H}\sqrt{f_1(y)f_\gamma(y)}\,\dd y
+  =\Bcl(\gamma,d).
+\end{equation}
+
+For $\xi=(h,z)$, define
 \[
-  \sum_{\mathbf k}w_{\mathbf k}P_{\mathbf k}
-  \le c\sum_{\mathbf k}w_{\mathbf k}t_{\mathbf k}^{(\gamma)}
-  \le \sum_{\mathbf k}w_{\mathbf k}t_{\mathbf k}^{(\gamma)}.
+  (\mathcal U_\xi^{\mathrm{in}}R)(x)
+  =D(z)R(x-h)D(z)^*,
+  \qquad
+  (\mathcal U_\xi^{\mathrm{out}}R)(y)
+  =D(\sqrt\gamma z)R(y-\sqrt\gamma h)D(\sqrt\gamma z)^*.
 \]
-Hence \(B(P,t)\le B(t^{(\gamma)},t)\).  Multiplicativity and
-\eqref{eq:thermal-root-fid} identify the latter with the right side of
-\eqref{eq:multimode-gaussian-bound}.  The product quantum-limited amplifier
-has output distribution \(t^{(\gamma)}\), so it attains equality.
+For a hybrid channel $\Lambda$, set
+\[
+  \overline\Lambda_L
+  =\frac1{|\Omega_L|}\int_{\Omega_L}
+  \mathcal U_{-\xi}^{\mathrm{out}}\circ\Lambda\circ
+  \mathcal U_\xi^{\mathrm{in}}\,\dd\xi.
+\]
+Since
+$\Theta_\xi^{\mathrm{in}}=\mathcal U_\xi^{\mathrm{in}}(f_1\tau)$ and
+$\Theta_\xi^{\mathrm{tar}}=\mathcal U_\xi^{\mathrm{out}}(f_1\tau)$,
+joint concavity gives
+\begin{equation}\label{eq:hybrid-folner-concavity}
+  \frac1{|\Omega_L|}\int_{\Omega_L}
+  B(\Lambda(\Theta_\xi^{\mathrm{in}}),
+    \Theta_\xi^{\mathrm{tar}})\,\dd\xi
+  \le B(\overline\Lambda_L(f_1\tau),f_1\tau).
+\end{equation}
+
+Choose $L_j\to\infty$ and channels approaching the left-hand limsup, and
+write $\Lambda_j=\overline\Lambda_{L_j}$.  The compact quantum witness
+$W_\gamma$ controls the oscillator noise, while $\chi$ controls the classical
+translation noise.  Put
+\[
+  R_j=\Lambda_j(f_1\tau),
+  \qquad
+  M_j=\int_{\mathsf H}\chi(y)\Tr[R_j(y)W_\gamma]\,\dd y.
+\]
+By
+\cref{lem:weighted-fidelity,eq:classical-witness-identity,eq:quantum-witness-identities},
+\begin{equation}\label{eq:hybrid-fidelity-to-moment}
+  B(R_j,f_1\tau)^2
+  \le M_j\,\Bcl(\gamma,d)\Borb(\gamma,p).
+\end{equation}
+
+Define
+\[
+  \mathcal A_j(X)
+  =\int_{\mathsf H}\chi(y)[\Lambda_j(f_1X)](y)\,\dd y.
+\]
+These maps are completely positive and satisfy
+$\Tr\mathcal A_j(X)\le\|\chi\|_\infty\Tr X$ for $X\ge0$.  Translation of the
+averaging cube gives, for every fixed $\xi$ and every hybrid trace-class
+density $R$,
+\begin{equation}\label{eq:hybrid-approx-covariance}
+  \|\Lambda_j(\mathcal U_\xi^{\mathrm{in}}R)
+  -\mathcal U_\xi^{\mathrm{out}}\Lambda_j(R)\|_1
+  \le
+  \frac{|(\Omega_{L_j}+\xi)\triangle\Omega_{L_j}|}
+       {|\Omega_{L_j}|}\,\|R\|_1.
+\end{equation}
+Taking $h=0$ gives, for every fixed $w\in\C^{r_d}$,
+\[
+\begin{aligned}
+  &\|\mathcal A_j(D(w)XD(w)^*)
+    -D(\sqrt\gamma w)\mathcal A_j(X)D(\sqrt\gamma w)^*\|_1\\
+  &\qquad\le
+  \|\chi\|_\infty
+  \frac{|(\Omega_{L_j}+(0,w))\triangle\Omega_{L_j}|}
+       {|\Omega_{L_j}|}\,\|X\|_1
+  \longrightarrow0.
+\end{aligned}
+\]
+By \cref{lem:compact-cp-limit}, after passing
+to a subsequence there is a completely positive, exactly
+displacement-covariant map $\mathcal A$ such that
+\begin{equation}\label{eq:A-limit}
+  \Tr[\mathcal A_j(X)K]\longrightarrow\Tr[\mathcal A(X)K]
+\end{equation}
+for every trace-class $X$ and compact $K$.  In particular, since
+$W_\gamma$ is compact,
+\begin{equation}\label{eq:moment-limit}
+  M_j=\Tr[\mathcal A_j(\tau)W_\gamma]
+  \longrightarrow\Tr[\mathcal A(\tau)W_\gamma].
+\end{equation}
+
+For $u\in L^1(\mathsf H)$, let $K_j(u)$ be the classical trace measure of
+$\Lambda_j(u\tau)$:
+\[
+  K_j(u)(E)=\int_E\Tr[\Lambda_j(u\tau)(y)]\,\dd y.
+\]
+The $K_j$ are positive contractions from $L^1(\mathsf H)$ to the finite
+Radon measures.  Passing to a further subsequence, a diagonal extraction on
+countable dense subsets of $L^1(\mathsf H)$ and $C_0(\mathsf H)$ makes all
+corresponding pairings converge.  The contraction bound then extends the
+limit to a positive contraction $K$ with $K_j(u)\to K(u)$ weak-* for every
+$u\in L^1(\mathsf H)$.  Taking
+$z=0$ in \eqref{eq:hybrid-approx-covariance} shows that $K$ satisfies the
+hypothesis of \cref{lem:scalar-convolution}; let $\mu$ be its convolution
+measure.
+
+Let $P_N\uparrow I$ be finite-rank projections on $\cF_{\mathrm{orb}}$.
+Using \eqref{eq:A-limit}, positivity, the weak-* convergence of
+$K_j(f_1)$, and $\chi\in C_0(\mathsf H)$ gives
+\begin{align*}
+  \Tr\mathcal A(\tau)
+  &=\sup_N\Tr[\mathcal A(\tau)P_N]
+    \le\liminf_j\Tr\mathcal A_j(\tau)\\
+  &=\lim_j\int_{\mathsf H}\chi(y)\,K_j(f_1)(\dd y)
+    =\int_{\mathsf H}\chi(y)\,K(f_1)(\dd y).
+\end{align*}
+By \eqref{eq:scalar-convolution}, the last expression equals
+\[
+  \int_{\mathsf H}c_\gamma(r)\,\mu(\dd r),
+  \qquad
+  c_\gamma(r)=\int_{\mathsf H}\chi(y)f_\gamma(y-r)\,\dd y.
+\]
+Completing the square on $\mathsf H$ gives
+\[
+  c_\gamma(r)
+  =\Bcl(\gamma,d)
+  \exp\!\left[-\frac{\gamma-1}{2\gamma(\gamma+1)}
+  \langle r,\Sigma_p^{-1}r\rangle\right]
+  \le\Bcl(\gamma,d).
+\]
+Since $\mu(\mathsf H)\le1$,
+\[
+  \Tr\mathcal A(\tau)\le\Bcl(\gamma,d).
+\]
+The trace functional of $\mathcal A$ is represented by a bounded positive
+operator commuting with every multimode Weyl displacement.  Irreducibility
+of the multimode Weyl representation therefore gives
+\[
+  \Tr\mathcal A(X)=c\Tr X,
+  \qquad
+  c=\Tr\mathcal A(\tau)\le\Bcl(\gamma,d)\le1.
+\]
+Thus $\mathcal A$ is trace nonincreasing.  Applying
+\cref{prop:least-noise-moment,eq:quantum-witness-identities} to
+\eqref{eq:moment-limit},
+\[
+  \lim_j M_j
+  =\Tr[\mathcal A(\tau)W_\gamma]
+  \le\Tr\mathcal A(\tau)\,\Tr(\tau_\gamma W_\gamma)
+  \le\Bcl(\gamma,d)\Borb(\gamma,p).
+\]
+Together with \eqref{eq:hybrid-fidelity-to-moment}, this gives
+\[
+  \limsup_j B(R_j,f_1\tau)
+  \le\Bcl(\gamma,d)\Borb(\gamma,p).
+\]
+Combining this estimate with \eqref{eq:hybrid-folner-concavity} proves the
+proposition.
 \end{proof}
 
 \begin{thebibliography}{LTHC26}
-\bibitem[AU00]{AlbertiUhlmann2000}
-P. M. Alberti and A. Uhlmann,
-On Bures-distance and \(^{*}\)-algebraic transition probability between
-inner derived positive linear forms over a \(W^{*}\)-algebra,
-\emph{Acta Applicandae Mathematicae} \textbf{60}, 1--37 (2000),
-\arxiv{math-ph/0202038}.
-
 \bibitem[WZ82]{WoottersZurek1982}
 W. K. Wootters and W. H. Zurek,
 A single quantum cannot be cloned,
