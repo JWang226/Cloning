@@ -1,0 +1,444 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=teal,urlcolor=teal]{hyperref}
+
+\newcommand{\Hc}{\mathsf H}
+\newcommand{\F}{\mathcal F_{\mathrm{orb}}}
+\newcommand{\T}{\mathcal T_1}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\dd}{\,\mathrm d}
+\newcommand{\B}{\mathrm B}
+\newcommand{\Bcl}{B_{\mathrm{cl}}}
+\newcommand{\Borb}{B_{\mathrm{orb}}}
+\newcommand{\Buniv}{B_{\mathrm{univ}}}
+
+\newtheorem*{propC}{Proposition C.6 (rephrased)}
+
+\title{A Short Guide to Proposition C.6\\
+\large The hybrid Gaussian flat-prior upper bound}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Proposition C.6 is the converse for the hybrid Gaussian experiment containing
+both the classical spectral variable and the quantum orbital modes.  It
+shows that even a channel coupling these two components cannot beat the
+product value
+$\Buniv(\gamma,p)=\Bcl(\gamma,d)\Borb(\gamma,p)$.  The proof uses a
+classical Gaussian witness and a compact quantum witness, extracts a
+covariant quantum limit and a translation-covariant scalar limit, and bounds
+them separately.  This note organizes the argument into its two parallel
+parts and explains how they recombine into the sharp fidelity bound.
+\end{abstract}
+
+\section{The hybrid Gaussian experiment}
+
+The classical space is
+\[
+  \Hc=\left\{h\in\mathbb R^d:\sum_i h_i=0\right\},
+  \qquad \dim\Hc=d-1,
+\]
+with positive covariance $\Sigma_p$.  Write
+\[
+  f_1=\varphi_{0,\Sigma_p},
+  \qquad
+  f_\gamma=\varphi_{0,\gamma\Sigma_p}
+\]
+for the centered Gaussian densities.  The orbital component lives on the
+multimode Fock space $\F$ and has centered thermal state $\tau$.
+
+At parameter $\xi=(h,z)\in\Hc\times\mathbb C^{r_d}$, the input and ideal
+target are
+\begin{align*}
+  \Theta_{h,z}^{\mathrm{in}}
+  &=\mathsf N_{h,\Sigma_p}\otimes\Phi_z,\\
+  \Theta_{h,z}^{\mathrm{tar}}
+  &=\mathsf N_{\sqrt\gamma h,\Sigma_p}\otimes\Psi_z.
+\end{align*}
+The target amplifies both means by $\sqrt\gamma$ without increasing either
+the classical covariance or the centered thermal noise.  A physical
+procedure cannot do this perfectly.
+
+The optimal product procedure dilates the classical observation by
+$\sqrt\gamma$ and applies the product quantum-limited amplifier.  Its two
+losses are
+\begin{align}
+  \Bcl(\gamma,d)
+  &=\left(\frac{2\sqrt\gamma}{1+\gamma}\right)^{(d-1)/2},
+  \label{eq:Bcl}\\
+  \Borb(\gamma,p)
+  &=\B(\tau^{(\gamma)},\tau),
+  \label{eq:Borb}
+\end{align}
+and root fidelity multiplies across the classical and quantum factors.
+Proposition C.6 proves that a joint hybrid channel cannot improve on their
+product.
+
+\section{Statement of Proposition C.6}
+
+Let $\Omega_L$ be the centered cube in
+$\Hc\times\mathbb C^{r_d}$ used in the manuscript.
+
+\begin{propC}
+For the hybrid Gaussian input and target families,
+\[
+  \limsup_{L\to\infty}\sup_\Lambda
+  \frac1{|\Omega_L|}\int_{\Omega_L}
+  \B\!\left(\Lambda(\Theta_{h,z}^{\mathrm{in}}),
+  \Theta_{h,z}^{\mathrm{tar}}\right)\dd h\dd z
+  \leq\Buniv(\gamma,p),
+\]
+where
+$\Buniv(\gamma,p)=\Bcl(\gamma,d)\Borb(\gamma,p)$ and the supremum is over
+all hybrid channels, including channels that couple the classical and
+quantum components.
+\end{propC}
+
+\section{The two witnesses}
+
+\subsection{Classical witness}
+
+Define the square-root likelihood ratio
+\begin{equation}\label{eq:chi}
+  \chi(y)=\sqrt{\frac{f_1(y)}{f_\gamma(y)}}
+  =\gamma^{(d-1)/4}
+  \exp\!\left[-\frac{\gamma-1}{4\gamma}
+  \langle y,\Sigma_p^{-1}y\rangle\right].
+\end{equation}
+It is bounded, strictly positive, and belongs to $C_0(\Hc)$.  Moreover,
+\begin{equation}\label{eq:classical-id}
+  \int_{\Hc}\frac{f_1(y)}{\chi(y)}\dd y
+  =\int_{\Hc}\sqrt{f_1(y)f_\gamma(y)}\dd y
+  =\Bcl(\gamma,d).
+\end{equation}
+The fact that $\chi$ vanishes at infinity is as important as the Gaussian
+identity: it makes integration against $\chi$ continuous for weak-* limits
+of finite measures.
+
+\subsection{Quantum witness}
+
+In the joint number basis of $\tau$ and the quantum-limited output
+$\tau^{(\gamma)}$, define
+\begin{equation}\label{eq:W}
+  W_\gamma
+  =\sum_{\mathbf k}
+  \sqrt{\frac{t_{\mathbf k}}{t_{\mathbf k}^{(\gamma)}}}
+  |\mathbf k\rangle\!\langle\mathbf k|.
+\end{equation}
+It is positive, injective, bounded, compact, and a product of decreasing
+photon-number weights.  Its matching identities are
+\begin{equation}\label{eq:quantum-id}
+  \Tr(\tau W_\gamma^{-1})
+  =\Tr(\tau^{(\gamma)}W_\gamma)
+  =\Borb(\gamma,p).
+\end{equation}
+
+Lemma C.1 combines these witnesses.  If $R(y)$ is a positive
+classical--quantum density, then
+\begin{equation}\label{eq:weighted-hybrid}
+  \B(R,f_1\tau)^2
+  \leq
+  \left(\int_{\Hc}\chi(y)\Tr[R(y)W_\gamma]\dd y\right)
+  \Bcl(\gamma,d)\Borb(\gamma,p).
+\end{equation}
+It remains to show that the first, channel-dependent factor is at most the
+same product $\Bcl\Borb$.
+
+\section{Proof roadmap}
+
+The proof performs the following reductions:
+\[
+\begin{array}{c}
+\text{average fidelity over a large parameter cube}\\
+\Downarrow\\
+\text{fidelity at the origin for a F\o lner-averaged channel}\\
+\Downarrow\\
+\text{one weighted moment }M_j\\
+\Downarrow\\
+\begin{array}{c@{\qquad}c}
+\text{quantum compact limit }\Gamma^\chi
+&\text{classical scalar limit }\mathcal R\\
+\text{Lemma C.2}&\text{Lemma C.5}
+\end{array}\\
+\Downarrow\\
+M_j\leq\Bcl(\gamma,d)\Borb(\gamma,p)\\
+\Downarrow\\
+\B\leq\Bcl(\gamma,d)\Borb(\gamma,p).
+\end{array}
+\]
+The two limits come from the same averaged channels but retain different
+information.  The compact quantum limit controls the $W_\gamma$ moment; the
+scalar limit controls how much classically weighted trace that quantum map
+can have.
+
+\section{Proof walkthrough}
+
+\subsection*{Step 1: F\o lner averaging}
+
+For $\xi=(h,z)$, let
+\begin{align*}
+  (\mathcal U_\xi^{\mathrm{in}}R)(x)
+  &=D(z)R(x-h)D(z)^*,\\
+  (\mathcal U_\xi^{\mathrm{out}}R)(y)
+  &=D(\sqrt\gamma z)R(y-\sqrt\gamma h)D(\sqrt\gamma z)^*.
+\end{align*}
+Then
+\[
+  \Theta_\xi^{\mathrm{in}}
+  =\mathcal U_\xi^{\mathrm{in}}(f_1\tau),
+  \qquad
+  \Theta_\xi^{\mathrm{tar}}
+  =\mathcal U_\xi^{\mathrm{out}}(f_1\tau).
+\]
+For a hybrid channel $\Lambda$, define
+\begin{equation}\label{eq:average}
+  \overline\Lambda_L
+  =\frac1{|\Omega_L|}\int_{\Omega_L}
+  \mathcal U_{-\xi}^{\mathrm{out}}\circ\Lambda\circ
+  \mathcal U_\xi^{\mathrm{in}}\dd\xi.
+\end{equation}
+Joint concavity and invariance of root fidelity give
+\begin{equation}\label{eq:concavity}
+  \frac1{|\Omega_L|}\int_{\Omega_L}
+  \B(\Lambda(\Theta_\xi^{\mathrm{in}}),
+    \Theta_\xi^{\mathrm{tar}})\dd\xi
+  \leq\B(\overline\Lambda_L(f_1\tau),f_1\tau).
+\end{equation}
+
+Choose $L_j\to\infty$ and channels approaching the limsup, and denote their
+averages by $\Lambda_j$.  Translating the averaging cube shows that for each
+fixed $\xi$,
+\begin{equation}\label{eq:approx-covariance}
+  \|\Lambda_j(\mathcal U_\xi^{\mathrm{in}}R)
+  -\mathcal U_\xi^{\mathrm{out}}\Lambda_j(R)\|_1
+  \leq
+  \frac{|(\Omega_{L_j}+\xi)\mathbin\triangle\Omega_{L_j}|}
+       {|\Omega_{L_j}|}\,\|R\|_1
+  \longrightarrow0.
+\end{equation}
+
+\subsection*{Step 2: reduce fidelity to one moment}
+
+Put
+\[
+  R_j=\Lambda_j(f_1\tau),
+  \qquad
+  M_j=\int_{\Hc}\chi(y)\Tr[R_j(y)W_\gamma]\dd y.
+\]
+The weighted hybrid inequality \eqref{eq:weighted-hybrid} gives
+\begin{equation}\label{eq:B-to-M}
+  \B(R_j,f_1\tau)^2
+  \leq M_j\,\Bcl(\gamma,d)\Borb(\gamma,p).
+\end{equation}
+The rest of the proof is devoted to the upper bound
+\begin{equation}\label{eq:M-goal}
+  \limsup_j M_j
+  \leq\Bcl(\gamma,d)\Borb(\gamma,p).
+\end{equation}
+
+\subsection*{Step 3: extract the weighted quantum map}
+
+For a trace-class operator $X$ on $\F$, define
+\begin{equation}\label{eq:Gamma-j}
+  \Gamma_j^\chi(X)
+  =\int_{\Hc}\chi(y)[\Lambda_j(f_1X)](y)\dd y.
+\end{equation}
+This map feeds $\Lambda_j$ a fixed classical Gaussian with quantum input
+$X$, then averages the quantum output with the classical weight $\chi$.
+It is completely positive and satisfies
+\[
+  \Tr\Gamma_j^\chi(X)
+  \leq\|\chi\|_\infty\Tr X
+  \qquad(X\geq0).
+\]
+Notice that $\|\chi\|_\infty=\gamma^{(d-1)/4}$ may exceed one.  Hence this
+initial estimate does \emph{not} make $\Gamma_j^\chi$ trace nonincreasing.
+
+Taking $h=0$ in \eqref{eq:approx-covariance} shows that these maps become
+displacement covariant in the quantum variable.  Lemma C.2 therefore gives,
+after taking a subsequence, a completely positive exactly covariant map
+$\Gamma^\chi$ with
+\begin{equation}\label{eq:quantum-limit}
+  \Tr[\Gamma_j^\chi(X)K]
+  \longrightarrow\Tr[\Gamma^\chi(X)K]
+  \qquad(K\text{ compact}).
+\end{equation}
+Because $W_\gamma$ is compact,
+\begin{equation}\label{eq:M-limit}
+  M_j=\Tr[\Gamma_j^\chi(\tau)W_\gamma]
+  \longrightarrow\Tr[\Gamma^\chi(\tau)W_\gamma].
+\end{equation}
+
+To apply the least-noise moment to $\Gamma^\chi$, the proof still has to
+improve its trace bound from $\|\chi\|_\infty$ to one.  This is the purpose
+of the classical limit.
+
+\subsection*{Step 4: extract the scalar trace kernel}
+
+For $u\in L^1(\Hc)$, let $\mathcal R_j(u)$ be the classical trace measure of
+$\Lambda_j(u\tau)$:
+\begin{equation}\label{eq:Rj}
+  \mathcal R_j(u)(E)
+  =\int_E\Tr[\Lambda_j(u\tau)(y)]\dd y.
+\end{equation}
+Since $\Lambda_j$ is a channel, $\mathcal R_j$ is a positive contraction
+from $L^1(\Hc)$ to the finite Radon measures.
+
+A diagonal extraction on countable dense subsets of $L^1(\Hc)$ and
+$C_0(\Hc)$ gives a positive contraction $\mathcal R$ such that
+\[
+  \mathcal R_j(u)\stackrel{w^*}{\longrightarrow}\mathcal R(u)
+  \qquad(u\in L^1(\Hc)).
+\]
+Taking $z=0$ in \eqref{eq:approx-covariance} and passing to this limit yields
+\begin{equation}\label{eq:R-covariance}
+  \mathcal R(u(\,\cdot-h))(E)
+  =\mathcal R(u)(E-\sqrt\gamma h).
+\end{equation}
+Lemma C.5 identifies this covariant scalar kernel: there is a finite positive
+measure $\mu$, with $\mu(\Hc)\leq1$, such that
+\begin{equation}\label{eq:convolution}
+  \mathcal R(u)(E)
+  =\int_{\Hc}u(x)\mu(E-\sqrt\gamma x)\dd x.
+\end{equation}
+
+\subsection*{Step 5: bound the trace of the weighted quantum limit}
+
+Let $P_N\uparrow I$ be finite-rank projections on $\F$.  Positivity and
+\eqref{eq:quantum-limit} give
+\begin{align}
+  \Tr\Gamma^\chi(\tau)
+  &=\sup_N\Tr[\Gamma^\chi(\tau)P_N]\notag\\
+  &\leq\liminf_j\Tr\Gamma_j^\chi(\tau).
+  \label{eq:trace-liminf}
+\end{align}
+By \eqref{eq:Gamma-j} and \eqref{eq:Rj},
+\[
+  \Tr\Gamma_j^\chi(\tau)
+  =\int_{\Hc}\chi(y)\mathcal R_j(f_1)(\dd y).
+\]
+Because $\chi\in C_0(\Hc)$, weak-* convergence of the scalar measures passes
+this integral to the limit.  Hence
+\begin{equation}\label{eq:trace-to-classical}
+  \Tr\Gamma^\chi(\tau)
+  \leq\int_{\Hc}\chi(y)\mathcal R(f_1)(\dd y).
+\end{equation}
+
+Use the convolution representation \eqref{eq:convolution}.  If
+$X\sim\mathsf N_{0,\Sigma_p}$, then $\sqrt\gamma X$ has density $f_\gamma$,
+so
+\begin{align}
+  \int_{\Hc}\chi(y)\mathcal R(f_1)(\dd y)
+  &=\int_{\Hc}c_\gamma(r)\mu(\dd r),
+  \label{eq:cgamma-average}\\
+  c_\gamma(r)
+  &=\int_{\Hc}\chi(y)f_\gamma(y-r)\dd y.
+  \label{eq:cgamma}
+\end{align}
+Completing the Gaussian square gives
+\begin{equation}\label{eq:cgamma-value}
+  c_\gamma(r)
+  =\Bcl(\gamma,d)
+  \exp\!\left[-\frac{\gamma-1}{2\gamma(\gamma+1)}
+    \langle r,\Sigma_p^{-1}r\rangle\right]
+  \leq\Bcl(\gamma,d).
+\end{equation}
+The maximum occurs at zero added classical noise.  Since
+$\mu(\Hc)\leq1$, equations
+\eqref{eq:trace-to-classical}--\eqref{eq:cgamma-value} yield
+\begin{equation}\label{eq:trace-bound}
+  \Tr\Gamma^\chi(\tau)\leq\Bcl(\gamma,d).
+\end{equation}
+
+This estimate is first proved only at $\tau$.  Exact displacement covariance
+makes it global.  Indeed, the positive functional
+$X\mapsto\Tr\Gamma^\chi(X)$ is represented by a bounded positive operator
+$A$.  Covariance implies that $A$ commutes with every multimode Weyl
+displacement, so irreducibility gives $A=cI$.  Since $\Tr\tau=1$,
+\[
+  c=\Tr\Gamma^\chi(\tau)leq\Bcl(\gamma,d)\leq1.
+\]
+Therefore $\Gamma^\chi$ is trace nonincreasing and Proposition C.3 applies.
+
+\subsection*{Step 6: apply the quantum least-noise bound}
+
+Using \eqref{eq:M-limit}, Proposition C.3, and
+\eqref{eq:quantum-id},
+\begin{align*}
+  \lim_j M_j
+  &=\Tr[\Gamma^\chi(\tau)W_\gamma]\\
+  &\leq\Tr\Gamma^\chi(\tau)
+    \Tr(\tau^{(\gamma)}W_\gamma)\\
+  &\leq\Bcl(\gamma,d)\Borb(\gamma,p).
+\end{align*}
+This proves \eqref{eq:M-goal}.  Substitution into \eqref{eq:B-to-M} gives
+\[
+  \limsup_j\B(R_j,f_1\tau)^2
+  \leq
+  \bigl(\Bcl(\gamma,d)\Borb(\gamma,p)\bigr)^2.
+\]
+Taking square roots and using the F\o lner concavity bound
+\eqref{eq:concavity} proves Proposition C.6.
+
+\section{Why the classical and quantum factors multiply}
+
+The proof does not assume that the competing channel factors.  Instead,
+factorization emerges at the level of witnesses:
+\begin{itemize}
+  \item $\chi$ is the square-root likelihood ratio for the two classical
+  Gaussian covariances;
+  \item $W_\gamma$ is the square-root likelihood-ratio observable for the two
+  thermal laws;
+  \item Lemma C.1 separates the channel-dependent moment from the two fixed
+  inverse-witness integrals;
+  \item Lemma C.5 bounds the trace available to the quantum moment by the
+  classical affinity $\Bcl$;
+  \item Proposition C.3 bounds the normalized quantum moment by the orbital
+  affinity $\Borb$.
+\end{itemize}
+Thus any classical--quantum coupling is already included in the single
+moment $M_j$, yet the covariance constraints force that moment to pay both
+losses.
+
+\section{Common points of confusion}
+
+\begin{enumerate}
+  \item The compact-limit lemma alone gives
+  $\Tr\Gamma^\chi(X)\leq\|\chi\|_\infty\Tr X$, which is not enough for
+  Proposition C.3.  The scalar convolution calculation is what improves the
+  coefficient to $\Bcl\leq1$.
+  \item Two different compactness arguments are used.  Lemma C.2 treats
+  quantum maps through compact operators, while the diagonal extraction of
+  $\mathcal R_j$ treats classical finite measures through $C_0(\Hc)$.
+  \item Compactness of $W_\gamma$ passes the quantum moment to the limit;
+  membership $\chi\in C_0(\Hc)$ passes the classical weighted trace to the
+  limit.  These are parallel requirements.
+  \item The noise measure $\mu$ need not be normalized or absolutely
+  continuous.  The estimate uses only positivity and
+  $\mu(\Hc)\leq1$.
+\end{enumerate}
+
+\section{Role in the paper}
+
+Proposition C.6 is the upper-bound half of the hybrid Gaussian flat-prior
+theorem.  The product of classical dilation and quantum-limited amplification
+attains the same value, so
+\[
+  \Buniv(\gamma,p)
+  =\Bcl(\gamma,d)\Borb(\gamma,p)
+\]
+is sharp.  LAN fidelity transfer then carries this Gaussian converse back to
+the unknown-spectrum cloning problem and produces the classical penalty
+absent from known-spectrum cloning.
+
+\end{document}

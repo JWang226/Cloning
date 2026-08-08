@@ -1,0 +1,210 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=teal,urlcolor=teal]{hyperref}
+
+\newcommand{\Hc}{\mathsf H}
+\newcommand{\R}{\mathbb R}
+\newcommand{\dd}{\,\mathrm d}
+
+\newtheorem*{lemmaC}{Lemma C.5 (rephrased)}
+
+\title{A Short Guide to Lemma C.5\\
+\large Translation-covariant scalar kernels are convolutions}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Lemma C.5 identifies every positive translation-covariant map from
+$L^1(\mathsf H)$ to finite measures.  Such a map must first dilate the input
+location by $\sqrt\gamma$ and then add noise with a fixed finite measure
+$\mu$.  The proof obtains $\mu$ by feeding the map an approximate point mass
+at the origin.  This note explains the covariance convention, the weak-*
+extraction, and the passage from approximate point masses to arbitrary
+$L^1$ inputs.
+\end{abstract}
+
+\section{The statement in probabilistic language}
+
+Suppose $u(x)\dd x$ is an input density on the finite-dimensional vector
+space $\Hc$.  A positive map $\mathcal R$ sends it to a finite output
+measure.  The covariance assumption says that translating the input by $h$
+translates the output by $\sqrt\gamma h$:
+\begin{equation}\label{eq:covariance}
+  \mathcal R(u(\,\cdot-h))(E)
+  =\mathcal R(u)(E-\sqrt\gamma h).
+\end{equation}
+
+Lemma C.5 says that there is a single finite positive measure $\mu$ such
+that
+\begin{equation}\label{eq:kernel}
+  \mathcal R(u)(E)
+  =\int_{\Hc}u(x)\,\mu(E-\sqrt\gamma x)\dd x.
+\end{equation}
+Thus, conditionally on an input point $x$, the output is
+\[
+  Y=\sqrt\gamma x+R,
+  \qquad R\sim\mu.
+\]
+The same additive noise law is used at every $x$; translation covariance
+forbids any location-dependent noise.
+
+The measure $\mu$ may have total mass below one.  In the application,
+$\mathcal R$ is obtained as a weak-* limit of classical trace measures, so
+some probability may escape to infinity.
+
+\section{Functional-analytic setting}
+
+The output space is
+\[
+  C_0(\Hc)^*,
+\]
+which the Riesz representation theorem identifies with the finite Radon
+measures on $\Hc$.  Weak-* convergence of measures means
+\[
+  \int f\dd\mu_j\longrightarrow\int f\dd\mu
+  \qquad(f\in C_0(\Hc)).
+\]
+
+The map
+\[
+  \mathcal R:L^1(\Hc)\longrightarrow C_0(\Hc)^*
+\]
+is a positive contraction.  Hence, for $u\geq0$,
+\[
+  \|\mathcal R(u)\|\leq\|u\|_1.
+\]
+In particular, normalized nonnegative inputs produce measures of mass at
+most one.
+
+\section{Statement of Lemma C.5}
+
+\begin{lemmaC}
+Let $\mathcal R:L^1(\Hc)\to C_0(\Hc)^*$ be a positive contraction satisfying
+\eqref{eq:covariance}.  Then a finite positive measure $\mu$ with
+$\mu(\Hc)\leq1$ exists such that \eqref{eq:kernel} holds for every
+$u\in L^1(\Hc)$ and every Borel set $E$.
+\end{lemmaC}
+
+\section{Proof walkthrough}
+
+\subsection*{Step 1: probe the kernel at the origin}
+
+Choose a nonnegative approximate identity $u_j\in C_c(\Hc)$:
+\[
+  \int_{\Hc}u_j(x)\dd x=1,
+  \qquad
+  \operatorname{supp}(u_j)\longrightarrow\{0\}.
+\]
+One may think of $u_j$ as an increasingly concentrated approximation to the
+point mass $\delta_0$.  If a genuine transition kernel existed, its output
+on $\delta_0$ would be the noise measure.  Accordingly, consider
+\[
+  \mu_j:=\mathcal R(u_j).
+\]
+Positivity and contractivity imply $\mu_j(\Hc)\leq1$.
+
+The unit ball of $C_0(\Hc)^*$ is weak-* compact.  Since $C_0(\Hc)$ is
+separable, a subsequence converges weak-* to a positive measure $\mu$:
+\begin{equation}\label{eq:mu-limit}
+  \int f\dd\mu_j\longrightarrow\int f\dd\mu
+  \qquad(f\in C_0(\Hc)).
+\end{equation}
+The norm is weak-* lower semicontinuous, so $\mu(\Hc)\leq1$.  Equality need
+not hold because the constant function $1$ does not belong to $C_0(\Hc)$
+when $\Hc$ is noncompact.
+
+\subsection*{Step 2: smooth an arbitrary input}
+
+Use the convolution convention
+\[
+  (u*u_j)(y)=\int_{\Hc}u(x)u_j(y-x)\dd x
+  =\int_{\Hc}u(x)u_j(\,\cdot-x)(y)\dd x.
+\]
+The approximate-identity property gives
+\begin{equation}\label{eq:L1-approx}
+  u*u_j\longrightarrow u
+  \qquad\text{in }L^1(\Hc).
+\end{equation}
+Bounded linearity of $\mathcal R$ therefore implies
+\[
+  \mathcal R(u*u_j)\longrightarrow\mathcal R(u)
+\]
+in the norm of finite measures.
+
+On the other hand, covariance applied to each translated copy of $u_j$
+gives
+\begin{align}
+  \mathcal R(u*u_j)(E)
+  &=\int_{\Hc}u(x)\,
+    \mathcal R(u_j(\,\cdot-x))(E)\dd x\notag\\
+  &=\int_{\Hc}u(x)\,
+    \mathcal R(u_j)(E-\sqrt\gamma x)\dd x.
+  \label{eq:smoothed-kernel}
+\end{align}
+Thus the desired convolution formula is already true with $\mu_j$ in place
+of $\mu$, but for the smoothed input $u*u_j$.
+
+\subsection*{Step 3: pass to the weak-* limit}
+
+To justify the limit in \eqref{eq:smoothed-kernel}, pair both sides with an
+arbitrary $f\in C_0(\Hc)$.  The right side becomes
+\begin{equation}\label{eq:test-pairing}
+  \int_{\Hc}u(x)
+  \left(\int_{\Hc}f(r+\sqrt\gamma x)\,\mu_j(\dd r)\right)\dd x.
+\end{equation}
+For each fixed $x$, the translated function
+$r\mapsto f(r+\sqrt\gamma x)$ still belongs to $C_0(\Hc)$, so
+\eqref{eq:mu-limit} gives convergence of the inner integral to the same
+expression with $\mu$.  Its absolute value is bounded by $\|f\|_\infty$, and
+$|u|$ is integrable.  Dominated convergence therefore turns
+\eqref{eq:test-pairing} into
+\[
+  \int_{\Hc}u(x)
+  \left(\int_{\Hc}f(r+\sqrt\gamma x)\,\mu(\dd r)\right)\dd x.
+\]
+The left side converges to the pairing of $f$ with $\mathcal R(u)$ by
+\eqref{eq:L1-approx}.  Since $C_0(\Hc)$ separates finite Radon measures,
+\eqref{eq:kernel} follows.
+
+\section{Examples}
+
+\begin{enumerate}
+  \item If $\mu=\delta_0$, then
+  \[
+    \mathcal R(u)(E)=\int u(x)\mathbf1_E(\sqrt\gamma x)\dd x,
+  \]
+  which is the deterministic dilation $x\mapsto\sqrt\gamma x$.
+  \item If $\mu$ is a probability law, the map performs the dilation and
+  adds independent noise distributed as $\mu$.
+  \item If $\mu(\Hc)=c<1$, the same procedure succeeds with the
+  input-independent probability $c$.
+\end{enumerate}
+
+No density for $\mu$ is required.  The noise may have atoms or a singular
+part, which is important because weak-* limits of absolutely continuous
+output measures need not remain absolutely continuous.
+
+\section{Role in Proposition C.6}
+
+In the hybrid converse, $\mathcal R$ is the limiting classical trace kernel
+of F\o lner-averaged hybrid channels.  Lemma C.5 isolates all its freedom in
+the one measure $\mu$.  The classical Gaussian witness then yields
+\[
+  \int c_\gamma(r)\,\mu(\dd r)
+  \leq B_{\mathrm{cl}}(\gamma,d)\mu(\Hc)
+  \leq B_{\mathrm{cl}}(\gamma,d).
+\]
+That bound controls the trace of the weighted quantum limit and supplies the
+classical factor in the final hybrid fidelity bound.
+
+\end{document}

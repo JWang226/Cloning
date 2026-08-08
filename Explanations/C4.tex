@@ -9,24 +9,17 @@
 \usepackage{xcolor}
 \usepackage[colorlinks=true,linkcolor=teal,urlcolor=teal]{hyperref}
 
-\newcommand{\R}{\mathbb R}
-\newcommand{\Hc}{\mathsf H}
 \newcommand{\F}{\mathcal F_{\mathrm{orb}}}
 \newcommand{\T}{\mathcal T_1}
 \newcommand{\Tr}{\operatorname{Tr}}
 \newcommand{\dd}{\,\mathrm d}
 \newcommand{\B}{\mathrm B}
-\newcommand{\Bcl}{B_{\mathrm{cl}}}
 \newcommand{\Borb}{B_{\mathrm{orb}}}
-\newcommand{\Buniv}{B_{\mathrm{univ}}}
-\newcommand{\proj}[1]{|#1\rangle\!\langle #1|}
-\newcommand{\ot}{\otimes}
-\newcommand{\Nhat}{\widehat{\mathbf N}}
 
 \newtheorem*{propC}{Proposition C.4 (rephrased)}
 
 \title{A Short Guide to Proposition C.4\\
-\large The hybrid Gaussian product bound}
+\large The orbital Gaussian flat-prior upper bound}
 \author{}
 \date{}
 
@@ -34,383 +27,228 @@
 \maketitle
 
 \begin{abstract}
-Proposition C.4 proves the converse bound for the hybrid Gaussian model.  It
-shows that an arbitrary exactly covariant hybrid operation cannot trade
-classical error against quantum error to beat the product of the separate
-Gaussian and thermal-state fidelities.  The proof uses the residual
-subinstrument from Lemma C.3, a branchwise stochastic-order estimate from
-Lemma D.4, and a carefully chosen positive witness.  This note develops the
-required background and explains every step of the product estimate.
+Proposition C.4 proves that no channel can amplify the displaced thermal
+Gaussian model with asymptotic flat-prior fidelity larger than
+$\Borb(\gamma,p)$.  Its proof averages a channel over a large phase-space
+cube, extracts an exactly covariant trace-nonincreasing limit using only
+compact observables, and evaluates a specially chosen weighted moment.  The
+compact witness avoids any need to pass fidelity itself through the weak
+limit.  This note explains the argument and how Lemma C.1, Lemma C.2, and
+Proposition C.3 fit together.
 \end{abstract}
 
-\section{The problem at the origin}
+\section{The Gaussian problem}
 
-Fix $\gamma>1$ and a strictly ordered spectrum $p$.  Let
-$s=d-1=\dim\Hc$ and enumerate the oscillator modes by
-$\ell=1,\ldots,r_d$.  Write
+The orbital LAN model consists of displaced product thermal states on a
+finite-mode Fock space $\F$:
 \[
-  q_\ell\in(0,1),
+  \Phi_z=D(z)\tau D(z)^*,
   \qquad
-  \tau_{q_\ell}=(1-q_\ell)\sum_{k\geq0}q_\ell^k\proj{k},
+  \Psi_z=D(\sqrt\gamma z)\tau D(\sqrt\gamma z)^*.
 \]
-and set
+The notation suppresses that the target has the same centered thermal state
+$\tau$ as the ideal product model, whereas a physical amplifier necessarily
+produces the noisier centered state $\tau^{(\gamma)}$.  The product
+quantum-limited amplifier sends
 \[
-  \Phi_0=\bigotimes_{\ell=1}^{r_d}\tau_{q_\ell}.
+  \Phi_z\longmapsto
+  D(\sqrt\gamma z)\tau^{(\gamma)}D(\sqrt\gamma z)^*.
 \]
-At parameter $(h,z)=(0,0)$, both the hybrid input and the desired target are
-\begin{equation}\label{eq:origin-state}
-  \Theta_0
-  =\mathsf N_{0,\Sigma_p}\ot\Phi_0.
+Its fidelity with $\Psi_z$ is independent of $z$ and equals
+\[
+  \B(\tau^{(\gamma)},\tau)=\Borb(\gamma,p).
+\]
+
+For the cube
+\[
+  \mathsf Z_L
+  =\{z:|\Re z_\ell|,|\Im z_\ell|\leq L\},
+\]
+Proposition C.4 supplies the converse inequality
+\begin{equation}\label{eq:goal}
+  \limsup_{L\to\infty}\sup_\Lambda
+  \frac1{|\mathsf Z_L|}\int_{\mathsf Z_L}
+  \B(\Lambda(\Phi_z),\Psi_z)\dd z
+  \leq\Borb(\gamma,p).
 \end{equation}
-They are the same state at this one parameter value.  Nevertheless, an
-admissible map in the converse must be covariant with gain $\sqrt\gamma$ for
-\emph{all} translations and displacements.  The identity map has the wrong
-gain and is not an admissible competitor.  Amplification necessarily adds
-noise, which lowers the fidelity even at the origin.
 
-The natural reference operation consists of:
-\begin{itemize}
-  \item the classical dilation $x\mapsto\sqrt\gamma x$, which sends
-  $\mathsf N_{0,\Sigma_p}$ to $\mathsf N_{0,\gamma\Sigma_p}$; and
-  \item the product quantum-limited amplifier, which sends
-  $\tau_{q_\ell}$ to $\tau_{q_\ell^{(\gamma)}}$, where
-  \[
-    q_\ell^{(\gamma)}=1-\frac{1-q_\ell}{\gamma}.
-  \]
-\end{itemize}
-Its fidelity with \eqref{eq:origin-state} is
+\section{The witness and its three properties}
+
+Write the two centered thermal states in their joint number basis:
 \[
-  \Bcl(\gamma,d)\Borb(\gamma,p),
-\]
-where
-\begin{align*}
-  \Bcl(\gamma,d)
-  &=\left(\frac{2\sqrt\gamma}{1+\gamma}\right)^{s/2},\\
-  \Borb(\gamma,p)
-  &=\prod_{\ell=1}^{r_d}
-    \B(\tau_{q_\ell^{(\gamma)}},\tau_{q_\ell}).
-\end{align*}
-Proposition C.4 proves that even a hybrid operation coupling the classical
-and quantum components cannot do better.
-
-\section{Background I: phase twirling and diagonal states}
-
-Let $\widehat N_\ell$ be the photon-number operator of mode $\ell$ and
-\[
-  U_\theta^{\mathrm{ph}}
-  =\bigotimes_{\ell=1}^{r_d}
-    e^{\mathrm i\theta_\ell\widehat N_\ell}.
-\]
-Both the origin input and target are invariant under these independent phase
-rotations.  Given a map $\Gamma$, average it as
-\[
-  \Gamma^{\mathrm{ph}}
-  =\int
-  \vartheta_{-\theta}^{\mathrm{out}}
-  \circ\Gamma\circ
-  \vartheta_\theta^{\mathrm{in}}\dd\theta,
-\]
-using normalized Haar measure on the torus.  Concavity and unitary invariance
-of root fidelity imply
-\[
-  \B(\Gamma^{\mathrm{ph}}(\Theta_0),\Theta_0)
-  \geq \B(\Gamma(\Theta_0),\Theta_0).
-\]
-The twirl preserves the required classical translation and quantum
-displacement covariance.  Therefore an upper bound may assume phase
-covariance from the outset.
-
-If an operator is invariant under every independent phase rotation, it is
-diagonal in the joint number basis
-$\{\proj{\mathbf k}:\mathbf k\in\mathbb Z_{\geq0}^{r_d}\}$.  This reduces
-the final root fidelity to a classical Hellinger sum inside the classical
-integral.
-
-\section{Background II: the reference distributions and witness}
-
-Write the target and amplified-reference densities as
-\[
-  f_1(y)=\varphi_{0,\Sigma_p}(y),
+  \tau=\sum_{\mathbf k}t_{\mathbf k}|\mathbf k\rangle\!\langle\mathbf k|,
   \qquad
-  f_\gamma(y)=\varphi_{0,\gamma\Sigma_p}(y).
-\]
-The joint photon-number laws of $\Phi_0$ and of the amplified reference are
-\begin{align*}
-  t_{\mathbf k}
-  &=\prod_\ell(1-q_\ell)q_\ell^{k_\ell},\\
-  t_{\mathbf k}^{(\gamma)}
-  &=\prod_\ell
-    (1-q_\ell^{(\gamma)})
-    (q_\ell^{(\gamma)})^{k_\ell}.
-\end{align*}
-Define the square-root likelihood ratios
-\begin{equation}\label{eq:witnesses}
-  \chi(y)=\sqrt{\frac{f_1(y)}{f_\gamma(y)}},
-  \qquad
-  w_{\mathbf k}
-  =\sqrt{\frac{t_{\mathbf k}}{t_{\mathbf k}^{(\gamma)}}}.
-\end{equation}
-Because $\gamma>1$, the Gaussian ratio $\chi$ is positive and bounded.
-The operator
-\[
-  W(\Nhat)=\sum_{\mathbf k}w_{\mathbf k}\proj{\mathbf k}
-\]
-is bounded.  Moreover,
-\[
-  w_{\mathbf k}=\prod_\ell w_\ell(k_\ell),
-\]
-where each factor is positive and decreasing because
-$q_\ell<q_\ell^{(\gamma)}$.  This places $W$ exactly within the scope of
-Lemma D.4.
-
-The ratios in \eqref{eq:witnesses} are chosen so that both reference overlaps
-factor:
-\begin{align}
-  \int \frac{f_1(y)}{\chi(y)}\dd y
-  &=\int\sqrt{f_1(y)f_\gamma(y)}\dd y
-    =\Bcl(\gamma,d),
-  \label{eq:classical-factor}\\
-  \sum_{\mathbf k}\frac{t_{\mathbf k}}{w_{\mathbf k}}
-  &=\sum_{\mathbf k}
-    \sqrt{t_{\mathbf k}t_{\mathbf k}^{(\gamma)}}
-    =\Borb(\gamma,p).
-  \label{eq:quantum-factor}
-\end{align}
-Consequently,
-\begin{equation}\label{eq:target-witness}
-  \sum_{\mathbf k}\int
-  \frac{f_1(y)t_{\mathbf k}}
-       {\chi(y)w_{\mathbf k}}\dd y
-  =\Bcl(\gamma,d)\Borb(\gamma,p).
-\end{equation}
-
-\section{Background III: the branchwise conic bound}
-
-Lemma D.4 says that if $\Lambda$ is a completely positive,
-trace-nonincreasing multimode map with gain-$\sqrt\gamma$ displacement
-covariance and independent phase covariance, then
-\begin{equation}\label{eq:D4}
-  \Tr[\Lambda(\Phi_0)W(\Nhat)]
-  \leq
-  \Tr[\Lambda(\Phi_0)]
-  \Tr[\tau^{(\gamma)}W(\Nhat)],
-\end{equation}
-where
-\[
   \tau^{(\gamma)}
-  =\bigotimes_\ell\tau_{q_\ell^{(\gamma)}}.
+  =\sum_{\mathbf k}t_{\mathbf k}^{(\gamma)}
+    |\mathbf k\rangle\!\langle\mathbf k|.
 \]
-By \eqref{eq:quantum-factor}, the final trace in \eqref{eq:D4} is
-$\Borb(\gamma,p)$.  The estimate is called \emph{conic} because it applies
-to subnormalized outputs: the right side is scaled by the output trace.
+Define
+\begin{equation}\label{eq:witness}
+  W_\gamma
+  =\sum_{\mathbf k}
+  \sqrt{\frac{t_{\mathbf k}}{t_{\mathbf k}^{(\gamma)}}}
+  |\mathbf k\rangle\!\langle\mathbf k|.
+\end{equation}
+This witness is chosen so that three otherwise separate parts of the proof
+match exactly.
 
-The one-mode result behind this estimate has the usual least-noise
-stochastic-order interpretation.  For a possibly correlated multimode map,
-however, Lemma D.4 asserts only the product-test inequality
-\eqref{eq:D4}, not a full multivariate stochastic order.  This is sufficient
-here because $W$ is precisely a product of decreasing one-mode weights.
+\begin{enumerate}
+  \item It is bounded, positive, injective, and compact.  Its eigenvalues are
+  products of decreasing geometric sequences and tend to zero at high total
+  photon number.
+  \item It is an admissible product of decreasing photon-number weights for
+  the least-noise moment in Proposition C.3.
+  \item It satisfies
+  \begin{equation}\label{eq:witness-id}
+    \Tr(\tau^{(\gamma)}W_\gamma)
+    =\Tr(\tau W_\gamma^{-1})
+    =\sum_{\mathbf k}\sqrt{t_{\mathbf k}t_{\mathbf k}^{(\gamma)}}
+    =\Borb(\gamma,p).
+  \end{equation}
+\end{enumerate}
+
+Lemma C.1, the weighted fidelity inequality, therefore gives for every
+positive trace-class $R$
+\begin{equation}\label{eq:weighted-B}
+  \B(R,\tau)^2
+  \leq \Tr(RW_\gamma)\,\Borb(\gamma,p).
+\end{equation}
+The nonlinear fidelity has been reduced to one linear compact-observable
+moment.
 
 \section{Statement of Proposition C.4}
 
 \begin{propC}
-Every exactly covariant completely positive trace-nonincreasing hybrid map
-$\Gamma$ satisfies
-\begin{equation}\label{eq:claim}
-  \B\bigl(\Gamma(\Theta_0),\Theta_0\bigr)
-  \leq
-  \Buniv(\gamma,p)
-  :=\Bcl(\gamma,d)\Borb(\gamma,p).
-\end{equation}
-Consequently, the flat-prior hybrid Gaussian payoff is at most
-$\Buniv(\gamma,p)$.
+For the orbital Gaussian input and target families,
+\[
+  \limsup_{L\to\infty}\sup_\Lambda
+  \int_{\mathsf Z_L}\B(\Lambda(\Phi_z),\Psi_z)
+  \frac{\dd z}{|\mathsf Z_L|}
+  \leq\Borb(\gamma,p),
+\]
+where the supremum is over all channels on the orbital Fock space.
 \end{propC}
 
-In the paper the input and target at the origin are denoted
-$\Theta_0^{\mathrm{in}}$ and $\Theta_0^{\mathrm{tar}}$.  They coincide as in
-\eqref{eq:origin-state}; the two labels are retained there to emphasize their
-different roles in the covariant families.
+\section{Proof walkthrough}
 
-\section{Proof, step by step}
+\subsection*{Step 1: move every displacement back to the origin}
 
-\subsection{Step 1: phase twirl and apply Lemma C.3}
-
-By the phase-twirling argument, assume $\Gamma$ is phase covariant without
-decreasing its origin payoff.  Lemma C.3 then gives a residual subinstrument
-$E\mapsto\mathcal I_E$.  Every branch is displacement covariant with gain
-$\sqrt\gamma$ and phase covariant, so Lemma D.4 applies separately to every
-$\mathcal I_E$.
-
-Define two finite positive measures on the residual classical space:
-\begin{equation}\label{eq:mu-def}
-  \mu_1(E)=\Tr[\mathcal I_E(\Phi_0)],
-  \qquad
-  \mu_W(E)=\Tr[\mathcal I_E(\Phi_0)W(\Nhat)].
+For a channel $\Lambda$, define its finite F\o lner average
+\begin{equation}\label{eq:average}
+  \overline\Lambda_L
+  =\frac1{|\mathsf Z_L|}\int_{\mathsf Z_L}
+  \operatorname{Ad}_{D(-\sqrt\gamma z)}\circ\Lambda\circ
+  \operatorname{Ad}_{D(z)}\,\dd z.
 \end{equation}
-Applying \eqref{eq:D4} to the branch $\mathcal I_E$ gives, for every Borel
-set $E$,
-\begin{equation}\label{eq:measure-order}
-  \mu_W(E)
-  \leq\Borb(\gamma,p)\mu_1(E).
+It is again a channel.  Joint concavity and unitary invariance of root
+fidelity imply
+\begin{equation}\label{eq:concavity}
+  \frac1{|\mathsf Z_L|}\int_{\mathsf Z_L}
+  \B(\Lambda(\Phi_z),\Psi_z)\dd z
+  \leq\B(\overline\Lambda_L(\tau),\tau).
 \end{equation}
-Thus $\mu_W\leq\Borb\mu_1$ as measures.  Since the residual instrument is
-trace nonincreasing,
-\begin{equation}\label{eq:mass}
-  \mu_1(\Hc)\leq1.
-\end{equation}
+Thus all parameter values are collected into the performance of one averaged
+channel at the centered input.
 
-\subsection{Step 2: control a shifted classical Gaussian overlap}
+\subsection*{Step 2: the averaged maps become covariant}
 
-The residual representation convolves the ideal dilated Gaussian
-$f_\gamma$ with the residual outcome $r$.  Introduce
-\begin{equation}\label{eq:c-def}
-  c_\gamma(r)
-  =\int_{\Hc}\chi(y)f_\gamma(y-r)\dd y.
-\end{equation}
-A direct completion of the square, using the inverse of $\Sigma_p$ on
-$\Hc$, gives
-\begin{equation}\label{eq:c-formula}
-  c_\gamma(r)
-  =\Bcl(\gamma,d)
-  \exp\left[
-    -\frac{\gamma-1}{2\gamma(\gamma+1)}
-    \langle r,\Sigma_p^{-1}r\rangle
-  \right].
-\end{equation}
-Therefore
-\begin{equation}\label{eq:c-max}
-  0<c_\gamma(r)\leq c_\gamma(0)=\Bcl(\gamma,d).
-\end{equation}
-This says that residual classical displacement can only reduce the overlap
-with the centered target.  The maximum occurs when no residual displacement
-is added.
-
-\subsection{Step 3: bound the witness expectation of the actual output}
-
-Let
-\[
-  \Xi=\Gamma(\Theta_0).
-\]
-The Gaussian convolution in Lemma C.3 makes the classical output absolutely
-continuous even if the residual measure itself is singular.  Phase
-covariance makes its operator density diagonal:
-\[
-  X(y)=\sum_{\mathbf k}x_{\mathbf k}(y)\proj{\mathbf k}.
-\]
-Use the test formula of Lemma C.3 with the classical function $\chi$ and the
-quantum observable $W$.  Equations \eqref{eq:mu-def} and \eqref{eq:c-def}
-give
-\begin{equation}\label{eq:output-identity}
-  \sum_{\mathbf k}\int
-  \chi(y)w_{\mathbf k}x_{\mathbf k}(y)\dd y
-  =\int_{\Hc}c_\gamma(r)\mu_W(\dd r).
-\end{equation}
-Now apply the measure domination \eqref{eq:measure-order}, the pointwise
-bound \eqref{eq:c-max}, and the mass bound \eqref{eq:mass}:
+Choose $L_j\to\infty$ and channels whose payoffs approach the limsup in
+\eqref{eq:goal}; write $\Gamma_j=\overline\Lambda_{L_j}$.  Shifting the
+integration variable in \eqref{eq:average} gives, for every fixed $w$,
 \begin{align}
-  \int c_\gamma(r)\mu_W(\dd r)
-  &\leq\Borb(\gamma,p)
-    \int c_\gamma(r)\mu_1(\dd r)\notag\\
-  &\leq\Bcl(\gamma,d)\Borb(\gamma,p).
-  \label{eq:output-witness}
+ &\|\Gamma_j(D(w)XD(w)^*)
+ -D(\sqrt\gamma w)\Gamma_j(X)D(\sqrt\gamma w)^*\|_1\notag\\
+ &\qquad\leq
+ \frac{|(\mathsf Z_{L_j}+w)\mathbin\triangle\mathsf Z_{L_j}|}
+      {|\mathsf Z_{L_j}|}\,\|X\|_1.
+ \label{eq:boundary}
 \end{align}
-This is the crucial joint estimate.  It shows that classical residual noise
-and quantum residual noise cannot be correlated in a way that exceeds the
-product benchmark.
+Only the boundary portion on which the shifted and unshifted cubes differ
+contributes.  Euclidean cubes are a F\o lner family, so the ratio on the
+right tends to zero.
 
-\subsection{Step 4: convert the witness bounds into fidelity}
+Lemma C.2 now yields a subsequence and a completely positive
+trace-nonincreasing map $\Gamma$ such that
+\begin{equation}\label{eq:compact-limit}
+  \Tr[\Gamma_j(X)K]\longrightarrow\Tr[\Gamma(X)K]
+  \qquad(K\text{ compact}).
+\end{equation}
+Equation \eqref{eq:boundary} also makes the limit exactly displacement
+covariant with gain $\sqrt\gamma$.
 
-By the hybrid fidelity formula from Lemma C.1 and diagonality,
-\begin{equation}\label{eq:fidelity-diagonal}
-  \B(\Xi,\Theta_0)
-  =\sum_{\mathbf k}\int
-    \sqrt{x_{\mathbf k}(y)f_1(y)t_{\mathbf k}}\dd y.
-\end{equation}
-For positive $u,v,A$, the arithmetic--geometric mean inequality gives
-\begin{equation}\label{eq:amgm}
-  \sqrt{uv}\leq\frac12\left(Au+\frac vA\right).
-\end{equation}
-Apply it pointwise with
+The limit may lose trace because oscillator mass can escape to high energy,
+but this causes no problem: Proposition C.3 was formulated for
+trace-nonincreasing maps.
+
+\subsection*{Step 3: pass the compact witness moment to the limit}
+
+Apply \eqref{eq:weighted-B} to $R=\Gamma_j(\tau)$:
 \[
-  u=x_{\mathbf k}(y),
-  \qquad
-  v=f_1(y)t_{\mathbf k},
-  \qquad
-  A=\chi(y)w_{\mathbf k}.
+  \B(\Gamma_j(\tau),\tau)^2
+  \leq
+  \Tr[\Gamma_j(\tau)W_\gamma]\,\Borb(\gamma,p).
 \]
-After summing and integrating, the first term is bounded by
-\eqref{eq:output-witness}; the second is exactly
-\eqref{eq:target-witness}.  Hence
+Since $W_\gamma$ is compact, \eqref{eq:compact-limit} gives
+\begin{equation}\label{eq:moment-limit}
+  \Tr[\Gamma_j(\tau)W_\gamma]
+  \longrightarrow
+  \Tr[\Gamma(\tau)W_\gamma].
+\end{equation}
+This is the key reason for introducing the weighted witness before taking a
+limit.  One never needs an upper-semicontinuity theorem for fidelity in the
+chosen topology.
+
+\subsection*{Step 4: use the least-noise moment}
+
+The limiting map has exactly the hypotheses of Proposition C.3.  Therefore
 \begin{align*}
-  \B(\Xi,\Theta_0)
-  &\leq\frac12\left[
-    \Bcl(\gamma,d)\Borb(\gamma,p)
-    +\Bcl(\gamma,d)\Borb(\gamma,p)
-  \right]\\
-  &=\Bcl(\gamma,d)\Borb(\gamma,p),
+  \Tr[\Gamma(\tau)W_\gamma]
+  &\leq
+  \Tr[\Gamma(\tau)]
+  \Tr[\tau^{(\gamma)}W_\gamma]\\
+  &\leq\Borb(\gamma,p),
 \end{align*}
-which proves \eqref{eq:claim}.
-
-Finally, Lemma C.2 says that the large-cube average payoff of arbitrary
-hybrid channels is bounded by the best origin payoff among exactly covariant
-trace-nonincreasing maps.  Applying \eqref{eq:claim} to that limiting map
-gives the flat-prior upper bound.
-
-\section{Why this particular witness works}
-
-The choice $A=\chi w$ in \eqref{eq:amgm} is not arbitrary.  Equality in
-\eqref{eq:amgm} occurs when $Au=v/A$, or
+where the last line uses $\Tr\Gamma(\tau)\leq1$ and
+\eqref{eq:witness-id}.  Combining this with
+\eqref{eq:weighted-B}--\eqref{eq:moment-limit} gives
 \[
-  A=\sqrt{v/u}.
+  \limsup_j\B(\Gamma_j(\tau),\tau)^2
+  \leq\Borb(\gamma,p)^2.
 \]
-For the reference output
+Root fidelity is nonnegative, so taking square roots and returning to
+\eqref{eq:concavity} proves \eqref{eq:goal}.
+
+\section{Why the argument is sharp}
+
+The witness is not an arbitrary estimate.  Its eigenvalue at $\mathbf k$ is
+the square-root likelihood ratio between the ideal thermal law and the
+quantum-limited output law.  Consequently, both factors in the weighted
+Cauchy--Schwarz bound equal their classical Hellinger overlap.  The
+least-noise proposition then says that no admissible covariant limit can have
+a larger expectation of this witness.
+
+The product quantum-limited amplifier attains $\Borb(\gamma,p)$ at every
+$z$, so Proposition C.4 supplies the matching upper bound used in the
+Gaussian flat-prior theorem.
+
+\section{Logical dependencies}
+
+The proof has the compact chain
 \[
-  u=f_\gamma(y)t_{\mathbf k}^{(\gamma)},
-  \qquad
-  v=f_1(y)t_{\mathbf k},
+  \begin{array}{c}
+  \text{F\o lner averaging and concavity}\\
+  \Downarrow\\
+  \text{Lemma C.2: compact-observable covariant limit}\\
+  \Downarrow\\
+  \text{Lemma C.1: fidelity }\leq\text{ witness moment}\\
+  \Downarrow\\
+  \text{Proposition C.3: least-noise moment}\\
+  \Downarrow\\
+  \Borb(\gamma,p).
+  \end{array}
 \]
-this optimal ratio is exactly
-\[
-  \sqrt{\frac{f_1(y)t_{\mathbf k}}
-                   {f_\gamma(y)t_{\mathbf k}^{(\gamma)}}}
-  =\chi(y)w_{\mathbf k}.
-\]
-Thus the witness is the tangent functional to root fidelity at the product
-quantum-limited output.  The rest of the proof establishes that every
-admissible output lies on the correct side of this tangent hyperplane.
-
-\section{Dependencies and logical role}
-
-The proof uses the following results.
-\begin{itemize}
-  \item Lemma C.1 supplies the integral formula for fidelity of hybrid
-  operator-valued measures.
-  \item Lemma C.3 represents an exactly covariant hybrid map by a residual
-  subinstrument and gives the Gaussian convolution formula.
-  \item Lemma D.4 gives the branchwise multimode conic stochastic-order
-  estimate.  Its proof tensorizes the one-mode estimate in Lemma D.3, which
-  in turn uses the constant-trace reduction in Lemma D.1 and the
-  least-noise theorem for Gaussian amplifiers.
-  \item Joint concavity and unitary invariance justify phase twirling.
-  \item A Gaussian completion of the square and the elementary inequality
-  \eqref{eq:amgm} finish the estimate.
-\end{itemize}
-
-Proposition C.4 is the final analytic step in the upper bound for the hybrid
-Gaussian flat-prior theorem.  Lemma C.2 reduces arbitrary channels to an
-exactly covariant limiting map, and C.4 bounds that map by $\Buniv$.  The
-explicit product of the classical and orbital factors is therefore a
-consequence of the witness argument, not an assumption that the competing
-channel itself factors.
-
-\section{Minimal prerequisite checklist}
-
-To follow the numerical part of the proof, it is enough to know Gaussian
-densities, geometric photon-number laws, root fidelity for commuting states,
-and the arithmetic--geometric mean inequality.  The structural reduction
-also requires phase twirling, covariant completely positive maps, quantum
-subinstruments, and the stochastic-order estimate in Lemma D.4.  The central
-idea is that the square-root likelihood ratio of the product reference state
-simultaneously tests the classical and quantum components and rules out any
-advantage from coupling them.
+The proof is entirely orbital: there is no classical spectral coordinate.
+Proposition C.6 repeats this architecture with an additional classical
+witness and convolution argument.
 
 \end{document}
