@@ -93,9 +93,20 @@ This witness is chosen so that three otherwise separate parts of the proof
 match exactly.
 
 \begin{enumerate}
-  \item It is bounded, positive, injective, and compact.  Its eigenvalues are
-  products of decreasing geometric sequences and tend to zero at high total
-  photon number.
+  \item Its eigenvalue at $\mathbf k=(k_{ij})_{i<j}$ is
+  \[
+    \sqrt{\frac{t_{\mathbf k}}{t_{\mathbf k}^{(\gamma)}}}
+    =C_\gamma\prod_{i<j}r_{ij}^{k_{ij}},
+    \qquad
+    C_\gamma=\prod_{i<j}
+    \sqrt{\frac{1-q_{ij}}{1-q_{ij}^{(\gamma)}}},
+    \qquad
+    r_{ij}=\sqrt{\frac{q_{ij}}{q_{ij}^{(\gamma)}}}.
+  \]
+  Because $\gamma>1$, $q_{ij}^{(\gamma)}>q_{ij}$ and therefore
+  $0<r_{ij}<1$.  Hence these eigenvalues lie in $(0,C_\gamma]$ and converge
+  to zero as $|\mathbf k|=\sum_{i<j}k_{ij}\to\infty$; this proves directly
+  that $W_\gamma$ is bounded, positive, injective, and compact.
   \item It is an admissible product of decreasing photon-number weights for
   the least-noise moment in Proposition C.3.
   \item It satisfies
@@ -133,28 +144,127 @@ where the supremum is over all channels on the orbital Fock space.
 
 \subsection*{Step 1: move every displacement back to the origin}
 
-For a channel $\Lambda$, define its finite F\o lner average
+For each $z$, center the input and output of $\Lambda$ by defining the
+channel
+\[
+  \Lambda_z(X)
+  =D(-\sqrt\gamma z)\,
+    \Lambda\!\left(D(z)XD(z)^*\right)
+    D(-\sqrt\gamma z)^*.
+\]
+The input conjugation inserts the displacement $z$, while the output
+conjugation removes the target displacement $\sqrt\gamma z$.  In particular,
+using $\Phi_z=D(z)\tau D(z)^*$ and
+$\Psi_z=D(\sqrt\gamma z)\tau D(\sqrt\gamma z)^*$, unitary invariance of root
+fidelity gives
+\[
+  \B(\Lambda(\Phi_z),\Psi_z)
+  =\B(\Lambda_z(\tau),\tau).
+\]
+
+Now average these centered channels over the cube:
 \begin{equation}\label{eq:average}
   \overline\Lambda_L
   =\frac1{|\mathsf Z_L|}\int_{\mathsf Z_L}
-  \operatorname{Ad}_{D(-\sqrt\gamma z)}\circ\Lambda\circ
-  \operatorname{Ad}_{D(z)}\,\dd z.
+    \operatorname{Ad}_{D(-\sqrt\gamma z)}\circ\Lambda\circ
+    \operatorname{Ad}_{D(z)}\,\dd z.
 \end{equation}
-It is again a channel.  Joint concavity and unitary invariance of root
-fidelity imply
-\begin{equation}\label{eq:concavity}
+Each $\Lambda_z$ is a channel, so their average $\overline\Lambda_L$ is also
+a channel.  Concavity of root fidelity in its first argument now gives
+\begin{align}
   \frac1{|\mathsf Z_L|}\int_{\mathsf Z_L}
   \B(\Lambda(\Phi_z),\Psi_z)\dd z
-  \leq\B(\overline\Lambda_L(\tau),\tau).
-\end{equation}
+  &=\frac1{|\mathsf Z_L|}\int_{\mathsf Z_L}
+    \B(\Lambda_z(\tau),\tau)\dd z \notag\\
+  &\leq
+    \B\!\left(
+      \frac1{|\mathsf Z_L|}\int_{\mathsf Z_L}\Lambda_z(\tau)\dd z,
+      \tau
+    \right) \notag\\
+  &=\B(\overline\Lambda_L(\tau),\tau).
+  \label{eq:concavity}
+\end{align}
 Thus all parameter values are collected into the performance of one averaged
 channel at the centered input.
 
 \subsection*{Step 2: the averaged maps become covariant}
 
-Choose $L_j\to\infty$ and channels whose payoffs approach the limsup in
-\eqref{eq:goal}; write $\Gamma_j=\overline\Lambda_{L_j}$.  Shifting the
-integration variable in \eqref{eq:average} gives, for every fixed $w$,
+Define the payoff of a channel on the cube of radius $L$ by
+\[
+  F_L(\Lambda)
+  =\frac1{|\mathsf Z_L|}\int_{\mathsf Z_L}
+    \B(\Lambda(\Phi_z),\Psi_z)\,\dd z,
+  \qquad
+  M=\limsup_{L\to\infty}\sup_\Lambda F_L(\Lambda).
+\]
+By the definition of the limsup, choose $L_j\to\infty$ such that
+$\sup_\Lambda F_{L_j}(\Lambda)\to M$.  The supremum need not be attained, so
+for each $j$ choose a channel $\Lambda_j$ satisfying
+\[
+  F_{L_j}(\Lambda_j)
+  \geq \sup_\Lambda F_{L_j}(\Lambda)-\frac1j.
+\]
+Then $F_{L_j}(\Lambda_j)\to M$.  Let $\Lambda_{j,z}$ be the centered channel
+constructed from $\Lambda_j$ in Step~1, and let $\Gamma_j$ be its average
+over $\mathsf Z_{L_j}$.  Substituting $L=L_j$ and $\Lambda=\Lambda_j$ into
+\eqref{eq:concavity}, and using the definition of $\Gamma_j$, gives
+\[
+  F_{L_j}(\Lambda_j)
+  =\frac1{|\mathsf Z_{L_j}|}\int_{\mathsf Z_{L_j}}
+    \B(\Lambda_j(\Phi_z),\Psi_z)\,\dd z
+  \leq \B(\Gamma_j(\tau),\tau).
+\]
+Since the left side converges to $M$, it follows that
+$M\leq\liminf_j\B(\Gamma_j(\tau),\tau)$.  Thus it is enough to obtain the
+desired upper bound for the centered fidelities on the right.
+
+To derive the reindexing identity, recall that
+$\operatorname{Ad}_{D(a)}\circ\operatorname{Ad}_{D(b)}
+=\operatorname{Ad}_{D(a+b)}$: although $D(a)D(b)$ may contain a scalar Weyl
+phase, that phase cancels in $UYU^*$.  Starting from the definition of the
+centered channel, we therefore obtain
+\begin{align*}
+  \Lambda_{j,z}(D(w)XD(w)^*)
+  &=\operatorname{Ad}_{D(-\sqrt\gamma z)}
+    \!\left(
+      \Lambda_j\!\left(
+        \operatorname{Ad}_{D(z+w)}(X)
+      \right)
+    \right)\\
+  &=\operatorname{Ad}_{D(\sqrt\gamma w)}
+    \!\left(
+      \operatorname{Ad}_{D(-\sqrt\gamma(z+w))}
+      \!\left(
+        \Lambda_j\!\left(
+          \operatorname{Ad}_{D(z+w)}(X)
+        \right)
+      \right)
+    \right)\\
+  &=D(\sqrt\gamma w)\Lambda_{j,z+w}(X)D(\sqrt\gamma w)^*.
+\end{align*}
+The first line combines the two input displacements into $z+w$.  The second
+uses $-\sqrt\gamma z=\sqrt\gamma w-\sqrt\gamma(z+w)$, thereby separating the
+output displacement $\sqrt\gamma w$ from the centering displacement at
+$z+w$.  Integrating this identity gives
+\begin{align*}
+  \Gamma_j(D(w)XD(w)^*)
+  &=D(\sqrt\gamma w)
+    \left[
+      \frac1{|\mathsf Z_{L_j}|}
+      \int_{\mathsf Z_{L_j}+w}\Lambda_{j,u}(X)\,\dd u
+    \right]
+    D(\sqrt\gamma w)^*,\\
+  D(\sqrt\gamma w)\Gamma_j(X)D(\sqrt\gamma w)^*
+  &=D(\sqrt\gamma w)
+    \left[
+      \frac1{|\mathsf Z_{L_j}|}
+      \int_{\mathsf Z_{L_j}}\Lambda_{j,u}(X)\,\dd u
+    \right]
+    D(\sqrt\gamma w)^*.
+\end{align*}
+The integrals agree on the overlap of the two cubes.  Since every
+$\Lambda_{j,u}$ is a channel and hence
+$\|\Lambda_{j,u}(X)\|_1\leq\|X\|_1$, their difference satisfies
 \begin{align}
  &\|\Gamma_j(D(w)XD(w)^*)
  -D(\sqrt\gamma w)\Gamma_j(X)D(\sqrt\gamma w)^*\|_1\notag\\
@@ -163,22 +273,89 @@ integration variable in \eqref{eq:average} gives, for every fixed $w$,
       {|\mathsf Z_{L_j}|}\,\|X\|_1.
  \label{eq:boundary}
 \end{align}
-Only the boundary portion on which the shifted and unshifted cubes differ
-contributes.  Euclidean cubes are a F\o lner family, so the ratio on the
-right tends to zero.
+Here $\triangle$ denotes symmetric difference:
+\[
+  (\mathsf Z_{L_j}+w)\mathbin\triangle\mathsf Z_{L_j}
+  =\bigl((\mathsf Z_{L_j}+w)\setminus\mathsf Z_{L_j}\bigr)
+   \cup
+   \bigl(\mathsf Z_{L_j}\setminus(\mathsf Z_{L_j}+w)\bigr).
+\]
+It is precisely the set of points belonging to one cube but not the other.
+Thus only the boundary portion on which the shifted and unshifted cubes
+differ contributes.  More concretely, if
+$\|w\|_{1,\mathbb R}=\sum_\ell(|\Re w_\ell|+|\Im w_\ell|)$, then for fixed
+$w$ and all sufficiently large $L$,
+\[
+  \frac{|(\mathsf Z_L+w)\mathbin\triangle\mathsf Z_L|}{|\mathsf Z_L|}
+  \leq\frac{\|w\|_{1,\mathbb R}}{L}\longrightarrow0.
+\]
+This is the F\o lner property of the cubes and proves that $\Gamma_j$ becomes
+asymptotically displacement covariant.
 
-Lemma C.2 now yields a subsequence and a completely positive
-trace-nonincreasing map $\Gamma$ such that
+Each $\Gamma_j$ is a channel, so $\|\Gamma_j\|_{1\to1}=1$.  Lemma C.2
+therefore yields a subsequence and a completely positive trace-nonincreasing
+map $\Gamma$ such that
 \begin{equation}\label{eq:compact-limit}
   \Tr[\Gamma_j(X)K]\longrightarrow\Tr[\Gamma(X)K]
   \qquad(K\text{ compact}).
 \end{equation}
-Equation \eqref{eq:boundary} also makes the limit exactly displacement
-covariant with gain $\sqrt\gamma$.
+To see explicitly how \eqref{eq:boundary} and \eqref{eq:compact-limit}
+give exact covariance, abbreviate $U_w=D(\sqrt\gamma w)$ and define the
+covariance defect
+\[
+  E_j
+  =\Gamma_j(D(w)XD(w)^*)-U_w\Gamma_j(X)U_w^*.
+\]
+Equation~\eqref{eq:boundary} says
+\[
+  \|E_j\|_1
+  \leq
+  \frac{|(\mathsf Z_{L_j}+w)\mathbin\triangle\mathsf Z_{L_j}|}
+       {|\mathsf Z_{L_j}|}\,\|X\|_1
+  \longrightarrow0.
+\]
+Hence, for every compact $K$, the trace H\"older inequality gives
+\[
+  |\Tr(E_jK)|\leq\|E_j\|_1\|K\|\longrightarrow0.
+\]
+
+Now apply \eqref{eq:compact-limit} to the two terms defining $E_j$.  For the
+first term,
+\[
+  \Tr[\Gamma_j(D(w)XD(w)^*)K]
+  \longrightarrow
+  \Tr[\Gamma(D(w)XD(w)^*)K].
+\]
+For the second term, $U_w^*KU_w$ is compact, and therefore
+\begin{align*}
+  \Tr[U_w\Gamma_j(X)U_w^*K]
+  &=\Tr[\Gamma_j(X)U_w^*KU_w]\\
+  &\longrightarrow\Tr[\Gamma(X)U_w^*KU_w]
+   =\Tr[U_w\Gamma(X)U_w^*K].
+\end{align*}
+Subtracting these two limits yields
+\[
+  \Tr(E_jK)\longrightarrow
+  \Tr\!\left[
+    \bigl(\Gamma(D(w)XD(w)^*)-U_w\Gamma(X)U_w^*\bigr)K
+  \right].
+\]
+The left side also tends to zero by \eqref{eq:boundary}, so
+\[
+  \Tr\!\left[
+    \bigl(\Gamma(D(w)XD(w)^*)-U_w\Gamma(X)U_w^*\bigr)K
+  \right]=0
+\]
+for every compact $K$.
+Compact operators separate trace-class operators, so the operator in
+parentheses is zero.  Thus $\Gamma$ is exactly displacement covariant with
+gain $\sqrt\gamma$.
 
 The limit may lose trace because oscillator mass can escape to high energy,
-but this causes no problem: Proposition C.3 was formulated for
-trace-nonincreasing maps.
+and the convergence above cannot test the identity operator, which is not
+compact.  Thus one obtains only $\Tr\Gamma(X)\leq\Tr X$ for $X\geq0$, but
+this causes no problem because Proposition C.3 allows trace-nonincreasing
+maps.
 
 \subsection*{Step 3: pass the compact witness moment to the limit}
 
@@ -195,8 +372,21 @@ Since $W_\gamma$ is compact, \eqref{eq:compact-limit} gives
   \Tr[\Gamma(\tau)W_\gamma].
 \end{equation}
 This is the key reason for introducing the weighted witness before taking a
-limit.  One never needs an upper-semicontinuity theorem for fidelity in the
-chosen topology.
+limit.  Indeed, applying the weighted inequality before taking the limit
+gives directly
+\[
+  \limsup_j\B(\Gamma_j(\tau),\tau)^2
+  \leq
+  \left(\lim_j\Tr[\Gamma_j(\tau)W_\gamma]\right)\Borb(\gamma,p)
+  =\Tr[\Gamma(\tau)W_\gamma]\,\Borb(\gamma,p).
+\]
+The convergence supplied by Lemma C.2 controls linear expressions
+$R\mapsto\Tr(RK)$ only when $K$ is compact; it does not directly control the
+nonlinear function $R\mapsto\B(R,\tau)$.  A direct passage from
+$\Gamma_j(\tau)$ to $\Gamma(\tau)$ inside the fidelity would therefore
+require a separate upper-semicontinuity result.  The compact witness avoids
+that issue by replacing fidelity with the convergent linear moment before
+the limit is taken.
 
 \subsection*{Step 4: use the least-noise moment}
 
@@ -222,8 +412,34 @@ Root fidelity is nonnegative, so taking square roots and returning to
 
 The witness is not an arbitrary estimate.  Its eigenvalue at $\mathbf k$ is
 the square-root likelihood ratio between the ideal thermal law and the
-quantum-limited output law.  Consequently, both factors in the weighted
-Cauchy--Schwarz bound equal their classical Hellinger overlap.  The
+quantum-limited output law.  Concretely, for the quantum-limited centered
+output $R=\tau^{(\gamma)}$, the two factors in Lemma C.1 are
+\[
+  \Tr(\tau^{(\gamma)}W_\gamma)
+  =\sum_{\mathbf k}t_{\mathbf k}^{(\gamma)}
+    \sqrt{\frac{t_{\mathbf k}}{t_{\mathbf k}^{(\gamma)}}}
+  =\sum_{\mathbf k}\sqrt{t_{\mathbf k}t_{\mathbf k}^{(\gamma)}}
+\]
+and
+\[
+  \Tr(\tau W_\gamma^{-1})
+  =\sum_{\mathbf k}t_{\mathbf k}
+    \sqrt{\frac{t_{\mathbf k}^{(\gamma)}}{t_{\mathbf k}}}
+  =\sum_{\mathbf k}\sqrt{t_{\mathbf k}t_{\mathbf k}^{(\gamma)}}.
+\]
+Thus both factors equal the classical Hellinger overlap $\Borb(\gamma,p)$.
+Since $\tau$ and $\tau^{(\gamma)}$ are diagonal in the same basis, their root
+fidelity is that same overlap, and hence
+\begin{align*}
+  \B(\tau^{(\gamma)},\tau)^2
+  &=\left(\sum_{\mathbf k}
+      \sqrt{t_{\mathbf k}t_{\mathbf k}^{(\gamma)}}\right)^2\\
+  &=\Borb(\gamma,p)^2\\
+  &=\Tr(\tau^{(\gamma)}W_\gamma)\,
+    \Tr(\tau W_\gamma^{-1}).
+\end{align*}
+Therefore the two sides of the weighted Cauchy--Schwarz inequality are equal
+when $R=\tau^{(\gamma)}$.  The
 least-noise proposition then says that no admissible covariant limit can have
 a larger expectation of this witness.
 

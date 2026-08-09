@@ -45,12 +45,27 @@ Fix an intensity gain $\gamma>1$.  A displacement-covariant amplifier must
 send an input displacement $z$ to the amplified displacement
 $\sqrt\gamma z$, but it may add different amounts of noise.  The
 quantum-limited amplifier, whose idler is in the vacuum, adds the least
-possible noise.
+possible noise.  At fixed gain, a phase-insensitive covariant amplifier can
+be represented by the same two-mode-squeezing interaction with different
+idler states.  Photons already present in the idler create additional
+stimulated output photons; choosing the vacuum removes this avoidable
+contribution, leaving only the spontaneous noise required by amplification.
+The least-noise theorem strengthens this mean-noise intuition by showing that
+the entire vacuum-idler photon-number law is smallest in stochastic order.
 
-Low photon numbers are rewarded by a decreasing function $w(k)$.  Thus the
-least noisy output has the largest expectation of $w(\widehat N)$.  In
-several modes, Proposition C.3 proves the corresponding statement for
-product tests
+For a phase-invariant output state $\rho$ with photon-number probabilities
+$P_k=\langle k|\rho|k\rangle$, the expectation of a number test is
+\[
+  \Tr[\rho\,w(\widehat N)]=\sum_{k\ge0}P_k w(k).
+\]
+If $w$ is decreasing, an outcome with fewer photons receives a larger score;
+for example, $w(k)=\boldsymbol 1_{\{k\le K\}}$ measures the probability of a
+low-energy outcome, while $w(k)=e^{-sk}$ smoothly discounts high photon
+numbers.  Moving probability mass toward higher photon numbers can only
+decrease such an expectation.  Hence the least-noise output, whose
+photon-number law is stochastically smallest, has the largest expectation of
+$w(\widehat N)$ among the admissible amplifiers.  In several modes,
+Proposition C.3 proves the corresponding statement for product tests
 \[
   W(\widehat{\mathbf N})
   =\prod_{\ell=1}^s w_\ell(\widehat N_\ell).
@@ -128,9 +143,67 @@ If each $w_\ell:\mathbb Z_{\geq0}\to\R_+$ is bounded and decreasing, then
 \end{equation}
 \end{propC}
 
-The factor $\Tr\Gamma(\tau)$ is essential.  It makes the inequality
-homogeneous and allows $\Gamma$ to be a probabilistic operation or a weak
-limit of channels that has lost trace at infinity.
+To explain the factor $\Tr\Gamma(\tau)$ in
+\eqref{eq:main-moment}, abbreviate
+\[
+  W=W(\widehat{\mathbf N})
+  =\prod_{\ell=1}^s w_\ell(\widehat N_\ell)
+  \quad\text{and}\quad
+  c=\Tr\Gamma(\tau).
+\]
+The positive operator $\Gamma(\tau)$ has trace $c$.  If $c=1$, it is an
+ordinary normalized output state.  If $0<c<1$, it is a subnormalized state.
+Here the probabilistic operation is the map $\Gamma$ itself: it is completely
+positive and trace-nonincreasing, and $c$ is its probability of success on the
+input $\tau$.  Conditional on success, the normalized output is
+\[
+  \rho_{\mathrm{out}}=\frac{\Gamma(\tau)}{c}.
+\]
+Substituting $\Gamma(\tau)=c\rho_{\mathrm{out}}$ into the two sides of
+\eqref{eq:main-moment} gives
+\[
+  c\Tr[\rho_{\mathrm{out}}W]
+  \leq c\Tr[\tau^{(\gamma)}W].
+\]
+After cancelling $c$, this is precisely the usual least-noise comparison
+between two normalized states.  The word ``homogeneous'' refers only to this
+common factor: replacing $\Gamma$ by $a\Gamma$ multiplies both sides of
+\eqref{eq:main-moment} by the same number $a$.  If $c=0$, positivity gives
+$\Gamma(\tau)=0$, and both sides are zero.
+
+There is a second reason for allowing $c<1$ in Proposition C.3.  The maps
+constructed later in Appendix C are weak-* limits of channels.  Such a limit
+can lose trace.  For example,
+\[
+  \rho_j=|j\rangle\!\langle j|
+  \quad\text{has}\quad \Tr\rho_j=1,
+  \qquad
+  \Tr(\rho_jK)\longrightarrow0
+  \quad\text{for every compact }K.
+\]
+Thus $\rho_j$ converges weak-* to the zero operator, whose trace is zero: the
+states move to higher and higher photon numbers, beyond what any fixed
+compact observable detects.  The phrase ``trace lost at infinity'' refers
+to exactly this phenomenon.  More generally, if channels $\Gamma_j$ converge
+weak-* to $\Gamma$, then on the input $\tau$ one may have
+\[
+  \Tr\Gamma_j(\tau)=1\quad\text{for every }j,
+  \qquad
+  \Gamma_j(\tau)\xrightarrow{\mathrm{w}^*}\Gamma(\tau),
+  \qquad
+  c:=\Tr\Gamma(\tau)<1.
+\]
+For $c>0$, write $\Gamma(\tau)=c\rho_{\mathrm{out}}$, where
+$\Tr\rho_{\mathrm{out}}=1$.  Equation~\eqref{eq:main-moment} then reads
+\[
+  \underbrace{\Tr[\Gamma(\tau)W]}_{c\Tr[\rho_{\mathrm{out}}W]}
+  \leq
+  \underbrace{\Tr\Gamma(\tau)}_{c}
+  \Tr[\tau^{(\gamma)}W].
+\]
+Thus the two appearances of $c$ are exactly the two appearances of
+$\Gamma(\tau)$ in \eqref{eq:main-moment}: once inside its weighted
+expectation on the left and once through its trace on the right.
 
 \section{Proof: the one-mode case}
 
@@ -158,7 +231,26 @@ The positive output-trace functional has the form
   \Tr\Gamma(X)=\Tr(AX),
   \qquad 0\leq A\leq I.
 \]
-Taking traces in the displacement covariance relation shows
+The displacement covariance relation is
+\[
+  \Gamma\!\left(D(z)XD(z)^*\right)
+  =D(\sqrt\gamma z)\Gamma(X)D(\sqrt\gamma z)^*.
+\]
+Taking the trace and using invariance of the trace under unitary conjugation
+gives
+\[
+  \Tr\Gamma\!\left(D(z)XD(z)^*\right)
+  =\Tr\Gamma(X).
+\]
+Using $\Tr\Gamma(Y)=\Tr(AY)$ on both sides and cyclicity of the trace, this
+becomes
+\[
+  \Tr\!\left[A D(z)XD(z)^*\right]
+  =\Tr(AX),
+  \qquad\text{hence}\qquad
+  \Tr\!\left[\bigl(D(z)^*AD(z)-A\bigr)X\right]=0
+\]
+for every trace-class operator $X$.  Therefore
 \[
   D(z)^*AD(z)=A
   \qquad(z\in\C).
@@ -188,10 +280,32 @@ The Weyl-operator characterization of such amplifiers writes
     D(\sqrt\gamma\,\xi)
 \end{equation}
 for an idler state $\sigma$.  Phase covariance makes $\sigma$ diagonal in
-the number basis.  Gu\c{t}\u{a} and Matsumoto's least-noise result says that,
-on the thermal input $\tau_q$, the photon-number law of
-$\Lambda(\tau_q)$ stochastically dominates the law of the vacuum-idler
-output $\tau_{q^{(\gamma)}}$.
+the number basis.  In the two-mode-squeezer realization, the output
+annihilation operator has the form
+\[
+  a_{\mathrm{out}}
+  =\sqrt\gamma\,a_{\mathrm{in}}+\sqrt{\gamma-1}\,b_{\mathrm{idler}}^*.
+\]
+Consequently, for phase-invariant input and idler states,
+\[
+  \mathbb E N_{\mathrm{out}}
+  =\gamma\,\mathbb E N_{\mathrm{in}}
+   +(\gamma-1)(\mathbb E N_{\mathrm{idler}}+1),
+\]
+so the vacuum idler, for which $N_{\mathrm{idler}}=0$, clearly minimizes
+the mean output photon number.  The result needed here is stronger than this
+mean comparison: Gu\c{t}\u{a} and Matsumoto's number-state calculation shows
+that every nonzero idler occupation shifts the entire output law upward in
+first-order stochastic order.  Since a diagonal idler state is a mixture of
+number states, its output law also stochastically dominates the vacuum-idler
+law $\tau_{q^{(\gamma)}}$.
+
+Thus ``smallest photon number'' means that the vacuum-idler output is the
+smallest \emph{distribution} in stochastic order; it does not mean that its
+photon number is deterministic or that every individual probability is
+smaller.  On the thermal input $\tau_q$, the conclusion is
+that the photon-number law of $\Lambda(\tau_q)$ stochastically dominates the
+law of $\tau_{q^{(\gamma)}}$.
 
 Applying the decreasing-test formulation \eqref{eq:decreasing-test} gives
 \[
@@ -238,7 +352,33 @@ Every operation in \eqref{eq:effective-map} is completely positive.  Since
 $0\leq W_{>1}\leq I$ and $\Gamma$ is trace nonincreasing, $\Gamma_1$ is
 trace nonincreasing.  It inherits displacement covariance in the first
 mode; after the independent phase twirl, it also inherits phase covariance.
-The one-mode bound therefore yields
+Apply the one-mode result to the map $\Gamma_1$, the first-mode thermal input
+$\tau_{q_1}$, and the first-mode test $w_1(\widehat N_1)$.  It gives
+\[
+  \Tr\!\left[\Gamma_1(\tau_{q_1})w_1(\widehat N_1)\right]
+  \leq
+  \Tr\Gamma_1(\tau_{q_1})
+  \Tr\!\left[\tau_{q_1^{(\gamma)}}w_1(\widehat N_1)\right].
+\]
+The left side is the original weighted expression, because
+\begin{align*}
+  \Tr\!\left[\Gamma_1(\tau_{q_1})w_1(\widehat N_1)\right]
+  &=\Tr\!\left[
+      \Gamma(\tau_{q_1}\ot\tau_{>1})
+      \bigl(w_1(\widehat N_1)\ot W_{>1}\bigr)
+    \right] \\
+  &=\Tr[\Gamma(\tau)W].
+\end{align*}
+Here the first equality follows from the definition of the partial trace and
+cyclicity of the trace.  Similarly, omitting the first-mode test gives
+\[
+  \Tr\Gamma_1(\tau_{q_1})
+  =\Tr\!\left[
+    \Gamma(\tau)(I\ot W_{>1})
+  \right]
+  =\Tr[\Gamma(\tau)W_{>1}].
+\]
+Substituting these two identities into the one-mode bound yields
 \begin{equation}\label{eq:peel-first}
   \Tr[\Gamma(\tau)W]
   \leq

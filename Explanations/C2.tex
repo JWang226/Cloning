@@ -102,9 +102,16 @@ For example, if $(e_n)$ is an orthonormal basis, then
   |e_n\rangle\!\langle e_n|\stackrel{w^*}{\longrightarrow}0
   \quad\text{on }\K(\Hc),
 \]
-even though every operator on the left has trace one.  Compact observables
-cannot see a unit amount of mass moving to arbitrarily high basis vectors.
-This is the ``escape to infinity'' allowed by Lemma C.2.
+where $w^*$ is read ``weak star'' and means convergence after pairing with
+every compact operator.  Indeed,
+\[
+  \Tr\!\left(|e_n\rangle\!\langle e_n|K\right)
+  =\langle e_n,Ke_n\rangle\longrightarrow0
+  \qquad(K\in\K(\Hc)),
+\]
+even though every operator $|e_n\rangle\!\langle e_n|$ has trace one.
+Compact observables cannot see a unit amount of mass moving to arbitrarily
+high basis vectors.  This is the ``escape to infinity'' allowed by Lemma C.2.
 
 \subsection{Why the proof works with adjoints}
 
@@ -151,9 +158,12 @@ for every fixed $g$ and $X$, then
 
 Because $\Hc_1$ is separable, $\K(\Hc_1)$ is separable in operator norm.
 Choose a countable norm-dense $\mathbb Q(\mathrm i)$-linear $*$-subspace
-$\mathcal D\subset\K(\Hc_1)$.  The use of $\mathbb Q(\mathrm i)$ makes
-$\mathcal D$ countable while preserving addition, adjoints, and scalar
-multiplication by a dense subfield of $\mathbb C$.
+$\mathcal D\subset\K(\Hc_1)$, where
+$\mathbb Q(\mathrm i)=\{a+\mathrm ib:a,b\in\mathbb Q\}$ is the countable
+dense subfield of Gaussian rationals in $\mathbb C$.  Using this field keeps
+$\mathcal D$ countable while preserving addition, adjoints, and enough scalar
+multiplication to extend the limiting map uniquely to a complex-linear map by
+continuity.
 
 For every fixed $K\in\mathcal D$, the operators $\Gamma_j^*(K)$ form a
 bounded subset of $\Bop(\Hc_0)$.  Banach--Alaoglu gives a weak-* convergent

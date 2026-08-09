@@ -2722,18 +2722,29 @@ Then $\Gamma(U_gXU_g^*)=V_g\Gamma(X)V_g^*$.
 \end{lemma}
 
 \begin{proof}
-Restrict the adjoints $\Gamma_j^*$ to $\mathcal K(\cH_1)$ and choose a
-countable norm-dense $\mathbb Q(\mathrm i)$-linear $*$-subspace there.
-Banach--Alaoglu and a diagonal argument give a subsequence converging
-pointwise weak-* on this subspace.  The uniform bounds extend the limit and
-the convergence to a bounded complex-linear map
-$\Gamma^*:\mathcal K(\cH_1)\to\mathcal B(\cH_0)$.  At every matrix level the
-positive cone is weak-* closed, so $\Gamma^*$ is completely positive.  Define
-$\Gamma(X)\in\cT_1(\cH_1)=\mathcal K(\cH_1)^*$ by
+Put $M=\sup_j\|\Gamma_j\|_{1\to1}<\infty$.  The adjoints satisfy
+$\|\Gamma_j^*\|\le M$ as maps from $\mathcal K(\cH_1)$ to
+$\mathcal B(\cH_0)=\cT_1(\cH_0)^*$.  Choose a countable norm-dense
+$\mathbb Q(\mathrm i)$-linear $*$-subspace
+$\mathcal D\subset\mathcal K(\cH_1)$.  For each $K\in\mathcal D$, the
+sequence $\Gamma_j^*(K)$ lies in a weak-* compact metrizable ball of
+$\mathcal B(\cH_0)$; hence Banach--Alaoglu and a diagonal argument give a
+single subsequence on which $\Gamma_j^*(K)$ converges weak-* for every
+$K\in\mathcal D$.
+
+The bound $\|\Gamma_j^*(K)\|\le M\|K\|$ extends both the limit and the
+convergence from $\mathcal D$ to a bounded complex-linear map
+$\Gamma^*:\mathcal K(\cH_1)\to\mathcal B(\cH_0)$.  For every matrix size,
+$[\Gamma_j^*(K_{ab})]$ is positive whenever $[K_{ab}]$ is positive, and the
+positive cone is weak-* closed; thus $\Gamma^*$ is completely positive.
+For $X\in\cT_1(\cH_0)$, the functional
+$K\mapsto\Tr[X\Gamma^*(K)]$ on $\mathcal K(\cH_1)$ is bounded, so the duality
+$\mathcal K(\cH_1)^*=\cT_1(\cH_1)$ defines a unique $\Gamma(X)$ by
 \[
   \Tr[\Gamma(X)K]=\Tr[X\Gamma^*(K)].
 \]
-This defines a completely positive map and gives
+The complete positivity of $\Gamma^*$ passes to this preadjoint $\Gamma$, and
+the construction gives
 \eqref{eq:compact-map-convergence}.
 
 Let $P_N\uparrow I$ be finite-rank projections on $\cH_1$.  For $X\ge0$,
@@ -2743,20 +2754,29 @@ Let $P_N\uparrow I$ be finite-rank projections on $\cH_1$.  For $X\ge0$,
   =\sup_N\lim_j\Tr[\Gamma_j(X)P_N]
   \le c\Tr X.
 \]
-For the covariance assertion, pair the assumed trace-norm defect with a
-compact $K$, pass to the limit, and use that $V_g^*KV_g$ is compact.
+Finally, fix $g$, $X$, and a compact $K$.  Since $V_g^*KV_g$ is compact,
+\eqref{eq:compact-map-convergence} and the assumed trace-norm defect give
+\[
+\begin{aligned}
+  &\Tr[\Gamma(U_gXU_g^*)K]
+   -\Tr[V_g\Gamma(X)V_g^*K]\\
+  &\quad=
+  \lim_j\Tr\!\left[
+    \bigl(\Gamma_j(U_gXU_g^*)-V_g\Gamma_j(X)V_g^*\bigr)K
+  \right]=0.
+\end{aligned}
+\]
+Compact operators separate trace-class operators, proving the covariance
+identity.
 \end{proof}
 
 \subsection{The multimode least-noise moment}
 
-For $s\ge1$, choose $q_1,\ldots,q_s\in(0,1)$ and set
-\[
-  q_\ell^{(\gamma)}=1-\frac{1-q_\ell}{\gamma},
-  \qquad
-  \tau=\bigotimes_{\ell=1}^s\tau_{q_\ell},
-  \qquad
-  \tau^{(\gamma)}=\bigotimes_{\ell=1}^s\tau_{q_\ell^{(\gamma)}}.
-\]
+Recall that $\tau_q=(1-q)\sum_{k\ge0}q^k\proj{k}$.  For $s\ge1$ and
+$q_1,\ldots,q_s\in(0,1)$, write
+$q_\ell^{(\gamma)}=1-(1-q_\ell)/\gamma$,
+$\tau=\bigotimes_{\ell=1}^s\tau_{q_\ell}$, and
+$\tau^{(\gamma)}=\bigotimes_{\ell=1}^s\tau_{q_\ell^{(\gamma)}}$.
 
 \begin{proposition}[Least-noise moment]
 \label{prop:least-noise-moment}
@@ -2801,35 +2821,49 @@ This twirl preserves displacement covariance and leaves both traces in
 every mode.
 
 For one mode, the positive functional $X\mapsto\Tr\Gamma(X)$ has the form
-$\Tr(AX)$ for a bounded $0\le A\le I$.  Displacement covariance implies that
-$A$ commutes with every Weyl displacement.  Irreducibility gives $A=cI$,
+$\Tr(AX)$ for a bounded $0\le A\le I$.  For every trace-class $X$,
+displacement covariance and unitary invariance of the trace give
+$\Tr[A D(z)XD(z)^*]=\Tr\Gamma(D(z)XD(z)^*)=\Tr\Gamma(X)=\Tr(AX)$.
+Thus $\Tr[(D(z)^*AD(z)-A)X]=0$ for every trace-class $X$.  Since such $X$
+separate bounded operators, $D(z)^*AD(z)-A=0$, so $A$ commutes with every
+Weyl displacement.  Irreducibility gives $A=cI$,
 where $0\le c\le1$.  If $c=0$, both sides of
-\eqref{eq:least-noise-moment} vanish.  If $c>0$, then $c^{-1}\Gamma$ is a
-phase-insensitive, displacement-covariant channel of gain
-$\sqrt\gamma$.  The Weyl-operator characterization of covariant amplifiers in
+\eqref{eq:least-noise-moment} vanish.  If $c>0$, then
+$\Lambda=c^{-1}\Gamma$ is a channel satisfying phase covariance,
+$\Lambda(R_\theta X R_\theta^*)=R_\theta\Lambda(X)R_\theta^*$, and displacement
+covariance, $\Lambda(D(z)XD(z)^*)=D(\sqrt\gamma z)\Lambda(X)D(\sqrt\gamma
+z)^*$.  The
+Weyl-operator characterization of covariant amplifiers in
 \cite{GutaMatsumoto2006MixedGaussianCloning}, with
-$(\sqrt2,1)$ replaced by $(\sqrt\gamma,\sqrt{\gamma-1})$, shows that every
-such channel satisfies
-\[
-  (c^{-1}\Gamma)^*(D(\xi))
-  =\Tr[\sigma D(-\sqrt{\gamma-1}\,\bar\xi)]D(\sqrt\gamma\,\xi)
-\]
-for an idler state $\sigma$; phase covariance makes $\sigma$ diagonal in the
-number basis.  Gu\c{t}\u{a} and Matsumoto's stochastic-order argument
+$(\sqrt2,1)$ replaced by $(\sqrt\gamma,\sqrt{\gamma-1})$, gives, for $s=1$,
+$\Lambda^*(D(\xi))=\Tr[\sigma D(-\sqrt{\gamma-1}\,\bar\xi)]D(\sqrt\gamma\,\xi)$
+for an idler state $\sigma$, which is diagonal in the number basis by phase
+covariance.  Write $P_\Lambda(k)=\langle k|\Lambda(\tau_q)|k\rangle$ and
+$P_\gamma(k)=(1-q^{(\gamma)})(q^{(\gamma)})^k$.  Gu\c{t}\u{a} and Matsumoto's
+stochastic-order argument
 \cite[Definition~2.2 and Lemma~2.3]{GutaMatsumoto2006MixedGaussianCloning},
 with the arbitrary-gain extension stated in their Sec.~III,\footnote{For gain
 $\sqrt\gamma$, their reduction uses
 $\cosh\widetilde t=\sqrt\gamma\cosh t$ and
 $\sinh^2\widetilde t=\gamma\sinh^2t+\gamma-1$; the subsequent number-state
-calculation is unchanged.} shows that the output photon-number law on
-$\tau_q$ stochastically dominates the geometric law of
-$\tau_{q^{(\gamma)}}$.  Hence every bounded decreasing photon-number function
-has no larger expectation for the former law.  Multiplying by $c$ proves
+calculation is unchanged.} gives precisely
+$\sum_{k=0}^mP_\Lambda(k)\le\sum_{k=0}^mP_\gamma(k)$ for every $m\ge0$.
+Therefore, for every bounded decreasing $w$,
+$\Tr[\Lambda(\tau_q)w(\widehat N)]\le
+\Tr[\tau_{q^{(\gamma)}}w(\widehat N)]$; multiplying by $c$ proves
 \eqref{eq:least-noise-moment} for $s=1$.
 
 For $s>1$, if some $w_\ell$ vanishes identically, both sides of
-\eqref{eq:least-noise-moment} vanish.  Otherwise divide each weight by its
-positive supremum, so that $0\le w_\ell\le1$.  Put
+\eqref{eq:least-noise-moment} vanish.  Otherwise set
+$M_\ell=w_\ell(0)>0$, the maximum value because $w_\ell$ is nonincreasing,
+and set
+$\widetilde w_\ell(k)=w_\ell(k)/M_\ell$, so that
+$0\le\widetilde w_\ell\le1$.  Since
+$\prod_\ell w_\ell(\widehat N_\ell)=(\prod_\ell M_\ell)
+\prod_\ell\widetilde w_\ell(\widehat N_\ell)$, both sides of
+\eqref{eq:least-noise-moment} acquire the same factor $\prod_\ell M_\ell$;
+we may therefore replace $w_\ell$ by $\widetilde w_\ell$ and assume
+$0\le w_\ell\le1$.  Put
 \[
   W_{>1}=\prod_{\ell=2}^s w_\ell(\widehat N_\ell),
   \qquad
@@ -2856,28 +2890,30 @@ Repeating the same argument for modes $2,\ldots,s$ proves
 \eqref{eq:least-noise-moment}.
 \end{proof}
 
-For the Gaussian families in the paper, write
-\[
-  \tau:=\Phi_0,
-  \qquad
-  \tau^{(\gamma)}:=\bigotimes_{i<j}\tau_{q_{ij}^{(\gamma)}}.
-\]
-In their joint number basis, let
-\[
-  \tau=\sum_{\mathbf k}t_{\mathbf k}\proj{\mathbf k},
-  \qquad
-  \tau^{(\gamma)}=\sum_{\mathbf k}t_{\mathbf k}^{(\gamma)}\proj{\mathbf k},
-\]
-and define
+For the Gaussian families, specialize to $s=r_d$ and $q_\ell=q_{ij}$, so
+$\tau=\Phi_0=\bigotimes_{i<j}\tau_{q_{ij}}$.  Let $t_{\mathbf k}$ and
+$t_{\mathbf k}^{(\gamma)}$ be the respective joint number-basis eigenvalues
+of $\tau$ and $\tau^{(\gamma)}$, and define
 \[
   W_\gamma
   =\sum_{\mathbf k}
   \sqrt{\frac{t_{\mathbf k}}{t_{\mathbf k}^{(\gamma)}}}
   \proj{\mathbf k}.
 \]
-The eigenvalues of $W_\gamma$ are positive, bounded, and form a product of
-decreasing geometric sequences; in particular, $W_\gamma$ is compact and
-injective.  Moreover,
+Its eigenvalue at $\mathbf k=(k_{ij})_{i<j}$ is
+\[
+  \sqrt{\frac{t_{\mathbf k}}{t_{\mathbf k}^{(\gamma)}}}
+  =C_\gamma\prod_{i<j}r_{ij}^{k_{ij}},
+  \qquad
+  C_\gamma=\prod_{i<j}
+  \sqrt{\frac{1-q_{ij}}{1-q_{ij}^{(\gamma)}}},
+  \qquad
+  r_{ij}=\sqrt{\frac{q_{ij}}{q_{ij}^{(\gamma)}}}.
+\]
+Since $\gamma>1$, one has $q_{ij}^{(\gamma)}>q_{ij}$ and hence
+$0<r_{ij}<1$.  Thus every eigenvalue lies in $(0,C_\gamma]$ and tends to zero
+as $|\mathbf k|=\sum_{i<j}k_{ij}\to\infty$, proving that $W_\gamma$ is
+bounded, injective, and compact.  Moreover,
 \begin{equation}\label{eq:quantum-witness-identities}
   \Tr(\tau^{(\gamma)} W_\gamma)
   =\Tr(\tau W_\gamma^{-1})
@@ -2899,22 +2935,54 @@ With the notation of \cref{thm:gaussian-flat-prior},
 \end{proposition}
 
 \begin{proof}
-For a channel $\Lambda$, define its finite F\o lner average
+For a channel $\Lambda$ and $z\in\C^{r_d}$, first center the channel at $z$:
+\[
+  \Lambda_z
+  =\operatorname{Ad}_{D(-\sqrt\gamma z)}\circ\Lambda\circ
+  \operatorname{Ad}_{D(z)}.
+\]
+Since $\Phi_z=D(z)\tau D(z)^*$ and
+$\Psi_z=D(\sqrt\gamma z)\tau D(\sqrt\gamma z)^*$, unitary invariance of
+root fidelity gives
+\[
+  B(\Lambda(\Phi_z),\Psi_z)=B(\Lambda_z(\tau),\tau).
+\]
+Define the finite F\o lner average
 \[
   \overline\Lambda_L
-  =\frac1{|\mathsf Z_L|}\int_{\mathsf Z_L}
-  \operatorname{Ad}_{D(-\sqrt\gamma z)}\circ\Lambda\circ
-  \operatorname{Ad}_{D(z)}\,\dd z.
+  =\frac1{|\mathsf Z_L|}\int_{\mathsf Z_L}\Lambda_z\,\dd z.
 \]
-Joint concavity and displacement covariance of the Gaussian families give
+Concavity of root fidelity in its first argument therefore gives
 \begin{equation}\label{eq:orbital-folner-concavity}
+\begin{aligned}
   \int_{\mathsf Z_L}B(\Lambda(\Phi_z),\Psi_z)
   \frac{\dd z}{|\mathsf Z_L|}
-  \le B(\overline\Lambda_L(\tau),\tau).
+  &=\int_{\mathsf Z_L}B(\Lambda_z(\tau),\tau)
+    \frac{\dd z}{|\mathsf Z_L|}\\
+  &\le B(\overline\Lambda_L(\tau),\tau).
+\end{aligned}
 \end{equation}
-Choose $L_j\to\infty$ and channels approaching the left-hand limsup, and set
-$\Gamma_j=\overline\Lambda_{L_j}$.  Translation of the averaging cube gives,
-for every fixed $w\in\C^{r_d}$,
+
+Write the left-hand side of \eqref{eq:orbital-folner-concavity} as
+$F_L(\Lambda)$ and set
+$M=\limsup_{L\to\infty}\sup_\Lambda F_L(\Lambda)$.  Choose $L_j\to\infty$
+so that $\sup_\Lambda F_{L_j}(\Lambda)\to M$, and choose channels
+$\Lambda_j$ satisfying
+\[
+  F_{L_j}(\Lambda_j)
+  \ge \sup_\Lambda F_{L_j}(\Lambda)-\frac1j.
+\]
+Let $\Gamma_j$ be the above average of $\Lambda_j$ over
+$\mathsf Z_{L_j}$.  Then $F_{L_j}(\Lambda_j)\to M$ and
+\begin{equation}\label{eq:orbital-maximizing-sequence}
+  F_{L_j}(\Lambda_j)\le B(\Gamma_j(\tau),\tau).
+\end{equation}
+
+For every fixed $w\in\C^{r_d}$, translating the integration variable from
+$z$ to $z+w$ shows that the two covariance averages agree on
+$(\mathsf Z_{L_j}+w)\cap\mathsf Z_{L_j}$ and can differ only on the symmetric
+difference of the two cubes.  Since each centered channel is trace-norm
+contractive, this gives
 \[
   \|\Gamma_j(D(w)XD(w)^*)
   -D(\sqrt\gamma w)\Gamma_j(X)D(\sqrt\gamma w)^*\|_1
@@ -2922,30 +2990,51 @@ for every fixed $w\in\C^{r_d}$,
   \frac{|(\mathsf Z_{L_j}+w)\triangle\mathsf Z_{L_j}|}
        {|\mathsf Z_{L_j}|}\,\|X\|_1.
 \]
-By \cref{lem:compact-cp-limit}, after passing to a subsequence there is a
-completely positive trace-nonincreasing, exactly displacement-covariant map
-$\Gamma$ such that
+The quotient tends to zero because a fixed translation changes only boundary
+slabs of thickness $O(\|w\|)$, whereas the cube has side length $2L_j$.
+Thus \cref{lem:compact-cp-limit}, applied to the channels $\Gamma_j$, gives a
+subsequence and a completely positive trace-nonincreasing map $\Gamma$ such
+that
 \[
   \Tr[\Gamma_j(X)K]\longrightarrow\Tr[\Gamma(X)K]
 \]
-for every trace-class $X$ and compact $K$.
-
-Apply \cref{lem:weighted-fidelity} with $W=W_\gamma$.  Since $W_\gamma$ is
-compact, \cref{prop:least-noise-moment,eq:quantum-witness-identities} yield
+for every trace-class $X$ and compact $K$.  The vanishing covariance defect
+also passes to this limit by the last assertion of that lemma, so
 \[
-\begin{aligned}
-  \limsup_j B(\Gamma_j(\tau),\tau)^2
-  &\le
-  \Tr[\Gamma(\tau)W_\gamma]\,
-  \Tr(\tau W_\gamma^{-1})\\
-  &\le
-  \Tr[\Gamma(\tau)]\,
-  \Tr(\tau^{(\gamma)} W_\gamma)\,
-  \Borb(\gamma,p)\\
-  &\le \Borb(\gamma,p)^2.
-\end{aligned}
+  \Gamma(D(w)XD(w)^*)
+  =D(\sqrt\gamma w)\Gamma(X)D(\sqrt\gamma w)^*.
 \]
-Together with \eqref{eq:orbital-folner-concavity}, this proves the claim.
+The limit is only asserted to be trace nonincreasing because convergence
+against compact operators does not test the identity operator; this is
+precisely the class of maps allowed in \cref{prop:least-noise-moment}.
+
+For each $j$, \cref{lem:weighted-fidelity} with $W=W_\gamma$ gives
+\[
+  B(\Gamma_j(\tau),\tau)^2
+  \le \Tr[\Gamma_j(\tau)W_\gamma]\,
+      \Tr(\tau W_\gamma^{-1}).
+\]
+The first factor is a compact-observable moment, so compactness of $W_\gamma$
+allows it to pass to the limit:
+\[
+  \Tr[\Gamma_j(\tau)W_\gamma]
+  \longrightarrow\Tr[\Gamma(\tau)W_\gamma].
+\]
+Now \cref{prop:least-noise-moment} applies to the exactly covariant map
+$\Gamma$, and \eqref{eq:quantum-witness-identities} evaluates both witness
+factors.  Hence
+\begin{align*}
+  \limsup_j B(\Gamma_j(\tau),\tau)^2
+  &\le \Tr[\Gamma(\tau)W_\gamma]\,
+        \Tr(\tau W_\gamma^{-1})\\
+  &\le \Tr[\Gamma(\tau)]\,
+        \Tr(\tau^{(\gamma)}W_\gamma)\,
+        \Tr(\tau W_\gamma^{-1})\\
+  &\le \Borb(\gamma,p)^2,
+\end{align*}
+where the last line uses $\Tr\Gamma(\tau)\le\Tr\tau=1$.  Taking square
+roots and using \eqref{eq:orbital-maximizing-sequence} gives
+$M\le\Borb(\gamma,p)$, as claimed.
 \end{proof}
 
 \subsection{Hybrid flat-prior bound}
