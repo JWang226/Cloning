@@ -35,32 +35,109 @@ $L^1$ inputs.
 
 \section{The statement in probabilistic language}
 
-Suppose $u(x)\dd x$ is an input density on the finite-dimensional vector
-space $\Hc$.  A positive map $\mathcal R$ sends it to a finite output
-measure.  The covariance assumption says that translating the input by $h$
-translates the output by $\sqrt\gamma h$:
-\begin{equation}\label{eq:covariance}
-  \mathcal R(u(\,\cdot-h))(E)
-  =\mathcal R(u)(E-\sqrt\gamma h).
-\end{equation}
+Here $\Hc$ is a finite-dimensional real vector space with Lebesgue measure
+$\dd x$, and $E\subseteq\Hc$ always denotes a Borel set.  If
+$u\geq0$ and $\int u(x)\dd x=1$, then $u(x)\dd x$ is the law of an input
+random variable $X$.  The symbol $\mathcal R$ is not a random variable: it
+is a positive linear map, and
+\[
+  \nu_u:=\mathcal R(u)
+\]
+is the finite measure produced from the input density $u$.  If
+$\nu_u(\Hc)=1$, one may choose an output random variable $Y$ with law
+$\nu_u$, so that $\Pr(Y\in E)=\nu_u(E)$.  If
+$c_u:=\nu_u(\Hc)<1$, then $\nu_u$ is instead a subprobability measure; it
+can be represented by adjoining a failure point $\partial\notin\Hc$ and
+setting
+\[
+  \Pr(Y\in E)=\nu_u(E),
+  \qquad
+  \Pr(Y=\partial)=1-c_u.
+\]
 
-Lemma C.5 says that there is a single finite positive measure $\mu$ such
-that
+To state covariance precisely, let $T_a(y):=y+a$.  Translating a finite
+measure $\nu$ by $a$ means taking its pushforward
+\[
+  (T_a)_\#\nu(E)
+  :=\nu(T_a^{-1}(E))
+  =\nu(E-a),
+  \qquad E-a:=\{y-a:y\in E\}.
+\]
+If $\nu$ is the law of $Y$, then $(T_a)_\#\nu$ is the law of $Y+a$.
+Likewise, $u(\,\cdot-h)$ is the density of $X+h$.  Hence the covariance
+assumption can be written equivalently as
+\begin{equation}\label{eq:covariance}
+\begin{aligned}
+  \mathcal R(u(\,\cdot-h))
+  &=(T_{\sqrt\gamma h})_\#\mathcal R(u),\\
+  \mathcal R(u(\,\cdot-h))(E)
+  &=\mathcal R(u)(E-\sqrt\gamma h).
+\end{aligned}
+\end{equation}
+Thus replacing the input law of $X$ by that of $X+h$ replaces the output
+measure $\nu_u$ by its translate through $\sqrt\gamma h$; when the measures
+are probability laws, this says that the new output has the same law as
+$Y+\sqrt\gamma h$.
+
+Lemma C.5 says that there is one finite positive measure $\mu$ such that
 \begin{equation}\label{eq:kernel}
   \mathcal R(u)(E)
   =\int_{\Hc}u(x)\,\mu(E-\sqrt\gamma x)\dd x.
 \end{equation}
-Thus, conditionally on an input point $x$, the output is
+For each input point $x$, define the finite measure
 \[
-  Y=\sqrt\gamma x+R,
-  \qquad R\sim\mu.
+  K(x,E):=\mu(E-\sqrt\gamma x).
 \]
-The same additive noise law is used at every $x$; translation covariance
-forbids any location-dependent noise.
+Then \eqref{eq:kernel} says that $\mathcal R(u)$ is the mixture of the
+pointwise output measures $K(x,\,\cdot)$ with weights $u(x)\dd x$.  If
+$\mu(\Hc)=1$, each $K(x,\,\cdot)$ is a probability measure and may be read
+as the conditional law of the output given $X=x$:
+\[
+  K(x,E)=\Pr(Y\in E\mid X=x).
+\]
+Indeed, if $Z\sim\mu$ is independent of $X$ and
+$Y:=\sqrt\gamma X+Z$, then
+\[
+  \Pr(Y\in E\mid X=x)
+  =\mu(E-\sqrt\gamma x)=K(x,E),
+\]
+and averaging the conditional measures over $X$ gives
+\[
+  \Pr(Y\in E)
+  =\int_{\Hc}u(x)K(x,E)\dd x
+  =\mathcal R(u)(E).
+\]
 
-The measure $\mu$ may have total mass below one.  In the application,
-$\mathcal R$ is obtained as a weak-* limit of classical trace measures, so
-some probability may escape to infinity.
+The reason covariance forces the noise measure to be independent of $x$ is
+most transparent at the level of point inputs.  Temporarily suppose that
+$\delta_x$ were an admissible input and denote its output measure by $K_x$;
+this notation does not assume the desired representation.  Covariance would
+give $K_{x+h}(E)=K_x(E-\sqrt\gamma h)$.  Recenter $K_x$ by defining
+\[
+  \mu_x:=(T_{-\sqrt\gamma x})_\#K_x,
+  \qquad
+  \mu_x(E)=K_x(E+\sqrt\gamma x).
+\]
+If $K_x$ is a probability law, then $\mu_x$ is precisely the law of the
+residual $Y-\sqrt\gamma x$.  The covariance identity now gives
+\[
+  \mu_{x+h}(E)
+  =K_{x+h}(E+\sqrt\gamma(x+h))
+  =K_x(E+\sqrt\gamma x)
+  =\mu_x(E).
+\]
+Since $h$ is arbitrary, all the recentered measures $\mu_x$ coincide.
+Point masses do not belong to $L^1(\Hc)$, so the proof makes this heuristic
+rigorous by approximating $\delta_0$, extracting its output limit $\mu$,
+and extending the formula to all $L^1$ inputs by convolution.
+
+Finally, if $c:=\mu(\Hc)<1$, then $K(x,\Hc)=c$ for every $x$ and
+$\mathcal R(u)(\Hc)=c$ for every normalized $u$.  When $0<c<1$, this may be
+realized by taking a Bernoulli variable $S$ with $\Pr(S=1)=c$, an independent
+noise variable $Z$ with law $\mu/c$, and declaring the output to be
+$\sqrt\gamma X+Z$ when $S=1$ and $\partial$ when $S=0$.  In the application,
+the missing mass $1-c$ records probability that may have escaped to
+infinity in the weak-* limit.
 
 \section{Functional-analytic setting}
 
@@ -69,11 +146,21 @@ The output space is
   C_0(\Hc)^*,
 \]
 which the Riesz representation theorem identifies with the finite Radon
-measures on $\Hc$.  Weak-* convergence of measures means
+measures on $\Hc$.  The dual pairing of a test function $f$ with a measure
+$\nu$ is
+\[
+  \langle f,\nu\rangle:=\int_{\Hc}f(y)\,\nu(\dd y).
+\]
+When $\nu$ is the law of a random variable $Y$, this pairing is
+$\mathbb E[f(Y)]$; for a subprobability measure, the same interpretation
+holds after setting $f(\partial)=0$ at the failure point.  Weak-* convergence
+of measures means
 \[
   \int f\dd\mu_j\longrightarrow\int f\dd\mu
   \qquad(f\in C_0(\Hc)).
 \]
+Thus weak-* convergence asserts convergence of these test-function averages,
+not pointwise convergence of random variables.
 
 The map
 \[
@@ -83,8 +170,8 @@ is a positive contraction.  Hence, for $u\geq0$,
 \[
   \|\mathcal R(u)\|\leq\|u\|_1.
 \]
-In particular, normalized nonnegative inputs produce measures of mass at
-most one.
+For a positive measure its norm equals its total mass, so a normalized
+nonnegative input produces an output measure of mass at most one.
 
 \section{Statement of Lemma C.5}
 
@@ -105,13 +192,16 @@ Choose a nonnegative approximate identity $u_j\in C_c(\Hc)$:
   \qquad
   \operatorname{supp}(u_j)\longrightarrow\{0\}.
 \]
-One may think of $u_j$ as an increasingly concentrated approximation to the
-point mass $\delta_0$.  If a genuine transition kernel existed, its output
-on $\delta_0$ would be the noise measure.  Accordingly, consider
+The measures $u_j(x)\dd x$ are probability laws concentrating at the input
+point $0$, so they approximate the point mass $\delta_0$.  Heuristically,
+the output produced by $\delta_0$ is the noise measure; since $\delta_0$ is
+not an $L^1$ density, use instead the sequence of output measures
 \[
   \mu_j:=\mathcal R(u_j).
 \]
-Positivity and contractivity imply $\mu_j(\Hc)\leq1$.
+Thus $\mu_j$ is a measure, not a random variable; when it has mass one, one
+may represent it as the law of an output random variable.  Positivity and
+contractivity imply $\mu_j(\Hc)\leq1$.
 
 The unit ball of $C_0(\Hc)^*$ is weak-* compact.  Since $C_0(\Hc)$ is
 separable, a subsequence converges weak-* to a positive measure $\mu$:
@@ -130,6 +220,11 @@ Use the convolution convention
   (u*u_j)(y)=\int_{\Hc}u(x)u_j(y-x)\dd x
   =\int_{\Hc}u(x)u_j(\,\cdot-x)(y)\dd x.
 \]
+For normalized nonnegative $u$, if $X$ has density $u$ and $V_j$ has density
+$u_j$ independently of $X$, then $u*u_j$ is the density of $X+V_j$.
+Equivalently, it mixes the translated densities $u_j(\,\cdot-x)$ with
+weights $u(x)\dd x$; the proof then extends the identity to arbitrary
+$u\in L^1(\Hc)$ by linearity.
 The approximate-identity property gives
 \begin{equation}\label{eq:L1-approx}
   u*u_j\longrightarrow u
@@ -141,8 +236,9 @@ Bounded linearity of $\mathcal R$ therefore implies
 \]
 in the norm of finite measures.
 
-On the other hand, covariance applied to each translated copy of $u_j$
-gives
+Linearity sends this mixture of input densities to the corresponding mixture
+of output measures, and covariance translates the output of
+$u_j(\,\cdot-x)$ by $\sqrt\gamma x$.  Therefore
 \begin{align}
   \mathcal R(u*u_j)(E)
   &=\int_{\Hc}u(x)\,
@@ -151,8 +247,8 @@ gives
     \mathcal R(u_j)(E-\sqrt\gamma x)\dd x.
   \label{eq:smoothed-kernel}
 \end{align}
-Thus the desired convolution formula is already true with $\mu_j$ in place
-of $\mu$, but for the smoothed input $u*u_j$.
+Thus the desired convolution formula already holds for the smoothed input
+$u*u_j$, with the finite measure $\mu_j=\mathcal R(u_j)$ in place of $\mu$.
 
 \subsection*{Step 3: pass to the weak-* limit}
 
@@ -162,6 +258,9 @@ arbitrary $f\in C_0(\Hc)$.  The right side becomes
   \int_{\Hc}u(x)
   \left(\int_{\Hc}f(r+\sqrt\gamma x)\,\mu_j(\dd r)\right)\dd x.
 \end{equation}
+Here $r$ is the integration variable for the measure $\mu_j$; if $\mu_j$
+is a probability law and $Z_j\sim\mu_j$, the inner integral is
+$\mathbb E[f(\sqrt\gamma x+Z_j)]$.
 For each fixed $x$, the translated function
 $r\mapsto f(r+\sqrt\gamma x)$ still belongs to $C_0(\Hc)$, so
 \eqref{eq:mu-limit} gives convergence of the inner integral to the same
@@ -172,9 +271,15 @@ $|u|$ is integrable.  Dominated convergence therefore turns
   \int_{\Hc}u(x)
   \left(\int_{\Hc}f(r+\sqrt\gamma x)\,\mu(\dd r)\right)\dd x.
 \]
-The left side converges to the pairing of $f$ with $\mathcal R(u)$ by
-\eqref{eq:L1-approx}.  Since $C_0(\Hc)$ separates finite Radon measures,
-\eqref{eq:kernel} follows.
+On the other side, norm convergence of the output measures gives
+\[
+  \int f\,\dd\mathcal R(u*u_j)
+  \longrightarrow
+  \int f\,\dd\mathcal R(u).
+\]
+The two limiting test-function integrals are therefore equal for every
+$f\in C_0(\Hc)$.  Since these functions separate finite Radon measures,
+the measure identity \eqref{eq:kernel} follows.
 
 \section{Examples}
 
@@ -183,11 +288,15 @@ The left side converges to the pairing of $f$ with $\mathcal R(u)$ by
   \[
     \mathcal R(u)(E)=\int u(x)\mathbf1_E(\sqrt\gamma x)\dd x,
   \]
-  which is the deterministic dilation $x\mapsto\sqrt\gamma x$.
-  \item If $\mu$ is a probability law, the map performs the dilation and
-  adds independent noise distributed as $\mu$.
-  \item If $\mu(\Hc)=c<1$, the same procedure succeeds with the
-  input-independent probability $c$.
+  so for $X\sim u(x)\dd x$ the output variable is
+  $Y=\sqrt\gamma X$.
+  \item If $\mu$ is a probability measure and $Z\sim\mu$ is independent of
+  $X$, then the output measure $\mathcal R(u)$ is the law of
+  $Y=\sqrt\gamma X+Z$.
+  \item If $\mu(\Hc)=c<1$, then $\mathcal R(u)$ is a subprobability measure
+  of mass $c$ for every normalized $u$; in the failure-point representation,
+  the output lies in $\Hc$ with probability $c$ and equals $\partial$ with
+  probability $1-c$.
 \end{enumerate}
 
 No density for $\mu$ is required.  The noise may have atoms or a singular

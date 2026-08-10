@@ -164,12 +164,10 @@ fidelity gives
 
 Now average these centered channels over the cube:
 \begin{equation}\label{eq:average}
-  \overline\Lambda_L
-  =\frac1{|\mathsf Z_L|}\int_{\mathsf Z_L}
-    \operatorname{Ad}_{D(-\sqrt\gamma z)}\circ\Lambda\circ
-    \operatorname{Ad}_{D(z)}\,\dd z.
+  \Gamma_{\Lambda,L}
+  :=\frac1{|\mathsf Z_L|}\int_{\mathsf Z_L}\Lambda_z\,\dd z.
 \end{equation}
-Each $\Lambda_z$ is a channel, so their average $\overline\Lambda_L$ is also
+Each $\Lambda_z$ is a channel, so their average $\Gamma_{\Lambda,L}$ is also
 a channel.  Concavity of root fidelity in its first argument now gives
 \begin{align}
   \frac1{|\mathsf Z_L|}\int_{\mathsf Z_L}
@@ -181,7 +179,7 @@ a channel.  Concavity of root fidelity in its first argument now gives
       \frac1{|\mathsf Z_L|}\int_{\mathsf Z_L}\Lambda_z(\tau)\dd z,
       \tau
     \right) \notag\\
-  &=\B(\overline\Lambda_L(\tau),\tau).
+  &=\B(\Gamma_{\Lambda,L}(\tau),\tau).
   \label{eq:concavity}
 \end{align}
 Thus all parameter values are collected into the performance of one averaged
@@ -195,18 +193,16 @@ Define the payoff of a channel on the cube of radius $L$ by
   =\frac1{|\mathsf Z_L|}\int_{\mathsf Z_L}
     \B(\Lambda(\Phi_z),\Psi_z)\,\dd z,
   \qquad
-  M=\limsup_{L\to\infty}\sup_\Lambda F_L(\Lambda).
+  F_*:=\limsup_{L\to\infty}\sup_\Lambda F_L(\Lambda).
 \]
 By the definition of the limsup, choose $L_j\to\infty$ such that
-$\sup_\Lambda F_{L_j}(\Lambda)\to M$.  The supremum need not be attained, so
+$\sup_\Lambda F_{L_j}(\Lambda)\to F_*$.  The supremum need not be attained, so
 for each $j$ choose a channel $\Lambda_j$ satisfying
-\[
-  F_{L_j}(\Lambda_j)
-  \geq \sup_\Lambda F_{L_j}(\Lambda)-\frac1j.
-\]
-Then $F_{L_j}(\Lambda_j)\to M$.  Let $\Lambda_{j,z}$ be the centered channel
-constructed from $\Lambda_j$ in Step~1, and let $\Gamma_j$ be its average
-over $\mathsf Z_{L_j}$.  Substituting $L=L_j$ and $\Lambda=\Lambda_j$ into
+$F_{L_j}(\Lambda_j)\geq\sup_\Lambda F_{L_j}(\Lambda)-1/j$.
+Then $F_{L_j}(\Lambda_j)\to F_*$.  Let $\Lambda_{j,z}$ be the centered channel
+constructed from $\Lambda_j$ in Step~1 and set
+$\Gamma_j:=\Gamma_{\Lambda_j,L_j}$.  Substituting $L=L_j$ and
+$\Lambda=\Lambda_j$ into
 \eqref{eq:concavity}, and using the definition of $\Gamma_j$, gives
 \[
   F_{L_j}(\Lambda_j)
@@ -214,8 +210,8 @@ over $\mathsf Z_{L_j}$.  Substituting $L=L_j$ and $\Lambda=\Lambda_j$ into
     \B(\Lambda_j(\Phi_z),\Psi_z)\,\dd z
   \leq \B(\Gamma_j(\tau),\tau).
 \]
-Since the left side converges to $M$, it follows that
-$M\leq\liminf_j\B(\Gamma_j(\tau),\tau)$.  Thus it is enough to obtain the
+Since the left side converges to $F_*$, it follows that
+$F_*\leq\liminf_j\B(\Gamma_j(\tau),\tau)$.  Thus it is enough to obtain the
 desired upper bound for the centered fidelities on the right.
 
 To derive the reindexing identity, recall that
@@ -303,12 +299,12 @@ To see explicitly how \eqref{eq:boundary} and \eqref{eq:compact-limit}
 give exact covariance, abbreviate $U_w=D(\sqrt\gamma w)$ and define the
 covariance defect
 \[
-  E_j
-  =\Gamma_j(D(w)XD(w)^*)-U_w\Gamma_j(X)U_w^*.
+  E_j(X,w)
+  :=\Gamma_j(D(w)XD(w)^*)-U_w\Gamma_j(X)U_w^*.
 \]
 Equation~\eqref{eq:boundary} says
 \[
-  \|E_j\|_1
+  \|E_j(X,w)\|_1
   \leq
   \frac{|(\mathsf Z_{L_j}+w)\mathbin\triangle\mathsf Z_{L_j}|}
        {|\mathsf Z_{L_j}|}\,\|X\|_1
@@ -316,10 +312,10 @@ Equation~\eqref{eq:boundary} says
 \]
 Hence, for every compact $K$, the trace H\"older inequality gives
 \[
-  |\Tr(E_jK)|\leq\|E_j\|_1\|K\|\longrightarrow0.
+  |\Tr(E_j(X,w)K)|\leq\|E_j(X,w)\|_1\|K\|\longrightarrow0.
 \]
 
-Now apply \eqref{eq:compact-limit} to the two terms defining $E_j$.  For the
+Now apply \eqref{eq:compact-limit} to the two terms defining $E_j(X,w)$.  For the
 first term,
 \[
   \Tr[\Gamma_j(D(w)XD(w)^*)K]
@@ -335,21 +331,23 @@ For the second term, $U_w^*KU_w$ is compact, and therefore
 \end{align*}
 Subtracting these two limits yields
 \[
-  \Tr(E_jK)\longrightarrow
+  \Tr(E_j(X,w)K)\longrightarrow
   \Tr\!\left[
-    \bigl(\Gamma(D(w)XD(w)^*)-U_w\Gamma(X)U_w^*\bigr)K
+    \bigl(\Gamma(D(w)XD(w)^*)
+      -U_w\Gamma(X)U_w^*\bigr)K
   \right].
 \]
 The left side also tends to zero by \eqref{eq:boundary}, so
 \[
   \Tr\!\left[
-    \bigl(\Gamma(D(w)XD(w)^*)-U_w\Gamma(X)U_w^*\bigr)K
+    \bigl(\Gamma(D(w)XD(w)^*)
+      -U_w\Gamma(X)U_w^*\bigr)K
   \right]=0
 \]
 for every compact $K$.
 Compact operators separate trace-class operators, so the operator in
-parentheses is zero.  Thus $\Gamma$ is exactly displacement covariant with
-gain $\sqrt\gamma$.
+parentheses is zero.  Thus $\Gamma$ is exactly displacement covariant
+with gain $\sqrt\gamma$.
 
 The limit may lose trace because oscillator mass can escape to high energy,
 and the convergence above cannot test the identity operator, which is not
