@@ -55,25 +55,25 @@ setting
   \Pr(Y=\partial)=1-c_u.
 \]
 
-To state covariance precisely, let $T_a(y):=y+a$.  Translating a finite
-measure $\nu$ by $a$ means taking its pushforward
+To match the manuscript's notation, write $T_a\nu$ for the translate of a
+finite measure $\nu$ by $a$:
 \[
-  (T_a)_\#\nu(E)
-  :=\nu(T_a^{-1}(E))
-  =\nu(E-a),
+  (T_a\nu)(E):=\nu(E-a),
   \qquad E-a:=\{y-a:y\in E\}.
 \]
-If $\nu$ is the law of $Y$, then $(T_a)_\#\nu$ is the law of $Y+a$.
+If $\nu$ is the law of $Y$, then $T_a\nu$ is the law of $Y+a$.
 Likewise, $u(\,\cdot-h)$ is the density of $X+h$.  Hence the covariance
-assumption can be written equivalently as
+assumption of Lemma C.5 is the equality of finite Radon measures
 \begin{equation}\label{eq:covariance}
-\begin{aligned}
   \mathcal R(u(\,\cdot-h))
-  &=(T_{\sqrt\gamma h})_\#\mathcal R(u),\\
-  \mathcal R(u(\,\cdot-h))(E)
-  &=\mathcal R(u)(E-\sqrt\gamma h).
-\end{aligned}
+  =T_{\sqrt\gamma h}\mathcal R(u)
+  \qquad(u\in L^1(\Hc),\ h\in\Hc).
 \end{equation}
+Evaluating this identity on a Borel set $E$ gives the more concrete formula
+\[
+  \mathcal R(u(\,\cdot-h))(E)
+  =\mathcal R(u)(E-\sqrt\gamma h).
+\]
 Thus replacing the input law of $X$ by that of $X+h$ replaces the output
 measure $\nu_u$ by its translate through $\sqrt\gamma h$; when the measures
 are probability laws, this says that the new output has the same law as
@@ -114,7 +114,7 @@ $\delta_x$ were an admissible input and denote its output measure by $K_x$;
 this notation does not assume the desired representation.  Covariance would
 give $K_{x+h}(E)=K_x(E-\sqrt\gamma h)$.  Recenter $K_x$ by defining
 \[
-  \mu_x:=(T_{-\sqrt\gamma x})_\#K_x,
+  \mu_x:=T_{-\sqrt\gamma x}K_x,
   \qquad
   \mu_x(E)=K_x(E+\sqrt\gamma x).
 \]
@@ -236,9 +236,16 @@ Bounded linearity of $\mathcal R$ therefore implies
 \]
 in the norm of finite measures.
 
-Linearity sends this mixture of input densities to the corresponding mixture
-of output measures, and covariance translates the output of
-$u_j(\,\cdot-x)$ by $\sqrt\gamma x$.  Therefore
+Because $u*u_j=\int_{\Hc}u(x)u_j(\,\cdot-x)\dd x$, bounded linearity moves
+$\mathcal R$ through this integral, while covariance gives
+$\mathcal R(u_j(\,\cdot-x))=T_{\sqrt\gamma x}\mathcal R(u_j)$.  Hence, as
+an equality of finite Radon measures,
+\[
+  \mathcal R(u*u_j)
+  =\int_{\Hc}u(x)\mathcal R(u_j(\,\cdot-x))\dd x
+  =\int_{\Hc}u(x)T_{\sqrt\gamma x}\mathcal R(u_j)\dd x.
+\]
+Evaluating this identity on a Borel set $E$ gives
 \begin{align}
   \mathcal R(u*u_j)(E)
   &=\int_{\Hc}u(x)\,
@@ -278,8 +285,21 @@ On the other side, norm convergence of the output measures gives
   \int f\,\dd\mathcal R(u).
 \]
 The two limiting test-function integrals are therefore equal for every
-$f\in C_0(\Hc)$.  Since these functions separate finite Radon measures,
-the measure identity \eqref{eq:kernel} follows.
+$f\in C_0(\Hc)$.  For each fixed $x$, the inner integral is the pairing of
+$f$ with the translated measure $T_{\sqrt\gamma x}\mu$, because
+\[
+  \int_{\Hc}f(r+\sqrt\gamma x)\,\mu(\dd r)
+  =\int_{\Hc}f(y)\,(T_{\sqrt\gamma x}\mu)(\dd y),
+  \qquad
+  (T_{\sqrt\gamma x}\mu)(E)=\mu(E-\sqrt{\gamma}\,x).
+\]
+Since functions in $C_0(\Hc)$ separate finite Radon measures, the matching
+measure identity is therefore, for every Borel set $E$,
+\[
+  \mathcal R(u)(E)
+  =\int_{\Hc}u(x)\,\mu(E-\sqrt{\gamma}\,x)\dd x,
+\]
+which is the measure identity \eqref{eq:kernel}.
 
 \section{Examples}
 

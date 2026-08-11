@@ -45,10 +45,10 @@ Fix an intensity gain $\gamma>1$.  A displacement-covariant amplifier must
 send an input displacement $z$ to the amplified displacement
 $\sqrt\gamma z$, but it may add different amounts of noise.  The
 quantum-limited amplifier, whose idler is in the vacuum, adds the least
-possible noise.  At fixed gain, a phase-insensitive covariant amplifier can
-be represented by the same two-mode-squeezing interaction with different
-idler states.  Photons already present in the idler create additional
-stimulated output photons; choosing the vacuum removes this avoidable
+possible noise.  After phase twirling, a displacement-covariant amplifier
+can be represented by the same two-mode-squeezing interaction with different
+phase-invariant idler states.  Photons already present in the idler create
+additional stimulated output photons; choosing the vacuum removes this avoidable
 contribution, leaving only the spontaneous noise required by amplification.
 The least-noise theorem strengthens this mean-noise intuition by showing that
 the entire vacuum-idler photon-number law is smallest in stochastic order.
@@ -115,6 +115,11 @@ for every bounded increasing function $f$.  Equivalently,
   \sum_k w(k)P_k\leq\sum_k w(k)Q_k
 \end{equation}
 for every bounded nonnegative decreasing function $w$.
+Equivalently, writing $Q\preceq_{\mathrm{st}}P$,
+\[
+  \sum_{k=0}^m Q_k\geq\sum_{k=0}^m P_k
+  \qquad(m\geq0).
+\]
 
 The direction is easy to remember: the stochastically larger law places more
 mass at high photon numbers, so it scores less under a test that rewards low
@@ -268,12 +273,13 @@ trivial.  If $c>0$, the normalized map
 \[
   \Lambda=c^{-1}\Gamma
 \]
-is a trace-preserving, phase-insensitive, displacement-covariant amplifier
-of gain $\sqrt\gamma$.
+is a trace-preserving channel satisfying phase covariance and displacement
+covariance with gain $\sqrt\gamma$.
 
 \subsection*{Step 3: apply the least-noise stochastic theorem}
 
-The Weyl-operator characterization of such amplifiers writes
+The arbitrary-gain Weyl-operator characterization used in Sec.~3 and the
+Appendix of Gu\c{t}\u{a}--Matsumoto writes
 \begin{equation}\label{eq:idler-characterization}
   \Lambda^*(D(\xi))
   =\Tr[\sigma D(-\sqrt{\gamma-1}\,\bar\xi)]
@@ -300,14 +306,33 @@ first-order stochastic order.  Since a diagonal idler state is a mixture of
 number states, its output law also stochastically dominates the vacuum-idler
 law $\tau_{q^{(\gamma)}}$.
 
-Thus ``smallest photon number'' means that the vacuum-idler output is the
-smallest \emph{distribution} in stochastic order; it does not mean that its
-photon number is deterministic or that every individual probability is
-smaller.  On the thermal input $\tau_q$, the conclusion is
-that the photon-number law of $\Lambda(\tau_q)$ stochastically dominates the
-law of $\tau_{q^{(\gamma)}}$.
-
-Applying the decreasing-test formulation \eqref{eq:decreasing-test} gives
+For the thermal input, set
+\[
+  P_\Lambda(k)=\langle k|\Lambda(\tau_q)|k\rangle,
+  \qquad
+  P_\gamma(k)=(1-q^{(\gamma)})(q^{(\gamma)})^k.
+\]
+The arbitrary-gain stochastic-order theorem states precisely that the
+vacuum-idler law $P_\gamma$ is stochastically smallest:
+\begin{equation}\label{eq:stochastic-order}
+  P_\gamma\preceq_{\mathrm{st}}P_\Lambda,
+  \qquad
+  \sum_{k=0}^mP_\gamma(k)\geq
+  \sum_{k=0}^mP_\Lambda(k)
+  \quad(m\geq0).
+\end{equation}
+Thus ``smallest photon number'' refers to the whole distribution, not to a
+deterministic photon number or a pointwise comparison of probabilities.
+Summation by parts converts the cumulative inequalities in
+\eqref{eq:stochastic-order} into the decreasing-test inequality: if
+$F_P(m)=\sum_{k=0}^mP(k)$ and $w_\infty=\lim_mw(m)$, then
+\[
+  \sum_{k\geq0}P(k)w(k)
+  =w_\infty+
+   \sum_{m\geq0}\bigl(w(m)-w(m+1)\bigr)F_P(m).
+\]
+All coefficients in the last sum are nonnegative, so
+$F_{P_\gamma}\geq F_{P_\Lambda}$ gives
 \[
   \Tr[\Lambda(\tau_q)w(\widehat N)]
   \leq

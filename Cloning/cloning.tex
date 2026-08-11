@@ -1,9 +1,8 @@
 \documentclass[11pt]{article}
 \usepackage[margin=1in]{geometry}
 \usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
 \usepackage{lmodern}
-\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{amsmath,amssymb,amsthm}
 \usepackage{microtype}
 \usepackage{xcolor}
 \usepackage{aliascnt}
@@ -57,7 +56,7 @@
 \newcommand{\doi}[2]{\href{https://doi.org/#1}{#2}}
 \newcommand{\arxiv}[1]{\href{https://arxiv.org/abs/#1}{\texttt{arXiv:#1}}}
 
-\title{Asymptotically Optimal Global Cloning of Full-Rank Mixed States with Simple Spectrum}
+\title{Asymptotically Optimal Cloning on Simple-Spectrum Unitary Orbits and Compact Spectral Chambers}
 \author{}
 \date{}
 
@@ -66,157 +65,234 @@
 \maketitle
 
 \begin{abstract}
-Let \(d\ge2\), and let \(m_n\) be positive integers with
-\(m_n/n\to\gamma>1\).  For global \(n\to m_n\) cloning, measured by root
-fidelity with the ideal product target, we determine the asymptotic minimax
-value on every unitary orbit of a full-rank state with simple spectrum
-\(p_1>\cdots>p_d>0\).  The value is
+Let \(d\ge2\) and let \(m_n/n\to\gamma>1\).  We study global
+\(n\to m_n\) cloning of full-rank \(d\)-dimensional states with simple
+spectrum, using root fidelity with the ideal product output.  If the spectrum
+\(p_1>\cdots>p_d>0\) is known and only the eigenbasis is unknown, the
+asymptotic minimax value on the unitary orbit is
 \[
   \Borb(\gamma,p)
-  =
-  \prod_{i<j}
-  \frac{\sqrt{(1-q_{ij})(1-q_{ij}^{(\gamma)})}}
-       {1-\sqrt{q_{ij}q_{ij}^{(\gamma)}}},
-  \qquad
-  q_{ij}=\frac{p_j}{p_i},
-  \quad
-  q_{ij}^{(\gamma)}=1-\frac{1-q_{ij}}{\gamma}.
+  =\prod_{i<j}
+  \frac{\sqrt{\gamma}+\sqrt{q_{ij}(\gamma-1+q_{ij})}}
+       {\gamma+q_{ij}},
+  \qquad q_{ij}=\frac{p_j}{p_i}.
 \]
-A covariant Schur--Weyl protocol attains this value: it measures the input
-Young label, samples the output label from the exact target law, and applies
-the multiplicity-one Cartan-sector channel on the asymptotically certain
-admissible pairs.  In Poincar\'e--Birkhoff--Witt
-(PBW) coordinates, the Cartan
-inclusion has asymptotic beam-splitter coefficients, and its centered
-thermal-sector output converges to that of the quantum-limited Gaussian
-amplifier.  Local asymptotic normality and the corresponding Gaussian
-amplification bound give the converse.  When the spectrum is unknown, a
-spectrum-independent dithered dilation of the Young label yields one channel
-sequence whose asymptotic root fidelity, uniformly on compact subsets of the
-strict spectral chamber, is at least
+We construct an explicit covariant Schur--Weyl channel attaining this value.
+It samples the target Young label exactly and applies the multiplicity-one
+Cartan-sector channel on the asymptotically certain admissible label pairs.
+
+For unknown spectrum, one spectrum-independent sequence of covariant
+channels attains, uniformly on every compact subset of the strict spectral
+chamber,
 \[
   \Buniv(\gamma,p)
-  =
-  \left(\frac{2\sqrt{\gamma}}{1+\gamma}\right)^{(d-1)/2}
-  \Borb(\gamma,p).
+  =\left(\frac{2\sqrt\gamma}{1+\gamma}\right)^{(d-1)/2}
+   \Borb(\gamma,p).
 \]
-This value is sharp in the expanding-window local asymptotic minimax sense.
-For every \(0<\kappa<2/[d(d+1)]\), its infimum over the compact chamber
-\(\Delta_{d,\kappa}\) in \cref{cor:compact-global-unknown} is also the sharp global worst-case
-value.  The additional factor is the unavoidable loss from amplifying the
-classical spectral component of the local Gaussian model.
+The additional factor is the optimal loss for dilating the classical spectral
+component.  We prove that this value is the expanding-window local asymptotic
+minimax value and that its infimum is the global worst-case value on each
+chamber defined by uniform positive lower bounds on the smallest eigenvalue
+and all adjacent spectral gaps.  We do not claim a uniform result across those singular strata.
+The achievability proof combines a thermal limit for the Cartan-sector channel
+with a spectrum-independent dithered dilation of Young labels.  The converse
+uses two-way local asymptotic normality and a flat-prior Gaussian amplification
+bound valid against arbitrary channels.
 \end{abstract}
 
 \section{Introduction}
 
 The no-cloning theorem excludes perfect copying of an arbitrary unknown
-quantum state \cite{WoottersZurek1982,Dieks1982}.  Approximate cloning asks
-for a channel that maps $n$ copies of a state to an output close to $m$ ideal
-copies.  We use the global product target $\rho^{\ot m}$, rather than a
-criterion involving only one-site marginals.  For pure states, Werner's
-covariant channel solves the universal finite-dimensional problem
-\cite{Werner1998}.  We fix \(d\ge2\) and positive integers \(m_n\), and write
+quantum state \cite{WoottersZurek1982,Dieks1982}.  Approximate cloning asks for
+a channel that maps \(n\) identical inputs to an output close to \(m\) ideal
+copies.  We use the global product target, rather than a criterion involving
+only one-site marginals.  For pure states, Werner's covariant channel solves
+the universal finite-dimensional problem \cite{Werner1998}.  Here we consider
+mixed states of fixed finite dimension and the asymptotic regime
+\(m_n/n\to\gamma>1\).
+
+Our first result concerns a fixed full-rank simple spectrum.  We construct an
+explicit \(\U(d)\)-covariant channel by Schur--Weyl decomposition.  The input
+Young label is measured, the output label is sampled from the exact target
+law, and the irreducible sector is transformed by the channel induced by the
+multiplicity-one Cartan inclusion.  A uniform PBW analysis shows that this
+finite-dimensional sector channel converges to the quantum-limited Gaussian
+amplifier.  The resulting fidelity equals the Gaussian amplification optimum.
+
+When the spectrum is unknown, the Young label also contains the classical
+spectral fluctuation.  A deterministic lattice dilation need not have the
+correct limiting Hellinger overlap because of lattice phase.  We remove that
+obstruction by adding a bounded fundamental-cell dither, multiplying by
+\(m_n/n\), and rounding to the target Young lattice.  This Markov kernel is
+independent of the spectrum.  Its classical loss multiplies the orbital loss,
+which yields the universal value in \cref{thm:unknown-achievability}.
+
+The converse is formulated through two-way local asymptotic normality (LAN).
+The local finite-dimensional model converges to a product of a classical
+Gaussian shift and displaced thermal oscillator modes
+\cite{GutaKahn2006LANQubits,KahnGuta2009LANFiniteDimensional}.  Gu\c{t}\u{a}
+and Matsumoto identified the vacuum-idler amplifier as least noisy for the
+relevant displacement-covariant Gaussian problem
+\cite{GutaMatsumoto2006MixedGaussianCloning}.  We combine that stochastic-order
+result with a weighted fidelity witness and F\o lner covariantization, so the
+Gaussian upper bound applies to arbitrary competing channels, not only to
+Gaussian or covariant channels.
+
+LAN has also been used to solve mixed-qubit purification and dilution and,
+more generally, asymptotic reversal of independently acting qudit channels
+\cite{BowlesGutaAdesso2011Purification,BowlesGutaAdesso2012Reversal}.  Those
+works optimize different state-conversion or reversal tasks, primarily in
+trace norm.  They motivate the alternative localization--LAN construction
+discussed in \cref{sec:alternative-LAN}, but they do not determine the
+product-target cloning fidelities or the explicit Schur--Cartan channels
+studied here.  Exact broadcasting and superbroadcasting are also different:
+they constrain selected marginals while allowing correlations among the
+outputs
+\cite{BarnumCavesFuchsJozsaSchumacher1996,
+DArianoMacchiavelloPerinotti2005,BuscemiDArianoMacchiavelloPerinotti2006}.
+
+\paragraph{Organization.}
+\Cref{sec:main-results} states the results and fixes the local coordinates.
+\Cref{sec:preliminaries} gives the finite-dimensional Schur--Weyl and Cartan
+construction.  \Cref{sec:LAN-Gaussian} proves the common asymptotic and
+Gaussian statements.  \Cref{sec:known,sec:unknown} gives the explicit
+protocols and proves the cloning theorems.  \Cref{sec:comparison} compares the
+values and explains a shorter LAN-based alternative.  The appendices contain
+the PBW sector limit, the Young local limit and dither analysis, and the
+weighted Gaussian converse.
+
+\section{Main results}\label{sec:main-results}
+
+Fix \(d\ge2\) and positive integers \(m_n\) such that
 \[
   \gamma_n:=\frac{m_n}{n}\longrightarrow\gamma>1,
-  \qquad
-  r_d:=\binom d2.
+  \qquad r_d:=\binom d2.
 \]
-Thus \(r_d\) is the number of pairs \(i<j\), equivalently the number of
-off-diagonal oscillator modes in the LAN model.  We study
-full-rank mixed states with simple spectrum.  Since \(m_n>n\)
-eventually, the nontrivial constructions are defined for all
-sufficiently large \(n\).  For the finitely many remaining values,
-we use an arbitrary invariant preparation channel; this does not affect any
-asymptotic assertion.
-
-Throughout, $B$ denotes the unsquared Uhlmann fidelity.  This root
-convention is convenient because $B$ is jointly concave and has an exact
-linear direct-sum formula over Schur blocks; precise conventions for states,
-subnormalized operators, and classical measures are fixed in
-\cref{sec:preliminaries}.
-Let
+For the finitely many \(n\) for which \(m_n\le n\), use the preparation
+channel \(X\mapsto\Tr(X)(I/d)^{\ot m_n}\); this convention does not affect
+any asymptotic statement.  Let
 \[
   \Delta_d^\circ
-  =\left\{p\in\R^d:
-  p_1>\cdots>p_d>0,\ \sum_i p_i=1\right\},
+  =\left\{p\in\R^d:p_1>\cdots>p_d>0,\ \sum_i p_i=1\right\},
   \qquad
   \rho_p=\diag(p_1,\ldots,p_d),
   \qquad
   \rho_{p,g}=g\rho_p g^*.
 \]
-For $p\in\Delta_d^\circ$ and $i<j$, put
+We write \(B\) for root fidelity.  For \(p\in\Delta_d^\circ\), define
 \[
   q_{ij}=\frac{p_j}{p_i},
   \qquad
-  q_{ij}^{(\gamma)}=1-\frac{1-q_{ij}}{\gamma}.
+  b_\gamma(q)
+  =\frac{\sqrt\gamma+\sqrt{q(\gamma-1+q)}}{\gamma+q},
 \]
-When the spectrum is known and only $g\in\U(d)$ is unknown, the asymptotic
-minimax root fidelity is
-\begin{equation}\label{eq:intro-known-answer}
-  \Borb(\gamma,p)
-  =
-  \prod_{i<j}
-  \frac{\sqrt{(1-q_{ij})(1-q_{ij}^{(\gamma)})}}
-       {1-\sqrt{q_{ij}q_{ij}^{(\gamma)}}}
-  =
-  \prod_{i<j}
-  \frac{\sqrt{\gamma}+\sqrt{q_{ij}(\gamma-1+q_{ij})}}
-       {\gamma+q_{ij}}.
-\end{equation}
-The achievability protocol measures the input Schur--Weyl label and samples
-the output label directly from its ideal target distribution.  For typical
-input and output labels $\mu\vdash n$ and $\nu\vdash m_n$, the difference
-$\nu-\mu$ is dominant.  The multiplicity-one Cartan inclusion
-$\cH_\nu\hookrightarrow\cH_\mu\ot\cH_{\nu-\mu}$ then defines the
-Cartan-sector channel used in the protocol.  For highest weights of order
-$n$, its PBW coproduct coefficients converge to those of a beam splitter,
-and its centered thermal-sector output has the least-noise amplifier
-parameter $q_{ij}^{(\gamma)}$.  This gives
-\eqref{eq:intro-known-answer}.
-
-When the spectrum is unknown, the Young label also carries the classical
-spectral fluctuation in the local asymptotic normality (LAN) model.  A
-deterministic lattice dilation generally has insufficient overlap with the
-target Young law.  We instead use a bounded cell-overlap dither, independent
-of $p$, whose Gaussian limit is the optimal classical dilation.  The resulting
-local asymptotic minimax value is
-\[
-  \Buniv(\gamma,p)
-  =\Bcl(\gamma,d)\Borb(\gamma,p),
+and
+\begin{equation}\label{eq:main-values}
+  \Borb(\gamma,p)=\prod_{i<j}b_\gamma(q_{ij}),
   \qquad
   \Bcl(\gamma,d)
-  =\left(\frac{2\sqrt{\gamma}}{1+\gamma}\right)^{(d-1)/2}.
+  =\left(\frac{2\sqrt\gamma}{1+\gamma}\right)^{(d-1)/2},
+  \qquad
+  \Buniv(\gamma,p)=\Bcl(\gamma,d)\Borb(\gamma,p).
+\end{equation}
+
+\begin{theorem}[Known-spectrum optimum]\label{thm:known-optimum}
+For every \(p\in\Delta_d^\circ\),
+\begin{equation}\label{eq:known-optimum}
+  \lim_{n\to\infty}
+  \sup_{\cM_n}\inf_{g\in\U(d)}
+  B\!\left(\cM_n(\rho_{p,g}^{\ot n}),\rho_{p,g}^{\ot m_n}\right)
+  =\Borb(\gamma,p),
+\end{equation}
+where the supremum is over all quantum channels from \(n\) to \(m_n\)
+qudits.  The explicit Schur--Cartan channel \(\cC_n^p\) defined in
+\cref{sec:known} attains the lower bound.
+\end{theorem}
+
+\begin{theorem}[Uniform spectrum-independent achievability]
+\label{thm:unknown-achievability}
+There is a sequence of spectrum-independent, \(\U(d)\)-covariant channels
+\(\cC_n^{\mathrm{univ}}\) such that, for every compact
+\(K\Subset\Delta_d^\circ\),
+\[
+  \liminf_{n\to\infty}
+  \inf_{\substack{p\in K\\g\in\U(d)}}
+  \left[
+  B\!\left(
+    \cC_n^{\mathrm{univ}}(\rho_{p,g}^{\ot n}),
+    \rho_{p,g}^{\ot m_n}
+  \right)-\Buniv(\gamma,p)
+  \right]\ge0.
 \]
-The same spectrum-independent channel guarantees at least this value,
-uniformly on every compact subset of $\Delta_d^\circ$.  We prove that the
-value is sharp
-in the expanding-window local minimax sense and deduce the global worst-case
-value on each compact chamber $\Delta_{d,\kappa}$ defined in
-\cref{cor:compact-global-unknown}.  These chambers are bounded away from
-spectral collisions and the simplex boundary.  No claim is made uniformly
-across those singular strata, where the LAN model changes.
+The channels are defined explicitly in \cref{sec:unknown}.
+\end{theorem}
 
-Broadcasting is a different task: it constrains selected output marginals but
-allows correlations among the outputs.  Consequently, exact broadcasting or
-superbroadcasting results do not solve the product-target problem considered
-here \cite{BarnumCavesFuchsJozsaSchumacher1996,
-DArianoMacchiavelloPerinotti2005,BuscemiDArianoMacchiavelloPerinotti2006}.
-The Gaussian limit relevant to our converse was analyzed by Gu\c{t}\u{a} and
-Matsumoto, who identified the least-noise amplifier for displaced thermal
-states \cite{GutaMatsumoto2006MixedGaussianCloning}.  Finite-dimensional LAN
-then transfers the resulting upper bound on Gaussian amplification fidelity
-to the original cloning problem
-\cite{KahnGuta2009LANFiniteDimensional}.
+For the local minimax statement, let
+\[
+  \mathsf H=\left\{h\in\R^d:\sum_i h_i=0\right\},
+  \qquad
+  Y(z)=2\sum_{j<k}\left(\bar z_{jk}E_{jk}-z_{jk}E_{kj}\right),
+  \quad z\in\C^{r_d},
+\]
+and define
+\[
+  g_{n,z}=\exp\!\left(\frac{Y(z)}{\sqrt n}\right),
+  \qquad
+  \rho_{p,h,z}^{(n)}
+  =g_{n,z}\diag\!\left(p+\frac h{\sqrt n}\right)g_{n,z}^*.
+\]
+For \(L>0\), set
+\[
+  \Omega_L
+  =\left\{(h,z)\in\mathsf H\times\C^{r_d}:
+  \|h\|_\infty\le L,\ 
+  |\Re z_{ij}|,|\Im z_{ij}|\le L\ \text{for all }i<j\right\}
+\]
+and, for all sufficiently large \(n\),
+\[
+  v_{n,L}(p)
+  =\sup_{\cM_n}\inf_{(h,z)\in\Omega_L}
+  B\!\left(
+    \cM_n\bigl((\rho_{p,h,z}^{(n)})^{\ot n}\bigr),
+    (\rho_{p,h,z}^{(n)})^{\ot m_n}
+  \right).
+\]
 
-\paragraph{Organization.}
-\Cref{sec:preliminaries} gives the exact finite-dimensional ingredients.
-\Cref{sec:LAN-Gaussian} collects the common asymptotic ingredients: the
-thermal Cartan-sector limit, LAN, and the Gaussian amplification bounds.
-\Cref{sec:known,sec:unknown} prove the known- and unknown-spectrum results,
-respectively.  \Cref{sec:comparison} compares them with earlier cloning and
-broadcasting work.  The appendices contain the PBW normal form and
-Cartan-sector proof, the Young local limit and dither analysis, and the
-weighted Gaussian converses.
+\begin{theorem}[Expanding-window local minimax value]
+\label{thm:unknown-local}
+For every \(p\in\Delta_d^\circ\),
+\[
+  \lim_{L\to\infty}\limsup_{n\to\infty}v_{n,L}(p)
+  =
+  \lim_{L\to\infty}\liminf_{n\to\infty}v_{n,L}(p)
+  =\Buniv(\gamma,p).
+\]
+\end{theorem}
+
+\begin{corollary}[Compact-chamber global minimax value]
+\label{cor:compact-global-unknown}
+Let \(0<\kappa<2/[d(d+1)]\), and set
+\[
+  \Delta_{d,\kappa}
+  =\left\{p\in\R^d:p_d\ge\kappa,\ 
+    p_i-p_{i+1}\ge\kappa\ (i<d),\ \sum_i p_i=1\right\}.
+\]
+Then \(\Delta_{d,\kappa}\) is a nonempty compact subset of
+\(\Delta_d^\circ\), with nonempty relative interior, and
+\begin{equation}\label{eq:compact-global-value}
+  \lim_{n\to\infty}
+  \sup_{\cM_n}
+  \inf_{\substack{p\in\Delta_{d,\kappa}\\g\in\U(d)}}
+  B\!\left(\cM_n(\rho_{p,g}^{\ot n}),\rho_{p,g}^{\ot m_n}\right)
+  =\inf_{p\in\Delta_{d,\kappa}}\Buniv(\gamma,p).
+\end{equation}
+The channel \(\cC_n^{\mathrm{univ}}\) attains the lower bound.
+\end{corollary}
+
+At the critical value \(\kappa=2/[d(d+1)]\), the chamber is a singleton and
+the spectrum is known; its optimum is therefore \(\Borb\), not \(\Buniv\).
+No theorem below is uniform at eigenvalue collisions or at the boundary of
+the probability simplex, where the LAN model changes.
 
 \section{Fidelity, Schur--Weyl duality, and the Cartan channel}\label{sec:preliminaries}
 
@@ -246,18 +322,21 @@ trace-class-valued densities $R,S$ on the same classical space, set
 This is the continuous direct-sum formula and is unchanged by replacing the
 reference measure and the two densities simultaneously.  Given measure spaces
 $X,Y$ and Hilbert spaces $\cH_{\mathrm{in}},\cH_{\mathrm{out}}$, a
-classical--quantum channel is a completely positive, trace-preserving linear
-map $\Lambda:L^1(X;\cT_1(\cH_{\mathrm{in}}))\to
-L^1(Y;\cT_1(\cH_{\mathrm{out}}))$.
+classical--quantum channel is a completely positive, trace-preserving bounded
+linear map
+$\Lambda:L^1(X;\cT_1(\cH_{\mathrm{in}}))\to
+L^1(Y;\cT_1(\cH_{\mathrm{out}}))$.  Equivalently, it is the preadjoint of a
+normal unital completely positive map between the corresponding
+operator-valued $L^\infty$ spaces.  This is the meaning of ``channel'' for all
+hybrid Gaussian maps below.
 We use $\|\cdot\|_1$ for trace norm, $\ell^1$-distance, or $L^1$-distance
 according to context.
 
 \begin{lemma}[Basic properties of root fidelity]\label{lem:fid-cont}
-The following statements hold both for quantum states and for
-classical--quantum states, with
-$B(R,S)=\int B(R(x),S(x))\,\dd x$ in the latter case.  Let
-$A,C$ be positive elements of the corresponding state space and let
-$\Lambda$ be a channel.  Then
+The following statements hold for positive trace-class operators and for
+positive trace-class-valued $L^1$ densities, with
+$B(R,S)=\int B(R(x),S(x))\,\dd x$ in the latter case.  Let $A,C$ be two
+such positive elements and let $\Lambda$ be a channel.  Then
 \[
   B(\Lambda(A),\Lambda(C))\ge B(A,C),
 \]
@@ -422,8 +501,10 @@ its uniquely normalized intertwining isometry by
   \qquad
   V_{\lambda,\theta}v_{\lambda+\theta}=v_\lambda\ot v_\theta.
 \end{equation}
-If \(\mu\vdash n\), \(\nu\vdash m\), and
-\(\omega:=\nu-\mu\) is dominant, then \(\nu=\mu+\omega\), and
+For partitions \(\mu\vdash n\) and \(\nu\vdash m\), we write
+\(\nu-\mu\vdash m-n\) when the coordinatewise difference has nonnegative
+entries in weakly decreasing order.  Whenever this holds, put
+\(\omega=\nu-\mu\).  Then \(\nu=\mu+\omega\), and
 \eqref{eq:cartan-inclusion} gives
 \[
   V_{\mu,\omega}:\cH_\nu\hookrightarrow\cH_\mu\ot\cH_\omega.
@@ -516,12 +597,9 @@ $q^{(G)}:=1-(1-q)/G$.  On a displaced thermal input,
   =D(\sqrt{G}\,z)\tau_{q^{(G)}}D(\sqrt{G}\,z)^*.
 \]
 
-Fix \(p\in\Delta_d^\circ\), put
-\[
-  q_{ij}=\frac{p_j}{p_i}\quad(i<j),
-\]
-and index \(\C^{r_d}\) by the pairs \(i<j\).  The Gaussian input and ideal
-target families are
+Fix \(p\in\Delta_d^\circ\), recall
+\(q_{ij}=p_j/p_i\), and index \(\C^{r_d}\) by the pairs \(i<j\).  The
+Gaussian input and ideal target families are
 \begin{align}
   \Phi_z^{(p)}
   &=\bigotimes_{i<j}D(z_{ij})\tau_{q_{ij}}D(z_{ij})^*,
@@ -535,22 +613,17 @@ target families are
 When \(p\) and \(\gamma\) are fixed, we abbreviate these as \(\Phi_z\) and
 \(\Psi_z\).  The product amplifier \(\cA_\gamma^{\ot r_d}\) has the desired
 displacement gain, but replaces each $\tau_{q_{ij}}$ by
-$\tau_{q_{ij}^{(\gamma)}}$.  Define
+$\tau_{q_{ij}^{(\gamma)}}$.  At gain \(G=\gamma\), the one-mode fidelity is
 \begin{equation}\label{eq:one-mode-b}
-  b_\gamma(q)
-  :=B\bigl(\tau_{q^{(\gamma)}},\tau_q\bigr)
-  =
-  \frac{\sqrt{(1-q)(1-q^{(\gamma)})}}
+  B\bigl(\tau_{q^{(\gamma)}},\tau_q\bigr)
+  =\frac{\sqrt{(1-q)(1-q^{(\gamma)})}}
        {1-\sqrt{q q^{(\gamma)}}}
-  =
-  \frac{\sqrt{\gamma}+\sqrt{q(\gamma-1+q)}}{\gamma+q}.
+  =b_\gamma(q).
 \end{equation}
-Thus, for every $z$, the root fidelity between
-$\cA_\gamma^{\ot r_d}(\Phi_z^{(p)})$ and $\Psi_z^{(p,\gamma)}$ is the
-$z$-independent quantity
-\begin{equation}\label{eq:Borb-def}
-  \Borb(\gamma,p)=\prod_{i<j}b_\gamma(q_{ij}).
-\end{equation}
+Consequently, for every \(z\), the root fidelity between
+\(\cA_\gamma^{\ot r_d}(\Phi_z^{(p)})\) and
+\(\Psi_z^{(p,\gamma)}\) is the \(z\)-independent value
+\(\Borb(\gamma,p)\) defined in \eqref{eq:main-values}.
 
 Gu\c{t}\u{a} and Matsumoto prove the decreasing photon-number moment
 bound that characterizes the vacuum-idler amplifier as least noisy among
@@ -622,89 +695,88 @@ $\bigotimes_{i<j}\tau_{q_{ij}^{(\gamma)}}$.
 
 \subsection{Local asymptotic normality}
 
-Let
-\[
-  \mathsf H=\left\{h\in\R^d:\sum_{i=1}^d h_i=0\right\},
-\]
-and equip \(\mathsf H\) with its Euclidean structure and induced
-$(d-1)$-dimensional Lebesgue measure; on
-$\C^{r_d}\cong\mathbb R^{2r_d}$ we use standard Lebesgue measure.  If
+Recall the hyperplane \(\mathsf H\), the anti-Hermitian generator \(Y(z)\),
+and the local states \(\rho_{p,h,z}^{(n)}\) from
+\cref{sec:main-results}.  We equip \(\mathsf H\) with its Euclidean structure
+and induced \((d-1)\)-dimensional Lebesgue measure, and identify
+\(\C^{r_d}\) with \(\R^{2r_d}\) with its standard Lebesgue measure.  If
 \(\Sigma\) is positive definite on \(\mathsf H\), let
-\(\mathsf N_{h,\Sigma}\) denote the Gaussian law on \(\mathsf H\) with mean
-\(h\) and covariance \(\Sigma\), and let \(\varphi_{h,\Sigma}\) denote its
-density on \(\mathsf H\), so that
-\(\mathsf N_{h,\Sigma}(\dd x)=\varphi_{h,\Sigma}(x)\,\dd x\).  A
-classical--quantum state is identified with its Bochner density
+\(\mathsf N_{h,\Sigma}\) be the Gaussian law on \(\mathsf H\) with mean
+\(h\) and covariance \(\Sigma\), and let \(\varphi_{h,\Sigma}\) be its
+density.  We identify a classical--quantum state with its Bochner density
 \[
   R\in L^1\!\left(\mathsf H;\cT_1(\cF_{\mathrm{orb}})\right),
   \qquad
-  \|R\|_1=\int_{\mathsf H}\|R(x)\|_1\,\dd x,
+  \|R\|_1=\int_{\mathsf H}\|R(x)\|_1\,\dd x.
 \]
-where $x\in\mathsf H$ is the classical variable and
-$R(x)\in\cT_1(\cF_{\mathrm{orb}})$ the quantum trace-class density.
-
-Here LAN is the two-way asymptotic equivalence between the $n$-copy model in
-an $n^{-1/2}$-neighborhood of $\rho_p$ and
-$\mathsf N_{h,\Sigma_p}\ot\Phi_z^{(p)}$, with $h$ represented classically and
-$z$ by displaced thermal bosonic modes.
-
-For \(z=(z_{jk})_{j<k}\in\C^{r_d}\), define the anti-Hermitian matrix
+The covariance of the spectral component is
 \[
-  X_p(z)
+  \Sigma_p
+  =\left.(\diag(p)-pp^{\mathsf T})\right|_{\mathsf H}>0.
+\]
+
+We now relate the physical rotation coordinate in
+\cite{KahnGuta2009LANFiniteDimensional} to the oscillator displacement
+coordinate used in \eqref{eq:Phi-family-def}.  For
+\(\zeta=(\zeta_{jk})_{j<k}\in\C^{r_d}\), define
+\[
+  X_p(\zeta)
   =\sum_{j<k}
-  \frac{z_{jk}E_{kj}-\bar z_{jk}E_{jk}}
-       {\sqrt{p_j-p_k}}.
-\]
-The normalization is chosen so that
-\[
-  [X_p(z),\rho_p]_{kj}=\sqrt{p_j-p_k}\,z_{jk}.
-\]
-Writing $E_{jk}^{(r)}$ for $E_{jk}$ on copy $r$, the rotation-to-oscillator
-approximation of
-\cite[Lemmas~6.3--6.4; see also Secs.~7.3 and~7.6]{KahnGuta2009LANFiniteDimensional}
-gives the LAN correspondence
-\[
-  \frac{\sum_{r=1}^nE_{jk}^{(r)}}{\sqrt{n(p_j-p_k)}}\rightsquigarrow a_{jk},
+    \frac{\zeta_{jk}E_{kj}-\bar\zeta_{jk}E_{jk}}
+         {\sqrt{p_j-p_k}},
   \qquad
-  \frac1{\sqrt n}\sum_{r=1}^nX_p(z)^{(r)}
-  \rightsquigarrow\sum_{j<k}(z_{jk}a_{jk}^*-\bar z_{jk}a_{jk}).
+  (L_p\zeta)_{jk}
+  =-\frac{\zeta_{jk}}{2\sqrt{p_j-p_k}}.
 \]
-Thus the normalization gives
-$[a_{jk},a_{\ell m}^*]=\delta_{j\ell}\delta_{km}I$.  Exponentiating the second
-correspondence identifies
-$\exp(n^{-1/2}\sum_{r=1}^nX_p(z)^{(r)})$ with
-$D(z)=\bigotimes_{j<k}D(z_{jk})$; hence the limiting $(j,k)$-mode state is
-$D(z_{jk})\tau_{p_k/p_j}D(z_{jk})^*$.
+The diagonal map \(L_p:\C^{r_d}\to\C^{r_d}\) is invertible and
+\[
+  X_p(L_p^{-1}z)
+  =2\sum_{j<k}(\bar z_{jk}E_{jk}-z_{jk}E_{kj})
+  =Y(z).
+\]
+Kahn and Gu\c{t}\u{a} use \(\zeta\) in the local unitary and obtain, in the
+\((j,k)\)-mode, the state
+\cite[Eqs.~(4.4) and~(4.19)]{KahnGuta2009LANFiniteDimensional}
+\[
+  D\!\left(-\frac{\zeta_{jk}}{2\sqrt{p_j-p_k}}\right)
+  \tau_{p_k/p_j}
+  D\!\left(-\frac{\zeta_{jk}}{2\sqrt{p_j-p_k}}\right)^*.
+\]
+Thus their physical parameter \(\zeta\) corresponds to our oscillator
+parameter \(z=L_p\zeta\).  In particular,
+\[
+  \exp\!\left(\frac{X_p(\zeta)}{\sqrt n}\right)
+  =g_{n,z}
+  \quad\text{when }\zeta=L_p^{-1}z,
+\]
+and the limiting oscillator state is \(\Phi_z^{(p)}\) with the Weyl convention
+in \eqref{eq:Phi-family-def}.  The coordinate map is homogeneous:
+\begin{equation}\label{eq:Lp-homogeneous}
+  L_p(t\zeta)=tL_p\zeta\qquad(t\in\R).
+\end{equation}
+Consequently, changing the sample size from \(n\) to \(m_n\) multiplies both
+the physical and oscillator coordinates by \(\sqrt{m_n/n}\); it does not
+change the amplifier gain.
 
-For \(h\in\mathsf H\), set
-\[
-  g_{n,z}=\exp\!\left(\frac{X_p(z)}{\sqrt n}\right),
-  \qquad
-  \rho_{p,h,z}^{(n)}
-  =g_{n,z}\diag\!\left(p+\frac{h}{\sqrt n}\right)g_{n,z}^*.
-\]
-Since \(p\in\Delta_d^\circ\), the vector \(p+h/\sqrt n\) belongs to
-\(\Delta_d^\circ\), uniformly for \(h\) in any bounded subset of
-\(\mathsf H\) and all sufficiently large \(n\).
-Thus \(\rho_{p,h,z}^{(n)}\) is a full-rank state with simple spectrum.
-Uniformly for bounded \((h,z)\), moreover,
+Uniformly for bounded \((h,z)\),
 \[
   \rho_{p,h,z}^{(n)}
   =\rho_p+\frac1{\sqrt n}
-    \bigl(\diag(h)+[X_p(z),\rho_p]\bigr)+O(n^{-1})
+    \bigl(\diag(h)+[Y(z),\rho_p]\bigr)+O(n^{-1})
 \]
-in operator norm.
-Set
-\[
-  \Sigma_p=\left.(\diag(p)-p p^{\mathsf T})\right|_{\mathsf H}>0.
-\]
+in operator norm.  Since \(p\in\Delta_d^\circ\), these local states are
+full-rank with simple spectrum for all sufficiently large \(n\), uniformly
+on compact parameter sets.
 
 The next theorem is Kahn and Gu\c{t}\u{a}'s finite-dimensional LAN theorem,
 restricted to compact local parameter sets and written for the local family
 $\rho_{p,h,z}^{(n)}$ \cite[Theorem~4.3]{KahnGuta2009LANFiniteDimensional}.
 The existence and estimates for the LAN channels are imported from that
-theorem.  The proof below records the coordinate identification and derives
-the \(m_n\)-copy scaling used later.  The qubit case was proved earlier in
+theorem.  We use their channels in Schr\"odinger picture, namely as the normal
+completely positive trace-preserving preadjoints acting on the trace-class and
+classical--quantum $L^1$ spaces displayed below.  The proof records the
+coordinate conversion and derives the \(m_n\)-copy scaling used later.  The
+qubit case was proved earlier in
 \cite{GutaKahn2006LANQubits}.
 
 \begin{theorem}[Full mixed-state LAN; Kahn--Gu\c{t}\u{a}]
@@ -781,25 +853,20 @@ has Jacobian \(\sqrt d\) and sends their covariance
 Thus \(R\mapsto\widehat R\) is an \(L^1\)-isometric channel isomorphism,
 and their classical Gaussian becomes \(\mathsf N_{h,\Sigma_p}\).
 
-For each \(j<k\), the two real tangent generators used in that theorem
-combine as
+For the off-diagonal coordinates, let \(\zeta=L_p^{-1}z\).  The two real
+generators in the cited theorem combine to \(X_p(\zeta)\), so their local
+unitary is
 \[
-  \mathrm i\,\frac{\Re z_{jk}\,\mathrm i(E_{jk}-E_{kj})
-             +\Im z_{jk}(E_{jk}+E_{kj})}
-           {\sqrt{p_j-p_k}}
-  =\frac{z_{jk}E_{kj}-\bar z_{jk}E_{jk}}
-         {\sqrt{p_j-p_k}}.
+  U\!\left(\frac\zeta{\sqrt n}\right)
+  =\exp\!\left(\frac{X_p(\zeta)}{\sqrt n}\right)
+  =\exp\!\left(\frac{Y(z)}{\sqrt n}\right)
+  =g_{n,z}.
 \]
-Thus, in their notation, \(U(z/\sqrt n)=g_{n,z}\), and
-Equations~(4.3)--(4.5) give exactly
-\[
-  U\!\left(\frac z{\sqrt n}\right)
-  \diag\!\left(p+\frac h{\sqrt n}\right)
-  U\!\left(\frac z{\sqrt n}\right)^*
-  =\rho_{p,h,z}^{(n)}.
-\]
-The LAN correspondence stated before the theorem identifies the oscillator
-component with $\Phi_z^{(p)}$ in \eqref{eq:Phi-family-def}.
+With their Weyl convention, the corresponding Gaussian mode is displaced by
+\(-\zeta_{jk}/(2\sqrt{p_j-p_k})=(L_p\zeta)_{jk}=z_{jk}\).  Hence the Gaussian
+component is \(\Phi_z^{(p)}\).  This explicit conversion is necessary: the
+physical coordinate \(\zeta\) and the oscillator coordinate \(z\) are not
+numerically identical.
 
 For compact \(K\), its coordinate image eventually lies in the growing
 parameter sets of the cited theorem.  Composing their forward channel with
@@ -807,7 +874,7 @@ parameter sets of the cited theorem.  Composing their forward channel with
 the errors and proves
 \eqref{eq:LAN-full-forward}--\eqref{eq:LAN-full-reverse}.  For
 \eqref{eq:LAN-full-target}, since
-\(\sqrt{\gamma_n}/\sqrt{m_n}=1/\sqrt n\) and \(X_p\) is real-linear,
+\(\sqrt{\gamma_n}/\sqrt{m_n}=1/\sqrt n\) and \(Y\) is real-linear,
 \[
   \rho_{p,h,z}^{(n)}
   =\rho_{p,\sqrt{\gamma_n}\,h,\sqrt{\gamma_n}\,z}^{(m_n)}.
@@ -955,100 +1022,82 @@ Taking the infimum over \(\theta\in K\) proves \eqref{eq:LAN-transfer-main}.
 \end{proof}
 
 
-\subsection{Gaussian amplification bounds}
+\subsection{Gaussian amplification bound}
 
-\begin{theorem}[Gaussian flat-prior optimum]\label{thm:gaussian-flat-prior}
-Let \(\Phi_z=\Phi_z^{(p)}\) and \(\Psi_z=\Psi_z^{(p,\gamma)}\) be the
-multimode Gaussian input and target families in
-\eqref{eq:Phi-family-def}--\eqref{eq:Psi-family-def}.  For the centered cubes
-\[
-  \mathsf Z_L
-  =\{z\in\C^{r_d}:|\Re z_{ij}|,|\Im z_{ij}|\le L\text{ for all }i<j\}.
-\]
-Writing $|\mathsf Z_L|$ for its volume, one has
-\[
-  \lim_{L\to\infty}
-  \sup_\Lambda
-  \int_{\mathsf Z_L}B(\Lambda(\Phi_z),\Psi_z)\frac{\dd z}{|\mathsf Z_L|}
-  =\Borb(\gamma,p).
-\]
-Here the supremum is over all completely positive trace-preserving maps
-\[
-  \Lambda:\cT_1(\cF_{\mathrm{orb}})\longrightarrow\cT_1(\cF_{\mathrm{orb}}).
-\]
-The product quantum-limited amplifier attains the value.
-\end{theorem}
-
-\begin{proof}
-The product quantum-limited amplifier maps each input mode to
-\(\tau_{q_{ij}^{(\gamma)}}\) with the correct displacement and therefore has
-constant fidelity \(\Borb(\gamma,p)\) by
-\cref{eq:thermal-root-fid,eq:Borb-def}.  The matching upper bound is
-\cref{prop:orbital-flat-prior-upper}.
-\end{proof}
-
-For a positive definite covariance \(\Sigma\) on \(\mathsf H\) and any
-\(u\in\mathsf H\),
-\begin{equation}\label{eq:classical-gaussian-factor}
+For a positive definite covariance \(\Sigma\) on a \(k\)-dimensional Euclidean
+space and any mean \(u\), direct integration gives
+\begin{equation}\label{eq:classical-gaussian-factor-general}
   B(\mathsf N_{u,\gamma\Sigma},\mathsf N_{u,\Sigma})
-  =\left(\frac{2\sqrt{\gamma}}{1+\gamma}\right)^{(d-1)/2}.
+  =\left(\frac{2\sqrt\gamma}{1+\gamma}\right)^{k/2}.
 \end{equation}
-Indeed, direct Gaussian integration gives
+Indeed,
 \[
   B(\mathsf N_{u,\Sigma_1},\mathsf N_{u,\Sigma_2})
   =\frac{\det(\Sigma_1)^{1/4}\det(\Sigma_2)^{1/4}}
-  {\det((\Sigma_1+\Sigma_2)/2)^{1/2}},
+         {\det((\Sigma_1+\Sigma_2)/2)^{1/2}}.
 \]
-where the determinants are taken on \(\mathsf H\).
-For the spectral LAN model, define
-\begin{equation}\label{eq:Buniv-def}
-  \Bcl(\gamma,d)
-  =\left(\frac{2\sqrt{\gamma}}{1+\gamma}\right)^{(d-1)/2},
-  \qquad
-  \Buniv(\gamma,p)=\Bcl(\gamma,d)\Borb(\gamma,p).
-\end{equation}
+For the spectral LAN model, \(k=d-1\), so
+\eqref{eq:classical-gaussian-factor-general} equals \(\Bcl(\gamma,d)\) in
+\eqref{eq:main-values}.
+
 Let
 \[
-  \Omega_L
-  =\left\{(h,z)\in\mathsf H\times\C^{r_d}:
-  \|h\|_\infty\le L,\ |\Re z_{ij}|,|\Im z_{ij}|\le L
-  \text{ for all }i<j\right\}.
+  \mathsf Z_L
+  =\{z\in\C^{r_d}:|\Re z_{ij}|,|\Im z_{ij}|\le L
+      \text{ for all }i<j\}.
 \]
-Give $\Omega_L$ the product of these measures and write $|\Omega_L|$ for its
-volume.  Set
+For the full Gaussian model, set
 \[
-  \Theta_{h,z}^{\mathrm{in}}=\mathsf N_{h,\Sigma_p}\ot\Phi_z^{(p)},
+  \Theta_{h,z}^{\mathrm{in}}
+  =\mathsf N_{h,\Sigma_p}\ot\Phi_z^{(p)},
   \qquad
   \Theta_{h,z}^{\mathrm{tar}}
-  =\mathsf N_{\sqrt{\gamma}\,h,\Sigma_p}\ot\Psi_z^{(p,\gamma)}.
+  =\mathsf N_{\sqrt\gamma h,\Sigma_p}\ot\Psi_z^{(p,\gamma)}.
 \]
-A hybrid channel is a classical--quantum channel between these $L^1$
-state spaces, in the sense fixed in \cref{sec:preliminaries}.
+Recall \(\Omega_L\) from \cref{sec:main-results}.  The following single
+statement covers both Gaussian limits used in the paper.
 
-\begin{theorem}[Hybrid Gaussian flat-prior optimum]\label{thm:hybrid-gaussian}
-For every $p\in\Delta_d^\circ$,
+\begin{theorem}[Gaussian amplification optimum]
+\label{thm:gaussian-amplification}
+Fix \(p\in\Delta_d^\circ\).
+
+\emph{Orbital model.}  With the supremum taken over all quantum channels
+\(\Lambda:\cT_1(\cF_{\mathrm{orb}})\to
+\cT_1(\cF_{\mathrm{orb}})\),
 \[
-  \lim_{L\to\infty}
-  \sup_\Lambda\frac1{|\Omega_L|}\int_{\Omega_L}
+  \lim_{L\to\infty}\sup_\Lambda
+  \frac1{|\mathsf Z_L|}\int_{\mathsf Z_L}
+  B\!\left(\Lambda(\Phi_z^{(p)}),\Psi_z^{(p,\gamma)}\right)\,\dd z
+  =\Borb(\gamma,p).
+\]
+
+\emph{Full model.}  With the supremum taken over all classical--quantum
+channels between the hybrid state spaces,
+\[
+  \lim_{L\to\infty}\sup_\Lambda
+  \frac1{|\Omega_L|}\int_{\Omega_L}
   B\!\left(\Lambda(\Theta_{h,z}^{\mathrm{in}}),
-  \Theta_{h,z}^{\mathrm{tar}}\right)\,\dd h\,\dd z
+            \Theta_{h,z}^{\mathrm{tar}}\right)\,\dd h\,\dd z
   =\Buniv(\gamma,p).
 \]
-Here the supremum is over all hybrid channels.  The product of the classical
-dilation $x\mapsto\sqrt{\gamma}\,x$ and the product quantum-limited amplifier
-attains the value.
+The orbital optimum is attained by the product quantum-limited amplifier.
+The full optimum is attained by the product of that amplifier with the
+deterministic classical dilation \(x\mapsto\sqrt\gamma x\).  The upper bounds hold against arbitrary
+channels; the competitors need not be Gaussian, covariant, or product
+channels.
 \end{theorem}
 
 \begin{proof}
-The dilation $x\mapsto\sqrt\gamma\,x$ sends
-$\mathsf N_{h,\Sigma_p}$ to $\mathsf N_{\sqrt\gamma h,\gamma \Sigma_p}$, and the
-product quantum-limited amplifier sends $\Phi_z^{(p)}$ to the correctly
-displaced product of the thermal states $\tau_{q_{ij}^{(\gamma)}}$.
-Multiplicativity of root fidelity and
-\cref{eq:classical-gaussian-factor,eq:thermal-root-fid} therefore give the
-constant value $\Bcl(\gamma,d)\Borb(\gamma,p)$.  The matching upper bound is
-\cref{prop:hybrid-flat-prior-upper}; its proof does not assume that a competing
-hybrid channel factors.
+The product amplifier maps each \(\Phi_z^{(p)}\) to the correctly displaced
+product of \(\tau_{q_{ij}^{(\gamma)}}\).  Its fidelity with the orbital target
+is therefore \(\Borb(\gamma,p)\), independently of \(z\), by
+\cref{eq:thermal-root-fid,eq:main-values}.  In the full model, the deterministic
+dilation maps \(\mathsf N_{h,\Sigma_p}\) to
+\(\mathsf N_{\sqrt\gamma h,\gamma\Sigma_p}\).  Multiplicativity of root
+fidelity and \eqref{eq:classical-gaussian-factor-general} give the constant
+value \(\Bcl(\gamma,d)\Borb(\gamma,p)=\Buniv(\gamma,p)\).
+The matching upper bounds are
+\cref{prop:orbital-flat-prior-upper,prop:hybrid-flat-prior-upper}.
 \end{proof}
 
 \section{Known-spectrum cloning}\label{sec:known}
@@ -1059,47 +1108,22 @@ irreducible \(\U(d)\)-sector on which the Cartan channel acts.
 
 \subsection{Protocol}
 
-The known-spectrum channel $\cC_n^p$ performs the Schur transform, measures
-the input Young label $\mu$, traces out the input Specht factor, and samples
-an output label
+Define the known-spectrum channel $\cC_n^p$ as follows.  Apply the Schur
+transform, measure the input Young label $\mu$, and discard the input Specht
+factor.  Independently draw
 \[
-  \nu\sim P_{m_n,p}
+  \nu\sim P_{m_n,p}.
 \]
-independently of $\mu$.  If $\nu-\mu$ is a partition, it applies the sector
-channel $\cC_{\mu,\nu}$ to the state on $\cH_\mu$.  Otherwise it applies the
-constant channel
-\[
-  X\longmapsto \Tr(X)\frac{I_{\cH_\nu}}{\dim\cH_\nu}.
-\]
-Finally, it adjoins the maximally mixed Specht factor in the $\nu$-block and
-applies the inverse Schur transform.  Both conditional operations are
-channels and are $\U(d)$-covariant, so $\cC_n^p$ is a covariant channel.
-Because $\nu$ is sampled directly from $P_{m_n,p}$, its output Young law is
-exactly the target Young law for every $n$.
+If $\nu-\mu\vdash m_n-n$, apply $\cC_{\mu,\nu}$ to the state on $\cH_\mu$.
+On every other branch, prepare $I_{\cH_\nu}/\dim\cH_\nu$.  Adjoin the
+maximally mixed Specht factor in the $\nu$-block and apply the inverse Schur
+transform.  Each conditional map is a channel and is $\U(d)$-covariant;
+hence so is $\cC_n^p$.  Its output Young law is exactly $P_{m_n,p}$ for every
+$n$.
 
 \subsection{Optimality}
 
-\begin{theorem}[Known-spectrum asymptotic optimum]
-\label{thm:known-optimum}
-For every \(p\in\Delta_d^\circ\),
-\begin{equation}\label{eq:known-optimum}
-  \lim_{n\to\infty}
-  \sup_{\cM_n}\inf_{g\in\U(d)}
-  B\!\left(
-    \cM_n(\rho_{p,g}^{\ot n}),
-    \rho_{p,g}^{\ot m_n}
-  \right)
-  =\Borb(\gamma,p).
-\end{equation}
-Here the supremum is over all completely positive trace-preserving maps
-\[
-  \cM_n:\cT_1((\C^d)^{\ot n})
-  \longrightarrow\cT_1((\C^d)^{\ot m_n}).
-\]
-The Schur--Cartan cloner \(\cC_n^p\) attains the lower bound.
-\end{theorem}
-
-\begin{proof}
+\begin{proof}[Proof of \cref{thm:known-optimum}]
 \emph{Achievability.}
 By covariance, take $g=I$.  Under the protocol, the input and output labels
 have the independent joint law
@@ -1159,8 +1183,8 @@ set
 \[
   \Gamma_n=T_{m_n}^{\mathrm{orb}}\circ\cM_n\circ S_n^{\mathrm{orb}}.
 \]
-Since the local orbit \(g_{n,z}=\exp(X_p(z)/\sqrt n)\),
-\(z\in\mathsf Z_L\), is contained in the full unitary orbit,
+Since the local orbit \(\{g_{n,z}:z\in\mathsf Z_L\}\) is contained in the
+full unitary orbit,
 \cref{lem:LAN-fidelity-transfer} gives
 \[
   u_n(p)
@@ -1170,8 +1194,8 @@ Since the local orbit \(g_{n,z}=\exp(X_p(z)/\sqrt n)\),
   \int_{\mathsf Z_L}
   B(\Gamma_n(\Phi_z),\Psi_z)\frac{\dd z}{|\mathsf Z_L|}+o(1).
 \]
-Taking \(\limsup_n\), then the supremum over Gaussian channels, and finally
-letting \(L\to\infty\), \cref{thm:gaussian-flat-prior} gives
+Taking \(\limsup_n\), then the supremum over all channels on the Gaussian model, and finally
+letting \(L\to\infty\), \cref{thm:gaussian-amplification} gives
 \[
   \limsup_{n\to\infty}u_n(p)\le\Borb(\gamma,p).
 \]
@@ -1180,13 +1204,12 @@ Together with achievability, this proves \eqref{eq:known-optimum}.
 
 \section{Unknown-spectrum cloning}\label{sec:unknown}
 
-The Young label carries the spectral fluctuation, while the irreducible
-$\U(d)$-sector carries the orbital fluctuation.  We dilate the label by a
-spectrum-independent dither and apply the sector channel whenever the sampled
-label is Cartan-admissible; otherwise we use a fixed fallback state.  The
-dither contributes $\Bcl(\gamma,d)$, while
-\cref{prop:thermal-sector} contributes $\Borb(\gamma,p)$.  Their product is
-$\Buniv(\gamma,p)$ from \eqref{eq:Buniv-def}.
+The Young label carries the spectral fluctuation, and the irreducible
+$\U(d)$-sector carries the orbital fluctuation.  We apply a
+spectrum-independent dithered dilation to the former and the Cartan-sector
+channel to the latter.  Their limiting fidelities are respectively
+$\Bcl(\gamma,d)$ and $\Borb(\gamma,p)$, so their product is
+$\Buniv(\gamma,p)$ in \eqref{eq:main-values}.
 
 \subsection{Construction and uniform achievability}
 
@@ -1245,38 +1268,18 @@ $p\in K$, and
 \]
 \end{proposition}
 
-The channel $\cC_n^{\mathrm{univ}}$ performs the Schur transform, measures
-$\mu$, traces out the input Specht factor, and samples $\widetilde\nu$ from
-$\mathsf D_n(\cdot\mid\mu)$.  On an admissible branch it sets the final label
-$\nu=\widetilde\nu$ and applies $\cC_{\mu,\widetilde\nu}$ to the resulting
-state on $\cH_\mu$.  Otherwise it sets $\nu=\nu_n^{\mathrm{fb}}$ and prepares
-$I_{\cH_{\nu_n^{\mathrm{fb}}}}/\dim\cH_{\nu_n^{\mathrm{fb}}}$.  It then adjoins the maximally
-mixed Specht factor and applies the inverse Schur transform.
-The sampling rule is a Markov kernel, and both conditional operations are
-channels.  The kernel is independent of the
-spectrum and eigenbasis, the sector maps are \(\U(d)\)-covariant, and the
-fallback state is invariant.
-Hence $\cC_n^{\mathrm{univ}}$ is a spectrum-independent,
-$\U(d)$-covariant channel.
+Define $\cC_n^{\mathrm{univ}}$ by applying the Schur transform, measuring
+$\mu$, discarding the input Specht factor, and drawing
+$\widetilde\nu\sim\mathsf D_n(\cdot\mid\mu)$.  On an admissible branch, set
+$\nu=\widetilde\nu$ and apply $\cC_{\mu,\widetilde\nu}$.  On a nonadmissible
+branch, set $\nu=\nu_n^{\mathrm{fb}}$ and prepare the maximally mixed state on
+$\cH_{\nu_n^{\mathrm{fb}}}$.  Finally, adjoin the maximally mixed Specht factor
+and apply the inverse Schur transform.  The label rule is independent of the
+spectrum and eigenbasis, the sector channels are $\U(d)$-covariant, and the
+fallback output is invariant.  Therefore $\cC_n^{\mathrm{univ}}$ is a
+spectrum-independent, $\U(d)$-covariant channel.
 
-\begin{theorem}[Uniform spectrum-independent achievability]
-\label{thm:unknown-achievability}
-For every compact $K\Subset\Delta_d^\circ$,
-\[
-  \liminf_{n\to\infty}
-  \inf_{\substack{p\in K\\g\in\U(d)}}
-  \left[
-  B\!\left(
-    \cC_n^{\mathrm{univ}}(\rho_{p,g}^{\ot n}),
-    \rho_{p,g}^{\ot m_n}
-  \right)
-  -\Buniv(\gamma,p)
-  \right]
-  \ge0.
-\]
-\end{theorem}
-
-\begin{proof}
+\begin{proof}[Proof of \cref{thm:unknown-achievability}]
 By covariance, take \(g=I\).  Uniformly for \(p\in K\),
 \[
   P_{n,p}(\mathsf T_n(p)^c)=o(1)
@@ -1330,34 +1333,13 @@ $x=(\mu,\widetilde\nu)$, $y=\nu$, and good event $\{\mu\in\mathsf T_n(p)\}$.  Th
   &=\Buniv(\gamma,p)-o(1),
 \end{aligned}
 \]
-uniformly for $p\in K$.  This proves the theorem.
+uniformly for $p\in K$.
+This proves \cref{thm:unknown-achievability}.
 \end{proof}
 
 \subsection{Local and global optimality}
 
-Fix $p\in\Delta_d^\circ$.  For $L>0$ and all sufficiently large $n$, let
-\[
-  v_{n,L}(p)
-  =\sup_{\cM_n}\inf_{(h,z)\in\Omega_L}
-  B\!\left(
-    \cM_n\bigl((\rho_{p,h,z}^{(n)})^{\ot n}\bigr),
-    (\rho_{p,h,z}^{(n)})^{\ot m_n}
-  \right),
-\]
-where the supremum is over all channels from $n$ to $m_n$ copies.
-
-\begin{theorem}[Expanding-window local asymptotic minimax value]
-\label{thm:unknown-local}
-For every $p\in\Delta_d^\circ$,
-\[
-  \lim_{L\to\infty}\limsup_{n\to\infty}v_{n,L}(p)
-  =
-  \lim_{L\to\infty}\liminf_{n\to\infty}v_{n,L}(p)
-  =\Buniv(\gamma,p).
-\]
-\end{theorem}
-
-\begin{proof}
+\begin{proof}[Proof of \cref{thm:unknown-local}]
 Fix $L$ and choose a compact neighborhood $K\Subset\Delta_d^\circ$ of
 $p$.  For all sufficiently large $n$, every spectrum
 $p+h/\sqrt n$ with $(h,z)\in\Omega_L$ lies in $K$, and
@@ -1405,34 +1387,14 @@ hybrid channel.  Hence
     \Theta_{h,z}^{\mathrm{tar}}
   \right)\,\dd h\,\dd z.
 \]
-Letting $L\to\infty$ and applying \cref{thm:hybrid-gaussian} gives the
+Letting $L\to\infty$ and applying \cref{thm:gaussian-amplification} gives the
 matching upper bound.  The quantities
 $\limsup_n v_{n,L}(p)$ and $\liminf_n v_{n,L}(p)$ are nonincreasing in $L$,
-so the outer limits exist.  The lower and upper bounds prove the claim.
+so the outer limits exist.  The preceding lower and upper bounds prove both
+equalities in \cref{thm:unknown-local}.
 \end{proof}
 
-\begin{corollary}[Compact-spectrum global worst-case value]
-\label{cor:compact-global-unknown}
-Assume $0<\kappa<2/[d(d+1)]$ and set
-\[
-  \Delta_{d,\kappa}
-  =\left\{p\in\R^d:p_d\ge\kappa,\ p_i-p_{i+1}\ge\kappa\ (i<d),\
-  \sum_i p_i=1\right\}.
-\]
-Then $\Delta_{d,\kappa}$ is a nonempty compact subset of
-$\Delta_d^\circ$ with nonempty interior relative to the probability
-hyperplane, and
-\begin{equation}\label{eq:compact-global-value}
-  \lim_{n\to\infty}
-  \sup_{\cM_n}
-  \inf_{\substack{p\in\Delta_{d,\kappa}\\g\in\U(d)}}
-  B\!\left(\cM_n(\rho_{p,g}^{\ot n}),\rho_{p,g}^{\ot m_n}\right)
-  =\inf_{p\in\Delta_{d,\kappa}}\Buniv(\gamma,p).
-\end{equation}
-The channel $\cC_n^{\mathrm{univ}}$ attains the lower bound.
-\end{corollary}
-
-\begin{proof}
+\begin{proof}[Proof of \cref{cor:compact-global-unknown}]
 For every $p\in\Delta_{d,\kappa}$,
 \begin{equation}\label{eq:chamber-threshold}
   1=d p_d+\sum_{i=1}^{d-1}i(p_i-p_{i+1})
@@ -1501,9 +1463,12 @@ its value is
        {\binom{m+D-1}{D-1}}
   \right)^{1/2}.
 \]
-The random-purification plus pure-state-cloning protocol of
+The fidelity denoted \(F_{\mathrm{all}}\) in
 \cite[Theorem~S3.1 and the paragraph following it]{LiTheilHarrowChuang2026}
-therefore gives, for rank \(r\), the root-fidelity guarantee
+is the squared Uhlmann fidelity; for the pure target used there, it is the
+overlap.  Consequently, the random-purification plus pure-state-cloning
+protocol in that reference gives, for rank \(r\), the following guarantee in
+our root-fidelity convention:
 \[
   \left(
   \frac{\binom{n+dr-1}{dr-1}}
@@ -1549,6 +1514,108 @@ DArianoPerinottiSacchi2006Continuous}.  Earlier mixed-state cloning bounds
 and restricted constructions likewise use different model classes or
 figures of merit \cite{Rastegin2003Upper,Rastegin2002Relative,
 Rastegin2003StateDependent,Fan2003,FanLiuShi2007,Kazakov2007}.
+
+\subsection{A shorter localization--LAN construction}
+\label{sec:alternative-LAN}
+
+The explicit proofs in \cref{sec:known,sec:unknown} keep the Schur label and
+irreducible sector visible at every finite sample size.  A shorter route to the
+asymptotic value would combine preliminary localization, two-way LAN, and
+Gaussian amplification.  This route is conditional on a center-uniform
+version of the growing-window LAN theorem, stated below; the proofs in this
+paper do not use that additional assertion.
+
+Fix a compact set \(K\Subset\Delta_d^\circ\), and let the unknown state range
+over \(\{g\rho_pg^*:p\in K,\ g\in\U(d)\}\).  Choose a compact convex set
+\(K_1\Subset\Delta_d^\circ\) whose relative interior contains \(K\).  Choose
+\(\alpha\in(7/9,1)\), and put
+\[
+  n_0=\lfloor n^\alpha\rfloor,
+  \qquad N_n=n-n_0,
+  \qquad \widetilde\gamma_n=\frac{m_n}{N_n}.
+\]
+Measure the same informationally complete finite-outcome POVM on each of the
+first \(n_0\) systems and form a Hermitian trace-one linear estimator
+\(\widetilde\rho_n\).  Order its eigenvalues \(\widetilde p_n\), project that
+vector orthogonally onto \(K_1\), and use a fixed Borel rule to choose an
+eigenbasis when degeneracies occur.  Replacing \(\widetilde p_n\) by its
+projection in that eigenbasis defines an estimated center
+\(\widehat\rho_n\); write \(\widehat p_n\) for its ordered spectrum.  Convexity
+of \(K_1\) makes the projection unique.  Since the true spectrum \(p\) belongs
+to \(K_1\), the projection property and the Hoffman--Wielandt inequality give
+\[
+  \|\widehat\rho_n-\widetilde\rho_n\|_{\mathrm{HS}}
+  =\|\widehat p_n-\widetilde p_n\|_{\ell^2}
+  \le \|p-\widetilde p_n\|_{\ell^2}
+  \le \|\rho-\widetilde\rho_n\|_{\mathrm{HS}}.
+\]
+Because the outcomes and the linear reconstruction map are bounded, the
+multinomial Hoeffding inequality, this estimate, and finite-dimensional norm
+equivalence imply that, for every sufficiently small \(\delta>0\),
+\begin{equation}\label{eq:rough-localization-rate}
+  \sup_{\rho}
+  \Pr_\rho\!\left\{
+    \|\widehat\rho_n-\rho\|_1>n^{-\alpha/2+\delta}
+  \right\}
+  \longrightarrow0,
+\end{equation}
+where the supremum is over the compact model above.  On the event in
+\eqref{eq:rough-localization-rate}, the uniform spectral gaps on \(K_1\) and
+the smooth local coordinate chart give diagonal and off-diagonal coordinates
+\((h_n,z_n)\) of \(\rho\) about \(\widehat\rho_n\) satisfying
+\[
+  \|h_n\|+\|z_n\|
+  =O\!\left(\sqrt{N_n}\,n^{-\alpha/2+\delta}\right)
+  =O\!\left(n^{(1-\alpha)/2+\delta}\right).
+\]
+Choose \(\delta>0\) and \(\beta\) so that
+\[
+  \frac{1-\alpha}{2}+\delta<\beta<\frac19.
+\]
+The local coordinates then lie, with probability tending to one uniformly in
+\(\rho\), in the growing off-diagonal LAN window \(O(N_n^\beta)\).  Choosing
+\(\beta_{\rm d}\in(\beta,1/4)\) places the diagonal coordinates in the window
+\(O(N_n^{\beta_{\rm d}})\), matching the ranges in
+\cite[Theorem~4.3]{KahnGuta2009LANFiniteDimensional}.
+
+Assume now that the forward and reverse LAN errors tend to zero uniformly over
+centers with spectrum in \(K_1\) and over these growing windows.  Conditioned
+on the localization outcome, apply the forward LAN channel at
+\(\widehat\rho_n\) to the remaining \(N_n\) systems.  Dilate the classical
+Gaussian observation by \(\sqrt{\widetilde\gamma_n}\), and apply the
+quantum-limited amplifier of the same amplitude gain independently to every
+oscillator mode.  Apply the reverse LAN channel at sample size \(m_n\), using
+the same center.  Since \(n_0=o(n)\),
+\[
+  \widetilde\gamma_n\longrightarrow\gamma.
+\]
+On the localization event, the Gaussian amplification step has root fidelity
+\[
+  \Bcl(\widetilde\gamma_n,d)
+  \Borb(\widetilde\gamma_n,\widehat p_n)
+\]
+with the Gaussian representation of the desired output, up to the assumed
+uniform LAN errors.  Equation~\eqref{eq:rough-localization-rate}, continuity of
+\(\Borb\) on \(K_1\), and \(\widetilde\gamma_n\to\gamma\) make this quantity
+converge uniformly in probability to \(\Buniv(\gamma,p)\).  Monotonicity and
+\cref{lem:fid-cont} transfer the bound through reverse LAN.  Joint concavity
+then averages over the localization outcomes; a fixed output on the failure
+event changes the lower bound by \(o(1)\).  Finally, Haar averaging makes the
+channel exactly \(\U(d)\)-covariant and cannot decrease its worst-case
+fidelity on the unitary-invariant model.
+
+The required center-uniform growing-window LAN statement is stronger than the
+fixed-center compact-window formulation used in \cref{thm:LAN-full}: the two
+errors in \eqref{eq:LAN-full-forward}--\eqref{eq:LAN-full-reverse} must vanish
+uniformly both over centers in \(K_1\) and over the growing boxes above.  It is
+not invoked elsewhere in this paper.  The Schur--Cartan construction proves
+the compact-uniform result directly and, in addition, supplies an explicit
+finite-\(n\) covariant channel, exact target-label sampling when the spectrum
+is known, and the spectrum-independent dither kernel.
+Related localization--LAN--Gaussian--reverse-LAN constructions were used for
+mixed-qubit purification and dilution and for asymptotic reversal of
+independent qudit channels
+\cite{BowlesGutaAdesso2011Purification,BowlesGutaAdesso2012Reversal}.
 
 \paragraph{Limiting regimes.}
 For fixed \(p\), as \(\gamma\to\infty\),
@@ -1611,12 +1678,21 @@ $\mathbf r\in\mathbb Z_{\ge0}^{\mathsf R_+}$, write
 The PBW theorem implies that the vectors $F^{\mathbf r}v_\lambda$ span
 $\cH_\lambda$ \cite{FultonHarris1991}.
 
-For a positive-root combination $\eta$, define the finite set
+For a positive-root combination $\eta$, let $\operatorname{ht}(\eta)$
+be its simple-root height and define the finite set
 \[
   \mathsf P(\eta)
   =\left\{\mathbf r\in\mathbb Z_{\ge0}^{\mathsf R_+}:
   \sum_{\alpha\in\mathsf R_+}r_\alpha\alpha=\eta\right\}.
 \]
+Writing $\cH_\lambda[\xi]$ for the weight space of weight $\xi$, define the
+finite-excitation subspace by summing over all nonnegative simple-root
+combinations $\eta$ of height at most $K$:
+\begin{equation}\label{eq:PBW-cutoff-subspace}
+  \mathcal K_{\lambda,K}
+  =\bigoplus_{\operatorname{ht}(\eta)\le K}
+    \cH_\lambda[\lambda-\eta].
+\end{equation}
 
 \begin{lemma}[PBW Gram normal form]\label{lem:PBW-normal-form}
 Let $\lambda=\lambda^{(N)}$ range over dominant weights satisfying
@@ -1660,8 +1736,7 @@ independent of the cutoff used in an estimate.
 \end{lemma}
 
 \begin{proof}
-Let $\operatorname{ht}$ be simple-root height.  If
-$\mathbf r\in\mathsf P(\eta)$, then
+If $\mathbf r\in\mathsf P(\eta)$, then
 $|\mathbf r|\le\operatorname{ht}(\eta)$, so $\mathsf P(\eta)$ is finite.
 If the block contains an index with $|\mathbf r|\le L$, then every
 $\mathbf s\in\mathsf P(\eta)$ satisfies
@@ -1676,13 +1751,34 @@ Put
   \qquad
   \widehat E_\alpha=\frac{E_\alpha}{\sqrt{\Delta_\alpha^\lambda}}.
 \]
-On every fixed cutoff these operators are uniformly bounded.  Indeed,
-decompose into $\mathfrak{sl}_2(\alpha)$-strings.  A vector in the cutoff lies
-$O_L(1)$ steps below the top of a string whose highest weight is
-$\Delta_\alpha^\lambda+O_L(1)$; the standard string formulas then give
-$\|F_\alpha\|+\|E_\alpha\|=O_L(\sqrt{\Delta_\alpha^\lambda})$.  Every word of
-at most $2M$ root operators stays within simple-root height $2M(d-1)$, so one
-fixed enlargement contains all intermediate vectors used below.
+These normalized operators are uniformly bounded between any two fixed
+cutoff subspaces.  Restrict the representation to
+$\mathfrak{sl}_2(\alpha)$ and decompose it orthogonally into irreducible
+strings.  A full weight $\lambda-\eta$ with
+$\operatorname{ht}(\eta)\le K$ has $H_\alpha$-eigenvalue
+\[
+  \Delta_\alpha^\lambda-\eta(H_\alpha)
+  =\Delta_\alpha^\lambda+O_K(1).
+\]
+If a string component at this weight is $t$ steps below its string top, then
+$\lambda-\eta+t\alpha$ is also a weight.  Thus $\eta-t\alpha$ is a
+nonnegative simple-root combination, which implies
+$t\operatorname{ht}(\alpha)\le\operatorname{ht}(\eta)$ and hence
+$t=O_K(1)$.  The highest weight of that string is therefore
+$\Delta_\alpha^\lambda+O_K(1)$.  Since the invariant inner product satisfies
+$E_\alpha=F_\alpha^*$, the standard $\mathfrak{sl}_2$ string coefficients give
+\[
+  \|F_\alpha\|_{\mathcal K_{\lambda,K}\to
+                   \mathcal K_{\lambda,K+\operatorname{ht}(\alpha)}}
+  +
+  \|E_\alpha\|_{\mathcal K_{\lambda,K}\to
+                   \mathcal K_{\lambda,K}}
+  =O_K\!\left(\sqrt{\Delta_\alpha^\lambda}\right),
+\]
+where a zero weight space is omitted.  Every word of at most $2M$ root
+operators occurring below acts through cutoff subspaces of height bounded in
+terms of $M$ and $d$ only, so one fixed enlargement contains all intermediate
+vectors.
 
 The matrix-unit commutator formula gives, on the enlarged cutoff,
 \begin{equation}\label{eq:mixed-root-commutator}
@@ -1736,6 +1832,43 @@ $\{|\mathbf r|\le L\}$ has Gram matrix $I+O_L(N^{-1/2})$.  It is therefore
 positive definite for large $N$, and functional calculus gives
 $G_{\lambda,\eta}^{-1/2}=I+O_L(N^{-1/2})$.  Equation
 \eqref{eq:PBW-orthonormal-close} follows, as does cutoff independence.
+\end{proof}
+
+\begin{lemma}[Finite-cutoff criterion]\label{lem:finite-cutoff-trace}
+Let \(P_L\) be increasing finite-rank projections converging strongly to the
+identity.  For each \(N\), let \(\rho_{N,a}\) and \(\tau_{N,a}\) be states,
+where \(a\) ranges over an arbitrary set \(A_N\).  Suppose
+\[
+  \lim_{L\to\infty}\sup_{N,a}
+  \Tr[(I-P_L)\tau_{N,a}]=0
+\]
+and, for every fixed \(L\),
+\[
+  \sup_{a\in A_N}
+  \|P_L\rho_{N,a}P_L-P_L\tau_{N,a}P_L\|_1\longrightarrow0.
+\]
+Then
+\[
+  \sup_{a\in A_N}\|\rho_{N,a}-\tau_{N,a}\|_1\longrightarrow0.
+\]
+The pointwise version follows by taking each \(A_N\) to be a singleton.
+\end{lemma}
+
+\begin{proof}
+Write
+\(\delta_{N,a,L}=\|P_L\rho_{N,a}P_L-P_L\tau_{N,a}P_L\|_1\) and
+\(t_{N,a,L}=\Tr[(I-P_L)\tau_{N,a}]\).  Since both operators have trace one,
+\[
+  \Tr[(I-P_L)\rho_{N,a}]\le t_{N,a,L}+\delta_{N,a,L}.
+\]
+The gentle-measurement bound therefore gives
+\[
+  \|\rho_{N,a}-\tau_{N,a}\|_1
+  \le2\sqrt{t_{N,a,L}+\delta_{N,a,L}}
+     +\delta_{N,a,L}+2\sqrt{t_{N,a,L}}.
+\]
+First choose \(L\) so that the target tail is uniformly small, and then let
+\(N\to\infty\).
 \end{proof}
 
 \subsection{Thermal Weyl-sector states}
@@ -1880,97 +2013,25 @@ the PBW normalization used for the Cartan-sector cloning construction.
           =\prod_{\alpha\in\mathsf R_+}(1-q_\alpha).
   \]
 
-  Let
-  \[
-          \widehat\rho_N:=J_N\rho_{p,\lambda_N}J_N^*\,.
-  \]
-  For fixed \(L\) and all sufficiently large \(N\) such that
-  \(L_N\ge L\),
-  \[
-          P_{\le L}\widehat\rho_N P_{\le L}
-          =
-          \sum_{|\mathbf r|\le L}
-          c_N
-          \prod_{\alpha\in \mathsf R_+}q_\alpha^{r_\alpha}
-          |\mathbf r\rangle\langle\mathbf r|,
-  \]
-  while
-  \[
-          P_{\le L}\tau P_{\le L}
-          =
-          \sum_{|\mathbf r|\le L}
-          \prod_{\alpha\in \mathsf R_+}(1-q_\alpha)q_\alpha^{r_\alpha}
-          |\mathbf r\rangle\langle\mathbf r|.
-  \]
-  Therefore, for every fixed \(L\),
-  \[
-          \left\|
-          P_{\le L}\widehat\rho_N P_{\le L}
-          -
-          P_{\le L}\tau P_{\le L}
-          \right\|_1
-          \longrightarrow0,
-          \qquad
-          \Tr[P_{\le L}\widehat\rho_N]
-          \longrightarrow
-          \Tr[P_{\le L}\tau].
-  \]
-
-  Now fix \(\eps>0\).  Choose \(L\) such that
-  \[
-          \Tr[(I-P_{\le L})\tau]<\eps.
-  \]
-  For all sufficiently large \(N\),
-  \[
-          \left|
-          \Tr[P_{\le L}(\widehat\rho_N-\tau)]
-          \right|<\eps,
-          \qquad
-          \left\|
-          P_{\le L}\widehat\rho_N P_{\le L}
-          -
-          P_{\le L}\tau P_{\le L}
-          \right\|_1
-          <\eps\,.
-  \]
-  Since \(\Tr\widehat\rho_N=\Tr\tau=1\),
-  \[
-          \Tr[(I-P_{\le L})\widehat\rho_N]
-          =
-          \Tr[(I-P_{\le L})\tau]
-          -
-          \Tr[P_{\le L}(\widehat\rho_N-\tau)]
-          <2\eps.
-  \]
-  The gentle-measurement estimate
-  \[
-          \|\sigma-P\sigma P\|_1
-          \le
-          2\sqrt{\Tr[(I-P)\sigma]}
-  \]
-  applied with \(P=P_{\le L}\) gives
+  Set \(\widehat\rho_N=J_N\rho_{p,\lambda_N}J_N^*\).  For every
+  fixed \(L\) and all sufficiently large \(N\),
   \[
   \begin{aligned}
-          \|\widehat\rho_N-\tau\|_1
-          &\le
-          \|\widehat\rho_N-P_{\le L}\widehat\rho_N P_{\le L}\|_1
-          +
-          \left\|
-          P_{\le L}\widehat\rho_N P_{\le L}
-          -
-          P_{\le L}\tau P_{\le L}
-          \right\|_1
-          +
-          \|\tau-P_{\le L}\tau P_{\le L}\|_1                 \\
-          &<
-          2\sqrt{2\eps}
-          +
-          \eps
-          +
-          2\sqrt{\eps}.
+    P_{\le L}\widehat\rho_NP_{\le L}
+    &=\sum_{|\mathbf r|\le L}
+      c_N\prod_{\alpha}q_\alpha^{r_\alpha}
+      |\mathbf r\rangle\langle\mathbf r|,\\
+    P_{\le L}\tau P_{\le L}
+    &=\sum_{|\mathbf r|\le L}
+      \prod_{\alpha}(1-q_\alpha)q_\alpha^{r_\alpha}
+      |\mathbf r\rangle\langle\mathbf r|.
   \end{aligned}
   \]
-  Since \(\eps\) is arbitrary, \(\|\widehat\rho_N-\tau\|_1\to0\).
+  Since \(c_N\to\prod_\alpha(1-q_\alpha)\), the two compressed states
+  converge in trace norm for each fixed \(L\).  The product thermal state
+  \(\tau\) has summable geometric tails, so
+  \cref{lem:finite-cutoff-trace} gives
+  \(\|\widehat\rho_N-\tau\|_1\to0\).
 \end{proof}
 
 \subsection{Proof of the thermal Cartan-sector limit}
@@ -2260,83 +2321,64 @@ the PBW normalization used for the Cartan-sector cloning construction.
   because \(1-q_\alpha^{(\gamma)}=(1-q_\alpha)/\gamma\).
 
   \paragraph{Removing the cutoff.}
-  Let
+  Put
   \[
-          \tau^{(\gamma)}
-          :=\bigotimes_{\alpha\in \mathsf R_+}\tau_{q_\alpha^{(\gamma)}},
-          \qquad
-          P_{\le L}:=\sum_{|\mathbf r|\le L}|\mathbf r\rangle\langle\mathbf r|.
+    \tau^{(\gamma)}
+    =\bigotimes_{\alpha\in\mathsf R_+}\tau_{q_\alpha^{(\gamma)}},
+    \qquad
+    P_{\le L}=\sum_{|\mathbf r|\le L}|\mathbf r\rangle\langle\mathbf r|.
   \]
-  Choose the isometries \(J_\nu\) by the construction in
-  \cref{lem:sector-thermal}, with the thresholds chosen from the uniform gap
-  bounds \eqref{eq:uniform-sector-gaps}.  Then, for each fixed \(L\) and all
-  large \(n\),
+  The estimates in \cref{lem:PBW-normal-form} are uniform under the gap
+  bounds \eqref{eq:uniform-sector-gaps}.  A diagonal choice therefore gives
+  integers \(L_n\uparrow\infty\) such that, simultaneously for every allowed
+  \(\nu\), all full weight blocks meeting \(\{|\mathbf r|\le L_n\}\) are
+  invertible and
   \[
-          J_\nu e_{\mathbf r}^{\nu}=|\mathbf r\rangle
-          \qquad(|\mathbf r|\le L).
+    \sup_{\nu}\max_{|\mathbf r|\le L_n}
+    \|e_{\mathbf r}^{\nu}-\widetilde e_{\mathbf r}^{\nu}\|\longrightarrow0,
   \]
-  Since \(P_{\le L}\cF_{\mathrm{orb}}\) is finite-dimensional, the established
-  entrywise convergence of $J_\nu\sigma_nJ_\nu^*$ to $\tau^{(\gamma)}$ on
-  this subspace implies, for each fixed \(L\),
+  where the supremum is over the allowed target labels at sample size \(n\).
+  For each such \(\nu\), map
+  \(e_{\mathbf r}^{\nu}\) to \(\ket{\mathbf r}\) for
+  \(|\mathbf r|\le L_n\), and extend this map isometrically to
+  \(J_\nu:\cH_\nu\to\cF_{\mathrm{orb}}\).  This choice depends on \(\nu\)
+  and \(n\), but not on \(p\) or \(\mu\).  The matrix-element calculation
+  above then gives, for every fixed \(L\),
   \[
-          \sup_{p,m,\mu,\nu}
-          \left\|
-          P_{\le L}\widehat\sigma_n P_{\le L}
-          -
-          P_{\le L}\tau^{(\gamma)}P_{\le L}
-          \right\|_1
-          \longrightarrow0.
+    \sup_{p,m,\mu,\nu}
+    \|P_{\le L}(J_\nu\sigma_nJ_\nu^*-\tau^{(\gamma)})P_{\le L}\|_1
+    \longrightarrow0.
   \]
-  The thermal parameters \(q_\alpha\) and \(q_\alpha^{(\gamma)}\) range in a
-  compact subset of \((0,1)\), so for every \(\eps>0\) one can choose \(L\)
-  such that
+
+  For the target sector, exact weight diagonality gives, whenever
+  \(|\mathbf r|,|\mathbf s|\le L\),
   \[
-          \sup_{p\in K}
-          \Tr[(I-P_{\le L})\tau^{(\gamma)}]<\eps,
-          \qquad
-          \sup_{p\in K}
-          \Tr\!\left[
-          (I-P_{\le L})
-          \bigotimes_{\alpha\in \mathsf R_+}\tau_{q_\alpha}
-          \right]<\eps\,.
+    \left\langle e_{\mathbf r}^{\nu},
+      \rho_{p,\nu}e_{\mathbf s}^{\nu}\right\rangle
+    =\delta_{\mathbf r,\mathbf s}
+      \frac{p^\nu}{s_\nu(p)}
+      \prod_{\alpha\in\mathsf R_+}q_\alpha^{r_\alpha}.
   \]
-  For this \(L\), finite-cutoff convergence also gives
+  The uniform character normalization \eqref{eq:uniform-character-normalization},
+  applied with \(N=m\) and \(\lambda=\nu\), therefore yields the corresponding
+  fixed-cutoff convergence to \(\bigotimes_\alpha\tau_{q_\alpha}\).
+  On the compact parameter family, all \(q_\alpha\) and
+  \(q_\alpha^{(\gamma)}\) lie in one compact subset of \((0,1)\), so both
+  product thermal families have uniformly geometric tails.  Applying the
+  uniform form of \cref{lem:finite-cutoff-trace} to the output and target
+  families gives
   \[
-  \begin{aligned}
-          \sup_{p,m,\mu,\nu}
-          \left|
-          \Tr[P_{\le L}(\widehat\sigma_n-\tau^{(\gamma)})]
-          \right|
-          &\le
-          \sup_{p,m,\mu,\nu}
-          \left\|
-          P_{\le L}\widehat\sigma_n P_{\le L}
-          -
-          P_{\le L}\tau^{(\gamma)}P_{\le L}
-          \right\|_1
-          \longrightarrow0\,.
-  \end{aligned}
+    \sup_{p,m,\mu,\nu}
+    \|J_\nu\sigma_nJ_\nu^*-\tau^{(\gamma)}\|_1\longrightarrow0
   \]
-  Applying the cutoff argument of \cref{lem:sector-thermal}, with the supremum
-  carried through the estimates, gives
+  and
   \[
-          \sup_{p,m,\mu,\nu}
-          \left\|
-          \widehat\sigma_n-\tau^{(\gamma)}
-          \right\|_1
-          \longrightarrow0\,.
+    \sup_{p,m,\mu,\nu}
+    \left\|J_\nu\rho_{p,\nu}J_\nu^*
+      -\bigotimes_{\alpha\in\mathsf R_+}\tau_{q_\alpha}\right\|_1
+    \longrightarrow0.
   \]
-  This is the uniform form of \eqref{eq:thermal-sector-limit}.  The same
-  cutoff argument applied to the target sector gives
-  \[
-          \sup_{p,m,\mu,\nu}
-          \left\|
-          J_\nu\rho_{p,\nu}J_\nu^*
-          -
-          \bigotimes_{\alpha\in \mathsf R_+}\tau_{q_\alpha}
-          \right\|_1
-          \longrightarrow0\,.
-  \]
+
   Root fidelity is invariant under the common isometry \(J_\nu\), and
   \cref{lem:fid-cont} gives
   \[
@@ -2379,57 +2421,18 @@ The cells $\mathsf C_{N,p}(\lambda)$ tile $\mathsf H$ up to null
 boundaries, and $\mathcal E_{N,p}$ preserves both $\ell^1$-distance and
 classical root fidelity.
 
-\begin{proof}[Proof of \cref{prop:young-dither}]
-\smallskip\noindent\emph{Dither geometry and admissibility.}
-The cells $\widetilde\nu+\mathsf C$, $\widetilde\nu\in\mathsf L_{m_n}$, tile the
-target affine hyperplane up to null boundaries.  Their intersections with
-$\gamma_n(\mu+\mathsf C)$ therefore partition that dilated cell, whose volume is
-$\gamma_n^{d-1}|\mathsf C|$.  Thus the values in \eqref{eq:dithered-kernel} sum to one.
-If $\mathsf D_n(\widetilde\nu\mid\mu)>0$, then
-$\gamma_n(\mu+u)=\widetilde\nu+v$ for some $u,v\in\mathsf C$, and hence
-\[
-  \widetilde\nu-\gamma_n\mu=\gamma_n u-v.
-\]
-Since $\gamma_n\to\gamma$, the constant
-\[
-  c_{\mathrm{dit}}=\left(1+\sup_n\gamma_n\right)
-  \sup_{u\in\mathsf C}\|u\|_\infty
-\]
-is finite and gives the asserted support bound.
-
-Compactness of $K$ gives $c_0>0$ such that, for all large $n$, every
-$p\in K$ and $\mu\in\mathsf T_n(p)$ satisfy
-\[
-  \mu_d\ge c_0n,
-  \qquad
-  \mu_i-\mu_{i+1}\ge c_0n\quad(i<d).
-\]
-For every raw label in the support of $\mathsf D_n(\cdot\mid\mu)$,
-\[
-  (\widetilde\nu-\mu)_d
-  \ge(\gamma_n-1)\mu_d-c_{\mathrm{dit}},
-\]
-and
-\[
-  (\widetilde\nu_i-\mu_i)
-  -(\widetilde\nu_{i+1}-\mu_{i+1})
-  \ge(\gamma_n-1)(\mu_i-\mu_{i+1})-2c_{\mathrm{dit}}.
-\]
-These quantities are positive for all large $n$, uniformly for $p\in K$,
-because $\gamma_n\to\gamma>1$.  Thus $\widetilde\nu-\mu$ is a partition.
-Consequently, redirection can occur only when
-$\mu\notin\mathsf T_n(p)$, so \cref{lem:young-concentration} makes its
-probability $o(1)$ uniformly on $K$.
-
-\smallskip\noindent\emph{Uniform Young local limit.}
-We first establish
+\begin{lemma}[Uniform Young local limit]\label{lem:young-local-limit}
+For every compact $K\Subset\Delta_d^\circ$,
 \begin{equation}\label{eq:young-local-limit}
   \sup_{p\in K}
   \left\|\mathcal E_{N,p}P_{N,p}-\varphi_{0,\Sigma_p}\right\|_1
   \longrightarrow0.
 \end{equation}
-Let $M_{N,p}$ be the multinomial law on nonnegative integer
-compositions of $N$, extended by zero to $\mathsf L_N$.  For $\lambda\vdash N$,
+\end{lemma}
+
+\begin{proof}
+Let $M_{N,p}$ be the multinomial law on nonnegative integer compositions of
+$N$, extended by zero to $\mathsf L_N$.  For $\lambda\vdash N$,
 \[
   P_{N,p}(\lambda)=\dim\cS_\lambda\,s_\lambda(p),
   \qquad
@@ -2454,9 +2457,9 @@ so every point of $\mathsf W_{N,p}$ in the support of $M_{N,p}$ is a partition.
 
 On $\mathsf W_{N,p}\cap\operatorname{supp}M_{N,p}$, both
 $(\lambda_i+d-i)/N$ and $\log p_i$ are uniformly strictly decreasing.
-The strict rearrangement inequality, compactness of
-$K$, and finiteness of the permutation group therefore give $c_1>0$ such
-that, for every $\sigma\ne\mathrm{id}$,
+The strict rearrangement inequality, compactness of $K$, and finiteness of
+the permutation group therefore give $c_1>0$ such that, for every
+$\sigma\ne\mathrm{id}$,
 \[
   \sum_i\frac{\lambda_i+d-i}{N}\log p_i
   -\sum_i\frac{\lambda_{\sigma(i)}+d-\sigma(i)}{N}\log p_i
@@ -2470,8 +2473,12 @@ $\mathsf W_{N,p}\cap\operatorname{supp}M_{N,p}$, and
   =\frac{\prod_i p_i^{\lambda_i+d-i}}
   {\prod_{i<j}(p_i-p_j)}\bigl(1+O(e^{-c_1N})\bigr).
 \]
-Comparing with
-$M_{N,p}(\lambda)=N!\prod_i p_i^{\lambda_i}/\prod_i\lambda_i!$ gives
+Comparing this expression with
+\[
+  M_{N,p}(\lambda)
+  =\frac{N!}{\prod_i\lambda_i!}\prod_i p_i^{\lambda_i}
+\]
+gives
 \[
   \frac{P_{N,p}(\lambda)}{M_{N,p}(\lambda)}
   =\bigl(1+O(e^{-c_1N})\bigr)
@@ -2504,8 +2511,10 @@ third-order Taylor expansion gives
   \log M_{N,p}(\lambda)
   =-\frac{d-1}{2}\log(2\pi N)-\frac12\sum_i\log p_i
   -\frac12\sum_i\frac{x_{\lambda,i}^2}{p_i}
-  +O_K(N^{3\beta_0-2}).
+  +O_K\!\left(N^{3\beta_0-2}+N^{\beta_0-1}+N^{-1}\right).
 \]
+Because \(\beta_0>1/2\), the last two terms are absorbed by
+\(O_K(N^{3\beta_0-2})\).
 For $x\in\mathsf H$,
 $\langle x,\Sigma_p^{-1}x\rangle=\sum_i x_i^2/p_i$.  Moreover, for
 $b_i=e_i-e_d$, $\det[\langle b_i,b_j\rangle]=d$, so
@@ -2555,20 +2564,34 @@ The tail bound, the local approximation, and this oscillation estimate give
   \right|=o(1),
 \end{aligned}
 \]
-uniformly for $p\in K$.  Thus
+uniformly for $p\in K$.  Hence
 $\sup_{p\in K}\|\mathcal E_{N,p}M_{N,p}
--\varphi_{0,\Sigma_p}\|_1\to0$,
-and combining this with
-$\sup_{p\in K}\|P_{N,p}-M_{N,p}\|_{\ell^1}\to0$ proves
-\eqref{eq:young-local-limit}.
+-\varphi_{0,\Sigma_p}\|_1\to0$.  Combining this with
+$\sup_{p\in K}\|P_{N,p}-M_{N,p}\|_{\ell^1}\to0$ proves the result.
+\end{proof}
 
-\smallskip\noindent\emph{Dithered label limit.}
-Let $\widetilde Q_{n,p}=P_{n,p}\mathsf D_n$ be the raw output-label law before fallback.  For a
-density $f$ on $\mathsf H$, set
+\begin{lemma}[Dithered dilation]\label{lem:dithered-dilation}
+Let $\widetilde Q_{n,p}=P_{n,p}\mathsf D_n$ be the output-label law before
+fallback.  For every compact $K\Subset\Delta_d^\circ$,
+\[
+  \sup_{p\in K}
+  \left\|\mathcal E_{m_n,p}\widetilde Q_{n,p}
+  -\varphi_{0,\gamma\Sigma_p}\right\|_1\longrightarrow0
+\]
+and
+\[
+  \sup_{p\in K}
+  \left|B(\widetilde Q_{n,p},P_{m_n,p})-\Bcl(\gamma,d)\right|
+  \longrightarrow0.
+\]
+\end{lemma}
+
+\begin{proof}
+For a density $f$ on $\mathsf H$, set
 \[
   (\operatorname{dil}_a f)(y)=a^{-(d-1)/2}f(y/\sqrt a),
 \]
-and let $\operatorname{Av}_{m_n,p}$ be the cell-averaging operator on the target cells:
+and let $\operatorname{Av}_{m_n,p}$ average over each target cell:
 \[
   (\operatorname{Av}_{m_n,p}f)(x)
   =\frac{m_n^{(d-1)/2}}{|\mathsf C|}
@@ -2583,8 +2606,8 @@ $\mathsf D_n$ records the target cell hit by the dilated point.  Hence
   =\operatorname{Av}_{m_n,p}\operatorname{dil}_{\gamma_n}
   \bigl(\mathcal E_{n,p}P_{n,p}\bigr).
 \]
-The operator $\operatorname{Av}_{m_n,p}$ is an $L^1$-contraction.  By
-\eqref{eq:young-local-limit} and the $L^1$-isometry of
+The averaging operator is an $L^1$-contraction.  By
+\cref{lem:young-local-limit} and the $L^1$-isometry of
 $\operatorname{dil}_{\gamma_n}$,
 \[
   \sup_{p\in K}
@@ -2593,55 +2616,102 @@ $\operatorname{dil}_{\gamma_n}$,
   -\varphi_{0,\gamma_n \Sigma_p}
   \right\|_1\longrightarrow0.
 \]
-The compact family $\varphi_{0,\gamma_n \Sigma_p}$ converges uniformly in
-$L^1$ to $\varphi_{0,\gamma \Sigma_p}$.  Since the target cells have diameter
-$O(m_n^{-1/2})$ and the same Gaussian family is uniformly
-translation-continuous in $L^1$, cell averaging changes the limit by
-$o(1)$.  Thus
-\[
-  \sup_{p\in K}
-  \left\|\mathcal E_{m_n,p}\widetilde Q_{n,p}
-  -\varphi_{0,\gamma \Sigma_p}\right\|_1\longrightarrow0.
-\]
-Applying \eqref{eq:young-local-limit} with $N=m_n$ also gives
+The compact family $\varphi_{0,\gamma_n\Sigma_p}$ converges uniformly in
+$L^1$ to $\varphi_{0,\gamma\Sigma_p}$.  The target cells have diameter
+$O(m_n^{-1/2})$, and this Gaussian family is uniformly
+translation-continuous in $L^1$; therefore cell averaging changes the
+limit by $o(1)$.  This proves the first assertion.
+
+Applying \cref{lem:young-local-limit} with $N=m_n$ also gives
 \[
   \sup_{p\in K}
   \left\|\mathcal E_{m_n,p}P_{m_n,p}
   -\varphi_{0,\Sigma_p}\right\|_1\longrightarrow0.
 \]
-
-If $\varepsilon_{n,p}$ is the fallback probability at spectrum $p$, then
+For probability densities,
 \[
-  \sup_{p\in K}\|Q_{n,p}-\widetilde Q_{n,p}\|_{\ell^1}
-  \le2\sup_{p\in K}\varepsilon_{n,p}\longrightarrow0.
-\]
-The inequalities
-\[
-  |B(Q,P)-B(Q',P)|\le\|Q-Q'\|_{\ell^1}^{1/2},
-  \qquad
   |B(f,g)-B(f',g')|
-  \le\|f-f'\|_1^{1/2}+\|g-g'\|_1^{1/2}
+  \le\|f-f'\|_1^{1/2}+\|g-g'\|_1^{1/2},
 \]
-follow from $\|\sqrt f-\sqrt{f'}\|_2^2\le\|f-f'\|_1$.  The convergences
-$\mathcal E_{m_n,p}\widetilde Q_{n,p}\to\varphi_{0,\gamma\Sigma_p}$ and
-$\mathcal E_{m_n,p}P_{m_n,p}\to\varphi_{0,\Sigma_p}$ in $L^1$, the estimate
-$\|Q_{n,p}-\widetilde Q_{n,p}\|_{\ell^1}\to0$, and preservation of root
-fidelity by the cell embedding imply, uniformly for $p\in K$,
+which follows from $\|\sqrt f-\sqrt{f'}\|_2^2\le\|f-f'\|_1$.
+The embedding $\mathcal E_{m_n,p}$ preserves root fidelity, so the two
+$L^1$ limits imply
 \[
-  B(Q_{n,p},P_{m_n,p})
+  B(\widetilde Q_{n,p},P_{m_n,p})
   \longrightarrow
-  B(\mathsf N_{0,\gamma \Sigma_p},\mathsf N_{0,\Sigma_p})
-  =\Bcl(\gamma,d).
+  B(\mathsf N_{0,\gamma\Sigma_p},\mathsf N_{0,\Sigma_p})
+  =\Bcl(\gamma,d)
 \]
+uniformly for $p\in K$.
+\end{proof}
+
+\begin{proof}[Proof of \cref{prop:young-dither}]
+The cells $\widetilde\nu+\mathsf C$, $\widetilde\nu\in\mathsf L_{m_n}$, tile the
+target affine hyperplane up to null boundaries.  Their intersections with
+$\gamma_n(\mu+\mathsf C)$ therefore partition that dilated cell, whose volume is
+$\gamma_n^{d-1}|\mathsf C|$.  Thus the values in \eqref{eq:dithered-kernel} sum to one.
+If $\mathsf D_n(\widetilde\nu\mid\mu)>0$, then
+$\gamma_n(\mu+u)=\widetilde\nu+v$ for some $u,v\in\mathsf C$, and hence
+\[
+  \widetilde\nu-\gamma_n\mu=\gamma_n u-v.
+\]
+Since $\gamma_n\to\gamma$, the constant
+\[
+  c_{\mathrm{dit}}=\left(1+\sup_n\gamma_n\right)
+  \sup_{u\in\mathsf C}\|u\|_\infty
+\]
+is finite and gives the asserted support bound.
+
+Compactness of $K$ gives $c_0>0$ such that, for all large $n$, every
+$p\in K$ and $\mu\in\mathsf T_n(p)$ satisfy
+\[
+  \mu_d\ge c_0n,
+  \qquad
+  \mu_i-\mu_{i+1}\ge c_0n\quad(i<d).
+\]
+For every label in the support of $\mathsf D_n(\cdot\mid\mu)$,
+\[
+  (\widetilde\nu-\mu)_d
+  \ge(\gamma_n-1)\mu_d-c_{\mathrm{dit}},
+\]
+and
+\[
+  (\widetilde\nu_i-\mu_i)
+  -(\widetilde\nu_{i+1}-\mu_{i+1})
+  \ge(\gamma_n-1)(\mu_i-\mu_{i+1})-2c_{\mathrm{dit}}.
+\]
+These quantities are positive for all large $n$, uniformly for $p\in K$,
+because $\gamma_n\to\gamma>1$.  Thus $\widetilde\nu-\mu$ is a partition.
+Consequently, fallback can occur only when
+$\mu\notin\mathsf T_n(p)$, so \cref{lem:young-concentration} makes its
+probability $\varepsilon_{n,p}=o(1)$ uniformly on $K$.
+
+By \cref{lem:dithered-dilation},
+\[
+  \sup_{p\in K}
+  \left|B(\widetilde Q_{n,p},P_{m_n,p})-\Bcl(\gamma,d)\right|
+  \longrightarrow0.
+\]
+The fallback changes the raw label law by at most
+\[
+  \|Q_{n,p}-\widetilde Q_{n,p}\|_{\ell^1}\le2\varepsilon_{n,p}.
+\]
+Since
+$|B(Q,P)-B(Q',P)|\le\|Q-Q'\|_{\ell^1}^{1/2}$, the same limit holds with
+$Q_{n,p}$ in place of $\widetilde Q_{n,p}$.
 \end{proof}
 
 \section{Weighted Gaussian converses}\label{app:gaussian-converse}
 
 This appendix proves the upper bounds in
-\cref{thm:gaussian-flat-prior,thm:hybrid-gaussian}.  We first average over
-large parameter cubes, but apply a compact product witness before taking any
-limit.  The proof therefore uses only a completely positive map on oscillator
-trace class and, in the hybrid case, one scalar convolution kernel.
+\cref{thm:gaussian-amplification}.  We first average over large parameter
+cubes, but apply a compact product witness before taking any limit.  All
+integrals with values in a trace-class space, or in a classical--quantum
+$L^1$ space, are Bochner integrals in the corresponding trace norm.  They are
+well defined because translations and Weyl conjugations act strongly
+continuously and all channels considered below are bounded.  The proof uses
+only a completely positive map on oscillator trace class and, in the hybrid
+case, one scalar convolution kernel.
 
 \subsection{Weighted fidelity and compact limits}
 
@@ -2752,6 +2822,7 @@ Let $P_N\uparrow I$ be finite-rank projections on $\cH_1$.  For $X\ge0$,
   \Tr\Gamma(X)
   =\sup_N\Tr[\Gamma(X)P_N]
   =\sup_N\lim_j\Tr[\Gamma_j(X)P_N]
+  \le\liminf_j\Tr\Gamma_j(X)
   \le c\Tr X.
 \]
 Finally, fix $g$, $X$, and a compact $K$.  Since $V_g^*KV_g$ is compact,
@@ -2775,7 +2846,8 @@ identity.
 Recall that $\tau_q=(1-q)\sum_{k\ge0}q^k\proj{k}$.  For $s\ge1$ and
 $q_1,\ldots,q_s\in(0,1)$, write
 $q_\ell^{(\gamma)}=1-(1-q_\ell)/\gamma$,
-$\tau=\bigotimes_{\ell=1}^s\tau_{q_\ell}$, and
+$\tau_\ell=\tau_{q_\ell}$,
+$\tau=\bigotimes_{\ell=1}^s\tau_\ell$, and
 $\tau^{(\gamma)}=\bigotimes_{\ell=1}^s\tau_{q_\ell^{(\gamma)}}$.
 
 \begin{proposition}[Least-noise moment]
@@ -2814,8 +2886,8 @@ phase rotation
     R_{-\theta}\Gamma(R_\theta X R_\theta^*)R_{-\theta}^*\,\dd\theta.
 \]
 This twirl preserves displacement covariance and leaves both traces in
-\eqref{eq:least-noise-moment} unchanged.  We may therefore assume that $\Gamma$ is phase covariant in
-every mode.
+\eqref{eq:least-noise-moment} unchanged.  We may therefore assume that
+$\Gamma$ is phase covariant in every mode.
 
 For one mode, the positive functional $X\mapsto\Tr\Gamma(X)$ has the form
 $\Tr(AX)$ for a bounded $0\le A\le I$.  For every trace-class $X$,
@@ -2834,62 +2906,84 @@ where $0\le c\le1$.  If $c=0$, both sides of
 $\Lambda=c^{-1}\Gamma$ is a channel satisfying phase covariance,
 $\Lambda(R_\theta X R_\theta^*)=R_\theta\Lambda(X)R_\theta^*$, and displacement
 covariance, $\Lambda(D(z)XD(z)^*)=D(\sqrt\gamma z)\Lambda(X)D(\sqrt\gamma
-z)^*$.  The
-Weyl-operator characterization of covariant amplifiers in
-\cite{GutaMatsumoto2006MixedGaussianCloning}, with
-$(\sqrt2,1)$ replaced by $(\sqrt\gamma,\sqrt{\gamma-1})$, gives, for $s=1$,
+z)^*$.  The Weyl-operator characterization in
+\cite[Appendix]{GutaMatsumoto2006MixedGaussianCloning} places $\Lambda$ in the
+class of phase-insensitive displacement-covariant amplifiers considered
+there.  Their arbitrary-gain stochastic-order result in Sec.~3 applies to
+every channel in this class.  Since $\Lambda$ and $\tau_q$ are phase
+invariant, $\Lambda(\tau_q)$ is diagonal in the number basis.  Write
 \[
-  \Lambda^*(D(\xi))
-  =\Tr[\sigma D(-\sqrt{\gamma-1}\,\bar\xi)]D(\sqrt\gamma\,\xi)
+  P_\Lambda(k)=\langle k|\Lambda(\tau_q)|k\rangle,
+  \qquad
+  P_\gamma(k)=(1-q^{(\gamma)})(q^{(\gamma)})^k.
 \]
-for an idler state $\sigma$, which is diagonal in the number basis by phase
-covariance.  Write $P_\Lambda(k)=\langle k|\Lambda(\tau_q)|k\rangle$ and
-$P_\gamma(k)=(1-q^{(\gamma)})(q^{(\gamma)})^k$.  Gu\c{t}\u{a} and Matsumoto's
-stochastic-order argument
-\cite[Definition~2.2 and Lemma~2.3]{GutaMatsumoto2006MixedGaussianCloning},
-with the arbitrary-gain extension stated in their Sec.~III,\footnote{For gain
-$\sqrt\gamma$, their reduction uses
-$\cosh\widetilde t=\sqrt\gamma\cosh t$ and
-$\sinh^2\widetilde t=\gamma\sinh^2t+\gamma-1$; the subsequent number-state
-calculation is unchanged.} gives precisely
-$\sum_{k=0}^mP_\Lambda(k)\le\sum_{k=0}^mP_\gamma(k)$ for every $m\ge0$.
-Therefore, for every bounded decreasing $w$,
-$\Tr[\Lambda(\tau_q)w(\widehat N)]\le
-\Tr[\tau_{q^{(\gamma)}}w(\widehat N)]$.  Multiplying by $c$ proves
-\eqref{eq:least-noise-moment} for $s=1$.
+The stochastic-order theorem of
+\cite[Definition~2.2, Lemma~2.3, and Sec.~3]{GutaMatsumoto2006MixedGaussianCloning}
+states that the vacuum-idler output is stochastically smallest for every gain
+$\sqrt\gamma>1$:
+\begin{equation}\label{eq:imported-stochastic-order}
+  P_\gamma\preceq_{\mathrm{st}}P_\Lambda,
+  \qquad
+  \sum_{k=0}^m P_\gamma(k)
+  \ge \sum_{k=0}^m P_\Lambda(k)
+  \quad(m\ge0).
+\end{equation}
+Here the arbitrary-gain amplifier is
+$a_{\mathrm{out}}=\sqrt\gamma\,a_{\mathrm{in}}
++\sqrt{\gamma-1}\,b^*$.  Summation by parts therefore gives, for every
+bounded nonnegative decreasing $w$,
+\[
+  \Tr[\Lambda(\tau_q)w(\widehat N)]
+  \le \Tr[\tau_{q^{(\gamma)}}w(\widehat N)].
+\]
+Multiplying by $c$ proves \eqref{eq:least-noise-moment} for $s=1$.
 
 For $s>1$, if some $w_\ell$ vanishes identically, both sides of
-\eqref{eq:least-noise-moment} vanish.  Otherwise set
-$M_\ell=w_\ell(0)>0$, the maximum value because $w_\ell$ is nonincreasing,
-and set
-$\widetilde w_\ell(k)=w_\ell(k)/M_\ell$, so that
-$0\le\widetilde w_\ell\le1$.  Since
-$\prod_\ell w_\ell(\widehat N_\ell)=(\prod_\ell M_\ell)
-\prod_\ell\widetilde w_\ell(\widehat N_\ell)$, both sides of
-\eqref{eq:least-noise-moment} acquire the same factor $\prod_\ell M_\ell$;
-we may therefore replace $w_\ell$ by $\widetilde w_\ell$ and assume
-$0\le w_\ell\le1$.  Put
-$W_{>1}=\prod_{\ell=2}^s w_\ell(\widehat N_\ell)$ and
-$\tau_{>1}=\bigotimes_{\ell=2}^s\tau_{q_\ell}$, and define the one-mode
-completely positive trace-nonincreasing map
+\eqref{eq:least-noise-moment} vanish.  Otherwise divide each $w_\ell$ by
+its positive maximum $w_\ell(0)$.  The same product of maxima appears on
+both sides, so it is enough to assume $0\le w_\ell\le1$.  Define
 \[
-  \Gamma_1(X)
-  =\Tr_{2,\ldots,s}\!\left[
-    (I\ot W_{>1}^{1/2})
-    \Gamma(X\ot\tau_{>1})
-    (I\ot W_{>1}^{1/2})
+  W_{\ge\ell}
+  =I_1\ot\cdots\ot I_{\ell-1}\ot
+    \bigotimes_{j=\ell}^s w_j(\widehat N_j),
+  \qquad
+  W_{\ge s+1}=I.
+\]
+Here and below, an empty tensor product is the identity.  For
+$1\le\ell\le s$, let
+\[
+  \widetilde W_{>\ell}
+  =I_1\ot\cdots\ot I_\ell\ot
+    \bigotimes_{j=\ell+1}^s w_j(\widehat N_j),
+\]
+and define the one-mode map
+\[
+  \Gamma_\ell(X)
+  =\Tr_{\ne\ell}\!\left[
+    \widetilde W_{>\ell}^{1/2}
+    \Gamma(\tau_1\ot\cdots\ot\tau_{\ell-1}\ot X\ot
+           \tau_{\ell+1}\ot\cdots\ot\tau_s)
+    \widetilde W_{>\ell}^{1/2}
   \right].
 \]
-It inherits displacement and phase covariance in the first mode.  The
-one-mode result therefore gives
+Because $0\le\widetilde W_{>\ell}\le I$, the map $\Gamma_\ell$ is
+completely positive and trace nonincreasing.  It inherits displacement and
+phase covariance in mode $\ell$.  The one-mode result gives
+\[
+  \Tr[\Gamma(\tau)W_{\ge\ell}]
+  \le
+  \Tr[\tau_{q_\ell^{(\gamma)}}w_\ell(\widehat N_\ell)]
+  \Tr[\Gamma(\tau)W_{\ge\ell+1}].
+\]
+Iterating this inequality from $\ell=1$ to $s$ yields
 \[
   \Tr[\Gamma(\tau)W]
   \le
-  \Tr[\tau_{q_1^{(\gamma)}}w_1(\widehat N_1)]
-  \Tr[\Gamma(\tau)W_{>1}].
+  \Tr[\Gamma(\tau)]
+  \prod_{\ell=1}^s
+    \Tr[\tau_{q_\ell^{(\gamma)}}w_\ell(\widehat N_\ell)],
 \]
-Repeating the same argument for modes $2,\ldots,s$ proves
-\eqref{eq:least-noise-moment}.
+which is \eqref{eq:least-noise-moment}.
 \end{proof}
 
 For the Gaussian families, specialize to $s=r_d$ and $q_\ell=q_{ij}$, so
@@ -2927,7 +3021,7 @@ bounded, injective, and compact.  Moreover,
 
 \begin{proposition}[Orbital flat-prior upper bound]
 \label{prop:orbital-flat-prior-upper}
-With the notation of \cref{thm:gaussian-flat-prior},
+For the orbital specialization of \cref{thm:gaussian-amplification},
 \[
   \limsup_{L\to\infty}\sup_\Lambda
   \int_{\mathsf Z_L}B(\Lambda(\Phi_z),\Psi_z)
@@ -3024,7 +3118,7 @@ Compact operators separate trace-class operators, hence
   \Gamma(D(w)XD(w)^*)
   =U_w\Gamma(X)U_w^*.
 \]
-\indent For each $j$, \cref{lem:weighted-fidelity} with $W=W_\gamma$ gives
+For each $j$, \cref{lem:weighted-fidelity} with $W=W_\gamma$ gives
 \[
   B(\Gamma_j(\tau),\tau)^2
   \le \Tr[\Gamma_j(\tau)W_\gamma]\,
@@ -3044,7 +3138,7 @@ using $\Tr\Gamma(\tau)\le1$ yields
   &\le \Tr[\Gamma(\tau)]\,
         \Tr(\tau^{(\gamma)}W_\gamma)\,
         \Tr(\tau W_\gamma^{-1})\\
-  &\le \Borb(\gamma,p)^2,
+  &\le \Borb(\gamma,p)^2.
 \end{align*}
 Taking square roots and using \eqref{eq:orbital-maximizing-sequence} gives
 $F_*\le\Borb(\gamma,p)$, as claimed.
@@ -3053,39 +3147,47 @@ $F_*\le\Borb(\gamma,p)$, as claimed.
 \subsection{Hybrid flat-prior bound}
 
 \begin{lemma}[Translation-covariant scalar kernels]\label{lem:scalar-convolution}
-Let $\mathcal R:L^1(\mathsf H)\to C_0(\mathsf H)^*$ be a positive contraction and
-suppose
-\[
-  \mathcal R(u(\,\cdot-h))(E)=\mathcal R(u)(E-\sqrt\gamma h)
+Let $\mathcal R:L^1(\mathsf H)\to C_0(\mathsf H)^*$ be a positive contraction.
+For $a\in\mathsf H$, let $T_a$ denote translation of measures,
+$(T_a\nu)(E)=\nu(E-a)$.  Assume that
+\begin{equation}\label{eq:scalar-measure-covariance}
+  \mathcal R(u(\,\cdot-h))=T_{\sqrt\gamma h}\mathcal R(u)
   \qquad(h\in\mathsf H)
-\]
-for every Borel set $E$.
-Then there is a finite positive measure $\mu$, with $\mu(\mathsf H)\le1$,
-such that
+\end{equation}
+as an equality of finite Radon measures.  Then there is a finite positive
+measure $\mu$, with $\mu(\mathsf H)\le1$, such that
 \begin{equation}\label{eq:scalar-convolution}
   \mathcal R(u)(E)
   =\int_{\mathsf H}u(x)\,\mu(E-\sqrt\gamma x)\,\dd x
 \end{equation}
-for every $u\in L^1(\mathsf H)$.
+for every $u\in L^1(\mathsf H)$ and every Borel set $E$.
 \end{lemma}
 
 \begin{proof}
 Choose a nonnegative approximate identity $u_j\in C_c(\mathsf H)$ with
 $\int u_j=1$.  The measures $\mathcal R(u_j)$ have norm at most one.  Since
 $C_0(\mathsf H)$ is separable, a subsequence converges weak-* to a positive
-measure $\mu$ with $\mu(\mathsf H)\le1$.  For $u\in L^1(\mathsf H)$, $u*u_j\to u$ in $L^1$,
-while covariance and bounded linearity give, as finite measures,
+measure $\mu$ with $\mu(\mathsf H)\le1$.  For $u\in L^1(\mathsf H)$,
+$u*u_j\to u$ in $L^1$.  Covariance and bounded linearity give, as an equality
+of finite Radon measures,
 \[
-  \mathcal R(u*u_j)(E)
-  =\int_{\mathsf H}u(x)\,\mathcal R(u_j)(E-\sqrt\gamma x)\,\dd x.
+  \mathcal R(u*u_j)
+  =\int_{\mathsf H}u(x)\,T_{\sqrt\gamma x}\mathcal R(u_j)\,\dd x.
 \]
-Pairing with an arbitrary function in $C_0(\mathsf H)$ and using dominated
-convergence proves \eqref{eq:scalar-convolution}.
+Pair this identity with $\phi\in C_0(\mathsf H)$.  The integrand is bounded by
+$|u(x)|\|\phi\|_\infty$, and weak-* convergence of
+$\mathcal R(u_j)$ to $\mu$ gives
+\[
+  \int\phi(y)\,\mathcal R(u)(\dd y)
+  =\int_{\mathsf H}u(x)
+    \int\phi(y+\sqrt\gamma x)\,\mu(\dd y)\,\dd x.
+\]
+The resulting equality of Radon measures is \eqref{eq:scalar-convolution}.
 \end{proof}
 
 \begin{proposition}[Hybrid flat-prior upper bound]
 \label{prop:hybrid-flat-prior-upper}
-With the notation of \cref{thm:hybrid-gaussian},
+For the full specialization of \cref{thm:gaussian-amplification},
 \[
   \limsup_{L\to\infty}\sup_\Lambda
   \frac1{|\Omega_L|}\int_{\Omega_L}
@@ -3212,15 +3314,15 @@ corresponding pairings converge.  The contraction bound then extends the
 limit to a positive contraction $\mathcal R$ with
 $\mathcal R_j(u)\to\mathcal R(u)$ weak-* for every
 $u\in L^1(\mathsf H)$.  Taking $z=0$ in
-\eqref{eq:hybrid-approx-covariance}, pairing with functions in
-$C_0(\mathsf H)$, and passing to the limit gives
+\eqref{eq:hybrid-approx-covariance}, pairing with an arbitrary function in
+$C_0(\mathsf H)$, and passing to the limit gives the Radon-measure identity
 \[
-  \mathcal R(u(\,\cdot-h))(E)
-  =\mathcal R(u)(E-\sqrt\gamma h)
-  \qquad(h\in\mathsf H)
+  \mathcal R(u(\,\cdot-h))
+  =T_{\sqrt\gamma h}\mathcal R(u)
+  \qquad(h\in\mathsf H).
 \]
-for every Borel set $E$.  Hence \cref{lem:scalar-convolution} applies; let
-$\mu$ be the resulting convolution measure.
+Hence \cref{lem:scalar-convolution} applies; let $\mu$ be the resulting
+convolution measure.
 
 Let $P_N\uparrow I$ be finite-rank projections on $\cF_{\mathrm{orb}}$.
 Using \eqref{eq:weighted-map-limit}, positivity, the weak-* convergence of
@@ -3357,6 +3459,18 @@ G. M. D'Ariano, P. Perinotti, and M. F. Sacchi,
 Superbroadcasting of continuous variable mixed states,
 \doi{10.1088/1367-2630/8/6/099}{\emph{New J. Phys.} \textbf{8}, 99 (2006)},
 \arxiv{quant-ph/0601114}.
+
+\bibitem[BGA11]{BowlesGutaAdesso2011Purification}
+P. Bowles, M. Gu{\c t}{\u a}, and G. Adesso,
+Asymptotically optimal purification and dilution of mixed qubit and Gaussian states,
+\doi{10.1103/PhysRevA.84.022320}{\emph{Phys. Rev. A} \textbf{84}, 022320 (2011)},
+\arxiv{1102.2341}.
+
+\bibitem[BGA12]{BowlesGutaAdesso2012Reversal}
+P. Bowles, M. Gu{\c t}{\u a}, and G. Adesso,
+Asymptotically optimal quantum channel reversal for qudit ensembles and multimode Gaussian states,
+\doi{10.1088/1367-2630/14/11/113041}{\emph{New J. Phys.} \textbf{14}, 113041 (2012)},
+\arxiv{1208.3569}.
 
 \bibitem[GK06]{GutaKahn2006LANQubits}
 M. Gu{\c t}{\u a} and J. Kahn,

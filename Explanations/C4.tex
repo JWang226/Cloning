@@ -167,6 +167,10 @@ Now average these centered channels over the cube:
   \Gamma_{\Lambda,L}
   :=\frac1{|\mathsf Z_L|}\int_{\mathsf Z_L}\Lambda_z\,\dd z.
 \end{equation}
+For each trace-class input $X$, this means a Bochner integral of
+$z\mapsto\Lambda_z(X)$ in trace norm.  Strong continuity of Weyl conjugation
+and boundedness of the channels make that integral well defined; later
+channel-valued integrals are understood pointwise in the same way.
 Each $\Lambda_z$ is a channel, so their average $\Gamma_{\Lambda,L}$ is also
 a channel.  Concavity of root fidelity in its first argument now gives
 \begin{align}
@@ -443,7 +447,7 @@ a larger expectation of this witness.
 
 The product quantum-limited amplifier attains $\Borb(\gamma,p)$ at every
 $z$, so Proposition C.4 supplies the matching upper bound used in the
-Gaussian flat-prior theorem.
+orbital specialization of the Gaussian amplification theorem.
 
 \section{Logical dependencies}
 

@@ -207,6 +207,10 @@ For a hybrid channel $\Lambda$, define
   \mathcal U_{-\xi}^{\mathrm{out}}\circ\Lambda\circ
   \mathcal U_\xi^{\mathrm{in}}\dd\xi.
 \end{equation}
+For each input $R$, this is a Bochner integral in the trace norm of the
+classical--quantum $L^1$ space.  Strong continuity of translations and Weyl
+conjugations, together with boundedness of the channels, makes the integral
+well defined.
 Joint concavity and invariance of root fidelity give
 \begin{equation}\label{eq:concavity}
   \frac1{|\Omega_L|}\int_{\Omega_L}
@@ -301,10 +305,17 @@ $C_0(\Hc)$ gives a positive contraction $\mathcal R$ such that
   \qquad(u\in L^1(\Hc)).
 \]
 Taking $z=0$ in \eqref{eq:approx-covariance} and passing to this limit yields
+the following equality of finite Radon measures.  With
+$(T_a\nu)(E):=\nu(E-a)$,
 \begin{equation}\label{eq:R-covariance}
-  \mathcal R(u(\,\cdot-h))(E)
-  =\mathcal R(u)(E-\sqrt\gamma h).
+  \mathcal R(u(\,\cdot-h))
+  =T_{\sqrt\gamma h}\mathcal R(u).
 \end{equation}
+Equivalently, pairing both sides with any $\phi\in C_0(\Hc)$ gives
+\[
+  \int\phi(y)\,\mathcal R(u(\,\cdot-h))(\dd y)
+  =\int\phi(y+\sqrt\gamma h)\,\mathcal R(u)(\dd y).
+\]
 Lemma C.5 identifies this covariant scalar kernel: there is a finite positive
 measure $\mu$, with $\mu(\Hc)\leq1$, such that
 \begin{equation}\label{eq:convolution}
@@ -366,7 +377,7 @@ $X\mapsto\Tr\Gamma^\chi(X)$ is represented by a bounded positive operator
 $A$.  Covariance implies that $A$ commutes with every multimode Weyl
 displacement, so irreducibility gives $A=cI$.  Since $\Tr\tau=1$,
 \[
-  c=\Tr\Gamma^\chi(\tau)leq\Bcl(\gamma,d)\leq1.
+  c=\Tr\Gamma^\chi(\tau)\leq\Bcl(\gamma,d)\leq1.
 \]
 Therefore $\Gamma^\chi$ is trace nonincreasing and Proposition C.3 applies.
 

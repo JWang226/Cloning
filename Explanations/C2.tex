@@ -225,8 +225,15 @@ Therefore, for $X\geq0$,
   \Tr\Gamma(X)
   &=\sup_N\Tr[\Gamma(X)P_N]\\
   &=\sup_N\lim_j\Tr[\Gamma_j(X)P_N]\\
+  &\leq\liminf_j\Tr\Gamma_j(X)\\
   &\leq c\Tr X.
 \end{align*}
+The third line uses
+$\sup_N\lim_j a_{j,N}\leq\liminf_j\sup_N a_{j,N}$ with
+$a_{j,N}=\Tr[\Gamma_j(X)P_N]$; here
+$\sup_N a_{j,N}=\Tr\Gamma_j(X)$ because $\Gamma_j(X)\geq0$ and
+$P_N\uparrow I$.  Thus the trace bound passes to the limit even though the
+traces themselves need not converge.
 The argument gives an inequality rather than equality because the identity
 is approximated from below only after the limit has been taken.  Escaped
 mass contributes to $\Tr\Gamma_j(X)$ but to none of the fixed compact
