@@ -79,7 +79,8 @@ asymptotic minimax value on the unitary orbit is
 \]
 An explicit covariant Schur--Weyl channel attains this value: it samples the
 target Young label exactly and applies the multiplicity-one Cartan-sector
-channel on the asymptotically certain admissible label pairs.
+channel whenever the coordinatewise output-minus-input label difference is
+a partition, an event whose probability tends to one.
 
 For unknown spectrum, one spectrum-independent sequence of covariant channels
 attains, uniformly on every compact subset of the strict spectral chamber,
@@ -217,7 +218,7 @@ and define
   \rho_{p,h,z}^{(n)}
   =g_{n,z}\diag\!\left(p+\frac h{\sqrt n}\right)g_{n,z}^*.
 \]
-For \(L>0\), set
+Since \(Y(z)^*=-Y(z)\), one has \(g_{n,z}\in\U(d)\).  For \(L>0\), set
 \[
   \Omega_L
   =\left\{(h,z)\in\mathsf H\times\C^{r_d}:
@@ -327,16 +328,19 @@ If two positive operators are block diagonal over the same label, then
 Monotonicity, joint concavity, and the direct-sum identity are standard.  For
 \eqref{eq:fidelity-continuity}, the Powers--St\o rmer inequality gives
 \(\|\sqrt A-\sqrt{A'}\|_2^2\le\|A-A'\|_1\), and similarly for \(C,C'\).
-Therefore
+Therefore, by the reverse triangle inequality for the trace norm, the
+triangle inequality, and Schatten H\"older,
 \[
 \begin{aligned}
   |B(A,C)-B(A',C')|
   &\le \|(\sqrt A-\sqrt{A'})\sqrt C\|_1
        +\|\sqrt{A'}(\sqrt C-\sqrt{C'})\|_1\\
+  &\le \|\sqrt A-\sqrt{A'}\|_2\|\sqrt C\|_2
+       +\|\sqrt{A'}\|_2\|\sqrt C-\sqrt{C'}\|_2\\
   &\le \|A-A'\|_1^{1/2}+\|C-C'\|_1^{1/2},
 \end{aligned}
 \]
-because all four traces are at most one.
+where the last line uses \(\Tr C\le1\) and \(\Tr A'\le1\).
 \end{proof}
 
 \begin{lemma}[Block-fidelity lower bound]\label{lem:block-good-set}
@@ -362,8 +366,8 @@ For \(Q(y)>0\), put
 \[
   r(y)=\sum_{x:(x,y)\notin G}\frac{\Pi(x,y)}{Q(y)},
 \]
-and put \(r(y)=0\) if \(Q(y)=0\).  Joint concavity and
-\eqref{eq:block-fidelity} give
+and put \(r(y)=0\) otherwise.  Joint concavity,
+\eqref{eq:block-fidelity}, and the hypothesis on \(G\) give
 \[
   B\!\left(
     \bigoplus_y\sum_x\Pi(x,y)\sigma_{x,y},
@@ -371,9 +375,15 @@ and put \(r(y)=0\) if \(Q(y)=0\).  Joint concavity and
   \right)
   \ge b\left(B(Q,P)-\sum_y\sqrt{Q(y)P(y)}\,r(y)\right).
 \]
-Since \(0\le r\le1\), \(\sum_y Q(y)r(y)=\Pi(G^c)\), and
-\(\sum_y P(y)r(y)\le1\), Cauchy--Schwarz bounds the last sum by
-\(\sqrt{\Pi(G^c)}\).
+Since \(0\le r\le1\) and \(\sum_yQ(y)r(y)=\Pi(G^c)\), Cauchy--Schwarz
+yields
+\[
+  \sum_y\sqrt{Q(y)P(y)}\,r(y)
+  \le
+  \left(\sum_yQ(y)r(y)\right)^{1/2}
+  \left(\sum_yP(y)r(y)\right)^{1/2}
+  \le\sqrt{\Pi(G^c)}.
+\]
 \end{proof}
 
 \subsection{Schur--Weyl decomposition}
@@ -422,17 +432,22 @@ for all sufficiently large \(N\).
 \end{lemma}
 
 \begin{proof}
-For \(q=\lambda/N\), the Keyl--Werner bound gives
-\cite{KeylWerner2001Spectrum}
+Writing \(q=\lambda/N\), the finite-\(N\) Keyl--Werner estimate gives the
+concrete bound \cite{KeylWerner2001Spectrum}
 \[
   P_{N,p}(\lambda)
-  \le (N+1)^{d(d-1)/2}e^{-ND(q\|p)}.
+  \le (N+1)^{d(d-1)/2}\exp[-ND(q\|p)].
 \]
-There are at most \((N+1)^{d-1}\) partitions with at most \(d\) rows.  If
-\(\lambda\notin\mathsf T_N(p)\), then
+Moreover, there are at most \((N+1)^{d-1}\) partitions of \(N\) with at most
+\(d\) rows.  If \(\lambda\notin\mathsf T_N(p)\), then
 \(\|q-p\|_1>N^{-1/3}\), and Pinsker's inequality gives
-\(D(q\|p)\ge\tfrac12N^{-2/3}\).  The resulting polynomial factor is
-\(e^{o(N^{1/3})}\), which proves the claim.
+\(D(q\|p)\ge\tfrac12N^{-2/3}\).  Thus
+\[
+  P_{N,p}(\mathsf T_N(p)^c)
+  \le (N+1)^{d(d-1)/2+d-1}e^{-N^{1/3}/2}.
+\]
+Since \(N(N^{-1/3})^2=N^{1/3}\) and polynomial factors are
+\(e^{o(N^{1/3})}\), this proves the claim.
 \end{proof}
 
 \subsection{Cartan-sector channel and lifting of a label kernel}
@@ -448,19 +463,24 @@ occurs with multiplicity one in \(\cH_\lambda\ot\cH_\theta\).  Let
 \end{equation}
 be the normalized intertwining isometry.  For \(\mu\in\mathsf Y_n\) and
 \(\nu\in\mathsf Y_m\), write \(\nu-\mu\vdash m-n\) when the coordinatewise
-difference has nonnegative entries in weakly decreasing order.  If this holds,
-put \(\omega=\nu-\mu\) and define
+difference \(\nu-\mu\) is a partition of \(m-n\).  Equivalently, it is a
+nonnegative dominant integral weight.  If this holds, put
+\(\omega=\nu-\mu\) and define
 \begin{equation}\label{eq:sector-channel-formula}
   \cC_{\mu,\nu}(X)
   =\frac{\dim\cH_\mu}{\dim\cH_\nu}
   V_{\mu,\omega}^*(X\ot I_{\cH_\omega})V_{\mu,\omega}.
 \end{equation}
-Schur's lemma and a trace comparison give
+The partial trace
+\(\Tr_{\cH_\omega}(V_{\mu,\omega}V_{\mu,\omega}^*)\) commutes with the
+irreducible \(\U(d)\)-action on \(\cH_\mu\), so Schur's lemma makes it a
+scalar multiple of the identity.  Taking its trace determines the scalar:
 \[
   \Tr_{\cH_\omega}(V_{\mu,\omega}V_{\mu,\omega}^*)
-  =\frac{\dim\cH_\nu}{\dim\cH_\mu}I_{\cH_\mu},
+  =\frac{\dim\cH_\nu}{\dim\cH_\mu}I_{\cH_\mu}.
 \]
-so \(\cC_{\mu,\nu}\) is trace preserving.  It is \(\U(d)\)-covariant by
+Substitution in \eqref{eq:sector-channel-formula} shows that
+\(\cC_{\mu,\nu}\) is trace preserving.  It is \(\U(d)\)-covariant by
 intertwining.
 
 For every pair \((\mu,\nu)\in\mathsf Y_n\times\mathsf Y_m\), define a
@@ -488,8 +508,8 @@ Fix \(p\in\Delta_d^\circ\).  Let
   \qquad
   Q_{n,p}(\nu)=\sum_\mu\Pi_{n,p}(\mu,\nu).
 \]
-Suppose \(G\subset\mathsf Y_n\times\mathsf Y_{m_n}\) consists of
-Cartan-admissible pairs and
+Suppose \(G\subset\mathsf Y_n\times\mathsf Y_{m_n}\) satisfies
+\(\nu-\mu\vdash m_n-n\) for every \((\mu,\nu)\in G\), and
 \[
   B\!\left(\cC_{\mu,\nu}(\rho_{p,\mu}),\rho_{p,\nu}\right)\ge b
   \qquad((\mu,\nu)\in G)
@@ -527,8 +547,9 @@ exact target law.  Set
 \[
   \cC_n^p:=\mathcal Q_n[K_n^p].
 \]
-For an inadmissible pair, the branch channel is the invariant preparation
-specified in \cref{sec:schur-cartan}; the output label remains \(\nu\).
+When \(\nu-\mu\not\vdash m_n-n\), the branch channel is the invariant
+preparation specified in \cref{sec:schur-cartan}; the output label remains
+\(\nu\).
 Consequently, the output Young law of \(\cC_n^p\) is exactly
 \(P_{m_n,p}\) for every \(n\).
 
@@ -567,8 +588,10 @@ kernel on output partitions by
     0,&\text{otherwise}.
   \end{cases}
 \end{equation}
-Thus every rounded label that is not an admissible output partition is
-replaced by \(\nu_n^{\mathrm{fb}}\).  Set
+Thus every rounded label outside \(\mathsf Y_{m_n}\), and every
+\(\widetilde\nu\in\mathsf Y_{m_n}\) for which
+\(\widetilde\nu-\mu\not\vdash m_n-n\), is replaced by
+\(\nu_n^{\mathrm{fb}}\).  Set
 \[
   \cC_n^{\mathrm{univ}}:=\mathcal Q_n[K_n^{\mathrm{rnd}}].
 \]
@@ -603,8 +626,8 @@ Then \(\nu_n-\mu_n\vdash m_n-n\) for all sufficiently large \(n\), and
 \end{equation}
 
 More precisely, let \(K\Subset\Delta_d^\circ\) and \(\delta_n\to0\).
-For all sufficiently large \(n\), every tuple in the supremum below is
-Cartan admissible, and
+For all sufficiently large \(n\), every tuple in the supremum below satisfies
+\(\nu-\mu\vdash m-n\), and
 \[
   \sup_{\substack{p\in K,\ m\in\mathbb N,\
                    \mu\in\mathsf Y_n,\ \nu\in\mathsf Y_m\\
@@ -675,8 +698,9 @@ and
   \nu_d-\mu_d
   \ge(m_n-n)p_d-m_n^{2/3}-n^{2/3}>0
 \]
-for all sufficiently large \(n\).  Thus every pair in \(G_{n,p}\) is
-admissible.  Apply the uniform part of
+for all sufficiently large \(n\).  Thus
+\(\nu-\mu\vdash m_n-n\) for every \((\mu,\nu)\in G_{n,p}\).  Apply the
+uniform part of
 \cref{prop:sector-fidelity} with \(K=\{p\}\) and
 \[
   \delta_n=|\gamma_n-\gamma|+n^{-1/3}+m_n^{-1/3}.
@@ -700,10 +724,10 @@ Applying \cref{prop:lifted-kernel-bound} and using
 \begin{proof}[Proof of \cref{thm:unknown-achievability}]
 By covariance, take \(g=I\), and fix \(K\Subset\Delta_d^\circ\).
 Uniformly for \(p\in K\), Young concentration gives
-\(P_{n,p}(\mathsf T_n(p)^c)=o(1)\).  By
-\cref{prop:young-rounding}, every branch with
-\(\mu\in\mathsf T_n(p)\) is admissible for all sufficiently large \(n\),
-and on that event
+\(P_{n,p}(\mathsf T_n(p)^c)=o(1)\).  By \cref{prop:young-rounding}, for all
+sufficiently large \(n\), every pair \((\mu,\nu)\) with
+\(\mu\in\mathsf T_n(p)\) and \(K_n^{\mathrm{rnd}}(\nu\mid\mu)>0\) satisfies
+\(\nu-\mu\vdash m_n-n\).  On every such branch,
 \[
   \left\|\frac\nu{m_n}-p\right\|_\infty
   \le n^{-1/3}+\frac{c_{\mathrm{rnd}}}{m_n}.
@@ -746,8 +770,12 @@ uniformly for \(p\in K\).
 \subsection{Gaussian amplification}
 
 Let \(\cF\) be the one-mode Fock space with number basis
-\(\{\ket{k}:k\ge0\}\), number operator \(\widehat N\), and Weyl
-displacements \(D(z)\).  For \(0<q<1\), set
+\(\{\ket{k}:k\ge0\}\), creation and annihilation operators \(a^*,a\), and
+number operator \(\widehat N=a^*a\).  We use the Weyl convention
+\begin{equation}\label{eq:Weyl-convention}
+  D(z)=\exp(z a^*-\bar z a).
+\end{equation}
+For \(0<q<1\), set
 \[
   \tau_q=(1-q)\sum_{k\ge0}q^k\proj{k}.
 \]
@@ -877,12 +905,12 @@ Then \(L_p\) is invertible and
 \begin{equation}\label{eq:LAN-coordinate-map}
   X_p(L_p^{-1}z)=Y(z).
 \end{equation}
-In the convention of
-\cite[Eqs.~(4.4) and~(4.19)]{KahnGuta2009LANFiniteDimensional}, the
-\((j,k)\)-mode displacement is \((L_p\zeta)_{jk}\).  Thus the physical
-unitary generated by \(X_p(\zeta)\) corresponds to the Gaussian displacement
-\(z=L_p\zeta\).  The homogeneity of \(L_p\) preserves the gain
-\(\sqrt\gamma\).
+With the Weyl convention \eqref{eq:Weyl-convention},
+\cite[Eqs.~(4.4) and~(4.19)]{KahnGuta2009LANFiniteDimensional} assigns the
+\((j,k)\)-mode displacement \((L_p\zeta)_{jk}\) to the physical unitary
+generated by \(X_p(\zeta)\).  Thus the oscillator coordinate is
+\(z=L_p\zeta\).  Since \(L_p\) is linear, scaling the physical coordinate by
+\(\sqrt\gamma\) scales the oscillator coordinate by the same factor.
 
 \begin{theorem}[Finite-dimensional LAN; Kahn--Gu\c{t}\u{a}]
 \label{thm:LAN-full}
@@ -1154,9 +1182,10 @@ root fidelity
        {\binom{m+D-1}{D-1}}
   \right)^{1/2}.
 \]
-The quantity \(F_{\mathrm{all}}\) in
-\cite[Theorem~S3.1]{LiTheilHarrowChuang2026} is squared Uhlmann fidelity; for
-its pure target it equals the overlap.  Hence their random-purification and
+Theorem~S3.1 of \cite{LiTheilHarrowChuang2026} bounds the infidelity
+\(1-F_{\mathrm{all}}\), where \(F_{\mathrm{all}}\) is squared Uhlmann
+fidelity; because its target is pure, \(F_{\mathrm{all}}\) is the target
+overlap.  Taking the square root, their random-purification and
 pure-state-cloning guarantee for rank \(r\), in our convention, is
 \[
   \left(
@@ -1331,9 +1360,11 @@ Put
   \qquad
   \widehat E_\alpha=\frac{E_\alpha}{\sqrt{\Delta_\alpha^\lambda}}.
 \]
-These normalized operators are uniformly bounded between any two fixed-height
-subspaces.  Indeed, restrict to \(\mathfrak{sl}_2(\alpha)\) and decompose
-orthogonally into irreducible strings.  A weight \(\lambda-\eta\) with
+For every fixed \(L\), the restrictions of these normalized operators from
+\(\mathcal K_{\lambda,L}\) into
+\(\mathcal K_{\lambda,L+d-1}\) have operator norms bounded uniformly in
+\(N\) and \(\lambda\).  Indeed, restrict to \(\mathfrak{sl}_2(\alpha)\) and
+decompose orthogonally into irreducible strings.  A weight \(\lambda-\eta\) with
 \(\operatorname{ht}(\eta)\le L\) has \(H_\alpha\)-eigenvalue
 \(\Delta_\alpha^\lambda+O_L(1)\).  If a component at this weight lies \(t\)
 steps below the top of its string, then \(\lambda-\eta+t\alpha\) is also a
@@ -1353,7 +1384,9 @@ For \(\alpha=\beta\), use
 \([E_\alpha,F_\alpha]=H_\alpha\) and
 \(H_\alpha/\Delta_\alpha^\lambda=I+O_L(N^{-1})\).  For
 \(\alpha\ne\beta\), the commutator is zero or one root operator of norm
-\(O_L(\sqrt N)\), divided by a quantity of order \(N\).
+\(O_L(\sqrt N)\), divided by a quantity of order \(N\).  Here and below,
+operator-norm estimates are taken between fixed enlarged height cutoffs,
+whose sizes depend only on \(L\) and \(d\).
 
 Move the normalized raising operators in
 \(\langle v_\lambda,(\widehat F^{\mathbf r})^*
@@ -1567,14 +1600,21 @@ The Weyl dimension formula and \eqref{eq:splitting-fraction} give
     \frac{\Delta_\alpha^\mu+j-i}{\Delta_\alpha^\nu+j-i}
   =\gamma^{-r_d}+o(1).
 \]
-Since
+The identities
 \[
   q_\alpha^{(\gamma)}
   =1-\frac{1-q_\alpha}{\gamma},
   \qquad
   1-q_\alpha^{(\gamma)}=\frac{1-q_\alpha}{\gamma},
 \]
-The number of indices at height at most \(L\) is finite.  Therefore
+give
+\[
+  \gamma^{-r_d}\prod_\alpha(1-q_\alpha)
+  \prod_\alpha\bigl(q_\alpha^{(\gamma)}\bigr)^{r_\alpha}
+  =\prod_\alpha(1-q_\alpha^{(\gamma)})
+   \bigl(q_\alpha^{(\gamma)}\bigr)^{r_\alpha}.
+\]
+Because there are only finitely many indices at height at most \(L\),
 \eqref{eq:sector-output-fixed-matrix}--\eqref{eq:sector-target-fixed-matrix}
 imply convergence in trace norm, for every fixed \(L\):
 \begin{align}
@@ -1627,8 +1667,11 @@ uniformly as \(n\to\infty\) for the fixed \(L\).  Since \(K\) is
 compact in \(\Delta_d^\circ\), there is \(b_K<1\) such that
 \(q_\alpha\le b_K\) for every \(p\in K\) and every positive root
 \(\alpha\).  The occupation numbers under \(\tau_p\) are independent
-geometric variables with parameters at most \(b_K\).  Since every positive
-root has height at most \(d-1\),
+geometric variables with parameters at most \(b_K\).  If their total
+occupation is \(s\), then their total root height is at most \((d-1)s\).
+Moreover, the probability of any fixed occupation vector of total occupation
+\(s\) is at most \(b_K^s\), and there are
+\(\binom{s+r_d-1}{r_d-1}\) such vectors.  Therefore
 \begin{equation}\label{eq:uniform-thermal-height-tail}
 \begin{aligned}
   \sup_{p\in K}\Tr[(I-P_L^{\cF})\tau_p]
@@ -1640,7 +1683,21 @@ root has height at most \(d-1\),
 \end{equation}
 The same direct-sum decomposition for
 \(B(\tau_p^{(\gamma)},\tau_p)\) bounds its complementary part by the square
-root of the same target thermal tail.
+root of the same target thermal tail.  Consequently,
+\[
+\begin{aligned}
+ &\left|B(\sigma_{\mu,\nu},\rho_{p,\nu})
+       -B(\tau_p^{(\gamma)},\tau_p)\right|\\
+ &\quad\le
+ \left|B(P_{\nu,L}\sigma_{\mu,\nu}P_{\nu,L},
+         P_{\nu,L}\rho_{p,\nu}P_{\nu,L})
+       -B(P_L^{\cF}\tau_p^{(\gamma)}P_L^{\cF},
+          P_L^{\cF}\tau_pP_L^{\cF})\right|\\
+ &\qquad+
+ \sqrt{\Tr[(I-P_{\nu,L})\rho_{p,\nu}]}
+ +\sqrt{\Tr[(I-P_L^{\cF})\tau_p]}.
+\end{aligned}
+\]
 
 By \eqref{eq:fidelity-continuity} and
 \eqref{eq:output-fixed-height-convergence}--\eqref{eq:target-fixed-height-convergence},
@@ -1793,8 +1850,8 @@ For \(x\in\mathsf H\),
 \(|\mathsf C|=\sqrt d\).  A principal cofactor of
 \(\diag(p)-pp^{\mathsf T}\) is \(\prod_i p_i\), while its kernel is
 \(\operatorname{span}\{(1,\ldots,1)\}\); hence
-\(\det_{\mathsf H}\Sigma_p=d\prod_i p_i\).  Because \(\beta_0>1/2\), the first term in the remainder dominates the
-other two; since \(3\beta_0-2<0\),
+\(\det_{\mathsf H}\Sigma_p=d\prod_i p_i\).  Because \(\beta_0>1/2\), the term \(N^{3\beta_0-2}\) dominates the other
+two terms in the remainder.  Since \(3\beta_0-2<0\),
 \[
   \frac{N^{(d-1)/2}}{|\mathsf C|}M_{N,p}(\lambda)
   =\varphi_{0,\Sigma_p}(x_\lambda)(1+o(1))
@@ -1864,10 +1921,15 @@ For a density \(f\) on \(\mathsf H\), set
   (\operatorname{dil}_a f)(y)=a^{-(d-1)/2}f(y/\sqrt a),
 \]
 and let \(\operatorname{Av}_{m_n,p}\) replace a density on each target cell
-by its average there.  Multiplication by \(\gamma_n\) in the unscaled affine
-hyperplane becomes multiplication by \(\sqrt{\gamma_n}\) in central-limit
-coordinates, and \eqref{eq:cell-kernel} records the target cell containing
-the dilated point.  Hence
+by its average there.  For \(u\in\mathsf C\), the centered coordinates satisfy
+\[
+  \frac{\gamma_n(\mu+u)-m_np}{\sqrt{m_n}}
+  =\sqrt{\gamma_n}\,\frac{\mu+u-np}{\sqrt n}.
+\]
+Thus multiplication by \(\gamma_n\) in the unscaled affine hyperplane becomes
+multiplication by \(\sqrt{\gamma_n}\) in central-limit coordinates, and
+\eqref{eq:cell-kernel} records the target cell containing the dilated point.
+Hence
 \begin{equation}\label{eq:rounding-intertwining}
   \mathcal E_{m_n,p}\widetilde Q_{n,p}
   =\operatorname{Av}_{m_n,p}\operatorname{dil}_{\gamma_n}
@@ -2040,12 +2102,14 @@ to a bounded completely positive map
 gives \eqref{eq:compact-map-convergence}.
 
 Let \(P_N\uparrow I\) be finite-rank projections on \(\cH_1\).  For
-\(X\ge0\),
+\(X\ge0\), positivity and \eqref{eq:compact-map-convergence} give
 \[
+\begin{aligned}
   \Tr\Gamma(X)
-  =\sup_N\Tr[\Gamma(X)P_N]
-  \le\liminf_j\Tr\Gamma_j(X)
+  &=\sup_N\lim_j\Tr[\Gamma_j(X)P_N]\\
+  &\le\liminf_j\Tr\Gamma_j(X)
   \le c\Tr X.
+\end{aligned}
 \]
 Finally, pair the assumed covariance defect with a compact \(K\), pass to the
 limit using \eqref{eq:compact-map-convergence}, and use that compact operators
@@ -2085,9 +2149,20 @@ where every \(w_\ell\) is bounded, nonnegative, and decreasing on
 \end{proposition}
 
 \begin{proof}
-Average \(\Gamma\) over independent phase rotations in all modes.  This
-preserves displacement covariance and both sides of
-\eqref{eq:least-noise-moment}, so assume phase covariance.
+For \(\theta=(\theta_1,\ldots,\theta_s)\), put
+\(R_\theta=\bigotimes_{\ell=1}^s e^{\mathrm i\theta_\ell\widehat N_\ell}\)
+and replace \(\Gamma\) by
+\[
+  \overline\Gamma(X)
+  =\int_{[0,2\pi]^s}
+    R_\theta^*\Gamma(R_\theta X R_\theta^*)R_\theta
+    \frac{\dd\theta}{(2\pi)^s}.
+\]
+This map is phase covariant and remains displacement covariant with gain
+\(\sqrt\gamma\).  Since \(\tau\) and
+\(W(\widehat{\mathbf N})\) commute with every \(R_\theta\), the trace and the
+left side of \eqref{eq:least-noise-moment} are unchanged.  We may therefore
+assume that \(\Gamma\) is phase covariant.
 
 For one mode, the trace functional has the form
 \(\Tr\Gamma(X)=\Tr(AX)\) with \(0\le A\le I\).  Displacement covariance
@@ -2135,7 +2210,16 @@ For \(X\) on mode \(\ell\), set
 \]
 Because \(0\le\widetilde W_{>\ell}\le I\), this map is completely positive
 and trace nonincreasing.  It inherits displacement and phase covariance in
-mode \(\ell\).  The one-mode result gives
+mode \(\ell\).  Directly from its definition,
+\[
+\begin{aligned}
+  \Tr[\Gamma_\ell(\tau_{q_\ell})w_\ell(\widehat N_\ell)]
+  &=\Tr[\Gamma(\tau)W_{\ge\ell}],\\
+  \Tr\Gamma_\ell(\tau_{q_\ell})
+  &=\Tr[\Gamma(\tau)W_{\ge\ell+1}].
+\end{aligned}
+\]
+The one-mode result therefore gives
 \[
   \Tr[\Gamma(\tau)W_{\ge\ell}]
   \le
@@ -2177,7 +2261,8 @@ compact.  Moreover,
 \label{lem:scalar-convolution}
 Let \(\mathsf E\) be a finite-dimensional Euclidean space and let
 \(\mathcal R:L^1(\mathsf E)\to C_0(\mathsf E)^*\) be a positive
-contraction.  Suppose
+contraction.  For a finite Radon measure \(\lambda\), write
+\(T_a\lambda(E)=\lambda(E-a)\).  Suppose
 \begin{equation}\label{eq:scalar-measure-covariance}
   \mathcal R(u(\,\cdot-h))=T_{\sqrt\gamma h}\mathcal R(u)
   \qquad(h\in\mathsf E)
@@ -2306,8 +2391,19 @@ of the averaging cube gives, for every fixed \(\xi\),
   \le
   \frac{|(\Xi_{L_j}+\xi)\triangle\Xi_{L_j}|}{|\Xi_{L_j}|}\,\|R\|_1.
 \end{equation}
-Taking \(h=0\) shows that \(\Gamma_j^\chi\) is asymptotically displacement
-covariant.  By \cref{lem:compact-cp-limit}, after passing to a subsequence
+Taking \(h=0\), applying \eqref{eq:unified-approx-covariance} in the
+definition of \(\Gamma_j^\chi\), and using that \(f_1\) has integral one
+gives, for fixed \(z\) and trace-class \(X\),
+\[
+\begin{aligned}
+ &\|\Gamma_j^\chi(D(z)XD(z)^*)
+   -D(\sqrt\gamma z)\Gamma_j^\chi(X)D(\sqrt\gamma z)^*\|_1\\
+ &\qquad\le \|\chi\|_\infty
+  \frac{|(\Xi_{L_j}+(0,z))\triangle\Xi_{L_j}|}{|\Xi_{L_j}|}\,\|X\|_1
+  \longrightarrow0.
+\end{aligned}
+\]
+By \cref{lem:compact-cp-limit}, after passing to a subsequence
 there is an exactly displacement-covariant completely positive map
 \(\Gamma^\chi\) such that
 \begin{equation}\label{eq:weighted-map-limit}
@@ -2331,8 +2427,19 @@ continuity, gives a positive contraction
 \]
 Let \(\mu\) be the measure supplied by \cref{lem:scalar-convolution}.
 
-Using finite-rank projections in \eqref{eq:weighted-map-limit}, positivity,
-and weak-* convergence of \(\mathcal R_j(f_1)\),
+Let \(P_N\uparrow I\) be finite-rank projections on
+\(\cF_{\mathrm{orb}}\).  By \eqref{eq:weighted-map-limit}, positivity, and
+weak-* convergence of \(\mathcal R_j(f_1)\),
+\[
+\begin{aligned}
+  \Tr[\Gamma^\chi(\tau_p)P_N]
+  &=\lim_j\int_{\mathsf E}\chi(y)
+      \Tr\!\left([\Lambda_j(f_1\tau_p)](y)P_N\right)\dd y\\
+  &\le\lim_j\int_{\mathsf E}\chi(y)\,\mathcal R_j(f_1)(\dd y)
+   =\int_{\mathsf E}\chi(y)\,\mathcal R(f_1)(\dd y).
+\end{aligned}
+\]
+Taking the supremum over \(N\) gives
 \[
   \Tr\Gamma^\chi(\tau_p)
   \le\int_{\mathsf E}\chi(y)\,\mathcal R(f_1)(\dd y).
