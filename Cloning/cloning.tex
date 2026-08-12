@@ -1,5 +1,5 @@
 \documentclass[11pt]{article}
-\usepackage[margin=1in]{geometry}
+\usepackage[letterpaper,portrait,margin=1in]{geometry}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{amsmath,amssymb,amsthm}
@@ -183,7 +183,7 @@ For every \(p\in\Delta_d^\circ\),
 \end{equation}
 where the supremum is over all quantum channels from \(n\) to \(m_n\)
 qudits.  The explicit channel \(\cC_n^p\) defined in
-\cref{sec:known-label-kernel} attains the lower bound.
+\cref{sec:known-label-kernel} asymptotically attains the displayed value.
 \end{theorem}
 
 \begin{theorem}[Uniform spectrum-independent achievability]
@@ -262,7 +262,8 @@ Then
   B\!\left(\cM_n(\rho_{p,g}^{\ot n}),\rho_{p,g}^{\ot m_n}\right)
   =\inf_{p\in K}\Buniv(\gamma,p).
 \end{equation}
-The channel \(\cC_n^{\mathrm{univ}}\) attains the lower bound.
+The sequence \((\cC_n^{\mathrm{univ}})_n\) defined in
+\cref{sec:unknown-label-kernel} asymptotically attains the displayed value.
 \end{theorem}
 
 \begin{corollary}[Uniform-gap chambers]\label{cor:compact-chamber}
@@ -514,7 +515,8 @@ denoted by \(\mathcal Q_n[K_n]\): apply the Schur transform, measure
 \(I_{\cS_\nu}/\dim\cS_\nu\), and apply the inverse Schur transform.  Each
 step is completely positive and trace preserving, so their composition is a
 channel.  Because the label measurement and sampling are invariant and every
-branch map is covariant, \(\mathcal Q_n[K_n]\) is \(\U(d)\)-covariant.
+map \(\cE_{\mu,\nu}\) is covariant, \(\mathcal Q_n[K_n]\) is
+\(\U(d)\)-covariant.
 
 \begin{proposition}[Fidelity of a lifted label kernel]
 \label{prop:lifted-kernel-bound}
@@ -562,8 +564,9 @@ Thus \(\nu\) is independent of \(\mu\) and has the exact target law.  Set
 \[
   \cC_n^p:=\mathcal Q_n[K_n^p].
 \]
-When \(\nu-\mu\not\vdash m_n-n\), the branch channel is the invariant
-preparation specified in \cref{sec:schur-cartan}; the branch retains \(\nu\).
+When \(\nu-\mu\not\vdash m_n-n\),
+\(\cE_{\mu,\nu}(X)=\Tr(X)I_{\cH_\nu}/\dim\cH_\nu\), while the sampled
+output label remains \(\nu\).
 Consequently, the output Young law of \(\cC_n^p\) is exactly
 \(P_{m_n,p}\) for every \(n\).
 
@@ -610,11 +613,11 @@ Thus every rounded label outside \(\mathsf Y_{m_n}\), and every
   \cC_n^{\mathrm{univ}}:=\mathcal Q_n[K_n^{\mathrm{rnd}}].
 \]
 The variables in \eqref{eq:randomized-rounding}, the kernel
-\eqref{eq:rounding-kernel}, and all branch channels are independent of the
-spectrum.  Hence \(\cC_n^{\mathrm{univ}}\) is spectrum independent and
-\(\U(d)\)-covariant.
+\eqref{eq:rounding-kernel}, and the maps \(\cE_{\mu,\nu}\) are independent
+of the spectrum.  Hence \(\cC_n^{\mathrm{univ}}\) is spectrum independent
+and \(\U(d)\)-covariant.
 
-\subsection{Uniform estimates and the two lower bounds}
+\subsection{Uniform estimates and achievability}
 
 The following proposition is the only representation-theoretic asymptotic
 estimate used in the cloning protocols.
@@ -667,25 +670,28 @@ The second estimate concerns only \(K_n^{\mathrm{rnd}}\).
 
 \begin{proposition}[Randomized Young-label dilation]
 \label{prop:young-rounding}
-There is a constant \(c_{\mathrm{rnd}}<\infty\), independent of \(n\), such
-that
+There is a constant \(c_{\mathrm{rnd}}<\infty\) such that, for every compact
+\(K\Subset\Delta_d^\circ\) and all sufficiently large \(n\),
 \[
-  D_n(\widetilde\nu\mid\mu)>0
+  \left.
+  \begin{gathered}
+    p\in K,\quad \mu\in\mathsf T_n(p),\\
+    \nu\in\mathsf Y_{m_n},\quad
+    K_n^{\mathrm{rnd}}(\nu\mid\mu)>0
+  \end{gathered}
+  \right\}
   \quad\Longrightarrow\quad
-  \|\widetilde\nu-\gamma_n\mu\|_\infty\le c_{\mathrm{rnd}}.
+  \nu-\mu\vdash m_n-n,\quad
+  \|\nu-\gamma_n\mu\|_\infty\le c_{\mathrm{rnd}}.
 \]
-For every compact \(K\Subset\Delta_d^\circ\) and all sufficiently large
-\(n\), if \(p\in K\) and \(\mu\in\mathsf T_n(p)\), then every
-\(\widetilde\nu\) in the support of \(D_n(\cdot\mid\mu)\) satisfies
-\(\widetilde\nu-\mu\vdash m_n-n\).  In particular,
-\(\widetilde\nu\in\mathsf Y_{m_n}\) and
-\(\widetilde\nu_d\ge\mu_d>0=(\nu_n^{\mathrm{fb}})_d\), so
-\(\widetilde\nu\ne\nu_n^{\mathrm{fb}}\) and no replacement occurs.
-
-Thus \(Q_{m_n,p}(\nu):=\sum_{\mu\in\mathsf Y_n}P_{n,p}(\mu)
-K_n^{\mathrm{rnd}}(\nu\mid\mu)\), \(\nu\in\mathsf Y_{m_n}\), is the
-output-label law.
-For every compact \(K\Subset\Delta_d^\circ\),
+For
+\[
+  Q_{m_n,p}(\nu)
+  :=\sum_{\mu\in\mathsf Y_n}
+    P_{n,p}(\mu)K_n^{\mathrm{rnd}}(\nu\mid\mu),
+  \quad \nu\in\mathsf Y_{m_n},
+\]
+one has, for every compact \(K\Subset\Delta_d^\circ\),
 \begin{equation}\label{eq:rounding-label-fidelity}
   \sup_{p\in K}
   \left|B(Q_{m_n,p},P_{m_n,p})-\Bcl(\gamma,d)\right|
@@ -696,7 +702,7 @@ For every compact \(K\Subset\Delta_d^\circ\),
 The proofs of \cref{prop:sector-fidelity,prop:young-rounding} are given in
 \cref{app:sector-fidelity,app:young-rounding}, respectively.
 
-\begin{proof}[Known-spectrum lower bound in \cref{thm:known-optimum}]
+\begin{proof}[Known-spectrum achievability in \cref{thm:known-optimum}]
 By covariance, take \(g=I\).  For \(K_n^p\),
 \[
   \Pi_{n,p}(\mu,\nu)=P_{n,p}(\mu)P_{m_n,p}(\nu),
@@ -743,10 +749,13 @@ Uniformly for \(p\in K\), Young concentration gives
 \(P_{n,p}(\mathsf T_n(p)^c)=o(1)\).  By \cref{prop:young-rounding}, for all
 sufficiently large \(n\), every pair \((\mu,\nu)\) with
 \(\mu\in\mathsf T_n(p)\) and \(K_n^{\mathrm{rnd}}(\nu\mid\mu)>0\) satisfies
-\(\nu-\mu\vdash m_n-n\).  On every such branch,
+both \(\nu-\mu\vdash m_n-n\) and
 \[
   \left\|\frac\nu{m_n}-p\right\|_\infty
-  \le n^{-1/3}+\frac{c_{\mathrm{rnd}}}{m_n}.
+  \le
+  \frac{\|\nu-\gamma_n\mu\|_\infty}{m_n}
+  +\left\|\frac\mu n-p\right\|_\infty
+  \le \frac{c_{\mathrm{rnd}}}{m_n}+n^{-1/3}.
 \]
 Apply the uniform part of \cref{prop:sector-fidelity} with the compact set
 \(K\) and
@@ -754,8 +763,8 @@ Apply the uniform part of \cref{prop:sector-fidelity} with the compact set
   \delta_n=|\gamma_n-\gamma|+n^{-1/3}
            +\frac{c_{\mathrm{rnd}}}{m_n}.
 \]
-It gives \(\eta_n\to0\), independent of \(p\in K\) and of the branch with
-\(\mu\in\mathsf T_n(p)\), such that
+Then, for some \(\eta_n\to0\), uniformly in
+\(p,\mu,\nu\) as above,
 \[
   B\!\left(\cC_{\mu,\nu}(\rho_{p,\mu}),\rho_{p,\nu}\right)
   \ge\Borb(\gamma,p)-\eta_n.
@@ -2036,10 +2045,20 @@ and
 \]
 These quantities are positive for all large \(n\), uniformly on \(K\).
 Hence \(\widetilde\nu-\mu\) is a partition; since \(\mu\) is a partition,
-so is \(\widetilde\nu\).  Let \(\eps_{n,p}\) be the probability, under
-\(\mu\sim P_{n,p}\) and \(\widetilde\nu\sim D_n(\cdot\mid\mu)\), that
-\(\widetilde\nu\) is replaced in \eqref{eq:rounding-kernel}.  The preceding
-argument gives
+so is \(\widetilde\nu\).
+Moreover, \(\widetilde\nu_d>\mu_d>0\), so
+\(\widetilde\nu\ne\nu_n^{\mathrm{fb}}\) and
+\eqref{eq:rounding-kernel} leaves it unchanged.  Thus, for
+\(\mu\in\mathsf T_n(p)\), one has
+\(K_n^{\mathrm{rnd}}(\cdot\mid\mu)=D_n(\cdot\mid\mu)\), and every
+\(\nu\in\mathsf Y_{m_n}\) with
+\(K_n^{\mathrm{rnd}}(\nu\mid\mu)>0\) satisfies
+\(\nu-\mu\vdash m_n-n\) and
+\(\|\nu-\gamma_n\mu\|_\infty\le c_{\mathrm{rnd}}\).
+
+Let \(\eps_{n,p}\) be the probability, under \(\mu\sim P_{n,p}\) and
+\(\widetilde\nu\sim D_n(\cdot\mid\mu)\), that \(\widetilde\nu\) is
+replaced in \eqref{eq:rounding-kernel}.  The preceding argument gives
 \[
   \eps_{n,p}\le P_{n,p}(\mathsf T_n(p)^c),
 \]
