@@ -26,7 +26,7 @@
 \maketitle
 
 \begin{abstract}
-Lemma C.2 is the compactness device used in both Gaussian converse proofs.
+Lemma C.2 is the compactness device used in the unified Gaussian converse proof.
 It extracts a completely positive limit from a uniformly bounded sequence of
 completely positive maps, even though trace-norm compactness is unavailable
 in infinite dimension.  Convergence is tested only with compact output
@@ -63,7 +63,7 @@ subsequence.  This allows one to extract a map $\Gamma$ such that
 for every trace-class input $X$ and every compact output observable $K$.
 
 This is exactly the convergence needed later.  The quantum witness
-$W_\gamma$ appearing in Propositions C.4 and C.6 is compact, so its moment
+$W_\gamma$ appearing in Proposition C.5 is compact, so its moment
 passes to the limit by \eqref{eq:weak-convergence}.
 
 The lemma also records two stability properties:
@@ -274,15 +274,14 @@ equal.  This proves exact covariance for every fixed $g$.
 
 \section{Role in Appendix C}
 
-In Proposition C.4, F\o lner-averaged channels are asymptotically
-displacement covariant.  Lemma C.2 extracts an exactly covariant
-trace-nonincreasing limit, and compactness of $W_\gamma$ lets its weighted
-moment pass to that limit.
-
-In Proposition C.6, the same lemma is applied to the classically weighted
-quantum maps $\Gamma_j^\chi$.  Their initial trace bound is only
-$\|\chi\|_\infty$; the classical convolution argument later improves the
-limit to a trace-nonincreasing map.  Thus Lemma C.2 supplies the quantum
-compactness and exact covariance common to both converses.
+In the orbital specialization of Proposition C.5, F\o lner-averaged channels
+are asymptotically displacement covariant.  Lemma C.2 extracts an exactly
+covariant trace-nonincreasing limit, and compactness of $W_\gamma$ lets its
+weighted moment pass to that limit.  In the full classical--quantum
+specialization, the same lemma is applied to the weighted quantum maps
+$\Gamma_j^\chi$.  Their initial trace bound is only $\|\chi\|_\infty$; the
+classical convolution argument later improves the limit to a
+trace-nonincreasing map.  Thus Lemma C.2 supplies the quantum compactness and
+exact covariance common to both cases of the unified proposition.
 
 \end{document}

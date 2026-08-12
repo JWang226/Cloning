@@ -10,13 +10,19 @@
 \usepackage[colorlinks=true,linkcolor=teal,urlcolor=teal]{hyperref}
 
 \newcommand{\Hc}{\mathsf H}
-\newcommand{\R}{\mathbb R}
+\newcommand{\F}{\mathcal F_{\mathrm{orb}}}
+\newcommand{\T}{\mathcal T_1}
+\newcommand{\Tr}{\operatorname{Tr}}
 \newcommand{\dd}{\,\mathrm d}
+\newcommand{\B}{\mathrm B}
+\newcommand{\Bcl}{B_{\mathrm{cl}}}
+\newcommand{\Borb}{B_{\mathrm{orb}}}
+\newcommand{\Buniv}{B_{\mathrm{univ}}}
 
-\newtheorem*{lemmaC}{Lemma C.5 (rephrased)}
+\newtheorem*{propC}{Proposition C.5 (rephrased)}
 
-\title{A Short Guide to Lemma C.5\\
-\large Translation-covariant scalar kernels are convolutions}
+\title{A Short Guide to Proposition C.5\\
+\large The unified Gaussian flat-prior upper bound}
 \author{}
 \date{}
 
@@ -24,316 +30,480 @@
 \maketitle
 
 \begin{abstract}
-Lemma C.5 identifies every positive translation-covariant map from
-$L^1(\mathsf H)$ to finite measures.  Such a map must first dilate the input
-location by $\sqrt\gamma$ and then add noise with a fixed finite measure
-$\mu$.  The proof obtains $\mu$ by feeding the map an approximate point mass
-at the origin.  This note explains the covariance convention, the weak-*
-extraction, and the passage from approximate point masses to arbitrary
-$L^1$ inputs.
+Proposition C.5 gives one flat-prior upper bound for both Gaussian models.
+The choice $k=0$ gives the orbital value $\Borb(\gamma,p)$, while
+$k=d-1$ gives the full classical--quantum value
+$\Buniv(\gamma,p)=\Bcl(\gamma,d)\Borb(\gamma,p)$.  The proof uses the same
+compact quantum witness in both cases and adds a classical Gaussian witness
+and scalar convolution argument only when $k=d-1$.  This note states the
+unified result, gives the detailed full-case argument, and then explains how
+the orbital case follows by deleting the classical component.
 \end{abstract}
 
-\section{The statement in probabilistic language}
+\section{The full classical--quantum experiment}
 
-Here $\Hc$ is a finite-dimensional real vector space with Lebesgue measure
-$\dd x$, and $E\subseteq\Hc$ always denotes a Borel set.  If
-$u\geq0$ and $\int u(x)\dd x=1$, then $u(x)\dd x$ is the law of an input
-random variable $X$.  The symbol $\mathcal R$ is not a random variable: it
-is a positive linear map, and
+The classical space is
 \[
-  \nu_u:=\mathcal R(u)
+  \Hc=\left\{h\in\mathbb R^d:\sum_i h_i=0\right\},
+  \qquad \dim\Hc=d-1,
 \]
-is the finite measure produced from the input density $u$.  If
-$\nu_u(\Hc)=1$, one may choose an output random variable $Y$ with law
-$\nu_u$, so that $\Pr(Y\in E)=\nu_u(E)$.  If
-$c_u:=\nu_u(\Hc)<1$, then $\nu_u$ is instead a subprobability measure; it
-can be represented by adjoining a failure point $\partial\notin\Hc$ and
-setting
+with positive covariance $\Sigma_p$.  Write
 \[
-  \Pr(Y\in E)=\nu_u(E),
+  f_1=\varphi_{0,\Sigma_p},
   \qquad
-  \Pr(Y=\partial)=1-c_u.
+  f_\gamma=\varphi_{0,\gamma\Sigma_p}
 \]
+for the centered Gaussian densities.  The orbital component lives on the
+multimode Fock space $\F$ and has centered thermal state $\tau_p$, abbreviated
+below as $\tau$.
 
-To match the manuscript's notation, write $T_a\nu$ for the translate of a
-finite measure $\nu$ by $a$:
-\[
-  (T_a\nu)(E):=\nu(E-a),
-  \qquad E-a:=\{y-a:y\in E\}.
-\]
-If $\nu$ is the law of $Y$, then $T_a\nu$ is the law of $Y+a$.
-Likewise, $u(\,\cdot-h)$ is the density of $X+h$.  Hence the covariance
-assumption of Lemma C.5 is the equality of finite Radon measures
-\begin{equation}\label{eq:covariance}
-  \mathcal R(u(\,\cdot-h))
-  =T_{\sqrt\gamma h}\mathcal R(u)
-  \qquad(u\in L^1(\Hc),\ h\in\Hc).
-\end{equation}
-Evaluating this identity on a Borel set $E$ gives the more concrete formula
-\[
-  \mathcal R(u(\,\cdot-h))(E)
-  =\mathcal R(u)(E-\sqrt\gamma h).
-\]
-Thus replacing the input law of $X$ by that of $X+h$ replaces the output
-measure $\nu_u$ by its translate through $\sqrt\gamma h$; when the measures
-are probability laws, this says that the new output has the same law as
-$Y+\sqrt\gamma h$.
+At parameter $\xi=(h,z)\in\Hc\times\mathbb C^{r_d}$, the input and ideal
+target are
+\begin{align*}
+  \Theta_{h,z}^{\mathrm{in}}
+  &=\mathsf N_{h,\Sigma_p}\otimes\Phi_z,\\
+  \Theta_{h,z}^{\mathrm{tar}}
+  &=\mathsf N_{\sqrt\gamma h,\Sigma_p}\otimes\Psi_z.
+\end{align*}
+The target amplifies both means by $\sqrt\gamma$ without increasing either
+the classical covariance or the centered thermal noise.  A physical
+procedure cannot do this perfectly.
 
-Lemma C.5 says that there is one finite positive measure $\mu$ such that
-\begin{equation}\label{eq:kernel}
-  \mathcal R(u)(E)
-  =\int_{\Hc}u(x)\,\mu(E-\sqrt\gamma x)\dd x.
-\end{equation}
-For each input point $x$, define the finite measure
-\[
-  K(x,E):=\mu(E-\sqrt\gamma x).
-\]
-Then \eqref{eq:kernel} says that $\mathcal R(u)$ is the mixture of the
-pointwise output measures $K(x,\,\cdot)$ with weights $u(x)\dd x$.  If
-$\mu(\Hc)=1$, each $K(x,\,\cdot)$ is a probability measure and may be read
-as the conditional law of the output given $X=x$:
-\[
-  K(x,E)=\Pr(Y\in E\mid X=x).
-\]
-Indeed, if $Z\sim\mu$ is independent of $X$ and
-$Y:=\sqrt\gamma X+Z$, then
-\[
-  \Pr(Y\in E\mid X=x)
-  =\mu(E-\sqrt\gamma x)=K(x,E),
-\]
-and averaging the conditional measures over $X$ gives
-\[
-  \Pr(Y\in E)
-  =\int_{\Hc}u(x)K(x,E)\dd x
-  =\mathcal R(u)(E).
-\]
+The optimal product procedure dilates the classical observation by
+$\sqrt\gamma$ and applies the product quantum-limited amplifier.  Its two
+losses are
+\begin{align}
+  \Bcl(\gamma,d)
+  &=\left(\frac{2\sqrt\gamma}{1+\gamma}\right)^{(d-1)/2},
+  \label{eq:Bcl}\\
+  \Borb(\gamma,p)
+  &=\B(\tau^{(\gamma)},\tau),
+  \label{eq:Borb}
+\end{align}
+and root fidelity multiplies across the classical and quantum factors.
+The full specialization of Proposition C.5 proves that a joint hybrid channel
+cannot improve on their product.
 
-The reason covariance forces the noise measure to be independent of $x$ is
-most transparent at the level of point inputs.  Temporarily suppose that
-$\delta_x$ were an admissible input and denote its output measure by $K_x$;
-this notation does not assume the desired representation.  Covariance would
-give $K_{x+h}(E)=K_x(E-\sqrt\gamma h)$.  Recenter $K_x$ by defining
+\section{Statement of Proposition C.5}
+
+\begin{propC}
+Let $k\in\{0,d-1\}$.  For $k=0$, take $\mathsf E=\{0\}$ and omit the
+classical factor.  For $k=d-1$, take $\mathsf E=\Hc$ with covariance
+$\Sigma_p$.  Put
 \[
-  \mu_x:=T_{-\sqrt\gamma x}K_x,
+  \mathsf E_L=\{h\in\mathsf E:\|h\|_\infty\leq L\},
   \qquad
-  \mu_x(E)=K_x(E+\sqrt\gamma x).
+  \mathsf Z_L=\{z:|\Re z_\ell|,|\Im z_\ell|\leq L\},
+  \qquad
+  \Xi_L=\mathsf E_L\times\mathsf Z_L,
 \]
-If $K_x$ is a probability law, then $\mu_x$ is precisely the law of the
-residual $Y-\sqrt\gamma x$.  The covariance identity now gives
+with $|\mathsf E_L|=1$ when $k=0$.  Define
+\begin{align*}
+  R_{0,z}^{(0)}&=\Phi_z,
+  &S_{0,z}^{(0)}&=\Psi_z,\\
+  R_{h,z}^{(d-1)}&=\Theta_{h,z}^{\mathrm{in}},
+  &S_{h,z}^{(d-1)}&=\Theta_{h,z}^{\mathrm{tar}},
+\end{align*}
+and
 \[
-  \mu_{x+h}(E)
-  =K_{x+h}(E+\sqrt\gamma(x+h))
-  =K_x(E+\sqrt\gamma x)
-  =\mu_x(E).
+  c_k=\left(\frac{2\sqrt\gamma}{1+\gamma}\right)^{k/2}.
 \]
-Since $h$ is arbitrary, all the recentered measures $\mu_x$ coincide.
-Point masses do not belong to $L^1(\Hc)$, so the proof makes this heuristic
-rigorous by approximating $\delta_0$, extracting its output limit $\mu$,
-and extending the formula to all $L^1$ inputs by convolution.
-
-Finally, if $c:=\mu(\Hc)<1$, then $K(x,\Hc)=c$ for every $x$ and
-$\mathcal R(u)(\Hc)=c$ for every normalized $u$.  When $0<c<1$, this may be
-realized by taking a Bernoulli variable $S$ with $\Pr(S=1)=c$, an independent
-noise variable $Z$ with law $\mu/c$, and declaring the output to be
-$\sqrt\gamma X+Z$ when $S=1$ and $\partial$ when $S=0$.  In the application,
-the missing mass $1-c$ records probability that may have escaped to
-infinity in the weak-* limit.
-
-\section{Functional-analytic setting}
-
-The output space is
+Then
 \[
-  C_0(\Hc)^*,
+  \limsup_{L\to\infty}\sup_\Lambda
+  \frac1{|\Xi_L|}\int_{\Xi_L}
+  \B\!\left(\Lambda(R_{h,z}^{(k)}),S_{h,z}^{(k)}\right)\dd h\dd z
+  \leq c_k\Borb(\gamma,p).
 \]
-which the Riesz representation theorem identifies with the finite Radon
-measures on $\Hc$.  The dual pairing of a test function $f$ with a measure
-$\nu$ is
-\[
-  \langle f,\nu\rangle:=\int_{\Hc}f(y)\,\nu(\dd y).
-\]
-When $\nu$ is the law of a random variable $Y$, this pairing is
-$\mathbb E[f(Y)]$; for a subprobability measure, the same interpretation
-holds after setting $f(\partial)=0$ at the failure point.  Weak-* convergence
-of measures means
-\[
-  \int f\dd\mu_j\longrightarrow\int f\dd\mu
-  \qquad(f\in C_0(\Hc)).
-\]
-Thus weak-* convergence asserts convergence of these test-function averages,
-not pointwise convergence of random variables.
+For $k=d-1$, the supremum includes channels that couple the classical and
+quantum components.  For $k=0$, integration in $h$ means evaluation at the
+unique point of $\mathsf E$.
+\end{propC}
 
-The map
-\[
-  \mathcal R:L^1(\Hc)\longrightarrow C_0(\Hc)^*
-\]
-is a positive contraction.  Hence, for $u\geq0$,
-\[
-  \|\mathcal R(u)\|\leq\|u\|_1.
-\]
-For a positive measure its norm equals its total mass, so a normalized
-nonnegative input produces an output measure of mass at most one.
+Since $c_0=1$, the right side is $\Borb(\gamma,p)$ in the orbital case.
+Since $c_{d-1}=\Bcl(\gamma,d)$, it is $\Buniv(\gamma,p)$ in the full case.
 
-\section{Statement of Lemma C.5}
+\section{The two witnesses}
 
-\begin{lemmaC}
-Let $\mathcal R:L^1(\Hc)\to C_0(\Hc)^*$ be a positive contraction satisfying
-\eqref{eq:covariance}.  Then a finite positive measure $\mu$ with
-$\mu(\Hc)\leq1$ exists such that \eqref{eq:kernel} holds for every
-$u\in L^1(\Hc)$ and every Borel set $E$.
-\end{lemmaC}
+\subsection{Classical witness}
+
+Define the square-root likelihood ratio
+\begin{equation}\label{eq:chi}
+  \chi(y)=\sqrt{\frac{f_1(y)}{f_\gamma(y)}}
+  =\gamma^{(d-1)/4}
+  \exp\!\left[-\frac{\gamma-1}{4\gamma}
+  \langle y,\Sigma_p^{-1}y\rangle\right].
+\end{equation}
+It is bounded, strictly positive, and belongs to $C_0(\Hc)$.  Moreover,
+\begin{equation}\label{eq:classical-id}
+  \int_{\Hc}\frac{f_1(y)}{\chi(y)}\dd y
+  =\int_{\Hc}\sqrt{f_1(y)f_\gamma(y)}\dd y
+  =\Bcl(\gamma,d).
+\end{equation}
+The fact that $\chi$ vanishes at infinity is as important as the Gaussian
+identity: it makes integration against $\chi$ continuous for weak-* limits
+of finite measures.
+
+\subsection{Quantum witness}
+
+In the joint number basis of $\tau$ and the quantum-limited output
+$\tau^{(\gamma)}$, define
+\begin{equation}\label{eq:W}
+  W_\gamma
+  =\sum_{\mathbf k}
+  \sqrt{\frac{t_{\mathbf k}}{t_{\mathbf k}^{(\gamma)}}}
+  |\mathbf k\rangle\!\langle\mathbf k|.
+\end{equation}
+It is positive, injective, bounded, compact, and a product of decreasing
+photon-number weights.  Its matching identities are
+\begin{equation}\label{eq:quantum-id}
+  \Tr(\tau W_\gamma^{-1})
+  =\Tr(\tau^{(\gamma)}W_\gamma)
+  =\Borb(\gamma,p).
+\end{equation}
+
+Lemma C.1 combines these witnesses.  If $R(y)$ is a positive
+classical--quantum density, then
+\begin{equation}\label{eq:weighted-hybrid}
+  \B(R,f_1\tau)^2
+  \leq
+  \left(\int_{\Hc}\chi(y)\Tr[R(y)W_\gamma]\dd y\right)
+  \Bcl(\gamma,d)\Borb(\gamma,p).
+\end{equation}
+It remains to show that the first, channel-dependent factor is at most the
+same product $\Bcl\Borb$.
+
+\section{Proof roadmap}
+
+The proof performs the following reductions:
+\[
+\begin{array}{c}
+\text{average fidelity over a large parameter cube}\\
+\Downarrow\\
+\text{fidelity at the origin for a F\o lner-averaged channel}\\
+\Downarrow\\
+\text{one weighted moment }M_j\\
+\Downarrow\\
+\begin{array}{c@{\qquad}c}
+\text{quantum compact limit }\Gamma^\chi
+&\text{classical scalar limit }\mathcal R\\
+\text{Lemma C.2}&\text{Lemma C.4}
+\end{array}\\
+\Downarrow\\
+M_j\leq\Bcl(\gamma,d)\Borb(\gamma,p)\\
+\Downarrow\\
+\B\leq\Bcl(\gamma,d)\Borb(\gamma,p).
+\end{array}
+\]
+The two limits come from the same averaged channels but retain different
+information.  The compact quantum limit controls the $W_\gamma$ moment; the
+scalar limit controls how much classically weighted trace that quantum map
+can have.  The walkthrough below spells out the case $k=d-1$.  The
+simplification for $k=0$ is recorded afterward.
 
 \section{Proof walkthrough}
 
-\subsection*{Step 1: probe the kernel at the origin}
+\subsection*{Step 1: F\o lner averaging}
 
-Choose a nonnegative approximate identity $u_j\in C_c(\Hc)$:
+For $\xi=(h,z)$, let
+\begin{align*}
+  (\mathcal U_\xi^{\mathrm{in}}R)(x)
+  &=D(z)R(x-h)D(z)^*,\\
+  (\mathcal U_\xi^{\mathrm{out}}R)(y)
+  &=D(\sqrt\gamma z)R(y-\sqrt\gamma h)D(\sqrt\gamma z)^*.
+\end{align*}
+Then
 \[
-  \int_{\Hc}u_j(x)\dd x=1,
+  \Theta_\xi^{\mathrm{in}}
+  =\mathcal U_\xi^{\mathrm{in}}(f_1\tau),
   \qquad
-  \operatorname{supp}(u_j)\longrightarrow\{0\}.
+  \Theta_\xi^{\mathrm{tar}}
+  =\mathcal U_\xi^{\mathrm{out}}(f_1\tau).
 \]
-The measures $u_j(x)\dd x$ are probability laws concentrating at the input
-point $0$, so they approximate the point mass $\delta_0$.  Heuristically,
-the output produced by $\delta_0$ is the noise measure; since $\delta_0$ is
-not an $L^1$ density, use instead the sequence of output measures
-\[
-  \mu_j:=\mathcal R(u_j).
-\]
-Thus $\mu_j$ is a measure, not a random variable; when it has mass one, one
-may represent it as the law of an output random variable.  Positivity and
-contractivity imply $\mu_j(\Hc)\leq1$.
-
-The unit ball of $C_0(\Hc)^*$ is weak-* compact.  Since $C_0(\Hc)$ is
-separable, a subsequence converges weak-* to a positive measure $\mu$:
-\begin{equation}\label{eq:mu-limit}
-  \int f\dd\mu_j\longrightarrow\int f\dd\mu
-  \qquad(f\in C_0(\Hc)).
+For a hybrid channel $\Lambda$, define
+\begin{equation}\label{eq:average}
+  \overline\Lambda_L
+  =\frac1{|\Xi_L|}\int_{\Xi_L}
+  \mathcal U_{-\xi}^{\mathrm{out}}\circ\Lambda\circ
+  \mathcal U_\xi^{\mathrm{in}}\dd\xi.
 \end{equation}
-The norm is weak-* lower semicontinuous, so $\mu(\Hc)\leq1$.  Equality need
-not hold because the constant function $1$ does not belong to $C_0(\Hc)$
-when $\Hc$ is noncompact.
-
-\subsection*{Step 2: smooth an arbitrary input}
-
-Use the convolution convention
-\[
-  (u*u_j)(y)=\int_{\Hc}u(x)u_j(y-x)\dd x
-  =\int_{\Hc}u(x)u_j(\,\cdot-x)(y)\dd x.
-\]
-For normalized nonnegative $u$, if $X$ has density $u$ and $V_j$ has density
-$u_j$ independently of $X$, then $u*u_j$ is the density of $X+V_j$.
-Equivalently, it mixes the translated densities $u_j(\,\cdot-x)$ with
-weights $u(x)\dd x$; the proof then extends the identity to arbitrary
-$u\in L^1(\Hc)$ by linearity.
-The approximate-identity property gives
-\begin{equation}\label{eq:L1-approx}
-  u*u_j\longrightarrow u
-  \qquad\text{in }L^1(\Hc).
+For each input $R$, this is a Bochner integral in the trace norm of the
+classical--quantum $L^1$ space.  Strong continuity of translations and Weyl
+conjugations, together with boundedness of the channels, makes the integral
+well defined.
+Joint concavity and invariance of root fidelity give
+\begin{equation}\label{eq:concavity}
+  \frac1{|\Xi_L|}\int_{\Xi_L}
+  \B(\Lambda(\Theta_\xi^{\mathrm{in}}),
+    \Theta_\xi^{\mathrm{tar}})\dd\xi
+  \leq\B(\overline\Lambda_L(f_1\tau),f_1\tau).
 \end{equation}
-Bounded linearity of $\mathcal R$ therefore implies
-\[
-  \mathcal R(u*u_j)\longrightarrow\mathcal R(u)
-\]
-in the norm of finite measures.
 
-Because $u*u_j=\int_{\Hc}u(x)u_j(\,\cdot-x)\dd x$, bounded linearity moves
-$\mathcal R$ through this integral, while covariance gives
-$\mathcal R(u_j(\,\cdot-x))=T_{\sqrt\gamma x}\mathcal R(u_j)$.  Hence, as
-an equality of finite Radon measures,
-\[
-  \mathcal R(u*u_j)
-  =\int_{\Hc}u(x)\mathcal R(u_j(\,\cdot-x))\dd x
-  =\int_{\Hc}u(x)T_{\sqrt\gamma x}\mathcal R(u_j)\dd x.
-\]
-Evaluating this identity on a Borel set $E$ gives
-\begin{align}
-  \mathcal R(u*u_j)(E)
-  &=\int_{\Hc}u(x)\,
-    \mathcal R(u_j(\,\cdot-x))(E)\dd x\notag\\
-  &=\int_{\Hc}u(x)\,
-    \mathcal R(u_j)(E-\sqrt\gamma x)\dd x.
-  \label{eq:smoothed-kernel}
-\end{align}
-Thus the desired convolution formula already holds for the smoothed input
-$u*u_j$, with the finite measure $\mu_j=\mathcal R(u_j)$ in place of $\mu$.
-
-\subsection*{Step 3: pass to the weak-* limit}
-
-To justify the limit in \eqref{eq:smoothed-kernel}, pair both sides with an
-arbitrary $f\in C_0(\Hc)$.  The right side becomes
-\begin{equation}\label{eq:test-pairing}
-  \int_{\Hc}u(x)
-  \left(\int_{\Hc}f(r+\sqrt\gamma x)\,\mu_j(\dd r)\right)\dd x.
+Choose $L_j\to\infty$ and channels approaching the limsup, and denote their
+averages by $\Lambda_j$.  Translating the averaging cube shows that for each
+fixed $\xi$,
+\begin{equation}\label{eq:approx-covariance}
+  \|\Lambda_j(\mathcal U_\xi^{\mathrm{in}}R)
+  -\mathcal U_\xi^{\mathrm{out}}\Lambda_j(R)\|_1
+  \leq
+  \frac{|(\Xi_{L_j}+\xi)\mathbin\triangle\Xi_{L_j}|}
+       {|\Xi_{L_j}|}\,\|R\|_1
+  \longrightarrow0.
 \end{equation}
-Here $r$ is the integration variable for the measure $\mu_j$; if $\mu_j$
-is a probability law and $Z_j\sim\mu_j$, the inner integral is
-$\mathbb E[f(\sqrt\gamma x+Z_j)]$.
-For each fixed $x$, the translated function
-$r\mapsto f(r+\sqrt\gamma x)$ still belongs to $C_0(\Hc)$, so
-\eqref{eq:mu-limit} gives convergence of the inner integral to the same
-expression with $\mu$.  Its absolute value is bounded by $\|f\|_\infty$, and
-$|u|$ is integrable.  Dominated convergence therefore turns
-\eqref{eq:test-pairing} into
+
+\subsection*{Step 2: reduce fidelity to one moment}
+
+Put
 \[
-  \int_{\Hc}u(x)
-  \left(\int_{\Hc}f(r+\sqrt\gamma x)\,\mu(\dd r)\right)\dd x.
-\]
-On the other side, norm convergence of the output measures gives
-\[
-  \int f\,\dd\mathcal R(u*u_j)
-  \longrightarrow
-  \int f\,\dd\mathcal R(u).
-\]
-The two limiting test-function integrals are therefore equal for every
-$f\in C_0(\Hc)$.  For each fixed $x$, the inner integral is the pairing of
-$f$ with the translated measure $T_{\sqrt\gamma x}\mu$, because
-\[
-  \int_{\Hc}f(r+\sqrt\gamma x)\,\mu(\dd r)
-  =\int_{\Hc}f(y)\,(T_{\sqrt\gamma x}\mu)(\dd y),
+  R_j=\Lambda_j(f_1\tau),
   \qquad
-  (T_{\sqrt\gamma x}\mu)(E)=\mu(E-\sqrt{\gamma}\,x).
+  M_j=\int_{\Hc}\chi(y)\Tr[R_j(y)W_\gamma]\dd y.
 \]
-Since functions in $C_0(\Hc)$ separate finite Radon measures, the matching
-measure identity is therefore, for every Borel set $E$,
+The weighted hybrid inequality \eqref{eq:weighted-hybrid} gives
+\begin{equation}\label{eq:B-to-M}
+  \B(R_j,f_1\tau)^2
+  \leq M_j\,\Bcl(\gamma,d)\Borb(\gamma,p).
+\end{equation}
+The rest of the proof is devoted to the upper bound
+\begin{equation}\label{eq:M-goal}
+  \limsup_j M_j
+  \leq\Bcl(\gamma,d)\Borb(\gamma,p).
+\end{equation}
+
+\subsection*{Step 3: extract the weighted quantum map}
+
+For a trace-class operator $X$ on $\F$, define
+\begin{equation}\label{eq:Gamma-j}
+  \Gamma_j^\chi(X)
+  =\int_{\Hc}\chi(y)[\Lambda_j(f_1X)](y)\dd y.
+\end{equation}
+This map feeds $\Lambda_j$ a fixed classical Gaussian with quantum input
+$X$, then averages the quantum output with the classical weight $\chi$.
+It is completely positive and satisfies
 \[
+  \Tr\Gamma_j^\chi(X)
+  \leq\|\chi\|_\infty\Tr X
+  \qquad(X\geq0).
+\]
+Notice that $\|\chi\|_\infty=\gamma^{(d-1)/4}$ may exceed one.  Hence this
+initial estimate does \emph{not} make $\Gamma_j^\chi$ trace nonincreasing.
+
+Taking $h=0$ in \eqref{eq:approx-covariance} shows that these maps become
+displacement covariant in the quantum variable.  Lemma C.2 therefore gives,
+after taking a subsequence, a completely positive exactly covariant map
+$\Gamma^\chi$ with
+\begin{equation}\label{eq:quantum-limit}
+  \Tr[\Gamma_j^\chi(X)K]
+  \longrightarrow\Tr[\Gamma^\chi(X)K]
+  \qquad(K\text{ compact}).
+\end{equation}
+Because $W_\gamma$ is compact,
+\begin{equation}\label{eq:M-limit}
+  M_j=\Tr[\Gamma_j^\chi(\tau)W_\gamma]
+  \longrightarrow\Tr[\Gamma^\chi(\tau)W_\gamma].
+\end{equation}
+
+To apply the least-noise moment to $\Gamma^\chi$, the proof still has to
+improve its trace bound from $\|\chi\|_\infty$ to one.  This is the purpose
+of the classical limit.
+
+\subsection*{Step 4: extract the scalar trace kernel}
+
+For $u\in L^1(\Hc)$, let $\mathcal R_j(u)$ be the classical trace measure of
+$\Lambda_j(u\tau)$:
+\begin{equation}\label{eq:Rj}
+  \mathcal R_j(u)(E)
+  =\int_E\Tr[\Lambda_j(u\tau)(y)]\dd y.
+\end{equation}
+Since $\Lambda_j$ is a channel, $\mathcal R_j$ is a positive contraction
+from $L^1(\Hc)$ to the finite Radon measures.
+
+A diagonal extraction on countable dense subsets of $L^1(\Hc)$ and
+$C_0(\Hc)$ gives a positive contraction $\mathcal R$ such that
+\[
+  \mathcal R_j(u)\stackrel{w^*}{\longrightarrow}\mathcal R(u)
+  \qquad(u\in L^1(\Hc)).
+\]
+Taking $z=0$ in \eqref{eq:approx-covariance} and passing to this limit yields
+the following equality of finite Radon measures.  With
+$(T_a\nu)(E):=\nu(E-a)$,
+\begin{equation}\label{eq:R-covariance}
+  \mathcal R(u(\,\cdot-h))
+  =T_{\sqrt\gamma h}\mathcal R(u).
+\end{equation}
+Equivalently, pairing both sides with any $\phi\in C_0(\Hc)$ gives
+\[
+  \int\phi(y)\,\mathcal R(u(\,\cdot-h))(\dd y)
+  =\int\phi(y+\sqrt\gamma h)\,\mathcal R(u)(\dd y).
+\]
+Lemma C.4 identifies this covariant scalar kernel: there is a finite positive
+measure $\mu$, with $\mu(\Hc)\leq1$, such that
+\begin{equation}\label{eq:convolution}
   \mathcal R(u)(E)
-  =\int_{\Hc}u(x)\,\mu(E-\sqrt{\gamma}\,x)\dd x,
-\]
-which is the measure identity \eqref{eq:kernel}.
+  =\int_{\Hc}u(x)\mu(E-\sqrt\gamma x)\dd x.
+\end{equation}
 
-\section{Examples}
+\subsection*{Step 5: bound the trace of the weighted quantum limit}
+
+Let $P_N\uparrow I$ be finite-rank projections on $\F$.  Positivity and
+\eqref{eq:quantum-limit} give
+\begin{align}
+  \Tr\Gamma^\chi(\tau)
+  &=\sup_N\Tr[\Gamma^\chi(\tau)P_N]\notag\\
+  &\leq\liminf_j\Tr\Gamma_j^\chi(\tau).
+  \label{eq:trace-liminf}
+\end{align}
+By \eqref{eq:Gamma-j} and \eqref{eq:Rj},
+\[
+  \Tr\Gamma_j^\chi(\tau)
+  =\int_{\Hc}\chi(y)\mathcal R_j(f_1)(\dd y).
+\]
+Because $\chi\in C_0(\Hc)$, weak-* convergence of the scalar measures passes
+this integral to the limit.  Hence
+\begin{equation}\label{eq:trace-to-classical}
+  \Tr\Gamma^\chi(\tau)
+  \leq\int_{\Hc}\chi(y)\mathcal R(f_1)(\dd y).
+\end{equation}
+
+Use the convolution representation \eqref{eq:convolution}.  If
+$X\sim\mathsf N_{0,\Sigma_p}$, then $\sqrt\gamma X$ has density $f_\gamma$,
+so
+\begin{align}
+  \int_{\Hc}\chi(y)\mathcal R(f_1)(\dd y)
+  &=\int_{\Hc}c_\gamma(r)\mu(\dd r),
+  \label{eq:cgamma-average}\\
+  c_\gamma(r)
+  &=\int_{\Hc}\chi(y)f_\gamma(y-r)\dd y.
+  \label{eq:cgamma}
+\end{align}
+Completing the Gaussian square gives
+\begin{equation}\label{eq:cgamma-value}
+  c_\gamma(r)
+  =\Bcl(\gamma,d)
+  \exp\!\left[-\frac{\gamma-1}{2\gamma(\gamma+1)}
+    \langle r,\Sigma_p^{-1}r\rangle\right]
+  \leq\Bcl(\gamma,d).
+\end{equation}
+The maximum occurs at zero added classical noise.  Since
+$\mu(\Hc)\leq1$, equations
+\eqref{eq:trace-to-classical}--\eqref{eq:cgamma-value} yield
+\begin{equation}\label{eq:trace-bound}
+  \Tr\Gamma^\chi(\tau)\leq\Bcl(\gamma,d).
+\end{equation}
+
+This estimate is first proved only at $\tau$.  Exact displacement covariance
+makes it global.  Indeed, the positive functional
+$X\mapsto\Tr\Gamma^\chi(X)$ is represented by a bounded positive operator
+$A$.  Covariance implies that $A$ commutes with every multimode Weyl
+displacement, so irreducibility gives $A=cI$.  Since $\Tr\tau=1$,
+\[
+  c=\Tr\Gamma^\chi(\tau)\leq\Bcl(\gamma,d)\leq1.
+\]
+Therefore $\Gamma^\chi$ is trace nonincreasing and Proposition C.3 applies.
+
+\subsection*{Step 6: apply the quantum least-noise bound}
+
+Using \eqref{eq:M-limit}, Proposition C.3, and
+\eqref{eq:quantum-id},
+\begin{align*}
+  \lim_j M_j
+  &=\Tr[\Gamma^\chi(\tau)W_\gamma]\\
+  &\leq\Tr\Gamma^\chi(\tau)
+    \Tr(\tau^{(\gamma)}W_\gamma)\\
+  &\leq\Bcl(\gamma,d)\Borb(\gamma,p).
+\end{align*}
+This proves \eqref{eq:M-goal}.  Substitution into \eqref{eq:B-to-M} gives
+\[
+  \limsup_j\B(R_j,f_1\tau)^2
+  \leq
+  \bigl(\Bcl(\gamma,d)\Borb(\gamma,p)\bigr)^2.
+\]
+Taking square roots and using the F\o lner concavity bound
+\eqref{eq:concavity} proves the full specialization of Proposition C.5.
+
+\section{The orbital specialization}
+
+For $k=0$, the Euclidean space is the one-point space $\mathsf E=\{0\}$.
+The conventions in Proposition C.5 read
+\[
+  f_1=f_\gamma=\chi=1,
+  \qquad
+  c_0=1,
+  \qquad
+  \Xi_L=\mathsf Z_L.
+\]
+There is no classical integral, trace kernel, or convolution measure.  The
+F\o lner average is taken only over the displacement variable $z$, and it is
+a channel on the oscillator trace class.  Lemma C.2 therefore produces an
+exactly displacement-covariant trace-nonincreasing limit $\Gamma$ directly.
+
+Lemma C.1 and compactness of $W_\gamma$ give
+\[
+  \limsup_j\B(\Gamma_j(\tau),\tau)^2
+  \leq
+  \Tr[\Gamma(\tau)W_\gamma]\Borb(\gamma,p).
+\]
+Proposition C.3 and $\Tr\Gamma(\tau)\leq1$ then imply
+\[
+  \Tr[\Gamma(\tau)W_\gamma]
+  \leq\Tr(\tau^{(\gamma)}W_\gamma)
+  =\Borb(\gamma,p).
+\]
+Thus the flat-prior fidelity is at most $\Borb(\gamma,p)$.  This is exactly
+the $k=0$ branch of Proposition C.5.  In particular, Lemma C.4 is needed only
+for the $k=d-1$ branch, where it supplies the additional factor
+$\Bcl(\gamma,d)$.
+
+\section{Why the classical and quantum factors multiply}
+
+In the full case, the proof does not assume that the competing channel
+factors.  Instead, factorization emerges at the level of witnesses:
+\begin{itemize}
+  \item $\chi$ is the square-root likelihood ratio for the two classical
+  Gaussian covariances;
+  \item $W_\gamma$ is the square-root likelihood-ratio observable for the two
+  thermal laws;
+  \item Lemma C.1 separates the channel-dependent moment from the two fixed
+  inverse-witness integrals;
+  \item Lemma C.4 bounds the trace available to the quantum moment by the
+  classical affinity $\Bcl$;
+  \item Proposition C.3 bounds the normalized quantum moment by the orbital
+  affinity $\Borb$.
+\end{itemize}
+Thus any classical--quantum coupling is already included in the single
+moment $M_j$, yet the covariance constraints force that moment to pay both
+losses.
+
+\section{Common points of confusion}
 
 \begin{enumerate}
-  \item If $\mu=\delta_0$, then
-  \[
-    \mathcal R(u)(E)=\int u(x)\mathbf1_E(\sqrt\gamma x)\dd x,
-  \]
-  so for $X\sim u(x)\dd x$ the output variable is
-  $Y=\sqrt\gamma X$.
-  \item If $\mu$ is a probability measure and $Z\sim\mu$ is independent of
-  $X$, then the output measure $\mathcal R(u)$ is the law of
-  $Y=\sqrt\gamma X+Z$.
-  \item If $\mu(\Hc)=c<1$, then $\mathcal R(u)$ is a subprobability measure
-  of mass $c$ for every normalized $u$; in the failure-point representation,
-  the output lies in $\Hc$ with probability $c$ and equals $\partial$ with
-  probability $1-c$.
+  \item The compact-limit lemma alone gives
+  $\Tr\Gamma^\chi(X)\leq\|\chi\|_\infty\Tr X$, which is not enough for
+  Proposition C.3.  The scalar convolution calculation is what improves the
+  coefficient to $\Bcl\leq1$.
+  \item Two different compactness arguments are used.  Lemma C.2 treats
+  quantum maps through compact operators, while the diagonal extraction of
+  $\mathcal R_j$ treats classical finite measures through $C_0(\Hc)$.
+  \item Compactness of $W_\gamma$ passes the quantum moment to the limit;
+  membership $\chi\in C_0(\Hc)$ passes the classical weighted trace to the
+  limit.  These are parallel requirements.
+  \item The noise measure $\mu$ need not be normalized or absolutely
+  continuous.  The estimate uses only positivity and
+  $\mu(\Hc)\leq1$.
 \end{enumerate}
 
-No density for $\mu$ is required.  The noise may have atoms or a singular
-part, which is important because weak-* limits of absolutely continuous
-output measures need not remain absolutely continuous.
+\section{Role in the paper}
 
-\section{Role in Proposition C.6}
-
-In the hybrid converse, $\mathcal R$ is the limiting classical trace kernel
-of F\o lner-averaged hybrid channels.  Lemma C.5 isolates all its freedom in
-the one measure $\mu$.  The classical Gaussian witness then yields
+The two specializations of Proposition C.5 provide the upper bounds for both
+parts of the Gaussian amplification theorem.  Quantum-limited amplification
+attains $\Borb(\gamma,p)$ in the orbital model.  Classical dilation combined
+with quantum-limited amplification attains
 \[
-  \int c_\gamma(r)\,\mu(\dd r)
-  \leq B_{\mathrm{cl}}(\gamma,d)\mu(\Hc)
-  \leq B_{\mathrm{cl}}(\gamma,d).
+  \Buniv(\gamma,p)
+  =\Bcl(\gamma,d)\Borb(\gamma,p)
 \]
-That bound controls the trace of the weighted quantum limit and supplies the
-classical factor in the final hybrid fidelity bound.
+in the full model.  LAN fidelity transfer carries the orbital converse to
+known-spectrum cloning and the full converse to unknown-spectrum cloning,
+where the additional classical penalty appears.
 
 \end{document}

@@ -1,0 +1,235 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=teal,urlcolor=teal]{hyperref}
+
+\newcommand{\T}{\mathcal T_1}
+\newcommand{\F}{\mathcal F_{\mathrm{orb}}}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\dd}{\,\mathrm d}
+\newcommand{\B}{\mathrm B}
+
+\newtheorem*{lemmaC}{Lemma C.1 (rephrased)}
+
+\title{A Short Guide to Lemma C.1\\
+\large Weighted root-fidelity bounds}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Lemma C.1 converts root fidelity into a product of weighted moments.  Its
+first part is an operator inequality.  Its second part combines that
+inequality with classical Cauchy--Schwarz for a classical--quantum state.
+The weights used later are chosen so that one moment is compact and can pass
+to a weak limit, while the remaining factors are exactly the classical and
+orbital Gaussian affinities.  This note explains the regularized inverse,
+the two Cauchy--Schwarz steps, and the role of the lemma in Proposition C.5.
+\end{abstract}
+
+\section{Why a weighted bound is useful}
+
+For positive trace-class operators $R$ and $T$, their root fidelity is
+\[
+  \B(R,T)=\|R^{1/2}T^{1/2}\|_1.
+\]
+Appendix C must control this nonlinear quantity along sequences that converge
+only after testing against compact observables.  Fidelity itself is not one
+of those linear tests.  Lemma C.1 replaces it by a moment
+\[
+  R\longmapsto\Tr(RW)
+\]
+for a bounded positive compact operator $W$.  This moment does pass to the
+limit supplied by Lemma C.2.
+
+The inverse weight is paid on the fixed target:
+\[
+  \B(R,T)^2
+  \leq \Tr(RW)\Tr(TW^{-1}).
+\]
+Thus $W$ should make the first factor continuous in the available topology
+and the second factor explicitly computable.  The witness $W_\gamma$ used in
+Appendix C has exactly these two properties.
+
+\section{The regularized inverse}
+
+The weight $W$ is bounded, positive, and injective, but it need not be
+bounded below.  Its inverse may therefore be unbounded.  The expression
+$\Tr(TW^{-1})$ is defined through bounded regularizations:
+\begin{equation}\label{eq:inverse-definition}
+  \Tr(TW^{-1})
+  :=\lim_{\varepsilon\downarrow0}
+  \Tr\bigl(T(W+\varepsilon I)^{-1}\bigr).
+\end{equation}
+As $\varepsilon$ decreases, the positive operators
+$(W+\varepsilon I)^{-1}$ increase in the spectral order.  Hence the limit
+exists in $[0,\infty]$.  The operator inequality is useful when this limit is
+finite.
+
+Injectivity rules out a genuine zero eigenspace.  It does not make $W^{-1}$
+bounded, and that is why the definition in \eqref{eq:inverse-definition} is
+needed.  For the later thermal witness, the eigenvalues of $W_\gamma$ tend to
+zero, so this distinction is essential.
+
+\section{Statement of Lemma C.1}
+
+\begin{lemmaC}
+Let $R,T$ be positive trace-class operators, and let $W$ be bounded,
+positive, and injective.  If \eqref{eq:inverse-definition} is finite, then
+\begin{equation}\label{eq:quantum-bound}
+  \B(R,T)^2\leq\Tr(RW)\Tr(TW^{-1}).
+\end{equation}
+
+Let $\mathsf E$ be a Euclidean space, let
+$R\in L^1(\mathsf E;\T(\F))$ be positive, let $g$ be a probability density,
+and let $\chi>0$ be measurable.  Whenever the right side is finite,
+\begin{equation}\label{eq:hybrid-bound}
+  \B(R,gT)^2
+  \leq
+  \left(\int_{\mathsf E}\chi(y)\Tr[R(y)W]\dd y\right)
+  \left(\int_{\mathsf E}\frac{g(y)}{\chi(y)}\dd y\right)
+  \Tr(TW^{-1}).
+\end{equation}
+\end{lemmaC}
+
+The notation $gT$ means the classical--quantum density
+$y\mapsto g(y)T$.  When $\dim\mathsf E=0$, the classical integrals reduce to
+evaluation at the unique point, and \eqref{eq:hybrid-bound} becomes
+\eqref{eq:quantum-bound}.
+
+\section{Proof walkthrough}
+
+\subsection*{Step 1: insert a bounded inverse}
+
+Set
+\[
+  W_\varepsilon=W+\varepsilon I.
+\]
+This operator is strictly positive and has a bounded inverse.  Insert
+$W_\varepsilon^{1/2}W_\varepsilon^{-1/2}=I$ between the two square roots:
+\[
+  R^{1/2}T^{1/2}
+  =R^{1/2}W_\varepsilon^{1/2}
+   W_\varepsilon^{-1/2}T^{1/2}.
+\]
+Schatten Cauchy--Schwarz, namely
+$\|AB\|_1\leq\|A\|_2\|B\|_2$, gives
+\begin{align}
+  \B(R,T)
+  &\leq
+  \|R^{1/2}W_\varepsilon^{1/2}\|_2
+  \|W_\varepsilon^{-1/2}T^{1/2}\|_2,\notag\\
+  \B(R,T)^2
+  &\leq
+  \Tr(RW_\varepsilon)
+  \Tr(TW_\varepsilon^{-1}).
+  \label{eq:regularized-bound}
+\end{align}
+The identities in the second line follow from the definition of the
+Hilbert--Schmidt norm and cyclicity of the trace.
+
+\subsection*{Step 2: remove the regularization}
+
+The first factor in \eqref{eq:regularized-bound} satisfies
+\[
+  \Tr(RW_\varepsilon)=\Tr(RW)+\varepsilon\Tr R
+  \longrightarrow\Tr(RW).
+\]
+The second factor converges by the definition of $\Tr(TW^{-1})$.  Letting
+$\varepsilon\downarrow0$ proves \eqref{eq:quantum-bound}.
+
+\subsection*{Step 3: apply the operator bound pointwise}
+
+For classical--quantum positive densities, root fidelity decomposes over the
+classical variable.  Since the target density is $g(y)T$,
+\[
+  \B(R,gT)
+  =\int_{\mathsf E}\sqrt{g(y)}\,\B(R(y),T)\dd y.
+\]
+Apply \eqref{eq:quantum-bound} to $R(y)$ and $T$:
+\[
+  \B(R(y),T)
+  \leq
+  \sqrt{\Tr[R(y)W]}
+  \sqrt{\Tr(TW^{-1})}.
+\]
+The target factor is independent of $y$, so
+\begin{equation}\label{eq:before-classical-CS}
+  \B(R,gT)
+  \leq
+  \sqrt{\Tr(TW^{-1})}
+  \int_{\mathsf E}
+  \sqrt{g(y)\Tr[R(y)W]}\dd y.
+\end{equation}
+
+\subsection*{Step 4: split the classical weight}
+
+Insert $\chi(y)^{1/2}\chi(y)^{-1/2}$ into the integrand in
+\eqref{eq:before-classical-CS}:
+\[
+  \sqrt{g(y)\Tr[R(y)W]}
+  =\sqrt{\chi(y)\Tr[R(y)W]}
+   \sqrt{\frac{g(y)}{\chi(y)}}.
+\]
+Ordinary Cauchy--Schwarz on $\mathsf E$ gives
+\begin{align*}
+ &\left(\int_{\mathsf E}
+  \sqrt{g(y)\Tr[R(y)W]}\dd y\right)^2\\
+ &\qquad\leq
+ \left(\int_{\mathsf E}\chi(y)\Tr[R(y)W]\dd y\right)
+ \left(\int_{\mathsf E}\frac{g(y)}{\chi(y)}\dd y\right).
+\end{align*}
+Combining this with \eqref{eq:before-classical-CS} proves
+\eqref{eq:hybrid-bound}.
+
+\section{The witnesses used in Proposition C.5}
+
+For the oscillator component, Appendix C takes
+\[
+  W_\gamma
+  =\sum_{\mathbf k}
+  \sqrt{\frac{t_{\mathbf k}}{t_{\mathbf k}^{(\gamma)}}}
+  |\mathbf k\rangle\!\langle\mathbf k|.
+\]
+It is compact and injective, and it satisfies
+\[
+  \Tr(\tau_pW_\gamma^{-1})
+  =\Tr(\tau_p^{(\gamma)}W_\gamma)
+  =B_{\mathrm{orb}}(\gamma,p).
+\]
+For the full classical--quantum case, the classical weight is
+\[
+  \chi(y)=\sqrt{\frac{f_1(y)}{f_\gamma(y)}},
+  \qquad
+  \int_{\mathsf E}\frac{f_1(y)}{\chi(y)}\dd y
+  =B_{\mathrm{cl}}(\gamma,d).
+\]
+Thus Lemma C.1 turns fidelity into one channel-dependent compact moment and
+two fixed affinity factors.  Proposition C.3 bounds the quantum moment,
+while Lemma C.4 controls the trace available to it in the full case.  For
+the orbital case, $\mathsf E=\{0\}$ and $\chi=1$, so the classical factor is
+absent.
+
+\section{Points worth keeping straight}
+
+\begin{enumerate}
+  \item The inverse of $W$ need not be bounded.  Only its regularized
+  expectation in the fixed target must be finite.
+  \item Compactness of $W$ is not required for Lemma C.1 itself.  It is
+  required later to pass the moment through the compact-observable limit.
+  \item Two different Cauchy--Schwarz inequalities are used: Schatten
+  Cauchy--Schwarz for operators and ordinary Cauchy--Schwarz for the
+  classical variable.
+  \item The same statement covers the orbital case by taking the classical
+  Euclidean space to have dimension zero.
+\end{enumerate}
+
+\end{document}
