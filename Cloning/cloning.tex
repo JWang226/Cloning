@@ -225,7 +225,10 @@ Since \(Y(z)^*=-Y(z)\), one has \(g_{n,z}\in\U(d)\).  For \(L>0\), set
   \|h\|_\infty\le L,\
   |\Re z_{ij}|,|\Im z_{ij}|\le L\ \text{for all }i<j\right\}
 \]
-and, for all sufficiently large \(n\),
+For every fixed \(p\in\Delta_d^\circ\) and \(L>0\), the vector
+\(p+h/\sqrt n\) belongs to \(\Delta_d^\circ\) for every
+\((h,z)\in\Omega_L\) once \(n\) is sufficiently large.  For those \(n\),
+set
 \[
   v_{n,L}(p)
   =\sup_{\cM_n}\inf_{(h,z)\in\Omega_L}
@@ -246,16 +249,11 @@ For every \(p\in\Delta_d^\circ\),
 \]
 \end{theorem}
 
-Write \(\operatorname{int}_{\mathsf H}K\) for the interior of a subset
-\(K\) of the probability hyperplane \(\{x\in\R^d:\sum_i x_i=1\}\), with
-respect to that hyperplane.
-
 \begin{theorem}[Compact-set global minimax value]
 \label{thm:compact-global-unknown}
-Let \(K\Subset\Delta_d^\circ\) be nonempty and satisfy
-\[
-  K=\overline{\operatorname{int}_{\mathsf H}K}.
-\]
+Let \(K\Subset\Delta_d^\circ\) be nonempty and equal the closure of its
+interior taken in the probability hyperplane
+\(\{x\in\R^d:\sum_i x_i=1\}\).
 Then
 \begin{equation}\label{eq:compact-global-value}
   \lim_{n\to\infty}
@@ -423,31 +421,43 @@ Define
 \]
 
 \begin{lemma}[Uniform Young concentration]\label{lem:young-concentration}
-For every compact \(K\Subset\Delta_d^\circ\), there is \(c_K>0\) such that
+There is a constant \(c_d>0\), depending only on \(d\), such that for every
+compact \(K\Subset\Delta_d^\circ\),
 \[
   \sup_{p\in K}P_{N,p}(\mathsf T_N(p)^c)
-  \le e^{-c_K N^{1/3}}
+  \le e^{-c_d N^{1/3}}
 \]
 for all sufficiently large \(N\).
 \end{lemma}
 
 \begin{proof}
-Writing \(q=\lambda/N\), the finite-\(N\) Keyl--Werner estimate gives the
-concrete bound \cite{KeylWerner2001Spectrum}
-\[
+Write \(q=\lambda/N\).  The Weyl dimension formula gives
+\(\dim\cH_\lambda\le(N+1)^{d(d-1)/2}\).  Every weight \(\xi\) of
+\(\cH_\lambda\) has \(\lambda-\xi\) equal to a nonnegative integral
+combination of positive roots.  Since \(p_j/p_i<1\) for \(i<j\), this gives
+\(p^\xi\le p^\lambda\).  Hence
+\(s_\lambda(p)\le \dim\cH_\lambda\,p^\lambda\).
+The standard bounds
+\(\dim\cS_\lambda\le\binom{N}{\lambda_1,\ldots,\lambda_d}\) and
+\(\binom{N}{\lambda_1,\ldots,\lambda_d}p^\lambda
+\le \exp[-ND(q\|p)]\) give
+\begin{equation}\label{eq:finite-Young-large-deviation}
   P_{N,p}(\lambda)
-  \le (N+1)^{d(d-1)/2}\exp[-ND(q\|p)].
-\]
-Moreover, there are at most \((N+1)^{d-1}\) partitions of \(N\) with at most
-\(d\) rows.  If \(\lambda\notin\mathsf T_N(p)\), then
+  \le (N+1)^{d(d-1)/2}\exp[-ND(q\|p)],
+\end{equation}
+which is the finite-sample estimate underlying the Keyl--Werner spectrum
+large-deviation theorem \cite{KeylWerner2001Spectrum}.
+
+There are at most \((N+1)^{d-1}\) partitions of \(N\) with at most \(d\)
+rows.  If \(\lambda\notin\mathsf T_N(p)\), then
 \(\|q-p\|_1>N^{-1/3}\), and Pinsker's inequality gives
-\(D(q\|p)\ge\tfrac12N^{-2/3}\).  Thus
+\(D(q\|p)\ge\tfrac12N^{-2/3}\).  Therefore
 \[
   P_{N,p}(\mathsf T_N(p)^c)
   \le (N+1)^{d(d-1)/2+d-1}e^{-N^{1/3}/2}.
 \]
-Since \(N(N^{-1/3})^2=N^{1/3}\) and polynomial factors are
-\(e^{o(N^{1/3})}\), this proves the claim.
+For all sufficiently large \(N\), the polynomial factor is at most
+\(e^{N^{1/3}/4}\).  Hence the asserted bound holds with \(c_d=1/4\).
 \end{proof}
 
 \subsection{Cartan-sector channel and lifting of a label kernel}
@@ -463,8 +473,7 @@ occurs with multiplicity one in \(\cH_\lambda\ot\cH_\theta\).  Let
 \end{equation}
 be the normalized intertwining isometry.  For \(\mu\in\mathsf Y_n\) and
 \(\nu\in\mathsf Y_m\), write \(\nu-\mu\vdash m-n\) when the coordinatewise
-difference \(\nu-\mu\) is a partition of \(m-n\).  Equivalently, it is a
-nonnegative dominant integral weight.  If this holds, put
+difference \(\nu-\mu\) is a partition of \(m-n\).  If this holds, put
 \(\omega=\nu-\mu\) and define
 \begin{equation}\label{eq:sector-channel-formula}
   \cC_{\mu,\nu}(X)
@@ -479,9 +488,11 @@ scalar multiple of the identity.  Taking its trace determines the scalar:
   \Tr_{\cH_\omega}(V_{\mu,\omega}V_{\mu,\omega}^*)
   =\frac{\dim\cH_\nu}{\dim\cH_\mu}I_{\cH_\mu}.
 \]
-Substitution in \eqref{eq:sector-channel-formula} shows that
-\(\cC_{\mu,\nu}\) is trace preserving.  It is \(\U(d)\)-covariant by
-intertwining.
+The map in \eqref{eq:sector-channel-formula} is completely positive,
+since it is the composition of \(X\mapsto X\ot I_{\cH_\omega}\) with
+compression by \(V_{\mu,\omega}\), followed by multiplication by a positive
+scalar.  The displayed partial-trace identity shows that it is trace
+preserving.  Intertwining gives \(\U(d)\)-covariance.
 
 For every pair \((\mu,\nu)\in\mathsf Y_n\times\mathsf Y_m\), define a
 covariant channel \(\cE_{\mu,\nu}:\cT_1(\cH_\mu)\to\cT_1(\cH_\nu)\) by
@@ -497,8 +508,10 @@ Let \(K_n(\nu\mid\mu)\) be any Markov kernel from \(\mathsf Y_n\) to
 denoted by \(\mathcal Q_n[K_n]\): apply the Schur transform, measure
 \(\mu\), discard the input Specht factor, sample \(\nu\) from
 \(K_n(\cdot\mid\mu)\), apply \(\cE_{\mu,\nu}\), adjoin
-\(I_{\cS_\nu}/\dim\cS_\nu\), and apply the inverse Schur transform.  This
-channel is \(\U(d)\)-covariant.
+\(I_{\cS_\nu}/\dim\cS_\nu\), and apply the inverse Schur transform.  Each
+step is completely positive and trace preserving, so their composition is a
+channel.  Because the label measurement and sampling are invariant and every
+branch map is covariant, \(\mathcal Q_n[K_n]\) is \(\U(d)\)-covariant.
 
 \begin{proposition}[Fidelity of a lifted label kernel]
 \label{prop:lifted-kernel-bound}
@@ -884,8 +897,10 @@ deterministic classical map \(x\mapsto\sqrt\gamma x\).  This sends
   \left(\frac{2\sqrt\gamma}{1+\gamma}\right)^{(d-1)/2}
   =\Bcl(\gamma,d).
 \]
-Multiplicativity gives \(\Buniv(\gamma,p)\).  The matching upper bounds are
-proved together in \cref{prop:flat-prior-upper}.
+Multiplicativity gives \(\Buniv(\gamma,p)\).  Both constructions have
+these fidelities for every parameter value and every \(L\).  The matching
+upper bounds are proved together in \cref{prop:flat-prior-upper}, so the two
+limits in the theorem exist and have the stated values.
 \end{proof}
 
 \subsection{Local asymptotic normality}
@@ -905,14 +920,16 @@ Then \(L_p\) is invertible and
 \begin{equation}\label{eq:LAN-coordinate-map}
   X_p(L_p^{-1}z)=Y(z).
 \end{equation}
-With the Weyl convention \eqref{eq:Weyl-convention},
-\cite[Eqs.~(4.4) and~(4.19)]{KahnGuta2009LANFiniteDimensional} assigns the
-\((j,k)\)-mode displacement \((L_p\zeta)_{jk}\) to the physical unitary
-generated by \(X_p(\zeta)\).  Thus the oscillator coordinate is
-\(z=L_p\zeta\).  Since \(L_p\) is linear, scaling the physical coordinate by
-\(\sqrt\gamma\) scales the oscillator coordinate by the same factor.
+In the convention of
+\cite[Eqs.~(4.4) and~(4.19)]{KahnGuta2009LANFiniteDimensional}, the physical
+unitary generated by \(X_p(\zeta)\) produces the oscillator state
+\(W(w)^*\tau W(w)\), where \(W\) denotes their Weyl operator and
+\(w_{jk}=\zeta_{jk}/(2\sqrt{p_j-p_k})\).  Since our convention is
+\(D(z)\tau D(z)^*\) with \(D=W\), the corresponding coordinate is
+\(z=-w=L_p\zeta\).  Linearity of \(L_p\) implies that multiplication of the
+physical coordinate by \(\sqrt\gamma\) multiplies \(z\) by the same factor.
 
-\begin{theorem}[Finite-dimensional LAN; Kahn--Gu\c{t}\u{a}]
+\begin{theorem}[Finite-dimensional LAN and target-sample scaling]
 \label{thm:LAN-full}
 Fix \(p\in\Delta_d^\circ\).  There are channels
 \[
@@ -949,16 +966,18 @@ such that, for every compact
 \end{theorem}
 
 \begin{proof}
-The first two assertions are
+The forward and reverse assertions
+\eqref{eq:LAN-full-forward}--\eqref{eq:LAN-full-reverse} are
 \cite[Theorem~4.3]{KahnGuta2009LANFiniteDimensional}, after identifying their
 \((d-1)\)-dimensional spectral coordinate with \(\mathsf H\) and applying
 the coordinate change \eqref{eq:LAN-coordinate-map}.  Under this linear
 identification, their classical covariance is \(\Sigma_p\), and their
-oscillator state is \(\Phi_z^{(p)}\).  Their Schr\"odinger-picture maps are
-normal channels on the trace-class and classical--quantum \(L^1\) spaces
-shown above.
+oscillator state is \(\Phi_z^{(p)}\).  Their Schr\"odinger-picture maps are completely positive and trace
+preserving on the trace-class and classical--quantum \(L^1\) spaces shown
+above.
 
-For the third assertion, the identity
+The target-sample assertion \eqref{eq:LAN-full-target} is a consequence
+of the first assertion.  Indeed, the identity
 \[
   \rho_{p,h,z}^{(n)}
   =\rho_{p,\sqrt{\gamma_n}h,\sqrt{\gamma_n}z}^{(m_n)}
@@ -1133,16 +1152,16 @@ Let \(w_n(K)\) be the finite-\(n\) minimax value on the left of
   \liminf_{n\to\infty}w_n(K)
   \ge\inf_{p\in K}\Buniv(\gamma,p).
 \]
-For the reverse inequality, fix
-\(p_0\in\operatorname{int}_{\mathsf H}K\).  For every fixed \(L\), all local
+For the reverse inequality, fix \(p_0\) in the interior of \(K\) relative
+to the probability hyperplane.  For every fixed \(L\), all local
 spectra \(p_0+h/\sqrt n\), \((h,z)\in\Omega_L\), lie in \(K\) for
 sufficiently large \(n\).  Thus \(w_n(K)\le v_{n,L}(p_0)\).  Letting first
 \(n\to\infty\) and then \(L\to\infty\), \cref{thm:unknown-local} gives
 \[
   \limsup_{n\to\infty}w_n(K)\le\Buniv(\gamma,p_0).
 \]
-Take the infimum over \(\operatorname{int}_{\mathsf H}K\).  Its closure is
-\(K\), and \(\Buniv(\gamma,\cdot)\) is continuous, so the resulting upper
+Take the infimum over this relative interior.  Its closure is \(K\), and
+\(\Buniv(\gamma,\cdot)\) is continuous, so the resulting upper
 bound is \(\inf_{p\in K}\Buniv(\gamma,p)\).
 \end{proof}
 
@@ -1255,12 +1274,19 @@ quoted full-rank random-purification guarantee has a linear loss.
 \paragraph{Outlook.}
 Natural extensions include quantitative finite-\(n\) bounds, degenerate or
 rank-deficient spectra, a finite-dimensional covariant converse, and
-efficient implementation of the Cartan intertwiners.  The exact
-associativity of Cartan inclusions also factors every sector channel into
-column-addition channels; controlling a long product of these elementary
-steps may provide quantitative estimates.  Degenerate and boundary spectra
-require separate analysis because stabilizers appear and some oscillator
-modes disappear.
+efficient implementation of the Cartan intertwiners.  Associativity of the
+normalized Cartan inclusions gives, whenever \(\omega_1,\omega_2\) are
+partitions,
+\[
+  \cC_{\mu+\omega_1,\,\mu+\omega_1+\omega_2}
+  \circ\cC_{\mu,\,\mu+\omega_1}
+  =\cC_{\mu,\,\mu+\omega_1+\omega_2}.
+\]
+Decomposing a partition into columns therefore factors every sector channel
+into column-addition channels.  Controlling a long product of these
+channels may provide quantitative estimates.  Degenerate and boundary
+spectra require separate analysis because stabilizers appear and some
+oscillator modes disappear.
 
 \appendix
 \section{Exact-weight PBW calculation of the sector fidelity}
@@ -1458,9 +1484,11 @@ For the remainder of the appendix, index the number basis of
   =\sum_{\operatorname{ht}(\sum_\alpha r_\alpha\alpha)\le L}
     \proj{\mathbf r}.
 \end{equation}
-For every highest weight \(\lambda\) satisfying the gap bounds in
-\cref{lem:PBW-fixed-height}, that lemma defines an orthonormal basis
-\(e_{\mathbf r}^\lambda\) of \(\mathcal K_{\lambda,L}\).  Let
+For every fixed \(L\) and all sufficiently large \(N\), each highest
+weight \(\lambda\) satisfying the gap bounds in
+\cref{lem:PBW-fixed-height} has the orthonormal basis
+\(e_{\mathbf r}^\lambda\) of \(\mathcal K_{\lambda,L}\) constructed there.
+Define
 \begin{equation}\label{eq:finite-coordinate-unitary}
   J_{\lambda,L}:\mathcal K_{\lambda,L}\longrightarrow
   P_L^{\cF}\cF_{\mathrm{orb}},
@@ -1850,8 +1878,9 @@ For \(x\in\mathsf H\),
 \(|\mathsf C|=\sqrt d\).  A principal cofactor of
 \(\diag(p)-pp^{\mathsf T}\) is \(\prod_i p_i\), while its kernel is
 \(\operatorname{span}\{(1,\ldots,1)\}\); hence
-\(\det_{\mathsf H}\Sigma_p=d\prod_i p_i\).  Because \(\beta_0>1/2\), the term \(N^{3\beta_0-2}\) dominates the other
-two terms in the remainder.  Since \(3\beta_0-2<0\),
+\(\det_{\mathsf H}\Sigma_p=d\prod_i p_i\).  Because
+\(\beta_0>1/2\), the term \(N^{3\beta_0-2}\) dominates the other two terms
+in the remainder.  Since \(3\beta_0-2<0\),
 \[
   \frac{N^{(d-1)/2}}{|\mathsf C|}M_{N,p}(\lambda)
   =\varphi_{0,\Sigma_p}(x_\lambda)(1+o(1))
@@ -2095,11 +2124,19 @@ Put \(M=\sup_j\|\Gamma_j\|_{1\to1}\).  Choose a countable norm-dense
 \(\Gamma_j^*(K)\) lie in a weak-* compact ball of
 \(\mathcal B(\cH_0)\) for each \(K\in\mathcal D\).  This ball is
 metrizable because \(\cH_0\) is separable and \(\cT_1(\cH_0)\) is
-separable.  A diagonal subsequence converges weak-* on \(\mathcal D\).  The uniform norm bound extends the limit
-to a bounded completely positive map
-\(\Gamma^*:\mathcal K(\cH_1)\to\mathcal B(\cH_0)\).  Since
-\(\mathcal K(\cH_1)^*=\cT_1(\cH_1)\), its preadjoint defines \(\Gamma\) and
-gives \eqref{eq:compact-map-convergence}.
+separable.  A diagonal subsequence converges weak-* on \(\mathcal D\).  The uniform
+norm bound extends the limit to a bounded completely positive map
+\(\Gamma^*:\mathcal K(\cH_1)\to\mathcal B(\cH_0)\).  For each
+\(X\in\cT_1(\cH_0)\), the functional
+\[
+  K\longmapsto \Tr[X\Gamma^*(K)]
+\]
+on \(\mathcal K(\cH_1)\) is bounded.  Since
+\(\mathcal K(\cH_1)^*=\cT_1(\cH_1)\), it is represented by a unique
+trace-class operator, denoted \(\Gamma(X)\).  Positivity at every matrix
+level follows from complete positivity of \(\Gamma^*\), so \(\Gamma\) is
+completely positive, and this definition gives
+\eqref{eq:compact-map-convergence}.
 
 Let \(P_N\uparrow I\) be finite-rank projections on \(\cH_1\).  For
 \(X\ge0\), positivity and \eqref{eq:compact-map-convergence} give
@@ -2168,11 +2205,12 @@ For one mode, the trace functional has the form
 \(\Tr\Gamma(X)=\Tr(AX)\) with \(0\le A\le I\).  Displacement covariance
 implies that \(A\) commutes with every Weyl displacement.  Irreducibility
 gives \(A=cI\), \(0\le c\le1\).  If \(c>0\), then
-\(c^{-1}\Gamma\) is a phase-insensitive displacement-covariant amplifier.
-The arbitrary-gain stochastic-order theorem of
-\cite[Definition~2.2, Lemma~2.3, and Sec.~3]{GutaMatsumoto2006MixedGaussianCloning}
-states that its photon-number distribution on \(\tau_q\) is stochastically
-larger than that of the vacuum-idler amplifier:
+\(c^{-1}\Gamma\) is a trace-preserving phase-insensitive,
+displacement-covariant amplifier.  The idler representation used in
+\cite{GutaMatsumoto2006MixedGaussianCloning}, together with its
+Definition~2.2, Lemma~2.3, and arbitrary-gain extension in Sec.~3, implies
+that the photon-number distribution of \(c^{-1}\Gamma(\tau_q)\) is
+stochastically larger than that of the vacuum-idler amplifier:
 \begin{equation}\label{eq:imported-stochastic-order}
   \sum_{k=0}^m(1-q^{(\gamma)})(q^{(\gamma)})^k
   \ge\sum_{k=0}^m
@@ -2278,7 +2316,8 @@ for every \(u\in L^1(\mathsf E)\) and Borel set \(E\).
 
 \begin{proof}
 For \(\dim\mathsf E=0\), the claim is immediate.  Otherwise, choose a
-nonnegative approximate identity \(u_j\in C_c(\mathsf E)\).  A subsequence
+nonnegative approximate identity \(u_j\in C_c(\mathsf E)\) with
+\(\int u_j=1\).  A subsequence
 of \(\mathcal R(u_j)\) converges weak-* to a positive measure \(\mu\) of
 mass at most one.  Since \(u*u_j\to u\) in \(L^1\), covariance gives
 \[
@@ -2409,8 +2448,8 @@ there is an exactly displacement-covariant completely positive map
 \begin{equation}\label{eq:weighted-map-limit}
   \Tr[\Gamma_j^\chi(X)K]\longrightarrow\Tr[\Gamma^\chi(X)K]
 \end{equation}
-for every trace-class \(X\) and compact \(K\).  Since \(M_j=\Tr[\Gamma_j^\chi(\tau_p)W_\gamma]\) and
-\(W_\gamma\) is compact,
+for every trace-class \(X\) and compact \(K\).  Since
+\(M_j=\Tr[\Gamma_j^\chi(\tau_p)W_\gamma]\) and \(W_\gamma\) is compact,
 \begin{equation}\label{eq:moment-limit}
   M_j\longrightarrow\Tr[\Gamma^\chi(\tau_p)W_\gamma].
 \end{equation}
