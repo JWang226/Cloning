@@ -77,10 +77,10 @@ asymptotic minimax value on the unitary orbit is
        {\gamma+q_{ij}},
   \qquad q_{ij}=\frac{p_j}{p_i}.
 \]
-An explicit covariant Schur--Weyl channel attains this value: it samples the
-target Young label exactly and applies the multiplicity-one Cartan-sector
-channel whenever the coordinatewise output-minus-input label difference is
-a partition, an event whose probability tends to one.
+An explicit covariant Schur--Weyl channel attains this value: given \(\mu\),
+it samples \(\nu\) from the exact target Young law and applies the
+multiplicity-one Cartan-sector channel whenever \(\nu-\mu\) is a partition,
+an event whose probability tends to one.
 
 For unknown spectrum, one spectrum-independent sequence of covariant channels
 attains, uniformly on every compact subset of the strict spectral chamber,
@@ -110,11 +110,11 @@ channel solves the universal finite-dimensional problem \cite{Werner1998}.
 Here we consider mixed states of fixed finite dimension in the asymptotic
 regime \(m_n/n\to\gamma>1\).
 
-For a fixed simple spectrum, Schur--Weyl duality separates the Young label
-from an irreducible \(\U(d)\)-sector.  The output Young label can be sampled
-from its exact target distribution.  On a typical pair of input and output
-labels, the multiplicity-one Cartan inclusion defines a covariant sector
-channel.  In orthonormalized PBW coordinates on every fixed collection of
+For a fixed simple spectrum, Schur--Weyl duality separates \(\mu\) from an
+irreducible \(\U(d)\)-sector.  The target label \(\nu\) can be sampled from
+its exact distribution.  For a typical \((\mu,\nu)\), the multiplicity-one
+Cartan inclusion defines a covariant sector channel.  In orthonormalized PBW
+coordinates on every fixed collection of
 exact weight spaces, the target sector state and the sector-channel output
 have matrices converging respectively to those of a product thermal state
 and its vacuum-idler amplified state.  This gives the exact limiting sector
@@ -223,7 +223,7 @@ Since \(Y(z)^*=-Y(z)\), one has \(g_{n,z}\in\U(d)\).  For \(L>0\), set
   \Omega_L
   =\left\{(h,z)\in\mathsf H\times\C^{r_d}:
   \|h\|_\infty\le L,\
-  |\Re z_{ij}|,|\Im z_{ij}|\le L\ \text{for all }i<j\right\}
+  |\Re z_{ij}|,|\Im z_{ij}|\le L\ \text{for all }i<j\right\}.
 \]
 For every fixed \(p\in\Delta_d^\circ\) and \(L>0\), the vector
 \(p+h/\sqrt n\) belongs to \(\Delta_d^\circ\) for every
@@ -251,8 +251,8 @@ For every \(p\in\Delta_d^\circ\),
 
 \begin{theorem}[Compact-set global minimax value]
 \label{thm:compact-global-unknown}
-Let \(K\Subset\Delta_d^\circ\) be nonempty and equal the closure of its
-interior taken in the probability hyperplane
+Let \(K\Subset\Delta_d^\circ\) be nonempty and equal to the closure of
+its interior taken in the probability hyperplane
 \(\{x\in\R^d:\sum_i x_i=1\}\).
 Then
 \begin{equation}\label{eq:compact-global-value}
@@ -285,9 +285,11 @@ simplex, where the local Gaussian model changes.
 
 \paragraph{Organization.}
 \Cref{sec:schur-cartan} gives the common Schur--Cartan construction and a
-single fidelity estimate for any output-label kernel.
-\Cref{sec:label-kernels} defines the known- and unknown-spectrum kernels and
-proves both achievability statements.  \Cref{sec:gaussian-LAN} proves the
+single fidelity estimate for any
+\(K_n:\mathsf Y_n\rightsquigarrow\mathsf Y_{m_n}\).
+\Cref{sec:label-kernels} defines \(K_n^p\) and
+\(K_n^{\mathrm{rnd}}\) and proves both achievability statements.
+\Cref{sec:gaussian-LAN} proves the
 converses by Gaussian amplification and LAN.  \Cref{sec:discussion} compares
 the resulting values.  The appendices contain the fixed-height PBW proof of
 the sector fidelity, the Young local limit and randomized rounding, and the
@@ -503,8 +505,9 @@ covariant channel \(\cE_{\mu,\nu}:\cT_1(\cH_\mu)\to\cT_1(\cH_\nu)\) by
     \Tr(X)I_{\cH_\nu}/\dim\cH_\nu,&\text{otherwise}.
   \end{cases}
 \]
-Let \(K_n(\nu\mid\mu)\) be any Markov kernel from \(\mathsf Y_n\) to
-\(\mathsf Y_{m_n}\).  Its Schur--Cartan lifting is the following channel,
+Let \(K_n:\mathsf Y_n\rightsquigarrow\mathsf Y_{m_n}\), with transition
+probabilities \(K_n(\nu\mid\mu)\), be any Markov kernel.  Its Schur--Cartan
+lifting is the following channel,
 denoted by \(\mathcal Q_n[K_n]\): apply the Schur transform, measure
 \(\mu\), discard the input Specht factor, sample \(\nu\) from
 \(K_n(\cdot\mid\mu)\), apply \(\cE_{\mu,\nu}\), adjoin
@@ -519,7 +522,7 @@ Fix \(p\in\Delta_d^\circ\).  Let
 \[
   \Pi_{n,p}(\mu,\nu)=P_{n,p}(\mu)K_n(\nu\mid\mu),
   \qquad
-  Q_{n,p}(\nu)=\sum_\mu\Pi_{n,p}(\mu,\nu).
+  Q_{m_n,p}(\nu)=\sum_\mu\Pi_{n,p}(\mu,\nu).
 \]
 Suppose \(G\subset\mathsf Y_n\times\mathsf Y_{m_n}\) satisfies
 \(\nu-\mu\vdash m_n-n\) for every \((\mu,\nu)\in G\), and
@@ -533,7 +536,7 @@ for some \(b\in[0,1]\).  Then, for every \(g\in\U(d)\),
     \mathcal Q_n[K_n](\rho_{p,g}^{\ot n}),
     \rho_{p,g}^{\ot m_n}
   \right)
-  \ge b\left(B(Q_{n,p},P_{m_n,p})-\sqrt{\Pi_{n,p}(G^c)}\right).
+  \ge b\left(B(Q_{m_n,p},P_{m_n,p})-\sqrt{\Pi_{n,p}(G^c)}\right).
 \end{equation}
 \end{proposition}
 
@@ -555,14 +558,12 @@ Fix \(p\in\Delta_d^\circ\) and define
 \[
   K_n^p(\nu\mid\mu)=P_{m_n,p}(\nu).
 \]
-Thus the proposed output label is independent of the input label and has the
-exact target law.  Set
+Thus \(\nu\) is independent of \(\mu\) and has the exact target law.  Set
 \[
   \cC_n^p:=\mathcal Q_n[K_n^p].
 \]
 When \(\nu-\mu\not\vdash m_n-n\), the branch channel is the invariant
-preparation specified in \cref{sec:schur-cartan}; the output label remains
-\(\nu\).
+preparation specified in \cref{sec:schur-cartan}; the branch retains \(\nu\).
 Consequently, the output Young law of \(\cC_n^p\) is exactly
 \(P_{m_n,p}\) for every \(n\).
 
@@ -585,8 +586,8 @@ Given \(\mu\in\mathsf Y_n\), draw independent variables
   \widetilde\nu_d=m_n-\sum_{i<d}\widetilde\nu_i.
 \end{equation}
 Then \(\widetilde\nu\in\mathsf L_{m_n}\).  Let
-\(D_n(\widetilde\nu\mid\mu)\) denote its distribution.  Define a Markov
-kernel on output partitions by
+\(D_n(\widetilde\nu\mid\mu)\) denote its distribution.  Define
+\(K_n^{\mathrm{rnd}}:\mathsf Y_n\rightsquigarrow\mathsf Y_{m_n}\) by
 \begin{equation}\label{eq:rounding-kernel}
   K_n^{\mathrm{rnd}}(\nu\mid\mu)=
   \begin{cases}
@@ -657,12 +658,12 @@ An empty supremum is understood to be zero.
 
 The proposition is an intrinsic fidelity statement; it does not assert
 convergence of the entire sector channel to a Gaussian channel.  The
-finite-dimensional coordinate maps used in its proof depend on the output
-label and on a fixed height cutoff, and they are not restrictions of the LAN
-channel.  Their precise relation to fixed-spectrum LAN is stated after
+proof uses finite-dimensional coordinate maps indexed by \(\nu\) and a fixed
+height cutoff; they are not restrictions of the LAN channel.
+Their precise relation to fixed-spectrum LAN is stated after
 \cref{cor:LAN-orb}.
 
-The second estimate concerns only the output-label kernel.
+The second estimate concerns only \(K_n^{\mathrm{rnd}}\).
 
 \begin{proposition}[Randomized Young-label dilation]
 \label{prop:young-rounding}
@@ -677,15 +678,17 @@ For every compact \(K\Subset\Delta_d^\circ\) and all sufficiently large
 \(n\), if \(p\in K\) and \(\mu\in\mathsf T_n(p)\), then every
 \(\widetilde\nu\) in the support of \(D_n(\cdot\mid\mu)\) satisfies
 \(\widetilde\nu-\mu\vdash m_n-n\).  In particular,
-\(\widetilde\nu\in\mathsf Y_{m_n}\), so no replacement occurs on this
-event.
+\(\widetilde\nu\in\mathsf Y_{m_n}\) and
+\(\widetilde\nu_d\ge\mu_d>0=(\nu_n^{\mathrm{fb}})_d\), so
+\(\widetilde\nu\ne\nu_n^{\mathrm{fb}}\) and no replacement occurs.
 
-Let \(Q_{n,p}\) be the output-label law obtained by drawing
-\(\mu\sim P_{n,p}\) and then \(\nu\sim K_n^{\mathrm{rnd}}(\cdot\mid\mu)\).
+Thus \(Q_{m_n,p}(\nu):=\sum_{\mu\in\mathsf Y_n}P_{n,p}(\mu)
+K_n^{\mathrm{rnd}}(\nu\mid\mu)\), \(\nu\in\mathsf Y_{m_n}\), is the
+output-label law.
 For every compact \(K\Subset\Delta_d^\circ\),
 \begin{equation}\label{eq:rounding-label-fidelity}
   \sup_{p\in K}
-  \left|B(Q_{n,p},P_{m_n,p})-\Bcl(\gamma,d)\right|
+  \left|B(Q_{m_n,p},P_{m_n,p})-\Bcl(\gamma,d)\right|
   \longrightarrow0.
 \end{equation}
 \end{proposition}
@@ -697,7 +700,7 @@ The proofs of \cref{prop:sector-fidelity,prop:young-rounding} are given in
 By covariance, take \(g=I\).  For \(K_n^p\),
 \[
   \Pi_{n,p}(\mu,\nu)=P_{n,p}(\mu)P_{m_n,p}(\nu),
-  \qquad Q_{n,p}=P_{m_n,p}.
+  \qquad Q_{m_n,p}=P_{m_n,p}.
 \]
 Let \(G_{n,p}=\mathsf T_n(p)\times\mathsf T_{m_n}(p)\).  Young
 concentration gives \(\Pi_{n,p}(G_{n,p}^c)=o(1)\).  If
@@ -724,7 +727,7 @@ It gives \(\eta_n\to0\) such that, uniformly on \(G_{n,p}\),
   \ge\Borb(\gamma,p)-\eta_n.
 \]
 Applying \cref{prop:lifted-kernel-bound} and using
-\(B(Q_{n,p},P_{m_n,p})=1\) yields
+\(B(Q_{m_n,p},P_{m_n,p})=1\) yields
 \[
   B\!\left(\cC_n^p(\rho_p^{\ot n}),\rho_p^{\ot m_n}\right)
   \ge
@@ -760,7 +763,7 @@ It gives \(\eta_n\to0\), independent of \(p\in K\) and of the branch with
 The joint label law has bad-pair probability
 \(P_{n,p}(\mathsf T_n(p)^c)\), and
 \eqref{eq:rounding-label-fidelity} gives
-\(B(Q_{n,p},P_{m_n,p})=\Bcl(\gamma,d)+o(1)\) uniformly on \(K\).
+\(B(Q_{m_n,p},P_{m_n,p})=\Bcl(\gamma,d)+o(1)\) uniformly on \(K\).
 Applying \cref{prop:lifted-kernel-bound} therefore gives
 \[
 \begin{aligned}
@@ -769,7 +772,7 @@ Applying \cref{prop:lifted-kernel-bound} therefore gives
   &\ge
   \bigl(\Borb(\gamma,p)-\eta_n\bigr)
   \left(
-    B(Q_{n,p},P_{m_n,p})
+    B(Q_{m_n,p},P_{m_n,p})
     -\sqrt{P_{n,p}(\mathsf T_n(p)^c)}
   \right)\\
   &=\Buniv(\gamma,p)-o(1),
@@ -1201,11 +1204,16 @@ root fidelity
        {\binom{m+D-1}{D-1}}
   \right)^{1/2}.
 \]
-Theorem~S3.1 of \cite{LiTheilHarrowChuang2026} bounds the infidelity
-\(1-F_{\mathrm{all}}\), where \(F_{\mathrm{all}}\) is squared Uhlmann
-fidelity; because its target is pure, \(F_{\mathrm{all}}\) is the target
-overlap.  Taking the square root, their random-purification and
-pure-state-cloning guarantee for rank \(r\), in our convention, is
+Theorem~S3.1 of \cite{LiTheilHarrowChuang2026} proves, for rank-\(r\)
+inputs, the all-output lower bound
+\[
+  F_{\mathrm{all}}^*
+  \ge
+  \frac{\binom{n+dr-1}{dr-1}}
+       {\binom{m+dr-1}{dr-1}}
+\]
+in its squared-Uhlmann-fidelity convention.  Therefore the corresponding
+root-fidelity guarantee is
 \[
   \left(
   \frac{\binom{n+dr-1}{dr-1}}
@@ -1213,8 +1221,9 @@ pure-state-cloning guarantee for rank \(r\), in our convention, is
   \right)^{1/2}
   \longrightarrow\gamma^{-(dr-1)/2}.
 \]
-This is a guarantee on a larger universal rank-\(r\) model, not an exact
-formula for that channel on a fixed orbit.
+The cited lower bound is obtained by applying a pure-state cloner on a
+\(dr\)-dimensional purification space.  It is a guarantee for a larger
+universal rank-\(r\) model, not an exact fixed-orbit cloning value.
 
 For \(0<q<1\), \(b_\gamma(q)>\gamma^{-1/2}\).  Indeed, after multiplying by
 the positive denominator and cancelling \(\sqrt\gamma\), the inequality is
@@ -1929,16 +1938,16 @@ which tends uniformly to zero.  Combine this with
 
 \begin{lemma}[Continuous limit of randomized dilation]
 \label{lem:randomized-dilation}
-Let \(\widetilde Q_{n,p}=P_{n,p}D_n\) be the rounded label law before the
+Let \(\widetilde Q_{m_n,p}=P_{n,p}D_n\) be the rounded label law before the
 replacement in \eqref{eq:rounding-kernel}.  For every compact
 \(K\Subset\Delta_d^\circ\),
 \begin{align}
   \sup_{p\in K}
-  \left\|\mathcal E_{m_n,p}\widetilde Q_{n,p}
+  \left\|\mathcal E_{m_n,p}\widetilde Q_{m_n,p}
   -\varphi_{0,\gamma\Sigma_p}\right\|_1&\longrightarrow0,
   \label{eq:rounded-density-limit}\\
   \sup_{p\in K}
-  \left|B(\widetilde Q_{n,p},P_{m_n,p})-\Bcl(\gamma,d)\right|
+  \left|B(\widetilde Q_{m_n,p},P_{m_n,p})-\Bcl(\gamma,d)\right|
   &\longrightarrow0.
   \label{eq:raw-rounded-affinity}
 \end{align}
@@ -1960,7 +1969,7 @@ multiplication by \(\sqrt{\gamma_n}\) in central-limit coordinates, and
 \eqref{eq:cell-kernel} records the target cell containing the dilated point.
 Hence
 \begin{equation}\label{eq:rounding-intertwining}
-  \mathcal E_{m_n,p}\widetilde Q_{n,p}
+  \mathcal E_{m_n,p}\widetilde Q_{m_n,p}
   =\operatorname{Av}_{m_n,p}\operatorname{dil}_{\gamma_n}
    (\mathcal E_{n,p}P_{n,p}).
 \end{equation}
@@ -1981,7 +1990,7 @@ uniformly in \(L^1\).  The embedding preserves Hellinger affinity, and
 \eqref{eq:fidelity-continuity} also holds for nonnegative \(L^1\) densities.
 Therefore
 \[
-  B(\widetilde Q_{n,p},P_{m_n,p})
+  B(\widetilde Q_{m_n,p},P_{m_n,p})
   \longrightarrow
   B(\mathsf N_{0,\gamma\Sigma_p},\mathsf N_{0,\Sigma_p})
   =\Bcl(\gamma,d)
@@ -2099,7 +2108,7 @@ Cauchy--Schwarz in \(y\) after inserting
 \label{lem:compact-cp-limit}
 Let \(\cH_0,\cH_1\) be separable Hilbert spaces and let
 \(\Gamma_j:\cT_1(\cH_0)\to\cT_1(\cH_1)\) be completely positive maps with
-uniformly bounded trace-norm operator norms.  There are a subsequence and a
+uniformly bounded trace-norm operator norms.  There exist a subsequence and a
 completely positive map \(\Gamma\) such that
 \begin{equation}\label{eq:compact-map-convergence}
   \Tr[\Gamma_j(X)K]\longrightarrow\Tr[\Gamma(X)K]
@@ -2118,24 +2127,36 @@ Then \(\Gamma(U_gXU_g^*)=V_g\Gamma(X)V_g^*\).
 \end{lemma}
 
 \begin{proof}
-Put \(M=\sup_j\|\Gamma_j\|_{1\to1}\).  Choose a countable norm-dense
-\(\mathbb Q(\mathrm i)\)-linear \(*\)-subspace
-\(\mathcal D\subset\mathcal K(\cH_1)\).  The adjoints
-\(\Gamma_j^*(K)\) lie in a weak-* compact ball of
-\(\mathcal B(\cH_0)\) for each \(K\in\mathcal D\).  This ball is
-metrizable because \(\cH_0\) is separable and \(\cT_1(\cH_0)\) is
-separable.  A diagonal subsequence converges weak-* on \(\mathcal D\).  The uniform
-norm bound extends the limit to a bounded completely positive map
-\(\Gamma^*:\mathcal K(\cH_1)\to\mathcal B(\cH_0)\).  For each
-\(X\in\cT_1(\cH_0)\), the functional
+Put \(M=\sup_j\|\Gamma_j\|_{1\to1}\).  Fix an orthonormal basis of
+\(\cH_1\), and let \(\mathcal D\subset\mathcal K(\cH_1)\) be the
+countable norm-dense \(\mathbb Q(\mathrm i)\)-\(*\)-algebra of
+finite matrices with entries in \(\mathbb Q(\mathrm i)\) in that basis.
+For each \(K\in\mathcal D\), the adjoints \(\Gamma_j^*(K)\) lie in a
+weak-* compact ball of \(\mathcal B(\cH_0)\).  This ball is metrizable
+because \(\cH_0\) is separable and \(\cT_1(\cH_0)\) is separable.  A
+diagonal subsequence therefore converges weak-* on \(\mathcal D\).  The
+bound \(\|\Gamma_j^*(K)\|\le M\|K\|\) extends the pointwise limit
+uniquely to a bounded complex-linear map
+\[
+  \Gamma^*:\mathcal K(\cH_1)\longrightarrow\mathcal B(\cH_0).
+\]
+This extension is completely positive.  Indeed, fix \(r\) and a positive
+\(A\in M_r(\mathcal K(\cH_1))\).  Approximate \(A^{1/2}\) in norm by
+matrices \(B_\ell\in M_r(\mathcal D)\).  Then
+\(A_\ell=B_\ell^*B_\ell\to A\), and weak-* convergence of the entries,
+together with complete positivity of every \(\Gamma_j^*\), gives
+\(\Gamma^{*(r)}(A_\ell)\ge0\).  Norm continuity and
+\(A_\ell\to A\) imply \(\Gamma^{*(r)}(A)\ge0\).
+
+For each \(X\in\cT_1(\cH_0)\), the functional
 \[
   K\longmapsto \Tr[X\Gamma^*(K)]
 \]
 on \(\mathcal K(\cH_1)\) is bounded.  Since
 \(\mathcal K(\cH_1)^*=\cT_1(\cH_1)\), it is represented by a unique
-trace-class operator, denoted \(\Gamma(X)\).  Positivity at every matrix
-level follows from complete positivity of \(\Gamma^*\), so \(\Gamma\) is
-completely positive, and this definition gives
+trace-class operator, denoted \(\Gamma(X)\).  Applying the preceding
+matrix-level positivity through this duality shows that \(\Gamma\) is
+completely positive, and its definition gives
 \eqref{eq:compact-map-convergence}.
 
 Let \(P_N\uparrow I\) be finite-rank projections on \(\cH_1\).  For
@@ -2319,13 +2340,19 @@ For \(\dim\mathsf E=0\), the claim is immediate.  Otherwise, choose a
 nonnegative approximate identity \(u_j\in C_c(\mathsf E)\) with
 \(\int u_j=1\).  A subsequence
 of \(\mathcal R(u_j)\) converges weak-* to a positive measure \(\mu\) of
-mass at most one.  Since \(u*u_j\to u\) in \(L^1\), covariance gives
+mass at most one.  Since \(u*u_j\to u\) in \(L^1\), covariance gives, for every
+\(\phi\in C_0(\mathsf E)\),
 \[
-  \mathcal R(u*u_j)
-  =\int_{\mathsf E}u(x)T_{\sqrt\gamma x}\mathcal R(u_j)\,\dd x.
+  \langle\phi,\mathcal R(u*u_j)\rangle
+  =\int_{\mathsf E}u(x)
+    \langle\phi,T_{\sqrt\gamma x}\mathcal R(u_j)\rangle\,\dd x.
 \]
-Pair with \(C_0(\mathsf E)\), use dominated convergence, and pass to the
-limit.
+For each fixed \(x\), weak-* convergence of \(\mathcal R(u_j)\) gives
+convergence of the inner pairing, while its absolute value is at most
+\(\|\phi\|_\infty\).  Dominated convergence therefore yields
+\eqref{eq:scalar-convolution} after pairing with every \(\phi\in
+C_0(\mathsf E)\); equality for Borel sets follows from equality of the
+resulting Radon measures.
 \end{proof}
 
 \subsection{One flat-prior bound for both Gaussian models}
@@ -2442,9 +2469,9 @@ gives, for fixed \(z\) and trace-class \(X\),
   \longrightarrow0.
 \end{aligned}
 \]
-By \cref{lem:compact-cp-limit}, after passing to a subsequence
-there is an exactly displacement-covariant completely positive map
-\(\Gamma^\chi\) such that
+By \cref{lem:compact-cp-limit}, after passing to a subsequence,
+there is a completely positive map \(\Gamma^\chi\) that is exactly
+displacement covariant and satisfies
 \begin{equation}\label{eq:weighted-map-limit}
   \Tr[\Gamma_j^\chi(X)K]\longrightarrow\Tr[\Gamma^\chi(X)K]
 \end{equation}
