@@ -145,9 +145,7 @@ Fix positive integers \(m_n\) such that
   \gamma_n:=\frac{m_n}{n}\longrightarrow\gamma>1,
   \qquad r_d:=\binom d2.
 \]
-For the finitely many \(n\) for which \(m_n\le n\), use the preparation
-channel \(X\mapsto\Tr(X)(I/d)^{\ot m_n}\); this convention does not affect
-any asymptotic statement.  Let
+In particular, \(m_n>n\) for all sufficiently large \(n\).  Let
 \[
   \Delta_d^\circ
   =\left\{p\in\R^d:p_1>\cdots>p_d>0,\ \sum_i p_i=1\right\},
@@ -182,7 +180,7 @@ For every \(p\in\Delta_d^\circ\),
   =\Borb(\gamma,p),
 \end{equation}
 where the supremum is over all quantum channels from \(n\) to \(m_n\)
-qudits.  The explicit channel \(\cC_n^p\) defined in
+qudits.  The explicit sequence of channels \(\cC_n^p\) defined in
 \cref{sec:known-label-kernel} asymptotically attains the displayed value.
 \end{theorem}
 
@@ -201,7 +199,7 @@ There is a sequence of spectrum-independent, \(\U(d)\)-covariant channels
   \right)-\Buniv(\gamma,p)
   \right]\ge0.
 \]
-The channel is defined in \cref{sec:unknown-label-kernel}.
+This sequence of channels is defined in \cref{sec:unknown-label-kernel}.
 \end{theorem}
 
 For the local minimax problem, let
@@ -262,7 +260,7 @@ Then
   B\!\left(\cM_n(\rho_{p,g}^{\ot n}),\rho_{p,g}^{\ot m_n}\right)
   =\inf_{p\in K}\Buniv(\gamma,p).
 \end{equation}
-The sequence \((\cC_n^{\mathrm{univ}})_n\) defined in
+The sequence of channels \(\cC_n^{\mathrm{univ}}\) defined in
 \cref{sec:unknown-label-kernel} asymptotically attains the displayed value.
 \end{theorem}
 
@@ -556,15 +554,24 @@ Apply \cref{lem:block-good-set} with \(x=\mu\), \(y=\nu\).
 \subsection{Known spectrum: exact target-label sampling}
 \label{sec:known-label-kernel}
 
-Fix \(p\in\Delta_d^\circ\) and define
+Fix \(p\in\Delta_d^\circ\).  For every \(n\) such that \(m_n>n\), define
 \[
   K_n^p(\nu\mid\mu)=P_{m_n,p}(\nu).
 \]
-Thus \(\nu\) is independent of \(\mu\) and has the exact target law.  Set
+Thus \(\nu\) is independent of \(\mu\) and has the exact target law.  Define
+the full sequence of channels by
 \[
-  \cC_n^p:=\mathcal Q_n[K_n^p].
+  \cC_n^p(X):=
+  \begin{cases}
+    \Tr_{m_n+1,\ldots,n}(X),&m_n\le n,\\[1mm]
+    \mathcal Q_n[K_n^p](X),&m_n>n.
+  \end{cases}
 \]
-When \(\nu-\mu\not\vdash m_n-n\),
+Here the partial trace over an empty collection of tensor factors is the
+identity map when \(m_n=n\).  For \(m_n\le n\), this channel is
+\(\U(d)\)-covariant and satisfies
+\(\cC_n^p(\rho^{\ot n})=\rho^{\ot m_n}\) for every state \(\rho\).
+For \(m_n>n\), if \(\nu-\mu\not\vdash m_n-n\), then
 \(\cE_{\mu,\nu}(X)=\Tr(X)I_{\cH_\nu}/\dim\cH_\nu\), while the sampled
 output label remains \(\nu\).
 Consequently, the output Young law of \(\cC_n^p\) is exactly
@@ -573,12 +580,12 @@ Consequently, the output Young law of \(\cC_n^p\) is exactly
 \subsection{Unknown spectrum: randomized rounding}
 \label{sec:unknown-label-kernel}
 
-Let
+For \(N\in\mathbb N\), let
 \[
-  \mathsf L_N=\left\{x\in\mathbb Z^d:\sum_i x_i=N\right\},
-  \qquad
-  \nu_n^{\mathrm{fb}}=(m_n,0,\ldots,0).
+  \mathsf L_N=\left\{x\in\mathbb Z^d:\sum_i x_i=N\right\}.
 \]
+For every \(n\) such that \(m_n>n\), set
+\(\nu_n^{\mathrm{fb}}=(m_n,0,\ldots,0)\).
 Given \(\mu\in\mathsf Y_n\), draw independent variables
 \(U_1,\ldots,U_{d-1}\), each uniform on \([-1/2,1/2)\), and set
 \begin{equation}\label{eq:randomized-rounding}
@@ -608,14 +615,23 @@ Then \(\widetilde\nu\in\mathsf L_{m_n}\).  Let
 Thus every rounded label outside \(\mathsf Y_{m_n}\), and every
 \(\widetilde\nu\in\mathsf Y_{m_n}\) for which
 \(\widetilde\nu-\mu\not\vdash m_n-n\), is replaced by
-\(\nu_n^{\mathrm{fb}}\).  Set
+\(\nu_n^{\mathrm{fb}}\).  Define the full sequence of channels by
 \[
-  \cC_n^{\mathrm{univ}}:=\mathcal Q_n[K_n^{\mathrm{rnd}}].
+  \cC_n^{\mathrm{univ}}(X):=
+  \begin{cases}
+    \Tr_{m_n+1,\ldots,n}(X),&m_n\le n,\\[1mm]
+    \mathcal Q_n[K_n^{\mathrm{rnd}}](X),&m_n>n.
+  \end{cases}
 \]
-The variables in \eqref{eq:randomized-rounding}, the kernel
-\eqref{eq:rounding-kernel}, and the maps \(\cE_{\mu,\nu}\) are independent
-of the spectrum.  Hence \(\cC_n^{\mathrm{univ}}\) is spectrum independent
-and \(\U(d)\)-covariant.
+Again, the partial trace over an empty collection of tensor factors is the
+identity map when \(m_n=n\).  For \(m_n\le n\), this channel is spectrum
+independent and \(\U(d)\)-covariant, and it satisfies
+\(\cC_n^{\mathrm{univ}}(\rho^{\ot n})=\rho^{\ot m_n}\) for every state
+\(\rho\).  For \(m_n>n\), the variables in
+\eqref{eq:randomized-rounding}, the kernel \eqref{eq:rounding-kernel}, and
+the maps \(\cE_{\mu,\nu}\) are independent of the spectrum.  Hence the full
+sequence of channels \(\cC_n^{\mathrm{univ}}\) is spectrum independent and
+\(\U(d)\)-covariant.
 
 \subsection{Uniform estimates and achievability}
 
@@ -703,7 +719,8 @@ The proofs of \cref{prop:sector-fidelity,prop:young-rounding} are given in
 \cref{app:sector-fidelity,app:young-rounding}, respectively.
 
 \begin{proof}[Known-spectrum achievability in \cref{thm:known-optimum}]
-By covariance, take \(g=I\).  For \(K_n^p\),
+Since \(m_n>n\) for all sufficiently large \(n\), it suffices to consider
+those \(n\).  By covariance, take \(g=I\).  For \(K_n^p\),
 \[
   \Pi_{n,p}(\mu,\nu)=P_{n,p}(\mu)P_{m_n,p}(\nu),
   \qquad Q_{m_n,p}=P_{m_n,p}.
@@ -744,7 +761,9 @@ Applying \cref{prop:lifted-kernel-bound} and using
 \end{proof}
 
 \begin{proof}[Proof of \cref{thm:unknown-achievability}]
-By covariance, take \(g=I\), and fix \(K\Subset\Delta_d^\circ\).
+Since \(m_n>n\) for all sufficiently large \(n\), it suffices to consider
+those \(n\).  By covariance, take \(g=I\), and fix
+\(K\Subset\Delta_d^\circ\).
 Uniformly for \(p\in K\), Young concentration gives
 \(P_{n,p}(\mathsf T_n(p)^c)=o(1)\).  By \cref{prop:young-rounding}, for all
 sufficiently large \(n\), every pair \((\mu,\nu)\) with
@@ -849,7 +868,6 @@ amplifier output contains the additional noise \(\tau_p^{(\gamma)}\).  By
 \begin{equation}\label{eq:one-mode-b}
   B(\tau_{q^{(\gamma)}},\tau_q)=b_\gamma(q),
 \end{equation}
-{\color{blue}
 Thus, for every \(z\in\C^{r_d}\), the product-amplifier output and the
 corresponding ideal state satisfy
 \[
@@ -857,7 +875,6 @@ corresponding ideal state satisfy
            \Psi_z^{(p,\gamma)}\right)
   =\Borb(\gamma,p).
 \]
-}
 
 Equip \(\mathsf H\) with its induced Euclidean measure and let
 \[
@@ -989,11 +1006,33 @@ The forward and reverse assertions
 \eqref{eq:LAN-full-forward}--\eqref{eq:LAN-full-reverse} are
 \cite[Theorem~4.3]{KahnGuta2009LANFiniteDimensional}, after identifying their
 \((d-1)\)-dimensional spectral coordinate with \(\mathsf H\) and applying
-the coordinate change \eqref{eq:LAN-coordinate-map}.  Under this linear
-identification, their classical covariance is \(\Sigma_p\), and their
-oscillator state is \(\Phi_z^{(p)}\).  Their Schr\"odinger-picture maps are completely positive and trace
-preserving on the trace-class and classical--quantum \(L^1\) spaces shown
-above.
+{\color{blue}
+the coordinate change \eqref{eq:LAN-coordinate-map}.  For the classical
+factor, let
+\[
+  \iota:\R^{d-1}\longrightarrow\mathsf H,
+  \qquad
+  \iota(u_1,\ldots,u_{d-1})
+  =\left(u_1,\ldots,u_{d-1},-\sum_{i<d}u_i\right),
+\]
+and let \(A\) be the matrix of \(\iota\).  In the coordinates of
+\cite[Eq.~(3.3)]{KahnGuta2009LANFiniteDimensional}, the classical covariance
+is the \((d-1)\times(d-1)\) matrix
+\[
+  V(p)_{ij}=\delta_{ij}p_i-p_ip_j,
+  \qquad i,j<d.
+\]
+A direct calculation gives
+\[
+  A V(p)A^{\mathsf T}=\diag(p)-pp^{\mathsf T}.
+\]
+Hence, when \(h=\iota(u)\), the pushforward of their classical Gaussian is
+\(\mathsf N_{h,\Sigma_p}\).  The coordinate change
+\eqref{eq:LAN-coordinate-map} identifies their oscillator state with
+\(\Phi_z^{(p)}\).  Their Schr\"odinger-picture maps are completely positive
+and trace preserving on the trace-class and classical--quantum \(L^1\)
+spaces shown above.
+}
 
 The target-sample assertion \eqref{eq:LAN-full-target} is a consequence
 of the first assertion.  Indeed, the identity
@@ -1220,16 +1259,23 @@ root fidelity
        {\binom{m+D-1}{D-1}}
   \right)^{1/2}.
 \]
-Theorem~S3.1 of \cite{LiTheilHarrowChuang2026} proves, for rank-\(r\)
-inputs, the all-output lower bound
+{\color{blue}
+The purify-and-clone construction of
+\cite{LiTheilHarrowChuang2026} first applies an \(n\to n\)
+random-purification channel and, when \(m>n\), then applies the optimal
+pure-state \(n\to m\) cloner on the \(dr\)-dimensional purification space.
+Its Eq.~(1a) and Theorem~S3.1 give, for rank-\(r\) inputs, the all-output
+squared-fidelity guarantee
 \[
   F_{\mathrm{all}}^*
   \ge
   \frac{\binom{n+dr-1}{dr-1}}
-       {\binom{m+dr-1}{dr-1}}
+       {\binom{m+dr-1}{dr-1}}.
 \]
-in its squared-Uhlmann-fidelity convention.  Therefore the corresponding
-root-fidelity guarantee is
+Here \(F\) is squared Uhlmann fidelity, consistently with the convention
+that squared Bures distance is \(2(1-\sqrt F)\).  Tracing out the purifying
+registers gives the same lower bound for all-output mixed-state cloning.
+Thus, in the root-fidelity convention of this paper, the guarantee is
 \[
   \left(
   \frac{\binom{n+dr-1}{dr-1}}
@@ -1237,9 +1283,9 @@ root-fidelity guarantee is
   \right)^{1/2}
   \longrightarrow\gamma^{-(dr-1)/2}.
 \]
-The cited lower bound is obtained by applying a pure-state cloner on a
-\(dr\)-dimensional purification space.  It is a guarantee for a larger
-universal rank-\(r\) model, not an exact fixed-orbit cloning value.
+This is a guarantee for a larger universal rank-\(r\) model, not an exact
+fixed-orbit cloning value.
+}
 
 For \(0<q<1\), \(b_\gamma(q)>\gamma^{-1/2}\).  Indeed, after multiplying by
 the positive denominator and cancelling \(\sqrt\gamma\), the inequality is
@@ -1411,22 +1457,44 @@ Put
   \qquad
   \widehat E_\alpha=\frac{E_\alpha}{\sqrt{\Delta_\alpha^\lambda}}.
 \]
-For every fixed \(L\), the restrictions of these normalized operators from
-\(\mathcal K_{\lambda,L}\) into
-\(\mathcal K_{\lambda,L+d-1}\) have operator norms bounded uniformly in
-\(N\) and \(\lambda\).  Indeed, restrict to \(\mathfrak{sl}_2(\alpha)\) and
-decompose orthogonally into irreducible strings.  A weight \(\lambda-\eta\) with
-\(\operatorname{ht}(\eta)\le L\) has \(H_\alpha\)-eigenvalue
-\(\Delta_\alpha^\lambda+O_L(1)\).  If a component at this weight lies \(t\)
+{\color{blue}
+Fix \(L\).  For every \(R\ge0\) and \(\alpha\in\mathsf R_+\),
+\(\widehat F_\alpha\) maps \(\mathcal K_{\lambda,R}\) into
+\(\mathcal K_{\lambda,R+\operatorname{ht}(\alpha)}\), while
+\(\widehat E_\alpha\) maps \(\mathcal K_{\lambda,R}\) into
+\(\mathcal K_{\lambda,R}\).  Every matrix coefficient under consideration
+contains a word of total length at most \(2L\).  Commuting two root operators
+replaces them by a root operator or a Cartan operator and therefore never
+increases this length.  Since every positive root has height at most
+\(d-1\), every intermediate vector lies in the fixed cutoff
+\[
+  \mathcal K_{\lambda,R_L},
+  \qquad R_L:=2L(d-1).
+\]
+
+For every fixed \(R\), the restrictions
+\[
+  \widehat E_\alpha:\mathcal K_{\lambda,R}\to\mathcal K_{\lambda,R},
+  \qquad
+  \widehat F_\alpha:\mathcal K_{\lambda,R}
+  \to\mathcal K_{\lambda,R+d-1}
+\]
+have operator norms bounded uniformly in \(N\) and \(\lambda\).  Indeed,
+restrict to \(\mathfrak{sl}_2(\alpha)\) and decompose orthogonally into
+irreducible strings.  A weight \(\lambda-\eta\) with
+\(\operatorname{ht}(\eta)\le R\) has \(H_\alpha\)-eigenvalue
+\(\Delta_\alpha^\lambda+O_R(1)\).  If a component at this weight lies \(t\)
 steps below the top of its string, then \(\lambda-\eta+t\alpha\) is also a
 weight, so \(t\operatorname{ht}(\alpha)\le\operatorname{ht}(\eta)\) and
-\(t=O_L(1)\).  The string highest weight is therefore
-\(\Delta_\alpha^\lambda+O_L(1)\).  The standard
+\(t=O_R(1)\).  The string highest weight is therefore
+\(\Delta_\alpha^\lambda+O_R(1)\).  The standard
 \(\mathfrak{sl}_2\)-coefficients and \(E_\alpha=F_\alpha^*\) give the claimed
-uniform bounds.
+uniform bounds.  Applying this observation to the finitely many cutoffs
+with \(R\le R_L\) controls every intermediate operator below.
 
-On a fixed enlargement of \(\mathcal K_{\lambda,L}\), the matrix-unit
-commutator formula gives
+On the same fixed collection of cutoffs, the matrix-unit commutator formula
+gives
+}
 \begin{equation}\label{eq:normalized-root-commutator}
   [\widehat E_\alpha,\widehat F_\beta]
   =\delta_{\alpha\beta}I+O_L(N^{-1/2}).
@@ -1442,13 +1510,18 @@ whose sizes depend only on \(L\) and \(d\).
 Move the normalized raising operators in
 \(\langle v_\lambda,(\widehat F^{\mathbf r})^*
 \widehat F^{\mathbf s}v_\lambda\rangle\) successively to the right using
-\eqref{eq:normalized-root-commutator}.  The terms without an error are exactly
-the complete contractions of equal roots and give
-\(\delta_{\mathbf r,\mathbf s}\prod_\alpha r_\alpha!\).  Every other term
-contains one commutator error or annihilates the highest-weight vector.  The
-number of terms and all intervening operator norms are bounded in terms of
-\(L,d,c,C\).  Dividing by the factorials in
-\eqref{eq:normalized-PBW-vectors} proves
+{\color{blue}
+\eqref{eq:normalized-root-commutator}.  A term containing only the scalar
+parts \(\delta_{\alpha\beta}I\) can survive only if every raising operator is
+paired with a lowering operator of the same root.  This is possible exactly
+when \(\mathbf r=\mathbf s\), and then the number of pairings is
+\(\prod_\alpha r_\alpha!\).  Every remaining term either contains at least
+one \(O_L(N^{-1/2})\) commutator remainder, leaves an unpaired raising
+operator that annihilates \(v_\lambda\), or leaves a nonzero lowering weight
+orthogonal to \(v_\lambda\).  The number of terms and all intervening
+operator norms are bounded in terms of \(L,d,c,C\).  Dividing by the
+factorials in \eqref{eq:normalized-PBW-vectors} proves
+}
 \eqref{eq:PBW-Gram-fixed-height}.
 
 Each exact-weight Gram matrix is therefore
@@ -2054,14 +2127,19 @@ These quantities are positive for all large \(n\), uniformly on \(K\).
 Hence \(\widetilde\nu-\mu\) is a partition; since \(\mu\) is a partition,
 so is \(\widetilde\nu\).
 Moreover, \(\widetilde\nu_d>\mu_d>0\), so
-\(\widetilde\nu\ne\nu_n^{\mathrm{fb}}\) and
-\eqref{eq:rounding-kernel} leaves it unchanged.  Thus, for
-\(\mu\in\mathsf T_n(p)\), one has
-\(K_n^{\mathrm{rnd}}(\cdot\mid\mu)=D_n(\cdot\mid\mu)\), and every
-\(\nu\in\mathsf Y_{m_n}\) with
-\(K_n^{\mathrm{rnd}}(\nu\mid\mu)>0\) satisfies
+{\color{blue}
+\(\widetilde\nu\ne\nu_n^{\mathrm{fb}}\).  Hence, for
+\(\mu\in\mathsf T_n(p)\), the law \(D_n(\cdot\mid\mu)\) is supported on
+\(\mathsf Y_{m_n}\), assigns no mass to \(\nu_n^{\mathrm{fb}}\), and
+undergoes no replacement in \eqref{eq:rounding-kernel}.  Consequently,
+\[
+  K_n^{\mathrm{rnd}}(\nu\mid\mu)=D_n(\nu\mid\mu),
+  \qquad \nu\in\mathsf Y_{m_n},
+\]
+and every \(\nu\) in this support satisfies
 \(\nu-\mu\vdash m_n-n\) and
 \(\|\nu-\gamma_n\mu\|_\infty\le c_{\mathrm{rnd}}\).
+}
 
 Let \(\eps_{n,p}\) be the probability, under \(\mu\sim P_{n,p}\) and
 \(\widetilde\nu\sim D_n(\cdot\mid\mu)\), that \(\widetilde\nu\) is
@@ -2253,11 +2331,18 @@ For one mode, the trace functional has the form
 implies that \(A\) commutes with every Weyl displacement.  Irreducibility
 gives \(A=cI\), \(0\le c\le1\).  If \(c>0\), then
 \(c^{-1}\Gamma\) is a trace-preserving phase-insensitive,
-displacement-covariant amplifier.  The idler representation used in
-\cite{GutaMatsumoto2006MixedGaussianCloning}, together with its
-Definition~2.2, Lemma~2.3, and arbitrary-gain extension in Sec.~3, implies
-that the photon-number distribution of \(c^{-1}\Gamma(\tau_q)\) is
-stochastically larger than that of the vacuum-idler amplifier:
+{\color{blue}
+displacement-covariant amplifier.  Section~2.C of
+\cite{GutaMatsumoto2006MixedGaussianCloning} gives the idler-state
+representation for displacement-covariant amplifiers; under this
+representation, the phase average above replaces the idler by its
+number-diagonal phase average.  Definition~2.2 and Lemma~2.3 of that paper
+give the relevant stochastic order in the basic case, and Sec.~3 states
+explicitly that Lemma~2.3 remains valid for every amplitude gain \(k>1\).
+Applying it with \(k=\sqrt\gamma\) shows that the photon-number distribution
+of \(c^{-1}\Gamma(\tau_q)\) is stochastically larger than that of the
+vacuum-idler amplifier:
+}
 \begin{equation}\label{eq:imported-stochastic-order}
   \sum_{k=0}^m(1-q^{(\gamma)})(q^{(\gamma)})^k
   \ge\sum_{k=0}^m
@@ -2628,7 +2713,8 @@ Quantum cloning of identical mixed qubits,
 \bibitem[Kaz07]{Kazakov2007}
 A. Ya. Kazakov,
 ``Partial'' quantum cloning and quantum cloning of mixed states,
-\emph{Int. J. Quantum Inf.} \textbf{8}, 435--442 (2010),
+\textcolor{blue}{\doi{10.1142/S0219749910006186}{\emph{Int. J. Quantum Inf.}
+\textbf{8}, 435--442 (2010)}},
 \arxiv{0711.2860}.
 
 \bibitem[DMP05]{DArianoMacchiavelloPerinotti2005}
