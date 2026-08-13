@@ -567,15 +567,14 @@ the full sequence of channels by
     \mathcal Q_n[K_n^p](X),&m_n>n.
   \end{cases}
 \]
-Here the partial trace over an empty collection of tensor factors is the
-identity map when \(m_n=n\).  For \(m_n\le n\), this channel is
-\(\U(d)\)-covariant and satisfies
-\(\cC_n^p(\rho^{\ot n})=\rho^{\ot m_n}\) for every state \(\rho\).
-For \(m_n>n\), if \(\nu-\mu\not\vdash m_n-n\), then
-\(\cE_{\mu,\nu}(X)=\Tr(X)I_{\cH_\nu}/\dim\cH_\nu\), while the sampled
-output label remains \(\nu\).
-Consequently, the output Young law of \(\cC_n^p\) is exactly
-\(P_{m_n,p}\) for every \(n\).
+For \(m_n\le n\), the partial trace (the identity when
+\(m_n=n\)) is \(\U(d)\)-covariant and sends \(\rho^{\ot n}\) to
+\(\rho^{\ot m_n}\).  For \(m_n>n\), pairs with
+\(\nu-\mu\not\vdash m_n-n\) use
+\(\cE_{\mu,\nu}(X)=\Tr(X)I_{\cH_\nu}/\dim\cH_\nu\) without changing the
+sampled label \(\nu\).  Hence \(\cC_n^p\) is \(\U(d)\)-covariant, and its
+output Young law on \(\rho_{p,g}^{\ot n}\) is \(P_{m_n,p}\) for every
+\(n\) and \(g\).
 
 \subsection{Unknown spectrum: randomized rounding}
 \label{sec:unknown-label-kernel}
@@ -623,14 +622,13 @@ Thus every rounded label outside \(\mathsf Y_{m_n}\), and every
     \mathcal Q_n[K_n^{\mathrm{rnd}}](X),&m_n>n.
   \end{cases}
 \]
-Again, the partial trace over an empty collection of tensor factors is the
-identity map when \(m_n=n\).  For \(m_n\le n\), this channel is spectrum
-independent and \(\U(d)\)-covariant, and it satisfies
-\(\cC_n^{\mathrm{univ}}(\rho^{\ot n})=\rho^{\ot m_n}\) for every state
-\(\rho\).  For \(m_n>n\), the variables in
-\eqref{eq:randomized-rounding}, the kernel \eqref{eq:rounding-kernel}, and
-the maps \(\cE_{\mu,\nu}\) are independent of the spectrum.  Hence the full
-sequence of channels \(\cC_n^{\mathrm{univ}}\) is spectrum independent and
+For \(m_n\le n\), the partial trace (the identity when
+\(m_n=n\)) is spectrum independent and \(\U(d)\)-covariant, and sends
+\(\rho^{\ot n}\) to \(\rho^{\ot m_n}\).  For \(m_n>n\), the rounding
+variables, \eqref{eq:rounding-kernel}, and the maps \(\cE_{\mu,\nu}\) are
+spectrum independent, while \(\mathcal Q_n[K_n^{\mathrm{rnd}}]\) is
+\(\U(d)\)-covariant.  Thus the full sequence
+\(\cC_n^{\mathrm{univ}}\) is spectrum independent and
 \(\U(d)\)-covariant.
 
 \subsection{Uniform estimates and achievability}
@@ -1006,7 +1004,6 @@ The forward and reverse assertions
 \eqref{eq:LAN-full-forward}--\eqref{eq:LAN-full-reverse} are
 \cite[Theorem~4.3]{KahnGuta2009LANFiniteDimensional}, after identifying their
 \((d-1)\)-dimensional spectral coordinate with \(\mathsf H\) and applying
-{\color{blue}
 the coordinate change \eqref{eq:LAN-coordinate-map}.  For the classical
 factor, let
 \[
@@ -1032,7 +1029,6 @@ Hence, when \(h=\iota(u)\), the pushforward of their classical Gaussian is
 \(\Phi_z^{(p)}\).  Their Schr\"odinger-picture maps are completely positive
 and trace preserving on the trace-class and classical--quantum \(L^1\)
 spaces shown above.
-}
 
 The target-sample assertion \eqref{eq:LAN-full-target} is a consequence
 of the first assertion.  Indeed, the identity
@@ -1259,7 +1255,6 @@ root fidelity
        {\binom{m+D-1}{D-1}}
   \right)^{1/2}.
 \]
-{\color{blue}
 The purify-and-clone construction of
 \cite{LiTheilHarrowChuang2026} first applies an \(n\to n\)
 random-purification channel and, when \(m>n\), then applies the optimal
@@ -1285,7 +1280,6 @@ Thus, in the root-fidelity convention of this paper, the guarantee is
 \]
 This is a guarantee for a larger universal rank-\(r\) model, not an exact
 fixed-orbit cloning value.
-}
 
 For \(0<q<1\), \(b_\gamma(q)>\gamma^{-1/2}\).  Indeed, after multiplying by
 the positive denominator and cancelling \(\sqrt\gamma\), the inequality is
@@ -1457,7 +1451,6 @@ Put
   \qquad
   \widehat E_\alpha=\frac{E_\alpha}{\sqrt{\Delta_\alpha^\lambda}}.
 \]
-{\color{blue}
 Fix \(L\).  For every \(R\ge0\) and \(\alpha\in\mathsf R_+\),
 \(\widehat F_\alpha\) maps \(\mathcal K_{\lambda,R}\) into
 \(\mathcal K_{\lambda,R+\operatorname{ht}(\alpha)}\), while
@@ -1494,7 +1487,6 @@ with \(R\le R_L\) controls every intermediate operator below.
 
 On the same fixed collection of cutoffs, the matrix-unit commutator formula
 gives
-}
 \begin{equation}\label{eq:normalized-root-commutator}
   [\widehat E_\alpha,\widehat F_\beta]
   =\delta_{\alpha\beta}I+O_L(N^{-1/2}).
@@ -1510,7 +1502,6 @@ whose sizes depend only on \(L\) and \(d\).
 Move the normalized raising operators in
 \(\langle v_\lambda,(\widehat F^{\mathbf r})^*
 \widehat F^{\mathbf s}v_\lambda\rangle\) successively to the right using
-{\color{blue}
 \eqref{eq:normalized-root-commutator}.  A term containing only the scalar
 parts \(\delta_{\alpha\beta}I\) can survive only if every raising operator is
 paired with a lowering operator of the same root.  This is possible exactly
@@ -1521,7 +1512,6 @@ operator that annihilates \(v_\lambda\), or leaves a nonzero lowering weight
 orthogonal to \(v_\lambda\).  The number of terms and all intervening
 operator norms are bounded in terms of \(L,d,c,C\).  Dividing by the
 factorials in \eqref{eq:normalized-PBW-vectors} proves
-}
 \eqref{eq:PBW-Gram-fixed-height}.
 
 Each exact-weight Gram matrix is therefore
@@ -2127,7 +2117,6 @@ These quantities are positive for all large \(n\), uniformly on \(K\).
 Hence \(\widetilde\nu-\mu\) is a partition; since \(\mu\) is a partition,
 so is \(\widetilde\nu\).
 Moreover, \(\widetilde\nu_d>\mu_d>0\), so
-{\color{blue}
 \(\widetilde\nu\ne\nu_n^{\mathrm{fb}}\).  Hence, for
 \(\mu\in\mathsf T_n(p)\), the law \(D_n(\cdot\mid\mu)\) is supported on
 \(\mathsf Y_{m_n}\), assigns no mass to \(\nu_n^{\mathrm{fb}}\), and
@@ -2139,7 +2128,6 @@ undergoes no replacement in \eqref{eq:rounding-kernel}.  Consequently,
 and every \(\nu\) in this support satisfies
 \(\nu-\mu\vdash m_n-n\) and
 \(\|\nu-\gamma_n\mu\|_\infty\le c_{\mathrm{rnd}}\).
-}
 
 Let \(\eps_{n,p}\) be the probability, under \(\mu\sim P_{n,p}\) and
 \(\widetilde\nu\sim D_n(\cdot\mid\mu)\), that \(\widetilde\nu\) is
@@ -2331,7 +2319,6 @@ For one mode, the trace functional has the form
 implies that \(A\) commutes with every Weyl displacement.  Irreducibility
 gives \(A=cI\), \(0\le c\le1\).  If \(c>0\), then
 \(c^{-1}\Gamma\) is a trace-preserving phase-insensitive,
-{\color{blue}
 displacement-covariant amplifier.  Section~2.C of
 \cite{GutaMatsumoto2006MixedGaussianCloning} gives the idler-state
 representation for displacement-covariant amplifiers; under this
@@ -2342,7 +2329,6 @@ explicitly that Lemma~2.3 remains valid for every amplitude gain \(k>1\).
 Applying it with \(k=\sqrt\gamma\) shows that the photon-number distribution
 of \(c^{-1}\Gamma(\tau_q)\) is stochastically larger than that of the
 vacuum-idler amplifier:
-}
 \begin{equation}\label{eq:imported-stochastic-order}
   \sum_{k=0}^m(1-q^{(\gamma)})(q^{(\gamma)})^k
   \ge\sum_{k=0}^m
@@ -2713,8 +2699,8 @@ Quantum cloning of identical mixed qubits,
 \bibitem[Kaz07]{Kazakov2007}
 A. Ya. Kazakov,
 ``Partial'' quantum cloning and quantum cloning of mixed states,
-\textcolor{blue}{\doi{10.1142/S0219749910006186}{\emph{Int. J. Quantum Inf.}
-\textbf{8}, 435--442 (2010)}},
+\doi{10.1142/S0219749910006186}{\emph{Int. J. Quantum Inf.}
+\textbf{8}, 435--442 (2010)},
 \arxiv{0711.2860}.
 
 \bibitem[DMP05]{DArianoMacchiavelloPerinotti2005}
