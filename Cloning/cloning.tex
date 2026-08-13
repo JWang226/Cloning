@@ -65,11 +65,12 @@
 \maketitle
 
 \begin{abstract}
-Let \(d\ge2\) and \(m_n/n\to\gamma>1\).  We study global
-\(n\to m_n\) cloning of full-rank \(d\)-dimensional states with simple
-spectrum, using root fidelity with the ideal product output.  If the spectrum
+Let \(d\ge2\) and \(m_n/n\to\gamma>1\).  We determine the asymptotically
+optimal global \(n\to m_n\) cloning fidelity for full-rank
+\(d\)-dimensional states with simple spectrum, using root fidelity with the
+ideal \(m_n\)-fold product output.  If the spectrum
 \(p_1>\cdots>p_d>0\) is known and only the eigenbasis is unknown, the
-asymptotic minimax value on the unitary orbit is
+minimax value on the unitary orbit is
 \[
   \Borb(\gamma,p)
   =\prod_{i<j}
@@ -77,70 +78,87 @@ asymptotic minimax value on the unitary orbit is
        {\gamma+q_{ij}},
   \qquad q_{ij}=\frac{p_j}{p_i}.
 \]
-An explicit covariant Schur--Weyl channel attains this value: given \(\mu\),
-it samples \(\nu\) from the exact target Young law and applies the
-multiplicity-one Cartan-sector channel whenever \(\nu-\mu\) is a partition,
-an event whose probability tends to one.
-
-For unknown spectrum, one spectrum-independent sequence of covariant channels
-attains, uniformly on every compact subset of the strict spectral chamber,
+We construct an explicit covariant Schur--Weyl channel that attains this
+value.  If the spectrum is also unknown, a single spectrum-independent
+sequence of covariant channels guarantees, uniformly on every compact subset
+of the strict spectral chamber, asymptotic root fidelity at least
 \[
   \Buniv(\gamma,p)
   =\left(\frac{2\sqrt\gamma}{1+\gamma}\right)^{(d-1)/2}
    \Borb(\gamma,p).
 \]
-The additional factor is the optimal loss for dilating the classical spectral
-component.  This value is the expanding-window local asymptotic minimax value
-and its infimum is the global worst-case value on every compact spectral set
-that is the closure of its interior in the probability hyperplane.  The
-achievability proof combines a fixed-height PBW calculation of the
-Cartan-sector fidelity with spectrum-independent randomized rounding of Young
-labels.  The converse uses two-way local asymptotic normality and a
-flat-prior Gaussian amplification bound valid against arbitrary channels.
+Consequently, on every nonempty compact spectral set \(K\) that is the
+closure of its interior in the probability hyperplane, the global minimax
+value is \(\inf_{p\in K}\Buniv(\gamma,p)\).  We also show that
+\(\Buniv(\gamma,p)\) is the exact expanding-window local asymptotic minimax
+value at each interior spectrum \(p\).
+
+The factorization of \(\Buniv\) reflects two distinct tasks.  The Young label
+carries the spectral fluctuation and must be dilated as a classical variable,
+whereas the irreducible Schur sector carries the eigenbasis fluctuation and
+must be amplified quantum mechanically.  Achievability combines exact
+sampling or randomized dilation of Young labels with a multiplicity-one
+Cartan-sector channel.  The converses use two-way finite-dimensional local
+asymptotic normality and a flat-prior Gaussian amplification bound valid
+against arbitrary channels.
 \end{abstract}
 
 \section{Introduction and results}\label{sec:introduction-results}
 
 The no-cloning theorem excludes perfect copying of an arbitrary unknown
-quantum state \cite{WoottersZurek1982,Dieks1982}.  Approximate cloning asks
-for a channel that maps \(n\) identical inputs to an output close to \(m\)
-ideal copies.  We use the full product target, rather than a criterion
-involving only one-site marginals.  For pure states, Werner's covariant
-channel solves the universal finite-dimensional problem \cite{Werner1998}.
-Here we consider mixed states of fixed finite dimension in the asymptotic
-regime \(m_n/n\to\gamma>1\).
+quantum state \cite{WoottersZurek1982,Dieks1982}.  Approximate cloning asks how
+well a quantum channel can transform \(n\) identical inputs into an output
+that resembles \(m\) ideal copies.  We compare the output with the entire
+\(m\)-partite product state, rather than only with its one-site marginals.
+For pure states, Werner's covariant channel solves the universal
+finite-dimensional problem \cite{Werner1998}.  Here we study mixed states of
+fixed finite dimension in the asymptotic regime \(m_n/n\to\gamma>1\).
 
-For a fixed simple spectrum, Schur--Weyl duality separates \(\mu\) from an
-irreducible \(\U(d)\)-sector.  The target label \(\nu\) can be sampled from
-its exact distribution.  For a typical \((\mu,\nu)\), the multiplicity-one
-Cartan inclusion defines a covariant sector channel.  In orthonormalized PBW
-coordinates on every fixed collection of
-exact weight spaces, the target sector state and the sector-channel output
-have matrices converging respectively to those of a product thermal state
-and its vacuum-idler amplified state.  This gives the exact limiting sector
-fidelity without identifying every finite-dimensional sector with one common
-Fock space.
+A full-rank mixed state with simple spectrum contains two kinds of unknown
+information: its eigenvalues and its eigenbasis.  This leads to two natural
+problems.  In the known-spectrum problem, the eigenvalues are fixed and the
+state ranges over one unitary orbit.  In the unknown-spectrum problem, both
+the spectrum and the eigenbasis vary, with the spectrum restricted to a
+compact subset of the strict spectral chamber.  Our goal is to determine the
+best worst-case root fidelity in both problems and to give explicit channel
+sequences that attain it.
 
-When the spectrum is unknown, the Young label contains the classical spectral
-fluctuation.  We add an independent bounded uniform offset to the first
-\(d-1\) label coordinates, multiply by \(m_n/n\), and round to the target
-lattice.  The resulting Markov kernel is independent of the spectrum.  Its
-limiting Hellinger affinity contributes the classical factor in
-\eqref{eq:main-values}; the Cartan-sector channel contributes the orbital
+The final unknown-spectrum value separates into a classical spectral factor
+and a quantum orbital factor.  This factorization has a direct statistical
+meaning.  On the \(n^{-1/2}\) local scale, spectral fluctuations converge to a
+\((d-1)\)-dimensional classical Gaussian shift, while eigenbasis fluctuations
+converge to \(\binom d2\) displaced thermal oscillator modes
+\cite{GutaKahn2006LANQubits,KahnGuta2009LANFiniteDimensional}.  Producing
+\(m_n\) rather than \(n\) copies therefore requires two simultaneous
+operations: dilation of the classical shift and amplification of the quantum
+displacements.  Their optimal fidelity contributions multiply.  If the
+spectrum is known, the classical task is absent, leaving only the orbital
 factor.
 
-The converse uses finite-dimensional local asymptotic normality (LAN).  The
-local model is the product of a classical Gaussian shift and displaced
-thermal oscillator modes
-\cite{GutaKahn2006LANQubits,KahnGuta2009LANFiniteDimensional}.  Gu\c{t}\u{a}
-and Matsumoto proved that the vacuum-idler amplifier is least noisy in the
-relevant displacement-covariant Gaussian problem
-\cite{GutaMatsumoto2006MixedGaussianCloning}.  A weighted fidelity inequality
-and averaging over large parameter cubes extend the resulting Gaussian upper
-bound to arbitrary channels, including channels that are neither Gaussian
-nor covariant.
+Schur--Weyl duality makes the same separation available directly in finite
+dimension.  The law of the Young label depends only on the spectrum, while the
+group action---and hence the eigenbasis dependence---resides in the
+conditional irreducible
+\(\U(d)\)-state.  For known spectrum, we sample the output Young label from
+its exact target law.  For unknown spectrum, we obtain it from the observed
+input label by a spectrum-independent randomized dilation.  Conditional on a
+typical pair of input and output labels, their difference is a partition and
+the multiplicity-one Cartan inclusion defines a covariant channel between the
+two irreducible sectors.  The label affinity gives the classical factor, and
+the sector fidelity gives the orbital factor.
 
-Fix positive integers \(m_n\) such that
+To prove that no other channels do better, we use two-way local asymptotic
+normality (LAN).  Any finite-dimensional cloning protocol can then be
+transferred to an amplification protocol between the corresponding Gaussian
+local models.  Gu\c{t}\u{a} and Matsumoto identified the least-noisy
+phase-insensitive amplifier in the relevant covariant problem
+\cite{GutaMatsumoto2006MixedGaussianCloning}.  A weighted fidelity inequality
+and averaging over growing parameter cubes give the required Gaussian upper
+bound for arbitrary channels, without assuming Gaussianity or covariance.
+The resulting local converse also supplies the global converse on compact
+spectral sets.
+
+We now state the results precisely.  Fix positive integers \(m_n\) such that
 \[
   \gamma_n:=\frac{m_n}{n}\longrightarrow\gamma>1,
   \qquad r_d:=\binom d2.
@@ -154,7 +172,9 @@ In particular, \(m_n>n\) for all sufficiently large \(n\).  Let
   \qquad
   \rho_{p,g}=g\rho_p g^*.
 \]
-We write \(B\) for root fidelity.  For \(p\in\Delta_d^\circ\), define
+We write \(B\) for root fidelity, so the target in every statement is the
+entire product state \(\rho_{p,g}^{\ot m_n}\).  For
+\(p\in\Delta_d^\circ\), define
 \[
   q_{ij}=\frac{p_j}{p_i},
   \qquad
@@ -170,6 +190,11 @@ and
   \qquad
   \Buniv(\gamma,p)=\Bcl(\gamma,d)\Borb(\gamma,p).
 \end{equation}
+The factor \(\Borb\) is the orbital fidelity contribution from amplifying the
+unknown eigenbasis, while \(\Bcl\) is the additional classical fidelity
+contribution from dilating the unknown spectral fluctuation.  The first
+theorem treats a
+fixed spectrum, so only the orbital factor appears.
 
 \begin{theorem}[Known-spectrum optimum]\label{thm:known-optimum}
 For every \(p\in\Delta_d^\circ\),
@@ -184,12 +209,18 @@ qudits.  The explicit sequence of channels \(\cC_n^p\) defined in
 \cref{sec:known-label-kernel} asymptotically attains the displayed value.
 \end{theorem}
 
-\begin{theorem}[Uniform spectrum-independent achievability]
-\label{thm:unknown-achievability}
-There is a sequence of spectrum-independent, \(\U(d)\)-covariant channels
-\(\cC_n^{\mathrm{univ}}\) such that, for every compact
-\(K\Subset\Delta_d^\circ\),
-\[
+When the spectrum is unknown, one universal construction guarantees
+asymptotic fidelity at least \(\Buniv(\gamma,p)\), pointwise and uniformly on
+compact spectral sets.  The same theorem records the resulting global minimax
+value.
+
+\begin{theorem}[Unknown-spectrum achievability and compact-set optimum]
+\label{thm:unknown-optimum}
+There exists a sequence of spectrum-independent, \(\U(d)\)-covariant channels
+\(\cC_n^{\mathrm{univ}}\) with the following properties.
+\begin{enumerate}
+\item[(a)] For every compact \(K\Subset\Delta_d^\circ\),
+\begin{equation}\label{eq:unknown-uniform-achievability}
   \liminf_{n\to\infty}
   \inf_{\substack{p\in K\\g\in\U(d)}}
   \left[
@@ -198,9 +229,28 @@ There is a sequence of spectrum-independent, \(\U(d)\)-covariant channels
     \rho_{p,g}^{\ot m_n}
   \right)-\Buniv(\gamma,p)
   \right]\ge0.
-\]
-This sequence of channels is defined in \cref{sec:unknown-label-kernel}.
+\end{equation}
+
+\item[(b)] Let \(K\Subset\Delta_d^\circ\) be nonempty and equal to the
+closure of its interior taken in the probability hyperplane
+\(\{x\in\R^d:\sum_i x_i=1\}\).  Then
+\begin{equation}\label{eq:compact-global-value}
+  \lim_{n\to\infty}
+  \sup_{\cM_n}
+  \inf_{\substack{p\in K\\g\in\U(d)}}
+  B\!\left(\cM_n(\rho_{p,g}^{\ot n}),\rho_{p,g}^{\ot m_n}\right)
+  =\inf_{p\in K}\Buniv(\gamma,p),
+\end{equation}
+where the supremum is over all quantum channels from \(n\) to \(m_n\)
+qudits.  The same sequence \(\cC_n^{\mathrm{univ}}\), defined in
+\cref{sec:unknown-label-kernel}, asymptotically attains the displayed value.
+\end{enumerate}
 \end{theorem}
+
+Part~\textup{(a)} gives the lower bound in part~\textup{(b)}.  The matching
+upper bound is local: no channel can uniformly exceed
+\(\Buniv(\gamma,p)\) on expanding \(n^{-1/2}\)-neighborhoods of an interior
+spectrum \(p\).  We state this stronger local characterization next.
 
 For the local minimax problem, let
 \[
@@ -216,7 +266,9 @@ and define
   \rho_{p,h,z}^{(n)}
   =g_{n,z}\diag\!\left(p+\frac h{\sqrt n}\right)g_{n,z}^*.
 \]
-Since \(Y(z)^*=-Y(z)\), one has \(g_{n,z}\in\U(d)\).  For \(L>0\), set
+Here \(h\) describes a local change of eigenvalues and \(z\) a local change
+of eigenbasis.  Since \(Y(z)^*=-Y(z)\), one has
+\(g_{n,z}\in\U(d)\).  For \(L>0\), set
 \[
   \Omega_L
   =\left\{(h,z)\in\mathsf H\times\C^{r_d}:
@@ -236,7 +288,7 @@ set
   \right).
 \]
 
-\begin{theorem}[Expanding-window local minimax value]
+\begin{theorem}[Local asymptotic minimax characterization]
 \label{thm:unknown-local}
 For every \(p\in\Delta_d^\circ\),
 \[
@@ -247,22 +299,11 @@ For every \(p\in\Delta_d^\circ\),
 \]
 \end{theorem}
 
-\begin{theorem}[Compact-set global minimax value]
-\label{thm:compact-global-unknown}
-Let \(K\Subset\Delta_d^\circ\) be nonempty and equal to the closure of
-its interior taken in the probability hyperplane
-\(\{x\in\R^d:\sum_i x_i=1\}\).
-Then
-\begin{equation}\label{eq:compact-global-value}
-  \lim_{n\to\infty}
-  \sup_{\cM_n}
-  \inf_{\substack{p\in K\\g\in\U(d)}}
-  B\!\left(\cM_n(\rho_{p,g}^{\ot n}),\rho_{p,g}^{\ot m_n}\right)
-  =\inf_{p\in K}\Buniv(\gamma,p).
-\end{equation}
-The sequence of channels \(\cC_n^{\mathrm{univ}}\) defined in
-\cref{sec:unknown-label-kernel} asymptotically attains the displayed value.
-\end{theorem}
+Thus \(\Buniv(\gamma,p)\) is not only the performance of the explicit
+universal channel; it is the intrinsic local asymptotic minimax value at each
+interior spectrum.  Restricting a global protocol to such a local
+neighborhood yields the upper bound in part~\textup{(b)} of
+\cref{thm:unknown-optimum}.
 
 \begin{corollary}[Uniform-gap chambers]\label{cor:compact-chamber}
 Let \(0<\kappa<2/[d(d+1)]\), and set
@@ -283,18 +324,32 @@ is uniform at an eigenvalue collision or at the boundary of the probability
 simplex, where the local Gaussian model changes.
 
 \paragraph{Organization.}
-\Cref{sec:schur-cartan} gives the common Schur--Cartan construction and a
-single fidelity estimate for any
-\(K_n:\mathsf Y_n\rightsquigarrow\mathsf Y_{m_n}\).
-\Cref{sec:label-kernels} defines \(K_n^p\) and
-\(K_n^{\mathrm{rnd}}\) and proves both achievability statements.
-\Cref{sec:gaussian-LAN} proves the
-converses by Gaussian amplification and LAN.  \Cref{sec:discussion} compares
-the resulting values.  The appendices contain the fixed-height PBW proof of
-the sector fidelity, the Young local limit and randomized rounding, and the
-Gaussian flat-prior upper bound.
+\Cref{sec:schur-cartan} isolates the common Schur--Cartan lifting used by both
+protocols and proves a fidelity bound that reduces the cloning problem to a
+classical label affinity and a conditional sector fidelity.
+\Cref{sec:label-kernels} defines the exact target-label kernel for known
+spectrum and the randomized dilation kernel for unknown spectrum; together
+with two uniform estimates, these constructions prove the achievability half
+of \cref{thm:known-optimum} and part~\textup{(a)} of
+\cref{thm:unknown-optimum}.  \Cref{sec:gaussian-LAN} solves the corresponding
+Gaussian amplification problems, states the two-way LAN approximation, and
+transfers the Gaussian bounds back to finite dimension.  It proves the
+converse half of \cref{thm:known-optimum} and the local characterization
+\cref{thm:unknown-local}; the latter, together with part~\textup{(a)}, yields
+part~\textup{(b)} of \cref{thm:unknown-optimum}.  \Cref{sec:discussion}
+compares the optimal
+values with pure-state cloning, random purification, and estimation-based
+strategies.  The appendices supply the fixed-height PBW calculation of the
+sector fidelity, the Young local limit and randomized-rounding estimate, and
+the unified flat-prior Gaussian upper bound.
 
 \section{The common Schur--Cartan construction}\label{sec:schur-cartan}
+
+Both cloning protocols use the same finite-dimensional architecture.  This
+section first records the fidelity identities needed to compare block-diagonal
+Schur states, then recalls the Schur--Weyl decomposition, and finally lifts an
+arbitrary Markov kernel on Young labels to a covariant quantum channel.  The
+choice of label kernel is postponed to \cref{sec:label-kernels}.
 
 \subsection{Fidelity and block estimates}
 
@@ -551,6 +606,12 @@ Apply \cref{lem:block-good-set} with \(x=\mu\), \(y=\nu\).
 
 \section{The two label kernels and achievability}\label{sec:label-kernels}
 
+After the common lifting has been isolated, the two protocols differ only in
+how they choose the output Young label.  We first define the exact target-law
+kernel for known spectrum and the randomized dilation kernel for unknown
+spectrum.  We then combine their label estimates with the common sector
+fidelity to prove the two achievability statements.
+
 \subsection{Known spectrum: exact target-label sampling}
 \label{sec:known-label-kernel}
 
@@ -758,7 +819,7 @@ Applying \cref{prop:lifted-kernel-bound} and using
 \]
 \end{proof}
 
-\begin{proof}[Proof of \cref{thm:unknown-achievability}]
+\begin{proof}[Proof of part~\textup{(a)} of \cref{thm:unknown-optimum}]
 Since \(m_n>n\) for all sufficiently large \(n\), it suffices to consider
 those \(n\).  By covariance, take \(g=I\), and fix
 \(K\Subset\Delta_d^\circ\).
@@ -807,7 +868,13 @@ Applying \cref{prop:lifted-kernel-bound} therefore gives
 uniformly for \(p\in K\).
 \end{proof}
 
-\section{Gaussian converse and LAN transfer}\label{sec:gaussian-LAN}
+\section{Gaussian converses and LAN transfer}\label{sec:gaussian-LAN}
+
+The constructions above give lower bounds on the minimax fidelities.  To show
+that they are optimal, we pass to the local Gaussian models in which cloning
+becomes amplification.  We first solve the Gaussian problems, then state the
+two-way LAN approximation, and finally transfer the resulting upper bounds
+back to the finite-dimensional models.
 
 \subsection{Gaussian amplification}
 
@@ -1145,6 +1212,12 @@ Monotonicity under \(T_n\) proves \eqref{eq:LAN-transfer}.
 
 \subsection{Completion of the minimax proofs}
 
+We now apply the same transfer principle in three increasingly broad settings.
+The fixed-spectrum Gaussian bound completes \cref{thm:known-optimum}; the full
+Gaussian bound gives the pointwise local result \cref{thm:unknown-local}; and
+that local result, together with uniform achievability, yields the compact-set
+statement in \cref{thm:unknown-optimum}.
+
 \begin{proof}[Known-spectrum converse and completion of \cref{thm:known-optimum}]
 Let \(u_n(p)\) be the finite-\(n\) minimax value in
 \eqref{eq:known-optimum}, and choose \(\cM_n\) with worst-case fidelity at
@@ -1171,8 +1244,8 @@ supremum over Gaussian-model channels, and finally \(L\to\infty\),
 Fix \(L\).  For all sufficiently large \(n\), the spectra
 \(p+h/\sqrt n\), \((h,z)\in\Omega_L\), lie in one compact subset of
 \(\Delta_d^\circ\).  Since
-\(\rho_{p,h,z}^{(n)}=\rho_{p+h/\sqrt n,g_{n,z}}\), uniform achievability and
-continuity of \(\Buniv(\gamma,\cdot)\) give
+\(\rho_{p,h,z}^{(n)}=\rho_{p+h/\sqrt n,g_{n,z}}\), part~\textup{(a)} of
+\cref{thm:unknown-optimum} and continuity of \(\Buniv(\gamma,\cdot)\) give
 \[
   \liminf_{n\to\infty}v_{n,L}(p)\ge\Buniv(\gamma,p).
 \]
@@ -1199,9 +1272,10 @@ upper bound.  Since both \(\limsup_n v_{n,L}(p)\) and
 exist and equal \(\Buniv(\gamma,p)\).
 \end{proof}
 
-\begin{proof}[Proof of \cref{thm:compact-global-unknown}]
+\begin{proof}[Proof of part~\textup{(b)} of \cref{thm:unknown-optimum}]
 Let \(w_n(K)\) be the finite-\(n\) minimax value on the left of
-\eqref{eq:compact-global-value}.  Uniform achievability gives
+\eqref{eq:compact-global-value}.  Part~\textup{(a)} of
+\cref{thm:unknown-optimum} gives
 \[
   \liminf_{n\to\infty}w_n(K)
   \ge\inf_{p\in K}\Buniv(\gamma,p).
@@ -1236,7 +1310,7 @@ Then every adjacent gap exceeds \(\kappa\) and
 \]
 Thus the chamber has nonempty interior in the probability hyperplane.  It is
 convex and closed in the simplex, so it is compact and is the closure of its
-interior.  Apply \cref{thm:compact-global-unknown}.
+interior.  Apply part~\textup{(b)} of \cref{thm:unknown-optimum}.
 
 If \(\kappa>2/[d(d+1)]\), \eqref{eq:chamber-threshold} makes the chamber
 empty.  At equality, every inequality in \eqref{eq:chamber-threshold} is an
