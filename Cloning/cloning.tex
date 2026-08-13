@@ -909,6 +909,11 @@ phase-insensitive amplifier \(\cA_G\) satisfies
   \cA_G\!\left(D(z)\tau_qD(z)^*\right)
   =D(\sqrt G\,z)\tau_{q^{(G)}}D(\sqrt G\,z)^*.
 \end{equation}
+Equivalently,
+\(\cA_G(X)=\Tr_b[S_r(X\ot\proj{0}_b)S_r^*]\), where \(S_r\) is a
+two-mode squeezing unitary with \(\cosh^2 r=G\).  Squeezing supplies the
+gain \(\sqrt G\), while tracing out the vacuum idler produces the minimum
+added noise encoded by \(q^{(G)}\).
 
 For \(p\in\Delta_d^\circ\), define on
 \(\cF_{\mathrm{orb}}=\cF^{\ot r_d}\)
@@ -918,16 +923,8 @@ For \(p\in\Delta_d^\circ\), define on
   \tau_p^{(\gamma)}
   =\bigotimes_{i<j}\tau_{q_{ij}^{(\gamma)}},
 \]
-and
-\begin{align}
-  \Phi_z^{(p)}
-  &=D(z)\tau_pD(z)^*,
-  \label{eq:Phi-family-def}\\
-  \Psi_z^{(p,\gamma)}
-  &=D(\sqrt\gamma\,z)\tau_pD(\sqrt\gamma\,z)^*.
-  \label{eq:Psi-family-def}
-\end{align}
-Here \(D(z)=\bigotimes_{i<j}D(z_{ij})\).  The three relevant states are
+With \(D(z)=\bigotimes_{i<j}D(z_{ij})\), the three relevant
+states are
 \begin{align*}
   \text{input:}\quad
   &\Phi_z^{(p)}=D(z)\tau_pD(z)^*,\\
@@ -956,11 +953,24 @@ Equip \(\mathsf H\) with its induced Euclidean measure and let
   \Sigma_p=\left.(\diag(p)-pp^{\mathsf T})\right|_{\mathsf H}>0.
 \]
 Write \(\mathsf N_{h,\Sigma_p}\) for the Gaussian law on \(\mathsf H\)
-with mean \(h\) and covariance \(\Sigma_p\).  A classical--quantum state is
-a positive trace-class-valued \(L^1\) density, and a channel between such
-state spaces is a completely positive trace-preserving bounded map.  Root
-fidelity is the integral of the pointwise root fidelities.  The statements in
-\cref{lem:fidelity-facts} remain valid for these direct-integral state spaces.
+with mean \(h\) and covariance \(\Sigma_p\).  A
+classical--quantum state has the form
+\[
+  R(x)=r(x)\rho_x,\qquad
+  r(x)\ge0,\quad \int_{\mathsf H}r(x)\,\dd x=1,
+\]
+where \(x\) and \(r\) are classical, while \(\rho_x\) is a quantum state on
+\(\cF_{\mathrm{orb}}\).  A channel \(\Lambda\) is completely positive and
+preserves \(\int\Tr R(x)\,\dd x\).  If \(S(x)=s(x)\sigma_x\), then
+\[
+  B(R,S)=\int_{\mathsf H}B(R(x),S(x))\,\dd x
+  =\int_{\mathsf H}\sqrt{r(x)s(x)}\,B(\rho_x,\sigma_x)\,\dd x.
+\]
+With \(\|R\|_1:=\int_{\mathsf H}\|R(x)\|_1\,\dd x\), monotonicity, joint
+concavity, and \eqref{eq:fidelity-continuity} remain valid;
+\eqref{eq:block-fidelity} becomes the first equality above.
+
+\par\indent
 Set
 \[
   \Theta_{h,z}^{\mathrm{in}}
