@@ -87,9 +87,11 @@ of the strict spectral chamber, asymptotic root fidelity at least
   =\left(\frac{2\sqrt\gamma}{1+\gamma}\right)^{(d-1)/2}
    \Borb(\gamma,p).
 \]
-Consequently, on every nonempty compact spectral set \(K\) that is the
-closure of its interior in the probability hyperplane, the global minimax
-value is \(\inf_{p\in K}\Buniv(\gamma,p)\).  We also show that
+Consequently, writing
+\(\mathsf A_d:=\{x\in\R^d:\sum_i x_i=1\}\), on every nonempty compact
+spectral set \(K\Subset\Delta_d^\circ\) satisfying
+\(K=\overline{\operatorname{int}_{\mathsf A_d}K}^{\,\mathsf A_d}\), the
+global minimax value is \(\inf_{p\in K}\Buniv(\gamma,p)\).  We also show that
 \(\Buniv(\gamma,p)\) is the exact expanding-window local asymptotic minimax
 value at each interior spectrum \(p\).
 
@@ -166,10 +168,8 @@ We now state the results precisely.  Fix positive integers \(m_n\) such that
 In particular, \(m_n>n\) for all sufficiently large \(n\).  Let
 \[
   \Delta_d^\circ
-  =\left\{p\in\R^d:p_1>\cdots>p_d>0,\ \sum_i p_i=1\right\},
-  \qquad
-  \rho_p=\diag(p_1,\ldots,p_d),
-  \qquad
+  :=\left\{p\in\mathsf A_d:p_1>\cdots>p_d>0\right\},\qquad
+  \rho_p=\diag(p_1,\ldots,p_d),\qquad
   \rho_{p,g}=g\rho_p g^*.
 \]
 We write \(B\) for root fidelity, so the target in every statement is the
@@ -231,9 +231,9 @@ There exists a sequence of spectrum-independent, \(\U(d)\)-covariant channels
   \right]\ge0.
 \end{equation}
 
-\item[(b)] Let \(K\Subset\Delta_d^\circ\) be nonempty and equal to the
-closure of its interior taken in the probability hyperplane
-\(\{x\in\R^d:\sum_i x_i=1\}\).  Then
+\item[(b)] Let \(K\Subset\Delta_d^\circ\) be nonempty and
+satisfy \(K=\overline{\operatorname{int}_{\mathsf A_d}K}^{\,\mathsf A_d}\).
+Then
 \begin{equation}\label{eq:compact-global-value}
   \lim_{n\to\infty}
   \sup_{\cM_n}
@@ -247,10 +247,17 @@ qudits.  The same sequence \(\cC_n^{\mathrm{univ}}\), defined in
 \end{enumerate}
 \end{theorem}
 
-Part~\textup{(a)} gives the lower bound in part~\textup{(b)}.  The matching
-upper bound is local: no channel can uniformly exceed
-\(\Buniv(\gamma,p)\) on expanding \(n^{-1/2}\)-neighborhoods of an interior
-spectrum \(p\).  We state this stronger local characterization next.
+Part~\textup{(a)} gives the achievability inequality in
+part~\textup{(b)},
+\[
+  \liminf_{n\to\infty}
+  \sup_{\cM_n}\inf_{\substack{p\in K\\g\in\U(d)}}
+  B\!\left(\cM_n(\rho_{p,g}^{\ot n}),\rho_{p,g}^{\ot m_n}\right)
+  \ge \inf_{p\in K}\Buniv(\gamma,p).
+\]
+The local characterization below gives the matching converse inequality,
+obtained by replacing \(\liminf\) and \(\ge\) with \(\limsup\) and \(\le\),
+respectively.
 
 For the local minimax problem, let
 \[
@@ -309,12 +316,15 @@ neighborhood yields the upper bound in part~\textup{(b)} of
 Let \(0<\kappa<2/[d(d+1)]\), and set
 \[
   \Delta_{d,\kappa}
-  =\left\{p\in\R^d:p_d\ge\kappa,\
-    p_i-p_{i+1}\ge\kappa\ (i<d),\ \sum_i p_i=1\right\}.
+  =\left\{p\in\mathsf A_d:p_d\ge\kappa,\
+    p_i-p_{i+1}\ge\kappa\ (i<d)\right\}.
 \]
 Then \(\Delta_{d,\kappa}\) is a nonempty compact subset of
-\(\Delta_d^\circ\), it is the closure of its interior in the probability
-hyperplane, and \eqref{eq:compact-global-value} holds with
+\(\Delta_d^\circ\), it satisfies
+\(\Delta_{d,\kappa}
+=\overline{\operatorname{int}_{\mathsf A_d}\Delta_{d,\kappa}}
+^{\,\mathsf A_d}\),
+and \eqref{eq:compact-global-value} holds with
 \(K=\Delta_{d,\kappa}\).
 \end{corollary}
 
@@ -1273,23 +1283,24 @@ exist and equal \(\Buniv(\gamma,p)\).
 \end{proof}
 
 \begin{proof}[Proof of part~\textup{(b)} of \cref{thm:unknown-optimum}]
-Let \(w_n(K)\) be the finite-\(n\) minimax value on the left of
-\eqref{eq:compact-global-value}.  Part~\textup{(a)} of
+Let \(w_n(K)\) be the finite-\(n\) minimax value on the
+left of \eqref{eq:compact-global-value}.  Part~\textup{(a)} of
 \cref{thm:unknown-optimum} gives
 \[
   \liminf_{n\to\infty}w_n(K)
   \ge\inf_{p\in K}\Buniv(\gamma,p).
 \]
-For the reverse inequality, fix \(p_0\) in the interior of \(K\) relative
-to the probability hyperplane.  For every fixed \(L\), all local
+For the reverse inequality, fix
+\(p_0\in\operatorname{int}_{\mathsf A_d}K\).  For every fixed \(L\), all local
 spectra \(p_0+h/\sqrt n\), \((h,z)\in\Omega_L\), lie in \(K\) for
 sufficiently large \(n\).  Thus \(w_n(K)\le v_{n,L}(p_0)\).  Letting first
 \(n\to\infty\) and then \(L\to\infty\), \cref{thm:unknown-local} gives
 \[
   \limsup_{n\to\infty}w_n(K)\le\Buniv(\gamma,p_0).
 \]
-Take the infimum over this relative interior.  Its closure is \(K\), and
-\(\Buniv(\gamma,\cdot)\) is continuous, so the resulting upper
+Take the infimum over
+\(\operatorname{int}_{\mathsf A_d}K\).  Its closure in \(\mathsf A_d\) is
+\(K\), and \(\Buniv(\gamma,\cdot)\) is continuous, so the resulting upper
 bound is \(\inf_{p\in K}\Buniv(\gamma,p)\).
 \end{proof}
 
@@ -1308,9 +1319,16 @@ Then every adjacent gap exceeds \(\kappa\) and
 \[
   p_d=\frac1d-\frac{d-1}{2}\kappa'>\frac{2}{d(d+1)}>\kappa.
 \]
-Thus the chamber has nonempty interior in the probability hyperplane.  It is
-convex and closed in the simplex, so it is compact and is the closure of its
-interior.  Apply part~\textup{(b)} of \cref{thm:unknown-optimum}.
+Thus
+\(\operatorname{int}_{\mathsf A_d}\Delta_{d,\kappa}\ne\varnothing\).
+It is convex and closed in the simplex, so it is compact and
+satisfies
+\[
+  \Delta_{d,\kappa}
+  =\overline{\operatorname{int}_{\mathsf A_d}\Delta_{d,\kappa}}
+             ^{\,\mathsf A_d}.
+\]
+Apply part~\textup{(b)} of \cref{thm:unknown-optimum}.
 
 If \(\kappa>2/[d(d+1)]\), \eqref{eq:chamber-threshold} makes the chamber
 empty.  At equality, every inequality in \eqref{eq:chamber-threshold} is an
@@ -2223,10 +2241,13 @@ rejected mass to \(\nu_n^{\mathrm{fb}}\) changes the law by at most
 \label{app:gaussian-converse}
 
 This appendix proves the two upper bounds in
-\cref{thm:gaussian-amplification} by one argument.  The classical dimension
-will be either \(k=0\), which gives the orbital problem, or \(k=d-1\), which
-gives the full classical--quantum problem.  All trace-class-valued integrals
-are Bochner integrals in trace norm.
+\cref{thm:gaussian-amplification}.  We average over large parameter sets and
+test the oscillator output against a compact product operator before taking
+a limit.  In the classical--quantum case, we also use the scalar measures
+obtained by tracing out the oscillator.  The classical parameter space has
+dimension \(k=0\) for the orbital problem and \(k=d-1\) for the full
+problem.  All trace-class-valued integrals below are Bochner integrals in
+trace norm.
 
 \subsection{Weighted fidelity and compact limits}
 
@@ -2243,10 +2264,11 @@ If this quantity is finite, then
   B(R,T)^2\le\Tr(RW)\Tr(TW^{-1}).
 \end{equation}
 
-Let \(\mathsf E\) be a Euclidean space,
-\(R\in L^1(\mathsf E;\cT_1(\cF_{\mathrm{orb}}))\) be positive, let \(g\)
-be a probability density, and let \(\chi>0\) be measurable.  Whenever the
-right side is finite,
+Let \(\mathsf E\) be a finite-dimensional Euclidean space,
+let \(R\in L^1(\mathsf E;\cT_1(\cF_{\mathrm{orb}}))\) be positive, let
+\(g\) be a probability density on \(\mathsf E\), and let \(\chi>0\) be
+measurable.  The notation \(gT\) means the density \(y\mapsto g(y)T\).
+Whenever the right-hand side below is finite,
 \begin{equation}\label{eq:weighted-hybrid-fidelity}
   B(R,gT)^2
   \le
@@ -2257,93 +2279,115 @@ right side is finite,
 \end{lemma}
 
 \begin{proof}
-For \(W_\varepsilon=W+\varepsilon I\), Schatten Cauchy--Schwarz gives
+For \(W_\varepsilon=W+\varepsilon I\), apply the Schatten H\"older
+inequality to
+\[
+  R^{1/2}T^{1/2}
+  =(R^{1/2}W_\varepsilon^{1/2})
+   (W_\varepsilon^{-1/2}T^{1/2}).
+\]
+This gives
 \[
   B(R,T)
-  \le\|R^{1/2}W_\varepsilon^{1/2}\|_2
-      \|W_\varepsilon^{-1/2}T^{1/2}\|_2.
+  \le\sqrt{\Tr(RW_\varepsilon)}
+       \sqrt{\Tr(TW_\varepsilon^{-1})}.
 \]
-Square and let \(\varepsilon\downarrow0\).  This proves
-\eqref{eq:weighted-quantum-fidelity}.  For
-\eqref{eq:weighted-hybrid-fidelity}, apply that inequality pointwise and then
-Cauchy--Schwarz in \(y\) after inserting
-\(\chi(y)^{1/2}\chi(y)^{-1/2}\).
+Squaring and letting \(\varepsilon\downarrow0\), using monotone convergence
+for the second trace, proves \eqref{eq:weighted-quantum-fidelity}.  For the
+hybrid state,
+\[
+  B(R,gT)
+  =\int_{\mathsf E}\sqrt{g(y)}\,B(R(y),T)\,\dd y.
+\]
+Apply the first inequality pointwise and then Cauchy--Schwarz to the factors
+\(\sqrt{\chi(y)\Tr[R(y)W]}\) and
+\(\sqrt{g(y)/\chi(y)}\).  This gives
+\eqref{eq:weighted-hybrid-fidelity}.
 \end{proof}
 
 \begin{lemma}[Compact-observable limits of completely positive maps]
 \label{lem:compact-cp-limit}
 Let \(\cH_0,\cH_1\) be separable Hilbert spaces and let
 \(\Gamma_j:\cT_1(\cH_0)\to\cT_1(\cH_1)\) be completely positive maps with
-uniformly bounded trace-norm operator norms.  There exist a subsequence and a
-completely positive map \(\Gamma\) such that
+uniformly bounded trace-norm operator norms.  There are a subsequence and a
+completely positive map
+\(\Gamma:\cT_1(\cH_0)\to\cT_1(\cH_1)\) such that
 \begin{equation}\label{eq:compact-map-convergence}
   \Tr[\Gamma_j(X)K]\longrightarrow\Tr[\Gamma(X)K]
 \end{equation}
-for every \(X\in\cT_1(\cH_0)\) and compact
+for every \(X\in\cT_1(\cH_0)\) and every compact
 \(K\in\mathcal K(\cH_1)\).  If
 \(\Tr\Gamma_j(X)\le c\Tr X\) for every \(X\ge0\), then
 \(\Tr\Gamma(X)\le c\Tr X\).
 
-Suppose also that \(U_g,V_g\) are unitary representations and, for every
-fixed \(g,X\),
+Suppose in addition that
+\(U:G\to\mathcal U(\cH_0)\) and
+\(V:G\to\mathcal U(\cH_1)\) are unitary representations and that, for every
+fixed \(g\in G\) and \(X\in\cT_1(\cH_0)\),
 \[
-  \|\Gamma_j(U_gXU_g^*)-V_g\Gamma_j(X)V_g^*\|_1\longrightarrow0.
+  \|\Gamma_j(U_g X U_g^*)-V_g\Gamma_j(X)V_g^*\|_1
+  \longrightarrow0.
 \]
-Then \(\Gamma(U_gXU_g^*)=V_g\Gamma(X)V_g^*\).
+Then
+\[
+  \Gamma(U_g X U_g^*)=V_g\Gamma(X)V_g^*
+\]
+for every \(g\in G\) and \(X\in\cT_1(\cH_0)\).
 \end{lemma}
 
 \begin{proof}
-Put \(M=\sup_j\|\Gamma_j\|_{1\to1}\).  Fix an orthonormal basis of
-\(\cH_1\), and let \(\mathcal D\subset\mathcal K(\cH_1)\) be the
-countable norm-dense \(\mathbb Q(\mathrm i)\)-\(*\)-algebra of
-finite matrices with entries in \(\mathbb Q(\mathrm i)\) in that basis.
-For each \(K\in\mathcal D\), the adjoints \(\Gamma_j^*(K)\) lie in a
-weak-* compact ball of \(\mathcal B(\cH_0)\).  This ball is metrizable
-because \(\cH_0\) is separable and \(\cT_1(\cH_0)\) is separable.  A
-diagonal subsequence therefore converges weak-* on \(\mathcal D\).  The
-bound \(\|\Gamma_j^*(K)\|\le M\|K\|\) extends the pointwise limit
-uniquely to a bounded complex-linear map
-\[
-  \Gamma^*:\mathcal K(\cH_1)\longrightarrow\mathcal B(\cH_0).
-\]
-This extension is completely positive.  Indeed, fix \(r\) and a positive
-\(A\in M_r(\mathcal K(\cH_1))\).  Approximate \(A^{1/2}\) in norm by
-matrices \(B_\ell\in M_r(\mathcal D)\).  Then
-\(A_\ell=B_\ell^*B_\ell\to A\), and weak-* convergence of the entries,
-together with complete positivity of every \(\Gamma_j^*\), gives
-\(\Gamma^{*(r)}(A_\ell)\ge0\).  Norm continuity and
-\(A_\ell\to A\) imply \(\Gamma^{*(r)}(A)\ge0\).
+Let \(M=\sup_j\|\Gamma_j\|_{1\to1}\), and let
+\(\mathcal D\subset\mathcal K(\cH_1)\) be a countable norm-dense
+\(\mathbb Q(\mathrm i)\)-linear \(*\)-algebra of finite-rank operators.  A
+diagonal weak-* compactness argument gives a subsequence for which
+\(\Gamma_j^*(K)\) converges weak-* in \(\mathcal B(\cH_0)\) for every
+\(K\in\mathcal D\).  The bound
+\(\|\Gamma_j^*(K)\|\le M\|K\|\) extends both the limit and the convergence
+to every compact \(K\), producing a bounded map
+\(\Gamma^*:\mathcal K(\cH_1)\to\mathcal B(\cH_0)\).
 
-For each \(X\in\cT_1(\cH_0)\), the functional
-\[
-  K\longmapsto \Tr[X\Gamma^*(K)]
-\]
-on \(\mathcal K(\cH_1)\) is bounded.  Since
-\(\mathcal K(\cH_1)^*=\cT_1(\cH_1)\), it is represented by a unique
-trace-class operator, denoted \(\Gamma(X)\).  Applying the preceding
-matrix-level positivity through this duality shows that \(\Gamma\) is
-completely positive, and its definition gives
-\eqref{eq:compact-map-convergence}.
+To check complete positivity, fix \(r\) and \(A\ge0\) in
+\(M_r(\mathcal K(\cH_1))\), and choose
+\(B_\ell\in M_r(\mathcal D)\) with \(B_\ell\to A^{1/2}\).  Since
+\(\Gamma_j^{*(r)}(B_\ell^*B_\ell)\ge0\), first letting \(j\to\infty\) and
+then \(\ell\to\infty\) gives \(\Gamma^{*(r)}(A)\ge0\).
 
-Let \(P_N\uparrow I\) be finite-rank projections on \(\cH_1\).  For
-\(X\ge0\), positivity and \eqref{eq:compact-map-convergence} give
+Since \(\mathcal K(\cH_1)^*=\cT_1(\cH_1)\), define \(\Gamma(X)\) by
+\[
+  \Tr[\Gamma(X)K]=\Tr[X\Gamma^*(K)]
+  \qquad(K\in\mathcal K(\cH_1)).
+\]
+Then \(\Gamma\) is completely positive and
+\eqref{eq:compact-map-convergence} holds.  If \(P_N\uparrow I\) are
+finite-rank projections and \(X\ge0\), then
+\[
+  \Tr\Gamma(X)
+  =\sup_N\lim_j\Tr[\Gamma_j(X)P_N]
+  \le c\Tr X.
+\]
+Finally, for fixed \(g,X\) and compact \(K\), the operator
+\(V_g^*KV_g\) is compact, and hence
 \[
 \begin{aligned}
-  \Tr\Gamma(X)
-  &=\sup_N\lim_j\Tr[\Gamma_j(X)P_N]\\
-  &\le\liminf_j\Tr\Gamma_j(X)
-  \le c\Tr X.
+  &\Tr\!\left[
+    \bigl(\Gamma(U_gXU_g^*)-V_g\Gamma(X)V_g^*\bigr)K
+  \right]\\
+  &\qquad=\lim_j\Tr\!\left[
+    \bigl(\Gamma_j(U_gXU_g^*)-V_g\Gamma_j(X)V_g^*\bigr)K
+  \right]=0.
 \end{aligned}
 \]
-Finally, pair the assumed covariance defect with a compact \(K\), pass to the
-limit using \eqref{eq:compact-map-convergence}, and use that compact operators
-separate trace-class operators.
+Compact operators separate trace-class operators, so the limiting map is
+covariant.
 \end{proof}
 
 \subsection{The least-noise oscillator moment}
 
-For \(s\ge1\) and \(q_1,\ldots,q_s\in(0,1)\), put
+Fix \(\gamma>1\).  For \(s\ge1\) and
+\(q_1,\ldots,q_s\in(0,1)\), put
 \[
+  q_\ell^{(\gamma)}=1-\frac{1-q_\ell}{\gamma},
+  \qquad
   \tau=\bigotimes_{\ell=1}^s\tau_{q_\ell},
   \qquad
   \tau^{(\gamma)}
@@ -2356,7 +2400,8 @@ Let \(\Gamma\) be a completely positive trace-nonincreasing map on the
 \(s\)-mode trace class satisfying
 \[
   \Gamma(D(z)XD(z)^*)
-  =D(\sqrt\gamma\,z)\Gamma(X)D(\sqrt\gamma\,z)^*.
+  =D(\sqrt\gamma\,z)\Gamma(X)D(\sqrt\gamma\,z)^*
+  \qquad(z\in\mathbb C^s).
 \]
 If
 \[
@@ -2373,117 +2418,105 @@ where every \(w_\ell\) is bounded, nonnegative, and decreasing on
 \end{proposition}
 
 \begin{proof}
-For \(\theta=(\theta_1,\ldots,\theta_s)\), put
-\(R_\theta=\bigotimes_{\ell=1}^s e^{\mathrm i\theta_\ell\widehat N_\ell}\)
-and replace \(\Gamma\) by
-\[
-  \overline\Gamma(X)
-  =\int_{[0,2\pi]^s}
-    R_\theta^*\Gamma(R_\theta X R_\theta^*)R_\theta
-    \frac{\dd\theta}{(2\pi)^s}.
-\]
-This map is phase covariant and remains displacement covariant with gain
-\(\sqrt\gamma\).  Since \(\tau\) and
-\(W(\widehat{\mathbf N})\) commute with every \(R_\theta\), the trace and the
-left side of \eqref{eq:least-noise-moment} are unchanged.  We may therefore
-assume that \(\Gamma\) is phase covariant.
+Averaging \(\Gamma\) over independent phase rotations preserves its
+trace bound and displacement covariance, and it does not change either side
+of \eqref{eq:least-noise-moment}.  We may therefore assume that \(\Gamma\)
+is phase covariant in every mode.
 
-For one mode, the trace functional has the form
-\(\Tr\Gamma(X)=\Tr(AX)\) with \(0\le A\le I\).  Displacement covariance
-implies that \(A\) commutes with every Weyl displacement.  Irreducibility
-gives \(A=cI\), \(0\le c\le1\).  If \(c>0\), then
-\(c^{-1}\Gamma\) is a trace-preserving phase-insensitive,
-displacement-covariant amplifier.  Section~2.C of
-\cite{GutaMatsumoto2006MixedGaussianCloning} gives the idler-state
-representation for displacement-covariant amplifiers; under this
-representation, the phase average above replaces the idler by its
-number-diagonal phase average.  Definition~2.2 and Lemma~2.3 of that paper
-give the relevant stochastic order in the basic case, and Sec.~3 states
-explicitly that Lemma~2.3 remains valid for every amplitude gain \(k>1\).
-Applying it with \(k=\sqrt\gamma\) shows that the photon-number distribution
-of \(c^{-1}\Gamma(\tau_q)\) is stochastically larger than that of the
-vacuum-idler amplifier:
+Consider one mode.  Write \(\Tr\Gamma(X)=\Tr(AX)\) with \(0\le A\le I\).
+Displacement covariance implies \(D(z)^*AD(z)=A\); hence irreducibility of
+the Weyl representation gives \(A=cI\), where
+\(c=\Tr\Gamma(\tau_q)\).  If \(c>0\), then
+\(\Lambda=c^{-1}\Gamma\) is a phase-covariant amplifier of amplitude gain
+\(\sqrt\gamma\).  The Heisenberg-picture idler representation writes such a
+channel as
+\[
+  a_{\mathrm{out}}
+  =\sqrt\gamma\,a_{\mathrm{in}}+\sqrt{\gamma-1}\,b^*,
+\]
+where \(b\) is an idler mode; phase covariance allows the idler state to
+be chosen number diagonal.  The stochastic-order result of
+\cite[Sec.~2.C, Lem.~2.3, and Sec.~3]
+{GutaMatsumoto2006MixedGaussianCloning} therefore implies that
 \begin{equation}\label{eq:imported-stochastic-order}
-  \sum_{k=0}^m(1-q^{(\gamma)})(q^{(\gamma)})^k
-  \ge\sum_{k=0}^m
-  \langle k|c^{-1}\Gamma(\tau_q)|k\rangle
+  \sum_{n=0}^m(1-q^{(\gamma)})(q^{(\gamma)})^n
+  \ge
+  \sum_{n=0}^m\langle n|\Lambda(\tau_q)|n\rangle
   \qquad(m\ge0).
 \end{equation}
-Summation by parts gives \eqref{eq:least-noise-moment} for every bounded
-decreasing \(w\).  The case \(c=0\) is immediate.
+The distribution on the left is the vacuum-idler output, namely that of
+\(\tau_{q^{(\gamma)}}\), and both output states are number diagonal.  For a
+bounded decreasing \(w\), summation by parts writes its expectation as a
+nonnegative linear combination of these cumulative probabilities; hence
+\[
+  \Tr[\Lambda(\tau_q)w(\widehat N)]
+  \le\Tr[\tau_{q^{(\gamma)}}w(\widehat N)].
+\]
+Multiplication by \(c\) proves the one-mode case; the case \(c=0\) is
+immediate.
 
-For several modes, if some \(w_\ell\) vanishes identically, both sides of
-\eqref{eq:least-noise-moment} vanish.  Otherwise divide each \(w_\ell\) by
-\(w_\ell(0)>0\); the same product of constants occurs on both sides.  It is
-therefore enough to assume \(0\le w_\ell\le1\).  Define
+For the multimode case, the claim is immediate if some \(w_\ell\)
+vanishes identically; otherwise, divide each \(w_\ell\) by
+\(w_\ell(0)\) and assume \(0\le w_\ell\le1\).  Put
 \[
   W_{\ge\ell}
   =I_1\ot\cdots\ot I_{\ell-1}\ot
    \bigotimes_{j=\ell}^s w_j(\widehat N_j),
   \qquad W_{\ge s+1}=I,
 \]
-and
-\[
-  \widetilde W_{>\ell}
-  =I_1\ot\cdots\ot I_\ell\ot
-   \bigotimes_{j=\ell+1}^s w_j(\widehat N_j).
-\]
-For \(X\) on mode \(\ell\), set
+and, for an operator \(X\) on mode \(\ell\), define
 \[
   \Gamma_\ell(X)
   =\Tr_{\ne\ell}\!\left[
-    \widetilde W_{>\ell}^{1/2}
+    W_{\ge\ell+1}^{1/2}
     \Gamma(\tau_{q_1}\ot\cdots\ot\tau_{q_{\ell-1}}\ot X\ot
            \tau_{q_{\ell+1}}\ot\cdots\ot\tau_{q_s})
-    \widetilde W_{>\ell}^{1/2}
+    W_{\ge\ell+1}^{1/2}
   \right].
 \]
-Because \(0\le\widetilde W_{>\ell}\le I\), this map is completely positive
-and trace nonincreasing.  It inherits displacement and phase covariance in
-mode \(\ell\).  Directly from its definition,
+Because \(0\le W_{\ge\ell+1}\le I\) and this operator is the identity on
+mode \(\ell\), each \(\Gamma_\ell\) is completely positive, trace
+nonincreasing, and displacement covariant in that mode.  Moreover,
 \[
-\begin{aligned}
   \Tr[\Gamma_\ell(\tau_{q_\ell})w_\ell(\widehat N_\ell)]
-  &=\Tr[\Gamma(\tau)W_{\ge\ell}],\\
+  =\Tr[\Gamma(\tau)W_{\ge\ell}],
+  \qquad
   \Tr\Gamma_\ell(\tau_{q_\ell})
-  &=\Tr[\Gamma(\tau)W_{\ge\ell+1}].
-\end{aligned}
+  =\Tr[\Gamma(\tau)W_{\ge\ell+1}].
 \]
-The one-mode result therefore gives
-\[
-  \Tr[\Gamma(\tau)W_{\ge\ell}]
-  \le
-  \Tr[\tau_{q_\ell^{(\gamma)}}w_\ell(\widehat N_\ell)]
-  \Tr[\Gamma(\tau)W_{\ge\ell+1}].
-\]
-Iteration from \(\ell=1\) to \(s\) proves
-\eqref{eq:least-noise-moment}.
+Applying the one-mode inequality to \(\Gamma_\ell\) and iterating over
+\(\ell=1,\ldots,s\) gives \eqref{eq:least-noise-moment}.
 \end{proof}
 
 Specialize to \(s=r_d\), \(q_\ell=q_{ij}\),
 \(\tau=\tau_p\), and \(\tau^{(\gamma)}=\tau_p^{(\gamma)}\).  Let
-\(t_{\mathbf k}\) and \(t_{\mathbf k}^{(\gamma)}\) be their number-basis
-eigenvalues, and define
+\(t_{\mathbf k}\) and \(t_{\mathbf k}^{(\gamma)}\) be the corresponding
+number-basis eigenvalues, and define
 \begin{equation}\label{eq:quantum-witness}
   W_\gamma
   =\sum_{\mathbf k}
   \sqrt{\frac{t_{\mathbf k}}{t_{\mathbf k}^{(\gamma)}}}
   \proj{\mathbf k}.
 \end{equation}
-It is the product of the one-mode functions
+Equivalently,
 \[
-  w_{ij}(k)
-  =\sqrt{\frac{1-q_{ij}}{1-q_{ij}^{(\gamma)}}}
-   \left(\frac{q_{ij}}{q_{ij}^{(\gamma)}}\right)^{k/2},
+  W_\gamma=\prod_{i<j}w_{ij}(\widehat N_{ij}),
+  \qquad
+  w_{ij}(n)=
+  \sqrt{\frac{1-q_{ij}}{1-q_{ij}^{(\gamma)}}}
+  \left(\frac{q_{ij}}{q_{ij}^{(\gamma)}}\right)^{n/2}.
 \]
-which are positive, bounded, and strictly decreasing.  Its eigenvalues tend
-to zero with the total occupation number, so \(W_\gamma\) is injective and
-compact.  Moreover,
+Since \(q_{ij}<q_{ij}^{(\gamma)}\), these factors are positive, bounded,
+and decreasing, and the eigenvalues of \(W_\gamma\) tend to zero with the
+total occupation number.  Thus \(W_\gamma\) is bounded,
+injective, and compact.  Its definition gives
 \begin{equation}\label{eq:quantum-witness-identities}
   \Tr(\tau_p^{(\gamma)}W_\gamma)
-  =\Tr(\tau_pW_\gamma^{-1})
-  =\Borb(\gamma,p).
+  =\Tr(\tau_p W_\gamma^{-1})
+  =\sum_{\mathbf k}\sqrt{t_{\mathbf k}t_{\mathbf k}^{(\gamma)}}
+  =\Borb(\gamma,p),
 \end{equation}
+where the inverse is understood as in \cref{lem:weighted-fidelity}.
 
 \subsection{Classical trace kernels}
 
@@ -2491,7 +2524,7 @@ compact.  Moreover,
 \label{lem:scalar-convolution}
 Let \(\mathsf E\) be a finite-dimensional Euclidean space and let
 \(\mathcal R:L^1(\mathsf E)\to C_0(\mathsf E)^*\) be a positive
-contraction.  For a finite Radon measure \(\lambda\), write
+contraction.  For a finite Radon measure \(\lambda\), define
 \(T_a\lambda(E)=\lambda(E-a)\).  Suppose
 \begin{equation}\label{eq:scalar-measure-covariance}
   \mathcal R(u(\,\cdot-h))=T_{\sqrt\gamma h}\mathcal R(u)
@@ -2503,38 +2536,48 @@ measure \(\mu\), with \(\mu(\mathsf E)\le1\), such that
   \mathcal R(u)(E)
   =\int_{\mathsf E}u(x)\,\mu(E-\sqrt\gamma x)\,\dd x
 \end{equation}
-for every \(u\in L^1(\mathsf E)\) and Borel set \(E\).
+for every \(u\in L^1(\mathsf E)\) and every Borel set \(E\).
 \end{lemma}
 
 \begin{proof}
-For \(\dim\mathsf E=0\), the claim is immediate.  Otherwise, choose a
-nonnegative approximate identity \(u_j\in C_c(\mathsf E)\) with
-\(\int u_j=1\).  A subsequence
-of \(\mathcal R(u_j)\) converges weak-* to a positive measure \(\mu\) of
-mass at most one.  Since \(u*u_j\to u\) in \(L^1\), covariance gives, for every
-\(\phi\in C_0(\mathsf E)\),
+The one-point case is immediate.  Otherwise choose a nonnegative
+approximate identity \(u_j\in C_c(\mathsf E)\) with \(\int u_j=1\).
+Since \(C_0(\mathsf E)\) is separable, after passing to a subsequence the
+positive measures \(\mathcal R(u_j)\) converge weak-* to a positive measure
+\(\mu\); the contraction bound gives \(\mu(\mathsf E)\le1\).
+
+Covariance gives, as an equality of finite measures,
 \[
-  \langle\phi,\mathcal R(u*u_j)\rangle
-  =\int_{\mathsf E}u(x)
-    \langle\phi,T_{\sqrt\gamma x}\mathcal R(u_j)\rangle\,\dd x.
+  \mathcal R(u*u_j)
+  =\int_{\mathsf E}u(x)T_{\sqrt\gamma x}\mathcal R(u_j)\,\dd x.
 \]
-For each fixed \(x\), weak-* convergence of \(\mathcal R(u_j)\) gives
-convergence of the inner pairing, while its absolute value is at most
-\(\|\phi\|_\infty\).  Dominated convergence therefore yields
-\eqref{eq:scalar-convolution} after pairing with every \(\phi\in
-C_0(\mathsf E)\); equality for Borel sets follows from equality of the
-resulting Radon measures.
+For \(u\in L^1(\mathsf E)\) and \(\phi\in C_0(\mathsf E)\), use
+\(u*u_j\to u\) in \(L^1\), pair this identity with \(\phi\), and pass to
+the limit to obtain
+\[
+\begin{aligned}
+  \langle\phi,\mathcal R(u)\rangle
+  &=\int_{\mathsf E}u(x)
+      \int_{\mathsf E}\phi(y+\sqrt\gamma x)\,\mu(\dd y)\,\dd x.
+\end{aligned}
+\]
+Dominated convergence applies because the integrand is bounded by
+\(|u(x)|\|\phi\|_\infty\).  This is precisely the pairing of \(\phi\)
+with the measure in \eqref{eq:scalar-convolution}.
 \end{proof}
 
 \subsection{One flat-prior bound for both Gaussian models}
 
 \begin{proposition}[Flat-prior upper bound]\label{prop:flat-prior-upper}
-Let \(k\in\{0,d-1\}\).  For \(k=0\), let
-\(\mathsf E=\{0\}\) and omit the classical factor.  For \(k=d-1\), let
-\(\mathsf E=\mathsf H\), with covariance \(\Sigma_p\).  Let
-\(\mathsf E_L=\{h\in\mathsf E:\|h\|_\infty\le L\}\), with the convention
-\(|\mathsf E_L|=1\) when \(k=0\), and put
-\(\Xi_L=\mathsf E_L\times\mathsf Z_L\).  Define
+Let \(k\in\{0,d-1\}\).  For \(k=0\), let \(\mathsf E=\{0\}\) and omit the
+classical factor.  For \(k=d-1\), let \(\mathsf E=\mathsf H\), equipped with
+its induced Euclidean measure, and use the covariance \(\Sigma_p\).  Let
+\[
+  \mathsf E_L=\{h\in\mathsf E:\|h\|_\infty\le L\},
+  \qquad
+  \Xi_L=\mathsf E_L\times\mathsf Z_L,
+\]
+with \(|\mathsf E_L|=1\) when \(k=0\).  Define
 \[
   R_{0,z}^{(0)}=\Phi_z^{(p)},
   \qquad S_{0,z}^{(0)}=\Psi_z^{(p,\gamma)},
@@ -2545,7 +2588,9 @@ Let \(k\in\{0,d-1\}\).  For \(k=0\), let
   \qquad
   c_k=\left(\frac{2\sqrt\gamma}{1+\gamma}\right)^{k/2}.
 \]
-Then
+For \(k=0\), the supremum below is over quantum channels on
+\(\cF_{\mathrm{orb}}\); for \(k=d-1\), it is over classical--quantum
+channels.  Then
 \begin{equation}\label{eq:unified-flat-prior-upper}
   \limsup_{L\to\infty}\sup_\Lambda
   \frac1{|\Xi_L|}\int_{\Xi_L}
@@ -2558,20 +2603,24 @@ For \(k=0\), integration in \(h\) means evaluation at the unique point of
 \end{proposition}
 
 \begin{proof}
-Let \(f_1\) be the density of \(\mathsf N_{0,\Sigma_p}\) on
-\(\mathsf E\), and let \(f_\gamma\) be the density with covariance
-\(\gamma\Sigma_p\).  When \(k=0\), read
-\(f_1=f_\gamma=\chi=1\) and omit all classical integrals.  Otherwise, set
+For \(k=0\), set \(f_1=f_\gamma=\chi=1\) on the one-point space.  For
+\(k=d-1\), let \(f_1\) and \(f_\gamma\) be the centered Gaussian densities
+with covariances \(\Sigma_p\) and \(\gamma\Sigma_p\), and set
 \[
-  \chi(y)=\sqrt{\frac{f_1(y)}{f_\gamma(y)}}.
+  \chi(y)=\sqrt{\frac{f_1(y)}{f_\gamma(y)}}
+  =\gamma^{k/4}
+   \exp\!\left[-\frac{\gamma-1}{4\gamma}
+     \langle y,\Sigma_p^{-1}y\rangle\right].
 \]
-Then \(\chi\) is bounded, strictly positive, belongs to
-\(C_0(\mathsf E)\), and
+This function is bounded and strictly positive; for \(k=d-1\), it also
+belongs to \(C_0(\mathsf E)\).  In both cases,
 \begin{equation}\label{eq:classical-witness-identity}
-  \int_{\mathsf E}\frac{f_1(y)}{\chi(y)}\,\dd y=c_k.
+  \int_{\mathsf E}\frac{f_1(y)}{\chi(y)}\,\dd y
+  =\int_{\mathsf E}\sqrt{f_1(y)f_\gamma(y)}\,\dd y
+  =c_k.
 \end{equation}
 
-For \(\xi=(h,z)\), define the input and output translations by
+For \(\xi=(h,z)\), define
 \[
   (\mathcal U_\xi^{\mathrm{in}}R)(x)
   =D(z)R(x-h)D(z)^*,
@@ -2579,145 +2628,193 @@ For \(\xi=(h,z)\), define the input and output translations by
   (\mathcal U_\xi^{\mathrm{out}}R)(y)
   =D(\sqrt\gamma z)R(y-\sqrt\gamma h)D(\sqrt\gamma z)^*.
 \]
-For a competing channel \(\Lambda\), average its centered versions:
+Then
+\(R_\xi^{(k)}=\mathcal U_\xi^{\mathrm{in}}(f_1\tau_p)\) and
+\(S_\xi^{(k)}=\mathcal U_\xi^{\mathrm{out}}(f_1\tau_p)\).  For a channel
+\(\Lambda\), let
 \[
   \overline\Lambda_L
   =\frac1{|\Xi_L|}\int_{\Xi_L}
-   \mathcal U_{-\xi}^{\mathrm{out}}\circ\Lambda\circ
-   \mathcal U_\xi^{\mathrm{in}}\,\dd\xi.
+   \mathcal U_{-\eta}^{\mathrm{out}}\circ\Lambda\circ
+   \mathcal U_\eta^{\mathrm{in}}\,\dd\eta.
 \]
-The input family is obtained from \(f_1\tau_p\) by
-\(\mathcal U_\xi^{\mathrm{in}}\), and the ideal target family is obtained
-from the same centered state by \(\mathcal U_\xi^{\mathrm{out}}\).
-Joint concavity gives
+Translation invariance and concavity of root fidelity give
 \begin{equation}\label{eq:unified-folner-concavity}
-  \frac1{|\Xi_L|}\int_{\Xi_L}
+  F_L(\Lambda)
+  =\frac1{|\Xi_L|}\int_{\Xi_L}
   B\!\left(\Lambda(R_\xi^{(k)}),S_\xi^{(k)}\right)\,\dd\xi
   \le B(\overline\Lambda_L(f_1\tau_p),f_1\tau_p).
 \end{equation}
 
-Choose \(L_j\to\infty\) and, for each \(j\), a channel whose average
-fidelity is within \(1/j\) of the supremum at \(L_j\), so that these averages
-converge to the limsup in \eqref{eq:unified-flat-prior-upper}.  Replace each
-chosen channel by its average and write the result as
-\(\Lambda_j=\overline\Lambda_{L_j}\).  Put
+Let \(F_*=\limsup_{L\to\infty}\sup_\Lambda F_L(\Lambda)\).  Choose
+\(L_j\to\infty\) and nearly optimal channels
+\(\widetilde\Lambda_j\), and set
 \[
-  R_j=\Lambda_j(f_1\tau_p),
-  \qquad
-  M_j=\int_{\mathsf E}\chi(y)\Tr[R_j(y)W_\gamma] \,\dd y.
+  \Lambda_j=\overline{\widetilde\Lambda_j}_{L_j},
+  \qquad R_j=\Lambda_j(f_1\tau_p).
 \]
-By \cref{lem:weighted-fidelity},
+Then
+\begin{equation}\label{eq:unified-maximizing-sequence}
+  F_{L_j}(\widetilde\Lambda_j)\longrightarrow F_*,
+  \qquad
+  F_{L_j}(\widetilde\Lambda_j)\le B(R_j,f_1\tau_p).
+\end{equation}
+For \(\eta\in\mathsf E\times\mathbb C^{r_d}\), write
+\[
+  A_{j,\eta}
+  =\mathcal U_{-\eta}^{\mathrm{out}}\circ
+   \widetilde\Lambda_j\circ\mathcal U_\eta^{\mathrm{in}},
+  \qquad
+  \Lambda_j=\frac1{|\Xi_{L_j}|}\int_{\Xi_{L_j}}A_{j,\eta}\,\dd\eta.
+\]
+The group law and the change of variables \(u=\eta+\xi\) give
+\[
+\begin{aligned}
+  \Lambda_j(\mathcal U_\xi^{\mathrm{in}}R)
+  &=\mathcal U_\xi^{\mathrm{out}}
+    \frac1{|\Xi_{L_j}|}\int_{\Xi_{L_j}+\xi}A_{j,u}(R)\,\dd u,\\
+  \mathcal U_\xi^{\mathrm{out}}\Lambda_j(R)
+  &=\mathcal U_\xi^{\mathrm{out}}
+    \frac1{|\Xi_{L_j}|}\int_{\Xi_{L_j}}A_{j,u}(R)\,\dd u.
+\end{aligned}
+\]
+The two integrals cancel on the intersection of the two averaging sets,
+and \(\|A_{j,u}\|_{1\to1}\le1\).  Therefore, for fixed \(\xi\),
+\begin{equation}\label{eq:unified-approx-covariance}
+  \|\Lambda_j(\mathcal U_\xi^{\mathrm{in}}R)
+    -\mathcal U_\xi^{\mathrm{out}}\Lambda_j(R)\|_1
+  \le
+  \frac{|(\Xi_{L_j}+\xi)\mathbin\triangle\Xi_{L_j}|}{|\Xi_{L_j}|}
+  \|R\|_1
+  \longrightarrow0.
+\end{equation}
+Indeed, \(\Xi_1\) is a bounded polytope and \(\Xi_L=L\Xi_1\), so the
+ratio is \(O_\xi(L^{-1})\).
+
+Define
+\[
+  \Gamma_j^\chi(X)
+  =\int_{\mathsf E}\chi(y)[\Lambda_j(f_1X)](y)\,\dd y.
+\]
+These maps are completely positive and satisfy
+\(\|\Gamma_j^\chi\|_{1\to1}\le\|\chi\|_\infty\).  Taking
+\(\xi=(0,z)\) in \eqref{eq:unified-approx-covariance}, multiplying by
+\(\chi\), and integrating gives
+\[
+\begin{aligned}
+ &\|\Gamma_j^\chi(D(z)XD(z)^*)
+   -D(\sqrt\gamma z)\Gamma_j^\chi(X)D(\sqrt\gamma z)^*\|_1\\
+ &\qquad\le\|\chi\|_\infty
+   \frac{|(\Xi_{L_j}+(0,z))\mathbin\triangle\Xi_{L_j}|}{|\Xi_{L_j}|}
+   \|X\|_1\longrightarrow0.
+\end{aligned}
+\]
+Hence \cref{lem:compact-cp-limit} gives, after passing to a subsequence, a
+completely positive displacement-covariant limit \(\Gamma^\chi\) such that
+\begin{equation}\label{eq:weighted-map-limit}
+  \Tr[\Gamma_j^\chi(X)K]
+  \longrightarrow\Tr[\Gamma^\chi(X)K]
+\end{equation}
+for trace-class \(X\) and compact \(K\).  With
+\[
+  M_j
+  =\int_{\mathsf E}\chi(y)\Tr[R_j(y)W_\gamma] \,\dd y
+  =\Tr[\Gamma_j^\chi(\tau_p)W_\gamma],
+\]
+compactness of \(W_\gamma\) gives
+\begin{equation}\label{eq:moment-limit}
+  M_j\longrightarrow\Tr[\Gamma^\chi(\tau_p)W_\gamma].
+\end{equation}
+Moreover, \cref{lem:weighted-fidelity},
 \eqref{eq:classical-witness-identity}, and
-\eqref{eq:quantum-witness-identities},
+\eqref{eq:quantum-witness-identities} give
 \begin{equation}\label{eq:unified-fidelity-to-moment}
   B(R_j,f_1\tau_p)^2
   \le M_j\,c_k\Borb(\gamma,p).
 \end{equation}
 
-Define a completely positive map on oscillator trace class by
-\[
-  \Gamma_j^\chi(X)
-  =\int_{\mathsf E}\chi(y)[\Lambda_j(f_1X)](y)\,\dd y.
-\]
-It satisfies
-\(\Tr\Gamma_j^\chi(X)\le\|\chi\|_\infty\Tr X\) for \(X\ge0\).  Translation
-of the averaging cube gives, for every fixed \(\xi\),
-\begin{equation}\label{eq:unified-approx-covariance}
-  \|\Lambda_j(\mathcal U_\xi^{\mathrm{in}}R)
-  -\mathcal U_\xi^{\mathrm{out}}\Lambda_j(R)\|_1
-  \le
-  \frac{|(\Xi_{L_j}+\xi)\triangle\Xi_{L_j}|}{|\Xi_{L_j}|}\,\|R\|_1.
-\end{equation}
-Taking \(h=0\), applying \eqref{eq:unified-approx-covariance} in the
-definition of \(\Gamma_j^\chi\), and using that \(f_1\) has integral one
-gives, for fixed \(z\) and trace-class \(X\),
+If \(k=0\), then \(\Gamma_j^\chi=\Lambda_j\) are channels, so the limit is
+trace nonincreasing.  By \cref{prop:least-noise-moment},
 \[
 \begin{aligned}
- &\|\Gamma_j^\chi(D(z)XD(z)^*)
-   -D(\sqrt\gamma z)\Gamma_j^\chi(X)D(\sqrt\gamma z)^*\|_1\\
- &\qquad\le \|\chi\|_\infty
-  \frac{|(\Xi_{L_j}+(0,z))\triangle\Xi_{L_j}|}{|\Xi_{L_j}|}\,\|X\|_1
-  \longrightarrow0.
+  \lim_j M_j
+  &=\Tr[\Gamma^\chi(\tau_p)W_\gamma]\\
+  &\le\Tr\Gamma^\chi(\tau_p)\,
+       \Tr(\tau_p^{(\gamma)}W_\gamma)
+  \le\Borb(\gamma,p).
 \end{aligned}
 \]
-By \cref{lem:compact-cp-limit}, after passing to a subsequence,
-there is a completely positive map \(\Gamma^\chi\) that is exactly
-displacement covariant and satisfies
-\begin{equation}\label{eq:weighted-map-limit}
-  \Tr[\Gamma_j^\chi(X)K]\longrightarrow\Tr[\Gamma^\chi(X)K]
-\end{equation}
-for every trace-class \(X\) and compact \(K\).  Since
-\(M_j=\Tr[\Gamma_j^\chi(\tau_p)W_\gamma]\) and \(W_\gamma\) is compact,
-\begin{equation}\label{eq:moment-limit}
-  M_j\longrightarrow\Tr[\Gamma^\chi(\tau_p)W_\gamma].
-\end{equation}
+Equations \eqref{eq:unified-maximizing-sequence} and
+\eqref{eq:unified-fidelity-to-moment} now yield
+\(F_*\le\Borb(\gamma,p)\).
 
-For \(u\in L^1(\mathsf E)\), let \(\mathcal R_j(u)\) be the classical trace
-measure of \(\Lambda_j(u\tau_p)\).  These maps are positive contractions.
-After taking a further subsequence, diagonal weak-* convergence on countable
-dense subsets of \(L^1(\mathsf E)\) and \(C_0(\mathsf E)\), followed by
-continuity, gives a positive contraction
-\(\mathcal R:L^1(\mathsf E)\to C_0(\mathsf E)^*\).  Setting \(z=0\) in
-\eqref{eq:unified-approx-covariance} and passing to the limit yields
+Assume henceforth that \(k=d-1\).  For \(u\in L^1(\mathsf E)\), define
 \[
-  \mathcal R(u(\,\cdot-h))=T_{\sqrt\gamma h}\mathcal R(u).
+  \mathcal R_j(u)(E)
+  =\int_E\Tr\bigl([\Lambda_j(u\tau_p)](y)\bigr)\,\dd y.
 \]
-Let \(\mu\) be the measure supplied by \cref{lem:scalar-convolution}.
+The maps \(\mathcal R_j:L^1(\mathsf E)\to C_0(\mathsf E)^*\) are positive
+contractions.  Using countable dense subsets of \(L^1(\mathsf E)\) and
+\(C_0(\mathsf E)\), pass to a subsequence converging weak-* on every \(u\)
+to a positive contraction \(\mathcal R\).  Taking \(z=0\) in
+\eqref{eq:unified-approx-covariance}, pairing with a function in
+\(C_0(\mathsf E)\), and passing to the limit gives
+\[
+  \mathcal R(u(\,\cdot-h))
+  =T_{\sqrt\gamma h}\mathcal R(u).
+\]
+Let \(\mu\) be the measure from \cref{lem:scalar-convolution}; then
+\(\mu(\mathsf E)\le1\).
 
-Let \(P_N\uparrow I\) be finite-rank projections on
-\(\cF_{\mathrm{orb}}\).  By \eqref{eq:weighted-map-limit}, positivity, and
-weak-* convergence of \(\mathcal R_j(f_1)\),
+Finite-rank projections, \eqref{eq:weighted-map-limit}, the weak-*
+convergence of \(\mathcal R_j(f_1)\), and
+\(\chi\in C_0(\mathsf E)\) give
 \[
 \begin{aligned}
-  \Tr[\Gamma^\chi(\tau_p)P_N]
-  &=\lim_j\int_{\mathsf E}\chi(y)
-      \Tr\!\left([\Lambda_j(f_1\tau_p)](y)P_N\right)\dd y\\
-  &\le\lim_j\int_{\mathsf E}\chi(y)\,\mathcal R_j(f_1)(\dd y)
+  \Tr\Gamma^\chi(\tau_p)
+  &\le\liminf_j\Tr\Gamma_j^\chi(\tau_p)\\
+  &=\lim_j\int_{\mathsf E}\chi(y)\,\mathcal R_j(f_1)(\dd y)
    =\int_{\mathsf E}\chi(y)\,\mathcal R(f_1)(\dd y).
 \end{aligned}
 \]
-Taking the supremum over \(N\) gives
+By \eqref{eq:scalar-convolution}, the last integral equals
 \[
-  \Tr\Gamma^\chi(\tau_p)
-  \le\int_{\mathsf E}\chi(y)\,\mathcal R(f_1)(\dd y).
+  \int_{\mathsf E}\mu(\dd r)
+  \int_{\mathsf E}f_1(x)\chi(r+\sqrt\gamma x)\,\dd x.
 \]
-The convolution formula gives
+Completing the square gives
 \[
-  \int_{\mathsf E}\chi(y)\,\mathcal R(f_1)(\dd y)
-  =\int_{\mathsf E}c_\gamma(r)\,\mu(\dd r),
-  \qquad
-  c_\gamma(r)=\int_{\mathsf E}\chi(y)f_\gamma(y-r)\,\dd y.
-\]
-For \(k>0\), completing the square gives
-\[
-  c_\gamma(r)
+  \int_{\mathsf E}f_1(x)\chi(r+\sqrt\gamma x)\,\dd x
   =c_k\exp\!\left[-\frac{\gamma-1}{2\gamma(\gamma+1)}
-  \langle r,\Sigma_p^{-1}r\rangle\right]
-  \le c_k.
+    \langle r,\Sigma_p^{-1}r\rangle\right].
 \]
-For \(k=0\), the same statement reads \(c_\gamma(0)=c_0=1\).  Since
-\(\mu(\mathsf E)\le1\),
-\begin{equation}\label{eq:trace-mass-bound}
-  \Tr\Gamma^\chi(\tau_p)\le c_k.
-\end{equation}
-The trace functional of \(\Gamma^\chi\) is represented by a bounded positive
-operator commuting with every multimode Weyl displacement.  Irreducibility
-therefore gives
-\(\Tr\Gamma^\chi(X)=c\Tr X\), where
-\(c=\Tr\Gamma^\chi(\tau_p)\le c_k\le1\).  Hence \(\Gamma^\chi\) is trace
-nonincreasing.  By \cref{prop:least-noise-moment},
-\eqref{eq:quantum-witness-identities}, and
-\eqref{eq:moment-limit},
+Since \(\mu(\mathsf E)\le1\), it follows that
+\(\Tr\Gamma^\chi(\tau_p)\le c_k\).
+
+Finally write \(\Tr\Gamma^\chi(X)=\Tr(AX)\).  Covariance implies that \(A\)
+commutes with every Weyl displacement, so \(A=cI\), with
 \[
-  \lim_{j\to\infty}M_j
+  c=\Tr\Gamma^\chi(\tau_p)\le c_k\le1.
+\]
+Thus \(\Gamma^\chi\) is trace nonincreasing, and
+\cref{prop:least-noise-moment} gives
+\[
+\begin{aligned}
+  \lim_j M_j
+  &=\Tr[\Gamma^\chi(\tau_p)W_\gamma]\\
+  &\le\Tr\Gamma^\chi(\tau_p)\,
+       \Tr(\tau_p^{(\gamma)}W_\gamma)
   \le c_k\Borb(\gamma,p).
+\end{aligned}
 \]
-Equation \eqref{eq:unified-fidelity-to-moment} now gives
+Combining this with \eqref{eq:unified-maximizing-sequence} and
+\eqref{eq:unified-fidelity-to-moment} yields
 \[
-  \limsup_{j\to\infty}B(R_j,f_1\tau_p)\le c_k\Borb(\gamma,p).
+  F_*\le c_k\Borb(\gamma,p),
 \]
-Combine this with \eqref{eq:unified-folner-concavity}.
+which proves the full classical--quantum case.
 \end{proof}
+
 \begin{thebibliography}{LTHC26}
 \bibitem[WZ82]{WoottersZurek1982}
 W. K. Wootters and W. H. Zurek,
