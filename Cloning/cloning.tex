@@ -154,9 +154,10 @@ normality (LAN).  Any finite-dimensional cloning protocol can then be
 transferred to an amplification protocol between the corresponding Gaussian
 local models.  Gu\c{t}\u{a} and Matsumoto identified the least-noisy
 phase-insensitive amplifier in the relevant covariant problem
-\cite{GutaMatsumoto2006MixedGaussianCloning}.  A weighted fidelity inequality
-and averaging over growing parameter cubes give the required Gaussian upper
-bound for arbitrary channels, without assuming Gaussianity or covariance.
+\cite{GutaMatsumoto2006MixedGaussianCloning}.  A weighted
+fidelity inequality and averaging over growing parameter cubes give the
+required Gaussian converse for arbitrary channels, without assuming
+Gaussianity or covariance.
 The resulting local converse also supplies the global converse on compact
 spectral sets.
 
@@ -165,7 +166,8 @@ We now state the results precisely.  Fix positive integers \(m_n\) such that
   \gamma_n:=\frac{m_n}{n}\longrightarrow\gamma>1,
   \qquad r_d:=\binom d2.
 \]
-In particular, \(m_n>n\) for all sufficiently large \(n\).  Let
+In particular, \(m_n>n\) for all sufficiently large \(n\).
+Write \(\mathsf A_d:=\{x\in\R^d:\sum_i x_i=1\}\).  Let
 \[
   \Delta_d^\circ
   :=\left\{p\in\mathsf A_d:p_1>\cdots>p_d>0\right\},\qquad
@@ -306,11 +308,13 @@ For every \(p\in\Delta_d^\circ\),
 \]
 \end{theorem}
 
-Thus \(\Buniv(\gamma,p)\) is not only the performance of the explicit
-universal channel; it is the intrinsic local asymptotic minimax value at each
-interior spectrum.  Restricting a global protocol to such a local
-neighborhood yields the upper bound in part~\textup{(b)} of
-\cref{thm:unknown-optimum}.
+Thus \(\Buniv(\gamma,p)\) is not only the performance of the
+explicit universal channel sequence \(\cC_n^{\mathrm{univ}}\); it is the
+intrinsic local asymptotic minimax value at each interior spectrum.
+Restricting a global protocol to such a
+local neighborhood shows that the global minimax value in
+part~\textup{(b)} of \cref{thm:unknown-optimum} cannot exceed
+\(\inf_{p\in K}\Buniv(\gamma,p)\).
 
 \begin{corollary}[Uniform-gap chambers]\label{cor:compact-chamber}
 Let \(0<\kappa<2/[d(d+1)]\), and set
@@ -351,7 +355,7 @@ compares the optimal
 values with pure-state cloning, random purification, and estimation-based
 strategies.  The appendices supply the fixed-height PBW calculation of the
 sector fidelity, the Young local limit and randomized-rounding estimate, and
-the unified flat-prior Gaussian upper bound.
+the unified flat-prior Gaussian converse.
 
 \section{The common Schur--Cartan construction}\label{sec:schur-cartan}
 
@@ -407,7 +411,7 @@ triangle inequality, and Schatten H\"older,
 where the last line uses \(\Tr C\le1\) and \(\Tr A'\le1\).
 \end{proof}
 
-\begin{lemma}[Block-fidelity lower bound]\label{lem:block-good-set}
+\begin{lemma}[Block-fidelity estimate]\label{lem:block-good-set}
 Let \(\Pi(x,y)\) be a joint probability distribution with \(y\)-marginal
 \(Q\), let \(P\) be a probability distribution on the same \(y\)-space,
 and let \(\sigma_{x,y}\) and \(\tau_y\) be states.  If \(G\) is a set of
@@ -880,11 +884,12 @@ uniformly for \(p\in K\).
 
 \section{Gaussian converses and LAN transfer}\label{sec:gaussian-LAN}
 
-The constructions above give lower bounds on the minimax fidelities.  To show
-that they are optimal, we pass to the local Gaussian models in which cloning
-becomes amplification.  We first solve the Gaussian problems, then state the
-two-way LAN approximation, and finally transfer the resulting upper bounds
-back to the finite-dimensional models.
+The constructions above establish achievability for the minimax fidelities.
+To show that they are optimal, we pass to the local
+Gaussian models in which cloning becomes amplification.  We first solve the
+Gaussian problems, then state the two-way LAN approximation, and finally
+transfer the resulting converse inequalities back to the
+finite-dimensional models.
 
 \subsection{Gaussian amplification}
 
@@ -921,7 +926,7 @@ For \(p\in\Delta_d^\circ\), define on
   \tau_p=\bigotimes_{i<j}\tau_{q_{ij}},
   \qquad
   \tau_p^{(\gamma)}
-  =\bigotimes_{i<j}\tau_{q_{ij}^{(\gamma)}},
+  =\bigotimes_{i<j}\tau_{q_{ij}^{(\gamma)}}.
 \]
 With \(D(z)=\bigotimes_{i<j}D(z_{ij})\), the three relevant
 states are
@@ -938,7 +943,7 @@ Thus the ideal target retains the thermal state \(\tau_p\); only the actual
 amplifier output contains the additional noise \(\tau_p^{(\gamma)}\).  By
 \eqref{eq:thermal-root-fidelity},
 \begin{equation}\label{eq:one-mode-b}
-  B(\tau_{q^{(\gamma)}},\tau_q)=b_\gamma(q),
+  B(\tau_{q^{(\gamma)}},\tau_q)=b_\gamma(q).
 \end{equation}
 Thus, for every \(z\in\C^{r_d}\), the product-amplifier output and the
 corresponding ideal state satisfy
@@ -1003,28 +1008,45 @@ For every \(p\in\Delta_d^\circ\),
 \end{align}
 The first supremum is over all quantum channels on
 \(\cF_{\mathrm{orb}}\); the second is over all classical--quantum channels.
-The upper bounds hold without assuming Gaussianity, covariance, or a product
-structure.
+No Gaussianity, covariance, or product-structure assumption is imposed on
+the competing channels in either supremum.
 \end{theorem}
 
 \begin{proof}
-The product amplifier gives the lower bound in
-\eqref{eq:gaussian-orbital-optimum}.  For the full model, combine it with the
-deterministic classical map \(x\mapsto\sqrt\gamma x\).  This sends
-\(\mathsf N_{h,\Sigma_p}\) to
-\(\mathsf N_{\sqrt\gamma h,\gamma\Sigma_p}\), whose fidelity with
-\(\mathsf N_{\sqrt\gamma h,\Sigma_p}\) is
+Let \(V_L^{\mathrm{orb}}\) and \(V_L^{\mathrm{full}}\) denote the two
+optimized averages above before \(L\to\infty\).  The product amplifier gives
+\(V_L^{\mathrm{orb}}\ge\Borb(\gamma,p)\) for every \(L\).  For the full
+model, tensor \(\cA_\gamma^{\ot r_d}\) with the classical pushforward
+\(x\mapsto\sqrt\gamma x\).  This sends \(\mathsf N_{h,\Sigma_p}\) to
+\(\mathsf N_{\sqrt\gamma h,\gamma\Sigma_p}\), and
 \[
-  \left(\frac{2\sqrt\gamma}{1+\gamma}\right)^{(d-1)/2}
+  B\!\left(\mathsf N_{\sqrt\gamma h,\gamma\Sigma_p},
+            \mathsf N_{\sqrt\gamma h,\Sigma_p}\right)
+  =\frac{\det_{\mathsf H}(\gamma\Sigma_p)^{1/4}
+          \det_{\mathsf H}(\Sigma_p)^{1/4}}
+         {\det_{\mathsf H}(((1+\gamma)/2)\Sigma_p)^{1/2}}
+  =\left(\frac{2\sqrt\gamma}{1+\gamma}\right)^{(d-1)/2}
   =\Bcl(\gamma,d).
 \]
-Multiplicativity gives \(\Buniv(\gamma,p)\).  Both constructions have
-these fidelities for every parameter value and every \(L\).  The matching
-upper bounds are proved together in \cref{prop:flat-prior-upper}, so the two
-limits in the theorem exist and have the stated values.
+Multiplicativity gives
+\(V_L^{\mathrm{full}}\ge\Bcl(\gamma,d)\Borb(\gamma,p)
+=\Buniv(\gamma,p)\) for every \(L\).  Conversely,
+\cref{prop:flat-prior-converse}, with \(k=0,d-1\), gives
+\[
+  \limsup_{L\to\infty}V_L^{\mathrm{orb}}\le\Borb(\gamma,p),\qquad
+  \limsup_{L\to\infty}V_L^{\mathrm{full}}\le\Buniv(\gamma,p).
+\]
+Thus both limits exist and equal the asserted values.
 \end{proof}
 
 \subsection{Local asymptotic normality}
+
+Here LAN means that, uniformly for \((h,z)\) in compact sets,
+the state families \((\rho_{p,h,z}^{(n)})^{\ot n}\) and
+\(\mathsf N_{h,\Sigma_p}\ot\Phi_z^{(p)}\) are asymptotically interconvertible
+by channels with vanishing trace-norm error.  The Gaussian and oscillator
+factors represent spectral and eigenbasis fluctuations, respectively; cloning
+scales \((h,z)\) by \(\sqrt\gamma\).
 
 The rotation coordinate in \cite{KahnGuta2009LANFiniteDimensional} differs
 from the oscillator displacement coordinate used here.  For
@@ -1124,7 +1146,7 @@ of the first assertion.  Indeed, the identity
   =\rho_{p,\sqrt{\gamma_n}h,\sqrt{\gamma_n}z}^{(m_n)}
 \]
 follows from \(\sqrt{\gamma_n}/\sqrt{m_n}=1/\sqrt n\) and the real linearity
-of \(Y\).  Apply the forward LAN statement at sample size \(m_n\) on one
+of \(Y\).  Apply \eqref{eq:LAN-full-forward} at sample size \(m_n\) on one
 compact set containing all scaled parameters.  Since \(\gamma_n\to\gamma\),
 translation of Gaussian densities and Weyl conjugation are uniformly
 trace-norm continuous there, which gives \eqref{eq:LAN-full-target}.
@@ -1154,48 +1176,58 @@ such that, uniformly for \(z\) in compact sets,
 
 \begin{proof}
 Restrict \cref{thm:LAN-full} to \(h=0\).  The classical Gaussian factor
-\(\mathsf N_{0,\Sigma_p}\) is independent of \(z\).  Discard it in the
-forward channel and adjoin it before the reverse channel.  Contractivity of
-trace norm gives the three assertions.
+\(\mathsf N_{0,\Sigma_p}\) is independent of \(z\).
+Set
+\(T_N^{\mathrm{orb}}(X):=\int_{\mathsf H}
+T_N^{\mathrm{full}}(X)(x)\,\dd x\) and
+\(S_N^{\mathrm{orb}}(\sigma):=S_N^{\mathrm{full}}
+(\mathsf N_{0,\Sigma_p}\ot\sigma)\).
+The bounds
+\(\|\int_{\mathsf H}R(x)\,\dd x\|_1
+\le\int_{\mathsf H}\|R(x)\|_1\,\dd x\) and
+\(\|\mathsf N_{0,\Sigma_p}\ot X\|_1=\|X\|_1\) give the three assertions.
 \end{proof}
 
-\paragraph{The sector calculation and fixed-spectrum LAN.}
-Consider the label pairs \(\mu,\nu\) in the uniform family of
-\cref{prop:sector-fidelity}.  For a fixed height cutoff \(L\), let
-\(P_{\nu,L}\) project onto the sum of the exact weight spaces of height at most
-\(L\) in \(\cH_\nu\), and let \(P_L^{\cF}\) project onto the Fock number
-vectors whose total root height is at most \(L\).  The unitary
-\(J_{\nu,L}\) in \eqref{eq:finite-coordinate-unitary} maps the first space to
-the second.  Uniformly for those pairs as \(n\to\infty\), the proof of
-\cref{prop:sector-fidelity} establishes
+\paragraph{Conditional sector limits and centered LAN.}
+Consider label sequences \(\mu_n\vdash n\) and \(\nu_n\vdash m_n\) in the
+uniform family of \cref{prop:sector-fidelity}, so that
+\(\mu_n/n\to p\) and \(\nu_n/m_n\to p\).  For a fixed height cutoff \(L\), let
+\(P_{\nu_n,L}\) project onto the sum of the exact weight spaces of height at
+most \(L\) in \(\cH_{\nu_n}\), and let \(P_L^{\cF}\) project onto the Fock
+number vectors whose total root height is at most \(L\).  The unitary
+\(J_{\nu_n,L}\) in \eqref{eq:finite-coordinate-unitary} maps the first space
+to the second.  Uniformly for those pairs as \(n\to\infty\), the proof of
+\cref{prop:sector-fidelity} establishes the following finite-matrix limits:
 \begin{align*}
-  J_{\nu,L}P_{\nu,L}\rho_{p,\nu}P_{\nu,L}J_{\nu,L}^*
+  J_{\nu_n,L}P_{\nu_n,L}\rho_{p,\nu_n}P_{\nu_n,L}J_{\nu_n,L}^*
   &\longrightarrow P_L^{\cF}\tau_pP_L^{\cF},\\
-  J_{\nu,L}P_{\nu,L}
-  \cC_{\mu,\nu}(\rho_{p,\mu})
-  P_{\nu,L}J_{\nu,L}^*
+  J_{\nu_n,L}P_{\nu_n,L}
+  \cC_{\mu_n,\nu_n}(\rho_{p,\mu_n})
+  P_{\nu_n,L}J_{\nu_n,L}^*
   &\longrightarrow P_L^{\cF}\tau_p^{(\gamma)}P_L^{\cF}.
 \end{align*}
 Thus the ideal target sector approaches \(\tau_p\), whereas the actual
 Cartan-sector output approaches the noisier state \(\tau_p^{(\gamma)}\) on
-each fixed collection of exact weight spaces.  The maps \(J_{\nu,L}\)
-depend on \(\nu\) and \(L\); they compare finite matrices and do not define
-a channel on the full Schur direct sum.
+each fixed collection of exact weight spaces.
 
-The LAN channel acts on the complete tensor-power experiment.  In the exact
-decomposition \eqref{eq:schur-state}, the Young label is classical and the
-conditional quantum state is \(\rho_{p,\mu}\).  At the centered state, the
-full LAN limit is
+The sector limits above condition on \((\mu_n,\nu_n)\), whereas full LAN
+retains the Young-label fluctuation.  At \((h,z)=(0,0)\), the corresponding
+limits in trace norm are
 \[
-  \mathsf N_{0,\Sigma_p}\ot\tau_p.
+  T_n^{\mathrm{full}}(\rho_p^{\ot n})
+  \longrightarrow \mathsf N_{0,\Sigma_p}\ot\tau_p,
+  \qquad
+  T_n^{\mathrm{orb}}(\rho_p^{\ot n})
+  \longrightarrow \tau_p.
 \]
-The first factor describes the rescaled Young-label fluctuation.  For fixed
-spectrum it is independent of the unknown eigenbasis, so
-\cref{cor:LAN-orb} discards it and retains the orbital state \(\tau_p\).
-Therefore the label-conditioned finite-matrix comparison and fixed-spectrum
-LAN concern different maps and different levels of the Schur decomposition;
-there is no second mapping of the same state to an independent Gaussian
-state.
+The full centered LAN limit is
+\(\mathsf N_{0,\Sigma_p}\ot\tau_p\).  The state \(\tau_p\)
+appears alone because \(T_n^{\mathrm{orb}}\) removes the \(z\)-independent
+classical factor \(\mathsf N_{0,\Sigma_p}\), which
+\(S_n^{\mathrm{orb}}\) restores.  Although this resembles
+the ideal sector limit \(P_L^{\cF}\tau_pP_L^{\cF}\), the mechanisms differ:
+the sector limit fixes \(\nu_n\), whereas orbital LAN marginalizes
+\(\mathsf N_{0,\Sigma_p}\).
 
 \begin{lemma}[LAN fidelity transfer]\label{lem:LAN-fidelity-transfer}
 Let \(\{\rho_{n,\theta}\}_{\theta\in C}\) and
@@ -1219,15 +1251,24 @@ Then
 
 \begin{proof}
 Let the two uniform approximation errors be \(\delta_n\) and \(\eta_n\).
-Trace-norm contractivity and \eqref{eq:fidelity-continuity} give, uniformly in
+Since \(T_n\circ\cM_n\) is a channel, uniformly in
 \(\theta\),
+\(\|\Gamma_n(\Phi_\theta)-T_n\cM_n(\rho_{n,\theta})\|_1
+\le \|S_n(\Phi_\theta)-\rho_{n,\theta}\|_1\le\delta_n\).
+Also
+\(\|T_n(\sigma_{n,\theta})-\Psi_\theta\|_1\le\eta_n\).  Together with
+\eqref{eq:fidelity-continuity}, these bounds give
 \[
   B(\Gamma_n(\Phi_\theta),\Psi_\theta)
   \ge
   B(T_n\cM_n(\rho_{n,\theta}),T_n(\sigma_{n,\theta}))
   -\sqrt{\delta_n}-\sqrt{\eta_n}.
 \]
-Monotonicity under \(T_n\) proves \eqref{eq:LAN-transfer}.
+Finally,
+\(
+  B(T_n\cM_n(\rho_{n,\theta}),T_n(\sigma_{n,\theta}))
+  \ge B(\cM_n(\rho_{n,\theta}),\sigma_{n,\theta})
+\); taking the infimum over \(\theta\) proves \eqref{eq:LAN-transfer}.
 \end{proof}
 
 \subsection{Completion of the minimax proofs}
@@ -1239,9 +1280,11 @@ that local result, together with uniform achievability, yields the compact-set
 statement in \cref{thm:unknown-optimum}.
 
 \begin{proof}[Known-spectrum converse and completion of \cref{thm:known-optimum}]
-Let \(u_n(p)\) be the finite-\(n\) minimax value in
-\eqref{eq:known-optimum}, and choose \(\cM_n\) with worst-case fidelity at
-least \(u_n(p)-1/n\).  For fixed \(L\), set
+For the known-spectrum problem, set
+\(u_n(p):=\sup_{\cM_n}\inf_{g\in\U(d)}
+B\!\bigl(\cM_n(\rho_{p,g}^{\ot n}),\rho_{p,g}^{\ot m_n}\bigr)\).
+Choose \(\cM_n\) with worst-case fidelity at least \(u_n(p)-1/n\).  For
+fixed \(L\), set
 \[
   \Gamma_n=T_{m_n}^{\mathrm{orb}}\circ\cM_n\circ S_n^{\mathrm{orb}}.
 \]
@@ -1256,8 +1299,9 @@ unitary orbit.  Hence \cref{lem:LAN-fidelity-transfer} gives
 The infimum is no larger than the average.  Taking \(\limsup_n\), then the
 supremum over Gaussian-model channels, and finally \(L\to\infty\),
 \eqref{eq:gaussian-orbital-optimum} gives
-\(\limsup_n u_n(p)\le\Borb(\gamma,p)\).  Together with the lower bound in
-\cref{sec:known-label-kernel}, this proves \cref{thm:known-optimum}.
+\(\limsup_n u_n(p)\le\Borb(\gamma,p)\).  Together with
+\(\liminf_n u_n(p)\ge\Borb(\gamma,p)\), proved in
+\cref{sec:label-kernels}, this proves \cref{thm:known-optimum}.
 \end{proof}
 
 \begin{proof}[Proof of \cref{thm:unknown-local}]
@@ -1286,8 +1330,13 @@ By \cref{lem:LAN-fidelity-transfer},
   \right)+o(1).
 \]
 Average over \(\Omega_L\), take \(\limsup_n\), and then use
-\eqref{eq:gaussian-full-optimum} as \(L\to\infty\).  This gives the matching
-upper bound.  Since both \(\limsup_n v_{n,L}(p)\) and
+\eqref{eq:gaussian-full-optimum} as \(L\to\infty\).  This
+gives
+\[
+  \lim_{L\to\infty}\limsup_{n\to\infty}v_{n,L}(p)
+  \le\Buniv(\gamma,p).
+\]
+Since both \(\limsup_n v_{n,L}(p)\) and
 \(\liminf_n v_{n,L}(p)\) are nonincreasing in \(L\), the two outer limits
 exist and equal \(\Buniv(\gamma,p)\).
 \end{proof}
@@ -1310,8 +1359,11 @@ sufficiently large \(n\).  Thus \(w_n(K)\le v_{n,L}(p_0)\).  Letting first
 \]
 Take the infimum over
 \(\operatorname{int}_{\mathsf A_d}K\).  Its closure in \(\mathsf A_d\) is
-\(K\), and \(\Buniv(\gamma,\cdot)\) is continuous, so the resulting upper
-bound is \(\inf_{p\in K}\Buniv(\gamma,p)\).
+\(K\), and \(\Buniv(\gamma,\cdot)\) is continuous, so
+\[
+  \limsup_{n\to\infty}w_n(K)
+  \le\inf_{p\in K}\Buniv(\gamma,p).
+\]
 \end{proof}
 
 \begin{proof}[Proof of \cref{cor:compact-chamber}]
@@ -1371,7 +1423,8 @@ squared-fidelity guarantee
 \]
 Here \(F\) is squared Uhlmann fidelity, consistently with the convention
 that squared Bures distance is \(2(1-\sqrt F)\).  Tracing out the purifying
-registers gives the same lower bound for all-output mixed-state cloning.
+registers preserves this all-output squared-fidelity guarantee for
+mixed-state cloning.
 Thus, in the root-fidelity convention of this paper, the guarantee is
 \[
   \left(
@@ -1653,8 +1706,12 @@ For \(\sigma\ne\mathrm{id}\),
    -\sum_i\frac{\lambda_{\sigma(i)}}{N}\log p_i+O(N^{-1}).
 \]
 At \(\lambda/N=p\), strict rearrangement makes the limit positive.
-Compactness of \(K\) and finiteness of \(\mathfrak S_d\) give a uniform
-positive lower bound when \(\lambda/N\) is sufficiently close to \(p\).
+Compactness of \(K\) and finiteness of \(\mathfrak S_d\)
+give \(c_K>0\) such that, for every \(\sigma\ne\mathrm{id}\) and all
+sufficiently large \(N\),
+\[
+  \frac1N\log\frac{A_{\mathrm{id}}}{A_\sigma}\ge c_K.
+\]
 Thus every nonidentity term is exponentially smaller than the identity term.
 Dividing that term by
 \[
@@ -2154,8 +2211,16 @@ Hence
   =\operatorname{Av}_{m_n,p}\operatorname{dil}_{\gamma_n}
    (\mathcal E_{n,p}P_{n,p}).
 \end{equation}
-The averaging operator is an \(L^1\)-contraction, and dilation is an
-\(L^1\)-isometry.  By \cref{lem:young-local-limit}, the expression before
+For \(f,g\in L^1(\mathsf H)\),
+\[
+  \|\operatorname{Av}_{m_n,p}f-\operatorname{Av}_{m_n,p}g\|_1
+  \le\|f-g\|_1,
+  \qquad
+  \|\operatorname{dil}_{\gamma_n}f
+      -\operatorname{dil}_{\gamma_n}g\|_1
+  =\|f-g\|_1.
+\]
+By \cref{lem:young-local-limit}, the expression before
 cell averaging converges uniformly to
 \(\varphi_{0,\gamma_n\Sigma_p}\).  This compact Gaussian family converges
 uniformly in \(L^1\) to \(\varphi_{0,\gamma\Sigma_p}\).  The target cells
@@ -2247,17 +2312,16 @@ rejected mass to \(\nu_n^{\mathrm{fb}}\) changes the law by at most
 \eqref{eq:rounding-label-fidelity}.
 \end{proof}
 
-\section{Unified Gaussian flat-prior upper bound}
+\section{Unified Gaussian flat-prior converse}
 \label{app:gaussian-converse}
 
-This appendix proves the two upper bounds in
+This appendix proves the two converse inequalities in
 \cref{thm:gaussian-amplification}.  We average over large parameter sets and
-test the oscillator output against a compact product operator before taking
-a limit.  In the classical--quantum case, we also use the scalar measures
+test the oscillator output against a compact product operator before taking a
+limit.  In the classical--quantum case, we also use the scalar measures
 obtained by tracing out the oscillator.  The classical parameter space has
-dimension \(k=0\) for the orbital problem and \(k=d-1\) for the full
-problem.  All trace-class-valued integrals below are Bochner integrals in
-trace norm.
+dimension \(k=0\) for the orbital problem and \(k=d-1\) for the full problem.
+All trace-class-valued integrals below are Bochner integrals in trace norm.
 
 \subsection{Weighted fidelity and compact limits}
 
@@ -2438,16 +2502,19 @@ Displacement covariance implies \(D(z)^*AD(z)=A\); hence irreducibility of
 the Weyl representation gives \(A=cI\), where
 \(c=\Tr\Gamma(\tau_q)\).  If \(c>0\), then
 \(\Lambda=c^{-1}\Gamma\) is a phase-covariant amplifier of amplitude gain
-\(\sqrt\gamma\).  The Heisenberg-picture idler representation writes such a
-channel as
+\(\sqrt\gamma\).  By the classification of displacement-covariant amplifiers
+\cite[Sec.~2.C, Appendix, and Sec.~3]
+{GutaMatsumoto2006MixedGaussianCloning}, every such \(\Lambda\) has an idler
+realization
 \[
   a_{\mathrm{out}}
   =\sqrt\gamma\,a_{\mathrm{in}}+\sqrt{\gamma-1}\,b^*,
 \]
-where \(b\) is an idler mode; phase covariance allows the idler state to
-be chosen number diagonal.  The stochastic-order result of
-\cite[Sec.~2.C, Lem.~2.3, and Sec.~3]
-{GutaMatsumoto2006MixedGaussianCloning} therefore implies that
+for an idler mode \(b\).  No Gaussianity is assumed for its
+state, and phase covariance allows that state to be chosen number diagonal.
+The stochastic-order result of
+\cite[Lem.~2.3 and Sec.~3]{GutaMatsumoto2006MixedGaussianCloning} therefore
+implies that
 \begin{equation}\label{eq:imported-stochastic-order}
   \sum_{n=0}^m(1-q^{(\gamma)})(q^{(\gamma)})^n
   \ge
@@ -2576,9 +2643,10 @@ Dominated convergence applies because the integrand is bounded by
 with the measure in \eqref{eq:scalar-convolution}.
 \end{proof}
 
-\subsection{One flat-prior bound for both Gaussian models}
+\subsection{One flat-prior converse for both Gaussian models}
 
-\begin{proposition}[Flat-prior upper bound]\label{prop:flat-prior-upper}
+\begin{proposition}[Flat-prior converse inequality]
+\label{prop:flat-prior-converse}
 Let \(k\in\{0,d-1\}\).  For \(k=0\), let \(\mathsf E=\{0\}\) and omit the
 classical factor.  For \(k=d-1\), let \(\mathsf E=\mathsf H\), equipped with
 its induced Euclidean measure, and use the covariance \(\Sigma_p\).  Let
@@ -2601,7 +2669,7 @@ with \(|\mathsf E_L|=1\) when \(k=0\).  Define
 For \(k=0\), the supremum below is over quantum channels on
 \(\cF_{\mathrm{orb}}\); for \(k=d-1\), it is over classical--quantum
 channels.  Then
-\begin{equation}\label{eq:unified-flat-prior-upper}
+\begin{equation}\label{eq:unified-flat-prior-converse}
   \limsup_{L\to\infty}\sup_\Lambda
   \frac1{|\Xi_L|}\int_{\Xi_L}
   B\!\left(\Lambda(R_{h,z}^{(k)}),S_{h,z}^{(k)}\right)
