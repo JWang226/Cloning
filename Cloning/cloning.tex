@@ -270,13 +270,11 @@ For the local minimax problem, let
 \]
 and define
 \[
-  g_{n,z}=\exp\!\left(\frac{Y(z)}{\sqrt n}\right),
-  \qquad
-  \rho_{p,h,z}^{(n)}
-  =g_{n,z}\diag\!\left(p+\frac h{\sqrt n}\right)g_{n,z}^*.
+  g_{n,z}=\exp\!\left(\frac{Y(z)}{\sqrt n}\right).
 \]
-Here \(h\) describes a local change of eigenvalues and \(z\) a local change
-of eigenbasis.  Since \(Y(z)^*=-Y(z)\), one has
+In \(\rho_{p+h/\sqrt n,g_{n,z}}\), the coordinates \(h\) and \(z\)
+describe local changes of eigenvalues and eigenbasis, respectively.
+Since \(Y(z)^*=-Y(z)\), one has
 \(g_{n,z}\in\U(d)\).  For \(L>0\), set
 \[
   \Omega_L
@@ -292,8 +290,8 @@ set
   v_{n,L}(p)
   =\sup_{\cM_n}\inf_{(h,z)\in\Omega_L}
   B\!\left(
-    \cM_n\bigl((\rho_{p,h,z}^{(n)})^{\ot n}\bigr),
-    (\rho_{p,h,z}^{(n)})^{\ot m_n}
+    \cM_n\bigl(\rho_{p+h/\sqrt n,g_{n,z}}^{\ot n}\bigr),
+    \rho_{p+h/\sqrt n,g_{n,z}}^{\ot m_n}
   \right).
 \]
 
@@ -1042,7 +1040,7 @@ Thus both limits exist and equal the asserted values.
 \subsection{Local asymptotic normality}
 
 Here LAN means that, uniformly for \((h,z)\) in compact sets,
-the state families \((\rho_{p,h,z}^{(n)})^{\ot n}\) and
+the state families \(\rho_{p+h/\sqrt n,g_{n,z}}^{\ot n}\) and
 \(\mathsf N_{h,\Sigma_p}\ot\Phi_z^{(p)}\) are asymptotically interconvertible
 by channels with vanishing trace-norm error.  The Gaussian and oscillator
 factors represent spectral and eigenbasis fluctuations, respectively; cloning
@@ -1089,19 +1087,20 @@ such that, for every compact
 \begin{align}
   \sup_{(h,z)\in C}
   \left\|
-    T_n^{\mathrm{full}}\!\left((\rho_{p,h,z}^{(n)})^{\ot n}\right)
+    T_n^{\mathrm{full}}\!\left(\rho_{p+h/\sqrt n,g_{n,z}}^{\ot n}\right)
     -\mathsf N_{h,\Sigma_p}\ot\Phi_z^{(p)}
   \right\|_1&\longrightarrow0,
   \label{eq:LAN-full-forward}\\
   \sup_{(h,z)\in C}
   \left\|
     S_n^{\mathrm{full}}\!\left(\mathsf N_{h,\Sigma_p}\ot\Phi_z^{(p)}\right)
-    -(\rho_{p,h,z}^{(n)})^{\ot n}
+    -\rho_{p+h/\sqrt n,g_{n,z}}^{\ot n}
   \right\|_1&\longrightarrow0,
   \label{eq:LAN-full-reverse}\\
   \sup_{(h,z)\in C}
   \left\|
-    T_{m_n}^{\mathrm{full}}\!\left((\rho_{p,h,z}^{(n)})^{\ot m_n}\right)
+    T_{m_n}^{\mathrm{full}}\!\left(
+      \rho_{p+h/\sqrt n,g_{n,z}}^{\ot m_n}\right)
     -\mathsf N_{\sqrt\gamma h,\Sigma_p}\ot\Psi_z^{(p,\gamma)}
   \right\|_1&\longrightarrow0.
   \label{eq:LAN-full-target}
@@ -1142,8 +1141,9 @@ spaces shown above.
 The target-sample assertion \eqref{eq:LAN-full-target} is a consequence
 of the first assertion.  Indeed, the identity
 \[
-  \rho_{p,h,z}^{(n)}
-  =\rho_{p,\sqrt{\gamma_n}h,\sqrt{\gamma_n}z}^{(m_n)}
+  \rho_{p+h/\sqrt n,g_{n,z}}
+  =\rho_{p+\sqrt{\gamma_n}h/\sqrt{m_n},
+          g_{m_n,\sqrt{\gamma_n}z}}
 \]
 follows from \(\sqrt{\gamma_n}/\sqrt{m_n}=1/\sqrt n\) and the real linearity
 of \(Y\).  Apply \eqref{eq:LAN-full-forward} at sample size \(m_n\) on one
@@ -1307,9 +1307,9 @@ supremum over Gaussian-model channels, and finally \(L\to\infty\),
 \begin{proof}[Proof of \cref{thm:unknown-local}]
 Fix \(L\).  For all sufficiently large \(n\), the spectra
 \(p+h/\sqrt n\), \((h,z)\in\Omega_L\), lie in one compact subset of
-\(\Delta_d^\circ\).  Since
-\(\rho_{p,h,z}^{(n)}=\rho_{p+h/\sqrt n,g_{n,z}}\), part~\textup{(a)} of
-\cref{thm:unknown-optimum} and continuity of \(\Buniv(\gamma,\cdot)\) give
+\(\Delta_d^\circ\).  Applying part~\textup{(a)} of
+\cref{thm:unknown-optimum} uniformly on this compact set and using continuity
+of \(\Buniv(\gamma,\cdot)\) yields
 \[
   \liminf_{n\to\infty}v_{n,L}(p)\ge\Buniv(\gamma,p).
 \]
@@ -1342,8 +1342,10 @@ exist and equal \(\Buniv(\gamma,p)\).
 \end{proof}
 
 \begin{proof}[Proof of part~\textup{(b)} of \cref{thm:unknown-optimum}]
-Let \(w_n(K)\) be the finite-\(n\) minimax value on the
-left of \eqref{eq:compact-global-value}.  Part~\textup{(a)} of
+For the compact-set problem, set
+\(w_n(K):=\sup_{\cM_n}\inf_{\substack{p\in K\\g\in\U(d)}}\)\allowbreak
+\(\,B\!\bigl(\cM_n(\rho_{p,g}^{\ot n}),\rho_{p,g}^{\ot m_n}\bigr)\).
+Part~\textup{(a)} of
 \cref{thm:unknown-optimum} gives
 \[
   \liminf_{n\to\infty}w_n(K)
