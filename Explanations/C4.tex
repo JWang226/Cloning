@@ -38,7 +38,7 @@ $L^1$ inputs.
 The lemma is stated on a finite-dimensional Euclidean space $\mathsf E$,
 including $\mathsf E=\{0\}$.  The zero-dimensional case is immediate, so
 below assume $\dim\mathsf E>0$ and equip $\mathsf E$ with Lebesgue measure
-$\dd x$.  We use $E\subseteq\mathsf E$ for a Borel set.  If
+$\dd x$.  We use $A\subseteq\mathsf E$ for a Borel set.  If
 $u\geq0$ and $\int u(x)\dd x=1$, then $u(x)\dd x$ is the law of an input
 random variable $X$.  Recall that $\mathcal R$ is the positive contraction
 from Lemma C.4,
@@ -56,12 +56,12 @@ satisfying
 Contractivity gives
 $\nu_u(\mathsf E)=\|\nu_u\|\leq\|u\|_1=1$; hence it is finite.  If
 $\nu_u(\mathsf E)=1$, one may choose an output random variable $Y$ with law
-$\nu_u$, so that $\Pr(Y\in E)=\nu_u(E)$.  If
+$\nu_u$, so that $\Pr(Y\in A)=\nu_u(A)$.  If
 $c_u:=\nu_u(\mathsf E)<1$, then $\nu_u$ is instead a subprobability measure; it
 can be represented by adjoining a failure point $\partial\notin\mathsf E$ and
 setting
 \[
-  \Pr(Y\in E)=\nu_u(E),
+  \Pr(Y\in A)=\nu_u(A),
   \qquad
   \Pr(Y=\partial)=1-c_u.
 \]
@@ -69,8 +69,8 @@ setting
 To match the manuscript's notation, write $T_a\nu$ for the translate of a
 finite measure $\nu$ by $a$:
 \[
-  (T_a\nu)(E):=\nu(E-a),
-  \qquad E-a:=\{y-a:y\in E\}.
+  (T_a\nu)(A):=\nu(A-a),
+  \qquad A-a:=\{y-a:y\in A\}.
 \]
 If $\nu$ is the law of $Y$, then $T_a\nu$ is the law of $Y+a$.
 Likewise, $u(\,\cdot-h)$ is the density of $X+h$.  Hence the covariance
@@ -80,10 +80,10 @@ assumption of Lemma C.4 is the equality of finite Radon measures
   =T_{\sqrt\gamma h}\mathcal R(u)
   \qquad(u\in L^1(\mathsf E),\ h\in\mathsf E).
 \end{equation}
-Evaluating this identity on a Borel set $E$ gives the more concrete formula
+Evaluating this identity on a Borel set $A$ gives the more concrete formula
 \[
-  \mathcal R(u(\,\cdot-h))(E)
-  =\mathcal R(u)(E-\sqrt\gamma h).
+  \mathcal R(u(\,\cdot-h))(A)
+  =\mathcal R(u)(A-\sqrt\gamma h).
 \]
 Thus replacing the input law of $X$ by that of $X+h$ replaces the output
 measure $\nu_u$ by its translate through $\sqrt\gamma h$; when the measures
@@ -92,50 +92,50 @@ $Y+\sqrt\gamma h$.
 
 Lemma C.4 says that there is one finite positive measure $\mu$ such that
 \begin{equation}\label{eq:kernel}
-  \mathcal R(u)(E)
-  =\int_{\mathsf E}u(x)\,\mu(E-\sqrt\gamma x)\dd x.
+  \mathcal R(u)(A)
+  =\int_{\mathsf E}u(x)\,\mu(A-\sqrt\gamma x)\dd x.
 \end{equation}
 For each input point $x$, define the finite measure
 \[
-  K(x,E):=\mu(E-\sqrt\gamma x).
+  K(x,A):=\mu(A-\sqrt\gamma x).
 \]
 Then \eqref{eq:kernel} says that $\mathcal R(u)$ is the mixture of the
 pointwise output measures $K(x,\,\cdot)$ with weights $u(x)\dd x$.  If
 $\mu(\mathsf E)=1$, each $K(x,\,\cdot)$ is a probability measure and may be read
 as the conditional law of the output given $X=x$:
 \[
-  K(x,E)=\Pr(Y\in E\mid X=x).
+  K(x,A)=\Pr(Y\in A\mid X=x).
 \]
 Indeed, if $Z\sim\mu$ is independent of $X$ and
 $Y:=\sqrt\gamma X+Z$, then
 \[
-  \Pr(Y\in E\mid X=x)
-  =\mu(E-\sqrt\gamma x)=K(x,E),
+  \Pr(Y\in A\mid X=x)
+  =\mu(A-\sqrt\gamma x)=K(x,A),
 \]
 and averaging the conditional measures over $X$ gives
 \[
-  \Pr(Y\in E)
-  =\int_{\mathsf E}u(x)K(x,E)\dd x
-  =\mathcal R(u)(E).
+  \Pr(Y\in A)
+  =\int_{\mathsf E}u(x)K(x,A)\dd x
+  =\mathcal R(u)(A).
 \]
 
 The reason covariance forces the noise measure to be independent of $x$ is
 most transparent at the level of point inputs.  Temporarily suppose that
 $\delta_x$ were an admissible input and denote its output measure by $K_x$;
 this notation does not assume the desired representation.  Covariance would
-give $K_{x+h}(E)=K_x(E-\sqrt\gamma h)$.  Recenter $K_x$ by defining
+give $K_{x+h}(A)=K_x(A-\sqrt\gamma h)$.  Recenter $K_x$ by defining
 \[
   \mu_x:=T_{-\sqrt\gamma x}K_x,
   \qquad
-  \mu_x(E)=K_x(E+\sqrt\gamma x).
+  \mu_x(A)=K_x(A+\sqrt\gamma x).
 \]
 If $K_x$ is a probability law, then $\mu_x$ is precisely the law of the
 residual $Y-\sqrt\gamma x$.  The covariance identity now gives
 \[
-  \mu_{x+h}(E)
-  =K_{x+h}(E+\sqrt\gamma(x+h))
-  =K_x(E+\sqrt\gamma x)
-  =\mu_x(E).
+  \mu_{x+h}(A)
+  =K_{x+h}(A+\sqrt\gamma(x+h))
+  =K_x(A+\sqrt\gamma x)
+  =\mu_x(A).
 \]
 Since $h$ is arbitrary, all the recentered measures $\mu_x$ coincide.
 Point masses do not belong to $L^1(\mathsf E)$, so the proof makes this heuristic
@@ -190,7 +190,7 @@ nonnegative input produces an output measure of mass at most one.
 Let $\mathcal R:L^1(\mathsf E)\to C_0(\mathsf E)^*$ be a positive contraction satisfying
 \eqref{eq:covariance}.  Then a finite positive measure $\mu$ with
 $\mu(\mathsf E)\leq1$ exists such that \eqref{eq:kernel} holds for every
-$u\in L^1(\mathsf E)$ and every Borel set $E$.
+$u\in L^1(\mathsf E)$ and every Borel set $A$.
 \end{lemmaC}
 
 \section{Proof walkthrough}
@@ -201,7 +201,8 @@ Choose a nonnegative approximate identity $u_j\in C_c(\mathsf E)$:
 \[
   \int_{\mathsf E}u_j(x)\dd x=1,
   \qquad
-  \operatorname{supp}(u_j)\longrightarrow\{0\}.
+  \operatorname{supp}(u_j)
+  \subseteq\{x\in\mathsf E:\|x\|\leq j^{-1}\}.
 \]
 The measures $u_j(x)\dd x$ are probability laws concentrating at the input
 point $0$, so they approximate the point mass $\delta_0$.  Heuristically,
@@ -256,13 +257,13 @@ an equality of finite Radon measures,
   =\int_{\mathsf E}u(x)\mathcal R(u_j(\,\cdot-x))\dd x
   =\int_{\mathsf E}u(x)T_{\sqrt\gamma x}\mathcal R(u_j)\dd x.
 \]
-Evaluating this identity on a Borel set $E$ gives
+Evaluating this identity on a Borel set $A$ gives
 \begin{align}
-  \mathcal R(u*u_j)(E)
+  \mathcal R(u*u_j)(A)
   &=\int_{\mathsf E}u(x)\,
-    \mathcal R(u_j(\,\cdot-x))(E)\dd x\notag\\
+    \mathcal R(u_j(\,\cdot-x))(A)\dd x\notag\\
   &=\int_{\mathsf E}u(x)\,
-    \mathcal R(u_j)(E-\sqrt\gamma x)\dd x.
+    \mathcal R(u_j)(A-\sqrt\gamma x)\dd x.
   \label{eq:smoothed-kernel}
 \end{align}
 Thus the desired convolution formula already holds for the smoothed input
@@ -302,13 +303,13 @@ $f$ with the translated measure $T_{\sqrt\gamma x}\mu$, because
   \int_{\mathsf E}f(r+\sqrt\gamma x)\,\mu(\dd r)
   =\int_{\mathsf E}f(y)\,(T_{\sqrt\gamma x}\mu)(\dd y),
   \qquad
-  (T_{\sqrt\gamma x}\mu)(E)=\mu(E-\sqrt{\gamma}\,x).
+  (T_{\sqrt\gamma x}\mu)(A)=\mu(A-\sqrt{\gamma}\,x).
 \]
 Since functions in $C_0(\mathsf E)$ separate finite Radon measures, the matching
-measure identity is therefore, for every Borel set $E$,
+measure identity is therefore, for every Borel set $A$,
 \[
-  \mathcal R(u)(E)
-  =\int_{\mathsf E}u(x)\,\mu(E-\sqrt{\gamma}\,x)\dd x,
+  \mathcal R(u)(A)
+  =\int_{\mathsf E}u(x)\,\mu(A-\sqrt{\gamma}\,x)\dd x,
 \]
 which is the measure identity \eqref{eq:kernel}.
 
@@ -317,7 +318,7 @@ which is the measure identity \eqref{eq:kernel}.
 \begin{enumerate}
   \item If $\mu=\delta_0$, then
   \[
-    \mathcal R(u)(E)=\int u(x)\mathbf1_E(\sqrt\gamma x)\dd x,
+    \mathcal R(u)(A)=\int u(x)\mathbf1_A(\sqrt\gamma x)\dd x,
   \]
   so for $X\sim u(x)\dd x$ the output variable is
   $Y=\sqrt\gamma X$.

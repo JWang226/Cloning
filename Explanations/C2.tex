@@ -158,8 +158,8 @@ If, for every positive $X$,
 \[
   \Tr\Gamma_j(X)\leq c\Tr X,
 \]
-then $\Tr\Gamma(X)\leq c\Tr X$.  If unitary representations $U_g,V_g$
-satisfy
+then $\Tr\Gamma(X)\leq c\Tr X$.  Suppose $U_g$ on $\Hc_0$ and $V_g$ on
+$\Hc_1$ are families of unitaries indexed by a set $G$ and satisfy
 \[
   \|\Gamma_j(U_gXU_g^*)-V_g\Gamma_j(X)V_g^*\|_1\longrightarrow0
 \]
@@ -174,18 +174,20 @@ for every fixed $g$ and $X$, then
 \subsection*{Step 1: diagonalize on a countable family of observables}
 
 Because $\Hc_1$ is separable, $\K(\Hc_1)$ is separable in operator norm.
-Choose a countable norm-dense $\mathbb Q(\mathrm i)$-linear $*$-subspace
+Choose a countable norm-dense $\mathbb Q(\mathrm i)$-linear $*$-algebra
 $\mathcal D\subset\K(\Hc_1)$, where
 $\mathbb Q(\mathrm i)=\{a+\mathrm ib:a,b\in\mathbb Q\}$ is the countable
 dense subfield of Gaussian rationals in $\mathbb C$.  Using this field keeps
-$\mathcal D$ countable while preserving addition, adjoints, and enough scalar
-multiplication to extend the limiting map uniquely to a complex-linear map by
-continuity.
+$\mathcal D$ countable while preserving addition, products, adjoints, and
+enough scalar multiplication to extend the limiting map uniquely to a
+complex-linear map by continuity.
 
 For every fixed $K\in\mathcal D$, the operators $\Gamma_j^*(K)$ form a
 bounded subset of $\Bop(\Hc_0)$.  Banach--Alaoglu gives a weak-* convergent
-subsequence.  Applying this successively to the countably many elements of
-$\mathcal D$ and taking the diagonal subsequence gives
+subsequence because the predual $\T(\Hc_0)$ is separable and the bounded
+weak-* compact sets are therefore metrizable.  Applying this successively to
+the countably many elements of $\mathcal D$ and taking the diagonal
+subsequence gives
 \[
   \Gamma_j^*(K)\stackrel{w^*}{\longrightarrow}\Gamma^*(K)
   \qquad(K\in\mathcal D).
@@ -200,19 +202,17 @@ and the same bound extends convergence to every compact $K$.
 
 \subsection*{Step 2: complete positivity survives the limit}
 
-Complete positivity must be checked at every matrix level.  If
-$[K_{ab}]\in M_r(\K(\Hc_1))$ is positive, then
+Complete positivity must be checked at every matrix level.  Fix
+$A\geq0$ in $M_r(\K(\Hc_1))$.  The square root $A^{1/2}$ is compact.
+Choose $B_\ell\in M_r(\mathcal D)$ with
+$B_\ell\to A^{1/2}$ in norm.  Complete positivity of every
+$\Gamma_j^*$ gives
 \[
-  [\Gamma_j^*(K_{ab})]\geq0
-  \qquad\text{in }M_r(\Bop(\Hc_0)).
+  \Gamma_j^{*(r)}(B_\ell^*B_\ell)\geq0.
 \]
-The positive cone of this dual operator space is weak-* closed.  Passing to
-the limit gives
-\[
-  [\Gamma^*(K_{ab})]\geq0.
-\]
-Since this holds for every $r$, the map in \eqref{eq:limit-adjoint} is
-completely positive.
+First let $j\to\infty$ and then let $\ell\to\infty$.  The positive cone is
+weak-* closed, so $\Gamma^{*(r)}(A)\geq0$.  Since this holds for every $r$,
+the map in \eqref{eq:limit-adjoint} is completely positive.
 
 \subsection*{Step 3: return to a map on trace class}
 

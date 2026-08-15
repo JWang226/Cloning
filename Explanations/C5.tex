@@ -87,9 +87,9 @@ cannot improve on their product.
 \section{Statement of Proposition C.5}
 
 \begin{propC}
-Let $k\in\{0,d-1\}$.  For $k=0$, take $\mathsf E=\{0\}$ and omit the
-classical factor.  For $k=d-1$, take $\mathsf E=\Hc$ with covariance
-$\Sigma_p$.  Put
+Let $k\in\{0,d-1\}$.  For $k=0$, take $\mathsf E=\{0\}$, omit the
+classical factor, and interpret integration in $h$ as evaluation at $0$.
+For $k=d-1$, take $\mathsf E=\Hc$ with its induced Euclidean measure.  Put
 \[
   \mathsf E_L=\{h\in\mathsf E:\|h\|_\infty\leq L\},
   \qquad
@@ -116,8 +116,7 @@ Then
   \leq c_k\Borb(\gamma,p).
 \]
 For $k=d-1$, the supremum includes channels that couple the classical and
-quantum components.  For $k=0$, integration in $h$ means evaluation at the
-unique point of $\mathsf E$.
+quantum components.
 \end{propC}
 
 Since $c_0=1$, the right side is $\Borb(\gamma,p)$ in the orbital case.
@@ -231,17 +230,84 @@ For each input $R$, this is a Bochner integral in the trace norm of the
 classical--quantum $L^1$ space.  Strong continuity of translations and Weyl
 conjugations, together with boundedness of the channels, makes the integral
 well defined.
-Joint concavity and invariance of root fidelity give
-\begin{equation}\label{eq:concavity}
-  \frac1{|\Xi_L|}\int_{\Xi_L}
+For each $\xi$, the map $\mathcal U_{-\xi}^{\mathrm{out}}$ is the inverse
+output isometry.  The definitions of the input and target states therefore
+give
+\begin{align}
+ &\frac1{|\Xi_L|}\int_{\Xi_L}
   \B(\Lambda(\Theta_\xi^{\mathrm{in}}),
-    \Theta_\xi^{\mathrm{tar}})\dd\xi
-  \leq\B(\overline\Lambda_L(f_1\tau),f_1\tau).
-\end{equation}
+    \Theta_\xi^{\mathrm{tar}})\dd\xi\notag\\
+ &=\frac1{|\Xi_L|}\int_{\Xi_L}
+  \B\!\left(
+    \mathcal U_{-\xi}^{\mathrm{out}}\!\left[
+      \Lambda\!\left(\mathcal U_\xi^{\mathrm{in}}(f_1\tau)\right)
+    \right],
+    f_1\tau\right)\dd\xi\notag\\
+ &\leq
+  \B\!\left(
+    \frac1{|\Xi_L|}\int_{\Xi_L}
+    \mathcal U_{-\xi}^{\mathrm{out}}\!\left[
+      \Lambda\!\left(\mathcal U_\xi^{\mathrm{in}}(f_1\tau)\right)
+    \right]\dd\xi,
+    f_1\tau\right)\notag\\
+ &=\B(\overline\Lambda_L(f_1\tau),f_1\tau).
+ \label{eq:concavity}
+\end{align}
+The first equality uses invariance of root fidelity under the common
+isometry, the inequality is joint concavity, and the last equality is
+\eqref{eq:average}.  Joint concavity passes from finite averages to this
+Bochner integral by trace-norm continuity of root fidelity.
 
-Choose $L_j\to\infty$ and channels approaching the limsup, and denote their
-averages by $\Lambda_j$.  Translating the averaging cube shows that for each
-fixed $\xi$,
+Define
+\[
+  F_L(\Lambda)
+  =\frac1{|\Xi_L|}\int_{\Xi_L}
+   \B\!\left(\Lambda(\Theta_\xi^{\mathrm{in}}),
+             \Theta_\xi^{\mathrm{tar}}\right)\dd\xi,
+  \qquad
+  F_*=\limsup_{L\to\infty}\sup_\Lambda F_L(\Lambda).
+\]
+Choose $L_j\to\infty$ so that
+$\sup_\Lambda F_{L_j}(\Lambda)\to F_*$.  For each $j$, choose a channel
+$\widetilde\Lambda_j$ satisfying
+\[
+  F_{L_j}(\widetilde\Lambda_j)
+  \geq \sup_\Lambda F_{L_j}(\Lambda)-\frac1j,
+\]
+and define its F\o lner average by
+\[
+  \Lambda_j
+  :=\overline{\widetilde\Lambda_j}_{L_j}
+\]
+using \eqref{eq:average}.  To make the translation of the averaging cube
+explicit, define
+\[
+  A_{j,\eta}
+  =\mathcal U_{-\eta}^{\mathrm{out}}\circ
+   \widetilde\Lambda_j\circ\mathcal U_\eta^{\mathrm{in}},
+  \qquad
+  \Lambda_j
+  =\frac1{|\Xi_{L_j}|}\int_{\Xi_{L_j}}A_{j,\eta}\dd\eta.
+\]
+The group law for the input and output actions and the change of variables
+$u=\eta+\xi$ give
+\[
+\begin{aligned}
+  \Lambda_j(\mathcal U_\xi^{\mathrm{in}}R)
+  &=\mathcal U_\xi^{\mathrm{out}}
+    \frac1{|\Xi_{L_j}|}
+    \int_{\Xi_{L_j}+\xi}A_{j,u}(R)\dd u,\\
+  \mathcal U_\xi^{\mathrm{out}}\Lambda_j(R)
+  &=\mathcal U_\xi^{\mathrm{out}}
+    \frac1{|\Xi_{L_j}|}
+    \int_{\Xi_{L_j}}A_{j,u}(R)\dd u.
+\end{aligned}
+\]
+When these expressions are subtracted, the integrals over
+$(\Xi_{L_j}+\xi)\cap\Xi_{L_j}$ cancel.  Every $A_{j,u}$ is a channel
+conjugated by input and output isometries, so
+\(\|A_{j,u}(R)\|_1\leq\|R\|_1\).  The remaining two integrals are supported
+on the symmetric difference, which gives
 \begin{equation}\label{eq:approx-covariance}
   \|\Lambda_j(\mathcal U_\xi^{\mathrm{in}}R)
   -\mathcal U_\xi^{\mathrm{out}}\Lambda_j(R)\|_1
@@ -250,6 +316,9 @@ fixed $\xi$,
        {|\Xi_{L_j}|}\,\|R\|_1
   \longrightarrow0.
 \end{equation}
+Indeed, \(\Xi_L=L\Xi_1\) and \(\Xi_1\) is a bounded polytope, so for fixed
+\(\xi\) the boundary ratio in \eqref{eq:approx-covariance} is
+\(O_\xi(L_j^{-1})\).
 
 \subsection*{Step 2: reduce fidelity to one moment}
 
@@ -288,10 +357,32 @@ It is completely positive and satisfies
 Notice that $\|\chi\|_\infty=\gamma^{(d-1)/4}$ may exceed one.  Hence this
 initial estimate does \emph{not} make $\Gamma_j^\chi$ trace nonincreasing.
 
-Taking $h=0$ in \eqref{eq:approx-covariance} shows that these maps become
-displacement covariant in the quantum variable.  Lemma C.2 therefore gives,
-after taking a subsequence, a completely positive exactly covariant map
-$\Gamma^\chi$ with
+Set $\xi=(0,z)$ and apply \eqref{eq:approx-covariance} to the input
+$R=f_1X$.  There is then no classical translation, so
+\[
+  \mathcal U_{(0,z)}^{\mathrm{in}}(f_1X)
+  =f_1D(z)XD(z)^*.
+\]
+Multiplying the output density by $\chi$, integrating over its classical
+variable, and using \eqref{eq:Gamma-j} give
+\begin{align}
+ &\left\|
+   \Gamma_j^\chi(D(z)XD(z)^*)
+   -D(\sqrt\gamma z)\Gamma_j^\chi(X)D(\sqrt\gamma z)^*
+  \right\|_1\notag\\
+ &\qquad\leq
+  \|\chi\|_\infty
+  \frac{|(\Xi_{L_j}+(0,z))\mathbin\triangle\Xi_{L_j}|}
+       {|\Xi_{L_j}|}\,\|X\|_1
+  \longrightarrow0.
+  \label{eq:weighted-approx-covariance}
+\end{align}
+Here $\|f_1X\|_1=\|X\|_1$ because $f_1$ is a probability density.
+The maps $\Gamma_j^\chi$ are uniformly bounded, and
+\eqref{eq:weighted-approx-covariance} is precisely the asymptotic covariance
+hypothesis of Lemma C.2 with input unitaries $D(z)$ and output unitaries
+$D(\sqrt\gamma z)$.  Lemma C.2 therefore gives, after taking a subsequence,
+a completely positive exactly covariant map $\Gamma^\chi$ with
 \begin{equation}\label{eq:quantum-limit}
   \Tr[\Gamma_j^\chi(X)K]
   \longrightarrow\Tr[\Gamma^\chi(X)K]
@@ -312,35 +403,68 @@ of the classical limit.
 For $u\in L^1(\Hc)$, let $\mathcal R_j(u)$ be the classical trace measure of
 $\Lambda_j(u\tau)$:
 \begin{equation}\label{eq:Rj}
-  \mathcal R_j(u)(E)
-  =\int_E\Tr[\Lambda_j(u\tau)(y)]\dd y.
+  \mathcal R_j(u)(A)
+  =\int_A\Tr[\Lambda_j(u\tau)(y)]\dd y.
 \end{equation}
 Since $\Lambda_j$ is a channel, $\mathcal R_j$ is a positive contraction
 from $L^1(\Hc)$ to the finite Radon measures.
 
-A diagonal extraction on countable dense subsets of $L^1(\Hc)$ and
+A further diagonal extraction on countable dense subsets of $L^1(\Hc)$ and
 $C_0(\Hc)$ gives a positive contraction $\mathcal R$ such that
 \[
   \mathcal R_j(u)\stackrel{w^*}{\longrightarrow}\mathcal R(u)
   \qquad(u\in L^1(\Hc)).
 \]
-Taking $z=0$ in \eqref{eq:approx-covariance} and passing to this limit yields
-the following equality of finite Radon measures.  With
-$(T_a\nu)(E):=\nu(E-a)$,
+Set $\xi=(h,0)$ and apply \eqref{eq:approx-covariance} to
+$R=u\tau$.  The input action translates \(u\), while the output action
+translates the classical output by \(\sqrt\gamma h\).  Hence
+\begin{align}
+ &\left\|
+   \Lambda_j\bigl(u(\,\cdot-h)\tau\bigr)
+   -[\Lambda_j(u\tau)](\,\cdot-\sqrt\gamma h)
+  \right\|_1\notag\\
+ &\qquad\leq
+  \frac{|(\Xi_{L_j}+(h,0))\mathbin\triangle\Xi_{L_j}|}
+       {|\Xi_{L_j}|}\,\|u\|_1
+  \longrightarrow0.
+  \label{eq:scalar-approx-covariance}
+\end{align}
+For \(\phi\in C_0(\Hc)\), taking the oscillator trace and pairing the
+classical output with \(\phi\) therefore give
+\[
+\begin{aligned}
+ &\left|
+   \int_{\Hc}\phi(y)\,\mathcal R_j(u(\,\cdot-h))(\dd y)
+   -\int_{\Hc}\phi(y+\sqrt\gamma h)\,\mathcal R_j(u)(\dd y)
+  \right|\\
+ &\qquad\leq
+  \|\phi\|_\infty
+  \left\|
+   \Lambda_j\bigl(u(\,\cdot-h)\tau\bigr)
+   -[\Lambda_j(u\tau)](\,\cdot-\sqrt\gamma h)
+  \right\|_1
+  \longrightarrow0.
+\end{aligned}
+\]
+Weak-* convergence applies to the first integral with input
+\(u(\,\cdot-h)\) and to the second because
+\(y\mapsto\phi(y+\sqrt\gamma h)\) belongs to \(C_0(\Hc)\).  Passing to the
+limit gives
+\[
+  \int_{\Hc}\phi(y)\,\mathcal R(u(\,\cdot-h))(\dd y)
+  =\int_{\Hc}\phi(y+\sqrt\gamma h)\,\mathcal R(u)(\dd y).
+\]
+Since \(C_0(\Hc)\) separates finite Radon measures, this is the following
+measure identity.  With $(T_a\nu)(A):=\nu(A-a)$,
 \begin{equation}\label{eq:R-covariance}
   \mathcal R(u(\,\cdot-h))
   =T_{\sqrt\gamma h}\mathcal R(u).
 \end{equation}
-Equivalently, pairing both sides with any $\phi\in C_0(\Hc)$ gives
-\[
-  \int\phi(y)\,\mathcal R(u(\,\cdot-h))(\dd y)
-  =\int\phi(y+\sqrt\gamma h)\,\mathcal R(u)(\dd y).
-\]
 Lemma C.4 identifies this covariant scalar kernel: there is a finite positive
 measure $\mu$, with $\mu(\Hc)\leq1$, such that
 \begin{equation}\label{eq:convolution}
-  \mathcal R(u)(E)
-  =\int_{\Hc}u(x)\mu(E-\sqrt\gamma x)\dd x.
+  \mathcal R(u)(A)
+  =\int_{\Hc}u(x)\mu(A-\sqrt\gamma x)\dd x.
 \end{equation}
 
 \subsection*{Step 5: bound the trace of the weighted quantum limit}
@@ -434,8 +558,9 @@ The conventions in Proposition C.5 read
 \]
 There is no classical integral, trace kernel, or convolution measure.  The
 F\o lner average is taken only over the displacement variable $z$, and it is
-a channel on the oscillator trace class.  Lemma C.2 therefore produces an
-exactly displacement-covariant trace-nonincreasing limit $\Gamma$ directly.
+a channel on the oscillator trace class.  Lemma C.2 produces an exactly
+displacement-covariant limit $\Gamma$.  Its trace-bound clause with $c=1$
+makes this limit trace nonincreasing.
 
 Lemma C.1 and compactness of $W_\gamma$ give
 \[

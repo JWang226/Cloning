@@ -30,7 +30,7 @@
 
 \begin{abstract}
 Proposition C.3 says that the quantum-limited amplifier maximizes every
-product of decreasing photon-number tests among displacement-covariant
+product of nonincreasing photon-number tests among displacement-covariant
 amplifiers of the same gain.  It allows a trace-nonincreasing map and an
 arbitrary multimode map that may couple the modes.  The proof first reduces
 to the one-mode stochastic-order theorem of Gu\c{t}\u{a} and Matsumoto, then
@@ -58,7 +58,7 @@ $P_k=\langle k|\rho|k\rangle$, the expectation of a number test is
 \[
   \Tr[\rho\,w(\widehat N)]=\sum_{k\ge0}P_k w(k).
 \]
-If $w$ is decreasing, an outcome with fewer photons receives a larger score;
+If $w$ is nonincreasing, an outcome with fewer photons receives a larger score;
 for example, $w(k)=\boldsymbol 1_{\{k\le K\}}$ measures the probability of a
 low-energy outcome, while $w(k)=e^{-sk}$ smoothly discounts high photon
 numbers.  Moving probability mass toward higher photon numbers can only
@@ -114,7 +114,7 @@ for every bounded increasing function $f$.  Equivalently,
 \begin{equation}\label{eq:decreasing-test}
   \sum_k w(k)P_k\leq\sum_k w(k)Q_k
 \end{equation}
-for every bounded nonnegative decreasing function $w$.
+for every bounded nonnegative nonincreasing function $w$.
 Equivalently, writing $Q\preceq_{\mathrm{st}}P$,
 \[
   \sum_{k=0}^m Q_k\geq\sum_{k=0}^m P_k
@@ -137,7 +137,7 @@ $s$-mode trace class satisfying
   =D(\sqrt\gamma z)\Gamma(X)D(\sqrt\gamma z)^*
   \qquad(z\in\C^s).
 \]
-If each $w_\ell:\mathbb Z_{\geq0}\to\R_+$ is bounded and decreasing, then
+If each $w_\ell:\mathbb Z_{\geq0}\to\R_+$ is bounded and nonincreasing, then
 \begin{equation}\label{eq:main-moment}
   \Tr\!\left[\Gamma(\tau)
     \prod_{\ell=1}^s w_\ell(\widehat N_\ell)\right]
@@ -278,8 +278,9 @@ covariance with gain $\sqrt\gamma$.
 
 \subsection*{Step 3: apply the least-noise stochastic theorem}
 
-The arbitrary-gain Weyl-operator characterization used in Sec.~3 and the
-Appendix of Gu\c{t}\u{a}--Matsumoto writes
+The displacement-covariant amplifier classification in
+\href{https://www.maths.nottingham.ac.uk/plp/pmzmig/preprints/cloning.pdf}
+{Sections II.C--D and III of Gu\c{t}\u{a}--Matsumoto} writes
 \begin{equation}\label{eq:idler-characterization}
   \Lambda^*(D(\xi))
   =\Tr[\sigma D(-\sqrt{\gamma-1}\,\bar\xi)]
@@ -302,7 +303,9 @@ Consequently, for phase-invariant input and idler states,
 \]
 so the vacuum idler, for which $N_{\mathrm{idler}}=0$, clearly minimizes
 the mean output photon number.  The result needed here is stronger than this
-mean comparison: Gu\c{t}\u{a} and Matsumoto's number-state calculation shows
+mean comparison.  The stochastic-order calculation in
+\href{https://www.maths.nottingham.ac.uk/plp/pmzmig/preprints/cloning.pdf}
+{Lemma 2.3 and Section III of Gu\c{t}\u{a}--Matsumoto} shows
 that every nonzero idler occupation shifts the entire output law upward in
 first-order stochastic order.  Since a diagonal idler state is a mixture of
 number states, its output law also stochastically dominates the vacuum-idler
@@ -333,7 +336,8 @@ $F_P(m)=\sum_{k=0}^mP(k)$ and $w_\infty=\lim_mw(m)$, then
   =w_\infty+
    \sum_{m\geq0}\bigl(w(m)-w(m+1)\bigr)F_P(m).
 \]
-All coefficients in the last sum are nonnegative, so
+The term $w_\infty$ is the same for both laws because both have total mass
+one.  All coefficients in the last sum are nonnegative, so
 $F_{P_\gamma}\geq F_{P_\Lambda}$ gives
 \[
   \Tr[\Lambda(\tau_q)w(\widehat N)]
@@ -378,7 +382,8 @@ and define a one-mode map
 Every operation in \eqref{eq:effective-map} is completely positive.  Since
 $0\leq W_{>1}\leq I$ and $\Gamma$ is trace nonincreasing, $\Gamma_1$ is
 trace nonincreasing.  It inherits displacement covariance in the first
-mode; after the independent phase twirl, it also inherits phase covariance.
+mode.  It also inherits phase covariance because the fixed thermal inputs
+and $W_{>1}$ are phase invariant after the independent phase twirl.
 Apply the one-mode result to the map $\Gamma_1$, the first-mode thermal input
 $\tau_{q_1}$, and the first-mode test $w_1(\widehat N_1)$.  It gives
 \[
@@ -433,6 +438,10 @@ For the orbital Gaussian model, let
   \tau^{(\gamma)}
   =\sum_{\mathbf k}t_{\mathbf k}^{(\gamma)}\ketbra{\mathbf k}.
 \]
+Here $\mathbf k=(k_{ij})_{i<j}$ ranges over
+$\mathbb Z_{\geq0}^{r_d}$, and $\widehat N_{ij}$ denotes the number operator
+of the mode indexed by $i<j$.  Its total occupation number is
+$|\mathbf k|=\sum_{i<j}k_{ij}$.
 Appendix C introduces
 \begin{equation}\label{eq:Wgamma}
   W_\gamma
@@ -443,13 +452,14 @@ Appendix C introduces
 Because both thermal laws are products,
 \[
   \sqrt{\frac{t_{\mathbf k}}{t_{\mathbf k}^{(\gamma)}}}
-  =\prod_\ell
-  \sqrt{\frac{1-q_\ell}{1-q_\ell^{(\gamma)}}}
-  \left(\frac{q_\ell}{q_\ell^{(\gamma)}}\right)^{k_\ell/2}.
+  =\prod_{i<j}
+  \sqrt{\frac{1-q_{ij}}{1-q_{ij}^{(\gamma)}}}
+  \left(\frac{q_{ij}}{q_{ij}^{(\gamma)}}\right)^{k_{ij}/2}.
 \]
-Each factor is positive, bounded, and decreasing.  It also tends to zero as
-$k_\ell\to\infty$, so $W_\gamma$ is compact and injective.  Proposition C.3
-applies to this witness, and direct calculation gives
+Each factor is positive, bounded, and nonincreasing because
+$q_{ij}<q_{ij}^{(\gamma)}$.  The eigenvalues tend to zero as
+$|\mathbf k|\to\infty$, so $W_\gamma$ is compact and injective.
+Proposition C.3 applies to this witness, and direct calculation gives
 \begin{equation}\label{eq:witness-identities}
   \Tr(\tau^{(\gamma)}W_\gamma)
   =\Tr(\tau W_\gamma^{-1})
@@ -482,6 +492,9 @@ $\Borb(\gamma,p)$.
 M. Gu\c{t}\u{a} and K. Matsumoto,
 ``Optimal cloning of mixed Gaussian states,''
 \emph{Physical Review A} \textbf{74}, 032305 (2006),
-\href{https://arxiv.org/abs/quant-ph/0605161}{arXiv:quant-ph/0605161}.
+\href{https://www.maths.nottingham.ac.uk/plp/pmzmig/preprints/cloning.pdf}
+{author-hosted published PDF};
+\href{https://doi.org/10.1103/PhysRevA.74.032305}
+{doi:10.1103/PhysRevA.74.032305}.
 
 \end{document}

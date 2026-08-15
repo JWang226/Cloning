@@ -90,7 +90,13 @@ positive, and injective.  If \eqref{eq:inverse-definition} is finite, then
 
 Let $\mathsf E$ be a Euclidean space, let
 $R\in L^1(\mathsf E;\T(\F))$ be positive, let $g$ be a probability density,
-and let $\chi>0$ be measurable.  Whenever the right side is finite,
+and let $\chi>0$ be measurable.  For positive $R,S$ in this $L^1$ space,
+define
+\[
+  \B(R,S)=\int_{\mathsf E}\B(R(y),S(y))\dd y.
+\]
+This is the positive-density extension of the hybrid root fidelity used in
+the Gaussian model.  Whenever the right side is finite,
 \begin{equation}\label{eq:hybrid-bound}
   \B(R,gT)^2
   \leq
