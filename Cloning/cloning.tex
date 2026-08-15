@@ -2347,18 +2347,11 @@ Whenever the right-hand side below is finite,
 \end{lemma}
 
 \begin{proof}
-For \(W_\varepsilon=W+\varepsilon I\), apply the Schatten H\"older
-inequality to
-\[
-  R^{1/2}T^{1/2}
-  =(R^{1/2}W_\varepsilon^{1/2})
-   (W_\varepsilon^{-1/2}T^{1/2}).
-\]
-This gives
+For \(W_\varepsilon=W+\varepsilon I\), the Schatten H\"older inequality gives
 \[
   B(R,T)
-  \le\sqrt{\Tr(RW_\varepsilon)}
-       \sqrt{\Tr(TW_\varepsilon^{-1})}.
+  =\|(R^{1/2}W_\varepsilon^{1/2})(W_\varepsilon^{-1/2}T^{1/2})\|_1
+  \le\sqrt{\Tr(RW_\varepsilon)}\sqrt{\Tr(TW_\varepsilon^{-1})}.
 \]
 Squaring and letting \(\varepsilon\downarrow0\), using monotone convergence
 for the second trace, proves \eqref{eq:weighted-quantum-fidelity}.  For the
@@ -2411,7 +2404,8 @@ diagonal weak-* compactness argument gives a subsequence for which
 \(\Gamma_j^*(K)\) converges weak-* in \(\mathcal B(\cH_0)\) for every
 \(K\in\mathcal D\).  The bound
 \(\|\Gamma_j^*(K)\|\le M\|K\|\) extends both the limit and the convergence
-to every compact \(K\), producing a bounded map
+to every compact \(K\), producing a
+bounded complex-linear map
 \(\Gamma^*:\mathcal K(\cH_1)\to\mathcal B(\cH_0)\).
 
 To check complete positivity, fix \(r\) and \(A\ge0\) in
@@ -2577,9 +2571,12 @@ Equivalently,
   \sqrt{\frac{1-q_{ij}}{1-q_{ij}^{(\gamma)}}}
   \left(\frac{q_{ij}}{q_{ij}^{(\gamma)}}\right)^{n/2}.
 \]
-Since \(q_{ij}<q_{ij}^{(\gamma)}\), these factors are positive, bounded,
-and decreasing, and the eigenvalues of \(W_\gamma\) tend to zero with the
-total occupation number.  Thus \(W_\gamma\) is bounded,
+For \(\mathbf k=(k_{ij})_{i<j}\), write
+\(\lvert\mathbf k\rvert:=\sum_{i<j}k_{ij}\) for its total occupation number.
+Since \(q_{ij}<q_{ij}^{(\gamma)}\), each \(w_{ij}(n)\) is positive, bounded,
+and decreasing in \(n\), and the eigenvalues of \(W_\gamma\) tend to zero as
+\(\lvert\mathbf k\rvert\to\infty\).
+Thus \(W_\gamma\) is bounded,
 injective, and compact.  Its definition gives
 \begin{equation}\label{eq:quantum-witness-identities}
   \Tr(\tau_p^{(\gamma)}W_\gamma)
@@ -2599,7 +2596,7 @@ contraction.  For a finite Radon measure \(\lambda\), define
 \(T_a\lambda(E)=\lambda(E-a)\).  Suppose
 \begin{equation}\label{eq:scalar-measure-covariance}
   \mathcal R(u(\,\cdot-h))=T_{\sqrt\gamma h}\mathcal R(u)
-  \qquad(h\in\mathsf E)
+  \qquad(u\in L^1(\mathsf E),\ h\in\mathsf E)
 \end{equation}
 as an equality of finite Radon measures.  Then there is a finite positive
 measure \(\mu\), with \(\mu(\mathsf E)\le1\), such that
@@ -2611,30 +2608,30 @@ for every \(u\in L^1(\mathsf E)\) and every Borel set \(E\).
 \end{lemma}
 
 \begin{proof}
-The one-point case is immediate.  Otherwise choose a nonnegative
-approximate identity \(u_j\in C_c(\mathsf E)\) with \(\int u_j=1\).
-Since \(C_0(\mathsf E)\) is separable, after passing to a subsequence the
-positive measures \(\mathcal R(u_j)\) converge weak-* to a positive measure
-\(\mu\); the contraction bound gives \(\mu(\mathsf E)\le1\).
+If \(\mathsf E=\{0\}\), take \(\mu=\mathcal R(1)\).  Otherwise choose a
+nonnegative approximate identity \(u_j\in C_c(\mathsf E)\) with \(\int u_j=1\)
+and \(\operatorname{supp}u_j\subset\{x:\|x\|\le j^{-1}\}\).  The positive
+measures \(\mathcal R(u_j)\) lie in the unit ball of \(C_0(\mathsf E)^*\), so
+weak-* compactness and separability yield a positive subsequential weak-* limit
+\(\mu\) with \(\mu(\mathsf E)\le1\).
 
-Covariance gives, as an equality of finite measures,
+For \(u\in L^1(\mathsf E)\), the identity
+\(u*u_j=\int_{\mathsf E}u(x)u_j(\,\cdot-x)\,\dd x\) holds as a Bochner
+integral in \(L^1(\mathsf E)\), so bounded linearity and covariance give
 \[
-  \mathcal R(u*u_j)
-  =\int_{\mathsf E}u(x)T_{\sqrt\gamma x}\mathcal R(u_j)\,\dd x.
+  \mathcal R(u*u_j)=\int_{\mathsf E}u(x)T_{\sqrt\gamma x}\mathcal R(u_j)\,\dd x.
 \]
-For \(u\in L^1(\mathsf E)\) and \(\phi\in C_0(\mathsf E)\), use
-\(u*u_j\to u\) in \(L^1\), pair this identity with \(\phi\), and pass to
-the limit to obtain
+Pair with \(\phi\in C_0(\mathsf E)\).  The approximate-identity property and
+contractivity give \(\mathcal R(u*u_j)\to\mathcal R(u)\) in total variation.
+On the right, weak-* convergence applies pointwise because
+\(y\mapsto\phi(y+\sqrt\gamma x)\) lies in \(C_0(\mathsf E)\), and the
+integrand is bounded by \(|u(x)|\|\phi\|_\infty\).  Dominated convergence gives
 \[
-\begin{aligned}
-  \langle\phi,\mathcal R(u)\rangle
-  &=\int_{\mathsf E}u(x)
-      \int_{\mathsf E}\phi(y+\sqrt\gamma x)\,\mu(\dd y)\,\dd x.
-\end{aligned}
+  \langle\phi,\mathcal R(u)\rangle=\int_{\mathsf E}u(x)\langle\phi,T_{\sqrt\gamma x}\mu\rangle\,\dd x.
 \]
-Dominated convergence applies because the integrand is bounded by
-\(|u(x)|\|\phi\|_\infty\).  This is precisely the pairing of \(\phi\)
-with the measure in \eqref{eq:scalar-convolution}.
+By definition of \(T_a\), the right-hand side pairs \(\phi\) with the finite
+Radon measure in \eqref{eq:scalar-convolution}, whose total variation is at
+most \(\|u\|_1\mu(\mathsf E)\).  Riesz uniqueness proves the claim.
 \end{proof}
 
 \subsection{One flat-prior converse for both Gaussian models}

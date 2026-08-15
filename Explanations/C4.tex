@@ -9,7 +9,6 @@
 \usepackage{xcolor}
 \usepackage[colorlinks=true,linkcolor=teal,urlcolor=teal]{hyperref}
 
-\newcommand{\Hc}{\mathsf H}
 \newcommand{\R}{\mathbb R}
 \newcommand{\dd}{\,\mathrm d}
 
@@ -36,23 +35,30 @@ $L^1$ inputs.
 
 \section{The statement in probabilistic language}
 
-The current lemma is stated for an arbitrary finite-dimensional Euclidean
-space $\mathsf E$, including $\mathsf E=\{0\}$.  This guide writes $\Hc$ for
-the positive-dimensional space used in the full classical--quantum
-specialization.  The zero-dimensional case is immediate.  Thus $\Hc$ is a
-finite-dimensional real vector space with Lebesgue measure
-$\dd x$, and $E\subseteq\Hc$ always denotes a Borel set.  If
+The lemma is stated on a finite-dimensional Euclidean space $\mathsf E$,
+including $\mathsf E=\{0\}$.  The zero-dimensional case is immediate, so
+below assume $\dim\mathsf E>0$ and equip $\mathsf E$ with Lebesgue measure
+$\dd x$.  We use $E\subseteq\mathsf E$ for a Borel set.  If
 $u\geq0$ and $\int u(x)\dd x=1$, then $u(x)\dd x$ is the law of an input
-random variable $X$.  The symbol $\mathcal R$ is not a random variable: it
-is a positive linear map, and
+random variable $X$.  Recall that $\mathcal R$ is the positive contraction
+from Lemma C.4,
 \[
-  \nu_u:=\mathcal R(u)
+  \mathcal R:L^1(\mathsf E)\longrightarrow C_0(\mathsf E)^*.
 \]
-is the finite measure produced from the input density $u$.  If
-$\nu_u(\Hc)=1$, one may choose an output random variable $Y$ with law
+By the Riesz representation theorem, the positive functional
+$\mathcal R(u)$ is represented by the unique positive Radon measure $\nu_u$
+satisfying
+\[
+  \langle f,\nu_u\rangle:=\mathcal R(u)(f)
+  =\int_{\mathsf E}f(y)\,\nu_u(\dd y)
+  \qquad(f\in C_0(\mathsf E)).
+\]
+Contractivity gives
+$\nu_u(\mathsf E)=\|\nu_u\|\leq\|u\|_1=1$; hence it is finite.  If
+$\nu_u(\mathsf E)=1$, one may choose an output random variable $Y$ with law
 $\nu_u$, so that $\Pr(Y\in E)=\nu_u(E)$.  If
-$c_u:=\nu_u(\Hc)<1$, then $\nu_u$ is instead a subprobability measure; it
-can be represented by adjoining a failure point $\partial\notin\Hc$ and
+$c_u:=\nu_u(\mathsf E)<1$, then $\nu_u$ is instead a subprobability measure; it
+can be represented by adjoining a failure point $\partial\notin\mathsf E$ and
 setting
 \[
   \Pr(Y\in E)=\nu_u(E),
@@ -72,7 +78,7 @@ assumption of Lemma C.4 is the equality of finite Radon measures
 \begin{equation}\label{eq:covariance}
   \mathcal R(u(\,\cdot-h))
   =T_{\sqrt\gamma h}\mathcal R(u)
-  \qquad(u\in L^1(\Hc),\ h\in\Hc).
+  \qquad(u\in L^1(\mathsf E),\ h\in\mathsf E).
 \end{equation}
 Evaluating this identity on a Borel set $E$ gives the more concrete formula
 \[
@@ -87,7 +93,7 @@ $Y+\sqrt\gamma h$.
 Lemma C.4 says that there is one finite positive measure $\mu$ such that
 \begin{equation}\label{eq:kernel}
   \mathcal R(u)(E)
-  =\int_{\Hc}u(x)\,\mu(E-\sqrt\gamma x)\dd x.
+  =\int_{\mathsf E}u(x)\,\mu(E-\sqrt\gamma x)\dd x.
 \end{equation}
 For each input point $x$, define the finite measure
 \[
@@ -95,7 +101,7 @@ For each input point $x$, define the finite measure
 \]
 Then \eqref{eq:kernel} says that $\mathcal R(u)$ is the mixture of the
 pointwise output measures $K(x,\,\cdot)$ with weights $u(x)\dd x$.  If
-$\mu(\Hc)=1$, each $K(x,\,\cdot)$ is a probability measure and may be read
+$\mu(\mathsf E)=1$, each $K(x,\,\cdot)$ is a probability measure and may be read
 as the conditional law of the output given $X=x$:
 \[
   K(x,E)=\Pr(Y\in E\mid X=x).
@@ -109,7 +115,7 @@ $Y:=\sqrt\gamma X+Z$, then
 and averaging the conditional measures over $X$ gives
 \[
   \Pr(Y\in E)
-  =\int_{\Hc}u(x)K(x,E)\dd x
+  =\int_{\mathsf E}u(x)K(x,E)\dd x
   =\mathcal R(u)(E).
 \]
 
@@ -132,12 +138,12 @@ residual $Y-\sqrt\gamma x$.  The covariance identity now gives
   =\mu_x(E).
 \]
 Since $h$ is arbitrary, all the recentered measures $\mu_x$ coincide.
-Point masses do not belong to $L^1(\Hc)$, so the proof makes this heuristic
+Point masses do not belong to $L^1(\mathsf E)$, so the proof makes this heuristic
 rigorous by approximating $\delta_0$, extracting its output limit $\mu$,
 and extending the formula to all $L^1$ inputs by convolution.
 
-Finally, if $c:=\mu(\Hc)<1$, then $K(x,\Hc)=c$ for every $x$ and
-$\mathcal R(u)(\Hc)=c$ for every normalized $u$.  When $0<c<1$, this may be
+Finally, if $c:=\mu(\mathsf E)<1$, then $K(x,\mathsf E)=c$ for every $x$ and
+$\mathcal R(u)(\mathsf E)=c$ for every normalized $u$.  When $0<c<1$, this may be
 realized by taking a Bernoulli variable $S$ with $\Pr(S=1)=c$, an independent
 noise variable $Z$ with law $\mu/c$, and declaring the output to be
 $\sqrt\gamma X+Z$ when $S=1$ and $\partial$ when $S=0$.  In the application,
@@ -148,13 +154,13 @@ infinity in the weak-* limit.
 
 The output space is
 \[
-  C_0(\Hc)^*,
+  C_0(\mathsf E)^*,
 \]
 which the Riesz representation theorem identifies with the finite Radon
-measures on $\Hc$.  The dual pairing of a test function $f$ with a measure
+measures on $\mathsf E$.  The dual pairing of a test function $f$ with a measure
 $\nu$ is
 \[
-  \langle f,\nu\rangle:=\int_{\Hc}f(y)\,\nu(\dd y).
+  \langle f,\nu\rangle:=\int_{\mathsf E}f(y)\,\nu(\dd y).
 \]
 When $\nu$ is the law of a random variable $Y$, this pairing is
 $\mathbb E[f(Y)]$; for a subprobability measure, the same interpretation
@@ -162,14 +168,14 @@ holds after setting $f(\partial)=0$ at the failure point.  Weak-* convergence
 of measures means
 \[
   \int f\dd\mu_j\longrightarrow\int f\dd\mu
-  \qquad(f\in C_0(\Hc)).
+  \qquad(f\in C_0(\mathsf E)).
 \]
 Thus weak-* convergence asserts convergence of these test-function averages,
 not pointwise convergence of random variables.
 
 The map
 \[
-  \mathcal R:L^1(\Hc)\longrightarrow C_0(\Hc)^*
+  \mathcal R:L^1(\mathsf E)\longrightarrow C_0(\mathsf E)^*
 \]
 is a positive contraction.  Hence, for $u\geq0$,
 \[
@@ -181,19 +187,19 @@ nonnegative input produces an output measure of mass at most one.
 \section{Statement of Lemma C.4}
 
 \begin{lemmaC}
-Let $\mathcal R:L^1(\Hc)\to C_0(\Hc)^*$ be a positive contraction satisfying
+Let $\mathcal R:L^1(\mathsf E)\to C_0(\mathsf E)^*$ be a positive contraction satisfying
 \eqref{eq:covariance}.  Then a finite positive measure $\mu$ with
-$\mu(\Hc)\leq1$ exists such that \eqref{eq:kernel} holds for every
-$u\in L^1(\Hc)$ and every Borel set $E$.
+$\mu(\mathsf E)\leq1$ exists such that \eqref{eq:kernel} holds for every
+$u\in L^1(\mathsf E)$ and every Borel set $E$.
 \end{lemmaC}
 
 \section{Proof walkthrough}
 
 \subsection*{Step 1: probe the kernel at the origin}
 
-Choose a nonnegative approximate identity $u_j\in C_c(\Hc)$:
+Choose a nonnegative approximate identity $u_j\in C_c(\mathsf E)$:
 \[
-  \int_{\Hc}u_j(x)\dd x=1,
+  \int_{\mathsf E}u_j(x)\dd x=1,
   \qquad
   \operatorname{supp}(u_j)\longrightarrow\{0\}.
 \]
@@ -206,34 +212,34 @@ not an $L^1$ density, use instead the sequence of output measures
 \]
 Thus $\mu_j$ is a measure, not a random variable; when it has mass one, one
 may represent it as the law of an output random variable.  Positivity and
-contractivity imply $\mu_j(\Hc)\leq1$.
+contractivity imply $\mu_j(\mathsf E)\leq1$.
 
-The unit ball of $C_0(\Hc)^*$ is weak-* compact.  Since $C_0(\Hc)$ is
+The unit ball of $C_0(\mathsf E)^*$ is weak-* compact.  Since $C_0(\mathsf E)$ is
 separable, a subsequence converges weak-* to a positive measure $\mu$:
 \begin{equation}\label{eq:mu-limit}
   \int f\dd\mu_j\longrightarrow\int f\dd\mu
-  \qquad(f\in C_0(\Hc)).
+  \qquad(f\in C_0(\mathsf E)).
 \end{equation}
-The norm is weak-* lower semicontinuous, so $\mu(\Hc)\leq1$.  Equality need
-not hold because the constant function $1$ does not belong to $C_0(\Hc)$
-when $\Hc$ is noncompact.
+The norm is weak-* lower semicontinuous, so $\mu(\mathsf E)\leq1$.  Equality need
+not hold because the constant function $1$ does not belong to $C_0(\mathsf E)$
+when $\mathsf E$ is noncompact.
 
 \subsection*{Step 2: smooth an arbitrary input}
 
 Use the convolution convention
 \[
-  (u*u_j)(y)=\int_{\Hc}u(x)u_j(y-x)\dd x
-  =\int_{\Hc}u(x)u_j(\,\cdot-x)(y)\dd x.
+  (u*u_j)(y)=\int_{\mathsf E}u(x)u_j(y-x)\dd x
+  =\int_{\mathsf E}u(x)u_j(\,\cdot-x)(y)\dd x.
 \]
 For normalized nonnegative $u$, if $X$ has density $u$ and $V_j$ has density
 $u_j$ independently of $X$, then $u*u_j$ is the density of $X+V_j$.
 Equivalently, it mixes the translated densities $u_j(\,\cdot-x)$ with
 weights $u(x)\dd x$; the proof then extends the identity to arbitrary
-$u\in L^1(\Hc)$ by linearity.
+$u\in L^1(\mathsf E)$ by linearity.
 The approximate-identity property gives
 \begin{equation}\label{eq:L1-approx}
   u*u_j\longrightarrow u
-  \qquad\text{in }L^1(\Hc).
+  \qquad\text{in }L^1(\mathsf E).
 \end{equation}
 Bounded linearity of $\mathcal R$ therefore implies
 \[
@@ -241,21 +247,21 @@ Bounded linearity of $\mathcal R$ therefore implies
 \]
 in the norm of finite measures.
 
-Because $u*u_j=\int_{\Hc}u(x)u_j(\,\cdot-x)\dd x$, bounded linearity moves
+Because $u*u_j=\int_{\mathsf E}u(x)u_j(\,\cdot-x)\dd x$, bounded linearity moves
 $\mathcal R$ through this integral, while covariance gives
 $\mathcal R(u_j(\,\cdot-x))=T_{\sqrt\gamma x}\mathcal R(u_j)$.  Hence, as
 an equality of finite Radon measures,
 \[
   \mathcal R(u*u_j)
-  =\int_{\Hc}u(x)\mathcal R(u_j(\,\cdot-x))\dd x
-  =\int_{\Hc}u(x)T_{\sqrt\gamma x}\mathcal R(u_j)\dd x.
+  =\int_{\mathsf E}u(x)\mathcal R(u_j(\,\cdot-x))\dd x
+  =\int_{\mathsf E}u(x)T_{\sqrt\gamma x}\mathcal R(u_j)\dd x.
 \]
 Evaluating this identity on a Borel set $E$ gives
 \begin{align}
   \mathcal R(u*u_j)(E)
-  &=\int_{\Hc}u(x)\,
+  &=\int_{\mathsf E}u(x)\,
     \mathcal R(u_j(\,\cdot-x))(E)\dd x\notag\\
-  &=\int_{\Hc}u(x)\,
+  &=\int_{\mathsf E}u(x)\,
     \mathcal R(u_j)(E-\sqrt\gamma x)\dd x.
   \label{eq:smoothed-kernel}
 \end{align}
@@ -265,23 +271,23 @@ $u*u_j$, with the finite measure $\mu_j=\mathcal R(u_j)$ in place of $\mu$.
 \subsection*{Step 3: pass to the weak-* limit}
 
 To justify the limit in \eqref{eq:smoothed-kernel}, pair both sides with an
-arbitrary $f\in C_0(\Hc)$.  The right side becomes
+arbitrary $f\in C_0(\mathsf E)$.  The right side becomes
 \begin{equation}\label{eq:test-pairing}
-  \int_{\Hc}u(x)
-  \left(\int_{\Hc}f(r+\sqrt\gamma x)\,\mu_j(\dd r)\right)\dd x.
+  \int_{\mathsf E}u(x)
+  \left(\int_{\mathsf E}f(r+\sqrt\gamma x)\,\mu_j(\dd r)\right)\dd x.
 \end{equation}
 Here $r$ is the integration variable for the measure $\mu_j$; if $\mu_j$
 is a probability law and $Z_j\sim\mu_j$, the inner integral is
 $\mathbb E[f(\sqrt\gamma x+Z_j)]$.
 For each fixed $x$, the translated function
-$r\mapsto f(r+\sqrt\gamma x)$ still belongs to $C_0(\Hc)$, so
+$r\mapsto f(r+\sqrt\gamma x)$ still belongs to $C_0(\mathsf E)$, so
 \eqref{eq:mu-limit} gives convergence of the inner integral to the same
 expression with $\mu$.  Its absolute value is bounded by $\|f\|_\infty$, and
 $|u|$ is integrable.  Dominated convergence therefore turns
 \eqref{eq:test-pairing} into
 \[
-  \int_{\Hc}u(x)
-  \left(\int_{\Hc}f(r+\sqrt\gamma x)\,\mu(\dd r)\right)\dd x.
+  \int_{\mathsf E}u(x)
+  \left(\int_{\mathsf E}f(r+\sqrt\gamma x)\,\mu(\dd r)\right)\dd x.
 \]
 On the other side, norm convergence of the output measures gives
 \[
@@ -290,19 +296,19 @@ On the other side, norm convergence of the output measures gives
   \int f\,\dd\mathcal R(u).
 \]
 The two limiting test-function integrals are therefore equal for every
-$f\in C_0(\Hc)$.  For each fixed $x$, the inner integral is the pairing of
+$f\in C_0(\mathsf E)$.  For each fixed $x$, the inner integral is the pairing of
 $f$ with the translated measure $T_{\sqrt\gamma x}\mu$, because
 \[
-  \int_{\Hc}f(r+\sqrt\gamma x)\,\mu(\dd r)
-  =\int_{\Hc}f(y)\,(T_{\sqrt\gamma x}\mu)(\dd y),
+  \int_{\mathsf E}f(r+\sqrt\gamma x)\,\mu(\dd r)
+  =\int_{\mathsf E}f(y)\,(T_{\sqrt\gamma x}\mu)(\dd y),
   \qquad
   (T_{\sqrt\gamma x}\mu)(E)=\mu(E-\sqrt{\gamma}\,x).
 \]
-Since functions in $C_0(\Hc)$ separate finite Radon measures, the matching
+Since functions in $C_0(\mathsf E)$ separate finite Radon measures, the matching
 measure identity is therefore, for every Borel set $E$,
 \[
   \mathcal R(u)(E)
-  =\int_{\Hc}u(x)\,\mu(E-\sqrt{\gamma}\,x)\dd x,
+  =\int_{\mathsf E}u(x)\,\mu(E-\sqrt{\gamma}\,x)\dd x,
 \]
 which is the measure identity \eqref{eq:kernel}.
 
@@ -318,9 +324,9 @@ which is the measure identity \eqref{eq:kernel}.
   \item If $\mu$ is a probability measure and $Z\sim\mu$ is independent of
   $X$, then the output measure $\mathcal R(u)$ is the law of
   $Y=\sqrt\gamma X+Z$.
-  \item If $\mu(\Hc)=c<1$, then $\mathcal R(u)$ is a subprobability measure
+  \item If $\mu(\mathsf E)=c<1$, then $\mathcal R(u)$ is a subprobability measure
   of mass $c$ for every normalized $u$; in the failure-point representation,
-  the output lies in $\Hc$ with probability $c$ and equals $\partial$ with
+  the output lies in $\mathsf E$ with probability $c$ and equals $\partial$ with
   probability $1-c$.
 \end{enumerate}
 
@@ -336,7 +342,7 @@ its freedom in
 the one measure $\mu$.  The classical Gaussian witness then yields
 \[
   \int c_\gamma(r)\,\mu(\dd r)
-  \leq B_{\mathrm{cl}}(\gamma,d)\mu(\Hc)
+  \leq B_{\mathrm{cl}}(\gamma,d)\mu(\mathsf E)
   \leq B_{\mathrm{cl}}(\gamma,d).
 \]
 That bound controls the trace of the weighted quantum limit and supplies the

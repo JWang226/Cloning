@@ -37,6 +37,23 @@ asymptotic to exact covariance.
 
 \section{What the lemma does}
 
+For a Hilbert space $\Hc$, we use the operator classes
+\[
+\begin{aligned}
+  \Bop(\Hc)
+  &:=\{A:\Hc\to\Hc:A\text{ is linear and bounded}\},\\
+  \K(\Hc)
+  &:=\overline{\{A\in\Bop(\Hc):\operatorname{rank}A<\infty\}}^{\|\cdot\|},\\
+  \T(\Hc)
+  &:=\{X\in\K(\Hc):\Tr|X|<\infty\},
+  \qquad \|X\|_1:=\Tr|X|,
+\end{aligned}
+\]
+where $|X|=(X^*X)^{1/2}$.  Thus $\Bop(\Hc)$, $\K(\Hc)$, and
+$\T(\Hc)$ are respectively the bounded, compact, and trace-class
+operators, with
+$\T(\Hc)\subset\K(\Hc)\subset\Bop(\Hc)$.
+
 Let
 \[
   \Gamma_j:\T(\Hc_0)\longrightarrow\T(\Hc_1)
