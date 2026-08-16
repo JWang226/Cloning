@@ -1722,23 +1722,44 @@ For \(\sigma\ne\mathrm{id}\),
 \[
   \frac1N\log\frac{A_{\mathrm{id}}}{A_\sigma}
   =\sum_i\frac{\lambda_i}{N}\log p_i
-   -\sum_i\frac{\lambda_{\sigma(i)}}{N}\log p_i+O(N^{-1}).
+   -\sum_i\frac{\lambda_{\sigma(i)}}{N}\log p_i+O_K(N^{-1}).
 \]
-At \(\lambda/N=p\), strict rearrangement makes the limit positive.
-Compactness of \(K\) and finiteness of \(\mathfrak S_d\)
-give \(c_K>0\) such that, for every \(\sigma\ne\mathrm{id}\) and all
-sufficiently large \(N\),
+For \(x\in\mathbb R^d\), put
 \[
-  \frac1N\log\frac{A_{\mathrm{id}}}{A_\sigma}\ge c_K.
+  D_\sigma(x,p)
+  =\sum_i x_i\log p_i-\sum_i x_{\sigma(i)}\log p_i.
 \]
-Thus every nonidentity term is exponentially smaller than the identity term.
-Dividing that term by
+Strict rearrangement gives \(D_\sigma(p,p)>0\).  Since \(K\) is compact,
+the permutations are finite, and the logarithms are uniformly bounded on
+\(K\), the assumptions \(\|\lambda/N-p\|_\infty\le\delta_N\) and
+\(\delta_N\to0\) give \(c_K>0\) such that, for every
+\(\sigma\ne\mathrm{id}\) and all sufficiently large \(N\),
+\[
+  \frac1N\log\frac{A_{\mathrm{id}}}{A_\sigma}\ge c_K,
+  \qquad
+  A_\sigma\le e^{-c_KN}A_{\mathrm{id}}.
+\]
+Consequently,
+\[
+  \sum_{\sigma\in\mathfrak S_d}\operatorname{sgn}(\sigma)A_\sigma
+  =A_{\mathrm{id}}\bigl(1+O_K(e^{-c_KN})\bigr),
+  \qquad
+  A_{\mathrm{id}}=p^\lambda\prod_i p_i^{d-i}.
+\]
+Since
 \[
   \det(p_i^{d-j})_{i,j=1}^d
   =\prod_i p_i^{d-i}
-   \prod_{i<j}\left(1-\frac{p_j}{p_i}\right)
+   \prod_{i<j}\left(1-\frac{p_j}{p_i}\right),
 \]
-proves \eqref{eq:uniform-character-normalization}.
+the Weyl character formula gives, uniformly,
+\[
+  s_\lambda(p)
+  =p^\lambda
+   \prod_{i<j}\left(1-\frac{p_j}{p_i}\right)^{-1}
+   \bigl(1+O_K(e^{-c_KN})\bigr).
+\]
+This proves \eqref{eq:uniform-character-normalization}.
 \end{proof}
 
 For the remainder of the appendix, index the number basis of
@@ -1778,7 +1799,9 @@ assertion, choose a compact neighborhood \(K\Subset\Delta_d^\circ\) of
 Then \(\delta_n\to0\), and the compact-uniform assertion applies.
 
 Fix \(K\) and \(\delta_n\) as in the proposition, and put
-\(\omega=\nu-\mu\).  Uniformly over the allowed parameters,
+\(\omega=\nu-\mu\).  Since \(|m/n-\gamma|\le\delta_n\) and \(\gamma>1\),
+we have \(m/n-1\ge(\gamma-1)/2\) for all sufficiently large \(n\).
+Uniformly over the allowed parameters,
 \[
 \begin{aligned}
   \left\|\frac\omega{m-n}-p\right\|_\infty
@@ -1793,14 +1816,19 @@ Every coordinate and every adjacent gap is uniformly positive on \(K\).
 Hence \(\omega\vdash m-n\) for all sufficiently large \(n\).  For
 \(\alpha=e_i-e_j\), set
 \begin{equation}\label{eq:splitting-fraction}
+\begin{aligned}
   s_{\alpha,n}
-  =\frac{\Delta_\alpha^\mu}{\Delta_\alpha^\nu}
-  =\frac1\gamma+o(1),
-  \qquad
+  &=\frac{\Delta_\alpha^\mu}{\Delta_\alpha^\nu}
+    =\frac{n}{m}
+      \frac{\mu_i/n-\mu_j/n}{\nu_i/m-\nu_j/m}
+    =\frac1\gamma+o(1),\\
   1-s_{\alpha,n}
-  =\frac{\Delta_\alpha^\omega}{\Delta_\alpha^\nu}.
+  &=\frac{\Delta_\alpha^\omega}{\Delta_\alpha^\nu}.
+\end{aligned}
 \end{equation}
-There are constants \(0<c_K<C_K<\infty\) such that, for all large \(n\),
+Consequently, there are constants
+\(0<c_K<C_K<\infty\), depending only on \(K\) and
+\(\gamma\), such that, for all large \(n\),
 \begin{equation}\label{eq:uniform-sector-gaps}
   c_Kn
   \le\Delta_\alpha^\mu,\Delta_\alpha^\nu,\Delta_\alpha^\omega
@@ -1809,14 +1837,17 @@ There are constants \(0<c_K<C_K<\infty\) such that, for all large \(n\),
 \end{equation}
 
 Let
-\(V=V_{\mu,\omega}:\cH_\nu\to\cH_\mu\ot\cH_\omega\).  Intertwining and the
-highest-weight normalization give
+\(V=V_{\mu,\omega}:\cH_\nu\to\cH_\mu\ot\cH_\omega\), and write
+\(F_\alpha^{(\lambda)}=\dd\pi_\lambda(F_\alpha)\) for the action of the root
+operator on \(\cH_\lambda\).  Intertwining and the highest-weight
+normalization give
 \[
   VF_\alpha^{(\nu)}
   =\bigl(F_\alpha^{(\mu)}\ot I+I\ot F_\alpha^{(\omega)}\bigr)V.
 \]
-Expanding one root block at a time in the fixed PBW order yields the exact
-identity
+Expanding each
+\(\bigl(F_\alpha^{(\mu)}\ot I+I\ot F_\alpha^{(\omega)}\bigr)^{r_\alpha}\)
+binomially gives the exact identity
 \begin{equation}\label{eq:cartan-PBW-exact}
   V\widetilde e_{\mathbf r}^{\nu}
   =\sum_{\mathbf a\le\mathbf r}
@@ -1832,9 +1863,17 @@ where
    s_{\alpha,n}^{a_\alpha}
    (1-s_{\alpha,n})^{r_\alpha-a_\alpha}}.
 \end{equation}
-The two tensor-leg operators commute within each root block; multiplying the
-expanded blocks in the fixed order preserves the PBW order in each tensor
-factor.  By \cref{lem:PBW-fixed-height}, for every fixed \(L\),
+If \(\operatorname{ht}(\sum_\alpha r_\alpha\alpha)\le L\),
+then \eqref{eq:cartan-PBW-exact} has \(O_L(1)\) terms, all of height at
+most \(L\), with
+\(0\le\beta_{\mathbf r,\mathbf a}^{(n)}\le1\).
+Since \(|m/n-\gamma|\le\delta_n\) and \(\gamma>1\), the
+sizes \(n,m,m-n\) are uniformly comparable, so
+\eqref{eq:uniform-sector-gaps} and \cref{lem:PBW-fixed-height} give
+\(e_{\mathbf b}^{\lambda}=\widetilde e_{\mathbf b}^{\lambda}
++O_L(n^{-1/2})\) for \(\lambda\in\{\mu,\nu,\omega\}\) and all relevant
+\(\mathbf b\).  Substituting these relations into
+\eqref{eq:cartan-PBW-exact} and using \(\|Vx\|=\|x\|\) gives
 \begin{equation}\label{eq:cartan-orthonormal-fixed-height}
   Ve_{\mathbf r}^{\nu}
   =\sum_{\mathbf a\le\mathbf r}
@@ -1842,9 +1881,8 @@ factor.  By \cref{lem:PBW-fixed-height}, for every fixed \(L\),
     e_{\mathbf a}^{\mu}\ot e_{\mathbf r-\mathbf a}^{\omega}
     +O_L(n^{-1/2})
 \end{equation}
-uniformly whenever
-\(\operatorname{ht}(\sum_\alpha r_\alpha\alpha)\le L\), with the
-error understood in norm.
+uniformly in norm for
+\(\operatorname{ht}(\sum_\alpha r_\alpha\alpha)\le L\).
 
 Put
 \[
@@ -1854,23 +1892,59 @@ Put
   \qquad
   q_\alpha=\frac{p_j}{p_i}\quad(\alpha=e_i-e_j).
 \]
-Because \(e_{\mathbf a}^\mu\) has weight
-\(\mu-\sum_\alpha a_\alpha\alpha\),
+For \(\lambda\in\{\mu,\nu\}\), the weight of
+\(e_{\mathbf b}^\lambda\) is
+\(\lambda-\sum_\alpha b_\alpha\alpha\), and hence
 \[
-  \rho_{p,\mu}e_{\mathbf a}^\mu
-  =c_\mu(p)\prod_\alpha q_\alpha^{a_\alpha}e_{\mathbf a}^\mu.
+  \rho_{p,\lambda}e_{\mathbf b}^\lambda
+  =c_\lambda(p)\prod_\alpha q_\alpha^{b_\alpha}e_{\mathbf b}^\lambda.
 \]
-Substitution of \eqref{eq:cartan-orthonormal-fixed-height} into
-\eqref{eq:sector-channel-formula} gives, uniformly at fixed \(L\),
+The sector channel gives the local formula
+\[
+  \sigma_{\mu,\nu}
+  =\frac{\dim\cH_\mu}{\dim\cH_\nu}
+   V^*(\rho_{p,\mu}\ot I_{\cH_\omega})V.
+\]
+All asymptotic estimates below are uniform over the allowed family.  The
+character estimate, \cref{lem:uniform-character-normalization},
+gives
+\[
+  c_\lambda(p)=\prod_\alpha(1-q_\alpha)+o(1)
+  \quad(\lambda=\mu,\nu),
+\]
+while the Weyl dimension formula, \eqref{eq:uniform-sector-gaps}, and
+\eqref{eq:splitting-fraction} give
+\[
+  \frac{\dim\cH_\mu}{\dim\cH_\nu}
+  =\prod_{\alpha=e_i-e_j}
+    \frac{\Delta_\alpha^\mu+j-i}{\Delta_\alpha^\nu+j-i}
+  =\prod_{\alpha\in\mathsf R_+}
+    \bigl(s_{\alpha,n}+O(n^{-1})\bigr)
+  =\gamma^{-|\mathsf R_+|}+o(1).
+\]
+Thus, substituting
+\eqref{eq:cartan-orthonormal-fixed-height} and the weight action above into
+this formula, and using
+\(\|\rho_{p,\mu}\|\le1\), gives, for fixed \(L\),
 \begin{align}
   \langle e_{\mathbf r}^\nu,
     \sigma_{\mu,\nu}e_{\mathbf s}^\nu\rangle
+  &={}\frac{\dim\cH_\mu}{\dim\cH_\nu}
+  \sum_{\substack{\mathbf a\le\mathbf r\\
+                   \mathbf b\le\mathbf s}}
+  \beta_{\mathbf r,\mathbf a}^{(n)}
+  \beta_{\mathbf s,\mathbf b}^{(n)}
+  \langle e_{\mathbf a}^\mu,
+    \rho_{p,\mu}e_{\mathbf b}^\mu\rangle
+  \langle e_{\mathbf r-\mathbf a}^\omega,
+    e_{\mathbf s-\mathbf b}^\omega\rangle
+  +O_L(n^{-1/2})\notag\\
   &={}
   \delta_{\mathbf r,\mathbf s}
   \frac{\dim\cH_\mu}{\dim\cH_\nu}c_\mu(p)
   \prod_{\alpha\in\mathsf R_+}
   \bigl(1-s_{\alpha,n}+s_{\alpha,n}q_\alpha\bigr)^{r_\alpha}
-  +o(1),
+  +O_L(n^{-1/2}),
   \label{eq:sector-output-fixed-matrix}\\
   \langle e_{\mathbf r}^\nu,
     \rho_{p,\nu}e_{\mathbf s}^\nu\rangle
@@ -1878,41 +1952,38 @@ Substitution of \eqref{eq:cartan-orthonormal-fixed-height} into
     c_\nu(p)\prod_{\alpha\in\mathsf R_+}q_\alpha^{r_\alpha}.
   \label{eq:sector-target-fixed-matrix}
 \end{align}
-For \eqref{eq:sector-output-fixed-matrix}, the inner products in the two
-tensor factors force \(\mathbf a=\mathbf b\) and
-\(\mathbf r-\mathbf a=\mathbf s-\mathbf b\), hence
-\(\mathbf r=\mathbf s\); the remaining sum factors into binomial sums.
 
-By \cref{lem:uniform-character-normalization},
+Set
 \[
-  c_\mu(p)=\prod_\alpha(1-q_\alpha)+o(1),
+  q_\alpha^{(\gamma)}=1-\frac{1-q_\alpha}{\gamma},
   \qquad
-  c_\nu(p)=\prod_\alpha(1-q_\alpha)+o(1).
-\]
-The Weyl dimension formula and \eqref{eq:splitting-fraction} give
-\[
-  \frac{\dim\cH_\mu}{\dim\cH_\nu}
-  =\prod_{\alpha=e_i-e_j}
-    \frac{\Delta_\alpha^\mu+j-i}{\Delta_\alpha^\nu+j-i}
-  =\gamma^{-r_d}+o(1).
-\]
-The identities
-\[
-  q_\alpha^{(\gamma)}
-  =1-\frac{1-q_\alpha}{\gamma},
+  \tau_q=(1-q)\sum_{k\ge0}q^k\proj{k},
   \qquad
-  1-q_\alpha^{(\gamma)}=\frac{1-q_\alpha}{\gamma},
+  \tau_p=\bigotimes_{\alpha\in\mathsf R_+}\tau_{q_\alpha},
+  \quad
+  \tau_p^{(\gamma)}
+  =\bigotimes_{\alpha\in\mathsf R_+}\tau_{q_\alpha^{(\gamma)}}.
 \]
-give
+Since \(s_{\alpha,n}=\gamma^{-1}+o(1)\),
+\eqref{eq:sector-output-fixed-matrix} and
+\eqref{eq:sector-target-fixed-matrix} now give
 \[
-  \gamma^{-r_d}\prod_\alpha(1-q_\alpha)
-  \prod_\alpha\bigl(q_\alpha^{(\gamma)}\bigr)^{r_\alpha}
-  =\prod_\alpha(1-q_\alpha^{(\gamma)})
-   \bigl(q_\alpha^{(\gamma)}\bigr)^{r_\alpha}.
+\begin{aligned}
+  \langle e_{\mathbf r}^\nu,
+    \sigma_{\mu,\nu}e_{\mathbf s}^\nu\rangle
+  &=\delta_{\mathbf r,\mathbf s}
+    \prod_\alpha(1-q_\alpha^{(\gamma)})
+    \bigl(q_\alpha^{(\gamma)}\bigr)^{r_\alpha}+o(1),\\
+  \langle e_{\mathbf r}^\nu,
+    \rho_{p,\nu}e_{\mathbf s}^\nu\rangle
+  &=\delta_{\mathbf r,\mathbf s}
+    \prod_\alpha(1-q_\alpha)q_\alpha^{r_\alpha}+o(1).
+\end{aligned}
 \]
-Because there are only finitely many indices at height at most \(L\),
-\eqref{eq:sector-output-fixed-matrix}--\eqref{eq:sector-target-fixed-matrix}
-imply convergence in trace norm, for every fixed \(L\):
+These are precisely the number-basis matrix elements of
+\(\tau_p^{(\gamma)}\) and \(\tau_p\).
+For fixed \(L\), the cutoff space has fixed finite dimension, so the uniform
+entrywise limits imply convergence in trace norm:
 \begin{align}
   \left\|
   J_{\nu,L}P_{\nu,L}\sigma_{\mu,\nu}P_{\nu,L}J_{\nu,L}^*
@@ -1922,20 +1993,14 @@ imply convergence in trace norm, for every fixed \(L\):
   \left\|
   J_{\nu,L}P_{\nu,L}\rho_{p,\nu}P_{\nu,L}J_{\nu,L}^*
   -P_L^{\cF}\tau_pP_L^{\cF}
-  \right\|_1&\longrightarrow0,
+  \right\|_1&\longrightarrow0.
   \label{eq:target-fixed-height-convergence}
 \end{align}
-uniformly over the allowed family, where
-\[
-  \tau_p=\bigotimes_{\alpha\in\mathsf R_+}\tau_{q_\alpha},
-  \qquad
-  \tau_p^{(\gamma)}
-  =\bigotimes_{\alpha\in\mathsf R_+}\tau_{q_\alpha^{(\gamma)}}.
-\]
 
-Both \(\rho_{p,\nu}\) and \(\sigma_{\mu,\nu}\) commute with the diagonal
-torus.  The first assertion is immediate; the second follows from torus
-invariance of \(\rho_{p,\mu}\) and covariance of \(\cC_{\mu,\nu}\).
+Both \(\sigma_{\mu,\nu}\) and \(\rho_{p,\nu}\) commute with
+the diagonal torus.  The second assertion is immediate; the first follows
+from torus invariance of \(\rho_{p,\mu}\) and covariance of
+\(\cC_{\mu,\nu}\).
 Consequently, \(P_{\nu,L}\) reduces both states, and the direct-sum identity
 gives
 \[
@@ -1954,12 +2019,13 @@ term is at most
 \end{equation}
 because \(\Tr[(I-P_{\nu,L})\sigma_{\mu,\nu}]\le1\).
 
-For fixed \(L\), \eqref{eq:target-fixed-height-convergence} gives
+Taking traces in \eqref{eq:target-fixed-height-convergence} gives, for fixed
+\(L\),
 \[
   \Tr[(I-P_{\nu,L})\rho_{p,\nu}]
   =\Tr[(I-P_L^{\cF})\tau_p]+o(1)
 \]
-uniformly as \(n\to\infty\) for the fixed \(L\).  Since \(K\) is
+uniformly as \(n\to\infty\).  Since \(K\) is
 compact in \(\Delta_d^\circ\), there is \(b_K<1\) such that
 \(q_\alpha\le b_K\) for every \(p\in K\) and every positive root
 \(\alpha\).  The occupation numbers under \(\tau_p\) are independent
@@ -2012,8 +2078,8 @@ uniformly.  First let \(n\to\infty\) at fixed \(L\), and then let
 \eqref{eq:sector-tail-fidelity-bound}--\eqref{eq:uniform-thermal-height-tail}.
 This proves
 \[
-  B(\sigma_{\mu,\nu},\rho_{p,\nu})
-  -B(\tau_p^{(\gamma)},\tau_p)\longrightarrow0
+  \left|B(\sigma_{\mu,\nu},\rho_{p,\nu})
+  -B(\tau_p^{(\gamma)},\tau_p)\right|\longrightarrow0
 \]
 uniformly.  Finally,
 \[
