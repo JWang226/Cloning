@@ -1525,8 +1525,12 @@ oscillator modes disappear.
 
 This appendix proves \cref{prop:sector-fidelity}.  The argument compares the
 sector-channel output and the target only on finitely many complete weight
-spaces at a time.  It does not extend those comparisons to a single global
-isometry from every irreducible sector into a common Fock space.
+spaces at a time.
+
+Because the calculations involve only weights of height bounded
+in terms of \(L\), \(O_L(\cdot)\) may depend on \(L,d,c,C\) in
+\(cN\le\Delta_\alpha^\lambda\le CN\) for \(\alpha\in\mathsf R_+\), but is
+uniform in \(N\) and all dominant \(\lambda\) satisfying these inequalities.
 
 \subsection{PBW vectors on complete weight spaces}
 
@@ -1606,87 +1610,90 @@ uniformly for \(\operatorname{ht}(\eta)\le L\) and
 \end{lemma}
 
 \begin{proof}
-If \(\mathbf r\in\mathsf P(\eta)\), then
-\(|\mathbf r|\le\operatorname{ht}(\eta)\), because every positive root has
-positive simple-root height.  Thus only words of bounded length occur at a
-fixed \(L\).
-
-Put
+For \(\mathbf r\in\mathsf P(\eta)\), every positive root has positive
+simple-root height, so
+\(|\mathbf r|\le\operatorname{ht}(\eta)\).  Put
 \[
   \widehat F_\alpha=\frac{F_\alpha}{\sqrt{\Delta_\alpha^\lambda}},
   \qquad
   \widehat E_\alpha=\frac{E_\alpha}{\sqrt{\Delta_\alpha^\lambda}}.
 \]
-Fix \(L\).  For every \(R\ge0\) and \(\alpha\in\mathsf R_+\),
-\(\widehat F_\alpha\) maps \(\mathcal K_{\lambda,R}\) into
-\(\mathcal K_{\lambda,R+\operatorname{ht}(\alpha)}\), while
-\(\widehat E_\alpha\) maps \(\mathcal K_{\lambda,R}\) into
-\(\mathcal K_{\lambda,R}\).  Every matrix coefficient under consideration
-contains a word of total length at most \(2L\).  Commuting two root operators
-replaces them by a root operator or a Cartan operator and therefore never
-increases this length.  Since every positive root has height at most
-\(d-1\), every intermediate vector lies in the fixed cutoff
+Each unnormalized Gram entry
+\(\langle v_\lambda,(\widehat F^{\mathbf r})^*
+\widehat F^{\mathbf s}v_\lambda\rangle\) is therefore a word of length at
+most \(2L\).  Commuting root operators cannot increase the word length, and
+each root has height at most \(d-1\).  Hence every intermediate vector lies
+in
 \[
   \mathcal K_{\lambda,R_L},
   \qquad R_L:=2L(d-1).
 \]
 
-For every fixed \(R\), the restrictions
+For \(0\le R\le R_L\), the restrictions
 \[
   \widehat E_\alpha:\mathcal K_{\lambda,R}\to\mathcal K_{\lambda,R},
   \qquad
   \widehat F_\alpha:\mathcal K_{\lambda,R}
   \to\mathcal K_{\lambda,R+d-1}
 \]
-have operator norms bounded uniformly in \(N\) and \(\lambda\).  Indeed,
-restrict to \(\mathfrak{sl}_2(\alpha)\) and decompose orthogonally into
-irreducible strings.  A weight \(\lambda-\eta\) with
-\(\operatorname{ht}(\eta)\le R\) has \(H_\alpha\)-eigenvalue
-\(\Delta_\alpha^\lambda+O_R(1)\).  If a component at this weight lies \(t\)
-steps below the top of its string, then \(\lambda-\eta+t\alpha\) is also a
-weight, so \(t\operatorname{ht}(\alpha)\le\operatorname{ht}(\eta)\) and
-\(t=O_R(1)\).  The string highest weight is therefore
-\(\Delta_\alpha^\lambda+O_R(1)\).  The standard
-\(\mathfrak{sl}_2\)-coefficients and \(E_\alpha=F_\alpha^*\) give the claimed
-uniform bounds.  Applying this observation to the finitely many cutoffs
-with \(R\le R_L\) controls every intermediate operator below.
+satisfy
+\(\|\widehat E_\alpha\|+\|\widehat F_\alpha\|=O_L(1)\).  To see this,
+decompose \(\cH_\lambda\) orthogonally into irreducible
+\(\mathfrak{sl}_2(\alpha)\)-summands.  If a summand meets the weight space
+of \(\lambda-\eta\), where \(\operatorname{ht}(\eta)\le R\), let \(t\) be
+its level there and \(M\) its highest \(H_\alpha\)-eigenvalue.  Then
+\(t\operatorname{ht}(\alpha)\le R\) and
+\[
+  M=\Delta_\alpha^\lambda-\eta(H_\alpha)+2t
+   =\Delta_\alpha^\lambda+O_L(1).
+\]
+At level \(t\), the \(F_\alpha\)- and \(E_\alpha\)-coefficients are
+\(\sqrt{(t+1)(M-t)}\) and \(\sqrt{t(M-t+1)}\).  After division by
+\(\sqrt{\Delta_\alpha^\lambda}\), both are \(O_L(1)\), proving the norm
+bound.  All operator norms below are taken after restriction to
+\(\mathcal K_{\lambda,R_L}\), with the codomain norm inherited from
+\(\cH_\lambda\).
 
-On the same fixed collection of cutoffs, the matrix-unit commutator formula
-gives
+The matrix-unit commutator formula now gives
 \begin{equation}\label{eq:normalized-root-commutator}
   [\widehat E_\alpha,\widehat F_\beta]
   =\delta_{\alpha\beta}I+O_L(N^{-1/2}).
 \end{equation}
-For \(\alpha=\beta\), use
-\([E_\alpha,F_\alpha]=H_\alpha\) and
-\(H_\alpha/\Delta_\alpha^\lambda=I+O_L(N^{-1})\)
-on every \(\mathcal K_{\lambda,R}\) with \(R\le R_L\).  For
-\(\alpha\ne\beta\), the commutator is zero or one root operator of norm
-\(O_L(\sqrt N)\), divided by a quantity of order \(N\).  Here and below,
-operator-norm estimates are taken between fixed enlarged height cutoffs,
-whose sizes depend only on \(L\) and \(d\).
+For \(\alpha=\beta\), the left side is
+\(H_\alpha/\Delta_\alpha^\lambda=I+O_L(N^{-1})\) on the cutoff.
+For \(\alpha\ne\beta\), the unnormalized commutator is zero or,
+up to sign, a root operator \(E_\gamma\) or \(F_\gamma\).  In the nonzero
+case, the preceding bound gives
+\(\|[\widehat E_\alpha,\widehat F_\beta]\|
+=O_L\bigl(\sqrt{\Delta_\gamma^\lambda}/
+\sqrt{\Delta_\alpha^\lambda\Delta_\beta^\lambda}\bigr)
+=O_L(\sqrt N/N)=O_L(N^{-1/2})\).
 
-Move the normalized raising operators in
+Commute every \(\widehat E_\alpha\) to the right in
 \(\langle v_\lambda,(\widehat F^{\mathbf r})^*
-\widehat F^{\mathbf s}v_\lambda\rangle\) successively to the right using
-\eqref{eq:normalized-root-commutator}.  A term containing only the scalar
-parts \(\delta_{\alpha\beta}I\) can survive only if every raising operator is
-paired with a lowering operator of the same root.  This is possible exactly
-when \(\mathbf r=\mathbf s\), and then the number of pairings is
-\(\prod_\alpha r_\alpha!\).  Every remaining term either contains at least
-one \(O_L(N^{-1/2})\) commutator remainder, leaves an unpaired raising
-operator that annihilates \(v_\lambda\), or leaves a nonzero lowering weight
-orthogonal to \(v_\lambda\).  The number of terms and all intervening
-operator norms are bounded in terms of \(L,d,c,C\).  Dividing by the
-factorials in \eqref{eq:normalized-PBW-vectors} proves
+\widehat F^{\mathbf s}v_\lambda\rangle\).  The scalar commutators in
+\eqref{eq:normalized-root-commutator} contribute only when
+\(\mathbf r=\mathbf s\), in which case they give
+\(\prod_\alpha r_\alpha!\).  Every other term vanishes or contains an
+\(O_L(N^{-1/2})\) remainder.  Only \(O_L(1)\) terms occur, and all remaining
+operator factors have norm \(O_L(1)\); consequently,
+\[
+  \langle v_\lambda,(\widehat F^{\mathbf r})^*
+  \widehat F^{\mathbf s}v_\lambda\rangle
+  =\delta_{\mathbf r,\mathbf s}\prod_\alpha r_\alpha!
+   +O_L(N^{-1/2}).
+\]
+Dividing by the factorials in \eqref{eq:normalized-PBW-vectors} proves
 \eqref{eq:PBW-Gram-fixed-height}.
 
-Each exact-weight Gram matrix is therefore
-\(I+O_L(N^{-1/2})\).  Functional calculus gives
-\(G_{\lambda,\eta}^{-1/2}=I+O_L(N^{-1/2})\), which proves
-\eqref{eq:PBW-orthonormal-close}.  Since the PBW vectors span the weight
-space and their Gram matrix is invertible, the orthonormalized vectors form a
-basis of the entire weight space.
+The number and sizes of the exact-weight blocks are bounded in terms of
+\(L\), so the entrywise estimate gives
+\(G_{\lambda,\eta}=I+O_L(N^{-1/2})\) in operator norm.  Thus
+\(G_{\lambda,\eta}\) is invertible for large \(N\), and the PBW spanning
+vectors form a basis.  Finally, functional calculus gives
+\(G_{\lambda,\eta}^{-1/2}=I+O_L(N^{-1/2})\); hence
+\eqref{eq:exact-block-orthonormalization} is an orthonormal basis and
+satisfies \eqref{eq:PBW-orthonormal-close}.
 \end{proof}
 
 \subsection{Character normalization and fixed-height matrices}
