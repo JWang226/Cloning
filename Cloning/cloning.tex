@@ -357,13 +357,17 @@ the unified flat-prior Gaussian converse.
 
 \section{The common Schur--Cartan construction}\label{sec:schur-cartan}
 
-Both cloning protocols use the same finite-dimensional architecture.  This
-section first records the fidelity identities needed to compare block-diagonal
-Schur states, then recalls the Schur--Weyl decomposition, and finally lifts an
-arbitrary Markov kernel on Young labels to a covariant quantum channel.  The
-choice of label kernel is postponed to \cref{sec:label-kernels}.
+Both cloning protocols use the same finite-dimensional
+architecture.  This section first records the fidelity identities needed to
+compare block-diagonal Schur states in
+\cref{sec:fidelity-block-estimates}, then recalls the Schur--Weyl
+decomposition in \cref{sec:schur-weyl-decomposition}, and finally lifts an
+arbitrary Markov kernel on Young labels to a covariant quantum channel in
+\cref{sec:cartan-sector-lifting}.  The choice of label kernel is postponed to
+\cref{sec:label-kernels}.
 
 \subsection{Fidelity and block estimates}
+\label{sec:fidelity-block-estimates}
 
 For positive trace-class operators \(A,C\), not necessarily normalized, set
 \[
@@ -464,6 +468,7 @@ yields
 \end{proof}
 
 \subsection{Schur--Weyl decomposition}
+\label{sec:schur-weyl-decomposition}
 
 Let
 \[
@@ -539,6 +544,7 @@ For all sufficiently large \(N\), the polynomial factor is at most
 \end{proof}
 
 \subsection{Cartan-sector channel and lifting of a label kernel}
+\label{sec:cartan-sector-lifting}
 
 Let \(\lambda,\theta\) be dominant weights, with unit highest-weight vectors
 \(v_\lambda,v_\theta\).  The Cartan component \(\cH_{\lambda+\theta}\)
@@ -560,17 +566,18 @@ difference \(\nu-\mu\) is a partition of \(m-n\).  If this holds, put
 \end{equation}
 The partial trace
 \(\Tr_{\cH_\omega}(V_{\mu,\omega}V_{\mu,\omega}^*)\) commutes with the
-irreducible \(\U(d)\)-action on \(\cH_\mu\), so Schur's lemma makes it a
-scalar multiple of the identity.  Taking its trace determines the scalar:
-\[
+irreducible \(\U(d)\)-action on \(\cH_\mu\); hence Schur's lemma and a trace
+comparison give
+\(
   \Tr_{\cH_\omega}(V_{\mu,\omega}V_{\mu,\omega}^*)
-  =\frac{\dim\cH_\nu}{\dim\cH_\mu}I_{\cH_\mu}.
-\]
-The map in \eqref{eq:sector-channel-formula} is completely positive,
-since it is the composition of \(X\mapsto X\ot I_{\cH_\omega}\) with
-compression by \(V_{\mu,\omega}\), followed by multiplication by a positive
-scalar.  The displayed partial-trace identity shows that it is trace
-preserving.  Intertwining gives \(\U(d)\)-covariance.
+  =\frac{\dim\cH_\nu}{\dim\cH_\mu}I_{\cH_\mu}
+\).
+Thus \eqref{eq:sector-channel-formula} is completely positive by
+tensoring with \(I_{\cH_\omega}\), applying
+\(Y\mapsto V_{\mu,\omega}^*YV_{\mu,\omega}\), and positive rescaling;
+the identity above makes it trace
+preserving, while equivariance of \(V_{\mu,\omega}\) gives
+\(\U(d)\)-covariance.
 
 For every pair \((\mu,\nu)\in\mathsf Y_n\times\mathsf Y_m\), define a
 covariant channel \(\cE_{\mu,\nu}:\cT_1(\cH_\mu)\to\cT_1(\cH_\nu)\) by
@@ -629,11 +636,14 @@ Apply \cref{lem:block-good-set} with \(x=\mu\), \(y=\nu\).
 
 \section{The two label kernels and achievability}\label{sec:label-kernels}
 
-After the common lifting has been isolated, the two protocols differ only in
-how they choose the output Young label.  We first define the exact target-law
-kernel for known spectrum and the randomized dilation kernel for unknown
-spectrum.  We then combine their label estimates with the common sector
-fidelity to prove the two achievability statements.
+After the common lifting has been isolated, the two protocols
+differ only in how they choose the output Young label.  We define the exact
+target-law kernel for known spectrum and the randomized dilation kernel for
+unknown spectrum in
+\cref{sec:known-label-kernel,sec:unknown-label-kernel}, respectively.  We then
+combine their label estimates with the common sector fidelity in
+\cref{sec:uniform-estimates-achievability} to prove the two achievability
+statements.
 
 \subsection{Known spectrum: exact target-label sampling}
 \label{sec:known-label-kernel}
@@ -678,6 +688,11 @@ Given \(\mu\in\mathsf Y_n\), draw independent variables
   \qquad
   \widetilde\nu_d=m_n-\sum_{i<d}\widetilde\nu_i.
 \end{equation}
+This is a spectrum-independent lattice version of the dilation
+\(\mu\mapsto\gamma_n\mu\): it sends typical labels near \(np\) to labels near
+\(m_np\), with \(\widetilde\nu-\mu\) typically a partition.  The uniform
+shifts randomize the rounding error, avoiding lattice bias in the Gaussian
+limit.
 Then \(\widetilde\nu\in\mathsf L_{m_n}\).  Let
 \(D_n(\widetilde\nu\mid\mu)\) denote its distribution.  Define
 \(K_n^{\mathrm{rnd}}:\mathsf Y_n\rightsquigarrow\mathsf Y_{m_n}\) by
@@ -718,6 +733,7 @@ spectrum independent, while \(\mathcal Q_n[K_n^{\mathrm{rnd}}]\) is
 \(\U(d)\)-covariant.
 
 \subsection{Uniform estimates and achievability}
+\label{sec:uniform-estimates-achievability}
 
 The following proposition is the only representation-theoretic asymptotic
 estimate used in the cloning protocols.
@@ -759,12 +775,15 @@ For all sufficiently large \(n\), every tuple in the supremum below satisfies
 An empty supremum is understood to be zero.
 \end{proposition}
 
-The proposition is an intrinsic fidelity statement; it does not assert
-convergence of the entire sector channel to a Gaussian channel.  The
-proof uses finite-dimensional coordinate maps indexed by \(\nu\) and a fixed
-height cutoff; they are not restrictions of the LAN channel.
-Their precise relation to fixed-spectrum LAN is stated after
-\cref{cor:LAN-orb}.
+The proposition compares the conditional target
+\(\rho_{p,\nu}\) with the output of \(\rho_{p,\mu}\) under
+\(\cC_{\mu,\nu}\).  Their low-weight matrices converge respectively to those
+of the ideal thermal state \(\tau_p\) and the noisy amplifier output
+\(\tau_p^{(\gamma)}\); the proposition does not assert convergence of
+\(\cC_{\mu,\nu}\) to the Gaussian amplifier.  A uniform thermal-tail bound
+yields the fidelity limit.  As explained after \cref{cor:LAN-orb}, these
+sector limits condition on the Young labels, whereas fixed-spectrum LAN
+averages their classical fluctuation away.
 
 The second estimate concerns only \(K_n^{\mathrm{rnd}}\).
 
@@ -899,14 +918,16 @@ uniformly for \(p\in K\).
 
 \section{Gaussian converses and LAN transfer}\label{sec:gaussian-LAN}
 
-The constructions above establish achievability for the minimax fidelities.
-To show that they are optimal, we pass to the local
-Gaussian models in which cloning becomes amplification.  We first solve the
-Gaussian problems, then state the two-way LAN approximation, and finally
-transfer the resulting converse inequalities back to the
-finite-dimensional models.
+The constructions above establish achievability for the minimax
+fidelities.  To show that they are optimal, we pass to the local Gaussian
+models in which cloning becomes amplification.  We first solve the Gaussian
+problems in \cref{sec:gaussian-amplification}, then state the two-way LAN
+approximation in \cref{sec:local-asymptotic-normality}, and finally transfer
+the resulting converse inequalities back to the finite-dimensional models in
+\cref{sec:minimax-completion}.
 
 \subsection{Gaussian amplification}
+\label{sec:gaussian-amplification}
 
 Let \(\cF\) be the one-mode Fock space with number basis
 \(\{\ket{k}:k\ge0\}\), creation and annihilation operators \(a^*,a\), and
@@ -1056,6 +1077,7 @@ Thus both limits exist and equal the asserted values.
 \end{proof}
 
 \subsection{Local asymptotic normality}
+\label{sec:local-asymptotic-normality}
 
 Here LAN means that, uniformly for \((h,z)\) in compact sets,
 the state families \(\rho_{p+h/\sqrt n,g_{n,z}}^{\ot n}\) and
@@ -1207,30 +1229,28 @@ The bounds
 \end{proof}
 
 \paragraph{Conditional sector limits and centered LAN.}
-Consider label sequences \(\mu_n\vdash n\) and \(\nu_n\vdash m_n\) in the
-uniform family of \cref{prop:sector-fidelity}, so that
-\(\mu_n/n\to p\) and \(\nu_n/m_n\to p\).  For a fixed height cutoff \(L\), let
-\(P_{\nu_n,L}\) project onto the sum of the exact weight spaces of height at
-most \(L\) in \(\cH_{\nu_n}\), and let \(P_L^{\cF}\) project onto the Fock
-number vectors whose total root height is at most \(L\).  The unitary
-\(J_{\nu_n,L}\) in \eqref{eq:finite-coordinate-unitary} maps the first space
-to the second.  Uniformly for those pairs as \(n\to\infty\), the proof of
-\cref{prop:sector-fidelity} establishes the following finite-matrix limits:
+Fix \(L\) and take admissible labels \((\mu,\nu)\) from the
+uniform family in \cref{prop:sector-fidelity}.  Let \(P_{\nu,L}\) project onto
+the sum of the exact weight spaces of height at most \(L\) in \(\cH_\nu\), and
+let \(P_L^{\cF}\) project onto the Fock number vectors whose total root height
+is at most \(L\).  The unitary \(J_{\nu,L}\) in
+\eqref{eq:finite-coordinate-unitary} maps the first space to the second.
+Uniformly over this family, the proof establishes
 \begin{align*}
-  J_{\nu_n,L}P_{\nu_n,L}\rho_{p,\nu_n}P_{\nu_n,L}J_{\nu_n,L}^*
+  J_{\nu,L}P_{\nu,L}\rho_{p,\nu}P_{\nu,L}J_{\nu,L}^*
   &\longrightarrow P_L^{\cF}\tau_pP_L^{\cF},\\
-  J_{\nu_n,L}P_{\nu_n,L}
-  \cC_{\mu_n,\nu_n}(\rho_{p,\mu_n})
-  P_{\nu_n,L}J_{\nu_n,L}^*
+  J_{\nu,L}P_{\nu,L}
+  \cC_{\mu,\nu}(\rho_{p,\mu})
+  P_{\nu,L}J_{\nu,L}^*
   &\longrightarrow P_L^{\cF}\tau_p^{(\gamma)}P_L^{\cF}.
 \end{align*}
 Thus the ideal target sector approaches \(\tau_p\), whereas the actual
 Cartan-sector output approaches the noisier state \(\tau_p^{(\gamma)}\) on
 each fixed collection of exact weight spaces.
 
-The sector limits above condition on \((\mu_n,\nu_n)\), whereas full LAN
-retains the Young-label fluctuation.  At \((h,z)=(0,0)\), the corresponding
-limits in trace norm are
+These sector limits condition on \((\mu,\nu)\), whereas full LAN retains the
+Young-label fluctuation.  At the centered point \(h=z=0\), the corresponding
+trace-norm LAN limits are
 \[
   T_n^{\mathrm{full}}(\rho_p^{\ot n})
   \longrightarrow \mathsf N_{0,\Sigma_p}\ot\tau_p,
@@ -1238,13 +1258,11 @@ limits in trace norm are
   T_n^{\mathrm{orb}}(\rho_p^{\ot n})
   \longrightarrow \tau_p.
 \]
-The full centered LAN limit is
-\(\mathsf N_{0,\Sigma_p}\ot\tau_p\).  The state \(\tau_p\)
-appears alone because \(T_n^{\mathrm{orb}}\) removes the \(z\)-independent
-classical factor \(\mathsf N_{0,\Sigma_p}\), which
-\(S_n^{\mathrm{orb}}\) restores.  Although this resembles
+Thus full LAN retains the classical factor \(\mathsf N_{0,\Sigma_p}\), while
+\(T_n^{\mathrm{orb}}\) removes it and \(S_n^{\mathrm{orb}}\) restores it.
+Although \(\tau_p\) resembles
 the ideal sector limit \(P_L^{\cF}\tau_pP_L^{\cF}\), the mechanisms differ:
-the sector limit fixes \(\nu_n\), whereas orbital LAN marginalizes
+the sector calculation fixes \(\nu\), whereas orbital LAN marginalizes
 \(\mathsf N_{0,\Sigma_p}\).
 
 \begin{lemma}[LAN fidelity transfer]\label{lem:LAN-fidelity-transfer}
@@ -1290,6 +1308,7 @@ Finally,
 \end{proof}
 
 \subsection{Completion of the minimax proofs}
+\label{sec:minimax-completion}
 
 We now apply the same transfer principle in three increasingly broad settings.
 The fixed-spectrum Gaussian bound completes \cref{thm:known-optimum}; the full
@@ -1523,9 +1542,18 @@ oscillator modes disappear.
 \section{Exact-weight PBW calculation of the sector fidelity}
 \label{app:sector-fidelity}
 
-This appendix proves \cref{prop:sector-fidelity}.  The argument compares the
-sector-channel output and the target only on finitely many complete weight
-spaces at a time.
+This appendix proves \cref{prop:sector-fidelity} by comparing the
+target sector \(\rho_{p,\nu}\) with the Cartan-sector output
+\(\cC_{\mu,\nu}(\rho_{p,\mu})\) on finitely many weight spaces near their
+highest weights, then controlling the remaining target mass.
+\Cref{lem:PBW-fixed-height} shows that normalized lowering-operator vectors
+become asymptotically orthonormal on these spaces, while
+\cref{lem:uniform-character-normalization} gives the uniform limit
+\(p^\lambda/s_\lambda(p)\to\prod_{i<j}(1-p_j/p_i)\).  The Cartan inclusion
+\(V_{\mu,\nu-\mu}\) then splits
+each lowering operation between \(\cH_\mu\) and \(\cH_{\nu-\mu}\) with
+asymptotically binomial weights, producing the thermal limits \(\tau_p\) and
+\(\tau_p^{(\gamma)}\) and hence the fidelity \(\Borb(\gamma,p)\).
 
 Because the calculations involve only weights of height bounded
 in terms of \(L\), \(O_L(\cdot)\) may depend on \(L,d,c,C\) in
@@ -2090,7 +2118,19 @@ by \eqref{eq:thermal-root-fidelity} and \eqref{eq:one-mode-b}.
 \section{Young local limit and randomized rounding}
 \label{app:young-rounding}
 
-This appendix proves \cref{prop:young-rounding}.  Define the half-open
+This appendix proves \cref{prop:young-rounding} by expressing the
+randomized rounding law \(D_n(\widetilde\nu\mid\mu)\) as
+the normalized intersection volume of the dilated source cell
+around \(\gamma_n\mu\) with the target cell labeled by \(\widetilde\nu\).
+\Cref{lem:young-local-limit} shows that the centered and rescaled target label
+law \(P_{N,p}\) converges uniformly to \(\mathsf N_{0,\Sigma_p}\), while
+\cref{lem:randomized-dilation} shows that sending \(P_{n,p}\) through \(D_n\)
+changes this limit to \(\mathsf N_{0,\gamma\Sigma_p}\) and yields the label
+affinity \(\Bcl(\gamma,d)\).  The final proof checks that typical rounded
+labels satisfy \(\nu-\mu\vdash m_n-n\) and that replacement by
+\(\nu_n^{\mathrm{fb}}\) moves only vanishing mass.
+
+Define the half-open
 fundamental cell
 \[
   \mathsf C
@@ -2571,10 +2611,26 @@ rejected mass to \(\nu_n^{\mathrm{fb}}\) changes the law by at most
 \label{app:gaussian-converse}
 
 This appendix proves the two converse inequalities in
-\cref{thm:gaussian-amplification}.  We average over large parameter sets and
-test the oscillator output against a compact product operator before taking a
-limit.  In the classical--quantum case, we also use the scalar measures
-obtained by tracing out the oscillator.  The classical parameter space has
+\cref{thm:gaussian-amplification} by averaging any candidate channel
+\(\Lambda\) over
+larger parameter boxes and testing the unavoidable noise in its output.
+\Cref{lem:weighted-fidelity} turns fidelity into such a test expectation.
+\Cref{lem:compact-cp-limit} shows that any bounded sequence of
+nearly displacement-covariant maps has a subsequence converging to an exactly
+covariant map with the same trace bound.
+\Cref{prop:least-noise-moment} shows that every covariant map with
+the required gain is at least as noisy as the amplifier, as measured by the
+number test, even allowing for lost trace.  \Cref{lem:scalar-convolution}
+governs the classical-distribution part of a classical--quantum channel:
+translation covariance forces it to scale \(x\) to \(\sqrt\gamma x\), add
+independent noise, and possibly lose mass.
+\Cref{prop:flat-prior-converse} combines these bounds, giving
+\(\Borb(\gamma,p)\) for
+\(\Phi_z^{(p)}\mapsto\Psi_z^{(p,\gamma)}\) and
+\(\Bcl(\gamma,d)\Borb(\gamma,p)\) for
+\(\Theta_{h,z}^{\mathrm{in}}\mapsto\Theta_{h,z}^{\mathrm{tar}}\).
+
+The classical parameter space has
 dimension \(k=0\) for the orbital problem and \(k=d-1\) for the full problem.
 All trace-class-valued integrals below are Bochner integrals in trace norm.
 
