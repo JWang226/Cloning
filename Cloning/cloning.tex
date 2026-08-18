@@ -2124,7 +2124,9 @@ All label laws below are regarded as functions on
 \(\mathsf L_N\): if a law \(R\) is originally defined on \(\mathsf Y_N\),
 set \(R(\lambda)=0\) for every
 \(\lambda\in\mathsf L_N\setminus\mathsf Y_N\).
-For \(\lambda\in\mathsf L_N\), define
+
+For \(\lambda\in\mathsf L_N\), define the recentered and
+rescaled lattice cell
 \[
   \mathsf C_{N,p}(\lambda)=\frac{\lambda-Np+\mathsf C}{\sqrt N}.
 \]
@@ -2216,7 +2218,13 @@ Writing the last product as
 uniformly for \(p\in K\), since the last two terms vanish by
 \cref{lem:young-concentration} and Hoeffding's inequality.
 
-It remains to prove the multinomial local limit.  Fix
+By \eqref{eq:young-multinomial-l1} and the \(\ell^1\)-isometry
+of \(\mathcal E_{N,p}\), it remains to show
+\begin{equation}\label{eq:embedded-multinomial-limit}
+  \sup_{p\in K}
+  \|\mathcal E_{N,p}M_{N,p}-\varphi_{0,\Sigma_p}\|_1\longrightarrow0.
+\end{equation}
+Fix
 \(\beta_0\in(1/2,2/3)\) and set
 \[
   V_{N,p}=\{\lambda\in\mathsf L_N:
@@ -2224,11 +2232,11 @@ It remains to prove the multinomial local limit.  Fix
   \qquad x_\lambda=\frac{\lambda-Np}{\sqrt N}.
 \]
 Uniformly for \(p\in K\) and \(\lambda\in V_{N,p}\),
-\[
+\begin{equation}\label{eq:multinomial-local-estimate}
   \frac{N^{(d-1)/2}}{|\mathsf C|}M_{N,p}(\lambda)
   =\varphi_{0,\Sigma_p}(x_\lambda)(1+o(1)).
-\]
-Indeed, uniform Stirling and third-order Taylor expansions give
+\end{equation}
+To see this, uniform Stirling and third-order Taylor expansions give
 \[
   \log M_{N,p}(\lambda)
   =-\frac{d-1}{2}\log(2\pi N)-\frac12\sum_i\log p_i
@@ -2242,31 +2250,35 @@ The normalizing constants agree since
 \(\ker\Sigma_p=\operatorname{span}\{(1,\ldots,1)\}\) and
 \(\operatorname{cof}_{ii}(\Sigma_p)=\prod_jp_j\) give
 \(\det_{\mathsf H}\Sigma_p=d\prod_jp_j\).
-The remainder is \(o(1)\) since \(1/2<\beta_0<2/3\).
+The remainder is
+\(o(1)\) since \(1/2<\beta_0<2/3\).
 
 Set
 \[
   U_{N,p}=\bigcup_{\lambda\in V_{N,p}}\mathsf C_{N,p}(\lambda).
 \]
-The central sets carry all multinomial and Gaussian mass: for some
+The multinomial mass outside \(V_{N,p}\) and the Gaussian mass
+outside \(U_{N,p}\) are exponentially small: for some
 \(c_K,C_K>0\),
-\[
+\begin{equation}\label{eq:multinomial-gaussian-tail}
   \sup_{p\in K}\left[
   M_{N,p}(V_{N,p}^c)
   +\int_{U_{N,p}^c}\varphi_{0,\Sigma_p}(x)\,\dd x
   \right]
   \le C_K e^{-c_K N^{2\beta_0-1}}.
-\]
-This follows from Hoeffding's inequality and the uniform eigenvalue bounds
+\end{equation}
+This estimate follows from Hoeffding's inequality and the
+uniform eigenvalue bounds
 for \(\Sigma_p\).
 
-The Gaussian density has vanishing relative oscillation on the
-rescaled cells.  Indeed, the cells have diameter \(O(N^{-1/2})\), while
-\(\|z\|=O(N^{\beta_0-1/2})\) on those indexed by \(V_{N,p}\).  Since
-\(\nabla\log\varphi_{0,\Sigma_p}(z)=-\Sigma_p^{-1}z\), uniformly for
-\(p\in K\), \(\lambda\in V_{N,p}\), and
-\(x,y\in\mathsf C_{N,p}(\lambda)\),
-\[
+The Gaussian density has vanishing relative oscillation on
+\(\mathsf C_{N,p}(\lambda)\), \(\lambda\in V_{N,p}\).
+Indeed, uniformly for \(p\in K\), \(\lambda\in V_{N,p}\), and
+\(x,y,z\in\mathsf C_{N,p}(\lambda)\),
+\(\|x-y\|=O(N^{-1/2})\) and
+\(\|z\|=O(N^{\beta_0-1/2})\).
+Since \(\nabla\log\varphi_{0,\Sigma_p}(z)=-\Sigma_p^{-1}z\),
+\begin{equation}\label{eq:gaussian-cell-oscillation}
 \begin{aligned}
   \left|\log\frac{\varphi_{0,\Sigma_p}(x)}
                        {\varphi_{0,\Sigma_p}(y)}\right|
@@ -2278,15 +2290,15 @@ rescaled cells.  Indeed, the cells have diameter \(O(N^{-1/2})\), while
                    {\varphi_{0,\Sigma_p}(y)}-1\right|
   &=O_K(N^{\beta_0-1})=o(1).
 \end{aligned}
-\]
-The last line follows by exponentiation.
+\end{equation}
+The second estimate follows by exponentiation.
 
 The embedded multinomial density is consequently uniformly accurate on
 \(U_{N,p}\).  Indeed, \(0\in\mathsf C\), so the point
 \(x_\lambda=(\lambda-Np)/\sqrt N\) lies in
 \(\mathsf C_{N,p}(\lambda)\).  Uniformly for \(p\in K\),
 \(\lambda\in V_{N,p}\), and \(x\) in the same cell,
-\[
+\begin{equation}\label{eq:embedded-multinomial-cellwise}
 \begin{aligned}
   \frac{N^{(d-1)/2}M_{N,p}(\lambda)}
        {|\mathsf C|\varphi_{0,\Sigma_p}(x)}
@@ -2296,13 +2308,12 @@ The embedded multinomial density is consequently uniformly accurate on
          {\varphi_{0,\Sigma_p}(x)}\\
   &=(1+o(1))(1+o(1))=1+o(1).
 \end{aligned}
-\]
-The two factors use the local estimate above and the cell-oscillation bound,
-respectively.
+\end{equation}
+The two factors are \(1+o(1)\) by the multinomial local
+estimate \eqref{eq:multinomial-local-estimate} and the Gaussian
+cell-oscillation bound \eqref{eq:gaussian-cell-oscillation}, respectively.
 
-It follows that
-\(\sup_{p\in K}\|\mathcal E_{N,p}M_{N,p}
--\varphi_{0,\Sigma_p}\|_1\to0\).  Indeed, for each \(p\in K\),
+For each \(p\in K\),
 \[
 \begin{aligned}
   \|\mathcal E_{N,p}M_{N,p}-\varphi_{0,\Sigma_p}\|_1
@@ -2321,12 +2332,15 @@ It follows that
   \right|,
 \end{aligned}
 \]
-where the inequality uses
+Here the inequality uses
 \(\int_{U_{N,p}}\varphi_{0,\Sigma_p}(x)\,\dd x\le1\) and the cell
 normalization
 \(\int_{U_{N,p}^c}(\mathcal E_{N,p}M_{N,p})(x)\,\dd x
-=M_{N,p}(V_{N,p}^c)\).  The preceding tail and cellwise estimates make all
-three terms vanish uniformly.
+=M_{N,p}(V_{N,p}^c)\).
+Estimates \eqref{eq:multinomial-gaussian-tail} and
+\eqref{eq:embedded-multinomial-cellwise} make all three terms on the right
+vanish uniformly, proving
+\eqref{eq:embedded-multinomial-limit}.
 
 Finally, the \(\ell^1\)-isometry of \(\mathcal E_{N,p}\) gives
 \[
@@ -2339,7 +2353,8 @@ Finally, the \(\ell^1\)-isometry of \(\mathcal E_{N,p}\) gives
   \longrightarrow0
 \end{aligned}
 \]
-by \eqref{eq:young-multinomial-l1}.
+by \eqref{eq:young-multinomial-l1} and
+\eqref{eq:embedded-multinomial-limit}.
 \end{proof}
 
 \begin{lemma}[Continuous limit of randomized dilation]
@@ -2366,20 +2381,39 @@ For a density \(f\) on \(\mathsf H\), set
 \[
   (\operatorname{dil}_a f)(y)=a^{-(d-1)/2}f(y/\sqrt a),
 \]
-and let \(\operatorname{Av}_{m_n,p}\) replace a density on each target cell
-by its average there.  For \(u\in\mathsf C\), the centered coordinates satisfy
+Define the target-cell averaging operator explicitly by
 \[
-  \frac{\gamma_n(\mu+u)-m_np}{\sqrt{m_n}}
-  =\sqrt{\gamma_n}\,\frac{\mu+u-np}{\sqrt n}.
+  (\operatorname{Av}_{m_n,p}f)(x)
+  :=\frac{m_n^{(d-1)/2}}{|\mathsf C|}
+   \int_{\mathsf C_{m_n,p}(\nu)}f(y)\,\dd y,
+  \qquad x\in\mathsf C_{m_n,p}(\nu).
 \]
-Thus multiplication by \(\gamma_n\) in the unscaled affine hyperplane becomes
-multiplication by \(\sqrt{\gamma_n}\) in central-limit coordinates, and
-\eqref{eq:cell-kernel} records the target cell containing the dilated point.
-Hence
+Since \(m_n=\gamma_n n\), the cell definitions and
+\eqref{eq:cell-kernel} give
+\[
+\begin{aligned}
+  \gamma_n^{-1/2}\mathsf C_{m_n,p}(\nu)
+  &=\frac{\gamma_n^{-1}(\nu+\mathsf C)-np}{\sqrt n},\\
+  \left|\gamma_n^{-1/2}\mathsf C_{m_n,p}(\nu)
+       \cap\mathsf C_{n,p}(\mu)\right|
+  &=\frac{|\mathsf C|}{n^{(d-1)/2}}D_n(\nu\mid\mu),
+\end{aligned}
+\]
+Thus, for \(x\in\mathsf C_{m_n,p}(\nu)\), changing variables
+by \(z=y/\sqrt{\gamma_n}\) and summing over the source cells gives
 \begin{equation}\label{eq:rounding-intertwining}
-  \mathcal E_{m_n,p}\widetilde Q_{m_n,p}
-  =\operatorname{Av}_{m_n,p}\operatorname{dil}_{\gamma_n}
-   (\mathcal E_{n,p}P_{n,p}).
+\begin{aligned}
+ &\bigl[\operatorname{Av}_{m_n,p}\operatorname{dil}_{\gamma_n}
+   (\mathcal E_{n,p}P_{n,p})\bigr](x)\\
+ &\quad=\frac{m_n^{(d-1)/2}}{|\mathsf C|}
+   \sum_{\mu\in\mathsf L_n}\frac{n^{(d-1)/2}}{|\mathsf C|}
+   P_{n,p}(\mu)
+   \left|\gamma_n^{-1/2}\mathsf C_{m_n,p}(\nu)
+        \cap\mathsf C_{n,p}(\mu)\right|\\
+ &\quad=\frac{m_n^{(d-1)/2}}{|\mathsf C|}
+   \sum_{\mu\in\mathsf L_n}P_{n,p}(\mu)D_n(\nu\mid\mu)
+  =(\mathcal E_{m_n,p}\widetilde Q_{m_n,p})(x).
+\end{aligned}
 \end{equation}
 For \(f,g\in L^1(\mathsf H)\),
 \[
@@ -2390,13 +2424,21 @@ For \(f,g\in L^1(\mathsf H)\),
       -\operatorname{dil}_{\gamma_n}g\|_1
   =\|f-g\|_1.
 \]
-By \cref{lem:young-local-limit}, the expression before
-cell averaging converges uniformly to
-\(\varphi_{0,\gamma_n\Sigma_p}\).  This compact Gaussian family converges
-uniformly in \(L^1\) to \(\varphi_{0,\gamma\Sigma_p}\).  The target cells
-have diameter \(O(m_n^{-1/2})\), and the same Gaussian family is uniformly
-translation-continuous in \(L^1\), so cell averaging changes the limit by
-\(o(1)\).  This proves \eqref{eq:rounded-density-limit}.
+By \cref{lem:young-local-limit},
+\(\|\mathcal E_{n,p}P_{n,p}-\varphi_{0,\Sigma_p}\|_1=o(1)\) uniformly on
+\(K\).  Since
+\(\operatorname{dil}_{\gamma_n}\varphi_{0,\Sigma_p}
+=\varphi_{0,\gamma_n\Sigma_p}\), dilation isometry gives
+\(\|\operatorname{dil}_{\gamma_n}(\mathcal E_{n,p}P_{n,p})
+-\varphi_{0,\gamma_n\Sigma_p}\|_1=o(1)\).  Moreover,
+\(\|\varphi_{0,\gamma_n\Sigma_p}-\varphi_{0,\gamma\Sigma_p}\|_1=o(1)\)
+uniformly because \(\gamma_n\to\gamma\), while the cell diameter
+\(O(m_n^{-1/2})\) and uniform \(L^1\)-translation continuity give
+\(\|\operatorname{Av}_{m_n,p}\varphi_{0,\gamma_n\Sigma_p}
+-\varphi_{0,\gamma_n\Sigma_p}\|_1=o(1)\).  By the contraction of
+\(\operatorname{Av}_{m_n,p}\), \eqref{eq:rounding-intertwining}, and the
+triangle inequality, these three bounds prove
+\eqref{eq:rounded-density-limit}.
 
 Applying \cref{lem:young-local-limit} at sample size \(m_n\) gives
 \[
