@@ -436,10 +436,18 @@ Choose
 \[
   \frac12<\beta_0<\frac23,
   \qquad
-  x_\lambda=\frac{\lambda-Np}{\sqrt N}.
+  V_{N,p}=\{\lambda\in\mathsf L_N:
+  \|\lambda-Np\|_\infty\le N^{\beta_0}\},
+  \qquad
+  x_\lambda=\frac{\lambda-Np}{\sqrt N},
+\]
+and let
+\[
+  U_{N,p}=\bigcup_{\lambda\in V_{N,p}}
+  \mathsf C_{N,p}(\lambda).
 \]
 Uniform Stirling expansion and a third-order Taylor expansion give, whenever
-$\|\lambda-Np\|_\infty\leq N^{\beta_0}$,
+$\lambda\in V_{N,p}$,
 \begin{align}
   \log M_{N,p}(\lambda)
   ={}&-\frac{d-1}{2}\log(2\pi N)
@@ -457,21 +465,61 @@ $\det_{\htile}\Sigma_p=d\prod_i p_i$, exponentiating
   \frac{N^{(d-1)/2}}{|\mathsf C|}M_{N,p}(\lambda)
   =\varphi_{0,\Sigma_p}(x_\lambda)(1+o(1))
 \end{equation}
-uniformly on this smaller window.
+uniformly on $V_{N,p}$.
 
 Equation \eqref{eq:pointwise-local-note} compares the embedded constant on a
-cell with the Gaussian at the cell center.  Three observations upgrade it
-to $L^1$ convergence:
-\begin{enumerate}
-  \item Hoeffding's inequality makes the multinomial mass outside the window
-  $O(e^{-c_KN^{2\beta_0-1}})$.
-  \item Uniform eigenvalue bounds for $\Sigma_p$ give the same exponential
-  bound for the Gaussian mass outside the corresponding region.
-  \item A rescaled cell has diameter $O(N^{-1/2})$.  On the window,
-  $\|\nabla\log\varphi_{0,\Sigma_p}(x)\|=O_K(1+\|x\|)$, so the relative
-  oscillation of the Gaussian across a cell is
-  $\exp(O_K(N^{-1/2}+N^{\beta_0-1}))-1=o(1)$.
-\end{enumerate}
+cell with the Gaussian at the cell center.  We first make both tail bounds
+explicit.  If $x\in\mathsf C_{N,p}(\lambda)$, then
+$x=x_\lambda+u/\sqrt N$ for some $u\in\mathsf C$, and
+$\|u\|_\infty\le(d-1)/2$.  Hence
+\[
+  \|x_\lambda\|_\infty
+  \le\|x\|_\infty+\frac{d-1}{2\sqrt N},
+  \qquad
+  \left\{x:\|x\|_\infty\le
+  N^{\beta_0-1/2}-\frac{d-1}{2\sqrt N}\right\}
+  \subset U_{N,p}.
+\]
+For the inclusion, take any $x$ in the set on the left and let
+$\mathsf C_{N,p}(\lambda)$ be its cell.  The first inequality gives
+$\|x_\lambda\|_\infty\le N^{\beta_0-1/2}$, equivalently
+$\|\lambda-Np\|_\infty\le N^{\beta_0}$.  Thus
+$\lambda\in V_{N,p}$ and this cell is one of those forming $U_{N,p}$.
+
+If $X\sim M_{N,p}$, then $X_i\sim\operatorname{Bin}(N,p_i)$ for each
+$i$.  Coordinatewise Hoeffding followed by a union bound gives
+\[
+\begin{aligned}
+  M_{N,p}(V_{N,p}^c)
+  &=\Pr\!\left\{\max_i|X_i-Np_i|>N^{\beta_0}\right\}\\
+  &\le\sum_{i=1}^d
+       \Pr\!\left\{|X_i-Np_i|>N^{\beta_0}\right\}
+   \le 2d\exp\!\left(-2N^{2\beta_0-1}\right).
+\end{aligned}
+\]
+For $Z_p\sim\mathsf N_{0,\Sigma_p}$, put
+$r_N=N^{\beta_0-1/2}-(d-1)/(2\sqrt N)$.  The preceding inclusion gives
+$U_{N,p}^c\subset\{x:\|x\|_\infty>r_N\}$.  Moreover,
+$Z_{p,i}$ is centered Gaussian with variance
+$(\Sigma_p)_{ii}=p_i(1-p_i)\le\sigma_K^2$, where
+$\sigma_K^2:=\sup_{p\in K,i}p_i(1-p_i)<\infty$.  Hence
+\[
+\begin{aligned}
+  \int_{U_{N,p}^c}\varphi_{0,\Sigma_p}(x)\dd x
+  &=\Pr\{Z_p\notin U_{N,p}\}
+   \le\Pr\!\left\{\|Z_p\|_\infty>r_N\right\}\\
+  &\le\sum_{i=1}^d\Pr\{|Z_{p,i}|>r_N\}
+   \le 2d\exp\!\left(-\frac{r_N^2}{2\sigma_K^2}\right)
+   \le C_K e^{-c_KN^{2\beta_0-1}}.
+\end{aligned}
+\]
+The last inequality uses
+$r_N\ge\tfrac12N^{\beta_0-1/2}$ for all sufficiently large $N$.
+Thus the same exponent controls both tails.  Finally, a rescaled cell has
+diameter $O(N^{-1/2})$.  On $V_{N,p}$,
+$\|\nabla\log\varphi_{0,\Sigma_p}(x)\|=O_K(1+\|x\|)$, so the relative
+oscillation of the Gaussian across a cell is
+$\exp(O_K(N^{-1/2}+N^{\beta_0-1}))-1=o(1)$.
 Thus
 \begin{equation}\label{eq:mult-gauss-note}
   \sup_{p\in K}
@@ -611,8 +659,40 @@ uniformly for $p\in K$.  Finally, the target-cell diameter is
 $O(m_n^{-1/2})$.  The compact family of Gaussians
 $\varphi_{0,a\Sigma_p}$, with $p\in K$ and $a$ near $\gamma$, is uniformly
 translation-continuous in $L^1$, so averaging it over the vanishing cells
-changes it by $o(1)$.  Applying these three facts to
-\eqref{eq:intertwining-note} proves \eqref{eq:rounded-limit-note}.
+changes it by
+\[
+  \|\operatorname{Av}_{m_n,p}\varphi_{0,\gamma_n\Sigma_p}
+    -\varphi_{0,\gamma_n\Sigma_p}\|_1=o(1).
+\]
+Now \eqref{eq:intertwining-note}, the triangle inequality, and the
+contraction of $\operatorname{Av}_{m_n,p}$ give
+\[
+\begin{aligned}
+  &\|\mathcal E_{m_n,p}\widetilde Q_{m_n,p}
+       -\varphi_{0,\gamma\Sigma_p}\|_1\\
+  &\quad=\|\operatorname{Av}_{m_n,p}\operatorname{dil}_{\gamma_n}
+       (\mathcal E_{n,p}P_{n,p})
+       -\varphi_{0,\gamma\Sigma_p}\|_1\\
+  &\quad\le
+       \|\operatorname{Av}_{m_n,p}
+       [\operatorname{dil}_{\gamma_n}(\mathcal E_{n,p}P_{n,p})
+       -\varphi_{0,\gamma_n\Sigma_p}]\|_1\\
+  &\qquad\quad
+       +\|\operatorname{Av}_{m_n,p}\varphi_{0,\gamma_n\Sigma_p}
+       -\varphi_{0,\gamma_n\Sigma_p}\|_1
+       +\|\varphi_{0,\gamma_n\Sigma_p}
+       -\varphi_{0,\gamma\Sigma_p}\|_1\\
+  &\quad\le
+       \|\operatorname{dil}_{\gamma_n}(\mathcal E_{n,p}P_{n,p})
+       -\varphi_{0,\gamma_n\Sigma_p}\|_1\\
+  &\qquad\quad
+       +\|\operatorname{Av}_{m_n,p}\varphi_{0,\gamma_n\Sigma_p}
+       -\varphi_{0,\gamma_n\Sigma_p}\|_1
+       +\|\varphi_{0,\gamma_n\Sigma_p}
+       -\varphi_{0,\gamma\Sigma_p}\|_1=o(1),
+\end{aligned}
+\]
+which proves \eqref{eq:rounded-limit-note}.
 
 \subsection*{Step 3: take the affinity limit}
 
