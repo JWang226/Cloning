@@ -2231,6 +2231,9 @@ Fix
   \|\lambda-Np\|_\infty\le N^{\beta_0}\},
   \qquad x_\lambda=\frac{\lambda-Np}{\sqrt N}.
 \]
+Since \(\inf_{p\in K}p_d>0\),
+\(V_{N,p}\subset\operatorname{supp}M_{N,p}\) for all sufficiently large
+\(N\), uniformly in \(p\in K\).
 Uniformly for \(p\in K\) and \(\lambda\in V_{N,p}\),
 \begin{equation}\label{eq:multinomial-local-estimate}
   \frac{N^{(d-1)/2}}{|\mathsf C|}M_{N,p}(\lambda)
@@ -2267,9 +2270,16 @@ outside \(U_{N,p}\) are exponentially small: for some
   \right]
   \le C_K e^{-c_K N^{2\beta_0-1}}.
 \end{equation}
-This estimate follows from Hoeffding's inequality and the
-uniform eigenvalue bounds
-for \(\Sigma_p\).
+Indeed, if \(\mathsf C_{N,p}(\lambda)\) contains \(x\), then
+\(\|x_\lambda\|_\infty\le\|x\|_\infty+(d-1)/(2\sqrt N)\).  Thus
+\[
+  \{x:\|x\|_\infty\le
+  N^{\beta_0-1/2}-(d-1)/(2\sqrt N)\}\subset U_{N,p}.
+\]
+On the set at left \(\|x_\lambda\|_\infty\le N^{\beta_0-1/2}\),
+so \(\lambda\in V_{N,p}\).  Hoeffding controls \(M_{N,p}(V_{N,p}^c)\);
+the complementary inclusion and the uniform eigenvalue bounds for
+\(\Sigma_p\) control the Gaussian tail on \(U_{N,p}^c\).
 
 The Gaussian density has vanishing relative oscillation on
 \(\mathsf C_{N,p}(\lambda)\), \(\lambda\in V_{N,p}\).
@@ -2377,11 +2387,11 @@ Let \(\widetilde Q_{m_n,p}=P_{n,p}D_n\) denote the
 \end{lemma}
 
 \begin{proof}
-For a density \(f\) on \(\mathsf H\), set
+For \(a>0\) and \(f\in L^1(\mathsf H)\), set
 \[
   (\operatorname{dil}_a f)(y)=a^{-(d-1)/2}f(y/\sqrt a),
 \]
-Define the target-cell averaging operator explicitly by
+and define the target-cell averaging operator explicitly by
 \[
   (\operatorname{Av}_{m_n,p}f)(x)
   :=\frac{m_n^{(d-1)/2}}{|\mathsf C|}
@@ -2432,13 +2442,45 @@ By \cref{lem:young-local-limit},
 \(\|\operatorname{dil}_{\gamma_n}(\mathcal E_{n,p}P_{n,p})
 -\varphi_{0,\gamma_n\Sigma_p}\|_1=o(1)\).  Moreover,
 \(\|\varphi_{0,\gamma_n\Sigma_p}-\varphi_{0,\gamma\Sigma_p}\|_1=o(1)\)
-uniformly because \(\gamma_n\to\gamma\), while the cell diameter
-\(O(m_n^{-1/2})\) and uniform \(L^1\)-translation continuity give
+uniformly because \(\gamma_n\to\gamma\).  Cell averaging satisfies
+\[
+  \|\operatorname{Av}_{m_n,p}f-f\|_1
+  \le 2^{d-1}\!\sup_{\substack{h\in\mathsf H\\
+       \|h\|\le\operatorname{diam}(\mathsf C)/\sqrt{m_n}}}
+       \|f(\,\cdot+h)-f\|_1.
+\]
+Since \(\gamma_n\to\gamma\) and \(K\) is compact,
+\(\sup_{p\in K,\,n\ge n_0}
+\|\nabla\varphi_{0,\gamma_n\Sigma_p}\|_1<\infty\) for some \(n_0\).
+Together with
+\(\|f(\,\cdot+h)-f\|_1\le\|h\|\,\|\nabla f\|_1\), this gives
 \(\|\operatorname{Av}_{m_n,p}\varphi_{0,\gamma_n\Sigma_p}
--\varphi_{0,\gamma_n\Sigma_p}\|_1=o(1)\).  By the contraction of
-\(\operatorname{Av}_{m_n,p}\), \eqref{eq:rounding-intertwining}, and the
-triangle inequality, these three bounds prove
-\eqref{eq:rounded-density-limit}.
+-\varphi_{0,\gamma_n\Sigma_p}\|_1=o(1)\).  Using the contraction of
+\(\operatorname{Av}_{m_n,p}\) and \eqref{eq:rounding-intertwining},
+\[
+\begin{aligned}
+  \|\mathcal E_{m_n,p}\widetilde Q_{m_n,p}
+       -\varphi_{0,\gamma\Sigma_p}\|_1
+  ={}&\|\operatorname{Av}_{m_n,p}\operatorname{dil}_{\gamma_n}
+       (\mathcal E_{n,p}P_{n,p})
+       -\varphi_{0,\gamma\Sigma_p}\|_1\\
+  \le{}&\|\operatorname{Av}_{m_n,p}
+       [\operatorname{dil}_{\gamma_n}(\mathcal E_{n,p}P_{n,p})
+       -\varphi_{0,\gamma_n\Sigma_p}]\|_1\\
+  &+\|\operatorname{Av}_{m_n,p}\varphi_{0,\gamma_n\Sigma_p}
+       -\varphi_{0,\gamma_n\Sigma_p}\|_1
+   +\|\varphi_{0,\gamma_n\Sigma_p}
+       -\varphi_{0,\gamma\Sigma_p}\|_1\\
+  \le{}&\|\operatorname{dil}_{\gamma_n}(\mathcal E_{n,p}P_{n,p})
+       -\varphi_{0,\gamma_n\Sigma_p}\|_1\\
+  &+\|\operatorname{Av}_{m_n,p}\varphi_{0,\gamma_n\Sigma_p}
+       -\varphi_{0,\gamma_n\Sigma_p}\|_1
+   +\|\varphi_{0,\gamma_n\Sigma_p}
+       -\varphi_{0,\gamma\Sigma_p}\|_1=o(1),
+\end{aligned}
+\]
+The equality is \eqref{eq:rounding-intertwining}.
+This proves \eqref{eq:rounded-density-limit}.
 
 Applying \cref{lem:young-local-limit} at sample size \(m_n\) gives
 \[
