@@ -21,6 +21,8 @@
 \newaliascnt{corollary}{theorem}
 \newtheorem{corollary}[corollary]{Corollary}
 \aliascntresetthe{corollary}
+\newtheorem{fact}{Fact}[section]
+\renewcommand{\thefact}{\thesection.\Roman{fact}}
 
 \crefname{theorem}{Theorem}{Theorems}
 \Crefname{theorem}{Theorem}{Theorems}
@@ -30,6 +32,8 @@
 \Crefname{proposition}{Proposition}{Propositions}
 \crefname{corollary}{Corollary}{Corollaries}
 \Crefname{corollary}{Corollary}{Corollaries}
+\crefname{fact}{Fact}{Facts}
+\Crefname{fact}{Fact}{Facts}
 \crefname{equation}{equation}{equations}
 \Crefname{equation}{Equation}{Equations}
 
@@ -234,7 +238,9 @@ There exists a sequence of spectrum-independent, \(\U(d)\)-covariant channels
 \end{equation}
 
 \item[(b)] Let \(K\Subset\Delta_d^\circ\) be nonempty and
-satisfy \(K=\overline{\operatorname{int}_{\mathsf A_d}K}^{\,\mathsf A_d}\).
+  satisfy \(K=\overline{\operatorname{int}_{\mathsf A_d}K}^{\,\mathsf A_d}\)
+  (the singleton endpoint discussed after \cref{cor:compact-chamber} shows
+  why this regularity is needed).
 Then
 \begin{equation}\label{eq:compact-global-value}
   \lim_{n\to\infty}
@@ -349,9 +355,10 @@ transfers the Gaussian bounds back to finite dimension.  It proves the
 converse half of \cref{thm:known-optimum} and the local characterization
 \cref{thm:unknown-local}; the latter, together with part~\textup{(a)}, yields
 part~\textup{(b)} of \cref{thm:unknown-optimum}.  \Cref{sec:discussion}
-compares the optimal
-values with pure-state cloning, random purification, and estimation-based
-strategies.  The appendices supply the fixed-height PBW calculation of the
+compares the optimal values with pure-state cloning and random purification,
+distinguishes product-state cloning from broadcasting and related mixed-state
+problems, and discusses limiting regimes.  The
+appendices supply the fixed-height PBW calculation of the
 sector fidelity, the Young local limit and randomized-rounding estimate, and
 the unified flat-prior Gaussian converse.
 
@@ -1002,7 +1009,11 @@ classical--quantum state has the form
 \]
 where \(x\) and \(r\) are classical, while \(\rho_x\) is a quantum state on
 \(\cF_{\mathrm{orb}}\).  A channel \(\Lambda\) is completely positive and
-preserves \(\int\Tr R(x)\,\dd x\).  If \(S(x)=s(x)\sigma_x\), then
+preserves \(\int\Tr R(x)\,\dd x\).  Here complete positivity
+means positivity of \(\operatorname{id}_{M_k}\otimes\Lambda\) for every
+\(k\ge1\), with the matrix factor acting on the quantum trace-class fibers;
+the classical algebra is abelian.  If
+\(S(x)=s(x)\sigma_x\), then
 \[
   B(R,S)=\int_{\mathsf H}B(R(x),S(x))\,\dd x
   =\int_{\mathsf H}\sqrt{r(x)s(x)}\,B(\rho_x,\sigma_x)\,\dd x.
@@ -1064,7 +1075,7 @@ model, tensor \(\cA_\gamma^{\ot r_d}\) with the classical pushforward
   =\left(\frac{2\sqrt\gamma}{1+\gamma}\right)^{(d-1)/2}
   =\Bcl(\gamma,d).
 \]
-Multiplicativity gives
+By \eqref{eq:fidelity-tensor-product}, multiplicativity gives
 \(V_L^{\mathrm{full}}\ge\Bcl(\gamma,d)\Borb(\gamma,p)
 =\Buniv(\gamma,p)\) for every \(L\).  Conversely,
 \cref{prop:flat-prior-converse}, proved in
@@ -1478,6 +1489,22 @@ For full rank, this is strictly larger than the quoted universal guarantee
   >\gamma^{-(d^2-1)/2}.
 \]
 
+\paragraph{Qubit example.}
+For \(d=2\), writing \(q=p_2/p_1\), the two values reduce to
+\[
+  \Borb(\gamma,p)
+  =\frac{\sqrt\gamma+\sqrt{q(\gamma-1+q)}}{\gamma+q},
+  \qquad
+  \Buniv(\gamma,p)
+  =\left(\frac{2\sqrt\gamma}{1+\gamma}\right)^{1/2}
+   \Borb(\gamma,p).
+\]
+For example, at \(\gamma=2\) and \(p=(2/3,1/3)\), these are approximately
+\(0.9121\) and \(0.8856\), respectively.  The full-rank random-purification
+asymptotic guarantee quoted above is \(2^{-3/2}\approx0.3536\) in this case;
+it applies to the larger universal model rather than giving an exact value for
+either model considered here.
+
 \paragraph{Broadcasting versus cloning.}
 The target here is the full product \(\rho^{\ot m}\).  Broadcasting requires
 only selected output marginals to reproduce the input and permits
@@ -1667,10 +1694,13 @@ For \(0\le R\le R_L\), the restrictions
 satisfy
 \(\|\widehat E_\alpha\|+\|\widehat F_\alpha\|=O_L(1)\).  To see this,
 decompose \(\cH_\lambda\) orthogonally into irreducible
-\(\mathfrak{sl}_2(\alpha)\)-summands.  If a summand meets the weight space
-of \(\lambda-\eta\), where \(\operatorname{ht}(\eta)\le R\), let \(t\) be
-its level there and \(M\) its highest \(H_\alpha\)-eigenvalue.  Then
-\(t\operatorname{ht}(\alpha)\le R\) and
+  \(\mathfrak{sl}_2(\alpha)\)-summands.  If a summand meets the weight space
+  of \(\lambda-\eta\), where \(\operatorname{ht}(\eta)\le R\), let \(t\) be
+  its level there and \(M\) its highest \(H_\alpha\)-eigenvalue.
+  The top of this string, of weight
+  \(\lambda-\eta+t\alpha\), is again a weight of \(\cH_\lambda\); hence
+  \(\eta-t\alpha\) is a nonnegative simple-root combination and
+  \(t\operatorname{ht}(\alpha)\le\operatorname{ht}(\eta)\le R\).  Moreover,
 \[
   M=\Delta_\alpha^\lambda-\eta(H_\alpha)+2t
    =\Delta_\alpha^\lambda+O_L(1).
@@ -1948,7 +1978,7 @@ while the Weyl dimension formula, \eqref{eq:uniform-sector-gaps}, and
     \frac{\Delta_\alpha^\mu+j-i}{\Delta_\alpha^\nu+j-i}
   =\prod_{\alpha\in\mathsf R_+}
     \bigl(s_{\alpha,n}+O(n^{-1})\bigr)
-  =\gamma^{-|\mathsf R_+|}+o(1).
+  =\gamma^{-r_d}+o(1).
 \]
 Thus, substituting
 \eqref{eq:cartan-orthonormal-fixed-height} and the weight action above into
@@ -1981,7 +2011,7 @@ this formula, and using
   \label{eq:sector-target-fixed-matrix}
 \end{align}
 
-Set
+Recall the following notation from \cref{sec:gaussian-amplification}:
 \[
   q_\alpha^{(\gamma)}=1-\frac{1-q_\alpha}{\gamma},
   \qquad
@@ -2112,7 +2142,8 @@ uniformly.  Finally,
   =\prod_{i<j}B(\tau_{q_{ij}^{(\gamma)}},\tau_{q_{ij}})
   =\Borb(\gamma,p)
 \]
-by \eqref{eq:thermal-root-fidelity} and \eqref{eq:one-mode-b}.
+by \eqref{eq:fidelity-tensor-product},
+\eqref{eq:thermal-root-fidelity}, and \eqref{eq:one-mode-b}.
 \end{proof}
 
 \section{Young local limit and randomized rounding}
@@ -2446,7 +2477,7 @@ Since \(m_n=\gamma_n n\), the cell definitions and
   &=\frac{\gamma_n^{-1}(\nu+\mathsf C)-np}{\sqrt n},\\
   \left|\gamma_n^{-1/2}\mathsf C_{m_n,p}(\nu)
        \cap\mathsf C_{n,p}(\mu)\right|
-  &=\frac{|\mathsf C|}{n^{(d-1)/2}}D_n(\nu\mid\mu),
+  &=\frac{|\mathsf C|}{n^{(d-1)/2}}D_n(\nu\mid\mu).
 \end{aligned}
 \]
 Thus, for \(x\in\mathsf C_{m_n,p}(\nu)\), changing variables
@@ -2516,7 +2547,7 @@ Together with
   &+\|\operatorname{Av}_{m_n,p}\varphi_{0,\gamma_n\Sigma_p}
        -\varphi_{0,\gamma_n\Sigma_p}\|_1
    +\|\varphi_{0,\gamma_n\Sigma_p}
-       -\varphi_{0,\gamma\Sigma_p}\|_1=o(1),
+       -\varphi_{0,\gamma\Sigma_p}\|_1=o(1).
 \end{aligned}
 \]
 The equality is \eqref{eq:rounding-intertwining}.
@@ -2778,6 +2809,38 @@ Fix \(\gamma>1\).  For \(s\ge1\) and
   =\bigotimes_{\ell=1}^s\tau_{q_\ell^{(\gamma)}}.
 \]
 
+The proof below uses the following two external inputs, isolated here to make
+the dependence on \cite{GutaMatsumoto2006MixedGaussianCloning} explicit.
+
+\begin{fact}[Covariant-amplifier representation]
+\label{fact:covariant-amplifier-representation}
+Every displacement-covariant one-mode channel of amplitude gain
+\(\sqrt\gamma\) admits an idler realization
+\[
+  a_{\mathrm{out}}
+  =\sqrt\gamma\,a_{\mathrm{in}}+\sqrt{\gamma-1}\,b^*.
+\]
+The idler state need not be Gaussian; if the channel is also phase covariant,
+it may be chosen number diagonal
+\cite[Sec.~II.C and Appendix; Sec.~III for general gain]
+{GutaMatsumoto2006MixedGaussianCloning}.
+\end{fact}
+
+\begin{fact}[Vacuum-idler stochastic order]
+\label{fact:vacuum-idler-stochastic-order}
+For a thermal input \(\tau_q\) and a number-diagonal idler, let \(p_k\) be
+the output number distribution of the amplifier in
+\cref{fact:covariant-amplifier-representation}.  Then
+\[
+  \sum_{k=0}^m(1-q^{(\gamma)})(q^{(\gamma)})^k
+  \ge \sum_{k=0}^m p_k
+  \qquad(m\ge0).
+\]
+Thus the vacuum-idler output \(\tau_{q^{(\gamma)}}\) is stochastically
+smallest among these outputs
+\cite[Lem.~2.3 and Sec.~III]{GutaMatsumoto2006MixedGaussianCloning}.
+\end{fact}
+
 \begin{proposition}[Least-noise moment]
 \label{prop:least-noise-moment}
 Let \(\Gamma\) be a completely positive trace-nonincreasing map on the
@@ -2810,21 +2873,12 @@ is phase covariant in every mode.
 Consider one mode.  Write \(\Tr\Gamma(X)=\Tr(AX)\) with \(0\le A\le I\).
 Displacement covariance implies \(D(z)^*AD(z)=A\); hence irreducibility of
 the Weyl representation gives \(A=cI\), where
-\(c=\Tr\Gamma(\tau_q)\).  If \(c>0\), then
-\(\Lambda=c^{-1}\Gamma\) is a phase-covariant amplifier of amplitude gain
-\(\sqrt\gamma\).  By the classification of displacement-covariant amplifiers
-\cite[Secs.~II.C--D and~III]{GutaMatsumoto2006MixedGaussianCloning},
-every such \(\Lambda\) has an idler
-realization
-\[
-  a_{\mathrm{out}}
-  =\sqrt\gamma\,a_{\mathrm{in}}+\sqrt{\gamma-1}\,b^*,
-\]
-for an idler mode \(b\).  No Gaussianity is assumed for its
-state, and phase covariance allows that state to be chosen number diagonal.
-The stochastic-order result
-\cite[Lem.~2.3 and Sec.~III]{GutaMatsumoto2006MixedGaussianCloning}
-therefore implies that
+  \(c=\Tr\Gamma(\tau_q)\).  If \(c>0\), then
+  \(\Lambda=c^{-1}\Gamma\) is a phase-covariant amplifier of amplitude gain
+  \(\sqrt\gamma\).  By
+  \cref{fact:covariant-amplifier-representation}, it has a number-diagonal
+  idler realization.  \Cref{fact:vacuum-idler-stochastic-order} therefore
+  gives
 \begin{equation}\label{eq:imported-stochastic-order}
   \sum_{n=0}^m(1-q^{(\gamma)})(q^{(\gamma)})^n
   \ge
