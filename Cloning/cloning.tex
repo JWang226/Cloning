@@ -2035,13 +2035,10 @@ Moreover, the probability of any fixed occupation vector of total occupation
 \(s\) is at most \(b_K^s\), and there are
 \(\binom{s+r_d-1}{r_d-1}\) such vectors.  Therefore
 \begin{equation}\label{eq:uniform-thermal-height-tail}
-\begin{aligned}
   \sup_{p\in K}\Tr[(I-P_L^{\cF})\tau_p]
-  &\le
-  \sum_{s>L/(d-1)}\binom{s+r_d-1}{r_d-1}b_K^s\\
-  &\longrightarrow0
-  \qquad(L\to\infty).
-\end{aligned}
+  \le
+  \sum_{s>L/(d-1)}\binom{s+r_d-1}{r_d-1}b_K^s
+  \longrightarrow0\qquad(L\to\infty).
 \end{equation}
 The same direct-sum decomposition for
 \(B(\tau_p^{(\gamma)},\tau_p)\) bounds its complementary part by the square
@@ -2113,25 +2110,41 @@ For \(i<d\), this is precisely the nearest-integer rule because
 \(\lfloor x+\tfrac12\rfloor\) is the unique integer in
 \((x-\tfrac12,x+\tfrac12]\); the \(d\)-th coordinate is then automatic
 because both sides sum to \(m_n\).
+Since \(U\) is uniform on \(\mathsf C\), the change of variables
+\(x=\gamma_n(\mu+u)\) gives \(\dd x=\gamma_n^{d-1}\dd u\) and sends the
+event domain to
+\(\gamma_n(\mu+\mathsf C)\cap(\widetilde\nu+\mathsf C)\).
 Consequently,
 \begin{equation}\label{eq:cell-kernel}
   D_n(\widetilde\nu\mid\mu)
   =\frac{|\gamma_n(\mu+\mathsf C)\cap(\widetilde\nu+\mathsf C)|}
          {\gamma_n^{d-1}|\mathsf C|}.
 \end{equation}
-All label laws below are viewed on the full affine lattice
-\(\mathsf L_N\); a Young law is extended by zero away from partitions.
+All label laws below are regarded as functions on
+\(\mathsf L_N\): if a law \(R\) is originally defined on \(\mathsf Y_N\),
+set \(R(\lambda)=0\) for every
+\(\lambda\in\mathsf L_N\setminus\mathsf Y_N\).
 For \(\lambda\in\mathsf L_N\), define
 \[
-  \mathsf C_{N,p}(\lambda)=\frac{\lambda-Np+\mathsf C}{\sqrt N},
-  \qquad
+  \mathsf C_{N,p}(\lambda)=\frac{\lambda-Np+\mathsf C}{\sqrt N}.
+\]
+For any \(R:\mathsf L_N\to\R\) satisfying
+\(\sum_{\lambda\in\mathsf L_N}|R(\lambda)|<\infty\), define
+\[
   (\mathcal E_{N,p}R)(x)
   =\frac{N^{(d-1)/2}}{|\mathsf C|}R(\lambda)
   \quad(x\in\mathsf C_{N,p}(\lambda)).
 \]
-The cells tile \(\mathsf H\) up to null boundaries, and
-\(\mathcal E_{N,p}\) preserves both \(\ell^1\)-distance and Hellinger
-affinity.
+The cells \(\mathsf C_{N,p}(\lambda)\), \(\lambda\in\mathsf L_N\),
+tile \(\mathsf H\), and their boundaries have zero induced Lebesgue measure.
+The map \(\mathcal E_{N,p}\) preserves \(\ell^1\)-distance,
+\(\|\mathcal E_{N,p}R-\mathcal E_{N,p}S\|_1=\|R-S\|_{\ell^1}\), and, for
+nonnegative \(R,S\), Hellinger affinity,
+\(\int_{\mathsf H}\sqrt{(\mathcal E_{N,p}R)(\mathcal E_{N,p}S)}\,\dd x
+=\sum_{\lambda\in\mathsf L_N}\sqrt{R(\lambda)S(\lambda)}\).
+Indeed, each \(\mathsf C_{N,p}(\lambda)\) has volume
+\(|\mathsf C|N^{-(d-1)/2}\), which cancels the prefactor in both cellwise
+integrals.
 
 \begin{lemma}[Uniform Young local limit]\label{lem:young-local-limit}
 For every compact \(K\Subset\Delta_d^\circ\),
@@ -2143,98 +2156,100 @@ For every compact \(K\Subset\Delta_d^\circ\),
 \end{lemma}
 
 \begin{proof}
-Let \(M_{N,p}\) be the multinomial law on nonnegative integer compositions
-of \(N\), extended by zero to \(\mathsf L_N\).  For
-\(\lambda\in\mathsf Y_N\),
-\[
-  P_{N,p}(\lambda)=\dim\cS_\lambda\,s_\lambda(p),
-  \qquad
-  \dim\cS_\lambda
-  =N!\frac{\prod_{i<j}(\lambda_i-\lambda_j+j-i)}
-  {\prod_i(\lambda_i+d-i)!},
-\]
-and the Weyl character formula gives
-\[
-  s_\lambda(p)
-  =\frac{\det[p_i^{\lambda_j+d-j}]_{i,j}}
-  {\prod_{i<j}(p_i-p_j)}.
-\]
-Set
-\(\mathsf W_{N,p}=\{\lambda\in\mathsf L_N:
-\|\lambda-Np\|_\infty\le N^{2/3}\}\).  Uniform strict separation on
-\(K\) implies that every point of
-\(\mathsf W_{N,p}\cap\operatorname{supp}M_{N,p}\) is a partition for all
-large \(N\).
-
-On this set, both \((\lambda_i+d-i)/N\) and \(\log p_i\) are uniformly
-strictly decreasing.  Strict rearrangement, compactness of \(K\), and
-finiteness of \(\mathfrak S_d\) imply that every nonidentity term in the
-character determinant is exponentially smaller than the identity term,
-uniformly.  Thus
-\[
-  s_\lambda(p)
-  =\frac{\prod_i p_i^{\lambda_i+d-i}}
-  {\prod_{i<j}(p_i-p_j)}\bigl(1+O(e^{-cN})\bigr)
-\]
-for one \(c>0\).  Comparing with
-\[
-  M_{N,p}(\lambda)=\frac{N!}{\prod_i\lambda_i!}\prod_i p_i^{\lambda_i}
-\]
-gives
-\[
-  \frac{P_{N,p}(\lambda)}{M_{N,p}(\lambda)}
-  =\bigl(1+O(e^{-cN})\bigr)
-  \prod_{i<j}\frac{\lambda_i-\lambda_j+j-i}{N(p_i-p_j)}
-  \prod_i\frac{\lambda_i!(Np_i)^{d-i}}{(\lambda_i+d-i)!}.
-\]
-Indeed,
-\[
-  \frac{\lambda_i!(Np_i)^{d-i}}{(\lambda_i+d-i)!}
-  =\prod_{a=1}^{d-i}\frac{Np_i}{\lambda_i+a},
-\]
-and every displayed factor equals \(1+O_K(N^{-1/3})\) on
-\(\mathsf W_{N,p}\).  Young concentration,
-\cref{lem:young-concentration}, and Hoeffding's inequality control the two
-laws outside this set, hence
+Let \(M_{N,p}\) be the multinomial law on nonnegative integer
+compositions of \(N\), extended by zero to \(\mathsf L_N\).  We first show
 \begin{equation}\label{eq:young-multinomial-l1}
   \sup_{p\in K}\|P_{N,p}-M_{N,p}\|_{\ell^1}\longrightarrow0.
 \end{equation}
+Set \(\mathsf W_{N,p}=\{\lambda\in\mathsf L_N:
+\|\lambda-Np\|_\infty\le N^{2/3}\}\).  For all large \(N\),
+\(\mathsf W_{N,p}\cap\operatorname{supp}M_{N,p}\subset\mathsf Y_N\), since
+\(\lambda_i-\lambda_{i+1}\ge N(p_i-p_{i+1})-2N^{2/3}>0\) for \(i<d\),
+uniformly over \(p\in K\).
 
-Fix \(\beta_0\in(1/2,2/3)\) and put
-\(x_\lambda=(\lambda-Np)/\sqrt N\).  Uniform Stirling expansion and a
-third-order Taylor expansion give, on
-\(\|\lambda-Np\|_\infty\le N^{\beta_0}\),
+For \(\lambda\in\mathsf Y_N\), the Weyl dimension and character formulas
+give
+\[
+\begin{gathered}
+  P_{N,p}(\lambda)=\dim\cS_\lambda\,s_\lambda(p),\qquad
+  \dim\cS_\lambda
+  =N!\frac{\prod_{i<j}(\lambda_i-\lambda_j+j-i)}
+  {\prod_i(\lambda_i+d-i)!},\\
+  s_\lambda(p)
+  =\frac{\det[p_i^{\lambda_j+d-j}]_{i,j}}
+  {\prod_{i<j}(p_i-p_j)}.
+\end{gathered}
+\]
+Uniformly on \(\mathsf W_{N,p}\cap\operatorname{supp}M_{N,p}\),
+\[
+  s_\lambda(p)
+  =\frac{\prod_i p_i^{\lambda_i+d-i}}
+  {\prod_{i<j}(p_i-p_j)}\bigl(1+O_K(e^{-c_KN})\bigr)
+\]
+for some \(c_K>0\).  Indeed, both \((\lambda_i+d-i)/N\) and
+\(\log p_i\) are uniformly strictly decreasing there, so strict
+rearrangement makes every nonidentity determinant term exponentially
+smaller than the identity term.
+
+Comparison with
+\(M_{N,p}(\lambda)=N!\prod_i p_i^{\lambda_i}/\prod_i\lambda_i!\) gives
+\[
+  \frac{P_{N,p}(\lambda)}{M_{N,p}(\lambda)}
+  =\bigl(1+O_K(e^{-c_KN})\bigr)
+  \prod_{i<j}\frac{\lambda_i-\lambda_j+j-i}{N(p_i-p_j)}
+  \prod_i\frac{\lambda_i!(Np_i)^{d-i}}{(\lambda_i+d-i)!}.
+\]
+Writing the last product as
+\(\prod_i\prod_{a=1}^{d-i}\frac{Np_i}{\lambda_i+a}\), each factor
+\(\frac{\lambda_i-\lambda_j+j-i}{N(p_i-p_j)}\), \(i<j\), and
+\(\frac{Np_i}{\lambda_i+a}\), \(1\le a\le d-i\), equals
+\(1+O_K(N^{-1/3})\).  Therefore
+\[
+\begin{aligned}
+  \|P_{N,p}-M_{N,p}\|_{\ell^1}
+  \le{}&\sup_{\lambda\in\mathsf W_{N,p}\cap\operatorname{supp}M_{N,p}}
+       \left|\frac{P_{N,p}(\lambda)}{M_{N,p}(\lambda)}-1\right|\\
+  &+P_{N,p}(\mathsf W_{N,p}^c)+M_{N,p}(\mathsf W_{N,p}^c)
+  \longrightarrow0
+\end{aligned}
+\]
+uniformly for \(p\in K\), since the last two terms vanish by
+\cref{lem:young-concentration} and Hoeffding's inequality.
+
+It remains to prove the multinomial local limit.  Fix
+\(\beta_0\in(1/2,2/3)\) and set
+\[
+  V_{N,p}=\{\lambda\in\mathsf L_N:
+  \|\lambda-Np\|_\infty\le N^{\beta_0}\},
+  \qquad x_\lambda=\frac{\lambda-Np}{\sqrt N}.
+\]
+Uniformly for \(p\in K\) and \(\lambda\in V_{N,p}\),
+\[
+  \frac{N^{(d-1)/2}}{|\mathsf C|}M_{N,p}(\lambda)
+  =\varphi_{0,\Sigma_p}(x_\lambda)(1+o(1)).
+\]
+Indeed, uniform Stirling and third-order Taylor expansions give
 \[
   \log M_{N,p}(\lambda)
   =-\frac{d-1}{2}\log(2\pi N)-\frac12\sum_i\log p_i
    -\frac12\sum_i\frac{x_{\lambda,i}^2}{p_i}
    +O_K\!\left(N^{3\beta_0-2}+N^{\beta_0-1}+N^{-1}\right).
 \]
-For \(x\in\mathsf H\),
-\(\langle x,\Sigma_p^{-1}x\rangle=\sum_i x_i^2/p_i\).  If
-\(b_i=e_i-e_d\), then
-\(\det[\langle b_i,b_j\rangle]_{i,j<d}=d\), so
-\(|\mathsf C|=\sqrt d\).  A principal cofactor of
-\(\diag(p)-pp^{\mathsf T}\) is \(\prod_i p_i\), while its kernel is
-\(\operatorname{span}\{(1,\ldots,1)\}\); hence
-\(\det_{\mathsf H}\Sigma_p=d\prod_i p_i\).  Because
-\(\beta_0>1/2\), the term \(N^{3\beta_0-2}\) dominates the other two terms
-in the remainder.  Since \(3\beta_0-2<0\),
-\[
-  \frac{N^{(d-1)/2}}{|\mathsf C|}M_{N,p}(\lambda)
-  =\varphi_{0,\Sigma_p}(x_\lambda)(1+o(1))
-\]
-uniformly on that window.
+This is the Gaussian exponent since
+\(\langle x,\Sigma_p^{-1}x\rangle=\sum_i x_i^2/p_i\).
+The normalizing constants agree since
+\(|\mathsf C|^2=\det[\langle e_i-e_d,e_j-e_d\rangle]_{i,j<d}=d\), while
+\(\ker\Sigma_p=\operatorname{span}\{(1,\ldots,1)\}\) and
+\(\operatorname{cof}_{ii}(\Sigma_p)=\prod_jp_j\) give
+\(\det_{\mathsf H}\Sigma_p=d\prod_jp_j\).
+The remainder is \(o(1)\) since \(1/2<\beta_0<2/3\).
 
-Let
+Set
 \[
-  V_{N,p}=\{\lambda\in\mathsf L_N:
-  \|\lambda-Np\|_\infty\le N^{\beta_0}\},
-  \qquad
   U_{N,p}=\bigcup_{\lambda\in V_{N,p}}\mathsf C_{N,p}(\lambda).
 \]
-Hoeffding's inequality and the uniform eigenvalue bounds for \(\Sigma_p\)
-give constants \(c_K,C_K>0\) such that
+The central sets carry all multinomial and Gaussian mass: for some
+\(c_K,C_K>0\),
 \[
   \sup_{p\in K}\left[
   M_{N,p}(V_{N,p}^c)
@@ -2242,16 +2257,60 @@ give constants \(c_K,C_K>0\) such that
   \right]
   \le C_K e^{-c_K N^{2\beta_0-1}}.
 \]
-The rescaled cells have diameter \(O(N^{-1/2})\).  On the window,
-\(\|\nabla\log\varphi_{0,\Sigma_p}(x)\|=O_K(1+\|x\|)\), so the relative
-oscillation of the Gaussian density across one cell is
+This follows from Hoeffding's inequality and the uniform eigenvalue bounds
+for \(\Sigma_p\).
+
+The Gaussian density has vanishing relative oscillation on the
+rescaled cells.  Indeed, the cells have diameter \(O(N^{-1/2})\), while
+\(\|z\|=O(N^{\beta_0-1/2})\) on those indexed by \(V_{N,p}\).  Since
+\(\nabla\log\varphi_{0,\Sigma_p}(z)=-\Sigma_p^{-1}z\), uniformly for
+\(p\in K\), \(\lambda\in V_{N,p}\), and
+\(x,y\in\mathsf C_{N,p}(\lambda)\),
 \[
-  \exp\bigl(O_K(N^{-1/2}+N^{\beta_0-1})\bigr)-1=o(1).
+\begin{aligned}
+  \left|\log\frac{\varphi_{0,\Sigma_p}(x)}
+                       {\varphi_{0,\Sigma_p}(y)}\right|
+  &\le \sup_{z\in\mathsf C_{N,p}(\lambda)}
+      \|\nabla\log\varphi_{0,\Sigma_p}(z)\|\,\|x-y\|\\
+  &\le O_K(N^{\beta_0-1/2})\,O(N^{-1/2})
+   =O_K(N^{\beta_0-1}),\\
+  \left|\frac{\varphi_{0,\Sigma_p}(x)}
+                   {\varphi_{0,\Sigma_p}(y)}-1\right|
+  &=O_K(N^{\beta_0-1})=o(1).
+\end{aligned}
 \]
+The last line follows by exponentiation.
+
+The embedded multinomial density is consequently uniformly accurate on
+\(U_{N,p}\).  Indeed, \(0\in\mathsf C\), so the point
+\(x_\lambda=(\lambda-Np)/\sqrt N\) lies in
+\(\mathsf C_{N,p}(\lambda)\).  Uniformly for \(p\in K\),
+\(\lambda\in V_{N,p}\), and \(x\) in the same cell,
+\[
+\begin{aligned}
+  \frac{N^{(d-1)/2}M_{N,p}(\lambda)}
+       {|\mathsf C|\varphi_{0,\Sigma_p}(x)}
+  &=\frac{N^{(d-1)/2}M_{N,p}(\lambda)}
+          {|\mathsf C|\varphi_{0,\Sigma_p}(x_\lambda)}
+    \frac{\varphi_{0,\Sigma_p}(x_\lambda)}
+         {\varphi_{0,\Sigma_p}(x)}\\
+  &=(1+o(1))(1+o(1))=1+o(1).
+\end{aligned}
+\]
+The two factors use the local estimate above and the cell-oscillation bound,
+respectively.
+
 It follows that
+\(\sup_{p\in K}\|\mathcal E_{N,p}M_{N,p}
+-\varphi_{0,\Sigma_p}\|_1\to0\).  Indeed, for each \(p\in K\),
 \[
 \begin{aligned}
   \|\mathcal E_{N,p}M_{N,p}-\varphi_{0,\Sigma_p}\|_1
+  ={}&\int_{U_{N,p}}
+      |(\mathcal E_{N,p}M_{N,p})(x)-\varphi_{0,\Sigma_p}(x)|\,\dd x\\
+     &+\int_{U_{N,p}^c}
+      |(\mathcal E_{N,p}M_{N,p})(x)-\varphi_{0,\Sigma_p}(x)|\,\dd x
+  \\[-2pt]
   \le{}&M_{N,p}(V_{N,p}^c)
   +\int_{U_{N,p}^c}\varphi_{0,\Sigma_p}(x)\,\dd x\\
   &+\sup_{\substack{\lambda\in V_{N,p}\\
@@ -2262,8 +2321,25 @@ It follows that
   \right|,
 \end{aligned}
 \]
-which tends uniformly to zero.  Combine this with
-\eqref{eq:young-multinomial-l1}.
+where the inequality uses
+\(\int_{U_{N,p}}\varphi_{0,\Sigma_p}(x)\,\dd x\le1\) and the cell
+normalization
+\(\int_{U_{N,p}^c}(\mathcal E_{N,p}M_{N,p})(x)\,\dd x
+=M_{N,p}(V_{N,p}^c)\).  The preceding tail and cellwise estimates make all
+three terms vanish uniformly.
+
+Finally, the \(\ell^1\)-isometry of \(\mathcal E_{N,p}\) gives
+\[
+\begin{aligned}
+  \sup_{p\in K}
+  \|\mathcal E_{N,p}P_{N,p}-\varphi_{0,\Sigma_p}\|_1
+  \le{}&\sup_{p\in K}\|P_{N,p}-M_{N,p}\|_{\ell^1}\\
+  &+\sup_{p\in K}
+    \|\mathcal E_{N,p}M_{N,p}-\varphi_{0,\Sigma_p}\|_1
+  \longrightarrow0
+\end{aligned}
+\]
+by \eqref{eq:young-multinomial-l1}.
 \end{proof}
 
 \begin{lemma}[Continuous limit of randomized dilation]
