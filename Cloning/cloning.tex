@@ -81,7 +81,7 @@
 \renewcommand{\thefootnote}{\fnsymbol{footnote}}
 \footnotetext[1]{\textit{Leinweber Institute for Theoretical Physics,
   Stanford University, Stanford, CA 94305, USA}}
-\footnotetext[2]{\textit{Zyphra Technology, San Francisco, CA 94105, USA.}
+\footnotetext[2]{\textit{Zyphra, San Francisco, CA 94105, USA.}
   \enspace Email:
   \href{mailto:wang.jinzhao226@gmail.com}{\texttt{wang.jinzhao226@gmail.com}}}
 \endgroup
@@ -128,6 +128,7 @@ and quantum Gaussian amplification; the projector problem is solved by an
 exact Schur-sector compression.
 \end{abstract}
 
+\clearpage
 \tableofcontents
 
 \section{Introduction}\label{sec:introduction-results}
@@ -174,8 +175,8 @@ eigenvalues and the eigenbasis may be unknown, and the two kinds of
 information behave differently under repeated sampling.  Unlike the
 pure-state case, earlier mixed-state work either did not identify both an
 optimal cloner and its fidelity, or treated only special families or other
-criteria.  Thus the mixed-state cloning problem under global product fidelity
-had no sharp solution for non-degenerate full-rank states when
+criteria.  To our knowledge, the mixed-state cloning problem under global
+product fidelity had no sharp solution for non-degenerate full-rank states when
 \(m_n/n\to\gamma>1\).  Work directly on
 mixed-state cloning derived global-fidelity, relative-error, and
 state-dependent bounds for prescribed finite ensembles
@@ -412,7 +413,8 @@ cloners, respectively.  The details are developed in
   labelbox/.style={box,fill=blue!6},
   sectorbox/.style={box,fill=orange!9},
   note/.style={draw,rounded corners=2pt,align=left,inner sep=4pt,
-    minimum height=12mm,fill=gray!6,font=\scriptsize}
+    fill=gray!6,font=\scriptsize},
+  factor/.style={align=center,font=\scriptsize,text=black!70}
 ]
   \node[box,fill=gray!8,text width=17mm] (input) at (-0.5,0)
     {input\\[-1pt]\(\rho_{p,g}^{\ot n}\)};
@@ -431,9 +433,9 @@ cloners, respectively.  The details are developed in
     {assemble the \(\nu\)-block\\[-1pt]
      \(\cE_{\mu,\nu}(\rho_{p,g,\mu})
        \ot I_{\cS_\nu}/\dim\cS_\nu\)};
-  \node[box,fill=gray!8,text width=22mm,font=\scriptsize]
-    (output) at (15.55,0)
-    {output state\\[-1pt]
+  \node[box,fill=gray!8,text width=26mm]
+    (output) at (15.75,0)
+    {output\\[-1pt]
      \(\mathcal Q_n[K_n](\rho_{p,g}^{\ot n})\)};
 
   \coordinate (schursplit) at (2.0,0);
@@ -456,22 +458,30 @@ cloners, respectively.  The details are developed in
 
   \node[note,text width=47mm] (known) at (4.45,3.0)
     {\textbf{Known \(p\):}
-     \(K_n^p(\nu\mid\mu)=P_{m_n,p}(\nu)\).};
-  \node[note,text width=58mm] (unknown) at (10.25,3.0)
+     \(K_n^p(\nu\mid\mu)=P_{m_n,p}(\nu)\);\\
+     label factor \(1\).};
+  \node[note,text width=58mm] (unknown) at (10.55,3.0)
     {\textbf{Unknown \(p\):}
-     \(K_n^{\mathrm{rnd}}\) randomly rounds \(\gamma_n\mu\).};
+     \(K_n^{\mathrm{rnd}}\) randomly rounds \(\gamma_n\mu\);\\
+     label factor \(\Fcl(\gamma,d)\).};
   \coordinate (kernelchoice) at ([yshift=4mm]labelout.north);
   \draw[guide] (known.south) -- (kernelchoice);
   \draw[guide] (unknown.south) -- (kernelchoice);
   \draw[dependency] (kernelchoice) -- (labelout.north);
 
+  \node[factor,anchor=north] at ([yshift=-3pt]sectorout.south)
+    {sector factor \(\Forb(\gamma,p)\)\\ on typical label pairs};
+
 \end{tikzpicture}%
 }
-\caption{\textbf{Cloner construction.}
-The Schur transform separates the Young label from the conditional irrep
-state.  The known-spectrum kernel samples the target label law, whereas the
-unknown-spectrum kernel randomly dilates the input label.  Both constructions
-use the same Cartan-sector channel before restoring the Specht factor.}
+\caption{Cloner construction.  The Schur transform separates the Young label
+  \(\mu\) from the conditional irrep state.  A classical kernel chooses the
+  output label \(\nu\): the known-spectrum kernel samples the target label
+  law, whereas the unknown-spectrum kernel randomly dilates \(\mu\).  Both
+  constructions then apply the same Cartan-sector channel and restore a
+  maximally mixed Specht factor.  The label factor (\(1\) or \(\Fcl\)) and
+  the common sector factor \(\Forb\) multiply to the asymptotic fidelities
+  \(\Forb\) and \(\Funiv\) of \cref{thm:known-optimum,thm:unknown-optimum}.}
 \label{fig:schur-cartan-cloner}
 \end{figure}
 
@@ -549,34 +559,41 @@ interpretation, and the order-of-limits caveat.
 
 \begin{figure}[!tbp]
 \centering
-\begin{tikzpicture}[font=\scriptsize]
-  \begin{scope}[x=1.45cm,y=6.4cm]
-    \draw[->] (0,0) -- (3.15,0)
-      node[below right=-1pt] {gain \(\gamma\)};
-    \draw[->] (0,0) -- (0,0.55);
-    \node[rotate=90] at (-0.48,0.25) {root fidelity};
-    \node[font=\small] at (1.5,0.60)
+\begin{tikzpicture}[font=\scriptsize,
+  ours/.style={green!60!black,very thick},
+  pctexact/.style={purple!80!black,very thick,densely dotted},
+  pctupper/.style={purple!80!black,very thick,dashed},
+  pctlower/.style={purple!80!black,very thick,densely dotted},
+  grid/.style={gray!18},
+  legendtext/.style={anchor=west,text=black}]
+  % ---------- (a) full rank ----------
+  \begin{scope}[x=1.45cm,y=7cm]
+    \draw (0,0) -- (3,0);
+    \draw (0,0) -- (0,0.5);
+    \node[rotate=90] at (-0.5,0.25) {root fidelity};
+    \node at (1.5,-0.085) {gain \(\gamma\)};
+    \node[font=\small] at (1.5,0.57)
       {\textup{(a)} Full rank: \(p=(3/5,2/5)\)};
 
     \foreach \x/\lab in {0/1,1/2,2/3,3/4}{
-      \draw (\x,0.008) -- (\x,-0.008)
-        node[below=2pt] {\(\lab\)};
+      \draw (\x,0.007) -- (\x,-0.007)
+        node[below=1pt] {\(\lab\)};
     }
     \foreach \y/\lab in {0/{0.5},0.1/{0.6},0.2/{0.7},
                             0.3/{0.8},0.4/{0.9},0.5/{1.0}}{
       \draw (0.012,\y) -- (-0.012,\y)
         node[left=2pt] {\(\lab\)};
-      \draw[gray!18] (0,\y) -- (3,\y);
+      \draw[grid] (0,\y) -- (3,\y);
     }
 
-    \draw[green!60!black,very thick]
+    \draw[ours]
       plot[smooth] coordinates {
         (0,0.5000) (0.25,0.4881) (0.5,0.4624) (0.75,0.4314)
         (1,0.3988) (1.25,0.3665) (1.5,0.3354) (1.75,0.3058)
         (2,0.2780) (2.25,0.2519) (2.5,0.2274) (2.75,0.2045)
         (3,0.1830)
       };
-    \draw[purple!80!black,very thick,densely dotted]
+    \draw[pctexact]
       plot[smooth] coordinates {
         (0,0.5000) (0.25,0.4693) (0.5,0.4143) (0.75,0.3572)
         (1,0.3041) (1.25,0.2562) (1.5,0.2135) (1.75,0.1754)
@@ -584,29 +601,32 @@ interpretation, and the order-of-limits caveat.
         (3,0.0359)
       };
 
-    \node[anchor=west,text=green!60!black] at (3.03,0.1830)
-      {\(F_{\mathrm{univ}}\)};
-    \node[anchor=west,text=purple!80!black] at (3.03,0.0359)
-      {\(F_{\mathrm{PCT}}\)};
+    \draw[ours] (0.15,0.095) -- (0.45,0.095);
+    \node[legendtext] at (0.5,0.095)
+      {our cloner: \(F_{\mathrm{univ}}\)};
+    \draw[pctexact] (0.15,0.04) -- (0.45,0.04);
+    \node[legendtext] at (0.5,0.04)
+      {PCT: \(F_{\mathrm{PCT}}\)};
   \end{scope}
 
-  \begin{scope}[xshift=8.4cm,x=1.45cm,y=3.55cm]
-    \draw[->] (0,0) -- (3.15,0)
-      node[below right=-1pt] {gain \(\gamma\)};
-    \draw[->] (0,0) -- (0,1.05);
-    \node[rotate=90] at (-0.48,0.50) {root fidelity};
-    \node[font=\small] at (1.5,1.15)
-      {\textup{(b)} Projector states: \(d=4,r=2\)};
+  % ---------- (b) projector states ----------
+  \begin{scope}[xshift=8.4cm,x=1.45cm,y=3.5cm]
+    \draw (0,0) -- (3,0);
+    \draw (0,0) -- (0,1.0);
+    \node[rotate=90] at (-0.5,0.50) {root fidelity};
+    \node at (1.5,-0.17) {gain \(\gamma\)};
+    \node[font=\small] at (1.5,1.14)
+      {\textup{(b)} Projector states: \(d=4\), \(r=2\)};
 
     \foreach \x/\lab in {0/1,1/2,2/3,3/4}{
       \draw (\x,0.014) -- (\x,-0.014)
-        node[below=2pt] {\(\lab\)};
+        node[below=1pt] {\(\lab\)};
     }
     \foreach \y/\lab in {0/{0.0},0.2/{0.2},0.4/{0.4},
                             0.6/{0.6},0.8/{0.8},1.0/{1.0}}{
       \draw (0.012,\y) -- (-0.012,\y)
         node[left=2pt] {\(\lab\)};
-      \draw[gray!18] (0,\y) -- (3,\y);
+      \draw[grid] (0,\y) -- (3,\y);
     }
 
     \fill[purple!14]
@@ -620,7 +640,7 @@ interpretation, and the order-of-limits caveat.
       -- (1,0.088388) -- (0.75,0.141048) -- (0.5,0.241925)
       -- (0.25,0.457947) -- cycle;
 
-    \draw[green!60!black,very thick]
+    \draw[ours]
       plot[smooth] coordinates {
         (0,1.000000) (0.25,0.640000) (0.5,0.444444)
         (0.75,0.326531) (1,0.250000) (1.25,0.197531)
@@ -628,7 +648,7 @@ interpretation, and the order-of-limits caveat.
         (2.25,0.094675) (2.5,0.081633) (2.75,0.071111)
         (3,0.062500)
       };
-    \draw[purple!80!black,very thick,dashed]
+    \draw[pctupper]
       plot[smooth] coordinates {
         (0,1.000000) (0.25,0.633502) (0.5,0.431548)
         (0.75,0.310377) (1,0.232651) (1.25,0.180119)
@@ -636,7 +656,7 @@ interpretation, and the order-of-limits caveat.
         (2.25,0.080423) (2.5,0.068292) (2.75,0.058634)
         (3,0.050831)
       };
-    \draw[purple!80!black,very thick,densely dotted]
+    \draw[pctlower]
       plot[smooth] coordinates {
         (0,1.000000) (0.25,0.457947) (0.5,0.241925)
         (0.75,0.141048) (1,0.088388) (1.25,0.058528)
@@ -645,32 +665,38 @@ interpretation, and the order-of-limits caveat.
         (3,0.007812)
       };
 
-    \draw[green!60!black,very thick] (1.55,0.88) -- (1.88,0.88);
-    \node[anchor=west,text=green!60!black] at (1.94,0.88)
-      {our cloner: \(\gamma^{-2}\)};
-    \draw[purple!80!black,very thick,dashed]
-      (1.55,0.78) -- (1.88,0.78);
-    \node[anchor=west,text=purple!80!black] at (1.94,0.78)
+    \draw[ours] (1.40,0.90) -- (1.70,0.90);
+    \node[legendtext] at (1.75,0.90)
+      {our cloner: \(\gamma^{-2}\) (optimal)};
+    \draw[pctupper] (1.40,0.79) -- (1.70,0.79);
+    \node[legendtext] at (1.75,0.79)
       {PCT upper bound};
-    \draw[purple!80!black,very thick,densely dotted]
-      (1.55,0.68) -- (1.88,0.68);
-    \node[anchor=west,text=purple!80!black] at (1.94,0.68)
+    \draw[pctlower] (1.40,0.68) -- (1.70,0.68);
+    \node[legendtext] at (1.75,0.68)
       {PCT lower guarantee};
+    \fill[purple!14] (1.40,0.545) rectangle (1.70,0.605);
+    \node[legendtext] at (1.75,0.575)
+      {PCT fidelity: not excluded};
   \end{scope}
 \end{tikzpicture}
-\caption{Root-fidelity comparisons.  \textbf{Left:} for the simple qubit
-  spectrum \(p=(3/5,2/5)\), the green solid curve
-  \(F_{\mathrm{univ}}\) is the exact asymptotic root fidelity of our
-  spectrum-independent cloner, and \(F_{\mathrm{PCT}}\) is PCT's exact limit.
-  \textbf{Right:} for projector states with \(d=4,r=2\), the green solid
-  curve is our exact projector-state fidelity \(\gamma^{-2}\).  Both protocols
-  know \(r=2\), and neither knows \(P\).  The PCT lower guarantee is
-  \(\gamma^{-7/2}\), while the limsup upper bound is
-  \(\gamma^{-2}(\sqrt{2\gamma-1}/\gamma)^{1/2}\).  The shading shows only the interval not excluded by these two
-  rigorous bounds; it is not a confidence band and does not assert that the
-  PCT fidelity has a limit.  Since the upper curve is below the optimal
-  projector-state fidelity for every \(\gamma>1\), our projector cloner is
-  strictly better.}
+\caption{Asymptotic root fidelities as functions of the gain
+  \(\gamma=\lim m_n/n\); every curve is an \(n\to\infty\) limit.
+  \textup{(a)}~For the simple qubit spectrum \(p=(3/5,2/5)\), with neither
+  protocol supplied the spectrum: \(F_{\mathrm{univ}}\) is the exact
+  asymptotic fidelity of our spectrum-independent cloner
+  (\cref{thm:unknown-optimum}) and \(F_{\mathrm{PCT}}\) is the exact
+  asymptotic fidelity of PCT (\cref{thm:full-rank-pct}).
+  \textup{(b)}~For projector states with \(d=4\) and \(r=2\), with both
+  protocols supplied \(r\) but not \(P\): the solid curve is the optimal
+  value \(\gamma^{-2}\), attained by our projector-state cloner
+  (\cref{thm:grassmann}); the dashed curve is the upper bound
+  \(\gamma^{-2}(\sqrt{2\gamma-1}/\gamma)^{1/2}\) on PCT from
+  \cref{prop:grassmann-pct-comparison}, and the dotted curve is the
+  published PCT lower guarantee \(\gamma^{-7/2}\).  The shaded region is the interval not
+  excluded by these two bounds; it is not a confidence band and does not
+  assert that the PCT fidelity converges.  Since the dashed curve lies
+  strictly below the solid one for every \(\gamma>1\), our projector cloner
+  is strictly better.}
 \label{fig:pct-comparisons}
 \end{figure}
 
@@ -687,7 +713,9 @@ At the single-clone level, cloning with infinitely many outputs reduces to
 estimation \cite{BaeAcin2006,ChiribellaDAriano2006}; global all-output
 problems have also been studied for broad pure-state families
 \cite{CheflesBarnett1999,ChiribellaYang2014Optimal,KimChitambar2022}.
-See~\cite{ScaraniIblisdirGisinAcin2005,FanWangJingYueShiZhangMu2014} for reviews.
+Connections among estimation, cloning, and finite quantum de Finetti theorems
+are reviewed in \cite{Chiribella2011EstimationCloning}; see also
+\cite{ScaraniIblisdirGisinAcin2005,FanWangJingYueShiZhangMu2014}.
 
 \paragraph{Finite-dimensional mixed-state cloning.}
 The earlier finite-dimensional literature summarized above provides bounds
@@ -759,7 +787,9 @@ transformations and superreplication
 \cite{ChiribellaDArianoPerinotti2008,ChiribellaYangYao2013,
 GendraCalsamigliaMunozTapiaBaganChiribella2014,
 DurSekatskiSkotiniotis2015,ChiribellaYangHuang2015,
-ChiribellaYang2016}.  A higher-order framework for general channel cloning
+ChiribellaYang2016}.  Recent work shows that cloning remains as hard as
+learning for stabilizer states \cite{BansalCaroMahajan2026}.  A higher-order
+framework for general channel cloning
 includes state cloning \cite{SekatskiGuryanovaKothakondaSkotiniotis2025};
 no-signalling yields general cloning bounds
 \cite{SekatskiSkotiniotisDur2015NoSignaling,HuTomamichel2024}, while optimal
@@ -1043,19 +1073,36 @@ map \(\cE_{\mu,\nu}\) is covariant, \(\mathcal Q_n[K_n]\) is
 
 \begin{proposition}[Fidelity of a lifted label kernel]
 \label{prop:lifted-kernel-bound}
-Fix \(p\in\Delta_d^\circ\).  Let
+Fix \(p\in\Delta_d^\circ\) and \(g\in\U(d)\).  Let
 \begin{equation}\label{eq:lifted-label-laws}
   \Pi_{n,p}(\mu,\nu)=P_{n,p}(\mu)K_n(\nu\mid\mu),
   \qquad
-  Q_{m_n,p}(\nu)=\sum_\mu\Pi_{n,p}(\mu,\nu).
+  Q_{m_n,p}(\nu)=\sum_\mu\Pi_{n,p}(\mu,\nu),
 \end{equation}
-Suppose \(G\subset\mathsf Y_n\times\mathsf Y_{m_n}\) satisfies
+and, for \(\nu\in\mathsf Y_{m_n}\), let
+\begin{equation}\label{eq:lifted-output-block}
+  A_{n,p,\nu}
+  =\sum_{\mu\in\mathsf Y_n}\Pi_{n,p}(\mu,\nu)\,\cE_{\mu,\nu}(\rho_{p,\mu})
+\end{equation}
+be the unnormalized irreducible output block, so that
+\(\Tr A_{n,p,\nu}=Q_{m_n,p}(\nu)\).
+\begin{enumerate}
+\item[(i)] The fidelity of the lifted channel is given exactly by
+\begin{equation}\label{eq:lifted-exact-block-fidelity}
+  F\!\left(
+    \mathcal Q_n[K_n](\rho_{p,g}^{\ot n}),
+    \rho_{p,g}^{\ot m_n}
+  \right)
+  =\sum_{\nu\in\mathsf Y_{m_n}}
+   \sqrt{P_{m_n,p}(\nu)}\,F(A_{n,p,\nu},\rho_{p,\nu}).
+\end{equation}
+\item[(ii)] Suppose \(G\subset\mathsf Y_n\times\mathsf Y_{m_n}\) satisfies
 \(\nu-\mu\vdash m_n-n\) for every \((\mu,\nu)\in G\), and
 \[
   F\!\left(\cC_{\mu,\nu}(\rho_{p,\mu}),\rho_{p,\nu}\right)\ge b
   \qquad((\mu,\nu)\in G)
 \]
-for some \(b\in[0,1]\).  Then, for every \(g\in\U(d)\),
+for some \(b\in[0,1]\).  Then
 \begin{equation}\label{eq:lifted-kernel-bound}
   F\!\left(
     \mathcal Q_n[K_n](\rho_{p,g}^{\ot n}),
@@ -1063,37 +1110,56 @@ for some \(b\in[0,1]\).  Then, for every \(g\in\U(d)\),
   \right)
   \ge b\left(F(Q_{m_n,p},P_{m_n,p})-\sqrt{\Pi_{n,p}(G^c)}\right).
 \end{equation}
+\end{enumerate}
 \end{proposition}
 
 \begin{proof}
-Covariance makes every sector fidelity independent of \(g\).  In the output
-Schur decomposition, the actual state in the \(\nu\)-block is the mixture of
-\(\cE_{\mu,\nu}(\rho_{p,g,\mu})\) with weights
-\(\Pi_{n,p}(\mu,\nu)\), whereas the ideal block is
-\(P_{m_n,p}(\nu)\rho_{p,g,\nu}\).  The Specht factors are identical
-and therefore cancel by multiplicativity of the trace norm under tensor
-products.
+By covariance of \(\mathcal Q_n[K_n]\) and unitary invariance of fidelity,
+we may take \(g=I\).  Under the output Schur decomposition, the actual and
+target states are
+\[
+ \bigoplus_{\nu\in\mathsf Y_{m_n}}
+ A_{n,p,\nu}\ot\frac{I_{\cS_\nu}}{\dim\cS_\nu},
+ \qquad
+ \bigoplus_{\nu\in\mathsf Y_{m_n}}
+ P_{m_n,p}(\nu)\rho_{p,\nu}
+ \ot\frac{I_{\cS_\nu}}{\dim\cS_\nu}.
+\]
+Root fidelity is additive over orthogonal direct sums, multiplicative over
+tensor products, and satisfies \(F(A,cB)=\sqrt c\,F(A,B)\) for \(c\ge0\).
+Since \(F(I_{\cS_\nu}/\dim\cS_\nu,I_{\cS_\nu}/\dim\cS_\nu)=1\), this proves
+\eqref{eq:lifted-exact-block-fidelity}.
 
-For \(Q_{m_n,p}(\nu)>0\), set
+For (ii), set
 \[
   r(\nu)=\sum_{\mu:(\mu,\nu)\notin G}
-  \frac{\Pi_{n,p}(\mu,\nu)}{Q_{m_n,p}(\nu)},
+  \frac{\Pi_{n,p}(\mu,\nu)}{Q_{m_n,p}(\nu)}
+  \quad\text{if }Q_{m_n,p}(\nu)>0,
+  \qquad r(\nu)=0\quad\text{otherwise}.
 \]
-and set \(r(\nu)=0\) otherwise.  The direct-sum identity for fidelity,
-its scaling under positive scalar multiples, and joint concavity give
+Homogeneity and concavity of fidelity in its first argument give, for
+\(Q_{m_n,p}(\nu)>0\),
 \[
-\begin{aligned}
-  &F\!\left(
-    \mathcal Q_n[K_n](\rho_{p,g}^{\ot n}),
-    \rho_{p,g}^{\ot m_n}
-  \right)\\
-  &\qquad\ge
+  F(A_{n,p,\nu},\rho_{p,\nu})
+  \ge\sqrt{Q_{m_n,p}(\nu)}
+    \sum_{\mu}\frac{\Pi_{n,p}(\mu,\nu)}{Q_{m_n,p}(\nu)}
+    F\!\left(\cE_{\mu,\nu}(\rho_{p,\mu}),\rho_{p,\nu}\right)
+  \ge b\sqrt{Q_{m_n,p}(\nu)}\,\bigl(1-r(\nu)\bigr),
+\]
+where the last step keeps only the pairs in \(G\), on which
+\(\cE_{\mu,\nu}=\cC_{\mu,\nu}\).  Substituting into
+\eqref{eq:lifted-exact-block-fidelity} yields
+\[
+  F\!\left(
+    \mathcal Q_n[K_n](\rho_{p}^{\ot n}),
+    \rho_{p}^{\ot m_n}
+  \right)
+  \ge
   b\left(
     F(Q_{m_n,p},P_{m_n,p})
     -\sum_\nu
       \sqrt{Q_{m_n,p}(\nu)P_{m_n,p}(\nu)}\,r(\nu)
   \right).
-\end{aligned}
 \]
 Since \(0\le r\le1\) and
 \(\sum_\nu Q_{m_n,p}(\nu)r(\nu)=\Pi_{n,p}(G^c)\),
@@ -1355,7 +1421,7 @@ large \(n\), and there is an \(\eta_n\to0\) such that, uniformly on \(G_{n,p}\),
   F\!\left(\cC_{\mu,\nu}(\rho_{p,\mu}),\rho_{p,\nu}\right)
   \ge\Forb(\gamma,p)-\eta_n.
 \]
-Applying \cref{prop:lifted-kernel-bound} and using
+Applying part~(ii) of \cref{prop:lifted-kernel-bound} and using
 \(F(Q_{m_n,p},P_{m_n,p})=1\) yields
 \[
   F\!\left(\cC_n^p(\rho_p^{\ot n}),\rho_p^{\ot m_n}\right)
@@ -1368,40 +1434,19 @@ Applying \cref{prop:lifted-kernel-bound} and using
 
 \begin{proof}[Exact fidelity of \(\cC_n^{\mathrm{univ}}\)]
 Covariance allows us to take \(g=I\).  Fix
-\(K\Subset\Delta_d^\circ\), and abbreviate
-\[
-  \Pi_{n,p}(\mu,\nu)
-  =P_{n,p}(\mu)K_n^{\mathrm{rnd}}(\nu\mid\mu).
-\]
-For each output label, define the unnormalized irreducible output block
-\[
-  A_{n,p,\nu}
-  =\sum_{\mu\in\mathsf Y_n}
-    \Pi_{n,p}(\mu,\nu)
-    \cE_{\mu,\nu}(\rho_{p,\mu}).
-\]
-Under the output Schur decomposition, the actual and target states are
-\[
- \bigoplus_{\nu\in\mathsf Y_{m_n}}
- A_{n,p,\nu}\ot\frac{I_{\cS_\nu}}{\dim\cS_\nu},
- \qquad
- \bigoplus_{\nu\in\mathsf Y_{m_n}}
- P_{m_n,p}(\nu)\rho_{p,\nu}
- \ot\frac{I_{\cS_\nu}}{\dim\cS_\nu}.
-\]
-Thus the direct-sum identity, multiplicativity, and homogeneity of fidelity
-give the exact formula
+\(K\Subset\Delta_d^\circ\), and let \(\Pi_{n,p}\), \(Q_{m_n,p}\), and
+\(A_{n,p,\nu}\) be as in \cref{prop:lifted-kernel-bound} for the kernel
+\(K_n=K_n^{\mathrm{rnd}}\).  Part~(i) of that proposition gives the exact
+formula
 \begin{equation}\label{eq:universal-exact-block-fidelity}
-\begin{aligned}
- &F\!\left(
+ F\!\left(
    \cC_n^{\mathrm{univ}}(\rho_p^{\ot n}),
    \rho_p^{\ot m_n}
- \right)\\
- &\qquad=
+ \right)
+ =
  \sum_{\nu\in\mathsf Y_{m_n}}
  \sqrt{P_{m_n,p}(\nu)}\,
  F(A_{n,p,\nu},\rho_{p,\nu}).
-\end{aligned}
 \end{equation}
 
 Split each block according to whether the input label is typical:
@@ -1479,17 +1524,11 @@ the fidelity-continuity estimate
 Substitution into \eqref{eq:universal-exact-block-fidelity}, followed by
 \(Q_{m_n,p}^{\mathrm{good}}(\nu)\le Q_{m_n,p}(\nu)\) and
 Cauchy--Schwarz, gives
-\begin{align}
- &F\!\left(
-   \cC_n^{\mathrm{univ}}(\rho_p^{\ot n}),
-   \rho_p^{\ot m_n}
- \right)\notag\\
- &\quad\le
- \bigl(\Forb(\gamma,p)+\eta_n\bigr)
- F(Q_{m_n,p},P_{m_n,p})
+\begin{equation}\label{eq:universal-fidelity-upper}
+ F\!\left(\cC_n^{\mathrm{univ}}(\rho_p^{\ot n}),\rho_p^{\ot m_n}\right)
+ \le \bigl(\Forb(\gamma,p)+\eta_n\bigr)F(Q_{m_n,p},P_{m_n,p})
  +\sqrt{P_{n,p}(\mathsf T_n(p)^c)}.
- \label{eq:universal-fidelity-upper}
-\end{align}
+\end{equation}
 
 For the matching lower bound, let
 \[
@@ -1507,20 +1546,13 @@ Since \(K\) is compact and \(\Forb(\gamma,p)>0\), for all sufficiently large
 \(\Forb(\gamma,p)-\eta_n\in[0,1]\) uniformly on \(K\).
 Moreover,
 \(\Pi_{n,p}(G_{n,p}^c)=P_{n,p}(\mathsf T_n(p)^c)\).  Therefore
-\cref{prop:lifted-kernel-bound} gives
-\begin{align}
- &F\!\left(
-   \cC_n^{\mathrm{univ}}(\rho_p^{\ot n}),
-   \rho_p^{\ot m_n}
- \right)\notag\\
- &\quad\ge
- \bigl(\Forb(\gamma,p)-\eta_n\bigr)
- \left[
- F(Q_{m_n,p},P_{m_n,p})
- -\sqrt{P_{n,p}(\mathsf T_n(p)^c)}
- \right].
- \label{eq:universal-fidelity-lower}
-\end{align}
+part~(ii) of \cref{prop:lifted-kernel-bound} gives
+\begin{equation}\label{eq:universal-fidelity-lower}
+ F\!\left(\cC_n^{\mathrm{univ}}(\rho_p^{\ot n}),\rho_p^{\ot m_n}\right)
+ \ge \bigl(\Forb(\gamma,p)-\eta_n\bigr)
+ \left[F(Q_{m_n,p},P_{m_n,p})
+ -\sqrt{P_{n,p}(\mathsf T_n(p)^c)}\right].
+\end{equation}
 
 Uniform Young concentration and
 \eqref{eq:rounding-label-fidelity} now give
@@ -1575,37 +1607,40 @@ to \(o(1)\).  This is the transfer step used in every converse below.
 \centering
 \begin{tikzpicture}[
   exact/.style={-{Latex[length=2mm]},thick,black},
+  approxmap/.style={-{Latex[length=2mm]},thick,dashed,teal!70!black},
   approx/.style={thick,dashed,teal!70!black},
   fidpair/.style={thick,densely dotted,purple!70!black},
   state/.style={font=\small,inner sep=2pt},
-  fidlabel/.style={font=\scriptsize,text=purple!70!black,
-    fill=white,inner sep=1pt},
-  error/.style={font=\scriptsize,text=teal!70!black,fill=white,inner sep=1pt}
+  maplabel/.style={font=\scriptsize},
+  fidlabel/.style={font=\small,text=purple!70!black,inner sep=1pt},
+  relation/.style={font=\small},
+  reason/.style={font=\scriptsize,text=black!60,align=center},
+  error/.style={font=\scriptsize,text=teal!70!black,inner sep=1pt}
 ]
-  \node[state] (finout) at (-4.8,0.65)
-    {\(\cM_n(\rho_{n,\theta})\)};
-  \node[state] (fintarget) at (-4.8,-0.65)
-    {\(\sigma_{n,\theta}\)};
+  \node[state] (gin) at (-6.6,1.3) {\(\Phi_\theta\)};
+  \node[state] (finin) at (-4.2,1.3) {\(\rho_{n,\theta}\)};
+  \node[state] (finout) at (-1.6,1.3) {\(\cM_n(\rho_{n,\theta})\)};
+  \node[state] (trout) at (1.9,1.3) {\(T_n\cM_n(\rho_{n,\theta})\)};
+  \node[state] (gout) at (5.4,1.3) {\(\Gamma_n(\Phi_\theta)\)};
 
-  \node[state] (trout) at (0,0.65)
-    {\(T_n\cM_n(\rho_{n,\theta})\)};
-  \node[state] (trtarget) at (0,-0.65)
-    {\(T_n(\sigma_{n,\theta})\)};
+  \node[state] (fintarget) at (-1.6,-0.95) {\(\sigma_{n,\theta}\)};
+  \node[state] (trtarget) at (1.9,-0.95) {\(T_n(\sigma_{n,\theta})\)};
+  \node[state] (gtarget) at (5.4,-0.95) {\(\Psi_\theta\)};
 
-  \node[state] (gout) at (4.8,0.65)
-    {\(\Gamma_n(\Phi_\theta)\)};
-  \node[state] (gtarget) at (4.8,-0.65)
-    {\(\Psi_\theta\)};
-
-  \draw[exact] (finout.east) -- node[above,font=\scriptsize] {\(T_n\)}
-    (trout.west);
-  \draw[exact] (fintarget.east) -- node[below,font=\scriptsize] {\(T_n\)}
-    (trtarget.west);
+  \draw[approxmap] (gin.east) --
+    node[above=1pt,maplabel] {\(S_n\)}
+    node[below=1pt,error] {\(o(1)\)} (finin.west);
+  \draw[exact] (finin.east) --
+    node[above=1pt,maplabel] {\(\cM_n\)} (finout.west);
+  \draw[exact] (finout.east) --
+    node[above=1pt,maplabel] {\(T_n\)} (trout.west);
+  \draw[exact] (fintarget.east) --
+    node[below=1pt,maplabel] {\(T_n\)} (trtarget.west);
 
   \draw[approx] (trout.east) --
-    node[above,error] {\(o(1)\)} (gout.west);
+    node[above=2pt,error] {\(o(1)\)} (gout.west);
   \draw[approx] (trtarget.east) --
-    node[below,error] {\(o(1)\)} (gtarget.west);
+    node[below=2pt,error] {\(o(1)\)} (gtarget.west);
 
   \draw[fidpair] (finout.south) --
     node[right=2pt,fidlabel] {\(F_{\mathrm{fin},n}(\theta)\)}
@@ -1617,18 +1652,30 @@ to \(o(1)\).  This is the transfer step used in every converse below.
     node[right=2pt,fidlabel] {\(F_{\mathrm G,n}(\theta)\)}
     (gtarget.north);
 
-  \node[align=center,font=\small] at (0,-1.55)
-    {\(\displaystyle
-       \inf_{\theta\in C}F_{\mathrm{fin},n}(\theta)
-       \le\inf_{\theta\in C}F_{\mathrm G,n}(\theta)+o(1).\)};
+  \node[relation] (leq) at (0.75,0) {\(\le\)};
+  \node[reason,anchor=south] at ([yshift=1pt]leq.north)
+    {monotonicity\\ under \(T_n\)};
+  \node[relation] (eq) at (4.3,0) {\(=\)};
+  \node[reason,anchor=south] at ([yshift=1pt]eq.north)
+    {LAN continuity,\\ up to \(o(1)\)};
 \end{tikzpicture}
-\caption{LAN fidelity transfer.  The top row is the output and the bottom
-row its target; each dotted vertical segment denotes the fidelity of that
-pair.  Solid arrows apply \(T_n\) exactly, so fidelity cannot decrease.
-Dashed links denote uniform \(o(1)\) trace-norm error on each fixed compact
-local set, so fidelity changes by \(o(1)\).  Here
-\(\Gamma_n=T_n\circ\cM_n\circ S_n\); the LAN maps need not be inverses, and
-\(\Gamma_n\) need not be Gaussian or converge.}
+\caption{LAN fidelity transfer for an arbitrary finite-dimensional cloner
+  \(\cM_n\), with \(\theta\) ranging over a fixed compact local parameter
+  set \(C\).  The top row is the output and the bottom row its target; each
+  dotted vertical segment denotes the fidelity of that pair, and the middle
+  row, read from left to right, is the inequality chain
+  \(F_{\mathrm{fin},n}(\theta)\le F_{\mathrm{tr},n}(\theta)
+    =F_{\mathrm G,n}(\theta)+o(1)\), uniformly on \(C\).
+  Solid arrows are exact channels, so fidelity cannot decrease across the
+  \(T_n\) step.  Dashed links denote uniform \(o(1)\) trace-norm error: the
+  reverse LAN map \(S_n\) sends \(\Phi_\theta\) to within \(o(1)\) of
+  \(\rho_{n,\theta}\), and pushing this error through the contraction
+  \(T_n\circ\cM_n\) gives the top link to
+  \(\Gamma_n(\Phi_\theta)=T_n\cM_nS_n(\Phi_\theta)\), while forward LAN
+  gives the bottom link; fidelity is continuous in trace norm, so the two
+  right-hand fidelities agree up to \(o(1)\).  Taking infima over
+  \(\theta\in C\) gives \cref{lem:LAN-fidelity-transfer}.  The LAN maps
+  need not be inverses, and \(\Gamma_n\) need not be Gaussian or converge.}
 \label{fig:LAN-transfer}
 \end{figure}
 
@@ -1773,19 +1820,20 @@ Let
 \begin{theorem}[Gaussian amplification optimum]
 \label{thm:gaussian-amplification}
 For every \(p\in\Delta_d^\circ\),
-\begin{align}
+\begin{equation}\label{eq:gaussian-orbital-optimum}
   \lim_{L\to\infty}\sup_\Lambda
   \frac1{|\mathsf Z_L|}\int_{\mathsf Z_L}
   F\!\left(\Lambda(\Phi_z^{(p)}),\Psi_z^{(p,\gamma)}\right)\,\dd z
-  &=\Forb(\gamma,p),
-  \label{eq:gaussian-orbital-optimum}\\
+  =\Forb(\gamma,p),
+\end{equation}
+and
+\begin{equation}\label{eq:gaussian-full-optimum}
   \lim_{L\to\infty}\sup_\Lambda
   \frac1{|\Omega_L|}\int_{\Omega_L}
   F\!\left(\Lambda(\Theta_{h,z}^{\mathrm{in}}),
             \Theta_{h,z}^{\mathrm{tar}}\right)\,\dd h\,\dd z
-  &=\Funiv(\gamma,p).
-  \label{eq:gaussian-full-optimum}
-\end{align}
+  =\Funiv(\gamma,p).
+\end{equation}
 The first supremum is over all quantum channels on
 \(\cF_{\mathrm{orb}}\); the second is over all classical--quantum channels.
 No Gaussianity, covariance, or product-structure assumption is imposed on
@@ -1844,6 +1892,7 @@ unitary generated by \(X_p(\zeta)\) produces the oscillator state
 \(z=-w=L_p\zeta\).  Linearity of \(L_p\) implies that multiplication of the
 physical coordinate by \(\sqrt\gamma\) multiplies \(z\) by the same factor.
 
+\begin{samepage}
 \begin{theorem}[Finite-dimensional LAN and target-sample scaling]
 \label{thm:LAN-full}
 Fix \(p\in\Delta_d^\circ\).  There are channels
@@ -1858,28 +1907,31 @@ Fix \(p\in\Delta_d^\circ\).  There are channels
 \]
 such that, for every compact
 \(C\subset\mathsf H\times\C^{r_d}\),
-\begin{align}
+\begin{equation}\label{eq:LAN-full-forward}
   \sup_{(h,z)\in C}
   \left\|
     T_n^{\mathrm{full}}\!\left(\rho_{p+h/\sqrt n,g_{n,z}}^{\ot n}\right)
     -\mathsf N_{h,\Sigma_p}\ot\Phi_z^{(p)}
-  \right\|_1&\longrightarrow0,
-  \label{eq:LAN-full-forward}\\
+  \right\|_1\longrightarrow0,
+\end{equation}
+\begin{equation}\label{eq:LAN-full-reverse}
   \sup_{(h,z)\in C}
   \left\|
     S_n^{\mathrm{full}}\!\left(\mathsf N_{h,\Sigma_p}\ot\Phi_z^{(p)}\right)
     -\rho_{p+h/\sqrt n,g_{n,z}}^{\ot n}
-  \right\|_1&\longrightarrow0,
-  \label{eq:LAN-full-reverse}\\
+  \right\|_1\longrightarrow0,
+\end{equation}
+and
+\begin{equation}\label{eq:LAN-full-target}
   \sup_{(h,z)\in C}
   \left\|
     T_{m_n}^{\mathrm{full}}\!\left(
       \rho_{p+h/\sqrt n,g_{n,z}}^{\ot m_n}\right)
     -\mathsf N_{\sqrt\gamma h,\Sigma_p}\ot\Psi_z^{(p,\gamma)}
-  \right\|_1&\longrightarrow0.
-  \label{eq:LAN-full-target}
-\end{align}
+  \right\|_1\longrightarrow0.
+\end{equation}
 \end{theorem}
+\end{samepage}
 
 \begin{proof}
 The forward and reverse assertions
@@ -1934,18 +1986,20 @@ Fix \(p\in\Delta_d^\circ\).  There are channels
   S_N^{\mathrm{orb}}:\cT_1(\cF_{\mathrm{orb}})\to\cT_1((\C^d)^{\ot N})
 \]
 such that, uniformly for \(z\) in compact sets,
-\begin{align}
+\begin{equation}\label{eq:LAN-known-forward}
   \|T_n^{\mathrm{orb}}(\rho_{p,g_{n,z}}^{\ot n})-\Phi_z^{(p)}\|_1
-  &\longrightarrow0,
-  \label{eq:LAN-known-forward}\\
+  \longrightarrow0,
+\end{equation}
+\begin{equation}\label{eq:LAN-known-reverse}
   \|S_n^{\mathrm{orb}}(\Phi_z^{(p)})-\rho_{p,g_{n,z}}^{\ot n}\|_1
-  &\longrightarrow0,
-  \label{eq:LAN-known-reverse}\\
+  \longrightarrow0,
+\end{equation}
+and
+\begin{equation}\label{eq:LAN-known-target}
   \|T_{m_n}^{\mathrm{orb}}(\rho_{p,g_{n,z}}^{\ot m_n})
        -\Psi_z^{(p,\gamma)}\|_1
-  &\longrightarrow0.
-  \label{eq:LAN-known-target}
-\end{align}
+  \longrightarrow0.
+\end{equation}
 \end{corollary}
 
 \begin{proof}
@@ -2165,8 +2219,8 @@ Take the infimum over
 
 A flat rank-\(r\) projector state has the form
 \(\rho_P=P/r\), where \(P\) is a rank-\(r\) orthogonal projector.  These
-projectors form the complex Grassmannian \(\Gr(r,d)\).  When \(r>1\), its positive
-eigenvalue has multiplicity \(r\), so the simple-spectrum theorems do not
+projectors form the complex Grassmannian \(\Gr(r,d)\).  When \(r>1\), the
+state \(\rho_P\) has a nonzero eigenvalue of multiplicity \(r\), so the simple-spectrum theorems do not
 apply.  We prove \cref{thm:grassmann} directly, without a general
 rank-deficient LAN theorem.  The exact compression lemma below holds for any
 positive spectrum on its support, although we use it only for the flat
@@ -2224,29 +2278,21 @@ operator \(X\) on \(\cH_\mu^{(r)}\),
   \label{eq:channel-compression}
 \end{equation}
 where
-\begin{align}
+\begin{equation}\label{eq:a-compression-factor}
   a_{\mu,\nu}^{(r,d)}
-  &=\frac{
-     \dim\cH_\mu^{(d)}/\dim\cH_\nu^{(d)}}{
-     \dim\cH_\mu^{(r)}/\dim\cH_\nu^{(r)}}
-  \label{eq:a-dimension-ratio}\\
-  &=\prod_{\substack{1\le i\le r\\r<j\le d}}
+  =\frac{\dim\cH_\mu^{(d)}\dim\cH_\nu^{(r)}}
+         {\dim\cH_\nu^{(d)}\dim\cH_\mu^{(r)}}
+  =\prod_{\substack{1\le i\le r\\r<j\le d}}
     \frac{\mu_i+j-i}{\nu_i+j-i}.
-  \label{eq:a-product}
-\end{align}
+\end{equation}
 Consequently, the fidelity for each pair of labels factorizes exactly:
-\begin{align}
- &F\!\left(
-   \cC_{\mu,\nu}^{(d)}(\rho_{\bar p,\mu}^{(d)}),
-   \rho_{\bar p,\nu}^{(d)}
- \right)\notag\\
- &\qquad=\sqrt{a_{\mu,\nu}^{(r,d)}}\,
- F\!\left(
-   \cC_{\mu,\nu}^{(r)}(\rho_{p,\mu}^{(r)}),
-   \rho_{p,\nu}^{(r)}
- \right).
- \label{eq:exact-sector-factorization}
-\end{align}
+\begin{equation}\label{eq:exact-sector-factorization}
+ F\!\left(\cC_{\mu,\nu}^{(d)}(\rho_{\bar p,\mu}^{(d)}),
+   \rho_{\bar p,\nu}^{(d)}\right)
+ =\sqrt{a_{\mu,\nu}^{(r,d)}}\,
+ F\!\left(\cC_{\mu,\nu}^{(r)}(\rho_{p,\mu}^{(r)}),
+   \rho_{p,\nu}^{(r)}\right).
+\end{equation}
 \end{lemma}
 
 \begin{proof}
@@ -2289,10 +2335,11 @@ submodule generated by that vector:
   \label{eq:cartan-restriction}
 \end{equation}
 Inserting \eqref{eq:cartan-restriction} into the two sector-channel formulas
-proves \eqref{eq:channel-compression}, with the scalar in
-\eqref{eq:a-dimension-ratio}.  The Weyl dimension formula and the vanishing
-of all rows after \(r\) give \eqref{eq:a-product}.  Factors involving two
-positive rows cancel, while factors involving two zero rows equal one.
+proves \eqref{eq:channel-compression}, with the dimension ratio in
+\eqref{eq:a-compression-factor}.  The Weyl dimension formula and the
+vanishing of all rows after \(r\) give the product in the same equation.
+Factors involving two positive rows cancel, while factors involving two
+zero rows equal one.
 
 If \(A,B\ge0\) and \(PBP=B\), then
 \[
@@ -2410,14 +2457,14 @@ Disintegrate this finite coupling to obtain a label kernel
 Put \(\omega=\nu-\mu\).  Its leading term is \((m_n-n)/r\) in every
 coordinate, while its fluctuations are of order \(\sqrt n\).  Hence
 \(\omega_i>0\) for every \(i\) with probability \(1-o(1)\).  For adjacent rows,
-\begin{align*}
+\[
   \frac{\omega_i-\omega_{i+1}}{\sqrt n}
-  &=\sqrt{\gamma_n}
+  =\sqrt{\gamma_n}
     \left[\frac{\nu_i-\nu_{i+1}}{\sqrt{m_n}}\right]
-    -\left[\frac{\mu_i-\mu_{i+1}}{\sqrt n}\right]\\
-  &\Longrightarrow
+    -\left[\frac{\mu_i-\mu_{i+1}}{\sqrt n}\right]
+  \Longrightarrow
     (\sqrt\gamma-1)(X_i-X_{i+1})>0.
-\end{align*}
+\]
 Thus \(\omega\) is a partition with probability \(1-o(1)\).  Use the
 ambient Cartan-sector channel on this good event and, otherwise, the
 covariant replacement channel into the same sampled \(\nu\)-block.  The
@@ -2428,21 +2475,21 @@ output-label marginal is exactly the target law.  Let
        \nu\in\mathsf T_{m_n}^{\mathrm{flat}}\right\}.
 \]
 Then
-\begin{align*}
+\[
   \Pi_n(G_n^c)
-  &\le \Pi_n\{\nu-\mu\text{ is not a partition}\}
-   +\mathsf P_n^{(r)}((\mathsf T_n^{\mathrm{flat}})^c)\\
-  &\quad
-   +\mathsf P_{m_n}^{(r)}((\mathsf T_{m_n}^{\mathrm{flat}})^c)
-   \longrightarrow0.
-\end{align*}
+  \le \Pi_n\{\nu-\mu\not\vdash m_n-n\}
+   +\sum_{N\in\{n,m_n\}}
+    \mathsf P_N^{(r)}((\mathsf T_N^{\mathrm{flat}})^c)
+  \longrightarrow0.
+\]
 Moreover, \eqref{eq:R-lambda} gives, uniformly on \(G_n\),
 \begin{equation}\label{eq:grassmann-sector-factor-limit}
   \sqrt{\frac{R_\mu}{R_\nu}}
   =\gamma_n^{-r(d-r)/2}\bigl(1+O_{r,d}(n^{-1/3})\bigr)
   \longrightarrow\gamma^{-r(d-r)/2}.
 \end{equation}
-The direct-sum fidelity formula and joint concavity now give
+The block formula \eqref{eq:lifted-exact-block-fidelity}, valid verbatim
+for the \(r\)-row label laws, and concavity of fidelity now give
 \begin{equation}\label{eq:grassmann-achievability-limit}
   F\!\left(
     \mathcal Q_n[K_n]((P/r)^{\ot n}),
@@ -2554,24 +2601,16 @@ Indeed, with \(B=\Pi_{\nu,P}A\Pi_{\nu,P}\), the left side is
 Using the direct-sum fidelity formula, then
 \eqref{eq:support-overlap}--\eqref{eq:flat-support-fidelity}, and finally
 Cauchy--Schwarz over \(\nu\), gives
-\begin{align}
- &F\!\left(
+\begin{equation}\label{eq:grassmann-finite-converse}
+ F\!\left(
    \cM_n((P/r)^{\ot n}),
    (P/r)^{\ot m_n}
- \right)\notag\\
- &\quad\le
- \sum_\nu
- \sqrt{\frac{\mathsf P_{m_n}^{(r)}(\nu)}{R_\nu}}
- \sqrt{\sum_\mu
-       \mathsf P_n^{(r)}(\mu)K(\nu\mid\mu)R_\mu}
- \notag\\
- &\quad\le
- \left[
+ \right)
+ \le\left[
    \left(\sum_\mu\mathsf P_n^{(r)}(\mu)R_\mu\right)
    \left(\sum_\nu\frac{\mathsf P_{m_n}^{(r)}(\nu)}{R_\nu}\right)
  \right]^{1/2}.
- \label{eq:grassmann-finite-converse}
-\end{align}
+\end{equation}
 The target law vanishes when \(\ell(\nu)>r\), so the \(\nu\)-sums may be
 restricted to \(\ell(\nu)\le r\).  Output mass in longer diagrams can only
 strengthen the inequality.
@@ -2581,44 +2620,42 @@ The finite Young large-deviation estimate
 \(r\), remains valid at the uniform spectrum: in its proof all weight
 monomials are then equal rather than strictly ordered.  Together with
 \eqref{eq:R-lambda}, it gives
-\begin{align}
+\begin{equation}\label{eq:R-positive-moment}
   \frac1{n^{r(d-r)}}\sum_\mu\mathsf P_n^{(r)}(\mu)R_\mu
-  &\longrightarrow
+  \longrightarrow
   \prod_{\substack{1\le i\le r\\r<j\le d}}\frac{1}{r(j-i)},
-  \label{eq:R-positive-moment}\\
+\end{equation}
+and
+\begin{equation}\label{eq:R-negative-moment}
   m_n^{r(d-r)}\sum_\nu\frac{\mathsf P_{m_n}^{(r)}(\nu)}{R_\nu}
-  &\longrightarrow
+  \longrightarrow
   \prod_{\substack{1\le i\le r\\r<j\le d}}r(j-i).
-  \label{eq:R-negative-moment}
-\end{align}
+\end{equation}
 For completeness, use the flat typical set
-\eqref{eq:flat-typical-set}.  At the uniform spectrum,
-the large-deviation estimate, the bound \((N+1)^{r-1}\) on the number of
-partitions, and Pinsker's inequality give the first bound below.  On
-\(\mathsf T_N^{\mathrm{flat}}\), \eqref{eq:R-lambda} gives the two uniform
-expansions in the second line:
+\eqref{eq:flat-typical-set}.  At the uniform spectrum, the large-deviation
+estimate, the bound \((N+1)^{r-1}\) on the number of partitions, and
+Pinsker's inequality give
 \[
-\begin{alignedat}{2}
  \mathsf P_N^{(r)}\!\left((\mathsf T_N^{\mathrm{flat}})^c\right)
- &\le (N+1)^{r(r-1)/2+r-1}e^{-N^{1/3}/2},\\
- \frac{R_\lambda}{N^{r(d-r)}}
- &=\prod_{\substack{1\le i\le r\\r<j\le d}}\frac1{r(j-i)}
-   \bigl(1+O_{r,d}(N^{-1/3})\bigr),
- &\;
- \frac{N^{r(d-r)}}{R_\lambda}
- &=\prod_{\substack{1\le i\le r\\r<j\le d}}r(j-i)
-   \bigl(1+O_{r,d}(N^{-1/3})\bigr),\\
- 0\le\frac{R_\lambda}{N^{r(d-r)}}
- &\le\prod_{\substack{1\le i\le r\\r<j\le d}}
-       \frac{1+j-i}{j-i},
- &
- 0\le\frac{N^{r(d-r)}}{R_\lambda}&\le N^{r(d-r)}.
-\end{alignedat}
+ \le (N+1)^{r(r-1)/2+r-1}e^{-N^{1/3}/2}.
 \]
-The bounds in the last row hold globally: they follow from
+Uniformly for \(\lambda\in\mathsf T_N^{\mathrm{flat}}\),
+\eqref{eq:R-lambda} gives
+\[
+ \frac{R_\lambda}{N^{r(d-r)}}
+ =\prod_{\substack{1\le i\le r\\r<j\le d}}\frac1{r(j-i)}
+  \bigl(1+O_{r,d}(N^{-1/3})\bigr).
+\]
+Taking reciprocals yields the corresponding expansion
+\(N^{r(d-r)}/R_\lambda
+=\prod_{1\le i\le r<j\le d}r(j-i)
+\bigl(1+O_{r,d}(N^{-1/3})\bigr)\).
+Globally, \(R_\lambda/N^{r(d-r)}\) is at most
+\(\prod_{1\le i\le r<j\le d}(1+j-i)/(j-i)\), while
+\(N^{r(d-r)}/R_\lambda\le N^{r(d-r)}\); these bounds follow from
 \(\lambda_i\le N\) and \(R_\lambda\ge1\), even when \(\lambda_r=0\).
-Multiplying them by the tail probability in the first line shows that both
-tail expectations vanish.  The middle row therefore proves
+Multiplying the global bounds by the tail probability shows that both tail
+expectations vanish.  The typical-set expansions therefore prove
 \eqref{eq:R-positive-moment} and
 \eqref{eq:R-negative-moment}, with \(N=n\) and \(N=m_n\), respectively.
 Substitution into
@@ -2781,26 +2818,32 @@ spectrum.  For every fixed \(\delta>0\), with
 \end{equation}
 This advantage holds for every fixed \(\delta>0\).  To express it as a
 small-error sample requirement, expand at \(\delta=M/N\downarrow0\):
-\begin{equation}\label{eq:full-rank-small-delta-expansions}
-\begin{aligned}
+\begin{equation}\label{eq:universal-small-delta-expansion}
   \Funiv(1+\delta,p)^2
-  &=1-A_{\mathrm{univ}}(p)\delta^2+O(\delta^3),\\
-  F_{\mathrm{PCT}}(1+\delta,p)^2
-  &=1-A_{\mathrm{PCT}}(p)\delta^2+O(\delta^3),
-\end{aligned}
+  =1-A_{\mathrm{univ}}(p)\delta^2+O(\delta^3),
 \end{equation}
-where the implied constants may depend on the fixed spectrum \(p\), and
-\begin{equation}\label{eq:pct-univ-curvature-gap}
-\begin{aligned}
+and
+\begin{equation}\label{eq:pct-small-delta-expansion}
+  F_{\mathrm{PCT}}(1+\delta,p)^2
+  =1-A_{\mathrm{PCT}}(p)\delta^2+O(\delta^3),
+\end{equation}
+where the implied constants may depend on the fixed spectrum \(p\).  The
+coefficients are
+\begin{equation}\label{eq:universal-curvature}
   A_{\mathrm{univ}}(p)
-  &=\frac{d-1}{8}+\frac14\sum_{i<j}\frac{p_i}{p_j},\\
+  =\frac{d-1}{8}+\frac14\sum_{i<j}\frac{p_i}{p_j},
+\end{equation}
+and
+\begin{equation}\label{eq:pct-curvature}
   A_{\mathrm{PCT}}(p)
-  &=\frac{d-1}{2}
-    +\frac14\sum_{i<j}\frac{(p_i+p_j)^2}{p_ip_j},\\
+  =\frac{d-1}{2}
+    +\frac14\sum_{i<j}\frac{(p_i+p_j)^2}{p_ip_j}.
+\end{equation}
+Their difference is strictly positive:
+\begin{equation}\label{eq:pct-univ-curvature-gap}
   A_{\mathrm{PCT}}(p)-A_{\mathrm{univ}}(p)
-  &=\frac{3(d-1)}{8}
+  =\frac{3(d-1)}{8}
     +\frac14\sum_{i<j}\left(2+\frac{p_j}{p_i}\right)>0.
-\end{aligned}
 \end{equation}
 First taking \(n\to\infty\) with \(m_n/n\to1+\delta\) for each fixed
 \(\delta>0\), then inverting the exact limiting fidelity and sending
@@ -2880,7 +2923,8 @@ fidelity.  For flat projector states, our projector-state cloner attains
 the exact projector-state minimax value, while PCT is strictly suboptimal for
 \(1<r<d\).
 
-Several boundary regimes remain open.  These include degenerate and  rank-deficient spectra, and neighborhoods in which the
+Several boundary regimes remain open.  These include degenerate and
+rank-deficient spectra, and neighborhoods in which the
 rank changes.  Estimates uniform for gains
 \(\gamma_n=m_n/n\downarrow1\) would be needed to turn these formulas into
 finite-sample bounds in the joint high-fidelity limit.  The exact minimax
@@ -2902,17 +2946,10 @@ explicit upper bound on PCT.
 
 \subsection{Simple full-rank spectra}
 
-Fix \(d\ge2\) and
-\[
-  p_1>\cdots>p_d>0,
-  \qquad \sum_{i=1}^d p_i=1,
-  \qquad \rho_p=\diag(p_1,\ldots,p_d),
-\]
-and let \(m_n/n\to\gamma>1\).  We use root fidelity
-\(F(\rho,\sigma)=\|\sqrt\rho\sqrt\sigma\|_1\).  Put
+Fix \(p\in\Delta_d^\circ\), so that \(\rho_p=\diag(p_1,\ldots,p_d)\) with
+\(p_1>\cdots>p_d>0\), and recall \(q_{ij}=p_j/p_i\) and the root fidelity
+\eqref{eq:root-fidelity-definition}.  Put
 \begin{equation}\label{eq:pct-mode-affinity-function}
-  q_{ij}=\frac{p_j}{p_i},
-  \qquad
   h_q(x)=\frac{\sqrt{(1-q)(1-x)}}{1-\sqrt{qx}},
 \end{equation}
 and define
@@ -2948,19 +2985,10 @@ For fixed \(d\), \(p\), and \(\gamma>1\) as above,
   F\!\left(
     \cC_n^{\mathrm{univ}}(\rho_p^{\ot n}),
     \rho_p^{\ot m_n}
-  \right).
+  \right),
 \end{equation}
-Here
-\[
-  \Funiv(\gamma,p)
-  =\left(\frac{2\sqrt\gamma}{1+\gamma}\right)^{(d-1)/2}
-   \prod_{i<j}f_\gamma(q_{ij}),
-\]
-where
-\[
-  f_\gamma(q)
-  =\frac{\sqrt\gamma+\sqrt{q(\gamma-1+q)}}{\gamma+q}.
-\]
+with \(\Funiv\) and \(f_\gamma\) as in \eqref{eq:main-values} and
+\eqref{eq:pairwise-fidelity-factor}.
 \end{theorem}
 
 The final equality in \eqref{eq:full-rank-pct-comparison} is
@@ -3010,17 +3038,17 @@ canonical purification is
   =ZS+SZ^*.
 \end{equation}
 Its diagonal and positive-CCR orbital coordinates are
-\begin{align}
-  h_i(Z)&=2\sqrt{p_i}\,\Re Z_{ii},
-  \label{eq:h-Z}\\
+\begin{equation}\label{eq:h-Z}
+  h_i(Z)=2\sqrt{p_i}\,\Re Z_{ii}.
+\end{equation}
+\begin{equation}\label{eq:beta-Z}
   \beta_{ij}(Z)
-  &=\frac{D_p(Z)_{ji}}{\sqrt{p_i-p_j}}
+  =\frac{D_p(Z)_{ji}}{\sqrt{p_i-p_j}}
     =\frac{\sqrt{p_i}Z_{ji}
             +\sqrt{p_j}\,\overline{Z_{ij}}}
            {\sqrt{p_i-p_j}},
   \qquad i<j.
-  \label{eq:beta-Z}
-\end{align}
+\end{equation}
 Notice that \(\sum_i h_i(Z)=0\).  Set
 \[
   \mathsf H_0=\left\{h\in\R^d:\sum_i h_i=0\right\},
@@ -3060,18 +3088,18 @@ diagonal part of \(\Lambda_p\) is the joint spectral measurement of
 \(\mathsf H_0\).
 
 For each \(i<j\), put \(\Delta_{ij}=p_i-p_j\) and define
-\begin{align}
+\begin{equation}\label{eq:retained-mode}
   a_{ij}
-  &=\frac{\sqrt{p_i}\,b_{ji}
+  =\frac{\sqrt{p_i}\,b_{ji}
           +\sqrt{p_j}\,b_{ij}^*}
-         {\sqrt{\Delta_{ij}}},
-  \label{eq:retained-mode}\\
+         {\sqrt{\Delta_{ij}}}.
+\end{equation}
+\begin{equation}\label{eq:complement-mode}
   c_{ij}
-  &=\frac{\sqrt{p_i}\,b_{ij}
+  =\frac{\sqrt{p_i}\,b_{ij}
           +\sqrt{p_j}\,b_{ji}^*}
          {\sqrt{\Delta_{ij}}}.
-  \label{eq:complement-mode}
-\end{align}
+\end{equation}
 A direct CCR calculation gives
 \[
   [a_{ij},a_{ij}^*]=[c_{ij},c_{ij}^*]=1,
@@ -3132,11 +3160,17 @@ Define
   =T_M^p\circ\Tr_{E^M}\circ\mathcal J_M.
 \end{equation}
 
-\begin{lemma}[Interior partial-trace/LAN limit]
+\begin{lemma}[Interior partial-trace/LAN limits]
 \label{lem:partial-trace-LAN}
+Let \(S_M^p\) be the reverse channel of the interior LAN theorem centered at
+\(\rho_p\), expressed in the \((h,\beta)\) coordinates used by \(T_M^p\).
 For every trace-class operator \(X\) on \(\Gamma_s(K_p)\),
 \begin{equation}\label{eq:strong-convergence}
   \|\Lambda_{p,M}(X)-\Lambda_p(X)\|_1\longrightarrow0.
+\end{equation}
+\begin{equation}\label{eq:pct-reverse-strong-convergence}
+  \bigl\| (\Tr_{E^M}\circ\mathcal J_M)(X)
+  -(S_M^p\circ\Lambda_p)(X)\bigr\|_1\longrightarrow0.
 \end{equation}
 \end{lemma}
 
@@ -3210,31 +3244,46 @@ continuously at the standard basis, gives
   \qquad
   \sqrt M\log g_M\longrightarrow G(\beta(Z)).
 \]
-Thus \(\rho_{Z,M}\) lies in the usual interior-LAN local chart with bounded
-coordinates converging to \((h(Z),\beta(Z))\).  The
-finite-dimensional LAN theorem \cite{KahnGuta2009LANFiniteDimensional}, uniformly on bounded
-local parameter sets, therefore gives
+Thus \(\rho_{Z,M}\) lies in the interior-LAN local chart, with a bounded
+coordinate \(\theta_M\) converging to \(\theta:=(h(Z),\beta(Z))\).  Write
+\(\Theta_\eta\) for the interior Gaussian state at coordinate \(\eta\); by
+\eqref{eq:Lambda-coherent}, \(\Lambda_p(\proj Z)=\Theta_\theta\).  The
+forward and reverse LAN estimates
+\eqref{eq:LAN-full-forward}--\eqref{eq:LAN-full-reverse}, which are
+uniform on bounded local parameter sets, together with trace-norm
+continuity of \(\eta\mapsto\Theta_\eta\), give
 \[
-  \Lambda_{p,M}(\proj Z)
-  \longrightarrow
-  \mathsf N_{h(Z),\Sigma_p}
-  \ot\bigotimes_{i<j}
-  D(\beta_{ij}(Z))\tau_{q_{ij}}D(\beta_{ij}(Z))^*
+  \bigl\|T_M^p(\rho_{Z,M}^{\ot M})-\Theta_\theta\bigr\|_1
+  \le\bigl\|T_M^p(\rho_{Z,M}^{\ot M})-\Theta_{\theta_M}\bigr\|_1
+   +\|\Theta_{\theta_M}-\Theta_\theta\|_1
+  \longrightarrow0,
 \]
-in trace norm.  This is exactly \eqref{eq:Lambda-coherent}.
+\[
+  \bigl\|S_M^p(\Theta_\theta)-\rho_{Z,M}^{\ot M}\bigr\|_1
+  \le\|\Theta_\theta-\Theta_{\theta_M}\|_1
+   +\bigl\|S_M^p(\Theta_{\theta_M})-\rho_{Z,M}^{\ot M}\bigr\|_1
+  \longrightarrow0,
+\]
+uniformly for \(Z\) in a fixed bounded set.  Combined with
+\eqref{eq:coherent-product-limit} and contractivity of
+\(T_M^p\circ\Tr_{E^M}\) and of \(\Tr_{E^M}\), these are
+\eqref{eq:strong-convergence} and \eqref{eq:pct-reverse-strong-convergence}
+for \(X=\proj Z\).
 
-It remains to extend the convergence to arbitrary trace-class inputs.  The
+It remains to extend both convergences to arbitrary trace-class inputs.  The
 complex linear span of coherent projectors is trace-norm dense in the trace
 class.  Indeed, a bounded operator annihilating that span has identically
 zero Husimi symbol; analyticity then makes every number-basis matrix element
-zero, and Hahn--Banach gives density.  Both \(\Lambda_{p,M}\) and
-\(\Lambda_p\) are trace-norm contractions.  If \(Y\) is a finite linear
-combination of coherent projectors, then
+zero, and Hahn--Banach gives density.  All four maps
+\(\Lambda_{p,M}\), \(\Lambda_p\), \(\Tr_{E^M}\circ\mathcal J_M\), and
+\(S_M^p\circ\Lambda_p\) are trace-norm contractions.  Hence, if \(Y\) is a
+finite linear combination of coherent projectors, then for either pair
+\((A_M,B_M)\) of maps compared above,
 \[
-  \limsup_M\|\Lambda_{p,M}(X)-\Lambda_p(X)\|_1
-  \le2\|X-Y\|_1.
+  \|A_MX-B_MX\|_1
+  \le 2\|X-Y\|_1+\|A_MY-B_MY\|_1.
 \]
-Approximating \(X\) by such \(Y\) proves \eqref{eq:strong-convergence}.
+First let \(M\to\infty\), then let \(Y\to X\), to obtain the claims.
 \end{proof}
 
 \begin{remark}[Coordinate convention]
@@ -3253,55 +3302,6 @@ Thus the physical rotation parameter \(z\) and the retained-mode
 displacement \(\beta\) should not be identified.  This normalization does
 not affect the centered thermal calculation below.
 \end{remark}
-
-\begin{lemma}[Reverse partial-trace/LAN limit]
-\label{lem:partial-trace-reverse-LAN}
-Let \(S_M^p\) be the reverse channel of the interior LAN theorem centered at
-\(\rho_p\), expressed in the \((h,\beta)\) coordinates used by \(T_M^p\).
-Then, for every \(X\in\cT_1(\Gamma_s(K_p))\),
-\begin{equation}\label{eq:pct-reverse-strong-convergence}
-  \bigl\| (\Tr_{E^M}\circ\mathcal J_M)(X)
-  -(S_M^p\circ\Lambda_p)(X)\bigr\|_1\longrightarrow0.
-\end{equation}
-\end{lemma}
-
-\begin{proof}
-For a coherent projector \(X=\proj Z\),
-\eqref{eq:coherent-product-limit} and contractivity of partial trace give
-\[
-  \bigl\| (\Tr_{E^M}\circ\mathcal J_M)(\proj Z)
-  -\rho_{Z,M}^{\ot M}\bigr\|_1\longrightarrow0.
-\]
-Put \(\theta=(h(Z),\beta(Z))\), and let \(\theta_M\) be the exact LAN-chart
-parameter of \(\rho_{Z,M}\) furnished by
-\eqref{eq:local-reduced-state}--\eqref{eq:G-beta}; thus
-\(\theta_M\to\theta\).  Write \(\Theta_\eta\) for the interior Gaussian
-state at coordinate \(\eta\).  Since
-\(\Lambda_p(\proj Z)=\Theta_\theta\), contractivity of \(S_M^p\),
-trace-norm continuity of the Gaussian family, and the reverse LAN estimate
-\eqref{eq:LAN-full-reverse} give
-\begin{align*}
- \bigl\|S_M^p(\Lambda_p(\proj Z))-\rho_{Z,M}^{\ot M}\bigr\|_1
- &\le \|\Theta_\theta-\Theta_{\theta_M}\|_1
-   +\bigl\|S_M^p(\Theta_{\theta_M})-\rho_{Z,M}^{\ot M}\bigr\|_1\\
- &\longrightarrow0,
-\end{align*}
-uniformly for \(Z\) in a fixed bounded set.  Hence
-\eqref{eq:pct-reverse-strong-convergence} holds on the complex linear span
-of coherent projectors.
-
-For completeness, set
-\(A_M=\Tr_{E^M}\circ\mathcal J_M\) and
-\(B_M=S_M^p\circ\Lambda_p\).  Both are trace-norm contractions.  If \(Y\)
-is a finite linear combination of coherent projectors, then
-\[
-  \|A_MX-B_MX\|_1
-  \le 2\|X-Y\|_1+\|A_MY-B_MY\|_1.
-\]
-The coherent-projector span is trace-norm dense by the argument in the proof
-of \cref{lem:partial-trace-LAN}; first let \(M\to\infty\), then let
-\(Y\to X\), to obtain the claim.
-\end{proof}
 
 \paragraph{Action on the thermal tangent state.}
 
@@ -3374,15 +3374,16 @@ in trace norm.
 Werner's channel \cite{Werner1998} is
 \[
   \mathcal W_{n,m}^{(D)}(X)
-  =\frac{D[n]}{D[m]}
+  =\frac{\mathsf d_D(n)}{\mathsf d_D(m)}
    P_m(X\ot I^{\ot(m-n)})P_m,
   \qquad
-  D[r]=\binom{r+D-1}{D-1},
+  \mathsf d_D(N)=\dim\operatorname{Sym}^N(\C^D)=\binom{N+D-1}{D-1},
 \]
 where \(P_m\) projects onto the symmetric subspace.  On an occupation vector
 with total transverse occupation \(t=|\mathbf k|\), the expectation of
 \(P_m(\proj\psi^{\ot n}\ot I)P_m\) is
-\(\binom{m-t}{n}/\binom mn\).  Multiplying by \(D[n]/D[m]\) gives
+\(\binom{m-t}{n}/\binom mn\).  Multiplying by
+\(\mathsf d_D(n)/\mathsf d_D(m)\) gives
 \eqref{eq:occupation-law}.  Irreducibility of \(\operatorname{Sym}^t(\C^{D-1})\)
 under the stabilizer \(\U(D-1)\) makes the operator scalar on each fixed-\(t\)
 subspace, while the stabilizer's central phase eliminates cross-\(t\) blocks.
@@ -3408,21 +3409,9 @@ convergence, which is exactly the trace-norm convergence
 \begin{proof}[Proof of \cref{thm:full-rank-pct}: upper bound and strict inequality]
 Use the canonical purification \(\psi_p\).  Every other minimal purification
 has the form \((I\ot U)\psi_p\), with \(U\in\U(d)\).  Covariance of Werner's
-cloner and invariance of partial trace give, for every \(U\),
-\begin{align*}
- &\Tr_{E^m}\mathcal W_{n,m}^{(d^2)}\!\left(
-   ((I\ot U)\proj{\psi_p}(I\ot U^*))^{\ot n}
- \right)\\
- &\quad=\Tr_{E^m}\!\left[
-   (I\ot U)^{\ot m}
-   \mathcal W_{n,m}^{(d^2)}(\proj{\psi_p}^{\ot n})
-   (I\ot U^*)^{\ot m}
- \right]\\
- &\quad=\Tr_{E^m}
-   \mathcal W_{n,m}^{(d^2)}(\proj{\psi_p}^{\ot n}).
-\end{align*}
-Thus the Haar average in random purification disappears exactly after the
-purifying registers are discarded:
+cloner and invariance of partial trace make the reduced Werner output
+independent of \(U\).  Thus the Haar average in random purification
+disappears exactly after the purifying registers are discarded:
 \begin{equation}\label{eq:Haar-drops}
   \sigma_{n,m}^{\mathrm{PCT}}(p)
   =\Tr_{E^m}
@@ -3445,30 +3434,16 @@ identity
   T_{m_n}^p(\sigma_{n,m_n}^{\mathrm{PCT}}(p))
   =\Lambda_{p,m_n}(\omega_{n,m_n}).
 \]
-By contractivity, Lemma~\ref{lem:partial-trace-LAN}, and
-\eqref{eq:omega-limit},
-\begin{align*}
- &\left\|
+By contractivity, \eqref{eq:strong-convergence}, and
+\eqref{eq:omega-limit}, the pulled-back output converges in trace norm:
+\[
+ \left\|
   \Lambda_{p,m_n}(\omega_{n,m_n})
   -\Lambda_p\!\left(
     \tau_{(\gamma-1)/\gamma}^{\ot(d^2-1)}
   \right)
- \right\|_1\\
- &\quad\le
- \left\|
-   \omega_{n,m_n}
-   -\tau_{(\gamma-1)/\gamma}^{\ot(d^2-1)}
- \right\|_1
- +\left\|
-   \Lambda_{p,m_n}\!\left(
-     \tau_{(\gamma-1)/\gamma}^{\ot(d^2-1)}
-   \right)
-   -\Lambda_p\!\left(
-     \tau_{(\gamma-1)/\gamma}^{\ot(d^2-1)}
-   \right)
- \right\|_1
- \longrightarrow0.
-\end{align*}
+ \right\|_1\longrightarrow0.
+\]
 Using \eqref{eq:thermal-channel-output}, the LAN limit of the PCT
 output is therefore
 \begin{equation}\label{eq:pct-lan-output}
@@ -3497,19 +3472,18 @@ trace-norm convergence.  Hence
   \le F(\Theta_p^{\mathrm{PCT}},\Theta_p).
 \end{equation}
 The fidelity on the right factorizes.  In \(d-1\) real dimensions,
-\begin{align}
+\begin{equation}\label{eq:pct-classical-affinity}
  F\!\left(
    \mathsf N_{0,(2\gamma-1)\Sigma_p},
    \mathsf N_{0,\Sigma_p}
  \right)
- &=\left(
+ =\left(
    \frac{2\sqrt{2\gamma-1}}{1+(2\gamma-1)}
-  \right)^{(d-1)/2}\notag\\
- &=\left(
+  \right)^{(d-1)/2}
+ =\left(
    \frac{\sqrt{2\gamma-1}}{\gamma}
   \right)^{(d-1)/2}.
- \label{eq:pct-classical-affinity}
-\end{align}
+\end{equation}
 For each thermal pair,
 \[
   F(\tau_{q_{ij}^{\mathrm{PCT}}},\tau_{q_{ij}})
@@ -3559,7 +3533,7 @@ proves \(F_{\mathrm{PCT}}<\Funiv\).
 \end{proof}
 
 \begin{proof}[Proof of \cref{thm:full-rank-pct}: matching lower bound]
-Apply \cref{lem:partial-trace-reverse-LAN} to the fixed state
+Apply \eqref{eq:pct-reverse-strong-convergence} to the fixed state
 \(X=\tau_{(\gamma-1)/\gamma}^{\ot(d^2-1)}\), and combine it with
 \eqref{eq:Haar-drops}, \eqref{eq:omega-limit}, and
 \eqref{eq:thermal-channel-output}: since
@@ -3594,20 +3568,14 @@ which is the required lower bound.  Together with
 \subsection{Projector states}
 \label{sec:grassmann-pct-comparison}
 
-The PCT protocol combines Werner's pure-state cloner
-\cite{Werner1998} with random purification \cite{TangWrightZhandry2025},
-then discards the purifying registers
-\cite{LiTheilHarrowChuang2026,FanizzaGrinkoScharnhorstSpilecki2026,
-JeonSohnOh2026}.  For projector states, we compare the fidelity attained by
-PCT itself with the optimum in \cref{thm:grassmann}, rather than relying only
-on its published data-processing lower bound.
+For projector states, we compare the fidelity attained by PCT itself with
+the optimum in \cref{thm:grassmann}, rather than relying only on its
+published data-processing lower bound.
 
-For \(s\ge1\), write
-\[
-  \mathsf d_s(N)=\dim\operatorname{Sym}^N(\C^s)
-  =\binom{N+s-1}{s-1},
-\]
-and let \(\Pi_{\mathrm{sym},N}^{(s)}\) be the projection onto this
+For \(s\ge1\), let
+\(\mathsf d_s(N)=\dim\operatorname{Sym}^N(\C^s)=\binom{N+s-1}{s-1}\) be as
+in the proof of \cref{lem:Werner-Fock}, and let
+\(\Pi_{\mathrm{sym},N}^{(s)}\) be the projection onto this
 symmetric subspace.  For \(m\ge n\) and an input \(X\) supported on
 \(\operatorname{Sym}^n(\C^s)\), Werner's pure-state \(n\)-to-\(m\) cloner
 in dimension \(s\) is
@@ -3677,35 +3645,21 @@ optimal pure-state cloner.
 \begin{proof}
 Every purification in the random-purification output has the form
 \((I\ot U)\Phi_P\), with \(U\in\U(r)\).  Unitary covariance of
-\(\mathcal W_{n,m}^{(rd)}\) and invariance of the partial trace give
-\begin{align*}
- &\Tr_{E^m}\mathcal W_{n,m}^{(rd)}\!\left(
-   \bigl((I\ot U)\proj{\Phi_P}(I\ot U^*)\bigr)^{\ot n}
- \right)\\
- &\qquad=
- \Tr_{E^m}\!\left[
-   (I\ot U)^{\ot m}
-   \mathcal W_{n,m}^{(rd)}(\proj{\Phi_P}^{\ot n})
-   (I\ot U^*)^{\ot m}
- \right]\\
- &\qquad=
- \Tr_{E^m}\mathcal W_{n,m}^{(rd)}(\proj{\Phi_P}^{\ot n}).
-\end{align*}
-Thus the Haar average disappears exactly after the purifying registers are
-discarded.
+\(\mathcal W_{n,m}^{(rd)}\) and invariance of the partial trace make the
+reduced output independent of \(U\).  Thus the Haar average disappears
+exactly after the purifying registers are discarded.
 
 Let \(Q=P\ot I_r\) on \(\C^d\ot\C^r\).  Its rank is \(r^2\), its
 range contains \(\Phi_P\), and \(Q^{\ot m}\) commutes with the symmetric
 projection.  Compressing \eqref{eq:grassmann-werner-cloner} therefore gives
-\begin{align}
- &Q^{\ot m}\mathcal W_{n,m}^{(rd)}
-   (\proj{\Phi_P}^{\ot n})Q^{\ot m}\notag\\
- &\quad=s_{n,m}^{(r,d)}
+\begin{multline}\label{eq:grassmann-pct-purified-compression}
+ Q^{\ot m}\mathcal W_{n,m}^{(rd)}
+   (\proj{\Phi_P}^{\ot n})Q^{\ot m}\\
+ =s_{n,m}^{(r,d)}
  (V_P\ot I_r)^{\ot m}
  \mathcal W_{n,m}^{(r^2)}(\proj{\Phi_r}^{\ot n})
  (V_P^*\ot I_r)^{\ot m}.
- \label{eq:grassmann-pct-purified-compression}
-\end{align}
+\end{multline}
 Taking the partial trace over \(E^m\) yields
 \begin{equation}
   P^{\ot m}\sigma_{n,m}^{\mathrm{PCT}}(P)P^{\ot m}
@@ -3745,28 +3699,10 @@ We next show that under \(\zeta_{n,m_n}^{(r)}\),
 \end{equation}
 
 For this purpose put \(R=r^2\) and use the symmetric occupation basis
-about the condensate \(\Phi_r\).  Under the corresponding embedding into
-the \((R-1)\)-mode Fock space, the purified Werner output is diagonal with
-mass
-\begin{equation}
-  \pi_{n,m}(\mathbf k)
-  =\frac{\binom{m-|\mathbf k|}{n}}
-         {\binom{m+R-1}{n+R-1}},
-  \qquad
-  \mathbf k\in\mathbb N^{R-1},\quad |\mathbf k|\le m-n.
-  \label{eq:grassmann-pct-occupation-law}
-\end{equation}
-For every fixed \(\mathbf k\),
-\[
-  \pi_{n,m_n}(\mathbf k)
-  \longrightarrow
-  \gamma^{-(R-1)}
-  \left(\frac{\gamma-1}{\gamma}\right)^{|\mathbf k|}.
-\]
-Extend \(\pi_{n,m_n}\) by zero to all of \(\mathbb N^{R-1}\).  Both sides
-are normalized probability masses (normalization follows also from
-Vandermonde's identity), so the discrete Scheff\'e lemma gives trace-norm
-convergence to
+about the condensate \(\Phi_r\).  \Cref{lem:Werner-Fock}, applied with
+\(D=R\) and \(\psi=\Phi_r\), shows that under the corresponding embedding
+into the \((R-1)\)-mode Fock space the purified Werner output converges in
+trace norm to
 \begin{equation}
   \tau_\vartheta^{\ot(R-1)},
   \qquad
@@ -3796,17 +3732,16 @@ Fock number operator, \(b(v)\) the annihilation operator in direction
 \(v\), \(\dd\Gamma(A)\) the second quantization of \(A\), and
 \(P_\perp=I-\proj{\Phi_r}\).  The standard condensate fluctuation identity
 gives, on each finite-particle sector,
-\begin{align}
- &J_m^*\left[
+\begin{multline}\label{eq:grassmann-pct-count-field}
+ J_m^*\left[
    \frac1{\sqrt m}\sum_{\ell=1}^m H_h^{(\ell)}
- \right]J_m\notag\\
- &\quad=
+ \right]J_m
+ =
  b^*(v_h)\sqrt{1-\frac{\mathcal N}{m}}
  +\sqrt{1-\frac{\mathcal N}{m}}\,b(v_h)
- +\frac1{\sqrt m}\dd\Gamma(P_\perp H_hP_\perp)
+ +\frac1{\sqrt m}\dd\Gamma(P_\perp H_hP_\perp)\\
  \longrightarrow b^*(v_h)+b(v_h).
- \label{eq:grassmann-pct-count-field}
-\end{align}
+\end{multline}
 The fields on the right commute for \(h\in\mathsf H_r\), because the
 inner products in \eqref{eq:grassmann-pct-count-gram} are real.  Put
 \[
@@ -3831,12 +3766,10 @@ The finite-particle vectors are analytic for
 \(\phi(h)=b^*(v_h)+b(v_h)\), so \(\phi(h)\) is essentially self-adjoint on
 \(\mathcal D_{\mathrm{fin}}\).  If \(\psi\) has at most \(L\) particles and
 \(m>L\), then
-\begin{align*}
+\[
  \|(A_m(h)-\phi(h))\psi\|
- &\le \|v_h\|(\sqrt{L+1}+\sqrt L)
-       \bigl(1-\sqrt{1-L/m}\bigr)\|\psi\|\\
- &\quad+\frac{L\|H_h\|}{\sqrt m}\|\psi\|\longrightarrow0.
-\end{align*}
+ =O_{L,h}(m^{-1/2})\|\psi\|\longrightarrow0.
+\]
 Thus \(A_m(h)\to\overline{\phi(h)}\) on a core for the limiting
 self-adjoint operator.  The standard core criterion
 \cite[Theorem~VIII.25]{ReedSimon1980} gives strong-resolvent convergence and
@@ -4247,34 +4180,26 @@ by the same \(\mathbf r\), so \(J_{\lambda,L}\) is unitary onto
 \(P_L^{\cF}\cF_{\mathrm{orb}}\).  It is defined only on
 \(\mathcal K_{\lambda,L}\), and it depends on \(\lambda\) and \(L\).
 
-\begin{proof}[Proof of \cref{prop:sector-fidelity}]
+\begin{proof}[Proof of \cref{prop:sector-fidelity,lem:sector-mixture-stability}]
 Fix \(K\) and \(\delta_n\) as in the proposition, write \(m=m_n\), and put
 \(\omega=\nu-\mu\).  Since \(m/n=\gamma_n\to\gamma>1\), we have
 \(m/n-1\ge(\gamma-1)/2\) for all sufficiently large \(n\).
 Uniformly over the allowed parameters,
 \[
-\begin{aligned}
   \left\|\frac\omega{m-n}-p\right\|_\infty
-  &=\left\|
-    \frac{m/n}{m/n-1}\left(\frac\nu m-p\right)
-    -\frac1{m/n-1}\left(\frac\mu n-p\right)
-  \right\|_\infty\\
-  &\le\frac{m/n+1}{m/n-1}\,\delta_n=o(1).
-\end{aligned}
+  \le\frac{m/n+1}{m/n-1}\,\delta_n=o(1).
 \]
 Every coordinate and every adjacent gap is uniformly positive on \(K\).
 Hence \(\omega\vdash m-n\) for all sufficiently large \(n\).  For
 \(\alpha=e_i-e_j\), set
 \begin{equation}\label{eq:splitting-fraction}
-\begin{aligned}
   s_{\alpha,n}
-  &=\frac{\Delta_\alpha^\mu}{\Delta_\alpha^\nu}
+  :=\frac{\Delta_\alpha^\mu}{\Delta_\alpha^\nu}
     =\frac{n}{m}
       \frac{\mu_i/n-\mu_j/n}{\nu_i/m-\nu_j/m}
-    =\frac1\gamma+o(1),\\
-  1-s_{\alpha,n}
-  &=\frac{\Delta_\alpha^\omega}{\Delta_\alpha^\nu}.
-\end{aligned}
+    =\frac1\gamma+o(1),
+  \qquad
+  1-s_{\alpha,n}=\frac{\Delta_\alpha^\omega}{\Delta_\alpha^\nu}.
 \end{equation}
 Consequently, there are constants
 \(0<c_K<C_K<\infty\), depending only on \(K\) and
@@ -4421,205 +4346,101 @@ Since \(s_{\alpha,n}=\gamma^{-1}+o(1)\),
   \langle e_{\mathbf r}^\nu,
     \sigma_{\mu,\nu}e_{\mathbf s}^\nu\rangle
   &=\delta_{\mathbf r,\mathbf s}
-    \prod_\alpha(1-q_\alpha^{(\gamma)})
-    \bigl(q_\alpha^{(\gamma)}\bigr)^{r_\alpha}+o(1),\\
+    \prod_\alpha\left[(1-q_\alpha^{(\gamma)})
+    \bigl(q_\alpha^{(\gamma)}\bigr)^{r_\alpha}\right]+o(1),\\
   \langle e_{\mathbf r}^\nu,
     \rho_{p,\nu}e_{\mathbf s}^\nu\rangle
   &=\delta_{\mathbf r,\mathbf s}
-    \prod_\alpha(1-q_\alpha)q_\alpha^{r_\alpha}+o(1).
+    \prod_\alpha\left[(1-q_\alpha)q_\alpha^{r_\alpha}\right]+o(1).
 \end{aligned}
 \]
 These are precisely the number-basis matrix elements of
 \(\tau_p^{(\gamma)}\) and \(\tau_p\).
 For fixed \(L\), the cutoff space has fixed finite dimension, so the uniform
 entrywise limits imply convergence in trace norm:
-\begin{align}
+\begin{equation}\label{eq:output-fixed-height-convergence}
   \left\|
   J_{\nu,L}P_{\nu,L}\sigma_{\mu,\nu}P_{\nu,L}J_{\nu,L}^*
   -P_L^{\cF}\tau_p^{(\gamma)}P_L^{\cF}
-  \right\|_1&\longrightarrow0,
-  \label{eq:output-fixed-height-convergence}\\
+  \right\|_1\longrightarrow0.
+\end{equation}
+\begin{equation}\label{eq:target-fixed-height-convergence}
   \left\|
   J_{\nu,L}P_{\nu,L}\rho_{p,\nu}P_{\nu,L}J_{\nu,L}^*
   -P_L^{\cF}\tau_pP_L^{\cF}
-  \right\|_1&\longrightarrow0.
-  \label{eq:target-fixed-height-convergence}
-\end{align}
-
-Both \(\sigma_{\mu,\nu}\) and \(\rho_{p,\nu}\) commute with
-the diagonal torus.  The second assertion is immediate; the first follows
-from torus invariance of \(\rho_{p,\mu}\) and covariance of
-\(\cC_{\mu,\nu}\).
-Consequently, \(P_{\nu,L}\) reduces both states, and the direct-sum identity
-gives
-\[
-\begin{aligned}
-  F(\sigma_{\mu,\nu},\rho_{p,\nu})
-  ={}&F(P_{\nu,L}\sigma_{\mu,\nu}P_{\nu,L},
-        P_{\nu,L}\rho_{p,\nu}P_{\nu,L})\\
-  &+F((I-P_{\nu,L})\sigma_{\mu,\nu}(I-P_{\nu,L}),
-       (I-P_{\nu,L})\rho_{p,\nu}(I-P_{\nu,L})).
-\end{aligned}
-\]
-Schatten H\"older gives \(F(A,C)\le\sqrt{\Tr A\,\Tr C}\), so the second
-term is at most
-\begin{equation}\label{eq:sector-tail-fidelity-bound}
-  \sqrt{\Tr[(I-P_{\nu,L})\rho_{p,\nu}]},
+  \right\|_1\longrightarrow0.
 \end{equation}
-because \(\Tr[(I-P_{\nu,L})\sigma_{\mu,\nu}]\le1\).
 
-Taking traces in \eqref{eq:target-fixed-height-convergence} gives, for fixed
-\(L\),
-\[
-  \Tr[(I-P_{\nu,L})\rho_{p,\nu}]
-  =\Tr[(I-P_L^{\cF})\tau_p]+o(1)
-\]
-uniformly as \(n\to\infty\).  Since \(K\) is
-compact in \(\Delta_d^\circ\), there is \(b_K<1\) such that
-\(q_\alpha\le b_K\) for every \(p\in K\) and every positive root
-\(\alpha\).  The occupation numbers under \(\tau_p\) are independent
-geometric variables with parameters at most \(b_K\).  If their total
-occupation is \(s\), then their total root height is at most \((d-1)s\).
-Moreover, the probability of any fixed occupation vector of total occupation
-\(s\) is at most \(b_K^s\), and there are
-\(\binom{s+r_d-1}{r_d-1}\) such vectors.  Therefore
-\begin{equation}\label{eq:uniform-thermal-height-tail}
-  \sup_{p\in K}\Tr[(I-P_L^{\cF})\tau_p]
-  \le
-  \sum_{s>L/(d-1)}\binom{s+r_d-1}{r_d-1}b_K^s
-  \longrightarrow0\qquad(L\to\infty).
-\end{equation}
-The same direct-sum decomposition for
-\(F(\tau_p^{(\gamma)},\tau_p)\) bounds its complementary part by the square
-root of the same target thermal tail.  Consequently,
-\[
-\begin{aligned}
- &\left|F(\sigma_{\mu,\nu},\rho_{p,\nu})
-       -F(\tau_p^{(\gamma)},\tau_p)\right|\\
- &\quad\le
- \left|F(P_{\nu,L}\sigma_{\mu,\nu}P_{\nu,L},
-         P_{\nu,L}\rho_{p,\nu}P_{\nu,L})
-       -F(P_L^{\cF}\tau_p^{(\gamma)}P_L^{\cF},
-          P_L^{\cF}\tau_pP_L^{\cF})\right|\\
- &\qquad+
- \sqrt{\Tr[(I-P_{\nu,L})\rho_{p,\nu}]}
- +\sqrt{\Tr[(I-P_L^{\cF})\tau_p]}.
-\end{aligned}
-\]
-
-By \eqref{eq:fidelity-continuity} and
-\eqref{eq:output-fixed-height-convergence}--\eqref{eq:target-fixed-height-convergence},
-for every fixed \(L\),
-\[
-\begin{aligned}
-  &F(P_{\nu,L}\sigma_{\mu,\nu}P_{\nu,L},
-     P_{\nu,L}\rho_{p,\nu}P_{\nu,L})\\
-  &\qquad\longrightarrow
-  F(P_L^{\cF}\tau_p^{(\gamma)}P_L^{\cF},
-    P_L^{\cF}\tau_pP_L^{\cF})
-\end{aligned}
-\]
-uniformly.  First let \(n\to\infty\) at fixed \(L\), and then let
-\(L\to\infty\) using
-\eqref{eq:sector-tail-fidelity-bound}--\eqref{eq:uniform-thermal-height-tail}.
-This proves
-\[
-  \left|F(\sigma_{\mu,\nu},\rho_{p,\nu})
-  -F(\tau_p^{(\gamma)},\tau_p)\right|\longrightarrow0
-\]
-uniformly.  Finally,
-\[
-  F(\tau_p^{(\gamma)},\tau_p)
-  =\prod_{i<j}F(\tau_{q_{ij}^{(\gamma)}},\tau_{q_{ij}})
-  =\Forb(\gamma,p).
-\]
-Here multiplicativity of fidelity follows directly from multiplicativity of
-the trace norm under tensor products, and the final equality uses
-\eqref{eq:thermal-root-fidelity} and \eqref{eq:one-mode-f}.
-\end{proof}
-
-\begin{proof}[Proof of \cref{lem:sector-mixture-stability}]
-Compatibility follows from the first assertion of
-\cref{prop:sector-fidelity}.  Put
+We now prove the fidelity assertions of \cref{prop:sector-fidelity} and
+\cref{lem:sector-mixture-stability} together.  Let \((a_\mu)_\mu\) be a
+probability distribution supported on labels \(\mu\in\mathsf Y_n\) with
+\(\|\mu/n-p\|_\infty\le\delta_n\); for the proposition, take a point mass.
+All such pairs \((\mu,\nu)\) are compatible for large \(n\), by the first
+part of the proof.  Put
 \[
   \overline\sigma_{p,\nu}
-  =\sum_\mu a_\mu\,\cC_{\mu,\nu}(\rho_{p,\mu}).
+  =\sum_\mu a_\mu\,\sigma_{\mu,\nu},
+  \qquad \sigma_{\mu,\nu}=\cC_{\mu,\nu}(\rho_{p,\mu}).
 \]
-Fix \(L\).  The fixed-height calculation
-\eqref{eq:output-fixed-height-convergence} gives a number
-\(\varepsilon_{n,L}\to0\), for fixed \(L\), such that every label in the
-support satisfies
+Fix \(L\).  By \eqref{eq:output-fixed-height-convergence} there is
+\(\varepsilon_{n,L}\to0\), for fixed \(L\) and uniformly over the allowed
+parameters, such that every \(\mu\) in the support satisfies
 \[
  \left\|
- J_{\nu,L}P_{\nu,L}
- \cC_{\mu,\nu}(\rho_{p,\mu})
- P_{\nu,L}J_{\nu,L}^*
+ J_{\nu,L}P_{\nu,L}\sigma_{\mu,\nu}P_{\nu,L}J_{\nu,L}^*
  -P_L^{\cF}\tau_p^{(\gamma)}P_L^{\cF}
  \right\|_1
  \le\varepsilon_{n,L}.
 \]
-All bounds are uniform over the parameters in the lemma.  The triangle
-inequality and \(\sum_\mu a_\mu=1\) therefore give
+The frame \(J_{\nu,L}P_{\nu,L}\) depends only on \(\nu\) and \(L\), so the
+triangle inequality and \(\sum_\mu a_\mu=1\) give the same bound with
+\(\sigma_{\mu,\nu}\) replaced by \(\overline\sigma_{p,\nu}\).  After
+increasing \(\varepsilon_{n,L}\) if necessary,
+\eqref{eq:target-fixed-height-convergence} gives
 \[
  \left\|
- J_{\nu,L}P_{\nu,L}\overline\sigma_{p,\nu}
- P_{\nu,L}J_{\nu,L}^*
- -P_L^{\cF}\tau_p^{(\gamma)}P_L^{\cF}
- \right\|_1
- \le\varepsilon_{n,L}.
-\]
-After increasing \(\varepsilon_{n,L}\), if necessary,
-\eqref{eq:target-fixed-height-convergence} also gives
-\[
- \left\|
- J_{\nu,L}P_{\nu,L}\rho_{p,\nu}
- P_{\nu,L}J_{\nu,L}^*
+ J_{\nu,L}P_{\nu,L}\rho_{p,\nu}P_{\nu,L}J_{\nu,L}^*
  -P_L^{\cF}\tau_pP_L^{\cF}
  \right\|_1
  \le\varepsilon_{n,L}.
 \]
 
-Set
-\[
-  t_L
-  =\sup_{p\in K}\Tr[(I-P_L^{\cF})\tau_p].
-\]
-By \eqref{eq:uniform-thermal-height-tail}, \(t_L\to0\) as \(L\to\infty\).
-Taking traces in the preceding target estimate gives
-\[
+Next we control the target mass above height \(L\).  Since \(K\) is compact
+in \(\Delta_d^\circ\), there is \(b_K<1\) such that \(q_\alpha\le b_K\) for
+every \(p\in K\) and every positive root \(\alpha\).  The occupation numbers
+under \(\tau_p\) are independent geometric variables with parameters at most
+\(b_K\).  If their total occupation is \(s\), then their total root height is
+at most \((d-1)s\); moreover, the probability of any fixed occupation vector
+of total occupation \(s\) is at most \(b_K^s\), and there are
+\(\binom{s+r_d-1}{r_d-1}\) such vectors.  Therefore
+\begin{equation}\label{eq:uniform-thermal-height-tail}
+  t_L:=\sup_{p\in K}\Tr[(I-P_L^{\cF})\tau_p]
+  \le
+  \sum_{s>L/(d-1)}\binom{s+r_d-1}{r_d-1}b_K^s
+  \longrightarrow0\qquad(L\to\infty).
+\end{equation}
+Taking traces in the target estimate above gives
+\begin{equation}\label{eq:sector-tail-fidelity-bound}
   \Tr[(I-P_{\nu,L})\rho_{p,\nu}]
   \le t_L+\varepsilon_{n,L}.
-\]
+\end{equation}
 
-Every sector output in the mixture and the target state commute with the
-diagonal torus.  Hence \(P_{\nu,L}\) reduces
-\(\overline\sigma_{p,\nu}\) and \(\rho_{p,\nu}\).  The direct-sum identity
-for fidelity and Schatten H\"older therefore give
-\[
-\begin{aligned}
- &F\!\left(
-   (I-P_{\nu,L})\overline\sigma_{p,\nu}(I-P_{\nu,L}),
-   (I-P_{\nu,L})\rho_{p,\nu}(I-P_{\nu,L})
- \right)\\
- &\qquad\le
- \sqrt{
-   \Tr[(I-P_{\nu,L})\overline\sigma_{p,\nu}]\,
-   \Tr[(I-P_{\nu,L})\rho_{p,\nu}]
- }
- \le\sqrt{t_L+\varepsilon_{n,L}}.
-\end{aligned}
-\]
-Likewise,
-\[
-  F\!\left(
-   (I-P_L^{\cF})\tau_p^{(\gamma)}(I-P_L^{\cF}),
-   (I-P_L^{\cF})\tau_p(I-P_L^{\cF})
-  \right)
-  \le\sqrt{t_L}.
-\]
-Finally, the fidelity-continuity estimate
-\eqref{eq:fidelity-continuity} bounds the difference of the two cutoff
-fidelities by \(2\sqrt{\varepsilon_{n,L}}\).  Consequently,
+Every \(\sigma_{\mu,\nu}\), and hence \(\overline\sigma_{p,\nu}\), commutes
+with the diagonal torus, by torus invariance of \(\rho_{p,\mu}\) and
+covariance of \(\cC_{\mu,\nu}\); so does \(\rho_{p,\nu}\).  Consequently,
+\(P_{\nu,L}\) reduces both states, and the direct-sum identity splits their
+fidelity into the sum of the cutoff-block and complementary-block
+fidelities.
+Schatten H\"older gives \(F(A,C)\le\sqrt{\Tr A\,\Tr C}\), so by
+\eqref{eq:sector-tail-fidelity-bound} and
+\(\Tr[(I-P_{\nu,L})\overline\sigma_{p,\nu}]\le1\) the complementary
+fidelity is at most \(\sqrt{t_L+\varepsilon_{n,L}}\).  The same decomposition for
+\(F(\tau_p^{(\gamma)},\tau_p)\) with respect to \(P_L^{\cF}\) bounds its
+complementary part by \(\sqrt{t_L}\).  Finally, fidelity is invariant under
+the isometry \(J_{\nu,L}\), so the continuity estimate
+\eqref{eq:fidelity-continuity} and the two \(\varepsilon_{n,L}\)-bounds
+above show that the two cutoff fidelities differ by at most
+\(2\sqrt{\varepsilon_{n,L}}\).  Altogether,
 \[
  \left|
  F(\overline\sigma_{p,\nu},\rho_{p,\nu})
@@ -4630,9 +4451,19 @@ fidelities by \(2\sqrt{\varepsilon_{n,L}}\).  Consequently,
  +\sqrt{t_L+\varepsilon_{n,L}}
  +\sqrt{t_L}.
 \]
-First let \(n\to\infty\) at fixed \(L\), and then let \(L\to\infty\).
-The convergence is uniform, and
-\(F(\tau_p^{(\gamma)},\tau_p)=\Forb(\gamma,p)\), which proves the claim.
+First let \(n\to\infty\) at fixed \(L\), then let \(L\to\infty\); the
+convergence is uniform over \(p\in K\), over the admissible labels, and over
+the weights \((a_\mu)\).  Finally,
+\[
+  F(\tau_p^{(\gamma)},\tau_p)
+  =\prod_{i<j}F(\tau_{q_{ij}^{(\gamma)}},\tau_{q_{ij}})
+  =\Forb(\gamma,p),
+\]
+where multiplicativity of fidelity follows from multiplicativity of the
+trace norm under tensor products, and the last equality uses
+\eqref{eq:thermal-root-fidelity} and \eqref{eq:one-mode-f}.  For a point
+mass this proves \cref{prop:sector-fidelity}; in general it proves
+\cref{lem:sector-mixture-stability}.
 \end{proof}
 
 \section{Young local limit and randomized rounding}
@@ -4729,35 +4560,28 @@ Set \(\mathsf W_{N,p}=\{\lambda\in\mathsf L_N:
 \(\lambda_i-\lambda_{i+1}\ge N(p_i-p_{i+1})-2N^{2/3}>0\) for \(i<d\),
 uniformly over \(p\in K\).
 
-For \(\lambda\in\mathsf Y_N\), the Weyl dimension and character formulas
-give
+For \(\lambda\in\mathsf Y_N\), the Frobenius dimension formula gives
 \[
-\begin{gathered}
   P_{N,p}(\lambda)=\dim\cS_\lambda\,s_\lambda(p),\qquad
   \dim\cS_\lambda
   =N!\frac{\prod_{i<j}(\lambda_i-\lambda_j+j-i)}
-  {\prod_i(\lambda_i+d-i)!},\\
-  s_\lambda(p)
-  =\frac{\det[p_i^{\lambda_j+d-j}]_{i,j}}
-  {\prod_{i<j}(p_i-p_j)}.
-\end{gathered}
+  {\prod_i(\lambda_i+d-i)!}.
 \]
-Uniformly on \(\mathsf W_{N,p}\cap\operatorname{supp}M_{N,p}\),
+On \(\mathsf W_{N,p}\cap\operatorname{supp}M_{N,p}\) we have
+\(\|\lambda/N-p\|_\infty\le N^{-1/3}\), so
+\cref{lem:uniform-character-normalization} gives, uniformly,
 \[
   s_\lambda(p)
+  =p^\lambda\prod_{i<j}\Bigl(1-\frac{p_j}{p_i}\Bigr)^{-1}\bigl(1+o(1)\bigr)
   =\frac{\prod_i p_i^{\lambda_i+d-i}}
-  {\prod_{i<j}(p_i-p_j)}\bigl(1+O_K(e^{-c_KN})\bigr)
+  {\prod_{i<j}(p_i-p_j)}\bigl(1+o(1)\bigr).
 \]
-for some \(c_K>0\).  Indeed, both \((\lambda_i+d-i)/N\) and
-\(\log p_i\) are uniformly strictly decreasing there, so strict
-rearrangement makes every nonidentity determinant term exponentially
-smaller than the identity term.
 
 Comparison with
 \(M_{N,p}(\lambda)=N!\prod_i p_i^{\lambda_i}/\prod_i\lambda_i!\) gives
 \[
   \frac{P_{N,p}(\lambda)}{M_{N,p}(\lambda)}
-  =\bigl(1+O_K(e^{-c_KN})\bigr)
+  =\bigl(1+o(1)\bigr)
   \prod_{i<j}\frac{\lambda_i-\lambda_j+j-i}{N(p_i-p_j)}
   \prod_i\frac{\lambda_i!(Np_i)^{d-i}}{(\lambda_i+d-i)!}.
 \]
@@ -4765,18 +4589,12 @@ Writing the last product as
 \(\prod_i\prod_{a=1}^{d-i}\frac{Np_i}{\lambda_i+a}\), each factor
 \(\frac{\lambda_i-\lambda_j+j-i}{N(p_i-p_j)}\), \(i<j\), and
 \(\frac{Np_i}{\lambda_i+a}\), \(1\le a\le d-i\), equals
-\(1+O_K(N^{-1/3})\).  Therefore
-\[
-\begin{aligned}
-  \|P_{N,p}-M_{N,p}\|_{\ell^1}
-  \le{}&\sup_{\lambda\in\mathsf W_{N,p}\cap\operatorname{supp}M_{N,p}}
-       \left|\frac{P_{N,p}(\lambda)}{M_{N,p}(\lambda)}-1\right|\\
-  &+P_{N,p}(\mathsf W_{N,p}^c)+M_{N,p}(\mathsf W_{N,p}^c)
-  \longrightarrow0
-\end{aligned}
-\]
-uniformly for \(p\in K\), since the last two terms vanish by
-\cref{lem:young-concentration} and Hoeffding's inequality.
+\(1+O_K(N^{-1/3})\).  Splitting the \(\ell^1\)-sum over
+\(\mathsf W_{N,p}\) and its complement bounds it by the uniform
+likelihood-ratio error on the central set and the two tail probabilities.
+The first term is \(o(1)\), while the tails vanish uniformly by
+\cref{lem:young-concentration} and Hoeffding's inequality.  This proves
+\eqref{eq:young-multinomial-l1}.
 
 By \eqref{eq:young-multinomial-l1} and the \(\ell^1\)-isometry
 of \(\mathcal E_{N,p}\), it remains to show
@@ -4848,20 +4666,13 @@ Indeed, uniformly for \(p\in K\), \(\lambda\in V_{N,p}\), and
 \(\|x-y\|=O(N^{-1/2})\) and
 \(\|z\|=O(N^{\beta_0-1/2})\).
 Since \(\nabla\log\varphi_{0,\Sigma_p}(z)=-\Sigma_p^{-1}z\),
+the mean-value theorem gives a uniform log-ratio bound of order
+\(O_K(N^{\beta_0-1})\).  Exponentiating yields
 \begin{equation}\label{eq:gaussian-cell-oscillation}
-\begin{aligned}
-  \left|\log\frac{\varphi_{0,\Sigma_p}(x)}
-                       {\varphi_{0,\Sigma_p}(y)}\right|
-  &\le \sup_{z\in\mathsf C_{N,p}(\lambda)}
-      \|\nabla\log\varphi_{0,\Sigma_p}(z)\|\,\|x-y\|\\
-  &\le O_K(N^{\beta_0-1/2})\,O(N^{-1/2})
-   =O_K(N^{\beta_0-1}),\\
   \left|\frac{\varphi_{0,\Sigma_p}(x)}
                    {\varphi_{0,\Sigma_p}(y)}-1\right|
-  &=O_K(N^{\beta_0-1})=o(1).
-\end{aligned}
+  =O_K(N^{\beta_0-1})=o(1).
 \end{equation}
-The second estimate follows by exponentiation.
 
 The embedded multinomial density is consequently uniformly accurate on
 \(U_{N,p}\).  Indeed, \(0\in\mathsf C\), so the point
@@ -4869,39 +4680,27 @@ The embedded multinomial density is consequently uniformly accurate on
 \(\mathsf C_{N,p}(\lambda)\).  Uniformly for \(p\in K\),
 \(\lambda\in V_{N,p}\), and \(x\) in the same cell,
 \begin{equation}\label{eq:embedded-multinomial-cellwise}
-\begin{aligned}
   \frac{N^{(d-1)/2}M_{N,p}(\lambda)}
        {|\mathsf C|\varphi_{0,\Sigma_p}(x)}
-  &=\frac{N^{(d-1)/2}M_{N,p}(\lambda)}
-          {|\mathsf C|\varphi_{0,\Sigma_p}(x_\lambda)}
-    \frac{\varphi_{0,\Sigma_p}(x_\lambda)}
-         {\varphi_{0,\Sigma_p}(x)}\\
-  &=(1+o(1))(1+o(1))=1+o(1).
-\end{aligned}
+  =1+o(1).
 \end{equation}
-The two factors are \(1+o(1)\) by the multinomial local
+The two factors obtained by inserting
+\(\varphi_{0,\Sigma_p}(x_\lambda)\) are \(1+o(1)\) by the multinomial local
 estimate \eqref{eq:multinomial-local-estimate} and the Gaussian
 cell-oscillation bound \eqref{eq:gaussian-cell-oscillation}, respectively.
 
 For each \(p\in K\),
-\[
-\begin{aligned}
+\begin{multline*}
   \|\mathcal E_{N,p}M_{N,p}-\varphi_{0,\Sigma_p}\|_1
-  ={}&\int_{U_{N,p}}
-      |(\mathcal E_{N,p}M_{N,p})(x)-\varphi_{0,\Sigma_p}(x)|\,\dd x\\
-     &+\int_{U_{N,p}^c}
-      |(\mathcal E_{N,p}M_{N,p})(x)-\varphi_{0,\Sigma_p}(x)|\,\dd x
-  \\[-2pt]
-  \le{}&M_{N,p}(V_{N,p}^c)
+  \le M_{N,p}(V_{N,p}^c)
   +\int_{U_{N,p}^c}\varphi_{0,\Sigma_p}(x)\,\dd x\\
-  &+\sup_{\substack{\lambda\in V_{N,p}\\
+  {}+\sup_{\substack{\lambda\in V_{N,p}\\
                      x\in\mathsf C_{N,p}(\lambda)}}
   \left|
   \frac{N^{(d-1)/2}M_{N,p}(\lambda)}
        {|\mathsf C|\varphi_{0,\Sigma_p}(x)}-1
   \right|.
-\end{aligned}
-\]
+\end{multline*}
 Here the inequality uses
 \(\int_{U_{N,p}}\varphi_{0,\Sigma_p}(x)\,\dd x\le1\) and the cell
 normalization
@@ -4913,17 +4712,7 @@ vanish uniformly, proving
 \eqref{eq:embedded-multinomial-limit}.
 
 Finally, the \(\ell^1\)-isometry of \(\mathcal E_{N,p}\) gives
-\[
-\begin{aligned}
-  \sup_{p\in K}
-  \|\mathcal E_{N,p}P_{N,p}-\varphi_{0,\Sigma_p}\|_1
-  \le{}&\sup_{p\in K}\|P_{N,p}-M_{N,p}\|_{\ell^1}\\
-  &+\sup_{p\in K}
-    \|\mathcal E_{N,p}M_{N,p}-\varphi_{0,\Sigma_p}\|_1
-  \longrightarrow0
-\end{aligned}
-\]
-by \eqref{eq:young-multinomial-l1} and
+the claimed convergence by \eqref{eq:young-multinomial-l1} and
 \eqref{eq:embedded-multinomial-limit}.
 \end{proof}
 
@@ -4934,16 +4723,16 @@ Let \(\widetilde Q_{m_n,p}=P_{n,p}D_n\) denote the
 \(D_n\) with \(P_{n,p}\), before the replacement in
 \eqref{eq:rounding-kernel}.  For every compact
 \(K\Subset\Delta_d^\circ\),
-\begin{align}
+\begin{equation}\label{eq:rounded-density-limit}
   \sup_{p\in K}
   \left\|\mathcal E_{m_n,p}\widetilde Q_{m_n,p}
-  -\varphi_{0,\gamma\Sigma_p}\right\|_1&\longrightarrow0,
-  \label{eq:rounded-density-limit}\\
+  -\varphi_{0,\gamma\Sigma_p}\right\|_1\longrightarrow0.
+\end{equation}
+\begin{equation}\label{eq:raw-rounded-affinity}
   \sup_{p\in K}
   \left|F(\widetilde Q_{m_n,p},P_{m_n,p})-\Fcl(\gamma,d)\right|
-  &\longrightarrow0.
-  \label{eq:raw-rounded-affinity}
-\end{align}
+  \longrightarrow0.
+\end{equation}
 \end{lemma}
 
 \begin{proof}
@@ -4961,29 +4750,21 @@ and define the target-cell averaging operator explicitly by
 Since \(m_n=\gamma_n n\), the cell definitions and
 \eqref{eq:cell-kernel} give
 \[
-\begin{aligned}
   \gamma_n^{-1/2}\mathsf C_{m_n,p}(\nu)
-  &=\frac{\gamma_n^{-1}(\nu+\mathsf C)-np}{\sqrt n},\\
+  =\frac{\gamma_n^{-1}(\nu+\mathsf C)-np}{\sqrt n}.
+\]
+Moreover,
+\[
   \left|\gamma_n^{-1/2}\mathsf C_{m_n,p}(\nu)
        \cap\mathsf C_{n,p}(\mu)\right|
-  &=\frac{|\mathsf C|}{n^{(d-1)/2}}D_n(\nu\mid\mu).
-\end{aligned}
+  =\frac{|\mathsf C|}{n^{(d-1)/2}}D_n(\nu\mid\mu).
 \]
 Thus, for \(x\in\mathsf C_{m_n,p}(\nu)\), changing variables
 by \(z=y/\sqrt{\gamma_n}\) and summing over the source cells gives
 \begin{equation}\label{eq:rounding-intertwining}
-\begin{aligned}
- &\bigl[\operatorname{Av}_{m_n,p}\operatorname{dil}_{\gamma_n}
-   (\mathcal E_{n,p}P_{n,p})\bigr](x)\\
- &\quad=\frac{m_n^{(d-1)/2}}{|\mathsf C|}
-   \sum_{\mu\in\mathsf L_n}\frac{n^{(d-1)/2}}{|\mathsf C|}
-   P_{n,p}(\mu)
-   \left|\gamma_n^{-1/2}\mathsf C_{m_n,p}(\nu)
-        \cap\mathsf C_{n,p}(\mu)\right|\\
- &\quad=\frac{m_n^{(d-1)/2}}{|\mathsf C|}
-   \sum_{\mu\in\mathsf L_n}P_{n,p}(\mu)D_n(\nu\mid\mu)
-  =(\mathcal E_{m_n,p}\widetilde Q_{m_n,p})(x).
-\end{aligned}
+ \operatorname{Av}_{m_n,p}\operatorname{dil}_{\gamma_n}
+   (\mathcal E_{n,p}P_{n,p})
+ =\mathcal E_{m_n,p}\widetilde Q_{m_n,p}.
 \end{equation}
 For \(f,g\in L^1(\mathsf H)\),
 \[
@@ -5016,31 +4797,8 @@ Together with
 \(\|f(\,\cdot+h)-f\|_1\le\|h\|\,\|\nabla f\|_1\), this gives
 \(\|\operatorname{Av}_{m_n,p}\varphi_{0,\gamma_n\Sigma_p}
 -\varphi_{0,\gamma_n\Sigma_p}\|_1=o(1)\).  Using the contraction of
-\(\operatorname{Av}_{m_n,p}\) and \eqref{eq:rounding-intertwining},
-\[
-\begin{aligned}
-  \|\mathcal E_{m_n,p}\widetilde Q_{m_n,p}
-       -\varphi_{0,\gamma\Sigma_p}\|_1
-  ={}&\|\operatorname{Av}_{m_n,p}\operatorname{dil}_{\gamma_n}
-       (\mathcal E_{n,p}P_{n,p})
-       -\varphi_{0,\gamma\Sigma_p}\|_1\\
-  \le{}&\|\operatorname{Av}_{m_n,p}
-       [\operatorname{dil}_{\gamma_n}(\mathcal E_{n,p}P_{n,p})
-       -\varphi_{0,\gamma_n\Sigma_p}]\|_1\\
-  &+\|\operatorname{Av}_{m_n,p}\varphi_{0,\gamma_n\Sigma_p}
-       -\varphi_{0,\gamma_n\Sigma_p}\|_1
-   +\|\varphi_{0,\gamma_n\Sigma_p}
-       -\varphi_{0,\gamma\Sigma_p}\|_1\\
-  \le{}&\|\operatorname{dil}_{\gamma_n}(\mathcal E_{n,p}P_{n,p})
-       -\varphi_{0,\gamma_n\Sigma_p}\|_1\\
-  &+\|\operatorname{Av}_{m_n,p}\varphi_{0,\gamma_n\Sigma_p}
-       -\varphi_{0,\gamma_n\Sigma_p}\|_1
-   +\|\varphi_{0,\gamma_n\Sigma_p}
-       -\varphi_{0,\gamma\Sigma_p}\|_1=o(1).
-\end{aligned}
-\]
-The equality is \eqref{eq:rounding-intertwining}.
-This proves \eqref{eq:rounded-density-limit}.
+\(\operatorname{Av}_{m_n,p}\) and \eqref{eq:rounding-intertwining}, these
+three \(o(1)\) estimates prove \eqref{eq:rounded-density-limit}.
 
 Applying \cref{lem:young-local-limit} at sample size \(m_n\) gives
 \[
@@ -5270,16 +5028,10 @@ finite-rank projections and \(X\ge0\), then
   \le c\Tr X.
 \]
 Finally, for fixed \(g,X\) and compact \(K\), the operator
-\(V_g^*KV_g\) is compact, and hence
+\(V_g^*KV_g\) is compact.  Passing to the limit gives
 \[
-\begin{aligned}
-  &\Tr\!\left[
-    \bigl(\Gamma(U_gXU_g^*)-V_g\Gamma(X)V_g^*\bigr)K
-  \right]\\
-  &\qquad=\lim_j\Tr\!\left[
-    \bigl(\Gamma_j(U_gXU_g^*)-V_g\Gamma_j(X)V_g^*\bigr)K
-  \right]=0.
-\end{aligned}
+  \Tr[\Gamma(U_gXU_g^*)K]
+  =\Tr[V_g\Gamma(X)V_g^*K].
 \]
 Compact operators separate trace-class operators, so the limiting map is
 covariant.
@@ -5720,15 +5472,13 @@ These maps are completely positive and satisfy
 \(\|\Gamma_j^\chi\|_{1\to1}\le\|\chi\|_\infty\).  Taking
 \(\xi=(0,z)\) in \eqref{eq:unified-approx-covariance}, multiplying by
 \(\chi\), and integrating gives
-\[
-\begin{aligned}
- &\|\Gamma_j^\chi(D(z)XD(z)^*)
+\begin{multline*}
+ \|\Gamma_j^\chi(D(z)XD(z)^*)
    -D(\sqrt\gamma z)\Gamma_j^\chi(X)D(\sqrt\gamma z)^*\|_1\\
- &\qquad\le\|\chi\|_\infty
+ \le\|\chi\|_\infty
    \frac{|(\Xi_{L_j}+(0,z))\mathbin\triangle\Xi_{L_j}|}{|\Xi_{L_j}|}
    \|X\|_1\longrightarrow0.
-\end{aligned}
-\]
+\end{multline*}
 Hence, after passing to a subsequence, \cref{lem:compact-cp-limit} gives a
 completely positive, displacement-covariant limit \(\Gamma^\chi\) such that
 \begin{equation}\label{eq:weighted-map-limit}
@@ -5758,13 +5508,10 @@ clause of \cref{lem:compact-cp-limit} with \(c=1\) makes the limit trace
 nonincreasing.  By
 \cref{prop:least-noise-moment},
 \[
-\begin{aligned}
   \lim_j M_j
-  &=\Tr[\Gamma^\chi(\tau_p)W_\gamma]\\
-  &\le\Tr\Gamma^\chi(\tau_p)\,
-       \Tr(\tau_p^{(\gamma)}W_\gamma)
+  =\Tr[\Gamma^\chi(\tau_p)W_\gamma]
+  \le\Tr\Gamma^\chi(\tau_p)\,\Forb(\gamma,p)
   \le\Forb(\gamma,p).
-\end{aligned}
 \]
 Combining \eqref{eq:unified-maximizing-sequence} with
 \eqref{eq:unified-fidelity-to-moment} yields
@@ -5792,12 +5539,9 @@ Finite-rank projections, \eqref{eq:weighted-map-limit}, the weak-*
 convergence of \(\mathcal R_j(f_1)\), and
 \(\chi\in C_0(\mathsf E)\) give
 \[
-\begin{aligned}
   \Tr\Gamma^\chi(\tau_p)
-  &\le\liminf_j\Tr\Gamma_j^\chi(\tau_p)\\
-  &=\lim_j\int_{\mathsf E}\chi(y)\,\mathcal R_j(f_1)(\dd y)
-   =\int_{\mathsf E}\chi(y)\,\mathcal R(f_1)(\dd y).
-\end{aligned}
+  \le\liminf_j\Tr\Gamma_j^\chi(\tau_p)
+  =\int_{\mathsf E}\chi(y)\,\mathcal R(f_1)(\dd y).
 \]
 By \eqref{eq:scalar-convolution}, the last integral equals
 \[
@@ -5821,13 +5565,7 @@ commutes with every Weyl displacement, so \(A=cI\), with
 Thus \(\Gamma^\chi\) is trace nonincreasing, and
 \cref{prop:least-noise-moment} gives
 \[
-\begin{aligned}
-  \lim_j M_j
-  &=\Tr[\Gamma^\chi(\tau_p)W_\gamma]\\
-  &\le\Tr\Gamma^\chi(\tau_p)\,
-       \Tr(\tau_p^{(\gamma)}W_\gamma)
-  \le c_k\Forb(\gamma,p).
-\end{aligned}
+  \lim_j M_j\le c_k\Forb(\gamma,p).
 \]
 Combining this with \eqref{eq:unified-maximizing-sequence} and
 \eqref{eq:unified-fidelity-to-moment} yields
@@ -5909,6 +5647,14 @@ G. Chiribella and Y. Yang,
 Optimal asymptotic cloning machines,
 \doi{10.1088/1367-2630/16/6/063005}{\emph{New J. Phys.} \textbf{16}, 063005 (2014)},
 \arxiv{1404.0990}.
+
+\bibitem[Chi11]{Chiribella2011EstimationCloning}
+G. Chiribella,
+On quantum estimation, quantum cloning and finite quantum de Finetti theorems,
+\doi{10.1007/978-3-642-18073-6_2}{in \emph{Theory of Quantum Computation,
+Communication, and Cryptography}, Lecture Notes in Computer Science
+\textbf{6519}, 9--25 (Springer, 2011)},
+\arxiv{1010.1875}.
 
 \bibitem[KC22]{KimChitambar2022}
 C. Kim and E. Chitambar,
@@ -6007,6 +5753,11 @@ Cloning quantum channels,
 V. Brzi\'c, D. Grinko, M. Studzi\'nski, and M. T. Quintino,
 Optimal pure state cloning and transposition are complementary channels,
 \arxiv{2603.23628} (2026).
+
+\bibitem[BCM26]{BansalCaroMahajan2026}
+N. Bansal, M. C. Caro, and G. Mahajan,
+Cloning is as hard as learning for stabilizer states,
+\arxiv{2604.15269} (2026).
 
 \bibitem[SIGA05]{ScaraniIblisdirGisinAcin2005}
 V. Scarani, S. Iblisdir, N. Gisin, and A. Acin,
