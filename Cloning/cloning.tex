@@ -89,7 +89,7 @@
 \begin{abstract}
 Unknown quantum states can only be cloned approximately.  While the optimal
 pure-state cloner has long been known, the mixed-state problem under global
-fidelity, where the output is compared with the full product target
+fidelity, where the output is compared with the ideal full product target
 \(\rho^{\ot m}\), has remained open.  We study the asymptotic regime in
 which a channel produces \(m_n\) approximate copies of a \(d\)-dimensional
 state from \(n\) input copies, where \(m_n/n\to\gamma>1\).  In this regime,
@@ -118,11 +118,11 @@ rank-\(r\) orthogonal projector, the optimal asymptotic root fidelity is
 \(\gamma^{-r(d-r)/2}\).  We also compute the exact asymptotic fidelity of
 the purify--clone--trace (PCT) protocol at every non-degenerate full-rank
 spectrum and bound it for projector states: our cloners strictly outperform
-PCT in both families, for projector states whenever \(1<r<d\).
+PCT in both families (for projector states, whenever \(1<r<d\)).
 
 Our cloners combine Schur--Weyl label processing with a Cartan-sector
 covariant channel that generalizes Werner's pure-state cloner.  The matching
-minimax upper bounds for the full-rank problems follow from two-way local
+converse for the full-rank problems follows from two-way local
 asymptotic normality, which reduces cloning to classical Gaussian dilation
 and quantum Gaussian amplification; the projector problem is solved by an
 exact Schur-sector compression.
@@ -172,12 +172,11 @@ Kalev--Hen
 \cite{BarnumCavesFuchsJozsaSchumacher1996,KalevHen2008}.  Approximate
 mixed-state cloning poses an additional structural difficulty: both the
 eigenvalues and the eigenbasis may be unknown, and the two kinds of
-information behave differently under repeated sampling.  Unlike the
-pure-state case, earlier mixed-state work either did not identify both an
-optimal cloner and its fidelity, or treated only special families or other
-criteria.  To our knowledge, the mixed-state cloning problem under global
-product fidelity had no sharp solution for non-degenerate full-rank states when
-\(m_n/n\to\gamma>1\).  Work directly on
+information behave differently under repeated sampling.
+
+Unlike the pure-state case, earlier mixed-state work either did not identify
+both an optimal cloner and its fidelity, or treated only special families or
+other criteria.  Work directly on
 mixed-state cloning derived global-fidelity, relative-error, and
 state-dependent bounds for prescribed finite ensembles
 \cite{Rastegin2003Upper,Rastegin2002Relative,
@@ -199,24 +198,27 @@ purification followed by pure-state cloning gave a global-fidelity guarantee
 for bounded-rank mixed states, and concurrent work determined the resulting
 high-fidelity copy complexity up to constants
 \cite{TangWrightZhandry2025,LiTheilHarrowChuang2026,
-FanizzaGrinkoScharnhorstSpilecki2026,JeonSohnOh2026}.
+FanizzaGrinkoScharnhorstSpilecki2026,JeonSohnOh2026}.  To our knowledge,
+however, the mixed-state cloning problem under global product fidelity had no
+sharp solution for non-degenerate full-rank states when
+\(m_n/n\to\gamma>1\).
 \Cref{sec:pct-comparison} compares our cloners with this
 purify--clone--trace (PCT) protocol both at fixed gain and in the
 high-fidelity sample-complexity regime.
 
-The full-rank mixed-state cloning problem admits two models.  We call a
-full-rank spectrum \emph{simple} if all its eigenvalues are distinct, or
-equivalently, if it is non-degenerate.  In the known-spectrum problem, the
-eigenvalues are supplied and the state ranges over one unitary orbit; cloning
-must reproduce only the unknown eigenbasis.  In the unknown-spectrum problem,
-a single spectrum-independent sequence of channels must handle both the
-eigenvalues and the eigenbasis, uniformly over compact subsets of the
-chamber of simple full-rank spectra.
+We call a full-rank spectrum \emph{simple} if all its eigenvalues are
+distinct, or equivalently, if it is non-degenerate.  The full-rank
+mixed-state cloning problem then admits two models.  In the known-spectrum
+problem, the eigenvalues are supplied and the state ranges over one unitary
+orbit; cloning must reproduce only the unknown eigenbasis.  In the
+unknown-spectrum problem, a single spectrum-independent sequence of channels
+must handle both the eigenvalues and the eigenbasis, uniformly over compact
+subsets of the chamber of simple full-rank spectra.
 The second problem is not merely the first preceded by spectrum estimation:
 the measured spectrum retains fluctuations of order \(n^{-1/2}\), which must
 themselves be converted from the \(n\)-copy to the \(m_n\)-copy scale.
 
-We solve this problem for states with a simple full-rank spectrum when
+We solve both problems for simple full-rank spectra when
 \(m_n/n\to\gamma>1\).  For every fixed dimension, we determine
 the optimal global cloning fidelity on each such unitary orbit.  When the
 spectrum is unknown, we construct one spectrum-independent cloner, determine
@@ -536,26 +538,88 @@ Consequently, if \(p,p'\in\Delta_d^\circ\) satisfy
   \frac{p'_j}{p'_i}\ge \frac{p_j}{p_i}
   \qquad\text{for every }i<j,
 \end{equation}
-then
+that is, if every logarithmic spectral gap contracts in passing from \(p\)
+to \(p'\), then
 \begin{equation}\label{eq:ratio-wise-fidelity-monotonicity}
   \Forb(\gamma,p')\ge \Forb(\gamma,p),
   \qquad
   \Funiv(\gamma,p')\ge \Funiv(\gamma,p),
 \end{equation}
-with strict inequality if any ratio is strictly larger.  Equivalently, every
-logarithmic spectral gap has contracted.  This simultaneous contraction of
-all eigenvalue ratios implies
-that \(p'\) is majorized by \(p\), but is stronger than majorization.  For
-\(d\ge3\), majorization alone need not increase the cloning fidelity; for
-\(d=2\), the single eigenvalue ratio does give majorization monotonicity.
+with strict inequality if any ratio is strictly larger.  Condition
+\eqref{eq:ratio-wise-flattening} implies that \(p'\) is majorized by \(p\)
+but is stronger than majorization: for \(d\ge3\), majorization alone need not
+increase the cloning fidelity, whereas for \(d=2\) the single eigenvalue
+ratio does give majorization monotonicity.
 
-The quantitative comparison with PCT is developed in
-\cref{sec:pct-comparison}.  At every fixed \(\gamma>1\), our
-spectrum-independent cloner has strictly larger asymptotic fidelity at every
-simple full-rank spectrum, and our projector-state cloner is strictly better
-for \(1<r<d\).  \Cref{fig:pct-comparisons} previews both separations;
-\cref{sec:pct-comparison} gives the exact formulas, their sample-complexity
-interpretation, and the order-of-limits caveat.
+\paragraph{Comparison with PCT}
+The quantitative comparison with the purify--clone--trace protocol is
+developed in \cref{sec:pct-comparison}.  At every fixed \(\gamma>1\), our
+spectrum-independent cloner has strictly larger asymptotic fidelity than PCT
+at every simple full-rank spectrum, and our projector-state cloner is
+strictly better than PCT for \(1<r<d\).  \Cref{fig:pct-comparisons} previews
+both separations; \cref{sec:pct-comparison} gives the exact formulas, their
+sample-complexity interpretation, and the order-of-limits caveat.
+
+\paragraph{Limits of the present results}
+Apart from flat projector states, our theorems require a simple full-rank
+spectrum.  We do not treat nonflat rank-deficient spectra, positive
+degeneracies, or neighborhoods in which the rank changes.  Our estimates are
+also not uniform as \(\gamma\downarrow1\), and we do not determine the exact
+finite-copy optimum.
+
+\paragraph{Conjectures for degenerate and rank-deficient spectra}
+It is nevertheless natural to record the expected extensions.  Suppose a
+rank-\(r\) state \(\rho\) has distinct positive eigenvalues
+\(u_1>\cdots>u_s>0\), with multiplicities \(r_1,\ldots,r_s\), where
+\(\sum_a r_a=r\) and \(\sum_a r_a u_a=1\).  We conjecture that the
+known-spectrum optimum on its unitary orbit, defined as in
+\eqref{eq:known-optimum}, is
+\begin{equation}\label{eq:conjectured-degenerate-orbit}
+  \Forb(\gamma,\rho)
+  =\gamma^{-r(d-r)/2}
+   \prod_{a<b}f_\gamma\!\left(\frac{u_b}{u_a}\right)^{r_ar_b}.
+\end{equation}
+Only pairs of distinct positive eigenspaces contribute to the product:
+rotations within a degenerate eigenspace are stabilizer directions, while
+the \(r(d-r)\) support--kernel directions give the first factor.  The simple
+full-rank case \(r=d\), \(s=d\), and \(r_a=1\) reduces to the orbital
+formula in \eqref{eq:main-values}; the flat projector case \(s=1\) reduces
+to \(\gamma^{-r(d-r)/2}\), proved in \cref{thm:grassmann}.  In particular,
+\(r=1\) recovers Werner's pure-state value \(\gamma^{-(d-1)/2}\).  The exact
+compression identity in
+\cref{lem:exact-compression} establishes this support--kernel factorization
+for our sector channel, but does not by itself prove the conjecture for the
+remaining spectra.
+
+For the unknown-spectrum problem in a rank-preserving
+\(n^{-1/2}\)-neighborhood of the same state, we allow the positive
+eigenvalue blocks to split while requiring the rank to remain \(r\).  Writing
+\(\Funiv^{(r)}(\gamma,\rho)\) for the corresponding local minimax root
+fidelity, defined as in \cref{lem:unknown-local} with the local window
+restricted to rank-\(r\) states, we conjecture
+\begin{equation}\label{eq:conjectured-fixed-rank-local}
+  \Funiv^{(r)}(\gamma,\rho)
+  =\left(\frac{2\sqrt\gamma}{1+\gamma}\right)^{(\sum_{a=1}^s r_a^2-1)/2}
+   \Forb(\gamma,\rho).
+\end{equation}
+Only the positive-eigenvalue blocks enter the exponent; the support--kernel
+directions are already included in \(\Forb(\gamma,\rho)\) through the factor
+\(\gamma^{-r(d-r)/2}\).  The quantity \(\sum_{a=1}^s r_a^2-1\) is the real
+dimension of the traceless Hermitian commutant on the support.  The exponent
+is suggested by the Gaussian matrix fluctuations that resolve a degenerate
+positive block \cite{Kuperberg2002,Johansson2001}.  For simple positive
+spectra (every \(r_a=1\)), the fixed-rank LAN theorem of
+\cite[Theorem~3.3]{LahiryNussbaum2024} has exactly \(r-1\) classical
+Gaussian parameters, \(r(r-1)/2\) shifted thermal modes, and \(r(d-r)\)
+shifted pure modes, matching the exponent \((r-1)/2\) here and the factors
+in \eqref{eq:conjectured-degenerate-orbit}.  The cloner may know the rank
+\(r\), but not the positive eigenvalues.  When every \(r_a=1\), the additional
+factor has exponent \((r-1)/2\); when also \(r=d\), the formula reduces to
+the universal full-rank value in \eqref{eq:main-values}.  At a flat
+projector state, \(s=1\), \cref{thm:grassmann} proves only the known-spectrum
+orbital factor, not the unknown-spectrum neighborhood in
+\eqref{eq:conjectured-fixed-rank-local}.  We make no claim for neighborhoods
+in which the rank can change.
 
 \begin{figure}[!tbp]
 \centering
@@ -791,7 +855,7 @@ ChiribellaYang2016}.  Recent work shows that cloning remains as hard as
 learning for stabilizer states \cite{BansalCaroMahajan2026}.  A higher-order
 framework for general channel cloning
 includes state cloning \cite{SekatskiGuryanovaKothakondaSkotiniotis2025};
-no-signalling yields general cloning bounds
+no-signaling yields general cloning bounds
 \cite{SekatskiSkotiniotisDur2015NoSignaling,HuTomamichel2024}, while optimal
 pure-state cloning and transposition can be complementary channels
 \cite{BrzicGrinkoStudzinskiQuintino2026}.  These models differ from ours in
@@ -819,20 +883,6 @@ for simple full-rank states and gives a strict upper bound on the PCT fidelity
 for non-pure projector states.  The remaining appendices give the
 fixed-height PBW calculation of the sector fidelity, the Young local limit,
 the randomized-rounding estimate, and the flat-prior Gaussian converse.
-
-\subsection*{Acknowledgments}
-
-We would like to thank Patrick Hayden and Henry Purcell for discussions and early collaborations. JF acknowledges support from @@@.
-
-\subsection*{Generative AI usage}
-
-The original idea for the cloner construction is due to the authors.  We
-used OpenAI's ChatGPT (Sol~5.6) and Anthropic's Claude (Fable~5) to assist
-with the analysis: the evaluation of the cloning fidelity and the converse
-argument benefited from their suggestions.  The same tools assisted with
-language editing, manuscript organization, and figure preparation.  All
-AI-assisted material was reviewed and revised by the authors, who take full
-responsibility for the accuracy and content of the manuscript.
 
 \section*{Glossary of notation}
 \addcontentsline{toc}{section}{Glossary of notation}
@@ -1401,6 +1451,9 @@ given in Appendix~\ref{app:sector-fidelity}; the proof of
 \subsection{Fidelity of the constructed cloners}
 \label{sec:achievability-completion}
 
+We now combine the label and sector estimates with
+\cref{prop:lifted-kernel-bound} to evaluate the fidelities of both cloners.
+
 \begin{proof}[Known-spectrum achievability in \cref{thm:known-optimum}]
 By the covariance established in
 \cref{sec:known-label-kernel}, take \(g=I\).  For \(K_n^p\),
@@ -1612,8 +1665,8 @@ to \(o(1)\).  This is the transfer step used in every converse below.
   fidpair/.style={thick,densely dotted,purple!70!black},
   state/.style={font=\small,inner sep=2pt},
   maplabel/.style={font=\scriptsize},
-  fidlabel/.style={font=\small,text=purple!70!black,inner sep=1pt},
-  relation/.style={font=\small},
+  fidlabel/.style={font=\small,text=purple!70!black,inner sep=1pt,yshift=-4pt},
+  relation/.style={font=\small,text=purple!70!black},
   reason/.style={font=\scriptsize,text=black!60,align=center},
   error/.style={font=\scriptsize,text=teal!70!black,inner sep=1pt}
 ]
@@ -2699,7 +2752,9 @@ PCT maximizes fidelity at each state.  Conversely, our results when
 We instead determine exact orbit and compact-family minimax values and the
 exact asymptotic fidelity attained by our spectrum-independent cloner at
 every simple full-rank spectrum; none of these statements requires the
-fidelity to be close to one.
+fidelity to be close to one.  Below we recall the PCT guarantee, compare the
+protocols on projector states and at a fixed simple spectrum, bound the
+minimax fidelity over all states, and record the order-of-limits caveat.
 
 The PCT protocol first applies the random-purification channel
 \cite{TangWrightZhandry2025}, then Werner's pure-state cloner on the
@@ -2913,23 +2968,38 @@ proved here.
 
 \section{Conclusion}
 
-We determined the cloning fidelity when \(m_n/n\to\gamma>1\) for known simple
-full-rank spectra and the exact asymptotic fidelity of one
-spectrum-independent cloner for unknown simple full-rank spectra, uniformly
-on compact spectral sets.  On full-dimensional compact spectral families,
-its worst-case fidelity is minimax optimal.  At every fixed simple full-rank
+In the regime \(m_n/n\to\gamma>1\), we determined the optimal asymptotic
+cloning fidelity for known simple full-rank spectra, and the exact
+asymptotic fidelity of a single spectrum-independent cloner for unknown
+simple full-rank spectra, uniformly on compact spectral sets.  On
+full-dimensional compact spectral families, this cloner is minimax optimal.  At every fixed simple full-rank
 spectrum its limiting fidelity is \(\Funiv\), strictly above the exact PCT
 fidelity.  For flat projector states, our projector-state cloner attains
 the exact projector-state minimax value, while PCT is strictly suboptimal for
 \(1<r<d\).
 
-Several boundary regimes remain open.  These include degenerate and
-rank-deficient spectra, and neighborhoods in which the
-rank changes.  Estimates uniform for gains
+Several boundary regimes remain open.  These include the positive-degeneracy
+and nonflat rank-deficient cases described conjecturally in
+\cref{sec:remarks}, and neighborhoods in which the rank changes.
+Estimates uniform for gains
 \(\gamma_n=m_n/n\downarrow1\) would be needed to turn these formulas into
 finite-sample bounds in the joint high-fidelity limit.  The exact minimax
 value over all states at fixed \(\gamma\), as well as the finite-copy optimum,
 also remains to be determined.
+
+\section*{Acknowledgments}
+
+We would like to thank Patrick Hayden and Henry Purcell for discussions and early collaborations. JF acknowledges support from @@@.
+
+\section*{Generative AI usage}
+
+The original idea for the cloner construction is due to the authors.  We
+used OpenAI's ChatGPT (Sol~5.6) and Anthropic's Claude (Fable~5) to assist
+with the analysis: the evaluation of the cloning fidelity and the converse
+argument benefited from their suggestions.  The same tools assisted with
+language editing, manuscript organization, and figure preparation.  All
+AI-assisted material was reviewed and revised by the authors, who take full
+responsibility for the accuracy and content of the manuscript.
 
 \appendix
 \clearpage
@@ -5474,7 +5544,7 @@ These maps are completely positive and satisfy
 \(\chi\), and integrating gives
 \begin{multline*}
  \|\Gamma_j^\chi(D(z)XD(z)^*)
-   -D(\sqrt\gamma z)\Gamma_j^\chi(X)D(\sqrt\gamma z)^*\|_1\\
+   -D(\sqrt\gamma z)\Gamma_j^\chi(X)D(\sqrt\gamma z)^*\|_1
  \le\|\chi\|_\infty
    \frac{|(\Xi_{L_j}+(0,z))\mathbin\triangle\Xi_{L_j}|}{|\Xi_{L_j}|}
    \|X\|_1\longrightarrow0.
