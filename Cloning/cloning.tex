@@ -87,17 +87,12 @@
 \endgroup
 
 \begin{abstract}
-Unknown quantum states can only be cloned approximately.  While the optimal
-pure-state cloner has long been known, the mixed-state problem under global
-fidelity, where the output is compared with the ideal full product target
-\(\rho^{\ot m}\), has remained open.  We study the asymptotic regime in
-which a channel produces \(m_n\) approximate copies of a \(d\)-dimensional
-state from \(n\) input copies, where \(m_n/n\to\gamma>1\).  In this regime,
-we solve the known-spectrum and unknown-spectrum cloning problems for
-non-degenerate full-rank states, as well as the cloning problem for flat
-projector states.  For a known non-degenerate spectrum
-\(p_1>\cdots>p_d>0\), the asymptotically optimal root fidelity on its
-unitary orbit is
+We study approximate mixed-state cloning under root fidelity with the entire
+tensor-power target.  The input consists of \(n\) copies of a
+\(d\)-dimensional state, and the output contains \(m_n\) systems, with fixed
+\(d\) and \(m_n/n\to\gamma>1\).  For a prescribed simple full-rank spectrum
+\(p_1>\cdots>p_d>0\), we determine the asymptotically optimal fidelity on its
+unitary orbit:
 \[
   \Forb(\gamma,p)
   =\prod_{i<j}
@@ -105,27 +100,29 @@ unitary orbit is
        {\gamma+q_{ij}},
   \qquad q_{ij}=\frac{p_j}{p_i}.
 \]
-When the spectrum is unknown, we construct one cloner that does not depend on
-\(p\).  At every non-degenerate full-rank spectrum, its asymptotic root fidelity is
+For unknown spectrum, we construct one spectrum-independent cloner whose
+asymptotic root fidelity is
 \[
   \Funiv(\gamma,p)
   =\left(\frac{2\sqrt\gamma}{1+\gamma}\right)^{(d-1)/2}
-   \Forb(\gamma,p).
+   \Forb(\gamma,p),
 \]
-On full-dimensional compact families of such spectra, this cloner is
-minimax optimal.  For flat projector states \(\rho=P/r\), with \(P\) a
-rank-\(r\) orthogonal projector, the optimal asymptotic root fidelity is
-\(\gamma^{-r(d-r)/2}\).  We also compute the exact asymptotic fidelity of
-the purify--clone--trace (PCT) protocol at every non-degenerate full-rank
-spectrum and bound it for projector states: our cloners strictly outperform
-PCT in both families (for projector states, whenever \(1<r<d\)).
+uniformly on compact subsets of the simple full-rank chamber.  This cloner
+is minimax optimal on nonempty compact spectral sets equal to the closure of their
+interiors within the affine hyperplane \(\sum_i p_i=1\).  Separately, for flat
+projector states \(\rho=P/r\), with \(P\) a rank-\(r\) orthogonal projector,
+we prove that the optimal asymptotic root fidelity is
+\(\gamma^{-r(d-r)/2}\).  We also determine the exact asymptotic fidelity of
+the purify--clone--trace (PCT) protocol at simple full-rank spectra and bound
+it for projector states.  Our cloners strictly improve on PCT at every simple
+full-rank spectrum and for projector ranks \(1<r<d\).
 
-Our cloners combine Schur--Weyl label processing with a Cartan-sector
-covariant channel that generalizes Werner's pure-state cloner.  The matching
-converse for the full-rank problems follows from two-way local
-asymptotic normality, which reduces cloning to classical Gaussian dilation
-and quantum Gaussian amplification; the projector problem is solved by an
-exact Schur-sector compression.
+The constructions combine Schur--Weyl label processing with a Cartan-sector
+covariant channel extending Werner's pure-state cloner.  Two-way local
+asymptotic normality reduces the full-rank converses to classical Gaussian
+dilation and quantum Gaussian amplification under root fidelity.  The
+projector result follows from exact Schur-sector compression and a direct
+finite-dimensional converse.
 \end{abstract}
 
 \clearpage
@@ -243,7 +240,7 @@ modes
 \cite{GutaJencova2007LAN,GutaKahn2006LANQubits,
 KahnGuta2009LANFiniteDimensional}.
 In the known-spectrum and compact-family minimax problems, a channel exceeding
-the stated value would induce a Gaussian channel exceeding the corresponding
+the stated value would induce a channel between the Gaussian models exceeding the corresponding
 dilation or amplification optimum.  Quantum amplifier noise limits
 \cite{Caves1982LinearAmplifiers} and the least-noise mixed-Gaussian cloner
 \cite{GutaMatsumoto2006MixedGaussianCloning} determine the quantum optimum;
@@ -254,7 +251,7 @@ invoking a general rank-deficient LAN theorem.
 
 \subsection{Results}\label{sec:main-results}
 
-Fix positive integers \(m_n\) such that
+Fix an integer \(d\ge2\) and positive integers \(m_n\) such that
 \begin{equation}\label{eq:fixed-gain-regime}
   \gamma_n:=\frac{m_n}{n}\longrightarrow\gamma>1,
   \qquad r_d:=\binom d2.
@@ -550,6 +547,17 @@ with strict inequality if any ratio is strictly larger.  Condition
 but is stronger than majorization: for \(d\ge3\), majorization alone need not
 increase the cloning fidelity, whereas for \(d=2\) the single eigenvalue
 ratio does give majorization monotonicity.
+For example, at \(\gamma=2\), the simple spectra
+\[
+  p=(0.98,0.011,0.009),\qquad p'=(0.94,0.051,0.009)
+\]
+satisfy \(p'\prec p\): the largest component decreases while the sum of
+the two largest components stays fixed.  Nevertheless,
+\[
+  \Forb(2,p)\simeq0.531279>0.520443\simeq\Forb(2,p').
+\]
+The same ordering holds for \(\Funiv\), whose classical factor is
+spectrum independent.
 
 \paragraph{Comparison with PCT}
 The quantitative comparison with the purify--clone--trace protocol is
@@ -566,60 +574,18 @@ spectrum.  We do not treat nonflat rank-deficient spectra, positive
 degeneracies, or neighborhoods in which the rank changes.  Our estimates are
 also not uniform as \(\gamma\downarrow1\), and we do not determine the exact
 finite-copy optimum.
-
-\paragraph{Conjectures for degenerate and rank-deficient spectra}
-It is nevertheless natural to record the expected extensions.  Suppose a
-rank-\(r\) state \(\rho\) has distinct positive eigenvalues
-\(u_1>\cdots>u_s>0\), with multiplicities \(r_1,\ldots,r_s\), where
-\(\sum_a r_a=r\) and \(\sum_a r_a u_a=1\).  We conjecture that the
-known-spectrum optimum on its unitary orbit, defined as in
-\eqref{eq:known-optimum}, is
-\begin{equation}\label{eq:conjectured-degenerate-orbit}
-  \Forb(\gamma,\rho)
-  =\gamma^{-r(d-r)/2}
-   \prod_{a<b}f_\gamma\!\left(\frac{u_b}{u_a}\right)^{r_ar_b}.
-\end{equation}
-Only pairs of distinct positive eigenspaces contribute to the product:
-rotations within a degenerate eigenspace are stabilizer directions, while
-the \(r(d-r)\) support--kernel directions give the first factor.  The simple
-full-rank case \(r=d\), \(s=d\), and \(r_a=1\) reduces to the orbital
-formula in \eqref{eq:main-values}; the flat projector case \(s=1\) reduces
-to \(\gamma^{-r(d-r)/2}\), proved in \cref{thm:grassmann}.  In particular,
-\(r=1\) recovers Werner's pure-state value \(\gamma^{-(d-1)/2}\).  The exact
-compression identity in
-\cref{lem:exact-compression} establishes this support--kernel factorization
-for our sector channel, but does not by itself prove the conjecture for the
-remaining spectra.
-
-For the unknown-spectrum problem in a rank-preserving
-\(n^{-1/2}\)-neighborhood of the same state, we allow the positive
-eigenvalue blocks to split while requiring the rank to remain \(r\).  Writing
-\(\Funiv^{(r)}(\gamma,\rho)\) for the corresponding local minimax root
-fidelity, defined as in \cref{lem:unknown-local} with the local window
-restricted to rank-\(r\) states, we conjecture
-\begin{equation}\label{eq:conjectured-fixed-rank-local}
-  \Funiv^{(r)}(\gamma,\rho)
-  =\left(\frac{2\sqrt\gamma}{1+\gamma}\right)^{(\sum_{a=1}^s r_a^2-1)/2}
-   \Forb(\gamma,\rho).
-\end{equation}
-Only the positive-eigenvalue blocks enter the exponent; the support--kernel
-directions are already included in \(\Forb(\gamma,\rho)\) through the factor
-\(\gamma^{-r(d-r)/2}\).  The quantity \(\sum_{a=1}^s r_a^2-1\) is the real
-dimension of the traceless Hermitian commutant on the support.  The exponent
-is suggested by the Gaussian matrix fluctuations that resolve a degenerate
-positive block \cite{Kuperberg2002,Johansson2001}.  For simple positive
-spectra (every \(r_a=1\)), the fixed-rank LAN theorem of
-\cite[Theorem~3.3]{LahiryNussbaum2024} has exactly \(r-1\) classical
-Gaussian parameters, \(r(r-1)/2\) shifted thermal modes, and \(r(d-r)\)
-shifted pure modes, matching the exponent \((r-1)/2\) here and the factors
-in \eqref{eq:conjectured-degenerate-orbit}.  The cloner may know the rank
-\(r\), but not the positive eigenvalues.  When every \(r_a=1\), the additional
-factor has exponent \((r-1)/2\); when also \(r=d\), the formula reduces to
-the universal full-rank value in \eqref{eq:main-values}.  At a flat
-projector state, \(s=1\), \cref{thm:grassmann} proves only the known-spectrum
-orbital factor, not the unknown-spectrum neighborhood in
-\eqref{eq:conjectured-fixed-rank-local}.  We make no claim for neighborhoods
-in which the rank can change.
+The simple-spectrum restriction leads to noncommuting limits.  For qubits,
+\[
+  \lim_{\substack{p\to(1/2,1/2)\\p_1>p_2}}
+  \Forb(\gamma,p)=\frac{2\sqrt\gamma}{1+\gamma}<1,
+\]
+whereas the known-spectrum family at \(p=(1/2,1/2)\) contains only
+\(I_2/2\) and can be cloned perfectly.  At any fixed sample size, preparing
+\((I_2/2)^{\ot m_n}\) gives fidelity tending uniformly to one as
+\(p\to(1/2,1/2)\).  Thus taking the degeneracy limit before the
+large-sample limit gives a different value: the orbit collapses at the
+degeneracy.  Expected extensions to degenerate and rank-deficient spectra
+are discussed in \cref{sec:conjectures}.
 
 \begin{figure}[!tbp]
 \centering
@@ -743,8 +709,8 @@ in which the rank can change.
       {PCT fidelity: not excluded};
   \end{scope}
 \end{tikzpicture}
-\caption{Asymptotic root fidelities as functions of the gain
-  \(\gamma=\lim m_n/n\); every curve is an \(n\to\infty\) limit.
+\caption{Asymptotic root fidelities and bounds as functions of the gain
+  \(\gamma=\lim m_n/n\).
   \textup{(a)}~For the simple qubit spectrum \(p=(3/5,2/5)\), with neither
   protocol supplied the spectrum: \(F_{\mathrm{univ}}\) is the exact
   asymptotic fidelity of our spectrum-independent cloner
@@ -766,123 +732,82 @@ in which the rank can change.
 
 \subsection{Earlier and related work}\label{sec:related-work}
 
-\paragraph{Pure-state cloning and state estimation.}
-Universal qubit cloners were constructed in
-\cite{BuzekHillery1996,GisinMassar1997,
-BrussDiVincenzoEkertFuchsMacchiavelloSmolin1998}; the arbitrary-dimensional
-global and single-clone optima were obtained in
-\cite{Werner1998,KeylWerner1999}, while links to finite-copy estimation were
-developed in \cite{MassarPopescu1995,BrussEkertMacchiavello1998}.
-At the single-clone level, cloning with infinitely many outputs reduces to
-estimation \cite{BaeAcin2006,ChiribellaDAriano2006}; global all-output
-problems have also been studied for broad pure-state families
-\cite{CheflesBarnett1999,ChiribellaYang2014Optimal,KimChitambar2022}.
-Connections among estimation, cloning, and finite quantum de Finetti theorems
-are reviewed in \cite{Chiribella2011EstimationCloning}; see also
-\cite{ScaraniIblisdirGisinAcin2005,FanWangJingYueShiZhangMu2014}.
+\paragraph{Gaussian cloning and the closest LAN antecedents.}
+Gu{\c t}{\u a}--Matsumoto solved cloning of displaced thermal oscillator
+states with known temperature under a norm-distance criterion for the joint
+output.  They reduced cloning to amplification and proved optimality of the
+Gaussian construction using stochastic ordering
+\cite{GutaMatsumoto2006MixedGaussianCloning}.
+Bowles--Gu{\c t}{\u a}--Adesso then used LAN to obtain asymptotically optimal
+purification and dilution of mixed-qubit ensembles under global trace-norm
+loss \cite{BowlesGutaAdesso2011Purification}; related methods also solve
+qudit channel reversal \cite{BowlesGutaAdesso2012Reversal}.  These are direct
+antecedents of the present Gaussian reduction.  Our results determine sharp
+root-fidelity constants for cloning in arbitrary fixed dimension, separate
+the known-spectrum and unknown-spectrum costs, and provide explicit
+finite-dimensional Schur--Cartan cloners.  The earlier norm-distance optima
+do not by themselves determine these root-fidelity constants.
 
-\paragraph{Finite-dimensional mixed-state cloning.}
-The earlier finite-dimensional literature summarized above provides bounds
-or constructions for restricted state families and criteria, rather than the
-exact asymptotic minimax value under joint product fidelity when
-\(m_n/n\to\gamma>1\)
+The LAN framework was developed in
+\cite{GutaJencova2007LAN,GutaKahn2006LANQubits,
+KahnGuta2009LANFiniteDimensional,YamagataFujiwaraGill2013LAN}.
+Our converse uses the two-way channel approximation for full-rank qudit
+models together with a root-fidelity amplification bound.  The oscillator
+channel is the least-noise amplifier associated with
+\cite{Caves1982LinearAmplifiers,GutaMatsumoto2006MixedGaussianCloning}.
+Low-rank LAN has a different mode structure
+\cite{LahiryNussbaum2024}; our optimality theorems cover that boundary only
+for flat projector states, which we treat directly.
+
+\paragraph{Global fidelity versus marginal criteria.}
+The distinction already matters for coherent-state cloning: Cerf et al.
+prove that a Gaussian cloner maximizes joint fidelity, while non-Gaussian
+operations can improve single-clone fidelity
+\cite{CerfKrugerNavezWernerWolf2005}.  For finite-dimensional states,
+broadcasting and superbroadcasting constrain or optimize output marginals
+and allow correlations
+\cite{BarnumCavesFuchsJozsaSchumacher1996,
+DArianoMacchiavelloPerinotti2005,
+BuscemiDArianoMacchiavelloPerinotti2005Optimal,
+BuscemiDArianoMacchiavelloPerinotti2006,DangFan2007}.
+They therefore do not determine fidelity with the entire product target.
+The relation between cloning and estimation likewise depends on whether
+individual clones or the joint output are tested
+\cite{BaeAcin2006,ChiribellaDAriano2006,ChiribellaYang2014Optimal}; broader
+accounts appear in
+\cite{ScaraniIblisdirGisinAcin2005,Chiribella2011EstimationCloning,
+FanWangJingYueShiZhangMu2014}.
+
+\paragraph{Other finite-dimensional mixed-state results and PCT.}
+Earlier mixed-state work provides state-dependent bounds, constructions for
+restricted families or marginal criteria, and general entropic limitations
 \cite{CiracEkertMacchiavello1999,Rastegin2003Upper,
 Rastegin2002Relative,Rastegin2003StateDependent,Fan2003,FanLiuShi2007,
 Kazakov2007,LemmWilde2017}.
 More recently, random purification followed by pure-state cloning gave a
-universal lower bound on global fidelity for mixed states of bounded rank,
-but not an exact optimum
-\cite{TangWrightZhandry2025,LiTheilHarrowChuang2026}; companion
-work instead amplifies a selected eigenstate
-\cite{LiTheilHarrowChuangQPA2026}.  Concurrent work proves that PCT has
-optimal copy complexity up to constants for attaining squared fidelity
-\(1-\epsilon\), uniformly over states of rank at most \(r\)
-\cite{FanizzaGrinkoScharnhorstSpilecki2026,JeonSohnOh2026}.  This worst-case
-high-fidelity question differs from our problem with
-\(m_n/n\to\gamma>1\).
-\Cref{sec:pct-comparison} gives the fixed-gain and sample-complexity
-comparison, while Appendix~\ref{app:pct-comparison} proves the PCT formulas
-and bounds used there.
-
-\paragraph{Broadcasting and superbroadcasting.}
-Single-input families are broadcastable precisely when they commute
-\cite{BarnumCavesFuchsJozsaSchumacher1996}; an input-independent-fidelity
-criterion likewise obstructs universal broadcasting for arbitrary mixed
-qubits \cite{ChenChen2007MixedBroadcast}.  Multiple-input superbroadcasting
-can nevertheless purify individual mixed-qubit marginals; universal,
-phase-covariant, and optimal maps are known
-\cite{DArianoMacchiavelloPerinotti2005,
-BuscemiDArianoMacchiavelloPerinotti2005Optimal,
-BuscemiDArianoMacchiavelloPerinotti2006,DangFan2007}, as is a
-continuous-variable version for displaced thermal states
-\cite{DArianoPerinottiSacchi2006Continuous}.  These marginal criteria allow
-correlated outputs, so they do not determine full tensor-power fidelity.
-Virtual broadcasting is a related nonphysical extension linking universal
-cloning and optimal physical approximation, without changing this distinction
-\cite{ParzygnatFullwoodBuscemiChiribella2024}.
-
-\paragraph{Gaussian cloning and LAN.}
-Continuous-variable cloning grew from coherent-state amplifier--beam-splitter
-schemes \cite{CerfIpeRottenberg2000,
-BraunsteinCerfIblisdirVanLoockMassar2001}; under joint rather than single-clone
-fidelity, a non-Gaussian cloner can be optimal
-\cite{CerfKrugerNavezWernerWolf2005}.  Caves established the
-phase-insensitive amplifier noise limit \cite{Caves1982LinearAmplifiers}, and
-Gu{\c t}{\u a}--Matsumoto reduced displaced mixed-Gaussian cloning to
-least-noise amplification \cite{GutaMatsumoto2006MixedGaussianCloning}.
-Quantum LAN was formulated statistically in \cite{GutaJencova2007LAN} and
-developed through likelihood-ratio and explicit-channel formulations in
-\cite{YamagataFujiwaraGill2013LAN,GutaKahn2006LANQubits,
-KahnGuta2009LANFiniteDimensional}, yielding sharp purification, dilution, and
-reversal results \cite{BowlesGutaAdesso2011Purification,
-BowlesGutaAdesso2012Reversal}; related Gaussian tasks include amplifying and
-purifying noisy coherent states \cite{ZhaoChiribella2017}.  Our converse uses
-this LAN and Gaussian amplification theory.  Low-rank qudit estimation
-has different Gaussian asymptotics \cite{LahiryNussbaum2024}.  Apart from
-the flat projector states treated here directly, general low-rank models lie
-outside our full-rank LAN statement.
-
-\paragraph{Other cloning and replication models.}
-Further variants include probabilistic exact cloning \cite{DuanGuo1998};
-economical, phase-covariant, asymmetric, and telecloning schemes
-\cite{NiuGriffiths1998,BrussCinchettiDArianoMacchiavello2000,
-Cerf2000Asymmetric,MuraoJonathanPlenioVedral1999}; and cloning of
-transformations and superreplication
-\cite{ChiribellaDArianoPerinotti2008,ChiribellaYangYao2013,
-GendraCalsamigliaMunozTapiaBaganChiribella2014,
-DurSekatskiSkotiniotis2015,ChiribellaYangHuang2015,
-ChiribellaYang2016}.  Recent work shows that cloning remains as hard as
-learning for stabilizer states \cite{BansalCaroMahajan2026}.  A higher-order
-framework for general channel cloning
-includes state cloning \cite{SekatskiGuryanovaKothakondaSkotiniotis2025};
-no-signaling yields general cloning bounds
-\cite{SekatskiSkotiniotisDur2015NoSignaling,HuTomamichel2024}, while optimal
-pure-state cloning and transposition can be complementary channels
-\cite{BrzicGrinkoStudzinskiQuintino2026}.  These models differ from ours in
-the success rule, family, target object, or replication rate.
+global-fidelity guarantee for bounded-rank mixed states
+\cite{TangWrightZhandry2025,LiTheilHarrowChuang2026}.  Concurrent work shows
+that PCT attains the optimal copy complexity up to constants for squared
+fidelity \(1-\epsilon\), uniformly over states of rank at most \(r\)
+\cite{FanizzaGrinkoScharnhorstSpilecki2026,JeonSohnOh2026}.
+The copy-complexity results concern a worst-case high-fidelity regime; here
+we determine exact asymptotic constants for fixed \(\gamma>1\) on the specified spectral
+families.  \Cref{sec:pct-comparison} gives the quantitative comparison and
+explains the distinction between the two orders of limits.
 
 \subsection{Organization}
 
-\Cref{sec:label-kernels} develops the common Schur--Cartan lifting and defines
-the exact target-label kernel for known spectrum and the randomized dilation
-kernel for unknown spectrum.  Uniform label and sector estimates determine
-the asymptotic fidelity of the spectrum-independent cloner and prove the
-achievability half of \cref{thm:known-optimum}.  \Cref{sec:gaussian-LAN} solves the corresponding
-Gaussian amplification problems, states the two-way LAN approximation, and
-transfers the Gaussian bounds back to finite dimension.  It proves the
-converse half of \cref{thm:known-optimum} and the compact-set converse in
-part~\textup{(b)} of \cref{thm:unknown-optimum}.
-\Cref{sec:grassmann} proves the projector-state theorem using exact
-compression and a direct finite-dimensional converse.
-\Cref{sec:pct-comparison} compares our fixed-\(\gamma\) fidelities and minimax
-optima with the copy-complexity results in the high-fidelity regime.
-The conclusion summarizes the scope of the results and the remaining open
-regimes.
-Appendix~\ref{app:pct-comparison} computes the exact asymptotic PCT fidelity
-for simple full-rank states and gives a strict upper bound on the PCT fidelity
-for non-pure projector states.  The remaining appendices give the
-fixed-height PBW calculation of the sector fidelity, the Young local limit,
-the randomized-rounding estimate, and the flat-prior Gaussian converse.
+\Cref{sec:label-kernels} constructs the Schur--Cartan cloners and proves
+achievability from uniform label and sector estimates, established in
+Appendices~\ref{app:sector-fidelity} and~\ref{app:young-rounding}.
+\Cref{sec:gaussian-LAN} combines two-way LAN with the unrestricted Gaussian
+root-fidelity converse of Appendix~\ref{app:gaussian-converse} to prove
+full-rank optimality.  Independently, \cref{sec:grassmann} proves the
+projector-state theorem by exact compression and a finite-dimensional
+converse.  \Cref{sec:pct-comparison} compares these results with PCT and
+its high-fidelity copy complexity; the required partial-trace and Fock-limit
+analysis is in Appendix~\ref{app:pct-comparison}.  The conclusion records
+the remaining problems and the conjectured boundary extensions.
 
 \section*{Glossary of notation}
 \addcontentsline{toc}{section}{Glossary of notation}
@@ -945,8 +870,8 @@ single proof are defined where they first appear.
   \(\mathsf H=\{h\in\R^d:\sum_i h_i=0\}\) is the spectral tangent
   hyperplane.  The variables \(h\in\mathsf H\) and \(z\in\C^{r_d}\)
   describe local spectral and orbital perturbations, respectively;
-  \(Y(z)\) is the skew-Hermitian generator of the orbital perturbation,
-  \(g_{n,z}=e^{Y(z)/\sqrt n}\), \(\Omega_L\) is a bounded local box, and
+  \(Y_p(z)\) is the skew-Hermitian generator at the fixed base spectrum \(p\),
+  \(g_{n,z}^{(p)}=e^{Y_p(z)/\sqrt n}\), \(\Omega_L\) is a bounded local box, and
   \(v_{n,L}(p)\) is its minimax value.
 
 \item[Gaussian notation.]
@@ -1735,21 +1660,23 @@ to \(o(1)\).  This is the transfer step used in every converse below.
 \subsection{Local coordinates}
 \label{sec:local-coordinates}
 
-Let
+Fix a base spectrum \(p\in\Delta_d^\circ\).  Let
 \[
   \mathsf H=\left\{h\in\R^d:\sum_i h_i=0\right\},
   \qquad
-  Y(z)=2\sum_{j<k}\left(\bar z_{jk}E_{jk}-z_{jk}E_{kj}\right),
+  Y_p(z)=\sum_{j<k}
+    \frac{z_{jk}E_{kj}-\bar z_{jk}E_{jk}}{\sqrt{p_j-p_k}},
   \quad z\in\C^{r_d},
 \]
 where \(E_{jk}\) are the standard matrix units, and define
 \[
-  g_{n,z}=\exp\!\left(\frac{Y(z)}{\sqrt n}\right).
+  g_{n,z}^{(p)}=\exp\!\left(\frac{Y_p(z)}{\sqrt n}\right).
 \]
-In \(\rho_{p+h/\sqrt n,g_{n,z}}\), the coordinates \(h\) and \(z\)
+In \(\rho_{p+h/\sqrt n,g_{n,z}^{(p)}}\), the coordinates \(h\) and \(z\)
 describe local changes of eigenvalues and eigenbasis, respectively.
-Since \(Y(z)^*=-Y(z)\), one has
-\(g_{n,z}\in\U(d)\).  For \(L>0\), set
+The denominators in \(Y_p\) use the fixed base spectrum \(p\), including
+when the local spectrum is \(p+h/\sqrt n\).  Since \(Y_p(z)^*=-Y_p(z)\), one has
+\(g_{n,z}^{(p)}\in\U(d)\).  For \(L>0\), set
 \[
   \Omega_L
   =\left\{(h,z)\in\mathsf H\times\C^{r_d}:
@@ -1915,35 +1842,37 @@ lost-mass, and witness arguments are given in
 \label{sec:local-asymptotic-normality}
 
 Here LAN means that, uniformly for \((h,z)\) in compact sets,
-the state families \(\rho_{p+h/\sqrt n,g_{n,z}}^{\ot n}\) and
+the state families \(\rho_{p+h/\sqrt n,g_{n,z}^{(p)}}^{\ot n}\) and
 \(\mathsf N_{h,\Sigma_p}\ot\Phi_z^{(p)}\) are asymptotically interconvertible
 by channels with vanishing trace-norm error.  The Gaussian and oscillator
 factors represent spectral and eigenbasis fluctuations, respectively; cloning
 scales \((h,z)\) by \(\sqrt\gamma\).
 
-The rotation coordinate in \cite{KahnGuta2009LANFiniteDimensional} differs
-from the oscillator displacement coordinate used here.  For
-\(\zeta\in\C^{r_d}\), set
-\[
-  X_p(\zeta)
-  =\sum_{j<k}
-    \frac{\zeta_{jk}E_{kj}-\bar\zeta_{jk}E_{jk}}
-         {\sqrt{p_j-p_k}},
-  \qquad
-  (L_p\zeta)_{jk}=-\frac{\zeta_{jk}}{2\sqrt{p_j-p_k}}.
-\]
-Then \(L_p\) is invertible and
+We fix the oscillator normalization directly from the local tangent and
+the collective fluctuation operators.  Put \(\Delta_{ij}=p_i-p_j\).  The
+chart in \cref{sec:local-coordinates} satisfies
 \begin{equation}\label{eq:LAN-coordinate-map}
-  X_p(L_p^{-1}z)=Y(z).
+  \frac{[Y_p(z),\rho_p]_{ji}}{\sqrt{\Delta_{ij}}}=z_{ij},
+  \qquad i<j.
 \end{equation}
-In the convention of
-\cite[Eqs.~(4.4) and~(4.19)]{KahnGuta2009LANFiniteDimensional}, the physical
-unitary generated by \(X_p(\zeta)\) produces the oscillator state
-\(W(w)^*\tau W(w)\), where \(W\) denotes their Weyl operator and
-\(w_{jk}=\zeta_{jk}/(2\sqrt{p_j-p_k})\).  Since our convention is
-\(D(z)\tau D(z)^*\) with \(D=W\), the corresponding coordinate is
-\(z=-w=L_p\zeta\).  Linearity of \(L_p\) implies that multiplication of the
-physical coordinate by \(\sqrt\gamma\) multiplies \(z\) by the same factor.
+For \(a_{ij,n}=(n\Delta_{ij})^{-1/2}\sum_{s=1}^n E_{ij}^{(s)}\), where
+\(E_{ij}^{(s)}\) acts on the \(s\)-th tensor factor, the expectations at
+\(\rho_p^{\ot n}\) obey
+\[
+  \langle[a_{ij,n},a_{ij,n}^*]\rangle=1,
+  \qquad
+  \langle a_{ij,n}^*a_{ij,n}\rangle
+  =\frac{p_j}{\Delta_{ij}}=\frac{q_{ij}}{1-q_{ij}}.
+\]
+Under the local state, \eqref{eq:LAN-coordinate-map} gives
+\(\langle a_{ij,n}\rangle=z_{ij}+o(1)\), uniformly on compact parameter
+sets.  Thus the limiting mode has mean \(z_{ij}\) and thermal parameter
+\(q_{ij}\), agreeing with \(D(z_{ij})\tau_{q_{ij}}D(z_{ij})^*\) in
+\eqref{eq:Weyl-convention}.  This is also the rotation-to-displacement
+normalization in the constructive proof of
+\cite[Lemma~6.4 and Section~7.3]{KahnGuta2009LANFiniteDimensional}.
+We use their two-way LAN theorem with oscillator coordinates expressed
+in this convention.
 
 \begin{samepage}
 \begin{theorem}[Finite-dimensional LAN and target-sample scaling]
@@ -1963,7 +1892,7 @@ such that, for every compact
 \begin{equation}\label{eq:LAN-full-forward}
   \sup_{(h,z)\in C}
   \left\|
-    T_n^{\mathrm{full}}\!\left(\rho_{p+h/\sqrt n,g_{n,z}}^{\ot n}\right)
+    T_n^{\mathrm{full}}\!\left(\rho_{p+h/\sqrt n,g_{n,z}^{(p)}}^{\ot n}\right)
     -\mathsf N_{h,\Sigma_p}\ot\Phi_z^{(p)}
   \right\|_1\longrightarrow0,
 \end{equation}
@@ -1971,7 +1900,7 @@ such that, for every compact
   \sup_{(h,z)\in C}
   \left\|
     S_n^{\mathrm{full}}\!\left(\mathsf N_{h,\Sigma_p}\ot\Phi_z^{(p)}\right)
-    -\rho_{p+h/\sqrt n,g_{n,z}}^{\ot n}
+    -\rho_{p+h/\sqrt n,g_{n,z}^{(p)}}^{\ot n}
   \right\|_1\longrightarrow0,
 \end{equation}
 and
@@ -1979,7 +1908,7 @@ and
   \sup_{(h,z)\in C}
   \left\|
     T_{m_n}^{\mathrm{full}}\!\left(
-      \rho_{p+h/\sqrt n,g_{n,z}}^{\ot m_n}\right)
+      \rho_{p+h/\sqrt n,g_{n,z}^{(p)}}^{\ot m_n}\right)
     -\mathsf N_{\sqrt\gamma h,\Sigma_p}\ot\Psi_z^{(p,\gamma)}
   \right\|_1\longrightarrow0.
 \end{equation}
@@ -1990,8 +1919,8 @@ and
 The forward and reverse assertions
 \eqref{eq:LAN-full-forward}--\eqref{eq:LAN-full-reverse} are
 \cite[Theorem~4.3]{KahnGuta2009LANFiniteDimensional}, after identifying their
-\((d-1)\)-dimensional spectral coordinate with \(\mathsf H\) and applying
-the coordinate change \eqref{eq:LAN-coordinate-map}.  For the classical
+\((d-1)\)-dimensional spectral coordinate with \(\mathsf H\) and using
+the oscillator normalization \eqref{eq:LAN-coordinate-map}.  For the classical
 factor, let
 \[
   \iota:\R^{d-1}\longrightarrow\mathsf H,
@@ -2011,8 +1940,8 @@ A direct calculation gives
   A V(p)A^{\mathsf T}=\diag(p)-pp^{\mathsf T}.
 \]
 Hence, when \(h=\iota(u)\), the pushforward of their classical Gaussian is
-\(\mathsf N_{h,\Sigma_p}\).  The coordinate change
-\eqref{eq:LAN-coordinate-map} identifies their oscillator state with
+\(\mathsf N_{h,\Sigma_p}\).  The fluctuation normalization above
+identifies the oscillator state with
 \(\Phi_z^{(p)}\).  Their Schr\"odinger-picture maps are completely positive
 and trace preserving on the trace-class and classical--quantum \(L^1\)
 spaces shown above.
@@ -2020,16 +1949,32 @@ spaces shown above.
 The target-sample assertion \eqref{eq:LAN-full-target} is a consequence
 of the first assertion.  Indeed, the identity
 \[
-  \rho_{p+h/\sqrt n,g_{n,z}}
+  \rho_{p+h/\sqrt n,g_{n,z}^{(p)}}
   =\rho_{p+\sqrt{\gamma_n}h/\sqrt{m_n},
-          g_{m_n,\sqrt{\gamma_n}z}}
+          g_{m_n,\sqrt{\gamma_n}z}^{(p)}}
 \]
 follows from \(\sqrt{\gamma_n}/\sqrt{m_n}=1/\sqrt n\) and the real linearity
-of \(Y\).  Apply \eqref{eq:LAN-full-forward} at sample size \(m_n\) on one
+of \(Y_p\), with the same base \(p\) at both sample sizes.  Apply
+\eqref{eq:LAN-full-forward} at sample size \(m_n\) on one
 compact set containing all scaled parameters.  Since \(\gamma_n\to\gamma\),
 translation of Gaussian densities and Weyl conjugation are uniformly
 trace-norm continuous there, which gives \eqref{eq:LAN-full-target}.
 \end{proof}
+
+\begin{remark}[Qubit normalization check]
+For \(d=2\), put \(\Delta=p_1-p_2>0\), \(q=p_2/p_1\), and take
+\(z=t\in\R\).  The exact qubit fidelity identity gives
+\[
+  F\!\left(\rho_p^{\ot n},
+    \rho_{p,g_{n,t}^{(p)}}^{\ot n}\right)
+  =\left(1-\Delta^2\sin^2\frac{t}{\sqrt{n\Delta}}\right)^{n/2}
+  \longrightarrow e^{-\Delta t^2/2}.
+\]
+This equals
+\(F(\tau_q,D(t)\tau_qD(t)^*)
+=\exp[-(1-q)t^2/(2(1+q))]\), confirming the displacement scale in
+\cref{thm:LAN-full}.
+\end{remark}
 
 \begin{corollary}[Fixed-spectrum LAN]\label{cor:LAN-orb}
 Fix \(p\in\Delta_d^\circ\).  There are channels
@@ -2040,16 +1985,16 @@ Fix \(p\in\Delta_d^\circ\).  There are channels
 \]
 such that, uniformly for \(z\) in compact sets,
 \begin{equation}\label{eq:LAN-known-forward}
-  \|T_n^{\mathrm{orb}}(\rho_{p,g_{n,z}}^{\ot n})-\Phi_z^{(p)}\|_1
+  \|T_n^{\mathrm{orb}}(\rho_{p,g_{n,z}^{(p)}}^{\ot n})-\Phi_z^{(p)}\|_1
   \longrightarrow0,
 \end{equation}
 \begin{equation}\label{eq:LAN-known-reverse}
-  \|S_n^{\mathrm{orb}}(\Phi_z^{(p)})-\rho_{p,g_{n,z}}^{\ot n}\|_1
+  \|S_n^{\mathrm{orb}}(\Phi_z^{(p)})-\rho_{p,g_{n,z}^{(p)}}^{\ot n}\|_1
   \longrightarrow0,
 \end{equation}
 and
 \begin{equation}\label{eq:LAN-known-target}
-  \|T_{m_n}^{\mathrm{orb}}(\rho_{p,g_{n,z}}^{\ot m_n})
+  \|T_{m_n}^{\mathrm{orb}}(\rho_{p,g_{n,z}^{(p)}}^{\ot m_n})
        -\Psi_z^{(p,\gamma)}\|_1
   \longrightarrow0.
 \end{equation}
@@ -2160,7 +2105,7 @@ fixed \(L\), set
 \[
   \Gamma_n=T_{m_n}^{\mathrm{orb}}\circ\cM_n\circ S_n^{\mathrm{orb}}.
 \]
-The local orbit \(\{g_{n,z}:z\in\mathsf Z_L\}\) is contained in the full
+The local orbit \(\{g_{n,z}^{(p)}:z\in\mathsf Z_L\}\) is contained in the full
 unitary orbit.  Hence \cref{lem:LAN-fidelity-transfer} gives
 \[
   u_n(p)
@@ -2187,8 +2132,8 @@ window grow after the large-\(n\) limit.  For all sufficiently large \(n\), set
   v_{n,L}(p)
   =\sup_{\cM_n}\inf_{(h,z)\in\Omega_L}
   F\!\left(
-    \cM_n\bigl(\rho_{p+h/\sqrt n,g_{n,z}}^{\ot n}\bigr),
-    \rho_{p+h/\sqrt n,g_{n,z}}^{\ot m_n}
+    \cM_n\bigl(\rho_{p+h/\sqrt n,g_{n,z}^{(p)}}^{\ot n}\bigr),
+    \rho_{p+h/\sqrt n,g_{n,z}^{(p)}}^{\ot m_n}
   \right).
 \end{equation}
 
@@ -2714,9 +2659,7 @@ expectations vanish.  The typical-set expansions therefore prove
 Substitution into
 \eqref{eq:grassmann-finite-converse} yields
 \begin{equation}\label{eq:grassmann-converse-limit}
-  \limsup_n F\le
-  \left(\frac{n}{m_n}\right)^{r(d-r)/2}
-  \longrightarrow\gamma^{-r(d-r)/2},
+  \limsup_{n\to\infty} F\le\gamma^{-r(d-r)/2},
 \end{equation}
 which completes the converse and the proof of \cref{thm:grassmann}.
 
@@ -2741,20 +2684,15 @@ rank at most \(r\), they establish the optimal scaling
 \begin{equation}\label{eq:pct-uniform-copy-complexity}
   N=\Theta\!\left(\frac{Mrd}{\epsilon}\right).
 \end{equation}
-Their lower bounds already use flat normalized-projector subfamilies, while
-their matching upper bounds use PCT.  Their theorem gives the worst-case
-number of inputs needed to attain fidelity \(1-\epsilon\), uniformly over the
-rank-constrained family; its \(1/\epsilon\) scaling concerns
-\(\epsilon\downarrow0\).  It does not determine the fidelity when
-\(M/N\to\delta>0\).  Moreover, optimal copy complexity does not imply that
-PCT maximizes fidelity at each state.  Conversely, our results when
-\(m_n/n\to\gamma>1\) do not improve their uniform scaling up to constants.
-We instead determine exact orbit and compact-family minimax values and the
-exact asymptotic fidelity attained by our spectrum-independent cloner at
-every simple full-rank spectrum; none of these statements requires the
-fidelity to be close to one.  Below we recall the PCT guarantee, compare the
-protocols on projector states and at a fixed simple spectrum, bound the
-minimax fidelity over all states, and record the order-of-limits caveat.
+Their lower bounds use flat normalized-projector subfamilies, while the
+matching upper bounds use PCT.  The hard projectors may have rank
+\(\ell<r\), with \(\ell=\Theta(r)\); the supplied rank bound \(r=d\)
+therefore does not restrict the hard family to the singleton \(I_d/d\).
+These results determine the uniform high-fidelity copy complexity up to
+constants.  They do not determine the exact fidelity at a fixed gain
+\(\gamma>1\), or imply that PCT maximizes fidelity at each state.  We
+compare the protocols in this fixed-gain regime and then discuss the
+iterated high-fidelity limit.
 
 The PCT protocol first applies the random-purification channel
 \cite{TangWrightZhandry2025}, then Werner's pure-state cloner on the
@@ -2777,11 +2715,10 @@ lower bound by data processing:
   \longrightarrow
   \gamma^{-(dr-1)}.
 \end{equation}
-For each fixed purified component, the binomial ratio is the exact squared
-fidelity of Werner's output with the corresponding pure tensor-power target.
-Averaging over purifications and then discarding the purifying registers
-yields the displayed lower bound.  Neither operation implies equality for
-the final PCT output, so this bound alone does not compare the protocols.
+The binomial ratio is exact for each purified component before averaging
+and tracing out the purifying registers.  These operations give only a
+lower bound on the final PCT fidelity; the protocol comparisons below use
+the sharper analysis in Appendix~\ref{app:pct-comparison}.
 
 Appendix~\ref{app:pct-comparison} compares the complete protocols on the two
 families covered here.  For every simple full-rank spectrum, when
@@ -2816,10 +2753,9 @@ Let \(\rho=P/r\), where \(P\) is a rank-\(r\) orthogonal projector and
 \(r(d-r)\).  Write
 \(\sigma_{n,m}^{\mathrm{PCT}}(P)\) for the PCT output on
 \((P/r)^{\ot n}\), instantiated with the rank bound \(r\), so that the
-purification space has dimension \(dr\).  Our projector-state theorem gives
-the exact asymptotic squared fidelity \(\gamma^{-r(d-r)}\) for every fixed
-positive limit of \(M/N\), not merely an expansion near \(M/N=0\).  Solving
-\(\gamma^{-r(d-r)}=1-\epsilon\) for \(N/M\) gives
+purification space has dimension \(dr\).  Our projector-state theorem gives the exact limiting squared fidelity
+\(\gamma^{-r(d-r)}\).  Inverting this limiting value at
+\(1-\epsilon\) gives
 \begin{equation}\label{eq:projector-optimal-sample-ratio}
   \frac{N}{M}
   =\frac{1}{(1-\epsilon)^{-\frac{1}{r(d-r)}}-1}
@@ -2833,11 +2769,9 @@ By contrast, the published PCT guarantee certifies squared fidelity at least
   \ge\frac{1}{(1-\epsilon)^{-1/(rd-1)}-1}
   =\frac{rd-1}{\epsilon}-\frac{rd}{2}+O(\epsilon).
 \end{equation}
-The leading coefficient for our projector cloner is \(r(d-r)\), whereas the
-published sufficient condition for PCT has coefficient \(rd-1\).  These
-coefficients alone do not compare the protocols.
-
-The stronger conclusion follows from the appendix:
+The coefficient \(rd-1\) comes from a sufficient condition for PCT.
+The appendix instead proves the following strict comparison of the
+protocols at fixed gain:
 \begin{equation}\label{eq:grassmann-pct-squared-upper-bound}
   \limsup_{n\to\infty}
   F\!\left(
@@ -2947,49 +2881,120 @@ letting \(\kappa\downarrow0\) gives
 At large gain the two sides scale as \(\gamma^{-(d^2-1)/2}\) and
 \(\gamma^{-(d^2-1)/4}\), up to constants: the known bounds differ by a
 factor of two in the polynomial exponent.  Determining the uniform minimax
-value at fixed \(\gamma\), and whether PCT attains it, is open.  The
-concurrent results
-\cite{FanizzaGrinkoScharnhorstSpilecki2026,JeonSohnOh2026} instead determine,
-up to constants, the sample complexity for uniformly attaining high
-fidelity.
+value at fixed \(\gamma\), and whether PCT attains it, is open.
 
 \paragraph{Order of limits in the sample-complexity comparison.}
-The strict comparisons above hold at every fixed \(\gamma>1\), without
-taking \(\epsilon\downarrow0\) or \(\gamma\downarrow1\).  The
-sample-complexity formulas obtained by letting \(\epsilon\downarrow0\),
-however, hold only as iterated limits: first \(N,M\to\infty\) with
-\(M/N=\delta>0\), and then \(\delta\downarrow0\).  Our theorems are not
-uniform for a sequence \(\gamma_n=m_n/n\downarrow1\), so they do not give
-finite-sample bounds in the joint regime studied by the two concurrent
-papers.  This caveat does not affect the strict comparison with PCT at fixed
-\(\gamma\).  Rank-deficient spectra beyond the flat projector family and
-full-rank spectra with positive degeneracies remain outside the results
-proved here.
+The strict protocol comparisons hold for every fixed \(\gamma>1\).
+The small-error thresholds derived from our limiting fidelities use an
+iterated limit: first \(N,M\to\infty\) with \(M/N\to\delta>0\),
+then \(\delta\downarrow0\).  Our estimates are not uniform when
+\(\gamma_n\downarrow1\), so these thresholds do not establish
+finite-sample bounds in a joint high-fidelity regime or improve the
+uniform \(1/\epsilon\) scaling up to constants.
 
 \section{Conclusion}
 
 In the regime \(m_n/n\to\gamma>1\), we determined the optimal asymptotic
 cloning fidelity for known simple full-rank spectra, and the exact
 asymptotic fidelity of a single spectrum-independent cloner for unknown
-simple full-rank spectra, uniformly on compact spectral sets.  On
-full-dimensional compact spectral families, this cloner is minimax optimal.  At every fixed simple full-rank
-spectrum its limiting fidelity is \(\Funiv\), strictly above the exact PCT
+simple full-rank spectra, uniformly on compact spectral sets.  On the compact
+spectral families specified in part~\textup{(b)} of
+\cref{thm:unknown-optimum}, this cloner is minimax optimal.
+At every fixed simple full-rank spectrum its limiting fidelity is
+\(\Funiv\), strictly above the exact PCT
 fidelity.  For flat projector states, our projector-state cloner attains
 the exact projector-state minimax value, while PCT is strictly suboptimal for
 \(1<r<d\).
 
 Several boundary regimes remain open.  These include the positive-degeneracy
-and nonflat rank-deficient cases described conjecturally in
-\cref{sec:remarks}, and neighborhoods in which the rank changes.
+and nonflat rank-deficient cases discussed below, and neighborhoods in
+which the rank changes.
 Estimates uniform for gains
 \(\gamma_n=m_n/n\downarrow1\) would be needed to turn these formulas into
 finite-sample bounds in the joint high-fidelity limit.  The exact minimax
 value over all states at fixed \(\gamma\), as well as the finite-copy optimum,
 also remains to be determined.
 
+\subsection{Conjectures for degenerate and rank-deficient spectra}
+\label{sec:conjectures}
+We record two expected extensions of the proved formulas.  Suppose a
+rank-\(r\) state \(\rho\) has distinct positive eigenvalues
+\(u_1>\cdots>u_s>0\), with multiplicities \(r_1,\ldots,r_s\), where
+\(\sum_a r_a=r\) and \(\sum_a r_a u_a=1\).  We conjecture that the
+known-spectrum optimum on its unitary orbit, defined as in
+\eqref{eq:known-optimum}, is
+\begin{equation}\label{eq:conjectured-degenerate-orbit}
+  \Forb(\gamma,\rho)
+  =\gamma^{-r(d-r)/2}
+   \prod_{a<b}f_\gamma\!\left(\frac{u_b}{u_a}\right)^{r_ar_b}.
+\end{equation}
+Only pairs of distinct positive eigenspaces contribute to the product:
+rotations within a degenerate eigenspace are stabilizer directions, while
+the \(r(d-r)\) support--kernel directions give the first factor.  The simple
+full-rank case \(r=d\), \(s=d\), and \(r_a=1\) reduces to the orbital
+formula in \eqref{eq:main-values}; the flat projector case \(s=1\) reduces
+to \(\gamma^{-r(d-r)/2}\), proved in \cref{thm:grassmann}.  In particular,
+\(r=1\) recovers Werner's pure-state value \(\gamma^{-(d-1)/2}\).  The exact
+compression identity in
+\cref{lem:exact-compression} establishes this support--kernel factorization
+for our sector channel, but does not by itself prove the conjecture for the
+remaining spectra.
+
+For the local unknown-state problem, consider the smooth manifold of
+rank-\(r\) states
+\begin{equation}\label{eq:fixed-rank-state-manifold}
+  \mathcal D_r^\circ
+  :=\{\sigma\succeq0:\Tr\sigma=1,\ \operatorname{rank}\sigma=r\}.
+\end{equation}
+If \(P\) is the support projection of \(\rho\), its tangent space is
+\begin{equation}\label{eq:fixed-rank-tangent-space}
+  T_\rho\mathcal D_r^\circ
+  =\{X=X^*:\Tr X=0,\ (I-P)X(I-P)=0\}.
+\end{equation}
+Equip this manifold with the Riemannian metric induced by the
+Hilbert--Schmidt inner product and denote its exponential map at \(\rho\) by
+\(\operatorname{Exp}_\rho\).  For fixed \(L\) and all sufficiently large
+\(n\), set \(\rho_{n,X}=\operatorname{Exp}_\rho(X/\sqrt n)\) and define
+\begin{equation}\label{eq:fixed-rank-local-minimax}
+  v_{n,L}^{(r)}(\rho)
+  :=\sup_{\cM_n}\inf_{\substack{X\in T_\rho\mathcal D_r^\circ\\
+                                \|X\|_2\le L}}
+  F\!\left(\cM_n(\rho_{n,X}^{\ot n}),\rho_{n,X}^{\ot m_n}\right).
+\end{equation}
+Here \(\rho\) is fixed before the supremum, so the channel sequence may
+depend on the center \(\rho\), but not on the unknown local displacement
+\(X\).  We conjecture that the \(\limsup\) and \(\liminf\) of
+\(v_{n,L}^{(r)}(\rho)\), first as \(n\to\infty\) and then as
+\(L\to\infty\), agree.  Writing their common value as
+\(\Funiv^{(r)}(\gamma,\rho)\), the conjectured formula is
+\begin{equation}\label{eq:conjectured-fixed-rank-local}
+  \Funiv^{(r)}(\gamma,\rho)
+  =\left(\frac{2\sqrt\gamma}{1+\gamma}\right)^{(\sum_{a=1}^s r_a^2-1)/2}
+   \Forb(\gamma,\rho).
+\end{equation}
+Only the positive-eigenvalue blocks enter the exponent; the support--kernel
+directions are already included in \(\Forb(\gamma,\rho)\) through the factor
+\(\gamma^{-r(d-r)/2}\).  The quantity \(\sum_{a=1}^s r_a^2-1\) is the real
+dimension of the traceless Hermitian commutant on the support.  The exponent
+is suggested by the Gaussian matrix fluctuations that resolve a degenerate
+positive block \cite{Kuperberg2002,Johansson2001}.  For simple positive
+spectra (every \(r_a=1\)), the fixed-rank LAN theorem of
+\cite[Theorem~3.3]{LahiryNussbaum2024} has exactly \(r-1\) classical
+Gaussian parameters, \(r(r-1)/2\) shifted thermal modes, and \(r(d-r)\)
+shifted pure modes, matching the exponent \((r-1)/2\) here and the factors
+in \eqref{eq:conjectured-degenerate-orbit}.  When also \(r=d\), the formula
+reduces to the local full-rank value in \eqref{eq:main-values}.  At a flat
+projector state, \(s=1\), \cref{thm:grassmann} proves only the known-spectrum
+orbital factor, not this local conjecture.  This is a pointwise local minimax
+conjecture, not a claim that one rank-aware channel works uniformly over the
+rank-\(r\) manifold, and we make no claim for neighborhoods in which the rank
+can change.
+
 \section*{Acknowledgments}
 
-We would like to thank Patrick Hayden and Henry Purcell for discussions and early collaborations. JF acknowledges support from @@@.
+We thank Patrick Hayden and Henry Purcell for discussions and early
+collaborations.
+% Author to supply JF's funding acknowledgment before submission.
 
 \section*{Generative AI usage}
 
@@ -3006,13 +3011,10 @@ responsibility for the accuracy and content of the manuscript.
 \section{Strict comparison with purify--clone--trace}
 \label[appendix]{app:pct-comparison}
 
-This appendix compares PCT with our spectrum-independent cloner on simple
-full-rank states and with our projector-state cloner on flat projector states.
-For every fixed \(\gamma>1\), we prove strict separation in both families
-(with \(1<r<d\) for projector states), without assuming that either fidelity
-is close to one.  For simple full-rank spectra we compare the exact
-asymptotic root fidelities of both cloners; for projector states we derive an
-explicit upper bound on PCT.
+We compute the exact asymptotic PCT fidelity at simple full-rank spectra
+and derive a strict upper bound for flat projector states with
+\(1<r<d\), proving the comparisons stated in
+\cref{sec:pct-comparison}.
 
 \subsection{Simple full-rank spectra}
 
@@ -3293,7 +3295,7 @@ After the purifying systems are traced out, the second state in
 
 To make the local chart explicit, define the anti-Hermitian matrix
 \begin{equation}\label{eq:G-beta}
-  G(\beta)
+  G(\beta)=Y_p(\beta)
   =\sum_{i<j}
    \frac{\beta_{ij}E_{ji}-\overline{\beta_{ij}}E_{ij}}
         {\sqrt{p_i-p_j}}.
@@ -3303,19 +3305,26 @@ It satisfies
   [G(\beta),\rho_p]_{ji}
   =\sqrt{p_i-p_j}\,\beta_{ij}
 \), so \eqref{eq:beta-Z} is precisely the off-diagonal coordinate of
-\(D_p(Z)\).  Because \(p\) has a simple spectrum, smooth
-eigenvalue/eigenvector perturbation theory, with the eigenvector phases fixed
-continuously at the standard basis, gives
+\(D_p(Z)\).  To obtain exact local coordinates, consider
+\[
+  (u,w)\longmapsto e^{Y_p(w)}\diag(p+u)e^{-Y_p(w)},
+  \qquad u\in\mathsf H_0,\quad w\in\C^{\binom d2}.
+\]
+Its derivative at \((0,0)\) is
+\((u,w)\mapsto\diag(u)+[Y_p(w),\rho_p]\), a real linear isomorphism
+onto the traceless Hermitian matrices: its diagonal is \(u\) and its
+\((j,i)\)-entry is \(\sqrt{p_i-p_j}\,w_{ij}\).  The inverse function
+theorem therefore gives a smooth local chart.  Applying its inverse to
+\eqref{eq:local-reduced-state} yields
 \[
   \rho_{Z,M}
-  =g_M\diag(p+M^{-1/2}h_M)g_M^*,
+  =g_{M,z_M}^{(p)}\diag(p+M^{-1/2}h_M)(g_{M,z_M}^{(p)})^*,
   \qquad
-  h_M\longrightarrow h(Z),
-  \qquad
-  \sqrt M\log g_M\longrightarrow G(\beta(Z)).
+  (h_M,z_M)=(h(Z),\beta(Z))+O_L(M^{-1/2}),
 \]
-Thus \(\rho_{Z,M}\) lies in the interior-LAN local chart, with a bounded
-coordinate \(\theta_M\) converging to \(\theta:=(h(Z),\beta(Z))\).  Write
+uniformly for \(\|Z\|\le L\).  Thus \(\rho_{Z,M}\) lies in the interior-LAN
+local chart, with bounded coordinates \(\theta_M=(h_M,z_M)\) converging to
+\(\theta:=(h(Z),\beta(Z))\).  Write
 \(\Theta_\eta\) for the interior Gaussian state at coordinate \(\eta\); by
 \eqref{eq:Lambda-coherent}, \(\Lambda_p(\proj Z)=\Theta_\theta\).  The
 forward and reverse LAN estimates
@@ -3355,23 +3364,6 @@ finite linear combination of coherent projectors, then for either pair
 \]
 First let \(M\to\infty\), then let \(Y\to X\), to obtain the claims.
 \end{proof}
-
-\begin{remark}[Coordinate convention]
-The proof uses the positive-CCR displacement \(\beta_{ij}\) in
-\eqref{eq:beta-Z}.  With the physical rotation convention of
-\cref{sec:local-coordinates},
-\[
-  Y(z)=2\sum_{i<j}
-    \left(\overline z_{ij}E_{ij}-z_{ij}E_{ji}\right),
-\]
-the corresponding positive-CCR mean in the convention used here is
-\[
-  \beta_{ij}=-2\sqrt{p_i-p_j}\,z_{ij}.
-\]
-Thus the physical rotation parameter \(z\) and the retained-mode
-displacement \(\beta\) should not be identified.  This normalization does
-not affect the centered thermal calculation below.
-\end{remark}
 
 \paragraph{Action on the thermal tangent state.}
 
@@ -3906,41 +3898,17 @@ smaller than \(\gamma^{-r(d-r)/2}\) when \(1<r<d\), because
 \eqref{eq:grassmann-pct-internal-state}.
 \end{proof}
 
-The proposition compares the two protocols for every fixed \(\gamma>1\),
-without assuming that either fidelity is close to one.  By contrast, the
-recent sample-complexity papers use the lower bound obtained from data
-processing to establish their fidelity thresholds.  In their
-squared-fidelity convention,
-\[
-  F\!\left(
-    \sigma_{n,m}^{\mathrm{PCT}}(P),(P/r)^{\ot m}
-  \right)^2
-  \ge\frac{\mathsf d_{rd}(n)}{\mathsf d_{rd}(m)}
-  \longrightarrow\gamma^{-(rd-1)}
-  \quad\cite{FanizzaGrinkoScharnhorstSpilecki2026,JeonSohnOh2026}.
-\]
-Our projector-state theorem instead gives the exact asymptotic squared fidelity
-\(\gamma^{-r(d-r)}\), which exceeds the published PCT lower bound by the
-factor \(\gamma^{r^2-1}\) for \(1<r<d\).  This factor compares our exact value
-with only a lower bound for PCT, so it does not compare the protocols
-themselves.  The upper bound \eqref{eq:grassmann-pct-upper-bound} provides the
-strict comparison.
-
 \begin{remark}[The limit \(\gamma\downarrow1\)]
-The strict comparison itself holds for every fixed \(\gamma>1\) and requires
-no high-fidelity assumption.  As \(\gamma\downarrow1\), however, the
-upper bound that proves strict separation differs from the optimum only at
-second order.  Indeed,
-writing \(\gamma=1+\delta\), the additional factor detected by the count
-statistic satisfies
+Writing \(\gamma=1+\delta\), the additional factor detected by the
+count statistic has the expansion
 \[
   \left(\frac{\sqrt{2\gamma-1}}{\gamma}\right)^{(r-1)/2}
   =1-\frac{r-1}{4}\delta^2+O(\delta^3).
 \]
-It therefore does not by itself settle the leading sample-complexity
-comparison in a joint limit.  The exact factorization
-\eqref{eq:grassmann-pct-factorization} nevertheless bounds the PCT infidelity
-from both sides.
+Thus this statistic detects a second-order loss.  The exact factorization
+\eqref{eq:grassmann-pct-factorization} also bounds the total PCT
+infidelity from both sides in the iterated limit of
+\cref{sec:pct-comparison}.
 For fixed \(\delta>0\) and \(m_n/n\to1+\delta\), the upper bound from the
 support factor implies
 \[
@@ -3950,7 +3918,7 @@ support factor implies
     \right)^2\right]
   \ge 1-(1+\delta)^{-r(d-r)},
 \]
-while the published PCT lower bound implies
+while \eqref{eq:pct-data-processing-lower-bound} implies
 \[
   \limsup_{n\to\infty}
   \left[1-F\!\left(
@@ -4099,7 +4067,10 @@ For \(0\le R\le R_L\), the restrictions
 satisfy
 \(\|\widehat E_\alpha\|+\|\widehat F_\alpha\|=O_L(1)\).  To see this,
 decompose \(\cH_\lambda\) orthogonally into irreducible
-  \(\mathfrak{sl}_2(\alpha)\)-summands.  If a summand meets the weight space
+  \(\mathfrak{sl}_2(\alpha)\)-summands within joint eigenspaces of the
+  Cartan subalgebra commuting with \(\mathfrak{sl}_2(\alpha)\).
+  Each string then consists of full Cartan weight vectors.
+  If a summand meets the weight space
   of \(\lambda-\eta\), where \(\operatorname{ht}(\eta)\le R\), let \(t\) be
   its level there and \(M\) its highest \(H_\alpha\)-eigenvalue.
   The top of this string, of weight
@@ -4698,8 +4669,10 @@ This is the Gaussian exponent since
 \(\langle x,\Sigma_p^{-1}x\rangle=\sum_i x_i^2/p_i\).
 The normalizing constants agree since
 \(|\mathsf C|^2=\det[\langle e_i-e_d,e_j-e_d\rangle]_{i,j<d}=d\), while
-\(\ker\Sigma_p=\operatorname{span}\{(1,\ldots,1)\}\) and
-\(\operatorname{cof}_{ii}(\Sigma_p)=\prod_jp_j\) give
+the ambient matrix \(\overline\Sigma_p:=\diag(p)-pp^{\mathsf T}\) has
+\(\ker\overline\Sigma_p=\operatorname{span}\{(1,\ldots,1)\}\) and
+\(\operatorname{cof}_{ii}(\overline\Sigma_p)=\prod_jp_j\).  Since
+\(\Sigma_p=\overline\Sigma_p|_{\mathsf H}\), these identities give
 \(\det_{\mathsf H}\Sigma_p=d\prod_jp_j\).
 The remainder is
 \(o(1)\) since \(1/2<\beta_0<2/3\).
@@ -5738,97 +5711,6 @@ Non-Gaussian cloning of quantum coherent states is optimal,
 \doi{10.1103/PhysRevLett.95.070501}{\emph{Phys. Rev. Lett.} \textbf{95}, 070501 (2005)},
 \arxiv{quant-ph/0410058}.
 
-\bibitem[DG98]{DuanGuo1998}
-L.-M. Duan and G.-C. Guo,
-Probabilistic cloning and identification of linearly independent quantum states,
-\doi{10.1103/PhysRevLett.80.4999}{\emph{Phys. Rev. Lett.} \textbf{80}, 4999--5002 (1998)}.
-
-\bibitem[NG98]{NiuGriffiths1998}
-C.-S. Niu and R. B. Griffiths,
-Optimal copying of one quantum bit,
-\doi{10.1103/PhysRevA.58.4377}{\emph{Phys. Rev. A} \textbf{58}, 4377--4393 (1998)},
-\arxiv{quant-ph/9805063}.
-
-\bibitem[BCDM00]{BrussCinchettiDArianoMacchiavello2000}
-D. Bruss, M. Cinchetti, G. M. D'Ariano, and C. Macchiavello,
-Phase-covariant quantum cloning,
-\doi{10.1103/PhysRevA.62.012302}{\emph{Phys. Rev. A} \textbf{62}, 012302 (2000)},
-\arxiv{quant-ph/9909046}.
-
-\bibitem[Cer00]{Cerf2000Asymmetric}
-N. J. Cerf,
-Asymmetric quantum cloning in any dimension,
-\doi{10.1080/09500340008244036}{\emph{J. Mod. Opt.} \textbf{47}, 187--209 (2000)},
-\arxiv{quant-ph/9805024}.
-
-\bibitem[MJPV99]{MuraoJonathanPlenioVedral1999}
-M. Murao, D. Jonathan, M. B. Plenio, and V. Vedral,
-Quantum telecloning and multiparticle entanglement,
-\doi{10.1103/PhysRevA.59.156}{\emph{Phys. Rev. A} \textbf{59}, 156--161 (1999)},
-\arxiv{quant-ph/9806082}.
-
-\bibitem[CDP08]{ChiribellaDArianoPerinotti2008}
-G. Chiribella, G. M. D'Ariano, and P. Perinotti,
-Optimal cloning of unitary transformation,
-\doi{10.1103/PhysRevLett.101.180504}{\emph{Phys. Rev. Lett.} \textbf{101}, 180504 (2008)},
-\arxiv{0804.0129}.
-
-\bibitem[CYY13]{ChiribellaYangYao2013}
-G. Chiribella, Y. Yang, and A. C.-C. Yao,
-Quantum replication at the Heisenberg limit,
-\doi{10.1038/ncomms3915}{\emph{Nat. Commun.} \textbf{4}, 2915 (2013)},
-\arxiv{1304.2910}.
-
-\bibitem[GCMBC14]{GendraCalsamigliaMunozTapiaBaganChiribella2014}
-B. Gendra, J. Calsamiglia, R. Mu\~noz-Tapia, E. Bagan, and G. Chiribella,
-Probabilistic metrology attains macroscopic cloning of quantum clocks,
-\doi{10.1103/PhysRevLett.113.260402}{\emph{Phys. Rev. Lett.} \textbf{113}, 260402 (2014)},
-\arxiv{1406.2218}.
-
-\bibitem[DSS15]{DurSekatskiSkotiniotis2015}
-W. D\"ur, P. Sekatski, and M. Skotiniotis,
-Deterministic superreplication of one-parameter unitary transformations,
-\doi{10.1103/PhysRevLett.114.120503}{\emph{Phys. Rev. Lett.} \textbf{114}, 120503 (2015)},
-\arxiv{1410.6008}.
-
-\bibitem[CYH15]{ChiribellaYangHuang2015}
-G. Chiribella, Y. Yang, and C. Huang,
-Universal superreplication of unitary gates,
-\doi{10.1103/PhysRevLett.114.120504}{\emph{Phys. Rev. Lett.} \textbf{114}, 120504 (2015)}.
-
-\bibitem[CY16]{ChiribellaYang2016}
-G. Chiribella and Y. Yang,
-Quantum superreplication of states and gates,
-\doi{10.1007/s11467-016-0556-7}{\emph{Front. Phys.} \textbf{11}, 110304 (2016)},
-\arxiv{1512.05839}.
-
-\bibitem[SSD15]{SekatskiSkotiniotisDur2015NoSignaling}
-P. Sekatski, M. Skotiniotis, and W. D\"ur,
-No-signaling bounds for quantum cloning and metrology,
-\doi{10.1103/PhysRevA.92.022355}{\emph{Phys. Rev. A} \textbf{92}, 022355 (2015)},
-\arxiv{1412.3361}.
-
-\bibitem[HT24]{HuTomamichel2024}
-Y. Hu and M. Tomamichel,
-Fundamental limits on quantum cloning from the no-signaling principle,
-\doi{10.1103/PhysRevA.109.022221}{\emph{Phys. Rev. A} \textbf{109}, 022221 (2024)},
-\arxiv{2305.02002}.
-
-\bibitem[SGKS25]{SekatskiGuryanovaKothakondaSkotiniotis2025}
-P. Sekatski, Y. Guryanova, N. B. T. Kothakonda, and M. Skotiniotis,
-Cloning quantum channels,
-\arxiv{2509.08059} (2025).
-
-\bibitem[BGSQ26]{BrzicGrinkoStudzinskiQuintino2026}
-V. Brzi\'c, D. Grinko, M. Studzi\'nski, and M. T. Quintino,
-Optimal pure state cloning and transposition are complementary channels,
-\arxiv{2603.23628} (2026).
-
-\bibitem[BCM26]{BansalCaroMahajan2026}
-N. Bansal, M. C. Caro, and G. Mahajan,
-Cloning is as hard as learning for stabilizer states,
-\arxiv{2604.15269} (2026).
-
 \bibitem[SIGA05]{ScaraniIblisdirGisinAcin2005}
 V. Scarani, S. Iblisdir, N. Gisin, and A. Acin,
 Quantum cloning,
@@ -5878,7 +5760,7 @@ Global-fidelity limits of state-dependent cloning of mixed states,
 
 \bibitem[Fan03]{Fan2003}
 H. Fan,
-Quantum cloning of mixed states in symmetric subspace,
+Quantum cloning of mixed states in symmetric subspaces,
 \doi{10.1103/PhysRevA.68.054301}{\emph{Phys. Rev. A} \textbf{68}, 054301 (2003)},
 \arxiv{quant-ph/0308058}.
 
@@ -5894,12 +5776,6 @@ A. Ya. Kazakov,
 \doi{10.1142/S0219749910006186}{\emph{Int. J. Quantum Inf.}
 \textbf{8}, 435--442 (2010)},
 \arxiv{0711.2860}.
-
-\bibitem[CC07]{ChenChen2007MixedBroadcast}
-L. Chen and Y.-X. Chen,
-Mixed qubit cannot be universally broadcast,
-\doi{10.1103/PhysRevA.75.062322}{\emph{Phys. Rev. A} \textbf{75}, 062322 (2007)},
-\arxiv{quant-ph/0612205}.
 
 \bibitem[LW17]{LemmWilde2017}
 M. Lemm and M. M. Wilde,
@@ -5930,18 +5806,6 @@ Optimal broadcasting of mixed states,
 \doi{10.1103/PhysRevA.76.022323}{\emph{Phys. Rev. A} \textbf{76}, 022323 (2007)},
 \arxiv{quant-ph/0609182}.
 
-\bibitem[DPS06]{DArianoPerinottiSacchi2006Continuous}
-G. M. D'Ariano, P. Perinotti, and M. F. Sacchi,
-Superbroadcasting of continuous variable mixed states,
-\doi{10.1088/1367-2630/8/6/099}{\emph{New J. Phys.} \textbf{8}, 99 (2006)},
-\arxiv{quant-ph/0601114}.
-
-\bibitem[PFBC24]{ParzygnatFullwoodBuscemiChiribella2024}
-A. J. Parzygnat, J. Fullwood, F. Buscemi, and G. Chiribella,
-Virtual quantum broadcasting,
-\doi{10.1103/PhysRevLett.132.110203}{\emph{Phys. Rev. Lett.} \textbf{132}, 110203 (2024)},
-\arxiv{2310.13049}.
-
 \bibitem[BGA11]{BowlesGutaAdesso2011Purification}
 P. Bowles, M. Gu{\c t}{\u a}, and G. Adesso,
 Asymptotically optimal purification and dilution of mixed qubit and Gaussian states,
@@ -5958,18 +5822,6 @@ Asymptotically optimal quantum channel reversal for qudit ensembles and multimod
 C. M. Caves,
 Quantum limits on noise in linear amplifiers,
 \doi{10.1103/PhysRevD.26.1817}{\emph{Phys. Rev. D} \textbf{26}, 1817--1839 (1982)}.
-
-\bibitem[CIR00]{CerfIpeRottenberg2000}
-N. J. Cerf, A. Ipe, and X. Rottenberg,
-Cloning of continuous quantum variables,
-\doi{10.1103/PhysRevLett.85.1754}{\emph{Phys. Rev. Lett.} \textbf{85}, 1754--1757 (2000)},
-\arxiv{quant-ph/9909037}.
-
-\bibitem[BCI+01]{BraunsteinCerfIblisdirVanLoockMassar2001}
-S. L. Braunstein, N. J. Cerf, S. Iblisdir, P. van Loock, and S. Massar,
-Optimal cloning of coherent states with a linear amplifier and beam splitters,
-\doi{10.1103/PhysRevLett.86.4938}{\emph{Phys. Rev. Lett.} \textbf{86}, 4938--4941 (2001)},
-\arxiv{quant-ph/0012046}.
 
 \bibitem[GJ07]{GutaJencova2007LAN}
 M. Gu{\c t}{\u a} and A. Jen{\v c}ov\'a,
@@ -6017,12 +5869,6 @@ North-Holland, Amsterdam (1982); 2nd ed., Edizioni della Normale, Pisa
 S. M. Barnett and P. M. Radmore,
 \emph{Methods in Theoretical Quantum Optics},
 Oxford University Press, Oxford (1997).
-
-\bibitem[ZC17]{ZhaoChiribella2017}
-X. Zhao and G. Chiribella,
-Quantum amplification and purification of noisy coherent states,
-\doi{10.1103/PhysRevA.95.042303}{\emph{Phys. Rev. A} \textbf{95}, 042303 (2017)},
-\arxiv{1701.04602}.
 
 \bibitem[LN24]{LahiryNussbaum2024}
 S. Lahiry and M. Nussbaum,
@@ -6088,11 +5934,6 @@ Optimal copy complexity of quantum state cloning,
 Z. Li, E. Theil, A. W. Harrow, and I. Chuang,
 An exponential sample-complexity advantage for coherent quantum inference,
 \arxiv{2605.21457} (2026).
-
-\bibitem[LTHC26b]{LiTheilHarrowChuangQPA2026}
-Z. Li, E. Theil, A. W. Harrow, and I. Chuang,
-Quantum purity amplification for arbitrary eigenstates and multiple outputs,
-\arxiv{2605.21570} (2026).
 
 \end{thebibliography}
 
