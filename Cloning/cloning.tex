@@ -4651,112 +4651,53 @@ Fix \(\gamma>1\).  For \(s\ge1\) and
   =\bigotimes_{\ell=1}^s\tau_{q_\ell^{(\gamma)}}.
 \]
 
-The proof below uses one structural input, the idler representation of
-covariant one-mode channels, from which we then derive the required
-stochastic-ordering lemma.
+The multimode idler representation expresses the output number law as a
+mixture of product negative-binomial laws.  A direct coupling then gives
+the least-noise moment, without phase averaging or a mode-by-mode argument.
 
 \begin{fact}[Covariant-amplifier representation]
 \label{fact:covariant-amplifier-representation}
-Every displacement-covariant one-mode channel of amplitude gain
-\(\sqrt\gamma\) admits an idler realization
+Let \(G_1,\ldots,G_s>1\), and write
+\(\sqrt{\mathbf G}z=(\sqrt{G_\ell}z_\ell)_{\ell=1}^s\).
+Every \(s\)-mode channel \(\Lambda\) satisfying
+\[
+  \Lambda(D(z)XD(z)^*)
+  =D(\sqrt{\mathbf G}z)\Lambda(X)D(\sqrt{\mathbf G}z)^*
+\]
+admits an idler realization
 \begin{equation}\label{eq:covariant-amplifier-idler}
-  a_{\mathrm{out}}
-  =\sqrt\gamma\,a_{\mathrm{in}}+\sqrt{\gamma-1}\,b^*,
+  a_{\ell,\mathrm{out}}
+  =\sqrt{G_\ell}\,a_{\ell,\mathrm{in}}
+   +\sqrt{G_\ell-1}\,b_\ell^*,
+  \qquad \ell=1,\ldots,s.
 \end{equation}
-in which the idler mode \(b\) is prepared in a state that is uniquely
-determined by the channel and need not be Gaussian.  If the channel is also
-phase covariant, the idler state may be chosen number diagonal.
+The dilation unitary is a product of two-mode squeezers.  The joint idler
+state is uniquely determined by the channel and need not be Gaussian,
+number diagonal, or a product state.
 \end{fact}
 
 \begin{proof}
 Covariance implies that
-\(\Lambda^*(D(w))D(\sqrt\gamma\,w)^*\) commutes with every displacement.
+\(\Lambda^*(D(w))D(\sqrt{\mathbf G}w)^*\) commutes with every displacement.
 Irreducibility of the Weyl system therefore gives
 \[
-  \Lambda^*(D(w))=f(w)D(\sqrt\gamma\,w)
+  \Lambda^*(D(w))=f(w)D(\sqrt{\mathbf G}w)
 \]
 for a scalar function \(f\).  In real phase-space coordinates the associated
-defect symplectic form is \((1-\gamma)\Omega\), which is nondegenerate because
-\(\gamma>1\).  The quantum Bochner criterion \cite{Holevo1982} then identifies
-\(f\), after the
-fixed rescaling and phase conjugation determined by the gain, with the
-characteristic function of a unique one-mode state.  The exact dilation
-theorem for a nondegenerate defect form
-\cite[Lemma~7]{LamiSabapathyWinter2018}, specialized to
-\(X=\sqrt\gamma I_2\), realizes the resulting channel by the displayed
-two-mode squeezer.  The gain-\(2\) case is also derived directly in
-\cite[Appendix~A]{GutaMatsumoto2006MixedGaussianCloning}.  If the channel is
-phase covariant, uniqueness makes the idler invariant under phase rotations;
-equivalently, phase averaging the idler leaves the channel unchanged.  The
-idler is therefore number diagonal.
-\end{proof}
-
-\begin{lemma}[Vacuum-idler stochastic order]
-\label{lem:vacuum-idler-stochastic-order}
-Fix \(\gamma>1\) and \(q\in(0,1)\), and let \(\Lambda\) be a completely
-positive trace-preserving one-mode map that is phase covariant and
-displacement covariant with amplitude gain \(\sqrt\gamma\).  Let
-\(p_k=\langle k|\Lambda(\tau_q)|k\rangle\) be its output number
-distribution on the thermal input.  Then
-\begin{equation}\label{eq:vacuum-idler-stochastic-order}
-  \sum_{k=0}^m(1-q^{(\gamma)})(q^{(\gamma)})^k
-  \ge \sum_{k=0}^m p_k
-  \qquad(m\ge0),
-\end{equation}
-where \(q^{(\gamma)}=1-(1-q)/\gamma\).  Thus the quantum-limited
-vacuum-idler output \(\tau_{q^{(\gamma)}}\) is stochastically smallest.
-For the gain-\(2\) amplifier this ordering is
-Lemma~2.3 of \cite{GutaMatsumoto2006MixedGaussianCloning}.
-\end{lemma}
-
-\begin{proof}
-Write \(\cA_G\) for the quantum-limited amplifier of gain \(G\ge1\), namely
-the channel of \cref{fact:covariant-amplifier-representation} with vacuum
-idler.  The normal-ordered disentangling of the two-mode squeeze operator
-\cite{BarnettRadmore1997} gives, with \(\cosh^2\!s=G\) and
-\(\lambda=\tanh^2\!s=1-1/G\), the joint state created from the signal
-vacuum and an idler number state \(\ket l\):
-\begin{equation}\label{eq:seeded-amplifier-expansion}
-  U_G\ket{0,l}
-  =(1-\lambda)^{(l+1)/2}
-   \sum_{k\ge0}\sqrt{\binom{k+l}{l}}\,
-   \lambda^{k/2}\,\ket{k,k+l}.
-\end{equation}
-Its signal marginal is therefore the negative binomial law
-\(\mathrm{NB}(l+1,\lambda)\),
-\begin{equation}\label{eq:seeded-amplifier-marginal}
-  \Pr[k]
-  =\binom{k+l}{l}\lambda^k(1-\lambda)^{l+1}
-  \qquad(k\ge0).
-\end{equation}
-In particular \(\cA_G(\proj0)=\tau_{1-1/G}\), so the thermal input is
-itself an amplified vacuum:
-\begin{equation}\label{eq:thermal-as-amplified-vacuum}
-  \tau_q=\cA_{G'}(\proj0),
-  \qquad G'=\frac1{1-q}.
-\end{equation}
-
-Consider the composite channel \(\Lambda\circ\cA_{G'}\).  It is completely
-positive, trace preserving, phase covariant, and displacement covariant
-with total amplitude gain \(\sqrt{\gamma G'}\).  By
-\cref{fact:covariant-amplifier-representation}, it admits an idler
-realization at gain \(\sqrt{\gamma G'}\) with a number-diagonal idler state
-\(\sum_l c_l\proj l\).  Evaluating the composite on the vacuum and using
-\eqref{eq:seeded-amplifier-marginal} at gain \(G=\gamma G'\) shows that the
-number distribution of
-\(\Lambda(\tau_q)=(\Lambda\circ\cA_{G'})(\proj0)\) is the mixture
-\[
-  \sum_l c_l\,\mathrm{NB}(l+1,\lambda),
-  \qquad
-  \lambda=1-\frac1{\gamma G'}
-  =1-\frac{1-q}{\gamma}=q^{(\gamma)}.
-\]
-A negative binomial variable \(\mathrm{NB}(l+1,\lambda)\) is a sum of
-\(l+1\) independent geometric variables of parameter \(\lambda\), so its
-cumulative distribution function is dominated pointwise by that of
-\(\mathrm{NB}(1,\lambda)\), which is the geometric law of
-\(\tau_{q^{(\gamma)}}\).  Averaging these pointwise inequalities over the
-weights \(c_l\) proves the claim.
+defect symplectic form is
+\(\bigoplus_{\ell=1}^s(1-G_\ell)\Omega_2\), where
+\(\Omega_2=\left(\begin{smallmatrix}0&1\\-1&0\end{smallmatrix}\right)\).
+It is nondegenerate, so the quantum Bochner criterion \cite{Holevo1982}
+identifies \(f\), after modewise rescaling and phase conjugation, with the
+characteristic function of a unique joint idler state.
+In the exact dilation theorem \cite[Lemma~7]{LamiSabapathyWinter2018},
+take the system matrix
+\(\bigoplus_\ell\sqrt{G_\ell}I_2\) and the noise matrix
+\(\bigoplus_\ell\sqrt{G_\ell-1}\diag(1,-1)\).
+These are precisely the system and idler blocks of the product of two-mode
+squeezers in \eqref{eq:covariant-amplifier-idler}.  The one-mode gain-\(2\)
+case is also derived directly in
+\cite[Appendix~A]{GutaMatsumoto2006MixedGaussianCloning}.
 \end{proof}
 
 \begin{proposition}[Least-noise moment]
@@ -4783,72 +4724,73 @@ where every \(w_\ell\) is bounded, nonnegative, and nonincreasing on
 \end{proposition}
 
 \begin{proof}
-Averaging \(\Gamma\) over independent phase rotations preserves its
-trace bound and displacement covariance, and it does not change either side
-of \eqref{eq:least-noise-moment}.  We may therefore assume that \(\Gamma\)
-is phase covariant in every mode.
+Displacement covariance makes \(\Gamma^*(I)\) commute with every Weyl
+displacement.  Irreducibility therefore gives \(\Gamma^*(I)=cI\), with
+\(c=\Tr\Gamma(\tau)\in[0,1]\).  The case \(c=0\) is immediate; otherwise
+\(\Lambda=c^{-1}\Gamma\) is a channel with the same covariance.
 
-Consider one mode.  Write \(\Tr\Gamma(X)=\Tr(AX)\) with \(0\le A\le I\).
-Displacement covariance implies \(D(z)^*AD(z)=A\); hence irreducibility of
-the Weyl representation gives \(A=cI\), where
-  \(c=\Tr\Gamma(\tau_q)\).  If \(c>0\), then
-  \(\Lambda=c^{-1}\Gamma\) is a completely positive trace-preserving,
-  phase-covariant map of amplitude gain \(\sqrt\gamma\).
-  \Cref{lem:vacuum-idler-stochastic-order} applied to \(\Lambda\)
-  gives
-\begin{equation}\label{eq:imported-stochastic-order}
-  \sum_{n=0}^m(1-q^{(\gamma)})(q^{(\gamma)})^n
-  \ge
-  \sum_{n=0}^m\langle n|\Lambda(\tau_q)|n\rangle
-  \qquad(m\ge0).
+The quantum-limited amplifier \(\cA_G\) sends vacuum to
+\(\tau_{1-1/G}\).  Thus
+\begin{equation}\label{eq:thermal-as-amplified-vacuum}
+  \tau=\left(\bigotimes_{\ell=1}^s\cA_{1/(1-q_\ell)}\right)
+        (\proj{\mathbf0}).
 \end{equation}
-The distribution on the left is the vacuum-idler output, namely that of
-\(\tau_{q^{(\gamma)}}\), and both output states are number diagonal.  For a
-bounded nonincreasing \(w\), summation by parts writes its expectation as a
-nonnegative linear combination of these cumulative probabilities.  Both
-distributions in \eqref{eq:imported-stochastic-order} have total mass one,
-so the common limiting constant cancels.  Hence
+The composite
+\(\mathcal B=\Lambda\circ\bigotimes_\ell\cA_{1/(1-q_\ell)}\)
+sends joint vacuum to \(\Lambda(\tau)\) and has modewise gains
 \[
-  \Tr[\Lambda(\tau_q)w(\widehat N)]
-  \le\Tr[\tau_{q^{(\gamma)}}w(\widehat N)].
+  G_\ell=\frac{\gamma}{1-q_\ell},\qquad
+  \lambda_\ell=1-G_\ell^{-1}=q_\ell^{(\gamma)}.
 \]
-Multiplication by \(c\) proves the one-mode case; the case \(c=0\) is
-immediate.
+Apply \cref{fact:covariant-amplifier-representation} to \(\mathcal B\),
+and let \(\sigma\) be its joint idler state.
 
-For the multimode case, the claim is immediate if some \(w_\ell\)
-vanishes identically; otherwise, divide each \(w_\ell\) by
-\(w_\ell(0)\) and assume \(0\le w_\ell\le1\).  Put
+For a single two-mode squeezer, normal-ordered disentangling
+\cite{BarnettRadmore1997} gives, with \(\lambda=1-G^{-1}\),
+\begin{equation}\label{eq:seeded-amplifier-expansion}
+  U_G\ket{0,l}
+  =(1-\lambda)^{(l+1)/2}
+   \sum_{k\ge0}\sqrt{\binom{k+l}{l}}\,
+   \lambda^{k/2}\ket{k,k+l}.
+\end{equation}
+In the product expansion, taking the \(\mathbf k\)-diagonal signal element
+and tracing out the idler force
+\(\mathbf k+\mathbf l=\mathbf k+\mathbf l'\), hence
+\(\mathbf l=\mathbf l'\).  Only the joint diagonal
+\(a_{\mathbf l}=\langle\mathbf l|\sigma|\mathbf l\rangle\) contributes to
+the output number probabilities:
+\begin{equation}\label{eq:multimode-negative-binomial-law}
+  \langle\mathbf k|\Lambda(\tau)|\mathbf k\rangle
+  =\sum_{\mathbf l\in\mathbb Z_{\ge0}^s}a_{\mathbf l}
+    \prod_{\ell=1}^s
+    \binom{k_\ell+l_\ell}{l_\ell}
+    (1-\lambda_\ell)^{l_\ell+1}\lambda_\ell^{k_\ell}.
+\end{equation}
+Thus, conditional on \(\mathbf l\), the coordinates are independent
+\(\mathrm{NB}(l_\ell+1,\lambda_\ell)\) variables.  The weights
+\(a_{\mathbf l}\) may be correlated; no product or phase-invariance
+assumption on the idler is needed.
+
+Sample \(\mathbf L\) with law \(a_{\mathbf l}\), independently of geometric
+variables \(Z_{\ell,j}\), all independent, with
+\(\Pr(Z_{\ell,j}=k)=(1-\lambda_\ell)\lambda_\ell^k\) for \(j,k\ge0\).
+The coupling
 \[
-  W_{\ge\ell}
-  =I_1\ot\cdots\ot I_{\ell-1}\ot
-   \bigotimes_{j=\ell}^s w_j(\widehat N_j),
-  \qquad W_{\ge s+1}=I,
+  N_\ell=\sum_{j=0}^{L_\ell}Z_{\ell,j}\ge Z_{\ell,0}
+  \qquad(\ell=1,\ldots,s)
 \]
-and, for an operator \(X\) on mode \(\ell\), define
+has the output law \eqref{eq:multimode-negative-binomial-law}, while
+\((Z_{\ell,0})_\ell\) has the number law of \(\tau^{(\gamma)}\).
+Since each \(w_\ell\) is nonnegative and nonincreasing,
 \[
-  \Gamma_\ell(X)
-  =\Tr_{\ne\ell}\!\left[
-    W_{\ge\ell+1}^{1/2}
-    \Gamma(\tau_{q_1}\ot\cdots\ot\tau_{q_{\ell-1}}\ot X\ot
-           \tau_{q_{\ell+1}}\ot\cdots\ot\tau_{q_s})
-    W_{\ge\ell+1}^{1/2}
-  \right].
+  \Tr[\Lambda(\tau)W]
+  =\mathbb E\prod_\ell w_\ell(N_\ell)
+  \le\mathbb E\prod_\ell w_\ell(Z_{\ell,0})
+  =\Tr[\tau^{(\gamma)}W].
 \]
-Because \(0\le W_{\ge\ell+1}\le I\) and this operator is the identity on
-mode \(\ell\), each \(\Gamma_\ell\) is completely positive, trace
-nonincreasing, and displacement covariant in that mode.  The phase-covariant
-reduction following \eqref{eq:least-noise-moment} also makes \(\Gamma_\ell\)
-phase covariant because the fixed thermal inputs and \(W_{\ge\ell+1}\) are
-phase invariant.  Moreover,
-\[
-  \Tr[\Gamma_\ell(\tau_{q_\ell})w_\ell(\widehat N_\ell)]
-  =\Tr[\Gamma(\tau)W_{\ge\ell}],
-  \qquad
-  \Tr\Gamma_\ell(\tau_{q_\ell})
-  =\Tr[\Gamma(\tau)W_{\ge\ell+1}].
-\]
-Applying the one-mode inequality to \(\Gamma_\ell\) and iterating over
-\(\ell=1,\ldots,s\) gives \eqref{eq:least-noise-moment}.
+Multiplying by \(c=\Tr\Gamma(\tau)\) proves
+\eqref{eq:least-noise-moment}.  The one-mode gain-\(2\) stochastic order is
+also established in \cite[Lemma~2.3]{GutaMatsumoto2006MixedGaussianCloning}.
 \end{proof}
 
 Specialize to \(s=r_d\), \(q_\ell=q_{ij}\),
