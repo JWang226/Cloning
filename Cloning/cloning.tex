@@ -129,46 +129,27 @@ projector cloner for \(1<r<d\).
 The no-cloning theorem rules out perfect copying of an arbitrary unknown
 quantum state \cite{WoottersZurek1982,Dieks1982}.  Approximate cloning asks
 how well a channel can transform \(n\) identical inputs into an output
-resembling \(m\) ideal copies.  Here we measure fidelity with the
-entire product target \(\rho^{\ot m}\).  The channel may produce correlated
-outputs, but this global criterion tests more than the one-site marginals
-constrained by broadcasting
-\cite{BarnumCavesFuchsJozsaSchumacher1996}.  For mixed states, the eigenvalues
-and eigenbasis may both be unknown, and these two kinds of information
-behave differently under repeated sampling.  Earlier mixed-state work
-provided bounds and optimal protocols for restricted families or other
-loss criteria, but did not determine the optimal cloner under global
-product fidelity for general simple full-rank spectra.  We resolve this
-optimization in fixed dimension at a fixed asymptotic gain; the scope of
-the prior results is detailed in \cref{sec:related-work}.
+resembling \(m\) ideal copies. We call the ratio $m/n$ as the cloning \emph{gain}.  We measure cloning fidelity globally with the
+ideal product target \(\rho^{\ot m}\), to distinguish from the problem of broadcasting~\cite{BarnumCavesFuchsJozsaSchumacher1996} where we oftenjudge the marginal fidelity. The goal is the determine the optimal cloning fidelity for any given gain, and to construct a channel that attains it.  The pure-state problem was solved in the 1990s, and the optimal cloner is known to be a covariant channel that symmetrically embeds the input into the output space \cite{Werner1998,KeylWerner1999}.  The mixed-state problem has remained open~\cite{ScaraniIblisdirGisinAcin2005}, with only partial results for restricted families of states or small gain \cite{BuscemiDArianoMacchiavelloPerinotti2005Optimal,BuscemiDArianoMacchiavelloPerinotti2006,DangFan2007,FanLiuShi2007,Kazakov2007,LiTheilHarrowChuang2026,FanizzaGrinkoScharnhorstSpilecki2026,JeonSohnOh2026}. We resolve the mix-state cloning problen by determining the optimal cloner under global product fidelity for any simple\footnote{We call a full-rank spectrum \emph{simple} (i.e., non-degenerate) if its eigenvalues are distinct.} full-rank spectra at any fixed asymptotic gain.
 
-We call a full-rank spectrum \emph{simple} if its eigenvalues are distinct.
+For mixed states, the eigenvalues and eigenbasis may both be unknown, and these two kinds of information behave differently under repeated sampling. We therefore approach the problem in two step. 
 In the known-spectrum problem, the eigenvalues are supplied and the state
 ranges over one unitary orbit; cloning must reproduce only the unknown
 eigenbasis.  In the unknown-spectrum problem, a single spectrum-independent
 sequence of channels must handle both eigenvalues and eigenbasis, uniformly
 over compact subsets of the chamber of simple full-rank spectra.  This is
 not merely the first problem preceded by spectrum estimation: the measured
-spectrum retains fluctuations of order \(n^{-1/2}\), which must themselves
-be converted from the \(n\)-copy to the \(m_n\)-copy scale.
+spectrum retains fluctuations of order \(n^{-1/2}\), which must themselves be converted from \(n\) to \(m\) copies.
 
-We solve both problems in fixed dimension when \(m_n/n\to\gamma>1\).
-For known spectrum, we determine the optimal global fidelity on each simple
-full-rank orbit.  For unknown spectrum, we construct one cloner, determine
-its asymptotic fidelity uniformly on compact subsets of this chamber, and
-determine the minimax value over the compact spectral sets specified in
-\cref{thm:unknown-optimum}.  The unknown-spectrum value factors into the
+We solve both problems in the asymptotic limit for a squence of cloning tasks to produce $m_n$ clones from $n$ copies of an unknown state, such that \(m_n/n\to\gamma>1\).
+For known spectrum, we determine the optimal global fidelity on each unitary orbit.  For unknown spectrum, we construct one universal cloner, determine
+its asymptotic cloning fidelity uniformly on compact subsets of the chamber of simple full-rank spectra, and
+determine the minimax value over the compact spectral sets (cf.
+\cref{thm:unknown-optimum}).  The unknown-spectrum value factors into the
 known-spectrum optimum and a spectrum-independent classical factor.
 We also solve cloning of
-flat rank-\(r\) projector states \(\rho_P=P/r\), with \(P\) any rank-\(r\)
-orthogonal projector, by a direct finite-dimensional argument.  This gives
-an exactly solvable rank-deficient family without requiring a general
-treatment of fixed-rank strata.  Finally, we analyze the actual output of
-purify--clone--trace (PCT), obtaining its exact fidelity at simple full-rank
-spectra and a strict upper bound for projector states with \(1<r<d\).  This
-establishes a strict improvement over PCT on both families, beyond a
-comparison with its published lower guarantee; see
-\cref{sec:discussions}.
+flat rank-\(r\) projector states \(\rho_P=P/r\), with \(P\) any rank-\(r\) orthogonal projector.   Finally, we analyze the actual output of an alternative cloning protocol~\cite{LiTheilHarrowChuang2026,FanizzaGrinkoScharnhorstSpilecki2026,JeonSohnOh2026},
+purify--clone--trace (PCT), obtaining its exact fidelity at simple full-rank spectra and a strict upper bound for projector states.  We show a strict improvement over PCT on both families, beyond a comparison with its lower guarantees in the literature.
 
 Two complementary decompositions drive the solution.  Schur--Weyl duality
 separates the spectral information in the Young label from the eigenbasis
@@ -176,7 +157,7 @@ information in the conditional irreducible state
 \cite{KeylWerner2001Spectrum}.  Our cloners process the label classically
 and apply a multiplicity-one Cartan-sector channel to the irreducible state
 \cite{ParthasarathyRangaRaoVaradarajan1967,FultonHarris1991}.
-Local asymptotic normality (LAN), with channels in both directions, gives
+Local asymptotic normality (LAN) gives
 the corresponding separation into a classical Gaussian shift and displaced
 thermal oscillator modes.
 A cloner exceeding our orbit or compact-family minimax value would induce
@@ -717,9 +698,9 @@ BuscemiDArianoMacchiavelloPerinotti2005Optimal,
 BuscemiDArianoMacchiavelloPerinotti2006,DangFan2007}; these criteria do not
 determine fidelity with the joint product target.
 
-Random purification followed by pure-state cloning gives a global-fidelity
+Random purification~\cite{TangWrightZhandry2025} followed by pure-state cloning gives a global-fidelity
 guarantee for bounded-rank mixed states
-\cite{TangWrightZhandry2025,LiTheilHarrowChuang2026}.  Concurrent work shows
+\cite{LiTheilHarrowChuang2026}.  Concurrent work shows
 that PCT attains the optimal sample complexity up to constants for squared
 fidelity \(1-\epsilon\), uniformly over states of rank at most \(r\)
 \cite{FanizzaGrinkoScharnhorstSpilecki2026,JeonSohnOh2026}.
@@ -758,15 +739,14 @@ fidelity converse of Appendix~\ref{app:gaussian-converse} to prove
 full-rank optimality.  Independently, \cref{sec:grassmann} proves the
 projector-state theorem by exact compression and a finite-dimensional
 converse.  \Cref{sec:discussions} compares these results with PCT and its
-high-fidelity sample complexity, then discusses conjectured boundary
-extensions and remaining open problems.  The shared Gaussian-mixture
+high-fidelity sample complexity, then discusses remaining open problems.  The detailed
 analysis of PCT is in Appendix~\ref{app:pct-comparison}.
 
 \section*{Glossary of notation}
 \addcontentsline{toc}{section}{Glossary of notation}
 
 We use \(\U(d)\) for the unitary group and
-\(\cT_1(\cH)\) for trace-class operators.  The dimension \(d\) is fixed,
+\(\cT_1(\cH)\) for trace-class operators.  The dimension \(d\) is fixed, we denote the gain and asymptotic gain by
 \(\gamma_n=m_n/n\to\gamma>1\), \(N\) denotes a generic sample size, and
 \(r_d=\binom d2\). Fidelity uses the unsquared convention, \(F(\rho,\sigma)=\|\sqrt\rho\sqrt\sigma\|_1\). Unless stated otherwise, limits are as \(n\to\infty\) with \(d,\gamma\)
 fixed; \(o(1)\) is uniform only over the parameters specified in its
@@ -827,6 +807,7 @@ statement.
 \end{longtable}
 \endgroup
 Symbols confined to one proof are defined there.
+\clearpage
 
 
 \section{Cloner construction and fidelity analysis}\label{sec:label-kernels}
@@ -838,7 +819,7 @@ target-law kernel for known spectrum and the randomized dilation kernel for
 unknown spectrum, and combine their label estimates with the common sector
 analysis.  The fidelities of the constructed cloners are evaluated in
 \cref{sec:achievability-completion}.  We now develop the components summarized
-in \cref{fig:schur-cartan-cloner}.
+in \cref{fig:schur-cartan-cloner}. We start by reviewing some standard facts.
 
 Let $\mathsf Y_N=\{\lambda\vdash N:\ell(\lambda)\le d\}$, Schur--Weyl duality gives
 \begin{equation}\label{eq:schur-weyl-decomposition}
@@ -867,7 +848,7 @@ polynomial.  For \(\rho_{p,g}=g\rho_p g^*\), replace \(\rho_{p,\lambda}\) by
 \(U_\lambda(g)=\pi_\lambda(g)\).  The
 Young law \(P_{N,p}\) depends on \(p\), but not on \(g\).
 
-Define
+Define the typical Young-label set
 \begin{equation}\label{eq:young-typical-set}
   \mathsf T_N(p)
   =\left\{\lambda\in\mathsf Y_N:
@@ -1261,7 +1242,7 @@ Then, uniformly for \(p\in K\) and \(g\in\U(d)\),
 
 \begin{proof}
 By covariance, take \(g=I\).  Write \(P=P_{m_n,p}\), \(Q=Q_{m_n,p}\),
-and \(G=G_{n,p}\).  Omitting the common maximally mixed Specht factors,
+and \(G=G_{n,p}\).  Omitting the maximally mixed Specht factors,
 the output and target are \(O=\bigoplus_\nu A_{n,p,\nu}\) and
 \(T=\bigoplus_\nu P(\nu)\rho_{p,\nu}\).  For large \(n\), all pairs in
 \(G\) are compatible by \cref{prop:sector-fidelity}.  Retain only these pairs:
@@ -4541,7 +4522,7 @@ Communication by EPR devices,
 \doi{10.1016/0375-9601(82)90084-6}{\emph{Physics Letters A} \textbf{92}, 271--272 (1982)}.
 
 \bibitem[BH96]{BuzekHillery1996}
-V. Buzek and M. Hillery,
+V. Bu\v{z}ek and M. Hillery,
 Quantum copying: Beyond the no-cloning theorem,
 \doi{10.1103/PhysRevA.54.1844}{\emph{Phys. Rev. A} \textbf{54}, 1844--1852 (1996)}.
 
@@ -4551,7 +4532,7 @@ Optimal quantum cloning machines,
 \doi{10.1103/PhysRevLett.79.2153}{\emph{Phys. Rev. Lett.} \textbf{79}, 2153--2156 (1997)}.
 
 \bibitem[BDE+98]{BrussDiVincenzoEkertFuchsMacchiavelloSmolin1998}
-D. Bruss, D. P. DiVincenzo, A. Ekert, C. A. Fuchs, C. Macchiavello, and J. A. Smolin,
+D. Bru{\ss}, D. P. DiVincenzo, A. Ekert, C. A. Fuchs, C. Macchiavello, and J. A. Smolin,
 Optimal universal and state-dependent quantum cloning,
 \doi{10.1103/PhysRevA.57.2368}{\emph{Phys. Rev. A} \textbf{57}, 2368--2378 (1998)},
 \arxiv{quant-ph/9705038}.
@@ -4580,12 +4561,12 @@ Optimal extraction of information from finite quantum ensembles,
 \doi{10.1103/PhysRevLett.74.1259}{\emph{Phys. Rev. Lett.} \textbf{74}, 1259--1263 (1995)}.
 
 \bibitem[BEM98]{BrussEkertMacchiavello1998}
-D. Bruss, A. Ekert, and C. Macchiavello,
+D. Bru{\ss}, A. Ekert, and C. Macchiavello,
 Optimal universal quantum cloning and state estimation,
 \doi{10.1103/PhysRevLett.81.2598}{\emph{Phys. Rev. Lett.} \textbf{81}, 2598--2601 (1998)}.
 
 \bibitem[BA06]{BaeAcin2006}
-J. Bae and A. Acin,
+J. Bae and A. Ac\'{\i}n,
 Asymptotic quantum cloning is state estimation,
 \doi{10.1103/PhysRevLett.97.030402}{\emph{Phys. Rev. Lett.} \textbf{97}, 030402 (2006)},
 \arxiv{quant-ph/0603078}.
@@ -4622,7 +4603,7 @@ Non-Gaussian cloning of quantum coherent states is optimal,
 \arxiv{quant-ph/0410058}.
 
 \bibitem[SIGA05]{ScaraniIblisdirGisinAcin2005}
-V. Scarani, S. Iblisdir, N. Gisin, and A. Acin,
+V. Scarani, S. Iblisdir, N. Gisin, and A. Ac\'{\i}n,
 Quantum cloning,
 \doi{10.1103/RevModPhys.77.1225}{\emph{Rev. Mod. Phys.} \textbf{77}, 1225--1256 (2005)},
 \arxiv{quant-ph/0511088}.
@@ -4659,7 +4640,8 @@ Upper bound on the global fidelity for mixed-state cloning,
 \bibitem[Ras03b]{Rastegin2002Relative}
 A. E. Rastegin,
 A lower bound on the relative error of mixed-state cloning and related operations,
-\emph{J. Opt. B: Quantum Semiclass. Opt.} \textbf{5}, S647--S650 (2003),
+\doi{10.1088/1464-4266/5/6/017}{\emph{J. Opt. B: Quantum Semiclass. Opt.}
+\textbf{5}, S647--S650 (2003)},
 \arxiv{quant-ph/0208159}.
 
 \bibitem[Ras03c]{Rastegin2003StateDependent}
@@ -4702,7 +4684,10 @@ Superbroadcasting of mixed states,
 \bibitem[BDMP05]{BuscemiDArianoMacchiavelloPerinotti2005Optimal}
 F. Buscemi, G. M. D'Ariano, C. Macchiavello, and P. Perinotti,
 Optimal superbroadcasting of mixed qubit states,
-\arxiv{quant-ph/0510155} (2005).
+\href{https://wordpress.qubit.it/wp-content/uploads/publications-dariano/sendai_proc05-printed.pdf}{in
+\emph{Proceedings of the 13th Quantum Information Technology Symposium
+(QIT13)}, Tohoku University, Sendai, 149--155 (2005)},
+\arxiv{quant-ph/0510155}.
 
 \bibitem[BDMP06]{BuscemiDArianoMacchiavelloPerinotti2006}
 F. Buscemi, G. M. D'Ariano, C. Macchiavello, and P. Perinotti,
@@ -4772,13 +4757,14 @@ All phase-space linear bosonic channels are approximately Gaussian dilatable,
 \bibitem[Hol82]{Holevo1982}
 A. S. Holevo,
 \emph{Probabilistic and Statistical Aspects of Quantum Theory},
-North-Holland, Amsterdam (1982); 2nd ed., Edizioni della Normale, Pisa
-(2011).
+North-Holland, Amsterdam (1982);
+\doi{10.1007/978-88-7642-378-9}{2nd ed., Edizioni della Normale, Pisa (2011)}.
 
 \bibitem[BR97]{BarnettRadmore1997}
 S. M. Barnett and P. M. Radmore,
 \emph{Methods in Theoretical Quantum Optics},
-Oxford University Press, Oxford (1997).
+Oxford University Press, Oxford (1997);
+\doi{10.1093/acprof:oso/9780198563617.001.0001}{paperback ed. (2002)}.
 
 \bibitem[LN24]{LahiryNussbaum2024}
 S. Lahiry and M. Nussbaum,
@@ -4789,7 +4775,8 @@ Minimax estimation of low-rank quantum states and their linear functionals,
 \bibitem[Kup02]{Kuperberg2002}
 G. Kuperberg,
 Random words, quantum statistics, central limits, random matrices,
-\emph{Methods Appl. Anal.} \textbf{9}, 101--119 (2002),
+\doi{10.4310/MAA.2002.v9.n1.a3}{\emph{Methods Appl. Anal.}
+\textbf{9}, 99--118 (2002)},
 \arxiv{math/9909104}.
 
 \bibitem[Joh01]{Johansson2001}
@@ -4806,7 +4793,8 @@ The existence of probability measures with given marginals,
 
 \bibitem[RS80]{ReedSimon1980}
 M. Reed and B. Simon,
-\emph{Methods of Modern Mathematical Physics I: Functional Analysis},
+\href{https://shop.elsevier.com/books/i-functional-analysis/reed/978-0-12-585050-6}{\emph{Methods
+of Modern Mathematical Physics I: Functional Analysis}},
 revised and enlarged ed., Academic Press, San Diego (1980).
 
 \bibitem[KW01]{KeylWerner2001Spectrum}
@@ -4822,7 +4810,7 @@ Representations of complex semi-simple Lie groups and Lie algebras,
 
 \bibitem[FH91]{FultonHarris1991}
 W. Fulton and J. Harris,
-\emph{Representation Theory: A First Course},
+\doi{10.1007/978-1-4612-0979-9}{\emph{Representation Theory: A First Course}},
 Graduate Texts in Mathematics 129, Springer (1991).
 
 \bibitem[TWZ25]{TangWrightZhandry2025}
