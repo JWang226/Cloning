@@ -1,6 +1,6 @@
 \documentclass[11pt]{article}
 \usepackage[letterpaper,portrait,margin=1in]{geometry}
-\usepackage[T1]{fontenc}
+\usepackage[OT1]{fontenc}
 \usepackage{lmodern}
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage{array,longtable}
@@ -331,11 +331,11 @@ compact-set theorem no longer applies.}
 The common Schur--Cartan architecture is summarized in
 \cref{fig:schur-cartan-cloner}.  After the Schur transform, the
 Young label \(\mu\) carries the spectral information, while the conditional
-irrep state carries the unknown eigenbasis.  A classical kernel chooses an
+irrep state carries the unknown eigenbasis.  A classical transition rule chooses an
 output label \(\nu\), and the common covariant sector channel maps the conditional
 state into the \(\nu\)-sector before the \(m_n\)-system output is reconstructed.
-For known \(p\), the label kernel samples the exact target law \(P_{m_n,p}\)
-independently of \(\mu\); the spectrum-independent kernel instead randomly
+For known \(p\), the rule samples the exact target law \(P_{m_n,p}\)
+independently of \(\mu\); the spectrum-independent rule instead randomly
 rounds \(\gamma_n\mu\).  Their classical factors are therefore \(1\) and \(\Fcl\),
 while the common sector factor is \(\Forb\), giving the exact asymptotic
 fidelities \(\Forb\) and \(\Funiv\) for the known- and unknown-spectrum
@@ -391,7 +391,7 @@ separately in \cref{sec:grassmann}.
     {irrep state\\\(\rho_\mu\) on \(\cH_\mu\)};
 
   \node[labelbox,text width=27mm] (labelout) at (7.1,1.15)
-    {label kernel \(K_n\)\\\(\nu\in\mathsf Y_{m_n}\)};
+    {transition rule\\\(\nu\sim K_n(\cdot\mid\mu)\)};
   \node[sectorbox,text width=27mm] (sectorout) at (7.1,-1.15)
     {sector channel\\\(\cE_{\mu,\nu}(\rho_\mu)\)};
 
@@ -451,8 +451,8 @@ separately in \cref{sec:grassmann}.
   and \(\cC_n^{\mathrm{proj}}\).  The input is \(\rho=\rho_{p,g}\) for
   the simple full-rank families or \(\rho=P/r\) for projector states.
   The Schur transform measures the Young label \(\mu\) and retains the
-  normalized conditional irrep state \(\rho_\mu\).  The three choices of label kernel
-  are shown above; the projector kernel couples the exact input and target
+  normalized conditional irrep state \(\rho_\mu\).  The three transition rules
+  are shown above; the projector rule couples the exact input and target
   flat Schur laws.  All three cloners apply the same sector channel
   \(\cE_{\mu,\nu}\) and restore a maximally mixed Specht factor.
   The displayed classical and sector factors multiply to the attained
@@ -781,8 +781,8 @@ statement.
 & Young-label law of \(\rho_p^{\ot N}\), conditional irreducible state,
   and typical-label set. \\[3pt]
 \(K_n(\nu\mid\mu)\); \(\mathcal Q_n[K_n]\)
-& A Markov kernel on Young labels and its covariant channel lift.
-  The spectral set \(K\) is distinct from the kernel \(K_n\). \\[3pt]
+& A transition rule on Young labels and its covariant channel lift.
+  The spectral set \(K\) is distinct from the transition rule \(K_n\). \\[3pt]
 \(\cC_{\mu,\nu},\cE_{\mu,\nu}\)
 & Cartan-sector channel for compatible labels and its extension to all
   label pairs by a fallback channel. \\[3pt]
@@ -813,14 +813,15 @@ Symbols confined to one proof are defined there.
 \section{Cloner construction and fidelity analysis}\label{sec:label-kernels}
 
 The known- and unknown-spectrum protocols use the same finite-dimensional
-architecture.  We first recall the Schur--Weyl decomposition and lift an arbitrary Markov kernel
+architecture.  We first recall the Schur--Weyl decomposition and lift an arbitrary transition rule
 on Young labels to a covariant quantum channel.  We then choose the exact
-target-law kernel for known spectrum and the randomized dilation kernel for
+target-law rule for known spectrum and the randomized dilation rule for
 unknown spectrum, and combine their label estimates with the common sector
 analysis.  The fidelities of the constructed cloners are evaluated in
 \cref{sec:achievability-completion}.  We now develop the components summarized
-in \cref{fig:schur-cartan-cloner}. We start by reviewing some standard facts.
+in \cref{fig:schur-cartan-cloner}. 
 
+We start by reviewing some standard facts.
 Let $\mathsf Y_N=\{\lambda\vdash N:\ell(\lambda)\le d\}$, Schur--Weyl duality gives
 \begin{equation}\label{eq:schur-weyl-decomposition}
   (\C^d)^{\ot N}
@@ -895,7 +896,7 @@ For all sufficiently large \(N\), the polynomial factor is at most
 \(e^{N^{1/3}/4}\).  Hence the asserted bound holds with \(c_d=1/4\).
 \end{proof}
 
-\subsection{Cartan-sector channel and lifting of a label kernel}
+\subsection{Cartan-sector channel and lifting of a transition rule}
 \label{sec:cartan-sector-lifting}
 
 Let \(\lambda,\theta\) be dominant weights, with unit highest-weight vectors
@@ -944,8 +945,10 @@ covariant channel \(\cE_{\mu,\nu}:\cT_1(\cH_\mu)\to\cT_1(\cH_\nu)\) by
     \Tr(X)I_{\cH_\nu}/\dim\cH_\nu,&\text{otherwise}.
   \end{cases}
 \end{equation}
-Let \(K_n:\mathsf Y_n\rightsquigarrow\mathsf Y_{m_n}\), with transition
-probabilities \(K_n(\nu\mid\mu)\), be any Markov kernel.  Its Schur--Cartan
+Let \(K_n:\mathsf Y_n\rightsquigarrow\mathsf Y_{m_n}\) be any transition
+rule: for each input label \(\mu\), the output label \(\nu\) is selected
+with probability \(K_n(\nu\mid\mu)\ge0\), where
+\(\sum_\nu K_n(\nu\mid\mu)=1\).  Its Schur--Cartan
 lifting is the following channel,
 denoted by \(\mathcal Q_n[K_n]\): apply the Schur transform, measure
 \(\mu\), discard the input Specht factor, sample \(\nu\) from
@@ -956,7 +959,7 @@ channel.  Because the label measurement and sampling are invariant and every
 map \(\cE_{\mu,\nu}\) is covariant, \(\mathcal Q_n[K_n]\) is
 \(\U(d)\)-covariant.
 
-\begin{proposition}[Fidelity of a lifted label kernel]
+\begin{proposition}[Fidelity of a lifted transition rule]
 \label{prop:lifted-kernel-bound}
 Fix \(p\in\Delta_d^\circ\) and \(g\in\U(d)\).  Let
 \begin{equation}\label{eq:lifted-label-laws}
@@ -1000,7 +1003,7 @@ Since \(F(I_{\cS_\nu}/\dim\cS_\nu,I_{\cS_\nu}/\dim\cS_\nu)=1\), this proves
 \eqref{eq:lifted-exact-block-fidelity}.
 \end{proof}
 
-We now specialize the lifted channel by choosing its output-label kernel.
+We now specialize the lifted channel by choosing its output-label transition rule.
 The known- and unknown-spectrum protocols differ only in this choice: the former
 samples the exact target law, whereas the latter uses
 a randomized dilation of the measured input label.
@@ -1053,13 +1056,13 @@ label when compatible, and otherwise use the fallback:
   \end{cases}
 \end{equation}
 Compatibility implies \(\widetilde\nu\in\mathsf Y_{m_n}\), so the conditional
-law of \(\nu\) defines a Markov kernel
+law of \(\nu\) defines a transition rule
 \(K_n^{\mathrm{rnd}}:\mathsf Y_n\rightsquigarrow\mathsf Y_{m_n}\).
 Define
 \begin{equation}\label{eq:universal-cloner-definition}
   \cC_n^{\mathrm{univ}}:=\mathcal Q_n[K_n^{\mathrm{rnd}}].
 \end{equation}
-Since the kernel is independent of \(p\), this is a spectrum-independent,
+Since the transition rule is independent of \(p\), this is a spectrum-independent,
 \(\U(d)\)-covariant cloner.
 
 \subsection{Sector and label asymptotics}
@@ -1173,7 +1176,7 @@ be the induced output-label law.  Then, for every compact
 \end{equation}
 \end{proposition}
 
-The uniform dither in \eqref{eq:randomized-rounding} makes the label kernel a
+The uniform dither in \eqref{eq:randomized-rounding} makes the transition rule a
 discrete realization of continuous dilation.  After centering at \(Np\) and
 scaling by \(\sqrt N\), embed a label law as a piecewise-constant density on
 the fundamental cells of the label lattice.  Before fallback replacement,
@@ -1220,7 +1223,7 @@ The sector-mixture estimate gives a common factorization for both cloners.
 
 \begin{lemma}[Factorization of the lifted fidelity]
 \label{lem:lifted-fidelity-factorization}
-Let \(K_n:\mathsf Y_n\rightsquigarrow\mathsf Y_{m_n}\) be label kernels.
+Let \(K_n:\mathsf Y_n\rightsquigarrow\mathsf Y_{m_n}\) be transition rules.
 Fix \(K\Subset\Delta_d^\circ\), and use the laws
 \(\Pi_{n,p},Q_{m_n,p}\) from \eqref{eq:lifted-label-laws}.  Suppose there
 are sets \(G_{n,p}\) of label pairs and a sequence \(\delta_n\to0\) such that
@@ -1495,7 +1498,8 @@ and joint-concavity properties remain valid, and the first equality above is
 the continuous direct-sum identity for fidelity.
 
 \par\indent
-Set
+Combining the classical spectral fluctuations with the quantum oscillator
+modes, define the input and ideal target states of the full Gaussian model by
 \begin{equation}\label{eq:full-gaussian-model}
   \Theta_{h,z}^{\mathrm{in}}
   =\mathsf N_{h,\Sigma_p}\ot\Phi_z^{(p)},
@@ -1503,7 +1507,10 @@ Set
   \Theta_{h,z}^{\mathrm{tar}}
   =\mathsf N_{\sqrt\gamma h,\Sigma_p}\ot\Psi_z^{(p,\gamma)}.
 \end{equation}
-Let
+The target scales both displacement parameters \((h,z)\) by
+\(\sqrt\gamma\), while retaining the input covariance and thermal noise.
+For the orbital model, let \(\mathsf Z_L\) be the box of oscillator
+displacements over which we average the fidelity:
 \[
   \mathsf Z_L
   =\{z\in\C^{r_d}:|\Re z_{ij}|,|\Im z_{ij}|\le L\ \text{for all }i<j\}.
@@ -1568,13 +1575,12 @@ chart in \cref{sec:local-coordinates} satisfies
   \frac{[Y_p(z),\rho_p]_{ji}}{\sqrt{\Delta_{ij}}}=z_{ij},
   \qquad i<j.
 \end{equation}
-For \(a_{ij,n}=(n\Delta_{ij})^{-1/2}\sum_{s=1}^n E_{ij}^{(s)}\), where
-\(E_{ij}^{(s)}\) acts on the \(s\)-th tensor factor, the expectations at
-\(\rho_p^{\ot n}\) obey
+For \(a_{ij,n}:=(n\Delta_{ij})^{-1/2}\sum_{s=1}^n E_{ij}^{(s)}\), where
+\(E_{ij}^{(s)}\) acts on the \(s\)-th tensor factor, the expectations read
 \[
-  \langle[a_{ij,n},a_{ij,n}^*]\rangle=1,
+  \left\langle[a_{ij,n},a_{ij,n}^*]\right\rangle_{\rho_p^{\ot n}}=1,
   \qquad
-  \langle a_{ij,n}^*a_{ij,n}\rangle
+  \left\langle a_{ij,n}^*a_{ij,n}\right\rangle_{\rho_p^{\ot n}}
   =\frac{p_j}{\Delta_{ij}}=\frac{q_{ij}}{1-q_{ij}}.
 \]
 Under the local state, \eqref{eq:LAN-coordinate-map} gives
@@ -1664,8 +1670,7 @@ For \(d=2\), put \(\Delta=p_1-p_2>0\), \(q=p_2/p_1\), and take
 \]
 This equals
 \(F(\tau_q,D(t)\tau_qD(t)^*)
-=\exp[-(1-q)t^2/(2(1+q))]\), confirming the displacement scale in
-\cref{thm:LAN-full}.
+=\exp\left[-\frac{(1-q)t^2}{2(1+q)}\right]\), confirming the displacement normalization we use.
 \end{remark}
 
 \begin{corollary}[Fixed-spectrum LAN]\label{cor:LAN-orb}
@@ -1713,7 +1718,7 @@ The following lemma formalizes the transfer summarized in
 Let \(\{\rho_{n,\theta}\}_{\theta\in C}\) and
 \(\{\sigma_{n,\theta}\}_{\theta\in C}\) be input and target models on a
 compact parameter set \(C\).  Let \(\{\Phi_\theta\}\) and
-\(\{\Psi_\theta\}\) be limiting models, and suppose channels \(S_n,T_n\)
+\(\{\Psi_\theta\}\) be limiting models. Suppose channels \(S_n,T_n\)
 satisfy
 \[
 \begin{aligned}
@@ -1960,8 +1965,7 @@ supported span exactly the \(\U(r)\)-submodule generated by the
 highest-weight vector, that is, the range of \(J_\lambda\); on that
 submodule the block-diagonal action reduces to the \(r\)-dimensional
 polynomial representation, proving the claim.  Normalizing by the
-Schur-polynomial identity proves
-\eqref{eq:conditional-support}.
+Schur-polynomial identity proves~\eqref{eq:conditional-support}.
 
 The two maps
 \[
@@ -1984,9 +1988,9 @@ proves \eqref{eq:channel-compression}, with the dimension ratio in
 \eqref{eq:R-lambda}.
 
 If \(A,B\ge0\) and \(PBP=B\), then
-\[
+\(
   F(A,B)=\Tr\sqrt{\sqrt B A\sqrt B}=F(PAP,B).
-\]
+\)
 Apply this with \(P=P_\nu\), then use
 \eqref{eq:conditional-support}, \eqref{eq:channel-compression}, invariance
 of fidelity under the isometry \(J_\nu\), and
@@ -2067,7 +2071,7 @@ coupling \(\Pi_n(\mu,\nu)\) of the exact marginals
   \quad\text{in probability}.
   \label{eq:shape-coupling}
 \end{equation}
-Disintegrate this finite coupling to obtain a label kernel
+Condition this finite coupling on the input label to obtain a transition rule
 \(K_n(\nu\mid\mu)\), extending it arbitrarily to input diagrams with
 more than \(r\) rows.  Those diagrams have zero probability on projector
 inputs, but the extension defines the lifted channel on the entire input
@@ -2349,14 +2353,12 @@ at \(\gamma=1+\delta\) and inversion at squared fidelity \(1-\epsilon\) give
   \frac{N}{M}\sim\sqrt{\frac{A_\bullet(p)}{\epsilon}},
 \end{equation}
 where
-\begin{align}
+\begin{equation}
   A_{\mathrm{univ}}(p)
-  &=\frac{d-1}{8}+\frac14\sum_{i<j}\frac{p_i}{p_j},
-  \label{eq:universal-curvature}\\*
+  =\frac{d-1}{8}+\frac14\sum_{i<j}\frac{p_i}{p_j},\quad
   A_{\mathrm{PCT}}(p)
-  &=\frac{d-1}{2}+\frac14\sum_{i<j}\frac{(p_i+p_j)^2}{p_ip_j}.
-  \label{eq:pct-curvature}
-\end{align}
+  =\frac{d-1}{2}+\frac14\sum_{i<j}\frac{(p_i+p_j)^2}{p_ip_j}.
+\end{equation}
 Thus \(A_{\mathrm{PCT}}(p)>A_{\mathrm{univ}}(p)\), giving our cloner the
 strictly smaller leading constant.  Both coefficients diverge as an
 eigenvalue approaches zero, so this fixed-interior-spectrum
@@ -2497,11 +2499,16 @@ colliding pair contributes \(f_\gamma(1)=2\sqrt\gamma/(1+\gamma)\), and
 When also \(r=d\) and the spectrum is simple, the formula reduces to the
 full-rank value \(\Funiv(\gamma,p)\) in \eqref{eq:main-values}.  
 
-At a flat projector state, \(s=1\), the conjectured universal fidelity is different from \cref{thm:grassmann} which is rank-aware and does not address neighborhoods in which the rank can change.
+At a flat projector state, \(s=1\), the conjectured local model allows the
+positive eigenvalues to vary while keeping the rank fixed, whereas
+\cref{thm:grassmann} concerns the projector family, whose positive
+eigenvalues are all fixed at \(1/r\).  This additional uncertainty gives
+the conjectured classical factor when \(r>1\); for \(r=1\), the two values
+coincide.  Neither model addresses neighborhoods in which the rank changes.
 
 \paragraph{Conjectured comparison with PCT.}
 At every fixed gain \(\gamma>1\), we further conjecture that our
-Schur--Cartan construction, with label kernels adapted to degenerate or
+Schur--Cartan construction, with transition rules adapted to degenerate or
 rank-deficient spectra, generally outperforms PCT on the corresponding
 mixed-state families, with the same prior spectral or rank information
 available to both protocols. 
@@ -2536,7 +2543,9 @@ collaborations.
 \begin{samepage}
 \section*{Generative AI usage}
 
-The original idea for the cloner construction is due to the authors. We expect its optimality in the asymptotic regime, but lack a complete proof.  We
+The original idea for the cloner construction is due to the authors. We
+initially conjectured its asymptotic optimality but did not have a complete
+proof.  We
 used OpenAI's ChatGPT (Sol~5.6 and 6) and Anthropic's Claude (Fable~5 and 5.1) to assist
 with the analysis: the evaluation of the cloning fidelity and the converse
 argument benefited from their suggestions.  The same tools assisted with
@@ -2547,7 +2556,6 @@ responsibility for the accuracy and content of the manuscript.
 \end{samepage}
 
 \appendix
-\clearpage
 \section{Strict comparison with purify--clone--trace}
 \label[appendix]{app:pct-comparison}
 
@@ -2741,16 +2749,7 @@ For fixed \(d\), \(p\), and \(\gamma>1\) as above,
     \rho_p^{\ot m_n}
   \right),
 \end{equation}
-where \(q_{ij}=p_j/p_i\),
-\[
-  F_{\mathrm{PCT}}(\gamma,p)
-  =\left(\frac{\sqrt{2\gamma-1}}{\gamma}\right)^{(d-1)/2}
-   \prod_{i<j}
-   \frac{\sqrt{\gamma+(\gamma-1)q_{ij}}
-         +\sqrt{q_{ij}(\gamma-1+\gamma q_{ij})}}
-        {\gamma(1+q_{ij})},
-\]
-and \(\Funiv\) and \(f_\gamma\) are as in \eqref{eq:main-values} and
+where \(q_{ij}=p_j/p_i\), and \(\Funiv\) and \(f_\gamma\) are as in \eqref{eq:main-values} and
 \eqref{eq:pairwise-fidelity-factor}.
 \end{theorem}
 
@@ -3105,12 +3104,10 @@ fixed \(0<\delta<1/(2r)\), take \(m_n/n\to1+\delta\).  Define
 \]
 Then
 \begin{equation}\label{eq:pct-projector-small-error-envelope}
-\begin{aligned}
   1-(1+\delta)^{-a}
-  &\le\liminf_n\mathcal E_n(\delta)
-   \le\limsup_n\mathcal E_n(\delta)\\
-  &\le1-(1+\delta)^{-a}+(1+\delta)^{-a}C_r(\delta).
-\end{aligned}
+  \le\liminf_n\mathcal E_n(\delta)
+   \le\limsup_n\mathcal E_n(\delta)
+  \le1-(1+\delta)^{-a}+(1+\delta)^{-a}C_r(\delta).
 \end{equation}
 Thus both envelopes equal \(a\delta+O_{r,d}(\delta^2)\) as
 \(\delta\downarrow0\).  In this iterated limit, PCT has the same leading
@@ -3832,8 +3829,8 @@ vanish uniformly on compact \(K\), proving \eqref{eq:young-local-limit}.
 \begin{lemma}[Continuous limit of randomized dilation]
 \label{lem:randomized-dilation}
 Let \(\widetilde Q_{m_n,p}=P_{n,p}D_n\) denote the
-\(\widetilde\nu\)-marginal of the joint law obtained by composing the kernel
-\(D_n\) with \(P_{n,p}\), before the replacement in
+\(\widetilde\nu\)-marginal of the joint law obtained by applying the transition
+rule \(D_n\) to an input label drawn from \(P_{n,p}\), before the replacement in
 \eqref{eq:rounding-kernel}.  For every compact
 \(K\Subset\Delta_d^\circ\),
 \begin{equation}\label{eq:rounded-density-limit}
@@ -4164,11 +4161,10 @@ Let \(\Gamma\) be a completely positive trace-nonincreasing map on the
   =D(\sqrt\gamma\,z)\Gamma(X)D(\sqrt\gamma\,z)^*
   \qquad(z\in\mathbb C^s).
 \]
-If
-\[
-  W(\widehat{\mathbf N})
-  =\prod_{\ell=1}^s w_\ell(\widehat N_\ell),
-\]
+Let
+\(
+  W(\widehat{\mathbf N}):=\prod_{\ell=1}^s w_\ell(\widehat N_\ell),
+\)
 where every \(w_\ell\) is bounded, nonnegative, and nonincreasing on
 \(\mathbb Z_{\ge0}\), then
 \begin{equation}\label{eq:least-noise-moment}
@@ -4299,13 +4295,10 @@ induced Euclidean measure.  Let
 \]
 with \(|\mathsf E_L|=1\) when \(k=0\).  Define
 \[
-  R_{0,z}^{(0)}=\Phi_z^{(p)},
-  \qquad S_{0,z}^{(0)}=\Psi_z^{(p,\gamma)},
-\]
-\[
-  R_{h,z}^{(d-1)}=\Theta_{h,z}^{\mathrm{in}},
-  \qquad S_{h,z}^{(d-1)}=\Theta_{h,z}^{\mathrm{tar}},
-  \qquad
+  R_{0,z}^{(0)}=\Phi_z^{(p)},\ \ \
+   S_{0,z}^{(0)}=\Psi_z^{(p,\gamma)},\ \ \
+  R_{h,z}^{(d-1)}=\Theta_{h,z}^{\mathrm{in}},\ \ \
+   S_{h,z}^{(d-1)}=\Theta_{h,z}^{\mathrm{tar}},\ \ \
   c_k=\left(\frac{2\sqrt\gamma}{1+\gamma}\right)^{k/2}.
 \]
 For \(k=0\), the supremum below is over quantum channels on
