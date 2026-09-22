@@ -1,6 +1,6 @@
 \documentclass[11pt]{article}
 \usepackage[letterpaper,portrait,margin=1in]{geometry}
-\usepackage[OT1]{fontenc}
+\usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage{array,longtable}
@@ -88,10 +88,11 @@
 \endgroup
 
 \begin{abstract}
-Unknown quantum states can only be cloned approximately.  While the optimal
-pure-state cloner has long been known, the mixed-state problem has remained open. We determine sharp global asymptotic cloning fidelity for a cloner that receives \(n\) copies of a \(d\)-dimensional full-rank non-degenerate mixed state and produces \(m_n\) copies, with \(m_n/n\to\gamma>1\).
-For a known spectrum \(p_1>\cdots>p_d>0\), the optimal asymptotic cloning fidelity
-on its unitary orbit is
+We study asymptotic cloning under root Uhlmann fidelity with the entire
+product output as target.  In fixed dimension \(d\), let \(n\) inputs and
+\(m_n\) outputs satisfy \(m_n/n\to\gamma>1\).  For a known simple
+full-rank spectrum \(p_1>\cdots>p_d>0\), we prove that the optimal
+fidelity on its unitary orbit is
 \[
   \Forb(\gamma,p)
   =\prod_{i<j}
@@ -99,26 +100,25 @@ on its unitary orbit is
        {\gamma+q_{ij}},
   \qquad q_{ij}=\frac{p_j}{p_i}.
 \]
-For unknown spectrum, one spectrum-independent cloner attains
+When the spectrum is unknown, one spectrum-independent cloner attains
 \[
   \Funiv(\gamma,p)
   =\left(\frac{2\sqrt\gamma}{1+\gamma}\right)^{(d-1)/2}
    \Forb(\gamma,p),
 \]
-uniformly on compact subsets of the simple full-rank chamber, and is
-minimax optimal.  The two factors separate the costs of
-reproducing the unknown spectrum and eigenbasis.  Our explicit channels
-combine classical processing of Schur--Weyl labels with a covariant
-Cartan-sector channel.  Local asymptotic normality and a sharp Gaussian
-fidelity bound against unrestricted channels give the matching converses.
-For flat projector states \(\rho=P/r\), with \(P\) a rank-\(r\) orthogonal
-projector, we separately prove the optimum
-\(\gamma^{-r(d-r)/2}\) by exact compression and a finite-dimensional
-converse.  Finally, we compute the exact asymptotic fidelity of
-purify--clone--trace (PCT) at simple full-rank spectra and an upper bound
-for projector states.  At fixed gain, these establish strict superiority of our
-spectrum-independent cloner at every simple full-rank spectrum and of our
-projector cloner for \(1<r<d\).
+uniformly on compact subsets of the simple full-rank chamber.  This
+channel is minimax optimal on compact spectral sets whose interior in the
+full spectral hyperplane is dense in the set.  The two factors quantify
+eigenbasis and spectral uncertainty.  Our channels combine classical
+processing of Schur--Weyl labels with a covariant Cartan-sector channel;
+local asymptotic normality and a Gaussian fidelity bound against arbitrary
+channels yield the converses.  For flat projector states \(\rho=P/r\),
+with \(P\) a rank-\(r\) orthogonal projector, we separately prove the
+optimum \(\gamma^{-r(d-r)/2}\).  Computing the exact asymptotic fidelity
+of purify--clone--trace (PCT) at simple full-rank spectra, and bounding it
+from above for projector states, we show that our cloners strictly
+outperform PCT at every fixed gain on both families (for projectors, when
+\(1<r<d\)).
 \end{abstract}
 
 \clearpage
@@ -128,28 +128,39 @@ projector cloner for \(1<r<d\).
 
 The no-cloning theorem rules out perfect copying of an arbitrary unknown
 quantum state \cite{WoottersZurek1982,Dieks1982}.  Approximate cloning asks
-how well a channel can transform \(n\) identical inputs into an output
-resembling \(m\) ideal copies. We call the ratio $m/n$ as the cloning \emph{gain}.  We measure cloning fidelity globally with the
-ideal product target \(\rho^{\ot m}\), to distinguish from the problem of broadcasting~\cite{BarnumCavesFuchsJozsaSchumacher1996} where we oftenjudge the marginal fidelity. The goal is the determine the optimal cloning fidelity for any given gain, and to construct a channel that attains it.  The pure-state problem was solved in the 1990s, and the optimal cloner is known to be a covariant channel that symmetrically embeds the input into the output space \cite{Werner1998,KeylWerner1999}.  The mixed-state problem has remained open~\cite{ScaraniIblisdirGisinAcin2005}, with only partial results for restricted families of states or small gain \cite{BuscemiDArianoMacchiavelloPerinotti2005Optimal,BuscemiDArianoMacchiavelloPerinotti2006,DangFan2007,FanLiuShi2007,Kazakov2007,LiTheilHarrowChuang2026,FanizzaGrinkoScharnhorstSpilecki2026,JeonSohnOh2026}. We resolve the mix-state cloning problen by determining the optimal cloner under global product fidelity for any simple\footnote{We call a full-rank spectrum \emph{simple} (i.e., non-degenerate) if its eigenvalues are distinct.} full-rank spectra at any fixed asymptotic gain.
+how well a channel can turn \(n\) identical inputs into \(m\) copies, at
+\emph{gain} \(m/n\).  We compare the entire output with the product
+target \(\rho^{\ot m}\), rather than testing its marginals as in broadcasting
+\cite{BarnumCavesFuchsJozsaSchumacher1996}.  Optimal pure-state cloners
+were established in the 1990s \cite{Werner1998,KeylWerner1999}, but
+mixed-state cloning has remained open
+\cite{ScaraniIblisdirGisinAcin2005}: existing results treat restricted
+families, different loss criteria, or small-error sample complexity,
+without determining the optimal global fidelity in our setting
+\cite{BuscemiDArianoMacchiavelloPerinotti2005Optimal,BuscemiDArianoMacchiavelloPerinotti2006,DangFan2007,FanLiuShi2007,Kazakov2007,LiTheilHarrowChuang2026,FanizzaGrinkoScharnhorstSpilecki2026,JeonSohnOh2026}.
+We determine the known-spectrum orbit optimum and an unknown-spectrum
+compact-set minimax optimum for simple\footnote{A full-rank spectrum is
+\emph{simple} (non-degenerate) if its eigenvalues are distinct.}
+full-rank spectra at every fixed asymptotic gain \(m_n/n\to\gamma>1\).
 
-For mixed states, the eigenvalues and eigenbasis may both be unknown, and these two kinds of information behave differently under repeated sampling. We therefore approach the problem in two step. 
-In the known-spectrum problem, the eigenvalues are supplied and the state
-ranges over one unitary orbit; cloning must reproduce only the unknown
-eigenbasis.  In the unknown-spectrum problem, a single spectrum-independent
-sequence of channels must handle both eigenvalues and eigenbasis, uniformly
-over compact subsets of the chamber of simple full-rank spectra.  This is
-not merely the first problem preceded by spectrum estimation: the measured
-spectrum retains fluctuations of order \(n^{-1/2}\), which must themselves be converted from \(n\) to \(m\) copies.
+The eigenvalues and eigenbasis carry different kinds of information.
+When the spectrum is known, only the eigenbasis must be cloned.  When it
+is unknown, the measured eigenvalues retain \(n^{-1/2}\)-scale
+fluctuations that must be converted to the output scale.  We construct
+cloners for both settings.  The spectrum-independent cloner attains the
+known-spectrum optimum times a classical factor, uniformly on compact
+spectral sets.  This value is minimax optimal when the set has dense
+full-dimensional interior (\cref{thm:unknown-optimum}).
 
-We solve both problems in the asymptotic limit for a squence of cloning tasks to produce $m_n$ clones from $n$ copies of an unknown state, such that \(m_n/n\to\gamma>1\).
-For known spectrum, we determine the optimal global fidelity on each unitary orbit.  For unknown spectrum, we construct one universal cloner, determine
-its asymptotic cloning fidelity uniformly on compact subsets of the chamber of simple full-rank spectra, and
-determine the minimax value over the compact spectral sets (cf.
-\cref{thm:unknown-optimum}).  The unknown-spectrum value factors into the
-known-spectrum optimum and a spectrum-independent classical factor.
-We also solve cloning of
-flat rank-\(r\) projector states \(\rho_P=P/r\), with \(P\) any rank-\(r\) orthogonal projector.   Finally, we analyze the actual output of an alternative cloning protocol~\cite{LiTheilHarrowChuang2026,FanizzaGrinkoScharnhorstSpilecki2026,JeonSohnOh2026},
-purify--clone--trace (PCT), obtaining its exact fidelity at simple full-rank spectra and a strict upper bound for projector states.  We show a strict improvement over PCT on both families, beyond a comparison with its lower guarantees in the literature.
+We also solve cloning of flat projector states \(\rho=P/r\), where \(P\)
+is an unknown rank-\(r\) projector.  We compare our cloners with
+purify--clone--trace (PCT)
+\cite{LiTheilHarrowChuang2026,FanizzaGrinkoScharnhorstSpilecki2026,JeonSohnOh2026}.
+Its exact asymptotic fidelity at simple full-rank spectra and an upper
+bound for projector states show that our cloners strictly outperform PCT
+on these families (for \(1<r<d\) in the projector case).
+The comparison concerns the protocols themselves, rather than their
+published lower guarantees.
 
 Two complementary decompositions drive the solution.  Schur--Weyl duality
 separates the spectral information in the Young label from the eigenbasis
@@ -157,15 +168,11 @@ information in the conditional irreducible state
 \cite{KeylWerner2001Spectrum}.  Our cloners process the label classically
 and apply a multiplicity-one Cartan-sector channel to the irreducible state
 \cite{ParthasarathyRangaRaoVaradarajan1967,FultonHarris1991}.
-Local asymptotic normality (LAN) gives
-the corresponding separation into a classical Gaussian shift and displaced
-thermal oscillator modes.
-A cloner exceeding our orbit or compact-family minimax value would induce
-a channel exceeding the corresponding Gaussian dilation or amplification
-optimum.  Our converse uses the existing LAN framework and a sharp
-fidelity bound proved here for arbitrary, possibly non-Gaussian and
-correlated channels.  A unified flat-prior argument establishes this bound;
-the quantum optimum is attained by the product of least-noise amplifiers.
+Local asymptotic normality (LAN) yields a classical Gaussian shift and
+displaced thermal oscillator modes.  The converse combines LAN with a
+Gaussian fidelity bound against arbitrary, possibly non-Gaussian and
+correlated channels.  We prove the bound by a flat-prior argument; a
+product of least-noise amplifiers attains the quantum optimum.
 Projector states instead admit exact Schur-sector compression and a direct
 finite-dimensional converse.
 
@@ -173,15 +180,14 @@ finite-dimensional converse.
 
 Fix an integer \(d\ge2\) and positive integers \(m_n\) such that
 \begin{equation}\label{eq:fixed-gain-regime}
-  \gamma_n:=\frac{m_n}{n}\longrightarrow\gamma>1,
-  \qquad r_d:=\binom d2.
+  \gamma_n:=\frac{m_n}{n}\longrightarrow\gamma>1.
 \end{equation}
 In particular, \(m_n>n\) for all sufficiently large \(n\).\footnote{At the
 finitely many exceptional indices with \(m_n\le n\), our cloners are defined
 as the exact partial trace channel (and the identity when \(m_n=n\)).  This convention
 does not affect any limit, and all construction formulas below concern
 \(m_n>n\).}
-Let \(\mathsf A_d\) be the affine hyperplane \(\mathsf A_d:=\{x\in\R^d:\sum_i x_i=1\}\).  Let
+Let \(\mathsf A_d:=\{x\in\R^d:\sum_i x_i=1\}\) and define
 \begin{equation}\label{eq:simple-spectrum-family}
   \Delta_d^\circ
   :=\left\{p\in\mathsf A_d:p_1>\cdots>p_d>0\right\},\qquad
@@ -193,8 +199,8 @@ write
 \begin{equation}\label{eq:root-fidelity-definition}
   F(A,C)=\|\sqrt A\sqrt C\|_1.
 \end{equation}
-For states, this is the root (unsquared) Uhlmann fidelity.  For nonnegative functions
-or measures, the same notation denotes their Hellinger affinity; in
+For states, this is the root (unsquared) Uhlmann fidelity.  For nonnegative
+functions or measures, the same notation denotes their Hellinger affinity; in
 particular, \(F(P,Q)=\sum_x\sqrt{P(x)Q(x)}\) on a countable space.  The target
 in every statement below is the entire product state
 \(\rho_{p,g}^{\ot m_n}\).  For
@@ -218,11 +224,10 @@ The factor \(\Forb\) measures the cost of amplifying the unknown eigenbasis.
 The \emph{classical fidelity factor} \(\Fcl\) accounts for the additional
 cost of reproducing the unknown spectral fluctuations.
 
-\paragraph{Known spectrum}
-Fixing \(p\) isolates the genuinely noncommutative part of the problem.  The
-target distribution of Young labels is then known and can be sampled exactly
-at size \(m_n\); only the conditional representation sectors, which encode
-the eigenbasis, need to be cloned.
+\paragraph{Known spectrum.}
+For fixed \(p\), the target Young-label distribution is known and can be
+sampled exactly at size \(m_n\); only the conditional representation
+sectors encoding the eigenbasis need to be cloned.
 
 \begin{theorem}[Known-spectrum optimum]\label{thm:known-optimum}
 For every \(p\in\Delta_d^\circ\),
@@ -237,17 +242,13 @@ qudits.  The explicit sequence of channels \(\cC_n^p\) defined in
 \cref{sec:known-label-kernel} asymptotically attains the displayed value.
 \end{theorem}
 
-Thus every pair \(i<j\) contributes one displaced-thermal amplification
-factor \(f_\gamma(p_j/p_i)\).  The Schur--Cartan cloner attains their product,
-while fixed-spectrum LAN shows that any better finite-dimensional cloner
-would violate the Gaussian amplification optimum proved here.
+Fixed-spectrum LAN transfers the Gaussian optimum for each
+displaced-thermal pair \(i<j\) to the orbit; see \cref{sec:gaussian-LAN}.
 
-\paragraph{Unknown spectrum}
-If \(p\) is not supplied, the target Young-label distribution can no longer
-be sampled directly.  The measured input label determines the spectrum only
-at the \(n^{-1/2}\) scale, and converting \(n\) copies into
-\(m_n\sim\gamma n\) copies requires dilating this classical fluctuation.
-This produces the spectrum-independent classical factor \(\Fcl(\gamma,d)\).
+\paragraph{Unknown spectrum.}
+Without \(p\), the target Young-label law must instead be generated from
+the measured input label.  Dilating its classical fluctuation to the
+output scale produces the factor \(\Fcl(\gamma,d)\).
 
 \begin{theorem}[Unknown-spectrum cloner fidelity and compact-set optimum]
 \label{thm:unknown-optimum}
@@ -283,36 +284,19 @@ qudits.
 \end{enumerate}
 \end{theorem}
 
-Part~\textup{(a)} describes the performance of one prescribed cloner on
-every compact \(K\), including singletons and lower-dimensional sets;
-no thickness condition is needed.  Part~\textup{(b)}, by contrast,
-identifies the optimum over all channels.  In
-\eqref{eq:compact-global-value}, the set \(K\) may inform the channel
-design, but the actual \(p\in K\) and \(g\in\U(d)\) remain unknown.
-Unitary covariance removes the dependence on \(g\), and the least
-favorable spectrum gives the infimum on the right.
+Part~\textup{(a)} evaluates one prescribed cloner, even on singleton or
+lower-dimensional sets.  In part~\textup{(b)}, the competing channel may
+depend on \(K\), but not on the actual \(p\) or \(g\).  The interior is
+taken in the full \((d-1)\)-dimensional hyperplane \(\mathsf A_d\): its
+spectral directions give the converse factor \(\Fcl(\gamma,d)\), and
+density extends the bound to the infimum over \(K\); see
+\cref{sec:minimax-completion}.  The condition matters.  For
+\(K=\{p\}\), the known-spectrum optimum is
+\(\Forb(\gamma,p)>\Funiv(\gamma,p)\), although part~\textup{(a)} still
+describes the spectrum-independent cloner.
 
-The additional condition in part~\textup{(b)} is a sufficient thickness
-assumption: it says that the interior of \(K\) is dense in \(K\), with
-interior taken in the full \((d-1)\)-dimensional spectral hyperplane
-\(\mathsf A_d\), not in a possibly smaller affine hull of \(K\).
-Around each interior point, the allowed spectra vary in all \(d-1\)
-independent directions.  The converse uses these neighborhoods to obtain
-the classical factor \(\Fcl(\gamma,d)\).  Density of the
-interior and continuity of \(\Funiv(\gamma,p)\) then give the infimum
-over all of \(K\); see \cref{sec:minimax-completion}.
-
-Part~\textup{(b)} cannot hold for arbitrary compact sets.  For instance, if \(K=\{p\}\),
-the spectrum is known, and \cref{thm:known-optimum} gives the larger
-optimum \(\Forb(\gamma,p)>\Funiv(\gamma,p)\).  Part~\textup{(a)} still
-describes our spectrum-independent cloner correctly on this singleton,
-but that cloner does not exploit the known spectrum and is not optimal
-there.  Other lower-dimensional spectral families may likewise have
-different classical factors.
-
-A natural admissible example of \(K\) is one that keeps the smallest eigenvalue and
-every adjacent spectral gap uniformly positive.  For
-\(0<\kappa<2/[d(d+1)]\), set $K$ to be
+A natural example bounds the smallest eigenvalue and every adjacent gap
+away from zero.  For \(0<\kappa<2/[d(d+1)]\), take
 \[
   \Delta_{d,\kappa}
   =\left\{p\in\mathsf A_d:p_d\ge\kappa,\
@@ -322,27 +306,21 @@ This is a nonempty compact subset of \(\Delta_d^\circ\) and satisfies
 \(\Delta_{d,\kappa}
 =\overline{\operatorname{int}_{\mathsf A_d}\Delta_{d,\kappa}}
 ^{\,\mathsf A_d}\),
-so \eqref{eq:compact-global-value} applies.\footnote{To verify nonempty relative interior,
+so \eqref{eq:compact-global-value} applies.\footnote{Being convex with
+nonempty relative interior, \(\Delta_{d,\kappa}\) is the closure of that
+interior.  For a relative interior point,
 choose \(\kappa'\in(\kappa,2/[d(d+1)])\) and set
 \(p_i=1/d+((d+1)/2-i)\kappa'\).  At the endpoint
 \(\kappa=2/[d(d+1)]\), the constraints force a singleton, so the
 compact-set theorem no longer applies.}
 
-The common Schur--Cartan architecture is summarized in
-\cref{fig:schur-cartan-cloner}.  After the Schur transform, the
-Young label \(\mu\) carries the spectral information, while the conditional
-irrep state carries the unknown eigenbasis.  A classical transition rule chooses an
-output label \(\nu\), and the common covariant sector channel maps the conditional
-state into the \(\nu\)-sector before the \(m_n\)-system output is reconstructed.
-For known \(p\), the rule samples the exact target law \(P_{m_n,p}\)
-independently of \(\mu\); the spectrum-independent rule instead randomly
-rounds \(\gamma_n\mu\).  Their classical factors are therefore \(1\) and \(\Fcl\),
-while the common sector factor is \(\Forb\), giving the exact asymptotic
-fidelities \(\Forb\) and \(\Funiv\) for the known- and unknown-spectrum
-cloners, respectively.  The details are developed in
-\cref{sec:label-kernels}.
+\Cref{fig:schur-cartan-cloner} summarizes the common construction.  The
+Schur transform separates a Young label, carrying spectral information,
+from a conditional irreducible state, carrying eigenbasis information.
+Each cloner chooses an output label and applies the same covariant sector
+channel; only the label transition rule changes.  We develop these rules
+and their fidelities in \cref{sec:label-kernels}.
 
-We did not attempt to solve the general rank-deficient problem, but we can treat the special case of flat projector states.
 \begin{theorem}[Cloning projector states]
 \label{thm:grassmann}
 For fixed \(1\le r<d\), let \(\Gr(r,d)\) denote the set of rank-\(r\)
@@ -353,17 +331,16 @@ orthogonal projectors on \(\C^d\).  Then
   =\gamma^{-r(d-r)/2}.
 \end{equation}
 The limit is attained by our cloner \(\cC_n^{\mathrm{proj}}\) constructed in \cref{sec:grassmann-achievability}.
-For \(r=1\), the value \(\gamma^{-(d-1)/2}\) recovers the optimal
-asymptotic global fidelity for pure-state cloning \cite{Werner1998}.
-For \(r=d\), the family contains only \(I_d/d\), and the value is one.
 \end{theorem}
 
-The cloner \(\cC_n^{\mathrm{proj}}\) uses the same Schur--Cartan architecture
-as \(\cC_n^p\) and \(\cC_n^{\mathrm{univ}}\), with a different transition
-rule between Young diagrams, also shown in \cref{fig:schur-cartan-cloner}.
-For projector states the classical factor is \(1\), while the asymptotic sector factor is
-\(\gamma^{-r(d-r)/2}\).  Both achievability and the converse are proved
-separately in \cref{sec:grassmann}.
+For \(r=1\), the value \(\gamma^{-(d-1)/2}\) recovers the optimal
+asymptotic global fidelity for pure-state cloning \cite{Werner1998}; for
+\(r=d\), the family contains only \(I_d/d\), and the value is one.
+The projector cloner uses the same Schur--Cartan architecture, with a
+different Young-label transition rule (\cref{fig:schur-cartan-cloner}).
+Its classical factor is \(1\) and its asymptotic sector factor is
+\(\gamma^{-r(d-r)/2}\).  Both bounds are proved separately in
+\cref{sec:grassmann}.
 
 
 
@@ -447,62 +424,18 @@ separately in \cref{sec:grassmann}.
 
 \end{tikzpicture}%
 }
-\caption{Common construction of \(\cC_n^p\), \(\cC_n^{\mathrm{univ}}\),
-  and \(\cC_n^{\mathrm{proj}}\).  The input is \(\rho=\rho_{p,g}\) for
-  the simple full-rank families or \(\rho=P/r\) for projector states.
-  The Schur transform measures the Young label \(\mu\) and retains the
-  normalized conditional irrep state \(\rho_\mu\).  The three transition rules
-  are shown above; the projector rule couples the exact input and target
-  flat Schur laws.  All three cloners apply the same sector channel
-  \(\cE_{\mu,\nu}\) and restore a maximally mixed Specht factor.
-  The displayed classical and sector factors multiply to the attained
-  asymptotic fidelities \(\Forb\), \(\Funiv\), and
-  \(\gamma^{-r(d-r)/2}\) in
-  \cref{thm:known-optimum,thm:unknown-optimum,thm:grassmann}, respectively.}
+\caption{Schur--Cartan cloner architecture.  A Young-label transition rule
+  selects \(\nu\), while the covariant channel \(\cE_{\mu,\nu}\) processes
+  the conditional irrep state.  Known-spectrum, unknown-spectrum, and
+  projector cloners differ only in their label rules, shown above; the
+  listed classical and sector factors give their asymptotic fidelities in
+  \cref{thm:known-optimum,thm:unknown-optimum,thm:grassmann}.}
 \label{fig:schur-cartan-cloner}
 \end{figure}
 
-\subsection{Remarks}
+\subsection{Scope and limitations}
 \label{sec:remarks}
 
-\paragraph{Dependence on spectral mixedness}
-The product formula makes precise one sense in which a more mixed state is
-easier to clone.  For fixed \(\gamma>1\),
-\[
-  f_\gamma'(q)
-  =\frac{(\gamma-1)^2}
-  {2\sqrt{q(\gamma-1+q)}
-   \bigl(\sqrt{\gamma(\gamma-1+q)}+\sqrt q\bigr)^2}>0,
-  \qquad 0<q<1.
-\]
-Consequently, if \(p,p'\in\Delta_d^\circ\) satisfy
-\begin{equation}\label{eq:ratio-wise-flattening}
-  \frac{p'_j}{p'_i}\ge \frac{p_j}{p_i}
-  \qquad\text{for every }i<j,
-\end{equation}
-that is, if every logarithmic spectral gap contracts in passing from \(p\)
-to \(p'\), then
-\begin{equation}\label{eq:ratio-wise-fidelity-monotonicity}
-  \Forb(\gamma,p')\ge \Forb(\gamma,p),
-  \qquad
-  \Funiv(\gamma,p')\ge \Funiv(\gamma,p),
-\end{equation}
-with strict inequality if any ratio is strictly larger.\footnote{Condition
-\eqref{eq:ratio-wise-flattening} implies that \(p'\) is majorized by \(p\)
-but is stronger than majorization: for \(d\ge3\), majorization alone need not
-increase the cloning fidelity.} 
-
-\paragraph{Comparison with PCT}
-The quantitative comparison with the purify--clone--trace protocol is
-developed in \cref{sec:discussions}.  At every fixed \(\gamma>1\), our
-spectrum-independent cloner has strictly larger asymptotic fidelity than PCT
-at every simple full-rank spectrum, and our projector-state cloner is
-strictly better than PCT for \(1<r<d\).  \Cref{fig:pct-comparisons} previews
-both separations; \cref{sec:discussions} and
-Appendix~\ref{app:pct-comparison} give the exact formulas, their
-sample complexities, and the order-of-limits caveat.
-
-\paragraph{Limitations}
 Apart from flat projector states, our theorems require a simple full-rank
 spectrum.  We do not treat nonflat rank-deficient spectra, positive
 degeneracies, or neighborhoods in which the rank changes.  Our asymptotic
@@ -512,201 +445,58 @@ We also do not determine the exact finite-copy optimum.
 Expected extensions to degenerate and rank-deficient spectra, and the
 noncommuting limits at degeneracies, are discussed in \cref{sec:conjectures}.
 
-\begin{figure}[!tbp]
-\centering
-\begin{tikzpicture}[font=\scriptsize,
-  ours/.style={green!60!black,very thick},
-  pctexact/.style={purple!80!black,very thick,densely dotted},
-  pctupper/.style={purple!80!black,very thick,dashed},
-  pctlower/.style={purple!80!black,very thick,densely dotted},
-  grid/.style={gray!18},
-  legendtext/.style={anchor=west,text=black}]
-  % ---------- (a) full rank ----------
-  \begin{scope}[x=1.45cm,y=7cm]
-    \draw (0,0) -- (3,0);
-    \draw (0,0) -- (0,0.5);
-    \node[rotate=90] at (-0.5,0.25) {fidelity};
-    \node at (1.5,-0.085) {gain \(\gamma\)};
-    \node[font=\small] at (1.5,0.57)
-      {\textup{(a)} Full rank: \(p=(3/5,2/5)\)};
 
-    \foreach \x/\lab in {0/1,1/2,2/3,3/4}{
-      \draw (\x,0.007) -- (\x,-0.007)
-        node[below=1pt] {\(\lab\)};
-    }
-    \foreach \y/\lab in {0/{0.5},0.1/{0.6},0.2/{0.7},
-                            0.3/{0.8},0.4/{0.9},0.5/{1.0}}{
-      \draw (0.012,\y) -- (-0.012,\y)
-        node[left=2pt] {\(\lab\)};
-      \draw[grid] (0,\y) -- (3,\y);
-    }
-
-    \draw[ours]
-      plot[smooth] coordinates {
-        (0,0.5000) (0.25,0.4881) (0.5,0.4624) (0.75,0.4314)
-        (1,0.3988) (1.25,0.3665) (1.5,0.3354) (1.75,0.3058)
-        (2,0.2780) (2.25,0.2519) (2.5,0.2274) (2.75,0.2045)
-        (3,0.1830)
-      };
-    \draw[pctexact]
-      plot[smooth] coordinates {
-        (0,0.5000) (0.25,0.4693) (0.5,0.4143) (0.75,0.3572)
-        (1,0.3041) (1.25,0.2562) (1.5,0.2135) (1.75,0.1754)
-        (2,0.1414) (2.25,0.1109) (2.5,0.0834) (2.75,0.0585)
-        (3,0.0359)
-      };
-
-    \draw[ours] (0.15,0.095) -- (0.45,0.095);
-    \node[legendtext] at (0.5,0.095)
-      {our cloner: \(F_{\mathrm{univ}}\)};
-    \draw[pctexact] (0.15,0.04) -- (0.45,0.04);
-    \node[legendtext] at (0.5,0.04)
-      {PCT: \(F_{\mathrm{PCT}}\)};
-  \end{scope}
-
-  % ---------- (b) projector states ----------
-  \begin{scope}[xshift=8.4cm,x=1.45cm,y=3.5cm]
-    \draw (0,0) -- (3,0);
-    \draw (0,0) -- (0,1.0);
-    \node[rotate=90] at (-0.5,0.50) {fidelity};
-    \node at (1.5,-0.17) {gain \(\gamma\)};
-    \node[font=\small] at (1.5,1.14)
-      {\textup{(b)} Projector states: \(d=4\), \(r=2\)};
-
-    \foreach \x/\lab in {0/1,1/2,2/3,3/4}{
-      \draw (\x,0.014) -- (\x,-0.014)
-        node[below=1pt] {\(\lab\)};
-    }
-    \foreach \y/\lab in {0/{0.0},0.2/{0.2},0.4/{0.4},
-                            0.6/{0.6},0.8/{0.8},1.0/{1.0}}{
-      \draw (0.012,\y) -- (-0.012,\y)
-        node[left=2pt] {\(\lab\)};
-      \draw[grid] (0,\y) -- (3,\y);
-    }
-
-    \fill[purple!14]
-      (0,1.000000) -- (0.25,0.633502) -- (0.5,0.431548)
-      -- (0.75,0.310377) -- (1,0.232651) -- (1.25,0.180119)
-      -- (1.5,0.143108) -- (1.75,0.116137) -- (2,0.095927)
-      -- (2.25,0.080423) -- (2.5,0.068292) -- (2.75,0.058634)
-      -- (3,0.050831) -- (3,0.007812) -- (2.75,0.009792)
-      -- (2.5,0.012467) -- (2.25,0.016159) -- (2,0.021383)
-      -- (1.75,0.028996) -- (1.5,0.040477) -- (1.25,0.058528)
-      -- (1,0.088388) -- (0.75,0.141048) -- (0.5,0.241925)
-      -- (0.25,0.457947) -- cycle;
-
-    \draw[ours]
-      plot[smooth] coordinates {
-        (0,1.000000) (0.25,0.640000) (0.5,0.444444)
-        (0.75,0.326531) (1,0.250000) (1.25,0.197531)
-        (1.5,0.160000) (1.75,0.132231) (2,0.111111)
-        (2.25,0.094675) (2.5,0.081633) (2.75,0.071111)
-        (3,0.062500)
-      };
-    \draw[pctupper]
-      plot[smooth] coordinates {
-        (0,1.000000) (0.25,0.633502) (0.5,0.431548)
-        (0.75,0.310377) (1,0.232651) (1.25,0.180119)
-        (1.5,0.143108) (1.75,0.116137) (2,0.095927)
-        (2.25,0.080423) (2.5,0.068292) (2.75,0.058634)
-        (3,0.050831)
-      };
-    \draw[pctlower]
-      plot[smooth] coordinates {
-        (0,1.000000) (0.25,0.457947) (0.5,0.241925)
-        (0.75,0.141048) (1,0.088388) (1.25,0.058528)
-        (1.5,0.040477) (1.75,0.028996) (2,0.021383)
-        (2.25,0.016159) (2.5,0.012467) (2.75,0.009792)
-        (3,0.007812)
-      };
-
-    \draw[ours] (1.40,0.90) -- (1.70,0.90);
-    \node[legendtext] at (1.75,0.90)
-      {our cloner: \(\gamma^{-2}\) (optimal)};
-    \draw[pctupper] (1.40,0.79) -- (1.70,0.79);
-    \node[legendtext] at (1.75,0.79)
-      {PCT upper bound};
-    \draw[pctlower] (1.40,0.68) -- (1.70,0.68);
-    \node[legendtext] at (1.75,0.68)
-      {PCT lower guarantee};
-    \fill[purple!14] (1.40,0.545) rectangle (1.70,0.605);
-    \node[legendtext] at (1.75,0.575)
-      {PCT fidelity: not excluded};
-  \end{scope}
-\end{tikzpicture}
-\caption{Asymptotic fidelities and bounds as functions of the gain
-  \(\gamma=\lim m_n/n\).
-  \textup{(a)}~For the simple qubit spectrum \(p=(3/5,2/5)\), with neither
-  protocol supplied the spectrum: \(F_{\mathrm{univ}}\) is the exact
-  asymptotic fidelity of our spectrum-independent cloner
-  (\cref{thm:unknown-optimum}) and \(F_{\mathrm{PCT}}\) is the exact
-  asymptotic fidelity of PCT \eqref{eq:pct-fidelity-closed-form} (\cref{thm:full-rank-pct}).
-  \textup{(b)}~For projector states with \(d=4\) and \(r=2\), with both
-  protocols supplied \(r\) but not \(P\): the solid curve is the optimal
-  value \(\gamma^{-2}\), attained by our projector-state cloner
-  \(\cC_n^{\mathrm{proj}}\) (\cref{thm:grassmann}); the dashed curve is the upper bound
-  \(\gamma^{-2}(\sqrt{2\gamma-1}/\gamma)^{1/2}\) on PCT from
-  \cref{prop:grassmann-pct-comparison}, and the dotted curve is the
-  published PCT lower guarantee \(\gamma^{-7/2}\).  The shaded region is the interval not
-  excluded by these two bounds; it is not a confidence band and does not
-  assert that the PCT fidelity converges.  Since the dashed curve lies
-  strictly below the solid one for every \(\gamma>1\), our projector cloner
-  is strictly better.}
-\label{fig:pct-comparisons}
-\end{figure}
 
 \subsection{Earlier and related work}\label{sec:related-work}
 
 \paragraph{Pure-state cloning.}
-Early universal qubit cloners
+Universal qubit cloners
 \cite{BuzekHillery1996,GisinMassar1997,
 BrussDiVincenzoEkertFuchsMacchiavelloSmolin1998} were followed by Werner's
 solution of global universal cloning in arbitrary dimension
 \cite{Werner1998} and Keyl--Werner's optimality result for individual-clone
 tests \cite{KeylWerner1999}.  State-dependent global cloning was developed
 in \cite{BrussDiVincenzoEkertFuchsMacchiavelloSmolin1998,CheflesBarnett1999}.
-For individual clones, the many-output limit is closely tied to estimation
+The many-output limit for individual clones is tied to estimation
 \cite{MassarPopescu1995,BrussEkertMacchiavello1998,BaeAcin2006,
-ChiribellaDAriano2006}.  For the joint output, the relation is subtler:
-global asymptotic cloning has been analyzed for broad pure-state families,
-and an optimal measure-and-prepare output need not consist of independent
-copies of the estimated state \cite{ChiribellaYang2014Optimal}.
-The criterion also matters for coherent-state and phase-covariant cloning
-\cite{CerfKrugerNavezWernerWolf2005,KimChitambar2022}: in particular,
-Cerf et al. prove Gaussian optimality for joint fidelity, while non-Gaussian
-operations can improve single-clone fidelity.  Reviews include
+ChiribellaDAriano2006}.  For joint fidelity, optimal measure-and-prepare
+outputs need not be independent copies of an estimate
+\cite{ChiribellaYang2014Optimal}.
+This distinction also matters for coherent-state and phase-covariant cloning
+\cite{CerfKrugerNavezWernerWolf2005,KimChitambar2022}: Cerf et al. prove
+Gaussian optimality for joint fidelity, although non-Gaussian operations
+can improve single-clone fidelity.  Reviews include
 \cite{ScaraniIblisdirGisinAcin2005,Chiribella2011EstimationCloning,
 FanWangJingYueShiZhangMu2014}.
 
 \paragraph{Mixed-state cloning, broadcasting, and PCT.}
-The no-broadcasting theorem excludes exact cloning of a noncommuting family
-of density matrices \cite{BarnumCavesFuchsJozsaSchumacher1996,KalevHen2008}.  Approximate mixed-state results
-include global-fidelity, relative-error, and state-dependent bounds for
-prescribed finite ensembles
+Exact broadcasting, and hence cloning, of a noncommuting family is
+impossible \cite{BarnumCavesFuchsJozsaSchumacher1996,KalevHen2008}.
+Approximate results include global-fidelity, relative-error, and
+state-dependent bounds for finite ensembles
 \cite{Rastegin2003Upper,Rastegin2002Relative,Rastegin2003StateDependent};
 cloners for symmetric-subspace inputs and identical mixed qubits under
 one-site shrinking-factor criteria \cite{Fan2003,FanLiuShi2007}; a
 restricted mixed-qubit construction under averaged Hilbert--Schmidt loss
 \cite{Kazakov2007}; and entropic limitations on simultaneous approximate
 cloning and broadcasting \cite{LemmWilde2017}.
-Cirac--Ekert--Macchiavello solved optimal mixed-qubit purification and a
+Cirac--Ekert--Macchiavello solved mixed-qubit purification and a
 cloning/estimation problem under local fidelity
 \cite{CiracEkertMacchiavello1999}.  Multi-input broadcasting and
-superbroadcasting likewise optimize marginals and permit correlations
+superbroadcasting also optimize marginals and permit correlations
 \cite{DArianoMacchiavelloPerinotti2005,
 BuscemiDArianoMacchiavelloPerinotti2005Optimal,
 BuscemiDArianoMacchiavelloPerinotti2006,DangFan2007}; these criteria do not
 determine fidelity with the joint product target.
 
-Random purification~\cite{TangWrightZhandry2025} followed by pure-state cloning gives a global-fidelity
-guarantee for bounded-rank mixed states
+Random purification~\cite{TangWrightZhandry2025} followed by pure-state
+cloning gives a global-fidelity guarantee for bounded-rank mixed states
 \cite{LiTheilHarrowChuang2026}.  Concurrent work shows
 that PCT attains the optimal sample complexity up to constants for squared
 fidelity \(1-\epsilon\), uniformly over states of rank at most \(r\)
 \cite{FanizzaGrinkoScharnhorstSpilecki2026,JeonSohnOh2026}.
-These worst-case high-fidelity results complement our exact fixed-gain cloning
-fidelity results; \cref{sec:discussions}
-compares them and distinguishes the orders of limits. We show that PCT is strictly suboptimal for every fixed gain \(\gamma>1\).
+These worst-case high-fidelity results use a different order of limits
+from our exact fixed-gain values; see \cref{sec:small-error}.
 
 \paragraph{Gaussian cloning and LAN.}
 Gu{\c t}{\u a}--Matsumoto solved cloning of displaced thermal oscillator
@@ -716,10 +506,9 @@ to amplification and proving Gaussian optimality by stochastic ordering
 Bowles--Gu{\c t}{\u a}--Adesso used LAN for asymptotically optimal
 mixed-qubit purification and dilution under global trace-norm loss
 \cite{BowlesGutaAdesso2011Purification}; related methods solve qudit channel
-reversal \cite{BowlesGutaAdesso2012Reversal}.  These norm-distance optima
-do not by themselves determine our sharp fidelity constants in
-arbitrary fixed dimension, the separate spectral and orbital costs, or the
-explicit finite-dimensional Schur--Cartan cloners.
+reversal \cite{BowlesGutaAdesso2012Reversal}.  These norm-distance results
+do not determine our fidelity constants, separate spectral and orbital
+costs, or finite-dimensional cloners.
 
 The relevant LAN framework was developed in
 \cite{GutaJencova2007LAN,GutaKahn2006LANQubits,
@@ -731,26 +520,26 @@ treat the boundary directly only for flat projector states.
 
 \subsection{Organization}
 
-\Cref{sec:label-kernels} constructs the Schur--Cartan cloners and proves
-achievability from uniform label and sector estimates, established in
+\Cref{sec:label-kernels} proves achievability for the Schur--Cartan cloners,
+using the sector and label estimates of
 Appendices~\ref{app:sector-fidelity} and~\ref{app:young-rounding}.
-\Cref{sec:gaussian-LAN} combines two-way LAN with the unrestricted Gaussian
-fidelity converse of Appendix~\ref{app:gaussian-converse} to prove
-full-rank optimality.  Independently, \cref{sec:grassmann} proves the
-projector-state theorem by exact compression and a finite-dimensional
-converse.  \Cref{sec:discussions} compares these results with PCT and its
-high-fidelity sample complexity, then discusses remaining open problems.  The detailed
-analysis of PCT is in Appendix~\ref{app:pct-comparison}.
+\Cref{sec:gaussian-LAN} proves full-rank optimality via LAN and the Gaussian
+converse of Appendix~\ref{app:gaussian-converse}.
+\Cref{sec:grassmann} treats projector states independently.
+\Cref{sec:discussions} compares PCT (analyzed in
+Appendix~\ref{app:pct-comparison}), discusses sample complexity, and states
+conjectures and open problems.
 
 \section*{Glossary of notation}
 \addcontentsline{toc}{section}{Glossary of notation}
 
-We use \(\U(d)\) for the unitary group and
-\(\cT_1(\cH)\) for trace-class operators.  The dimension \(d\) is fixed, we denote the gain and asymptotic gain by
-\(\gamma_n=m_n/n\to\gamma>1\), \(N\) denotes a generic sample size, and
-\(r_d=\binom d2\). Fidelity uses the unsquared convention, \(F(\rho,\sigma)=\|\sqrt\rho\sqrt\sigma\|_1\). Unless stated otherwise, limits are as \(n\to\infty\) with \(d,\gamma\)
-fixed; \(o(1)\) is uniform only over the parameters specified in its
-statement.  
+We use \(\U(d)\) for the unitary group and \(\cT_1(\cH)\) for
+trace-class operators.  The dimension \(d\) is fixed,
+\(\gamma_n=m_n/n\to\gamma>1\) gives the gain and its limit, \(N\) is
+a generic sample size, and \(r_d=\binom d2\).  Fidelity is unsquared:
+\(F(\rho,\sigma)=\|\sqrt\rho\sqrt\sigma\|_1\).  Unless stated otherwise,
+limits are as \(n\to\infty\) with \(d,\gamma\) fixed, and \(o(1)\) is
+uniform only over the parameters specified in its statement.
 
 \begingroup
 \small
@@ -807,22 +596,17 @@ statement.
 \end{longtable}
 \endgroup
 Symbols confined to one proof are defined there.
-\clearpage
 
 
 \section{Cloner construction and fidelity analysis}\label{sec:label-kernels}
 
-The known- and unknown-spectrum protocols use the same finite-dimensional
-architecture.  We first recall the Schur--Weyl decomposition and lift an arbitrary transition rule
-on Young labels to a covariant quantum channel.  We then choose the exact
-target-law rule for known spectrum and the randomized dilation rule for
-unknown spectrum, and combine their label estimates with the common sector
-analysis.  The fidelities of the constructed cloners are evaluated in
-\cref{sec:achievability-completion}.  We now develop the components summarized
-in \cref{fig:schur-cartan-cloner}. 
+The known- and unknown-spectrum protocols share the architecture in
+\cref{fig:schur-cartan-cloner}: a transition rule on Young labels lifts to a
+covariant quantum channel.  We construct the two rules and combine their
+label estimates with a common sector analysis to evaluate the fidelities
+in \cref{sec:achievability-completion}.
 
-We start by reviewing some standard facts.
-Let $\mathsf Y_N=\{\lambda\vdash N:\ell(\lambda)\le d\}$, Schur--Weyl duality gives
+Let $\mathsf Y_N=\{\lambda\vdash N:\ell(\lambda)\le d\}$.  Schur--Weyl duality gives
 \begin{equation}\label{eq:schur-weyl-decomposition}
   (\C^d)^{\ot N}
   \cong
@@ -857,13 +641,13 @@ Define the typical Young-label set
 \end{equation}
 
 \begin{lemma}[Uniform Young concentration]\label{lem:young-concentration}
-There is a constant \(c_d>0\), depending only on \(d\), such that
+For all sufficiently large \(N\), depending only on \(d\),
 \begin{equation}\label{eq:uniform-young-concentration}
   \sup_{\substack{p_1\ge\cdots\ge p_d>0\\\sum_i p_i=1}}
   P_{N,p}(\mathsf T_N(p)^c)
-  \le e^{-c_d N^{1/3}}
+  \le e^{-N^{1/3}/4}.
 \end{equation}
-for all sufficiently large \(N\).  Equal positive eigenvalues are allowed.
+Equal positive eigenvalues are allowed.
 \end{lemma}
 
 \begin{proof}
@@ -893,7 +677,7 @@ rows.  If \(\lambda\notin\mathsf T_N(p)\), then
   \le (N+1)^{d(d-1)/2+d-1}e^{-N^{1/3}/2}.
 \]
 For all sufficiently large \(N\), the polynomial factor is at most
-\(e^{N^{1/3}/4}\).  Hence the asserted bound holds with \(c_d=1/4\).
+\(e^{N^{1/3}/4}\), which proves \eqref{eq:uniform-young-concentration}.
 \end{proof}
 
 \subsection{Cartan-sector channel and lifting of a transition rule}
@@ -926,9 +710,9 @@ comparison give
   \Tr_{\cH_\omega}(V_{\mu,\omega}V_{\mu,\omega}^*)
   =\frac{\dim\cH_\nu}{\dim\cH_\mu}I_{\cH_\mu}
 \).
-Formula \eqref{eq:sector-channel-formula} is manifestly completely
-positive; the identity above makes it trace preserving, while equivariance
-of \(V_{\mu,\omega}\) gives \(\U(d)\)-covariance.
+The map in \eqref{eq:sector-channel-formula} is completely positive;
+the identity above makes it trace preserving, and equivariance of
+\(V_{\mu,\omega}\) gives \(\U(d)\)-covariance.
 
 When \(\mu=(n,0,\ldots,0)\) and \(\nu=(m,0,\ldots,0)\), the three
 irreps in \eqref{eq:sector-channel-formula} are symmetric,
@@ -949,8 +733,7 @@ Let \(K_n:\mathsf Y_n\rightsquigarrow\mathsf Y_{m_n}\) be any transition
 rule: for each input label \(\mu\), the output label \(\nu\) is selected
 with probability \(K_n(\nu\mid\mu)\ge0\), where
 \(\sum_\nu K_n(\nu\mid\mu)=1\).  Its Schur--Cartan
-lifting is the following channel,
-denoted by \(\mathcal Q_n[K_n]\): apply the Schur transform, measure
+lifting \(\mathcal Q_n[K_n]\) acts as follows: apply the Schur transform, measure
 \(\mu\), discard the input Specht factor, sample \(\nu\) from
 \(K_n(\cdot\mid\mu)\), apply \(\cE_{\mu,\nu}\), adjoin
 \(I_{\cS_\nu}/\dim\cS_\nu\), and apply the inverse Schur transform.  Each
@@ -974,7 +757,7 @@ and, for \(\nu\in\mathsf Y_{m_n}\), let
 \end{equation}
 be the unnormalized irreducible output block, so that
 \(\Tr A_{n,p,\nu}=Q_{m_n,p}(\nu)\).
-The fidelity of the lifted channel is given exactly by
+The lifted channel has fidelity
 \begin{equation}\label{eq:lifted-exact-block-fidelity}
   F\!\left(
     \mathcal Q_n[K_n](\rho_{p,g}^{\ot n}),
@@ -1003,11 +786,6 @@ Since \(F(I_{\cS_\nu}/\dim\cS_\nu,I_{\cS_\nu}/\dim\cS_\nu)=1\), this proves
 \eqref{eq:lifted-exact-block-fidelity}.
 \end{proof}
 
-We now specialize the lifted channel by choosing its output-label transition rule.
-The known- and unknown-spectrum protocols differ only in this choice: the former
-samples the exact target law, whereas the latter uses
-a randomized dilation of the measured input label.
-
 \subsection{Known spectrum: exact target-label sampling}
 \label{sec:known-label-kernel}
 
@@ -1015,7 +793,7 @@ Fix \(p\in\Delta_d^\circ\) and define
 \begin{equation}\label{eq:known-target-label-kernel}
   K_n^p(\nu\mid\mu)=P_{m_n,p}(\nu).
 \end{equation}
-Thus \(\nu\) is independent of \(\mu\) and has the exact target law.  Set
+Set
 \begin{equation}\label{eq:known-cloner-definition}
   \cC_n^p:=\mathcal Q_n[K_n^p].
 \end{equation}
@@ -1040,14 +818,12 @@ Given \(\mu\in\mathsf Y_n\), draw independent variables
   \qquad
   \widetilde\nu_d=m_n-\sum_{i<d}\widetilde\nu_i.
 \end{equation}
-This is a spectrum-independent lattice version of the dilation
-\(\mu\mapsto\gamma_n\mu\): it sends typical labels near \(np\) to labels near
-\(m_np\), with \(\widetilde\nu-\mu\) typically a partition.  The uniform
-shifts randomize the rounding error, avoiding lattice bias in the Gaussian
-limit.
-Then \(\widetilde\nu\in\mathsf L_{m_n}\).  Let
-\(D_n(\widetilde\nu\mid\mu)\) denote its distribution.  Retain the rounded
-label when compatible, and otherwise use the fallback:
+Thus \(\widetilde\nu\in\mathsf L_{m_n}\); let
+\(D_n(\widetilde\nu\mid\mu)\) denote its distribution.
+This is a spectrum-independent lattice realization of the dilation
+\(\mu\mapsto\gamma_n\mu\).  The uniform shifts avoid lattice bias in the
+Gaussian limit.  Retain the rounded label when compatible, and otherwise
+use the fallback:
 \begin{equation}\label{eq:rounding-kernel}
   \nu=
   \begin{cases}
@@ -1076,13 +852,14 @@ label.
 \label{prop:sector-fidelity}
 Let \(K\Subset\Delta_d^\circ\) and let \(\delta_n\ge0\) satisfy
 \(\delta_n\to0\).  For all sufficiently large \(n\), every
-\(p\in K\), \(\mu\in\mathsf Y_n\), and \(\nu\in\mathsf Y_{m_n}\) satisfying
+\(p\in K\), \(\mu\in\mathsf Y_n\), and \(\nu\in\mathsf L_{m_n}\) satisfying
 \[
   \left\|\frac\mu n-p\right\|_\infty\le\delta_n,
   \qquad
   \left\|\frac\nu{m_n}-p\right\|_\infty\le\delta_n
 \]
-also satisfies \(\nu-\mu\vdash m_n-n\).  Moreover,
+also satisfies \(\nu-\mu\vdash m_n-n\); in particular,
+\(\nu\in\mathsf Y_{m_n}\).  Moreover,
 \begin{equation}\label{eq:uniform-cartan-sector-fidelity}
   F\!\left(\cC_{\mu,\nu}(\rho_{p,\mu}),\rho_{p,\nu}\right)
   =\Forb(\gamma,p)+o(1)
@@ -1137,11 +914,8 @@ the number basis on the one-mode Fock space of
 The low-weight matrices of the sector output and ideal sector therefore
 approach those of \(\tau_p^{(\gamma)}\) and \(\tau_p\), whose fidelity is
 \(\Forb(\gamma,p)\).  The output coordinates depend on \(\nu\), not on
-\(\mu\), so the same state limit holds uniformly under mixing.  This is a
-statement about conditional states for
-typical label pairs, not convergence of the varying channels
-\(\cC_{\mu,\nu}\) to the Gaussian amplifier.  The exact PBW calculation and
-uniform thermal-tail argument that complete the proof are given in
+\(\mu\), so the same state limit holds uniformly under mixing.  The exact
+PBW calculation and uniform thermal-tail argument are given in
 Appendix~\ref{app:sector-fidelity}.
 
 The second estimate concerns only \(K_n^{\mathrm{rnd}}\).
@@ -1160,15 +934,8 @@ the fixed sequence \((\gamma_n)\), such that, for every compact
     \|\nu-\gamma_n\mu\|_\infty\le c_{\mathrm{rnd}}
   \right\}.
 \end{equation}
-Let
-\[
-  Q_{m_n,p}(\nu)
-  :=\sum_{\mu\in\mathsf Y_n}
-    P_{n,p}(\mu)K_n^{\mathrm{rnd}}(\nu\mid\mu),
-  \qquad \nu\in\mathsf Y_{m_n},
-\]
-be the induced output-label law.  Then, for every compact
-\(K\Subset\Delta_d^\circ\),
+For every such \(K\), the induced output-label law \(Q_{m_n,p}\) from
+\eqref{eq:lifted-label-laws} with \(K_n=K_n^{\mathrm{rnd}}\),
 \begin{equation}\label{eq:rounding-label-fidelity}
   F(Q_{m_n,p},P_{m_n,p})
   =\Fcl(\gamma,d)+o(1)
@@ -1176,7 +943,7 @@ be the induced output-label law.  Then, for every compact
 \end{equation}
 \end{proposition}
 
-The uniform dither in \eqref{eq:randomized-rounding} makes the transition rule a
+The uniform shifts in \eqref{eq:randomized-rounding} make the transition rule a
 discrete realization of continuous dilation.  After centering at \(Np\) and
 scaling by \(\sqrt N\), embed a label law as a piecewise-constant density on
 the fundamental cells of the label lattice.  Before fallback replacement,
@@ -1200,8 +967,7 @@ still converges to \(\mathsf N_{0,\Sigma_p}\).  Their fidelity (Hellinger affini
 For typical input labels, every rounded output is compatible for all
 sufficiently large \(n\); fallback therefore changes only atypical inputs,
 whose total probability vanishes uniformly on compact spectral sets.
-
-The proof of \cref{prop:young-rounding} is given in
+The full proof is given in
 Appendix~\ref{app:young-rounding}.
 
 \subsection{Fidelity of the constructed cloners}
@@ -1225,16 +991,15 @@ The sector-mixture estimate gives a common factorization for both cloners.
 \label{lem:lifted-fidelity-factorization}
 Let \(K_n:\mathsf Y_n\rightsquigarrow\mathsf Y_{m_n}\) be transition rules.
 Fix \(K\Subset\Delta_d^\circ\), and use the laws
-\(\Pi_{n,p},Q_{m_n,p}\) from \eqref{eq:lifted-label-laws}.  Suppose there
-are sets \(G_{n,p}\) of label pairs and a sequence \(\delta_n\to0\) such that
+\(\Pi_{n,p},Q_{m_n,p}\) from \eqref{eq:lifted-label-laws}.  Suppose that,
+for some \(\delta_n\to0\), the set of close label pairs
 \[
- \sup_{p\in K}\Pi_{n,p}(G_{n,p}^c)\longrightarrow0,
- \qquad
- \max\!\left\{\left\|\frac\mu n-p\right\|_\infty,
-              \left\|\frac\nu{m_n}-p\right\|_\infty\right\}
- \le\delta_n
- \quad((\mu,\nu)\in G_{n,p}).
+ G_{n,p}
+ =\left\{(\mu,\nu)\in\mathsf Y_n\times\mathsf Y_{m_n}:
+   \left\|\frac\mu n-p\right\|_\infty\le\delta_n,\
+   \left\|\frac\nu{m_n}-p\right\|_\infty\le\delta_n\right\}
 \]
+satisfies \(\sup_{p\in K}\Pi_{n,p}(G_{n,p}^c)\to0\).
 Then, uniformly for \(p\in K\) and \(g\in\U(d)\),
 \begin{equation}\label{eq:lifted-fidelity-factorization}
  F\!\left(\mathcal Q_n[K_n](\rho_{p,g}^{\ot n}),
@@ -1275,13 +1040,13 @@ the label laws yields
 which proves \eqref{eq:lifted-fidelity-factorization}.
 \end{proof}
 
-Now we can complete the achievability proofs of \cref{thm:known-optimum,thm:unknown-optimum}.
+We now complete the achievability proofs of \cref{thm:known-optimum,thm:unknown-optimum}.
 \paragraph{Known spectrum.}
 For \(K_n^p\), the joint law is \(P_{n,p}\ot P_{m_n,p}\) and
-\(Q_{m_n,p}=P_{m_n,p}\).  Take
-\(G_{n,p}=\mathsf T_n(p)\times\mathsf T_{m_n}(p)\) and
-\(\delta_n=n^{-1/3}+m_n^{-1/3}\).  Young concentration makes the
-discarded mass vanish, while the label fidelity is exactly one.  Thus
+\(Q_{m_n,p}=P_{m_n,p}\).  With \(\delta_n=n^{-1/3}\ge m_n^{-1/3}\),
+\(G_{n,p}\) contains \(\mathsf T_n(p)\times\mathsf T_{m_n}(p)\), so Young
+concentration makes the discarded mass vanish, while the label fidelity is
+exactly one.  Thus
 \eqref{eq:lifted-fidelity-factorization}, with \(K=\{p\}\), gives
 \[
  F\!\left(\cC_n^p(\rho_{p,g}^{\ot n}),\rho_{p,g}^{\ot m_n}\right)
@@ -1290,12 +1055,12 @@ discarded mass vanish, while the label fidelity is exactly one.  Thus
 proving achievability in \cref{thm:known-optimum}.
 
 \paragraph{Unknown spectrum.}
-For \(K_n^{\mathrm{rnd}}\), take the pairs with
-\(\mu\in\mathsf T_n(p)\) and
-\(\nu\in\operatorname{supp}K_n^{\mathrm{rnd}}(\cdot\mid\mu)\).
-The discarded mass is \(P_{n,p}(\mathsf T_n(p)^c)=o(1)\) uniformly on
-\(K\), and \eqref{eq:rounding-support} gives the required closeness with
-\(\delta_n=n^{-1/3}+c_{\mathrm{rnd}}/m_n\).  Combining
+For \(K_n^{\mathrm{rnd}}\), take
+\(\delta_n=n^{-1/3}+c_{\mathrm{rnd}}/m_n\).  By
+\eqref{eq:rounding-support}, every pair in the support of
+\(\Pi_{n,p}\) with \(\mu\in\mathsf T_n(p)\) lies in \(G_{n,p}\), so the
+discarded mass is at most \(P_{n,p}(\mathsf T_n(p)^c)=o(1)\) uniformly on
+\(K\).  Combining
 \eqref{eq:lifted-fidelity-factorization} and
 \eqref{eq:rounding-label-fidelity} yields
 \[
@@ -1308,13 +1073,10 @@ assertion of \cref{thm:unknown-optimum}.
 
 \section{Optimality from LAN and Gaussian converses}\label{sec:gaussian-LAN}
 
-We prove the matching minimax upper bounds by restricting arbitrary cloners
-to local neighborhoods.  Two-way LAN transports each cloner to an exact
-channel between Gaussian models, where dilation and amplification bounds
-apply.  After defining the local coordinates, we establish these bounds,
-state LAN, and complete the minimax proofs.  \Cref{fig:LAN-transfer}
-summarizes the transport; \cref{lem:LAN-fidelity-transfer} proves the common
-fidelity estimate.
+We use two-way LAN to transport arbitrary cloners on local neighborhoods to
+channels between Gaussian models.  After establishing the Gaussian bounds,
+we apply the transfer in \cref{fig:LAN-transfer} to complete the minimax
+proofs.
 
 \begin{figure}[!htbp]
 \centering
@@ -1393,7 +1155,7 @@ Fix a base spectrum \(p\in\Delta_d^\circ\).  Let
   \qquad
   Y_p(z)=\sum_{j<k}
     \frac{z_{jk}E_{kj}-\bar z_{jk}E_{jk}}{\sqrt{p_j-p_k}},
-  \quad z\in\C^{r_d},
+  \quad z\in\C^{r_d},\quad r_d=\binom d2,
 \]
 where \(E_{jk}\) are the standard matrix units, and define
 \[
@@ -1401,21 +1163,17 @@ where \(E_{jk}\) are the standard matrix units, and define
 \]
 In \(\rho_{p+h/\sqrt n,g_{n,z}^{(p)}}\), the coordinates \(h\) and \(z\)
 describe local changes of eigenvalues and eigenbasis, respectively.
-The denominators in \(Y_p\) use the fixed base spectrum \(p\), including
-when the local spectrum is \(p+h/\sqrt n\).  Since \(Y_p(z)^*=-Y_p(z)\), one has
-\(g_{n,z}^{(p)}\in\U(d)\).  For \(L>0\), set
+The denominators in \(Y_p\) use the fixed base spectrum \(p\), even when the
+local spectrum is \(p+h/\sqrt n\).  For \(L>0\), set
 \[
   \Omega_L
   =\left\{(h,z)\in\mathsf H\times\C^{r_d}:
   \|h\|_\infty\le L,\
   |\Re z_{ij}|,|\Im z_{ij}|\le L\ \text{for all }i<j\right\}.
 \]
-For every fixed \(p\in\Delta_d^\circ\) and \(L>0\), the vector
-\(p+h/\sqrt n\) belongs to \(\Delta_d^\circ\) for every
-\((h,z)\in\Omega_L\) once \(n\) is sufficiently large.  Under LAN, \(h\)
-becomes a \((d-1)\)-dimensional classical Gaussian shift, while \(z\) becomes
-a collection of displaced oscillator coordinates.  The Gaussian theorem
-below optimizes the two corresponding fidelity losses jointly.
+For fixed \(p,L\), \(p+h/\sqrt n\in\Delta_d^\circ\) throughout
+\(\Omega_L\) for large \(n\).  Under LAN, \(h\) becomes a classical Gaussian
+shift and \(z\) an oscillator displacement.
 
 \subsection{Gaussian amplification}
 \label{sec:gaussian-amplification}
@@ -1426,8 +1184,7 @@ number operator \(\widehat N=a^*a\).  We use the Weyl convention
 \begin{equation}\label{eq:Weyl-convention}
   D(z)=\exp(z a^*-\bar z a).
 \end{equation}
-Recall the thermal state \(\tau_q=(1-q)\sum_{k\ge0}q^k\proj{k}\),
-\(0<q<1\).  Two thermal states commute, and hence
+For the thermal states \(\tau_q\) introduced above, commutativity gives
 \begin{equation}\label{eq:thermal-root-fidelity}
   F(\tau_q,\tau_{q'})
   =\frac{\sqrt{(1-q)(1-q')}}{1-\sqrt{qq'}}.
@@ -1438,11 +1195,9 @@ phase-insensitive amplifier \(\cA_G\) satisfies
   \cA_G\!\left(D(z)\tau_qD(z)^*\right)
   =D(\sqrt G\,z)\tau_{q^{(G)}}D(\sqrt G\,z)^*.
 \end{equation}
-Equivalently,
-\(\cA_G(X)=\Tr_b[S_r(X\ot\proj{0}_b)S_r^*]\), where \(S_r\) is a
-two-mode squeezing unitary with \(\cosh^2 r=G\).  Squeezing supplies the
-gain \(\sqrt G\), while tracing out the vacuum idler produces the minimum
-added noise encoded by \(q^{(G)}\).
+Equivalently, \(\cA_G(X)=\Tr_b[S_r(X\ot\proj{0}_b)S_r^*]\), where \(S_r\)
+is a two-mode squeezing unitary with \(\cosh^2 r=G\) and the idler is in
+vacuum.
 
 On \(\cF_{\mathrm{orb}}=\cF^{\ot r_d}\), use the thermal products
 \(\tau_p,\tau_p^{(\gamma)}\) from \eqref{eq:sector-thermal-products} and
@@ -1458,14 +1213,11 @@ put \(D(z)=\bigotimes_{i<j}D(z_{ij})\).  The three relevant states are
     =D(\sqrt\gamma z)\tau_p^{(\gamma)}D(\sqrt\gamma z)^*.
 \end{aligned}
 \end{equation}
-Thus the ideal target retains the thermal state \(\tau_p\); only the actual
-amplifier output contains the additional noise \(\tau_p^{(\gamma)}\).  By
-\eqref{eq:thermal-root-fidelity},
+By \eqref{eq:thermal-root-fidelity},
 \begin{equation}\label{eq:one-mode-f}
   F(\tau_{q^{(\gamma)}},\tau_q)=f_\gamma(q).
 \end{equation}
-Thus, for every \(z\in\C^{r_d}\), the product-amplifier output and the
-corresponding ideal state satisfy
+Multiplicativity then gives, for every \(z\in\C^{r_d}\),
 \begin{equation}\label{eq:product-amplifier-fidelity}
   F\!\left(\cA_\gamma^{\ot r_d}(\Phi_z^{(p)}),
            \Psi_z^{(p,\gamma)}\right)
@@ -1473,31 +1225,28 @@ corresponding ideal state satisfy
 \end{equation}
 
 Equip \(\mathsf H\) with its induced Euclidean measure and recall
-\[
-  \Sigma_p=\left.(\diag(p)-pp^{\mathsf T})\right|_{\mathsf H}>0.
-\]
-Write \(\mathsf N_{h,\Sigma_p}\) for the Gaussian law on \(\mathsf H\)
-with mean \(h\) and covariance \(\Sigma_p\).  A
+\(\Sigma_p\) from \eqref{eq:young-covariance}.  Write
+\(\mathsf N_{h,\Sigma_p}\) for the Gaussian law on \(\mathsf H\) with mean
+\(h\) and covariance \(\Sigma_p\).  A
 classical--quantum state has the form
 \[
   R(x)=r(x)\rho_x,\qquad
   r(x)\ge0,\quad \int_{\mathsf H}r(x)\,\dd x=1,
 \]
 where \(x\) is a classical variable, \(r(x)\) is its density, and
-\(\rho_x\) is a quantum state on \(\cF_{\mathrm{orb}}\).  A channel
-\(\Lambda\) is completely positive (in the sense specified in
-Appendix~\ref{app:gaussian-converse}) and preserves
+\(\rho_x\) is a quantum state on \(\cF_{\mathrm{orb}}\).  A
+classical--quantum channel \(\Lambda\) is a completely positive map, in the
+sense specified in Appendix~\ref{app:gaussian-converse}, that preserves
 \(\int\Tr R(x)\,\dd x\).  If
 \(S(x)=s(x)\sigma_x\), then
 \[
   F(R,S)=\int_{\mathsf H}F(R(x),S(x))\,\dd x
   =\int_{\mathsf H}\sqrt{r(x)s(x)}\,F(\rho_x,\sigma_x)\,\dd x.
 \]
-With \(\|R\|_1:=\int_{\mathsf H}\|R(x)\|_1\,\dd x\), the usual monotonicity
-and joint-concavity properties remain valid, and the first equality above is
-the continuous direct-sum identity for fidelity.
+This is the continuous direct-sum identity.  With
+\(\|R\|_1:=\int_{\mathsf H}\|R(x)\|_1\,\dd x\), fidelity retains its
+monotonicity and joint-concavity properties.
 
-\par\indent
 Combining the classical spectral fluctuations with the quantum oscillator
 modes, define the input and ideal target states of the full Gaussian model by
 \begin{equation}\label{eq:full-gaussian-model}
@@ -1539,24 +1288,20 @@ No Gaussianity, covariance, or product-structure assumption is imposed on
 the competing channels in either supremum.
 \end{theorem}
 
-The achievability mechanism is explicit.  The product amplifier
-\(\cA_\gamma^{\ot r_d}\) attains \(\Forb(\gamma,p)\) in the orbital model.
-In the full model, tensor it with the classical pushforward
-\(x\mapsto\sqrt\gamma x\).  The resulting Gaussian affinity equals the
-classical factor \(\Fcl(\gamma,d)\), so multiplicativity gives
-\(\Fcl(\gamma,d)\Forb(\gamma,p)=\Funiv(\gamma,p)\).
+The product amplifier \(\cA_\gamma^{\ot r_d}\) attains
+\(\Forb(\gamma,p)\) in the orbital model.  Tensoring it with the classical
+pushforward \(x\mapsto\sqrt\gamma x\) supplies the Gaussian affinity
+\(\Fcl(\gamma,d)\), attaining \(\Funiv(\gamma,p)\) in the full model.
 
 For the converse, average a near-optimal channel over translates of the
-expanding flat-prior boxes.  A weighted-fidelity witness reduces the problem
-to an oscillator moment.  The corresponding weighted oscillator maps
-have a subsequential limit, tested against compact observables, that is
-completely positive and displacement covariant.  Its output trace on
-normalized inputs is bounded by \(1\) in the orbital model and, by a direct
-Gaussian translation estimate, by \(\Fcl(\gamma,d)\) in the full model.
-The least-noise inequality then
-gives the respective bounds \(\Forb(\gamma,p)\) and
-\(\Funiv(\gamma,p)\).  The compactness and witness arguments are given in
-\cref{prop:flat-prior-converse} and Appendix~\ref{app:gaussian-converse}.
+expanding flat-prior boxes and use a weighted-fidelity witness to reduce
+the problem to an oscillator moment.  The weighted oscillator maps have a
+subsequential limit against compact observables that is completely positive
+and displacement covariant.  Its output trace on normalized inputs is at
+most \(1\) in the orbital model and, by a Gaussian translation estimate,
+\(\Fcl(\gamma,d)\) in the full model.  The least-noise inequality then
+gives the respective bounds \(\Forb(\gamma,p)\) and \(\Funiv(\gamma,p)\);
+see \cref{prop:flat-prior-converse} in Appendix~\ref{app:gaussian-converse}.
 
 \subsection{Local asymptotic normality}
 \label{sec:local-asymptotic-normality}
@@ -1587,12 +1332,15 @@ Under the local state, \eqref{eq:LAN-coordinate-map} gives
 \(\langle a_{ij,n}\rangle=z_{ij}+o(1)\), uniformly on compact parameter
 sets.  Thus the limiting mode has mean \(z_{ij}\) and thermal parameter
 \(q_{ij}\), agreeing with \(D(z_{ij})\tau_{q_{ij}}D(z_{ij})^*\) in
-\eqref{eq:Weyl-convention}.  This is also the rotation-to-displacement
-normalization in the constructive proof of
-\cite[Lemma~6.4 and Section~7.3]{KahnGuta2009LANFiniteDimensional}.
-The following is Kahn--Gu\c{t}\u{a}'s LAN theorem
-\cite[Theorem~4.3]{KahnGuta2009LANFiniteDimensional}, expressed in our
-coordinates and supplemented by the target-sample rescaling below.
+\eqref{eq:Weyl-convention}.
+The following two-way LAN statement follows from Kahn--Gu\c{t}\u{a}'s
+channel construction \cite[Theorem~4.3, Lemma~6.4, and
+Section~7.3]{KahnGuta2009LANFiniteDimensional}, in the oscillator
+coordinates fixed above and with the target-sample rescaling below.\footnote{We
+use the displacement normalization of the constructive Lemma~6.4 and
+Section~7.3 of the cited work.  The displayed Eq.~(4.19) in its arXiv
+version has a different factor and adjoint placement.  The rotation chart,
+fluctuation calculation, and qubit check below fix our convention.}
 
 \begin{samepage}
 \begin{theorem}[Finite-dimensional LAN and target-sample scaling]
@@ -1698,27 +1446,20 @@ and
 \end{corollary}
 
 \begin{proof}
-Restrict \cref{thm:LAN-full} to \(h=0\).  The classical Gaussian component
-\(\mathsf N_{0,\Sigma_p}\) is independent of \(z\).
-Set
+Restrict \cref{thm:LAN-full} to \(h=0\) and set
 \(T_N^{\mathrm{orb}}(X):=\int_{\mathsf H}
 T_N^{\mathrm{full}}(X)(x)\,\dd x\) and
 \(S_N^{\mathrm{orb}}(\sigma):=S_N^{\mathrm{full}}
 (\mathsf N_{0,\Sigma_p}\ot\sigma)\).
-The bounds
-\(\|\int_{\mathsf H}R(x)\,\dd x\|_1
-\le\int_{\mathsf H}\|R(x)\|_1\,\dd x\) and
-\(\|\mathsf N_{0,\Sigma_p}\ot X\|_1=\|X\|_1\) give the three assertions.
+Marginalization contracts trace norm, and tensoring with
+\(\mathsf N_{0,\Sigma_p}\) preserves it, giving all three assertions.
 \end{proof}
-
-The following lemma formalizes the transfer summarized in
-\cref{fig:LAN-transfer}.
 
 \begin{lemma}[LAN fidelity transfer]\label{lem:LAN-fidelity-transfer}
 Let \(\{\rho_{n,\theta}\}_{\theta\in C}\) and
 \(\{\sigma_{n,\theta}\}_{\theta\in C}\) be input and target models on a
 compact parameter set \(C\).  Let \(\{\Phi_\theta\}\) and
-\(\{\Psi_\theta\}\) be limiting models. Suppose channels \(S_n,T_n\)
+\(\{\Psi_\theta\}\) be limiting models.  Suppose channels \(S_n,T_n\)
 satisfy
 \[
 \begin{aligned}
@@ -1745,35 +1486,27 @@ Monotonicity under \(T_n\), followed by
 \eqref{eq:fidelity-continuity} and the definition of \(\eta_n\), therefore yields
 \[
 \begin{aligned}
-  F(\cM_n(\rho_{n,\theta}),\sigma_{n,\theta})\le
-  F(T_n\cM_n(\rho_{n,\theta}),T_n(\sigma_{n,\theta}))\le F(\Gamma_n(\Phi_\theta),\Psi_\theta)
+  F(\cM_n(\rho_{n,\theta}),\sigma_{n,\theta})
+  &\le F(T_n\cM_n(\rho_{n,\theta}),T_n(\sigma_{n,\theta}))\\
+  &\le F(\Gamma_n(\Phi_\theta),\Psi_\theta)
        +\sqrt{\delta_n}+\sqrt{\eta_n}.
 \end{aligned}
 \]
 \end{proof}
 
-\paragraph{Fixed-label asymptotics and their relation to LAN.}
-\Cref{prop:sector-fidelity} analyzes the quantum states for fixed input and
-output Young labels, before averaging over the label distributions.  For
-label sequences with \(\mu_n/n\to p\) and \(\nu_n/m_n\to p\), the target
-and cloner output, expressed in oscillator coordinates, approach
-\(\tau_p\) and \(\tau_p^{(\gamma)}\), respectively, on each fixed
-excitation cutoff; see
+\paragraph{Fixed-label asymptotics versus LAN.}
+The thermal states \(\tau_p\) and \(\tau_p^{(\gamma)}\) also appear in
+\cref{prop:sector-fidelity}, but there they are cutoff limits of the
+target and cloner-output sector states for fixed typical label pairs; see
 \eqref{eq:target-fixed-height-convergence} and
-\eqref{eq:output-fixed-height-convergence}.  The appearance of the same
-thermal state in LAN does not make these the same limit: LAN describes an
-entire local statistical model and provides channels connecting that model
-to its Gaussian approximation.  Full LAN retains the Young-label
-fluctuation as \(\mathsf N_{h,\Sigma_p}\), whereas fixed-spectrum LAN sets
-\(h=0\) and marginalizes this classical component.  Thus the fixed-label
-calculation explains the achievable orbital factor \(\Forb(\gamma,p)\),
-whereas LAN supplies the model for the converse.
+\eqref{eq:output-fixed-height-convergence}.  LAN instead supplies channels
+between an entire local model and its Gaussian limit, and retains the
+label fluctuation as \(\mathsf N_{h,\Sigma_p}\).  The fixed-label
+calculation therefore gives achievability of \(\Forb(\gamma,p)\), while LAN
+supplies the converse.
 
 \subsection{Completion of the minimax proofs}
 \label{sec:minimax-completion}
-
-We apply the transfer lemma to the orbital and full Gaussian models to
-complete \cref{thm:known-optimum,thm:unknown-optimum}, respectively.
 
 \begin{proof}[Known-spectrum converse and completion of \cref{thm:known-optimum}]
 For the known-spectrum problem, set
@@ -1804,53 +1537,34 @@ Together with
 \cref{sec:label-kernels}, this proves \cref{thm:known-optimum}.
 \end{proof}
 
-Fixing \(p\) in advance gives the known-spectrum problem and therefore cannot
-reveal the cost of an unknown spectrum.  To capture that cost, we consider
-\(n^{-1/2}\)-neighborhoods of a fixed interior spectrum and let the local
-window grow after the large-\(n\) limit.  Each fixed local window eventually
-lies in the prescribed spectral set around any interior point, so the
-full Gaussian bound applies directly to the compact-set converse.
+Fixing \(p\) would miss the cost of an unknown spectrum.  Instead, we use
+\(n^{-1/2}\)-neighborhoods of an interior spectrum and let the local window
+grow after the large-\(n\) limit.
 
 \begin{proof}[Proof of part~\textup{(b)} of \cref{thm:unknown-optimum}]
-For the compact-set problem, set
-\(w_n(K):=\sup_{\cM_n}\inf_{\substack{p\in K\\g\in\U(d)}}\)\allowbreak
-\(\,F\!\bigl(\cM_n(\rho_{p,g}^{\ot n}),\rho_{p,g}^{\ot m_n}\bigr)\).
-Part~\textup{(a)} of
-\cref{thm:unknown-optimum} gives
-\[
-  \liminf_{n\to\infty}w_n(K)
-  \ge\inf_{p\in K}\Funiv(\gamma,p).
-\]
+Let \(w_n(K)\) denote the quantity inside the limit on the left of
+\eqref{eq:compact-global-value}.  Part~\textup{(a)} gives
+\(\liminf_nw_n(K)\ge\inf_{p\in K}\Funiv(\gamma,p)\).
 For the reverse inequality, fix
-\(p_0\in\operatorname{int}_{\mathsf A_d}K\).  For every fixed \(L\), all local
-spectra \(p_0+h/\sqrt n\), \((h,z)\in\Omega_L\), lie in \(K\) for
-sufficiently large \(n\).  For every channel \(\cM_n\), form
-\[
-  \Gamma_n=T_{m_n}^{\mathrm{full}}\circ\cM_n\circ S_n^{\mathrm{full}},
-\]
-using the LAN maps at \(p_0\).  The worst-case fidelity of \(\cM_n\) on
-\(K\) is bounded by its average over this local window.  The pointwise transfer bound,
-uniform over \(\cM_n\), therefore gives
+\(p_0\in\operatorname{int}_{\mathsf A_d}K\) and \(L\).  For large \(n\),
+all local spectra \(p_0+h/\sqrt n\), \((h,z)\in\Omega_L\), lie in \(K\), so
+the worst-case fidelity of \(\cM_n\) on \(K\) is at most its average over
+this window.  Repeating the known-spectrum argument with the full LAN maps
+at \(p_0\), \(\Gamma_n=T_{m_n}^{\mathrm{full}}\circ\cM_n\circ
+S_n^{\mathrm{full}}\), and \(\Omega_L\) in place of \(\mathsf Z_L\) gives
 \[
   w_n(K)
   \le\sup_\Lambda\frac1{|\Omega_L|}\int_{\Omega_L}
   F\!\left(\Lambda(\Theta_{h,z}^{\mathrm{in}}),
                  \Theta_{h,z}^{\mathrm{tar}}\right)\,\dd h\,\dd z+o(1),
 \]
-where both Gaussian models are based at \(p_0\), the supremum is over all
-classical--quantum channels, and \(L\) is fixed as \(n\to\infty\).
-Taking \(\limsup_n\) and then \(L\to\infty\),
-\eqref{eq:gaussian-full-optimum} yields
-\[
-  \limsup_{n\to\infty}w_n(K)\le\Funiv(\gamma,p_0).
-\]
-Take the infimum over
-\(\operatorname{int}_{\mathsf A_d}K\).  Its closure in \(\mathsf A_d\) is
-\(K\), and \(\Funiv(\gamma,\cdot)\) is continuous, so
-\[
-  \limsup_{n\to\infty}w_n(K)
-  \le\inf_{p\in K}\Funiv(\gamma,p).
-\]
+where both Gaussian models are based at \(p_0\) and the supremum is over
+all classical--quantum channels.  Taking \(\limsup_n\) and then
+\(L\to\infty\), \eqref{eq:gaussian-full-optimum} yields
+\(\limsup_nw_n(K)\le\Funiv(\gamma,p_0)\).  Since
+\(\operatorname{int}_{\mathsf A_d}K\) is dense in \(K\) and
+\(\Funiv(\gamma,\cdot)\) is continuous, taking the infimum over \(p_0\)
+completes the proof.
 \end{proof}
 
 \section{Cloning projector states}
@@ -1858,14 +1572,14 @@ Take the infimum over
 
 A flat rank-\(r\) projector state has the form
 \(\rho_P=P/r\), where \(P\) is a rank-\(r\) orthogonal projector.  These
-projectors form the complex Grassmannian \(\Gr(r,d)\).  When \(r>1\), the
-state \(\rho_P\) has a nonzero eigenvalue of multiplicity \(r\), so the simple-spectrum theorems do not
-apply.  We construct \(\cC_n^{\mathrm{proj}}\) and prove
+projectors form the complex Grassmannian \(\Gr(r,d)\).  Rank deficiency,
+and for \(r>1\) the repeated positive eigenvalue, place these states
+outside the simple full-rank theorems.
+We construct \(\cC_n^{\mathrm{proj}}\) and prove
 \cref{thm:grassmann} directly, without a general rank-deficient LAN theorem.
-The exact compression lemma below holds for any
-positive spectrum on its support, although we use it only for the flat
-spectrum.  By itself, the lemma does not establish optimal cloning for other
-rank-deficient states.
+The compression lemma below holds for any positive spectrum on its
+support, but does not by itself establish optimal cloning beyond the flat
+case.
 
 \subsection{Exact rank compression}
 \label{sec:compression}
@@ -1945,27 +1659,21 @@ Consequently, the fidelity for each pair of labels factorizes exactly:
 \end{lemma}
 
 \begin{proof}
-The singular specialization identity for Schur polynomials is
-\[
-  s_\lambda^{(d)}(p_1,\ldots,p_r,0,\ldots,0)
-  =s_\lambda^{(r)}(p_1,\ldots,p_r),
-\]
-and the left side vanishes when \(\lambda\) has more than \(r\) rows.
-We claim that
+Let \(\iota:\C^r\hookrightarrow\C^d\) be the coordinate inclusion.
+Schur--Weyl naturality identifies \(\iota^{\ot N}\) with
+\(\bigoplus_{\ell(\lambda)\le r}(J_\lambda\ot I_{\cS_\lambda})\).
+Comparing blocks in
+\((\diag\bar p)^{\ot N}
+ =\iota^{\ot N}(\diag p)^{\ot N}(\iota^*)^{\ot N}\) gives
 \[
   \pi_\lambda^{(d)}
     (\diag\bar p)
   =J_\lambda\pi_\lambda^{(r)}(\diag p)J_\lambda^*.
 \]
-Indeed, \(\pi_\lambda^{(d)}(\diag\bar p)\) acts on each weight
-space of \(\cH_\lambda^{(d)}\) by the monomial \(\bar p^{\,\xi}\), which
-vanishes unless the weight \(\xi\) is supported in the first \(r\)
-coordinates.  By the Gelfand--Tsetlin branching rule, the weight spaces so
-supported span exactly the \(\U(r)\)-submodule generated by the
-highest-weight vector, that is, the range of \(J_\lambda\); on that
-submodule the block-diagonal action reduces to the \(r\)-dimensional
-polynomial representation, proving the claim.  Normalizing by the
-Schur-polynomial identity proves~\eqref{eq:conditional-support}.
+Taking traces gives
+\(s_\lambda^{(d)}(\bar p)=s_\lambda^{(r)}(p)\); the longer-row Schur
+polynomials vanish.  Dividing the operator identity by this common
+nonzero trace proves~\eqref{eq:conditional-support}.
 
 The two maps
 \[
@@ -1991,27 +1699,21 @@ If \(A,B\ge0\) and \(PBP=B\), then
 \(
   F(A,B)=\Tr\sqrt{\sqrt B A\sqrt B}=F(PAP,B).
 \)
-Apply this with \(P=P_\nu\), then use
-\eqref{eq:conditional-support}, \eqref{eq:channel-compression}, invariance
-of fidelity under the isometry \(J_\nu\), and
-\(F(aA,B)=\sqrt a F(A,B)\).  This proves
-\eqref{eq:exact-sector-factorization}.  Compatibility gives
-\(\nu_i\ge\mu_i\), so every factor in
-\eqref{eq:a-compression-factor} is at most one.
+Apply this with \(P=P_\nu\).  Then \eqref{eq:conditional-support},
+\eqref{eq:channel-compression}, isometric invariance, and
+\(F(aA,B)=\sqrt a F(A,B)\) give
+\eqref{eq:exact-sector-factorization}.
 \end{proof}
 
-For the flat spectrum and the standard projector \(P_0\) onto the first
-\(r\) coordinates, the
-conditional state in the \(\lambda\)-sector is
+For the standard projector \(P_0\) onto the first \(r\) coordinates,
+the flat-spectrum conditional state in the \(\lambda\)-sector is
 \begin{equation}\label{eq:projector-sector-state}
   \rho_{P_0,\lambda}
   =J_\lambda\frac{I_{\cH_\lambda^{(r)}}}{D_r^\lambda}J_\lambda^*.
 \end{equation}
-The \(r\)-dimensional Cartan channel is \(\U(r)\)-covariant and therefore
-maps the maximally mixed state on the irreducible input module exactly to
-the maximally mixed state on the irreducible output module.  The compression
-identity \eqref{eq:exact-sector-factorization} consequently becomes, for
-every compatible pair,
+By \(\U(r)\)-covariance and irreducibility, the \(r\)-dimensional Cartan
+channel maps the maximally mixed input to the maximally mixed output.
+Thus \eqref{eq:exact-sector-factorization} gives, for every compatible pair,
 \begin{equation}
   F\!\left(
     \cC_{\mu,\nu}^{(d)}(\rho_{P_0,\mu}),
@@ -2073,10 +1775,8 @@ coupling \(\Pi_n(\mu,\nu)\) of the exact marginals
 \end{equation}
 Condition this finite coupling on the input label to obtain a transition rule
 \(K_n(\nu\mid\mu)\), extending it arbitrarily to input diagrams with
-more than \(r\) rows.  Those diagrams have zero probability on projector
-inputs, but the extension defines the lifted channel on the entire input
-space.
-Define the projector cloner by
+more than \(r\) rows.  These have zero probability on projector inputs;
+the extension defines a channel on the entire input space.  Set
 \begin{equation}\label{eq:projector-cloner}
   \cC_n^{\mathrm{proj}}:=\mathcal Q_n[K_n].
 \end{equation}
@@ -2109,14 +1809,12 @@ probability, so \eqref{eq:R-lambda} implies
   \xrightarrow{\mathbb P}\gamma^{-r(d-r)/2}.
 \end{equation}
 On \(C_n\), compatibility gives \(\nu_i\ge\mu_i\), hence
-\(0\le\sqrt{R_\mu/R_\nu}\le1\).  The displayed random variables are
-therefore bounded by one, and their expectations converge to the same
-limit.
-As in the proof of \cref{lem:lifted-fidelity-factorization}, use the block
-decomposition and discard incompatible pairs.  The block identity
-\eqref{eq:lifted-exact-block-fidelity}, valid verbatim for the \(r\)-row
-label laws, together with \eqref{eq:grassmann-exact-sector} and concavity
-of fidelity gives
+\(0\le\mathbf1_{C_n}\sqrt{R_\mu/R_\nu}\le1\).  Thus
+\eqref{eq:grassmann-sector-factor-limit} also holds in expectation.
+Since the output-label marginal is exact, the block identity
+\eqref{eq:lifted-exact-block-fidelity} (valid also for \(r\)-row label
+laws), monotonicity and concavity of \(F\) in its first argument, and
+\eqref{eq:grassmann-exact-sector} give
 \begin{equation}\label{eq:grassmann-achievability-limit}
   F\!\left(
     \cC_n^{\mathrm{proj}}((P/r)^{\ot n}),
@@ -2132,10 +1830,10 @@ This proves achievability in \cref{thm:grassmann}.
 \subsection{Direct finite-dimensional converse}
 
 Covariantize an arbitrary cloner over \(\U(d)\) and twirl its output over
-permutations.  Joint concavity and unitary invariance of fidelity justify
-the first step; monotonicity under the output twirl, which fixes every
-target, justifies the second.  Neither decreases the worst-case fidelity
-over projector states.  Write \(\cM_n\) for the resulting channel.
+permutations.  Neither decreases its worst-case fidelity: the first follows
+from joint concavity and unitary invariance, the second from monotonicity
+under the output twirl, which fixes every target.  Write \(\cM_n\) for the
+resulting channel.
 
 Replace each support projection in \eqref{eq:flat-schur-decomposition}
 by the identity to obtain the invariant positive operator
@@ -2158,7 +1856,7 @@ Covariance and the output twirl imply that
    \ot\frac{I_{\cS_\nu}}{\dim\cS_\nu},
   \qquad z_\nu\ge0,\quad \sum_\nu z_\nu=\Tr B_n.
 \]
-Fidelity is increasing in either positive argument, since
+Fidelity increases in either positive argument:
 \(A\le B\) implies
 \(\Tr\sqrt{\sqrt T A\sqrt T}\le\Tr\sqrt{\sqrt T B\sqrt T}\).
 Positivity of \(\cM_n\) and the direct-sum formula therefore give
@@ -2184,26 +1882,15 @@ By Cauchy--Schwarz and the trace identity for \(B_n\),
 Both sums run over partitions with at most \(r\) rows; output mass in
 longer diagrams can only strengthen the inequality.
 
-For the asymptotics, put \(q=r(d-r)\).  Since
-\(\lambda_i/N\to1/r\) in probability under \(\mathsf P_N^{(r)}\),
-\eqref{eq:R-lambda} gives
-\[
-  \frac{R_\lambda}{N^q}\xrightarrow{\mathbb P}
-  c_{r,d}:=\prod_{\substack{1\le i\le r\\r<j\le d}}
-  \frac1{r(j-i)}>0.
-\]
-The ratio \(R_\lambda/N^q\) is globally bounded, since \(\lambda_i\le N\).
-Its reciprocal is bounded on the fixed-cutoff event
-\(E_N=\{\lambda_r\ge N/(2r)\}\), whereas globally
-\(N^q/R_\lambda\le N^q\), because \(R_\lambda\ge1\).
-The finite Young large-deviation estimate
-\eqref{eq:finite-Young-large-deviation}, applied in dimension \(r\), and
-Pinsker's inequality give
-\(\mathsf P_N^{(r)}(E_N^c)\le (N+1)^{C_r}e^{-c_rN}\)
-for constants \(C_r,c_r>0\).  Thus the reciprocal's expectation on
-\(E_N^c\) satisfies
-\(\mathbb E[(N^q/R_\lambda)\mathbf1_{E_N^c}]\to0\).
-Bounded convergence in probability on \(E_N\) therefore yields
+For the asymptotics, put \(q=r(d-r)\) and
+\(c_{r,d}=\prod_{i\le r<j\le d}[r(j-i)]^{-1}\).  Since
+\(\mathsf P_N^{(r)}\) is the Young law of the flat spectrum
+\((1/r,\ldots,1/r)\), \cref{lem:young-concentration} in dimension \(r\)
+shows that \(\|\lambda/N-\mathbf1_r/r\|_\infty\le N^{-1/3}\) outside an
+event of probability at most \(e^{-N^{1/3}/4}\).  On this typical set,
+\eqref{eq:R-lambda} gives \(R_\lambda=c_{r,d}N^q(1+O(N^{-1/3}))\)
+uniformly, while globally \(1\le R_\lambda\le(N+1)^q\).  Since
+\(N^qe^{-N^{1/3}/4}\to0\), it follows that
 \begin{equation}\label{eq:R-moment-limits}
   \mathbb E_{\mathsf P_N^{(r)}}R_\lambda
   \sim c_{r,d}N^q,
@@ -2211,57 +1898,190 @@ Bounded convergence in probability on \(E_N\) therefore yields
   \mathbb E_{\mathsf P_N^{(r)}}\frac1{R_\lambda}
   \sim c_{r,d}^{-1}N^{-q}.
 \end{equation}
-Substitution into
-\eqref{eq:grassmann-finite-converse} yields
+The right-hand side of \eqref{eq:grassmann-finite-converse} depends on
+neither the cloner nor \(P\), so substitution yields
 \begin{equation}\label{eq:grassmann-converse-limit}
-  \limsup_{n\to\infty} F\le\gamma^{-r(d-r)/2},
+  \limsup_{n\to\infty}\sup_{\cM_n}\inf_{P\in\Gr(r,d)}
+  F\!\left(\cM_n((P/r)^{\ot n}),(P/r)^{\ot m_n}\right)
+  \le\gamma^{-r(d-r)/2},
 \end{equation}
 which completes the converse and the proof of \cref{thm:grassmann}.
 
-\section{Discussions}
+\section{Discussion}
 \label{sec:discussions}
 
-We first compare our cloners with PCT at fixed gain and in the small-error
-regime, then discuss conjectured extensions to degenerate and rank-deficient
-spectra and the remaining open problems.
+\subsection{Dependence on spectral mixedness}\label{sec:spectral-mixedness}
+For fixed \(\gamma>1\), the product formula shows how fidelity changes
+with spectral mixedness:
+\[
+  f_\gamma'(q)
+  =\frac{(\gamma-1)^2}
+  {2\sqrt{q(\gamma-1+q)}
+   \bigl(\sqrt{\gamma(\gamma-1+q)}+\sqrt q\bigr)^2}>0,
+  \qquad 0<q<1.
+\]
+Consequently, if \(p,p'\in\Delta_d^\circ\) satisfy
+\begin{equation}\label{eq:ratio-wise-flattening}
+  \frac{p'_j}{p'_i}\ge \frac{p_j}{p_i}
+  \qquad\text{for every }i<j,
+\end{equation}
+that is, if every logarithmic spectral gap contracts in passing from \(p\)
+to \(p'\), then
+\begin{equation}\label{eq:ratio-wise-fidelity-monotonicity}
+  \Forb(\gamma,p')\ge \Forb(\gamma,p),
+  \qquad
+  \Funiv(\gamma,p')\ge \Funiv(\gamma,p),
+\end{equation}
+with strict inequality if any ratio is strictly larger.
+Condition \eqref{eq:ratio-wise-flattening} implies that \(p'\) is
+majorized by \(p\), but majorization alone does not ensure larger
+fidelity when \(d\ge3\).  For example,
+\(p'=(0.8,0.16,0.04)\) is majorized by \(p=(0.9,0.06,0.04)\), yet
+\(\Forb(10,p')\approx0.0772<0.0791\approx\Forb(10,p)\): the decrease
+in the \((2,3)\) factor outweighs the increases in the other two.
 
 \subsection{Fixed-gain comparison with PCT}
 
-Let \(N\) be the number of inputs and \(M\) the number of
-\emph{additional} outputs, so that
-\begin{equation}\label{eq:pct-copy-count-parameters}
-  m=N+M,\qquad \delta=\frac{M}{N},\qquad \gamma=1+\delta.
-\end{equation}
-For a rank bound \(r\), purify--clone--trace (PCT) applies random purification
-\cite{TangWrightZhandry2025}, Werner's
-pure-state cloner in dimension \(dr\) \cite{Werner1998}, and partial
-trace over the purifying registers
+For a rank bound \(r\), purify--clone--trace (PCT) applies random
+purification \cite{TangWrightZhandry2025}, Werner's pure-state cloner in
+dimension \(dr\) \cite{Werner1998}, and partial trace over the purifying
+registers
 \cite{LiTheilHarrowChuang2026,FanizzaGrinkoScharnhorstSpilecki2026,
-JeonSohnOh2026}.  Denote its output on \(\rho^{\ot N}\) by
-\(\sigma_{N,N+M}^{\mathrm{PCT}}(\rho)\).  We report protocol comparisons in
-squared Uhlmann fidelity \(F^2\), separating fixed-gain fidelity from
-small-error sample complexity.
-
-Take \(N=n\), \(N+M=m_n\), and \(m_n/n\to\gamma>1\), as illustrated
-in \cref{fig:pct-comparisons}.  For every \(\rho\) of rank
+JeonSohnOh2026}.  Denote its output on \(\rho^{\ot n}\) by
+\(\sigma_{n,m}^{\mathrm{PCT}}(\rho)\).  For every \(\rho\) of rank
 at most \(r\), the published data-processing guarantee is
 \begin{equation}\label{eq:pct-data-processing-lower-bound}
-  F\!\left(\sigma_{N,N+M}^{\mathrm{PCT}}(\rho),
-             \rho^{\ot(N+M)}\right)^2
+  F\!\left(\sigma_{n,m}^{\mathrm{PCT}}(\rho),
+             \rho^{\ot m}\right)
   \ge
-  \frac{\binom{N+dr-1}{dr-1}}{\binom{N+M+dr-1}{dr-1}}
-  \longrightarrow\gamma^{-(dr-1)}.
+  \left(\frac{\binom{n+dr-1}{dr-1}}
+              {\binom{m+dr-1}{dr-1}}\right)^{1/2}
+  \longrightarrow\gamma^{-(dr-1)/2}
+  \qquad(m=m_n).
 \end{equation}
-The ratio is exact for each purified component before averaging and
-discarding the purifying registers; it is only a lower bound for the
-final output.  Appendix~\ref{app:pct-comparison} analyzes that output to
-establish the strict protocol comparisons below.
+The bound is exact for each purified component before averaging and
+discarding the purifying registers, but is only a lower bound for the
+final output.  Appendix~\ref{app:pct-comparison} analyzes that output
+directly.  The comparisons below use root fidelity and are illustrated
+in \cref{fig:pct-comparisons}.
+
+\begin{figure}[!tbp]
+\centering
+\begin{tikzpicture}[font=\scriptsize,
+  ours/.style={green!60!black,very thick},
+  pctexact/.style={purple!80!black,very thick,densely dotted},
+  pctupper/.style={purple!80!black,very thick,dashed},
+  grid/.style={gray!18},
+  legendtext/.style={anchor=west,text=black}]
+  % ---------- (a) full rank ----------
+  \begin{scope}[x=1.45cm,y=7cm]
+    \draw (0,0) -- (3,0);
+    \draw (0,0) -- (0,0.5);
+    \node[rotate=90] at (-0.5,0.25) {fidelity};
+    \node at (1.5,-0.085) {gain \(\gamma\)};
+    \node[font=\small] at (1.5,0.57)
+      {\textup{(a)} Full rank: \(p=(3/5,2/5)\)};
+
+    \foreach \x/\lab in {0/1,1/2,2/3,3/4}{
+      \draw (\x,0.007) -- (\x,-0.007)
+        node[below=1pt] {\(\lab\)};
+    }
+    \foreach \y/\lab in {0/{0.5},0.1/{0.6},0.2/{0.7},
+                            0.3/{0.8},0.4/{0.9},0.5/{1.0}}{
+      \draw (0.012,\y) -- (-0.012,\y)
+        node[left=2pt] {\(\lab\)};
+      \draw[grid] (0,\y) -- (3,\y);
+    }
+
+    \draw[ours]
+      plot[smooth] coordinates {
+        (0,0.5000) (0.25,0.4881) (0.5,0.4624) (0.75,0.4314)
+        (1,0.3988) (1.25,0.3665) (1.5,0.3354) (1.75,0.3058)
+        (2,0.2780) (2.25,0.2519) (2.5,0.2274) (2.75,0.2045)
+        (3,0.1830)
+      };
+    \draw[pctexact]
+      plot[smooth] coordinates {
+        (0,0.5000) (0.25,0.4693) (0.5,0.4143) (0.75,0.3572)
+        (1,0.3041) (1.25,0.2562) (1.5,0.2135) (1.75,0.1754)
+        (2,0.1414) (2.25,0.1109) (2.5,0.0834) (2.75,0.0585)
+        (3,0.0359)
+      };
+
+    \draw[ours] (0.15,0.095) -- (0.45,0.095);
+    \node[legendtext] at (0.5,0.095)
+      {our cloner: \(F_{\mathrm{univ}}\)};
+    \draw[pctexact] (0.15,0.04) -- (0.45,0.04);
+    \node[legendtext] at (0.5,0.04)
+      {PCT: \(F_{\mathrm{PCT}}\)};
+  \end{scope}
+
+  % ---------- (b) projector-state fidelities; y=1+log_2(F)/5 ----------
+  \begin{scope}[xshift=8.4cm,x=1.45cm,y=3.5cm]
+    \draw (0,0) -- (3,0);
+    \draw (0,0) -- (0,1.0);
+    \node[rotate=90] at (-0.85,0.50) {fidelity (log scale)};
+    \node at (1.5,-0.17) {gain \(\gamma\)};
+    \node[font=\small] at (1.5,1.14)
+      {\textup{(b)} Projectors: \(d=4\), \(r=2\)};
+
+    \foreach \x/\lab in {0/1,1/2,2/3,3/4}{
+      \draw (\x,0.014) -- (\x,-0.014)
+        node[below=1pt] {\(\lab\)};
+    }
+    \foreach \y/\lab in {0/{0.03125},0.2/{0.0625},0.4/{0.125},
+                            0.6/{0.25},0.8/{0.5},1.0/{1.0}}{
+      \draw (0.012,\y) -- (-0.012,\y)
+        node[left=2pt] {\(\lab\)};
+      \draw[grid] (0,\y) -- (3,\y);
+    }
+
+    \draw[ours]
+      plot[smooth] coordinates {
+        (0,1.000000) (0.25,0.871229) (0.5,0.766015)
+        (0.75,0.677058) (1,0.600000) (1.25,0.532030)
+        (1.5,0.471229) (1.75,0.416227) (2,0.366015)
+        (2.25,0.319824) (2.5,0.277058) (2.75,0.237244)
+        (3,0.200000)
+      };
+    \draw[pctupper]
+      plot[smooth] coordinates {
+        (0,1.000000) (0.25,0.868284) (0.5,0.757519)
+        (0.75,0.662419) (1,0.579248) (1.25,0.505405)
+        (1.5,0.439036) (1.75,0.378780) (2,0.323615)
+        (2.25,0.272752) (2.5,0.225571) (2.75,0.181577)
+        (3,0.140368)
+      };
+
+    \draw[ours] (1.30,0.90) -- (1.60,0.90);
+    \node[legendtext] at (1.65,0.90) {our projector cloner};
+    \draw[pctupper] (1.30,0.79) -- (1.60,0.79);
+    \node[legendtext] at (1.65,0.79) {PCT upper bound};
+  \end{scope}
+\end{tikzpicture}
+\caption{Fixed-gain comparison with PCT.
+  \textup{(a)}~For \(p=(3/5,2/5)\), both curves are exact asymptotic
+  fidelities for protocols without the spectrum
+  (\cref{thm:unknown-optimum,thm:full-rank-pct}).
+  \textup{(b)}~For rank-two projectors in \(d=4\), the solid curve is
+  our cloner's exact fidelity \(\gamma^{-2}\); the dashed curve is the
+  PCT upper bound \(\gamma^{-2}(\sqrt{2\gamma-1}/\gamma)^{1/2}\)
+  (\cref{thm:grassmann,prop:grassmann-pct-comparison}).  Panel~\textup{(b)}
+  uses a logarithmic fidelity axis.}
+\label{fig:pct-comparisons}
+\end{figure}
 
 \paragraph{Simple full-rank spectra.}
 Fix \(p_1>\cdots>p_d>0\).  PCT uses rank bound \(r=d\) and purification
 dimension \(d^2\); neither it nor \(\cC_n^{\mathrm{univ}}\) is supplied
 \(p\).  Write \(\sigma_{n,m}^{\mathrm{PCT}}(p)\) for its output on
-\(\rho_p^{\ot n}\).  With \(q_{ij}=p_j/p_i\), its exact asymptotic fidelity is
+\(\rho_p^{\ot n}\).  \Cref{thm:full-rank-pct} shows that
+\begin{equation}\label{eq:full-rank-pct-main-comparison}
+  \lim_{n\to\infty}
+  F\!\left(\sigma_{n,m_n}^{\mathrm{PCT}}(p),\rho_p^{\ot m_n}\right)
+  =F_{\mathrm{PCT}}(\gamma,p)<\Funiv(\gamma,p),
+\end{equation}
+where, with \(q_{ij}=p_j/p_i\),
 \begin{equation}\label{eq:pct-fidelity-closed-form}
   F_{\mathrm{PCT}}(\gamma,p)
   =\left(\frac{\sqrt{2\gamma-1}}{\gamma}\right)^{(d-1)/2}
@@ -2270,66 +2090,65 @@ dimension \(d^2\); neither it nor \(\cC_n^{\mathrm{univ}}\) is supplied
          +\sqrt{q_{ij}(\gamma-1+\gamma q_{ij})}}
         {\gamma(1+q_{ij})}.
 \end{equation}
-By \cref{thm:full-rank-pct,thm:unknown-optimum},
-\begin{equation}\label{eq:full-rank-pct-squared-comparison}
-  \lim_{n\to\infty}
-  F\!\left(\sigma_{n,m_n}^{\mathrm{PCT}}(p),\rho_p^{\ot m_n}\right)^2
-  =F_{\mathrm{PCT}}(\gamma,p)^2<\Funiv(\gamma,p)^2,
-\end{equation}
-where the right-hand side is the exact limiting squared fidelity of our
-universal cloner.  The derivation and strict comparison are proved in
-Appendix~\ref{app:pct-comparison}.
+By \cref{thm:unknown-optimum}\textup{(a)}, \(\Funiv(\gamma,p)\) is the
+exact limiting fidelity of \(\cC_n^{\mathrm{univ}}\).  Each factor is
+strictly smaller for PCT: its output multiplies the spectral covariance by
+\(2\gamma-1\) rather than \(\gamma\), and each oscillator mode carries more
+noise than the least-noise amplifier adds.
 
 \paragraph{Projector states.}
-For \(\rho=P/r\), \(P\in\Gr(r,d)\), and \(1\le r<d\), the
-projector family has complex dimension \(r(d-r)\).
-\Cref{thm:grassmann} gives its exact limiting squared fidelity
-\(\gamma^{-r(d-r)}\).  For PCT with rank bound \(r\), write \(\sigma_{n,m}^{\mathrm{PCT}}(P)\) for the
-output on \((P/r)^{\ot n}\).  The appendix gives
-\begin{equation}\label{eq:grassmann-pct-squared-upper-bound}
+For \(\rho=P/r\) with \(P\in\Gr(r,d)\) and \(1\le r<d\), write
+\(\sigma_{n,m}^{\mathrm{PCT}}(P)\) for the output of PCT with rank bound
+\(r\) on \((P/r)^{\ot n}\).  \Cref{prop:grassmann-pct-comparison} gives
+\begin{equation}\label{eq:grassmann-pct-main-upper-bound}
   \limsup_{n\to\infty}
-  F\!\left(\sigma_{n,m_n}^{\mathrm{PCT}}(P),(P/r)^{\ot m_n}\right)^2
-  \le\gamma^{-r(d-r)}
-  \left(\frac{\sqrt{2\gamma-1}}{\gamma}\right)^{r-1}
-  <\gamma^{-r(d-r)}
-  \qquad(1<r<d).
+  F\!\left(\sigma_{n,m_n}^{\mathrm{PCT}}(P),(P/r)^{\ot m_n}\right)
+  \le\gamma^{-r(d-r)/2}
+  \left(\frac{\sqrt{2\gamma-1}}{\gamma}\right)^{(r-1)/2}
+  <\gamma^{-r(d-r)/2}
+  \qquad(1<r<d),
 \end{equation}
-Thus our projector cloner \(\cC_n^{\mathrm{proj}}\) strictly improves on PCT
-for every fixed \(\gamma>1\) and \(1<r<d\).  For \(r=1\), both reduce to Werner's
-optimal pure-state cloner; for \(r=d\), the projector family is the known
-singleton \(I_d/d\).
+whereas \cref{thm:grassmann} shows that \(\cC_n^{\mathrm{proj}}\) attains
+\(\gamma^{-r(d-r)/2}\).  The extra factor comes from the
+computational-basis count statistics: PCT multiplies their limiting
+covariance by \(2\gamma-1\), even though the flat spectrum is fixed.  For
+\(r=1\), both protocols reduce to Werner's optimal pure-state cloner.
 
 \paragraph{Worst-case cloning over all states.}
-At fixed gain \(\gamma>1\), we now allow the input to be any
-\(d\)-dimensional state, with no spectral or rank information supplied to
-the cloner.  The best fidelity that a single channel can guarantee over
-this entire family is
+At fixed gain \(\gamma>1\), the optimal fidelity guaranteed by a single
+channel over all \(d\)-dimensional states, without spectral or rank
+information, is
 \begin{equation}\label{eq:uniform-state-minimax-value}
-  w_n=\sup_{\cM_n}\inf_{\substack{\rho\ge0\\\Tr\rho=1}}
+  w_n^{\mathrm{all}}=\sup_{\cM_n}\inf_{\substack{\rho\ge0\\\Tr\rho=1}}
   F\!\left(\cM_n(\rho^{\ot n}),\rho^{\ot m_n}\right).
 \end{equation}
 The PCT guarantee gives
-\(\liminf_nw_n\ge\gamma^{-(d^2-1)/2}\).  Restricting to the compact
+\(\liminf_nw_n^{\mathrm{all}}\ge\gamma^{-(d^2-1)/2}\).  Restricting to the compact
 simple-spectrum chambers \(\Delta_{d,\kappa}\), applying
 \eqref{eq:compact-global-value}, and then letting \(\kappa\downarrow0\)
 gives
 \begin{equation}\label{eq:uniform-state-minimax-upper-bound}
-  \limsup_{n\to\infty}w_n
+  \limsup_{n\to\infty}w_n^{\mathrm{all}}
   \le\inf_{p\in\Delta_d^\circ}\Funiv(\gamma,p)
   =\Fcl(\gamma,d)\,\gamma^{-d(d-1)/4}.
 \end{equation}
 For the equality, each orbital factor is at least
-\(f_\gamma(0)=\gamma^{-1/2}\), and the geometric spectra
-\(p_i(t)=t^{i-1}/\sum_{j=1}^d t^{j-1}\), \(0<t<1\), approach this
-bound as \(t\downarrow0\), since every ratio \(p_j(t)/p_i(t)\),
-\(i<j\), tends to zero.
+\(f_\gamma(0)=\gamma^{-1/2}\); the geometric spectra
+\(p_i(t)=t^{i-1}/\sum_{j=1}^d t^{j-1}\), \(0<t<1\), approach this bound
+as \(t\downarrow0\), since \(p_j(t)/p_i(t)=t^{j-i}\).
 At large gain, these lower and upper bounds scale respectively as
 \(\gamma^{-(d^2-1)/2}\) and \(\gamma^{-(d^2-1)/4}\), up to
 constants, leaving a factor of two between the polynomial exponents.
 The exact all-state minimax value and whether PCT attains it remain open.
 
 \subsection{Small-error sample complexity}
+\label{sec:small-error}
 
+To match the sample-complexity literature, this subsection uses squared
+fidelity, \(N\) inputs, and \(M\) \emph{additional} outputs, so that
+\begin{equation}\label{eq:pct-copy-count-parameters}
+  m=N+M,\qquad \delta=\frac{M}{N},\qquad \gamma=1+\delta.
+\end{equation}
 For \(1\le r\le d\) and sufficiently small \(\epsilon>0\), the concurrent
 papers \cite{FanizzaGrinkoScharnhorstSpilecki2026,JeonSohnOh2026} prove that
 cloning with squared fidelity at least \(1-\epsilon\) for every state of
@@ -2338,14 +2157,22 @@ rank at most \(r\) has optimal worst-case sample complexity
   N=\Theta\!\left(\frac{Mrd}{\epsilon}\right).
 \end{equation}
 Their upper bounds use PCT, while their lower bounds use flat projectors
-of rank \(\ell=\Theta(r)\), possibly \(\ell<r\).  In particular, the rank
-bound \(r=d\) does not restrict the hard family to \(I_d/d\).
-Our limiting fidelities give more precise comparisons on the specified
-spectral families, as follows.
+of rank \(\ell=\Theta(r)\), possibly \(\ell<r\); in particular, for
+\(r=d\) the hard family is not just \(I_d/d\).
+
+Our limiting fidelities give sharper constants on the specified families,
+but only in the iterated limit: first \(N,M\to\infty\) at fixed
+\(\delta>0\), then \(\delta\downarrow0\).  We have not controlled
+approximation errors uniformly as \(\gamma_n\downarrow1\), so the resulting
+thresholds are not finite-sample bounds in a joint high-fidelity regime and
+do not improve the worst-case \(1/\epsilon\) scaling over the rank-bounded
+family.  The PCT sufficient condition \eqref{eq:pct-certified-sample-ratio}
+below is the only finite-sample statement here.
 
 \paragraph{Simple full-rank spectra.}
-For fixed \(p\) and \(\bullet\in\{\mathrm{univ},\mathrm{PCT}\}\), expansion
-at \(\gamma=1+\delta\) and inversion at squared fidelity \(1-\epsilon\) give
+For fixed \(p\) and \(\bullet\in\{\mathrm{univ},\mathrm{PCT}\}\), expand
+the squared limiting fidelity at \(\gamma=1+\delta\) and invert it at
+\(1-\epsilon\).  The resulting asymptotic threshold satisfies
 \begin{equation}\label{eq:full-rank-small-error}
   F_\bullet(1+\delta,p)^2
   =1-A_\bullet(p)\delta^2+O_p(\delta^3),
@@ -2361,12 +2188,13 @@ where
 \end{equation}
 Thus \(A_{\mathrm{PCT}}(p)>A_{\mathrm{univ}}(p)\), giving our cloner the
 strictly smaller leading constant.  Both coefficients diverge as an
-eigenvalue approaches zero, so this fixed-interior-spectrum
-\(1/\sqrt\epsilon\) law does not contradict the worst-case
-\(1/\epsilon\) scaling over the rank-bounded family.
+eigenvalue approaches zero; the fixed-spectrum \(1/\sqrt\epsilon\) law is
+therefore consistent with the worst-case \(1/\epsilon\) scaling over the
+rank-bounded family.
 
 \paragraph{Projector states.}
-For \(1<r<d\), inverting our limiting squared fidelity gives
+For \(1<r<d\), inverting our limiting squared fidelity in the same
+iterated sense gives
 \begin{equation}\label{eq:projector-optimal-sample-ratio}
   \frac{N}{M}
   =\frac{1}{(1-\epsilon)^{-1/[r(d-r)]}-1}
@@ -2379,41 +2207,23 @@ PCT squared fidelity at least \(1-\epsilon\) whenever
   \ge\frac{1}{(1-\epsilon)^{-1/(rd-1)}-1}
   \sim\frac{rd-1}{\epsilon},
 \end{equation}
-since its binomial ratio is
+since, with \(n=N\) and \(m=N+M\), its binomial ratio is
 \(\prod_{j=1}^{rd-1}(N+j)/(N+M+j)\ge[N/(N+M)]^{rd-1}\).
-The coefficient \(rd-1\) belongs only to this sufficient condition.
-In fact, \cref{prop:pct-projector-small-error} in
-Appendix~\ref{app:pct-comparison} shows that PCT's actual squared
-infidelity is \(r(d-r)\delta+O_{r,d}(\delta^2)\) in the iterated limit
-specified below, for both the asymptotic \(\liminf\) and \(\limsup\).
-Thus PCT also has leading sample ratio
-\(N/M\sim r(d-r)/\epsilon\): our strict fixed-gain advantage does not
-improve this leading coefficient.  Together with
-\eqref{eq:grassmann-pct-squared-upper-bound}, these bounds show that our
-advantage first appears at second order: the asymptotic squared-fidelity
-gap is of order \(\delta^2\) in this iterated sense, although its exact
-coefficient is not determined here.  Subleading expansions of the optimal
-and certified thresholds are recorded in
+The coefficient \(rd-1\) describes only this sufficient condition.
+In the iterated limit, both the \(\liminf\) and the \(\limsup\) of PCT's
+actual squared infidelity equal \(r(d-r)\delta+O_{r,d}(\delta^2)\)
+(\cref{prop:pct-projector-small-error}), so PCT shares the leading sample
+ratio \(N/M\sim r(d-r)/\epsilon\).  Together with
+\eqref{eq:grassmann-pct-main-upper-bound}, this shows that our advantage
+first appears at second order: the asymptotic squared-fidelity gap is of
+order \(\delta^2\), with its exact coefficient undetermined.  Subleading
+expansions of the optimal and certified thresholds appear in
 \eqref{eq:power-fidelity-threshold-expansion}.
-
-\paragraph{Order of limits.}
-The strict protocol comparisons hold at every fixed \(\gamma>1\).
-The small-error thresholds derived from our limiting fidelities use the
-iterated limit \(N,M\to\infty\) with \(M/N\to\delta>0\), followed
-by \(\delta\downarrow0\).  We have not established approximation-error
-bounds uniform as \(\gamma_n\downarrow1\), so these thresholds do not
-provide finite-sample bounds in a joint high-fidelity regime or improve the
-worst-case \(1/\epsilon\) scaling over the rank-bounded family up to
-constants.  The sufficient
-condition \eqref{eq:pct-certified-sample-ratio} is a finite-sample
-guarantee and does not require this iterated limit.
 
 \subsection{Conjectures for degenerate and rank-deficient spectra}
 \label{sec:conjectures}
-We record two expected extensions of the proved formulas, distinguishing
-known-spectrum orbits from local models with unknown spectrum
-and fixed rank. Suppose a
-rank-\(r\) state \(\rho\) has distinct eigenvalues
+We distinguish known-spectrum orbits from local unknown-spectrum models
+of fixed rank.  Suppose a rank-\(r\) state \(\rho\) has distinct positive eigenvalues
 \(u_1>\cdots>u_s>0\), with multiplicities \(r_1,\ldots,r_s\), where
 \(\sum_a r_a=r\) and \(\sum_a r_a u_a=1\).  We conjecture that the
 known-spectrum optimum on its unitary orbit, defined as in
@@ -2423,14 +2233,13 @@ known-spectrum optimum on its unitary orbit, defined as in
   =\gamma^{-r(d-r)/2}
    \prod_{a<b}f_\gamma\!\left(\frac{u_b}{u_a}\right)^{r_ar_b}.
 \end{equation}
-Only pairs of distinct positive eigenspaces contribute to the product:
-rotations within a degenerate eigenspace are stabilizer directions, while
-the \(r(d-r)\) support--kernel directions give the first factor.  The simple
-full-rank case \(r=d\), \(s=d\), and \(r_a=1\) reduces to the orbital
-formula in \eqref{eq:main-values}; the flat projector case \(s=1\) reduces
-to \(\gamma^{-r(d-r)/2}\), proved in \cref{thm:grassmann}.  In particular,
-\(r=1\) recovers Werner's pure-state value \(\gamma^{-(d-1)/2}\).  The exact
-compression identity in
+Rotations within degenerate eigenspaces are stabilizers and do not
+contribute.  Since
+\(f_\gamma(0)=\gamma^{-1/2}\), the first factor accounts for the
+\(r(d-r)\) support--kernel directions.  The simple full-rank case
+\(r=d\), \(s=d\), \(r_a=1\) recovers \eqref{eq:main-values}; the flat
+projector case \(s=1\) recovers \cref{thm:grassmann}, including Werner's
+pure-state value at \(r=1\).  The exact compression identity in
 \cref{lem:exact-compression} establishes this support--kernel factorization
 for our sector channel, but does not by itself prove the conjecture for the
 remaining spectra.
@@ -2442,10 +2251,10 @@ because the orbit loses dimensions.  For example, for qubits,
   \Forb(\gamma,p)=\frac{2\sqrt\gamma}{1+\gamma}<1,
 \]
 whereas the known-spectrum family at \(p=(1/2,1/2)\) contains only
-\(I_2/2\) and can be cloned perfectly.  At any fixed sample size, preparing
-\((I_2/2)^{\ot m_n}\) gives fidelity tending uniformly to one as
-\(p\to(1/2,1/2)\).  Thus the degeneracy and large-sample limits do not
-commute.
+\(I_2/2\) and can be cloned perfectly.  For each fixed \(n\), the constant
+channel preparing \((I_2/2)^{\ot m_n}\) has fidelity tending to one as
+\(p\to(1/2,1/2)\), uniformly over the orbit.  Thus the degeneracy and
+large-sample limits do not commute.
 
 For the local unknown-state problem, consider the smooth manifold of
 rank-\(r\) states
@@ -2469,9 +2278,8 @@ Hilbert--Schmidt metric.  For fixed \(L\) and sufficiently large \(n\), set
   F\!\left(\cM_n(\rho_{n,X}^{\ot n}),\rho_{n,X}^{\ot m_n}\right).
 \end{equation}
 \end{samepage}
-Here \(\rho\) is fixed before the supremum, so the channel sequence may
-depend on the center \(\rho\), but not on the unknown local displacement
-\(X\).  We conjecture that the \(\limsup\) and \(\liminf\) of
+The channel may depend on the fixed center \(\rho\), but not on the
+unknown displacement \(X\).  We conjecture that the \(\limsup\) and \(\liminf\) of
 \(v_{n,L}^{(r)}(\rho)\), first as \(n\to\infty\) and then as
 \(L\to\infty\), agree.  Writing their common value as
 \(\Funiv^{(r)}(\gamma,\rho)\), the conjectured formula is
@@ -2491,53 +2299,47 @@ spectra (every \(r_a=1\)), the fixed-rank LAN theorem of
 \cite[Theorem~3.3]{LahiryNussbaum2024} has exactly \(r-1\) classical
 Gaussian parameters, \(r(r-1)/2\) shifted thermal modes, and \(r(d-r)\)
 shifted pure modes, matching the exponent \((r-1)/2\) here and the factors
-in \eqref{eq:conjectured-degenerate-orbit}.  
+in \eqref{eq:conjectured-degenerate-orbit}.
 
-The proposed formula is also consistent under positive-eigenvalue collisions at fixed rank: each
-colliding pair contributes \(f_\gamma(1)=2\sqrt\gamma/(1+\gamma)\), and
+The formula is consistent under positive-eigenvalue collisions at fixed
+rank: each colliding pair contributes
+\(f_\gamma(1)=2\sqrt\gamma/(1+\gamma)\), and
 \((r-1)/2+\sum_a\binom{r_a}{2}=(\sum_a r_a^2-1)/2\).
 When also \(r=d\) and the spectrum is simple, the formula reduces to the
-full-rank value \(\Funiv(\gamma,p)\) in \eqref{eq:main-values}.  
+full-rank value \(\Funiv(\gamma,p)\) in \eqref{eq:main-values}.
 
-At a flat projector state, \(s=1\), the conjectured local model allows the
-positive eigenvalues to vary while keeping the rank fixed, whereas
-\cref{thm:grassmann} concerns the projector family, whose positive
-eigenvalues are all fixed at \(1/r\).  This additional uncertainty gives
-the conjectured classical factor when \(r>1\); for \(r=1\), the two values
-coincide.  Neither model addresses neighborhoods in which the rank changes.
+At a flat projector state, \(s=1\), the local model still allows the
+positive eigenvalues to vary, unlike the projector family in
+\cref{thm:grassmann}, where they are fixed at \(1/r\).  This uncertainty
+gives the conjectured classical factor for \(r>1\); the two values coincide
+for \(r=1\).  Neither model allows rank changes.
 
 \paragraph{Conjectured comparison with PCT.}
-At every fixed gain \(\gamma>1\), we further conjecture that our
-Schur--Cartan construction, with transition rules adapted to degenerate or
-rank-deficient spectra, generally outperforms PCT on the corresponding
-mixed-state families, with the same prior spectral or rank information
-available to both protocols. 
-We also conjecture that one spectrum-independent extension of our
-construction achieves strictly larger asymptotic worst-case fidelity over
-all \(d\)-dimensional states than PCT with rank bound \(d\), in the
-all-state minimax problem \eqref{eq:uniform-state-minimax-value}.
-We do not pursue these comparisons here; such a worst-case separation
-would require boundary control
-beyond the pointwise comparisons proved above.
+We further conjecture that, at every fixed \(\gamma>1\) and with the same
+prior spectral or rank information available to both protocols,
+Schur--Cartan cloners with transition rules adapted to degenerate or
+rank-deficient spectra outperform PCT on the corresponding families, and
+that a single spectrum-independent extension strictly beats PCT with rank
+bound \(d\) in the all-state problem
+\eqref{eq:uniform-state-minimax-value}.  The latter would require control
+near the boundary of the spectral simplex, beyond the pointwise
+comparisons proved here.
 
 \subsection{Further open problems}
 \label{sec:open-problems}
 
-Beyond these fixed-rank conjectures, uniform control near rank changes and
-the exact minimax fidelity over all states at fixed gain remain open.  The
-upper bound \eqref{eq:uniform-state-minimax-upper-bound} and the PCT lower
-guarantee leave a gap even between the large-gain exponents.
-The finite-copy optimum is also unknown:
-asymptotic optimality does not establish optimality of our channels at each
-finite \(n\).  Finally, approximation-error bounds controlled as
-\(\gamma_n\downarrow1\), on the scale of the vanishing infidelity, would
-be needed to turn the iterated small-error comparisons into joint
+Beyond the fixed-rank conjectures, the main open questions are uniform
+control near rank changes, the all-state minimax value
+\eqref{eq:uniform-state-minimax-value}, finite-copy optimality of our
+channels, and approximation-error bounds as \(\gamma_n\downarrow1\) on the
+scale of the vanishing infidelity.  The last would turn the iterated
+small-error comparisons of \cref{sec:small-error} into joint
 high-fidelity bounds.
 
 \section*{Acknowledgments}
 
 We thank Patrick Hayden and Henry Purcell for discussions and early
-collaborations.
+collaborations on mixed qubit cloning.
 % Author to supply JF's funding acknowledgment before submission.
 
 \begin{samepage}
@@ -2556,7 +2358,7 @@ responsibility for the accuracy and content of the manuscript.
 \end{samepage}
 
 \appendix
-\section{Strict comparison with purify--clone--trace}
+\section{Comparison with purify--clone--trace}
 \label[appendix]{app:pct-comparison}
 
 We compute the exact asymptotic PCT fidelity at simple full-rank spectra
@@ -2582,8 +2384,8 @@ Werner's pure-state cloner \cite{Werner1998} is
 If \(\rho\) has rank at most \(r\), choose a purification
 \(\psi\in\C^d\ot E\), \(E=\C^r\).  All purifications in this space
 differ by a unitary on \(E\).  Covariance of Werner's cloner and
-invariance of partial trace therefore remove the Haar average in
-random purification exactly:
+invariance of partial trace therefore remove the random-purification
+Haar average:
 \begin{equation}\label{eq:Haar-drops}
   \sigma_{n,m}^{\mathrm{PCT}}(\rho)
   =\Tr_{E^m}\mathcal W_{n,m}^{(dr)}(\proj\psi^{\ot n}).
@@ -2617,8 +2419,7 @@ symmetric Fock space \(\Gamma_s(K)\) over \(K\), with occupation basis
 \end{lemma}
 
 \begin{proof}
-On an occupation vector with total transverse occupation
-\(t=|\mathbf k|\), the expectation of
+On an occupation vector with \(t=|\mathbf k|\), the expectation of
 \(\Pi_{\mathrm{sym},m}^{(D)}
  (\proj\psi^{\ot n}\ot I)
  \Pi_{\mathrm{sym},m}^{(D)}\)
@@ -2655,18 +2456,17 @@ and put
   =\frac{\ket\psi+M^{-1/2}\ket Z}
          {\sqrt{1+\|Z\|^2/M}}.
 \]
-For every fixed \(Z\),
+For fixed \(Z\),
 \begin{equation}\label{eq:coherent-product-limit}
   \left\|
     \mathcal J_M\bigl(\proj{\operatorname{coh}(Z)}\bigr)
     -\proj{\psi_{Z,M}}^{\ot M}
   \right\|_1\longrightarrow0.
 \end{equation}
-Indeed, with \(t=\|Z\|^2\), the product and coherent vectors have
-excitations only in the direction \(Z/\|Z\|\) (the case \(Z=0\) is
-immediate).  After pulling
-the product vector back by \(J_M^*\), their number amplitudes are the
-square roots of the binomial and Poisson masses
+For \(Z\ne0\), both vectors have excitations only in the direction
+\(Z/\|Z\|\) (the case \(Z=0\) is immediate).  With \(t=\|Z\|^2\),
+their number amplitudes after pulling
+back the product vector by \(J_M^*\) are the square roots of
 \[
   B_M(j)=\binom Mj\frac{(t/M)^j}{(1+t/M)^M},
   \qquad
@@ -2677,7 +2477,7 @@ Pointwise convergence and the discrete Scheff\'e lemma give
   \sum_{j\ge0}\bigl(\sqrt{B_M(j)}-\sqrt{P(j)}\bigr)^2
   \le\sum_{j\ge0}|B_M(j)-P(j)|\longrightarrow0.
 \]
-Thus the pure states converge in trace norm; applying the contraction
+Thus the pure states converge in trace norm; contractivity of
 \(\mathcal J_M\) proves \eqref{eq:coherent-product-limit}.
 
 For \(s>0\), let \(\mu_s\) be the circular complex Gaussian measure
@@ -2706,8 +2506,8 @@ purification \(\psi\in\C^d\ot E\),
 Here the finite Werner output equals
 \(\mathcal J_{m_n}(\omega_{n,m_n})\).  Contractivity controls its
 replacement by the thermal state, and dominated convergence controls
-the coherent-state integral: each trace-distance integrand is at
-most \(2\).  No uniform estimate over unbounded \(Z\) is needed.
+the coherent-state integral, whose trace-distance integrand is bounded
+by \(2\).  No uniform estimate over unbounded \(Z\) is needed.
 
 \subsection{Simple full-rank spectra}
 
@@ -2749,15 +2549,14 @@ For fixed \(d\), \(p\), and \(\gamma>1\) as above,
     \rho_p^{\ot m_n}
   \right),
 \end{equation}
-where \(q_{ij}=p_j/p_i\), and \(\Funiv\) and \(f_\gamma\) are as in \eqref{eq:main-values} and
-\eqref{eq:pairwise-fidelity-factor}.
+with \(F_{\mathrm{PCT}}\) as in \eqref{eq:pct-fidelity} and \(\Funiv\) as
+in \eqref{eq:main-values}.
 \end{theorem}
 
 \begin{proof}
-The final equality is part~\textup{(a)} of
-\cref{thm:unknown-optimum}.  We prove the PCT limit by applying
-interior LAN to the product-state mixture
-\eqref{eq:pct-product-mixture}, and then compare its factors.
+The final equality follows from \cref{thm:unknown-optimum}\textup{(a)}.
+For the PCT limit, apply interior LAN to the mixture
+\eqref{eq:pct-product-mixture} and compare the resulting factors.
 
 \emph{Step 1: The Gaussian output.}
 Choose
@@ -2788,13 +2587,10 @@ Its diagonal and orbital LAN coordinates are
            {\sqrt{p_i-p_j}},
   \qquad i<j.
 \end{equation}
-To justify using LAN for \(\rho_{Z,M}\), the chart
-\((u,w)\mapsto e^{Y_p(w)}\diag(p+u)e^{-Y_p(w)}\) from
-\cref{sec:local-coordinates} has derivative
-\((u,w)\mapsto\diag(u)+[Y_p(w),\rho_p]\), a real linear
-isomorphism onto the traceless Hermitian matrices.  The inverse
-function theorem and \eqref{eq:partial-trace-differential} give exact
-local coordinates
+The derivative of the local chart from \cref{sec:local-coordinates} is
+\((u,w)\mapsto\diag(u)+[Y_p(w),\rho_p]\), a real linear isomorphism
+onto the traceless Hermitian matrices.  The inverse function theorem
+and \eqref{eq:partial-trace-differential} give exact LAN coordinates:
 \[
   \rho_{Z,M}
   =g_{M,z_M}^{(p)}\diag(p+M^{-1/2}h_M)(g_{M,z_M}^{(p)})^*,
@@ -2819,15 +2615,15 @@ trace-norm continuity of Gaussian shifts imply, for each fixed \(Z\),
   \left\|\rho_{Z,M}^{\ot M}-S_M^p(\Theta(Z))\right\|_1\to0.
 \]
 
-It remains to average \(\Theta(Z)\) under
-\(Z\sim\mu_s\), \(s=\gamma-1\).  The orthogonal decomposition
+To average \(\Theta(Z)\) under \(Z\sim\mu_s\), \(s=\gamma-1\), use the
+orthogonal decomposition:
 \[
   K_p=
   \left\{\sum_i z_i\ket{ii}:\sum_i\sqrt{p_i}z_i=0\right\}
   \oplus\bigoplus_{i<j}\operatorname{span}\{\ket{ij},\ket{ji}\}
 \]
-makes the diagonal and pair variables independent.  From
-\eqref{eq:h-Z}--\eqref{eq:beta-Z},
+The diagonal and pair variables are independent, and
+\eqref{eq:h-Z}--\eqref{eq:beta-Z} give
 \begin{equation}\label{eq:pct-displacement-covariances}
   \operatorname{Cov}(h)=2s\Sigma_p,\qquad
   \mathbb E|\beta_{ij}|^2=\frac{s(p_i+p_j)}{p_i-p_j},
@@ -2837,12 +2633,10 @@ makes the diagonal and pair variables independent.  From
 Here the diagonal Gaussian has covariance
 \(s(I-\sqrt p\,\sqrt p^{\,\mathsf T})\); multiplying its real
 parts by \(2\sqrt{p_i}\) gives the first identity on the trace-zero
-hyperplane.  Each \(\beta_{ij}\) is a circular complex Gaussian.
-Averaging the corresponding displaced thermal state therefore adds
-\(\mathbb E|\beta_{ij}|^2\) to its mean photon number and leaves it
-thermal: its Weyl characteristic function is multiplied by
-\(\exp(-\mathbb E|\beta_{ij}|^2|\xi|^2)\).
-The output mean is
+hyperplane.  Each \(\beta_{ij}\) is circular complex Gaussian.  Averaging
+its displacement multiplies the Weyl characteristic function by
+\(\exp(-\mathbb E|\beta_{ij}|^2|\xi|^2)\), leaving a thermal state
+whose mean photon number increases by \(\mathbb E|\beta_{ij}|^2\):
 \begin{equation}\label{eq:thermal-mean-out}
   \bar n_{ij}^{\mathrm{PCT}}
   =\frac{p_j+s(p_i+p_j)}{p_i-p_j}
@@ -2916,9 +2710,9 @@ and \(2\gamma-1>\gamma>1\).  Multiplying the factors proves
 \subsection{Projector states}
 \label{sec:grassmann-pct-comparison}
 
-For projector states, we compare the fidelity attained by PCT itself with
-the optimum in \cref{thm:grassmann}, rather than relying only on its
-published data-processing lower bound.
+For projector states, we upper-bound PCT's actual fidelity to compare it
+with the optimum in \cref{thm:grassmann}; its published data-processing
+lower bound does not suffice for this comparison.
 
 Fix \(1\le r<d\) and \(P\in\Gr(r,d)\), choose an isometry
 \(V_P:\C^r\to\C^d\) with \(V_PV_P^*=P\), and put
@@ -2976,22 +2770,21 @@ optimal pure-state cloner.
 \end{proposition}
 
 \begin{proof}
-By \eqref{eq:Haar-drops}, the PCT output is the reduced Werner output
-for the fixed purification \(\Phi_P\).  Let \(Q=P\ot I_r\) on
-\(\C^d\ot\C^r\).  Its rank is \(r^2\), its
-range contains \(\Phi_P\), and \(Q^{\ot m}\) commutes with the symmetric
-projection.  Compressing \eqref{eq:grassmann-werner-cloner} to its range
-replaces the dimension \(rd\) by \(r^2\), with normalization ratio
-\(s_{n,m}^{(r,d)}\).  Tracing out \(E^m\) therefore gives
+By \eqref{eq:Haar-drops}, use the fixed purification \(\Phi_P\).
+Werner's channel is the one-row Cartan channel, so
+\eqref{eq:channel-compression} applies with \(\mu=(n)\), \(\nu=(m)\),
+and \(V_P\ot I_r:\C^{r^2}\to\C^{rd}\).  On the symmetric output, its
+compression projection is \((P\ot I_r)^{\ot m}\) and its dimension factor is
+\(s_{n,m}^{(r,d)}\) by \eqref{eq:grassmann-pct-support-factor}.
+Tracing out \(E^m\) gives
 \begin{equation}
   P^{\ot m}\sigma_{n,m}^{\mathrm{PCT}}(P)P^{\ot m}
   =s_{n,m}^{(r,d)}
    V_P^{\ot m}\zeta_{n,m}^{(r)}(V_P^*)^{\ot m}.
   \label{eq:grassmann-pct-system-compression}
 \end{equation}
-The target is supported on \(P^{\ot m}\).  Hence fidelity is
-unchanged by compressing the first argument to that support, and its
-homogeneity proves \eqref{eq:grassmann-pct-factorization}.
+Compressing to the target support \(P^{\ot m}\) leaves fidelity
+unchanged; homogeneity then proves \eqref{eq:grassmann-pct-factorization}.
 
 It remains to bound the internal fidelity.  Assume \(r>1\), put
 \[
@@ -3013,7 +2806,7 @@ gives
   Z_m\Longrightarrow\mathsf N_{0,\Sigma_r}.
   \label{eq:grassmann-target-count-limit}
 \end{equation}
-We next show that under \(\zeta_{n,m_n}^{(r)}\),
+Under \(\zeta_{n,m_n}^{(r)}\), we will show
 \begin{equation}
   Z_{m_n}\Longrightarrow
   \mathsf N_{0,(2\gamma-1)\Sigma_r}.
@@ -3044,20 +2837,13 @@ centered Gaussian, with
   =\frac{2(\gamma-1)}r\left(\delta_{ij}-\frac1r\right)
   =2(\gamma-1)(\Sigma_r)_{ij}.
 \]
-Integrating the conditional characteristic functions, justified by
-dominated convergence, gives covariance
+Dominated convergence of the conditional characteristic functions gives
+the Gaussian limit with covariance
 \(\Sigma_r+2(\gamma-1)\Sigma_r=(2\gamma-1)\Sigma_r\).
 The trace-norm approximation \eqref{eq:pct-product-mixture} and
 contractivity of measurement transfer this limit to
 \(\zeta_{n,m_n}^{(r)}\), proving
-\eqref{eq:grassmann-pct-count-limit}.\footnote{An alternative proof uses
-the count fields.  For \(h\in\mathsf H_r\),
-put \(H_h=\diag(h)\ot I_r\).  Under the occupation embedding, the
-rescaled observable \(m^{-1/2}\sum_\ell H_h^{(\ell)}\), extended by zero
-outside the occupation cutoff, converges on the analytic finite-particle core to
-\(b^*(H_h\Phi_r)+b(H_h\Phi_r)\).  The strong-resolvent core criterion
-\cite[Theorem~VIII.25]{ReedSimon1980} then gives the same thermal
-characteristic-function limit.}
+\eqref{eq:grassmann-pct-count-limit}.
 
 Let \(L_n\Rightarrow L\) and \(T_n\Rightarrow T\) be the count laws and
 their Gaussian limits.  For any finite partition \(\mathcal P\) whose
@@ -3068,10 +2854,10 @@ convergence give
   \le\sum_{A\in\mathcal P}\sqrt{L(A)T(A)}.
 \]
 Along a refining sequence generating the Borel sets, the right-hand side
-decreases to \(F(L,T)\), proving the required upper semicontinuity.  Combining this
-with fidelity monotonicity under the count measurement and
+decreases to \(F(L,T)\).  This upper semicontinuity, fidelity monotonicity
+under the count measurement, and
 \eqref{eq:grassmann-target-count-limit}--\eqref{eq:grassmann-pct-count-limit}
-therefore gives
+give
 \begin{equation}
   \limsup_{n\to\infty}
   F\!\left(\zeta_{n,m_n}^{(r)},(I_r/r)^{\ot m_n}\right)
@@ -3173,8 +2959,8 @@ For any state \(\sigma\) on \((\C^r)^{\ot M}\),
 Indeed, apply \((\sqrt x-1)^2\le(x-1)^2\) to the relative eigenvalues
 \(x=r^M\lambda_j(\sigma)\), average with weights \(r^{-M}\), and use
 \(1-F^2\le2(1-F)\).
-Applying this inequality to \(\widetilde\zeta_M\) and then using
-fidelity continuity to transfer the bound to the PCT output gives
+Apply this to \(\widetilde\zeta_M\) and use fidelity continuity to
+transfer the bound to the PCT output:
 \begin{equation}\label{eq:pct-projector-internal-small-error}
   \limsup_n
   \left[1-F\!\left(\zeta_{n,m_n}^{(r)},
@@ -3189,13 +2975,12 @@ first-order coefficient follows.  For any fixed \(0<\eta<1\) and
 sufficiently small \(\epsilon>0\), both envelopes lie below \(\epsilon\)
 at \(\delta=(1-\eta)\epsilon/a\) and above it at
 \(\delta=(1+\eta)\epsilon/a\).  Letting \(\eta\downarrow0\) gives the
-leading sample coefficient \(a\) in \cref{sec:discussions}, without
+leading sample coefficient \(a\) in \cref{sec:small-error}, without
 assuming convergence of the fidelity at fixed \(\delta\).
 \end{proof}
 
-For completeness, the subleading terms in the two explicitly invertible
-threshold formulas of \cref{sec:discussions} follow from the elementary
-expansion, valid for any \(a>0\),
+The subleading terms in the two explicitly invertible thresholds of
+\cref{sec:small-error} follow, for any \(a>0\), from
 \begin{equation}\label{eq:power-fidelity-threshold-expansion}
   \frac1{(1-\epsilon)^{-1/a}-1}
   =\frac a\epsilon-\frac{a+1}{2}+O(\epsilon).
@@ -3210,22 +2995,13 @@ fidelity.
 \section{Exact-weight PBW calculation of the sector fidelity}
 \label[appendix]{app:sector-fidelity}
 
-This appendix proves
-\cref{prop:sector-fidelity} by comparing the
-target sector \(\rho_{p,\nu}\) with the Cartan-sector output
-\(\cC_{\mu,\nu}(\rho_{p,\mu})\) on finitely many weight spaces near their
-highest weights, then controlling the remaining target mass.
-\Cref{lem:PBW-fixed-height} shows that normalized lowering-operator vectors
-become asymptotically orthonormal on these spaces, while
-\cref{lem:uniform-character-normalization} gives the uniform limit
-\(p^\lambda/s_\lambda(p)\to\prod_{i<j}(1-p_j/p_i)\).  The Cartan inclusion
-\(V_{\mu,\nu-\mu}\) then splits
-each lowering operation between \(\cH_\mu\) and \(\cH_{\nu-\mu}\) with
-asymptotically binomial weights, producing the thermal limits \(\tau_p\) and
-\(\tau_p^{(\gamma)}\) and hence the fidelity \(\Forb(\gamma,p)\).
+We prove \cref{prop:sector-fidelity} on fixed-height weight spaces,
+where normalized PBW vectors become orthonormal and the Cartan inclusion
+splits lowering operators with asymptotically binomial weights.  Uniform
+character normalization and a bound on the remaining target mass then
+give the thermal fidelity \(\Forb(\gamma,p)\).
 
-Because the calculations involve only weights of height bounded
-in terms of \(L\), \(O_L(\cdot)\) may depend on \(L,d,c,C\) in
+Throughout, \(O_L(\cdot)\) may depend on \(L,d,c,C\) in
 \(cN\le\Delta_\alpha^\lambda\le CN\) for \(\alpha\in\mathsf R_+\), but is
 uniform in \(N\) and all dominant \(\lambda\) satisfying these inequalities.
 
@@ -3383,14 +3159,13 @@ operator factors have norm \(O_L(1)\); consequently,
 Dividing by the factorials in \eqref{eq:normalized-PBW-vectors} proves
 \eqref{eq:PBW-Gram-fixed-height}.
 
-The number and sizes of the exact-weight blocks are bounded in terms of
-\(L\), so the entrywise estimate gives
-\(G_{\lambda,\eta}=I+O_L(N^{-1/2})\) in operator norm.  Thus
-\(G_{\lambda,\eta}\) is invertible for large \(N\), and the PBW spanning
-vectors form a basis.  Finally, functional calculus gives
-\(G_{\lambda,\eta}^{-1/2}=I+O_L(N^{-1/2})\); hence
-\eqref{eq:exact-block-orthonormalization} is an orthonormal basis and
-satisfies \eqref{eq:PBW-orthonormal-close}.
+The number and sizes of the exact-weight blocks are bounded in terms of \(L\), so
+\(G_{\lambda,\eta}=I+O_L(N^{-1/2})\) in operator norm.  It is therefore
+invertible for large \(N\), and the PBW spanning vectors form a basis.
+Functional calculus gives
+\(G_{\lambda,\eta}^{-1/2}=I+O_L(N^{-1/2})\), proving
+\eqref{eq:exact-block-orthonormalization} and
+\eqref{eq:PBW-orthonormal-close}.
 \end{proof}
 
 \subsection{Character normalization and fixed-height matrices}
@@ -3433,10 +3208,9 @@ Cancelling \(\prod_i p_i^{d-i}\) against the Weyl denominator gives
 This proves \eqref{eq:uniform-character-normalization}.
 \end{proof}
 
-For the remainder of the appendix, index the number basis of
-\(\cF_{\mathrm{orb}}\) by
-\(\mathbf r\in\mathbb Z_{\ge0}^{\mathsf R_+}\), and write it as
-\(\{\ket{\mathbf r}\}\).  Define the finite-rank projection
+Index the number basis of \(\cF_{\mathrm{orb}}\) by
+\(\mathbf r\in\mathbb Z_{\ge0}^{\mathsf R_+}\), writing
+\(\{\ket{\mathbf r}\}\), and define the finite-rank projection
 \begin{equation}\label{eq:Fock-height-projection}
   P_L^{\cF}
   =\sum_{\operatorname{ht}(\sum_\alpha r_\alpha\alpha)\le L}
@@ -3453,10 +3227,7 @@ Define
   \qquad
   J_{\lambda,L}e_{\mathbf r}^\lambda=\ket{\mathbf r}.
 \end{equation}
-By \cref{lem:PBW-fixed-height}, the two spaces have bases indexed
-by the same \(\mathbf r\), so \(J_{\lambda,L}\) is unitary onto
-\(P_L^{\cF}\cF_{\mathrm{orb}}\).  It is defined only on
-\(\mathcal K_{\lambda,L}\), and it depends on \(\lambda\) and \(L\).
+The common index set makes \(J_{\lambda,L}\) unitary on its stated domain.
 
 \begin{proof}[Proof of \cref{prop:sector-fidelity}]
 Fix \(K\) and \(\delta_n\) as in the proposition, write \(m=m_n\), and put
@@ -3468,7 +3239,8 @@ Uniformly over the allowed parameters,
   \le\frac{m/n+1}{m/n-1}\,\delta_n=o(1).
 \]
 Every coordinate and every adjacent gap is uniformly positive on \(K\).
-Hence \(\omega\vdash m-n\) for all sufficiently large \(n\).  For
+Hence \(\omega\vdash m-n\) for all sufficiently large \(n\), and
+\(\nu=\mu+\omega\in\mathsf Y_m\).  For
 \(\alpha=e_i-e_j\), set
 \begin{equation}\label{eq:splitting-fraction}
   s_{\alpha,n}
@@ -3520,7 +3292,7 @@ If \(\operatorname{ht}(\sum_\alpha r_\alpha\alpha)\le L\),
 then \eqref{eq:cartan-PBW-exact} has \(O_L(1)\) terms, all of height at
 most \(L\), with
 \(0\le\beta_{\mathbf r,\mathbf a}^{(n)}\le1\).
-Since \(m/n\to\gamma>1\), the sizes \(n,m,m-n\) are uniformly comparable, so
+Since \(n,m,m-n\) are uniformly comparable, the gap bounds
 \eqref{eq:uniform-sector-gaps} and \cref{lem:PBW-fixed-height} give
 \(e_{\mathbf b}^{\lambda}=\widetilde e_{\mathbf b}^{\lambda}
 +O_L(n^{-1/2})\) for \(\lambda\in\{\mu,\nu,\omega\}\) and all relevant
@@ -3557,9 +3329,8 @@ The sector channel gives the local formula
   =\frac{\dim\cH_\mu}{\dim\cH_\nu}
    V^*(\rho_{p,\mu}\ot I_{\cH_\omega})V.
 \]
-All asymptotic estimates below are uniform over the allowed family.  The
-character estimate, \cref{lem:uniform-character-normalization},
-gives
+All estimates below are uniform over the allowed family.
+By \cref{lem:uniform-character-normalization},
 \[
   c_\lambda(p)=\prod_\alpha(1-q_\alpha)+o(1)
   \quad(\lambda=\mu,\nu),
@@ -3596,22 +3367,14 @@ and \(\|\rho_{p,\mu}\|\le1\) therefore give, for fixed \(L\),
   \label{eq:sector-target-fixed-matrix}
 \end{align}
 
-Recall the thermal notation in \eqref{eq:sector-thermal-products} and
-\eqref{eq:sector-thermal-parameter}:
-\[
-  q_\alpha^{(\gamma)}=1-\frac{1-q_\alpha}{\gamma},
-  \qquad
-  \tau_q=(1-q)\sum_{k\ge0}q^k\proj{k},
-  \qquad
-  \tau_p=\bigotimes_{\alpha\in\mathsf R_+}\tau_{q_\alpha},
-  \quad
-  \tau_p^{(\gamma)}
-  =\bigotimes_{\alpha\in\mathsf R_+}\tau_{q_\alpha^{(\gamma)}}.
-\]
-Since \(s_{\alpha,n}=\gamma^{-1}+o(1)\), the limiting entries in
+Since \(s_{\alpha,n}=\gamma^{-1}+o(1)\) and
+\(\gamma^{-r_d}\prod_\alpha(1-q_\alpha)=\prod_\alpha(1-q_\alpha^{(\gamma)})\),
+with \(q_\alpha^{(\gamma)}=1-(1-q_\alpha)/\gamma\) as in
+\eqref{eq:sector-thermal-parameter}, the limiting entries in
 \eqref{eq:sector-output-fixed-matrix} and
-\eqref{eq:sector-target-fixed-matrix} are those of
-\(\tau_p^{(\gamma)}\) and \(\tau_p\), respectively.  The cutoff space has
+\eqref{eq:sector-target-fixed-matrix} are those of the thermal products
+\(\tau_p^{(\gamma)}\) and \(\tau_p\) of
+\eqref{eq:sector-thermal-products}, respectively.  The cutoff space has
 fixed finite dimension, so this uniform entrywise convergence gives
 \begin{equation}\label{eq:output-fixed-height-convergence}
   \left\|
@@ -3639,10 +3402,9 @@ part of the proof.  Put
 For fixed \(L\), let \(\varepsilon_{n,L}\to0\) bound both trace-norm
 errors in \eqref{eq:output-fixed-height-convergence} and
 \eqref{eq:target-fixed-height-convergence}, uniformly over the allowed
-parameters.  Crucially, the output frame \(J_{\nu,L}P_{\nu,L}\) is
-independent of \(\mu\).  Convexity of the trace norm therefore gives the
-same error bound for \(\overline\sigma_{p,\nu}\), uniformly over all
-mixture weights.
+parameters.  Since the output frame \(J_{\nu,L}P_{\nu,L}\) is independent
+of \(\mu\), convexity gives the same bound for \(\overline\sigma_{p,\nu}\),
+uniformly over all mixture weights.
 
 Next we control the target mass above height \(L\).  Since \(K\) is compact
 in \(\Delta_d^\circ\), there is \(b_K<1\) such that \(q_\alpha\le b_K\) for
@@ -3697,8 +3459,7 @@ the weights \((a_\mu)\).  Finally,
   =\prod_{i<j}F(\tau_{q_{ij}^{(\gamma)}},\tau_{q_{ij}})
   =\Forb(\gamma,p),
 \]
-where multiplicativity of fidelity follows from multiplicativity of the
-trace norm under tensor products, and the last equality uses
+by multiplicativity of the trace norm under tensor products,
 \eqref{eq:thermal-root-fidelity} and \eqref{eq:one-mode-f}.  This proves
 the mixture assertion of \cref{prop:sector-fidelity}; taking a point mass
 gives the individual-sector assertion.
@@ -3707,14 +3468,11 @@ gives the individual-sector assertion.
 \section{Young local limit and randomized rounding}
 \label[appendix]{app:young-rounding}
 
-This appendix proves \cref{prop:young-rounding}.  We embed Young-label
-laws as densities on lattice cells and prove their uniform Gaussian
-limit.  Randomized rounding then becomes exactly dilation followed by
-cell averaging, which yields the classical factor \(\Fcl(\gamma,d)\).  The
-fallback rule changes only the vanishing mass of atypical input labels.
+We prove \cref{prop:young-rounding} by embedding Young-label laws in
+lattice cells.  Randomized rounding becomes dilation followed by cell
+averaging; the Gaussian local limit then gives \(\Fcl(\gamma,d)\).
 
-Define the half-open
-fundamental cell
+Define the half-open fundamental cell
 \[
   \mathsf C
   =\left\{\sum_{i=1}^{d-1}t_i(e_i-e_d):-\frac12\le t_i<\frac12\right\}
@@ -3736,10 +3494,7 @@ is fixed by the coordinate sum.  Since \(U\) is uniform on \(\mathsf C\),
   =\frac{|\gamma_n(\mu+\mathsf C)\cap(\widetilde\nu+\mathsf C)|}
          {\gamma_n^{d-1}|\mathsf C|}.
 \end{equation}
-All label laws below are regarded as functions on
-\(\mathsf L_N\): if a law \(R\) is originally defined on \(\mathsf Y_N\),
-set \(R(\lambda)=0\) for every
-\(\lambda\in\mathsf L_N\setminus\mathsf Y_N\).
+Extend every label law on \(\mathsf Y_N\) by zero to \(\mathsf L_N\).
 
 For \(\lambda\in\mathsf L_N\), define the recentered and
 rescaled lattice cell
@@ -3753,16 +3508,13 @@ For any \(R:\mathsf L_N\to\R\) satisfying
   =\frac{N^{(d-1)/2}}{|\mathsf C|}R(\lambda)
   \quad(x\in\mathsf C_{N,p}(\lambda)).
 \]
-The cells \(\mathsf C_{N,p}(\lambda)\), \(\lambda\in\mathsf L_N\),
-tile \(\mathsf H\), and their boundaries have zero induced Lebesgue measure.
+These cells tile \(\mathsf H\) with boundaries of zero Lebesgue measure.
 The map \(\mathcal E_{N,p}\) preserves \(\ell^1\)-distance,
 \(\|\mathcal E_{N,p}R-\mathcal E_{N,p}S\|_1=\|R-S\|_{\ell^1}\), and, for
 nonnegative \(R,S\), Hellinger affinity,
 \(\int_{\mathsf H}\sqrt{(\mathcal E_{N,p}R)(\mathcal E_{N,p}S)}\,\dd x
 =\sum_{\lambda\in\mathsf L_N}\sqrt{R(\lambda)S(\lambda)}\).
-Indeed, each \(\mathsf C_{N,p}(\lambda)\) has volume
-\(|\mathsf C|N^{-(d-1)/2}\), which cancels the prefactor in both cellwise
-integrals.
+Each cell has volume \(|\mathsf C|N^{-(d-1)/2}\).
 
 \begin{lemma}[Uniform Young local limit]\label{lem:young-local-limit}
 For every compact \(K\Subset\Delta_d^\circ\),
@@ -3828,9 +3580,8 @@ vanish uniformly on compact \(K\), proving \eqref{eq:young-local-limit}.
 
 \begin{lemma}[Continuous limit of randomized dilation]
 \label{lem:randomized-dilation}
-Let \(\widetilde Q_{m_n,p}=P_{n,p}D_n\) denote the
-\(\widetilde\nu\)-marginal of the joint law obtained by applying the transition
-rule \(D_n\) to an input label drawn from \(P_{n,p}\), before the replacement in
+Let \(\widetilde Q_{m_n,p}=P_{n,p}D_n\) denote the output law of the
+transition rule \(D_n\) under input law \(P_{n,p}\), before the replacement in
 \eqref{eq:rounding-kernel}.  For every compact
 \(K\Subset\Delta_d^\circ\),
 \begin{equation}\label{eq:rounded-density-limit}
@@ -3850,7 +3601,7 @@ For \(a>0\) and \(f\in L^1(\mathsf H)\), set
 \[
   (\operatorname{dil}_a f)(y)=a^{-(d-1)/2}f(y/\sqrt a),
 \]
-and define the target-cell averaging operator explicitly by
+and define the target-cell averaging operator by
 \[
   (\operatorname{Av}_{m_n,p}f)(x)
   :=\frac{m_n^{(d-1)/2}}{|\mathsf C|}
@@ -3918,23 +3669,16 @@ Thus \(\|e\|_\infty\le c_{\mathrm{rnd}}\), where
   =\frac{d-1}{2}\left(1+\sup_n\gamma_n\right)<\infty.
 \]
 
-Compactness of \(K\) gives \(c_0>0\) such that, for all large \(n\), every
-\(p\in K\) and \(\mu\in\mathsf T_n(p)\) satisfy
+For \(p\in K\) and \(\mu\in\mathsf T_n(p)\), since
+\(\widetilde\nu/m_n=\mu/n+e/m_n\), this gives
 \[
-  \mu_d\ge c_0n,
-  \qquad
-  \mu_i-\mu_{i+1}\ge c_0n\quad(i<d).
+  \left\|\frac{\widetilde\nu}{m_n}-p\right\|_\infty
+  \le n^{-1/3}+\frac{c_{\mathrm{rnd}}}{m_n}.
 \]
-For \(\omega=\widetilde\nu-\mu=(\gamma_n-1)\mu+e\), these bounds imply
-\[
-  \omega_d\ge(\gamma_n-1)c_0n-c_{\mathrm{rnd}},\qquad
-  \omega_i-\omega_{i+1}
-  \ge(\gamma_n-1)c_0n-2c_{\mathrm{rnd}}\quad(i<d).
-\]
-Since \(\gamma_n\to\gamma>1\), both are positive for large \(n\).
-Thus \(\omega\vdash m_n-n\) and
-\(\widetilde\nu=\mu+\omega\in\mathsf Y_{m_n}\).  No rounded label is
-changed for typical \(\mu\), proving \eqref{eq:rounding-support}.
+The compatibility assertion of \cref{prop:sector-fidelity}, with
+\(\delta_n=n^{-1/3}+c_{\mathrm{rnd}}/m_n\), therefore gives
+\(\widetilde\nu-\mu\vdash m_n-n\) for all large \(n\).  No rounded label
+is changed for typical \(\mu\), proving \eqref{eq:rounding-support}.
 
 Coupling the raw and final labels by the fallback rule therefore gives
 \[
@@ -3949,18 +3693,12 @@ uniformly on \(K\), by \cref{lem:young-concentration}.  Combining
 \section{Unified Gaussian flat-prior converse}
 \label[appendix]{app:gaussian-converse}
 
-This appendix proves the two converse inequalities in
-\cref{thm:gaussian-amplification}.  The weighted-fidelity bound
-(\cref{lem:weighted-fidelity}) reduces fidelity to an oscillator moment;
-compact-observable limits (\cref{lem:compact-cp-limit}) and the least-noise
-inequality (\cref{prop:least-noise-moment}) bound that moment.
-\Cref{prop:flat-prior-converse} combines these ingredients with a direct
-Gaussian translation estimate for the classical factor, giving
-\(\Forb(\gamma,p)\) in the orbital model and
-\(\Fcl(\gamma,d)\Forb(\gamma,p)\) in the full model.
+We prove both converses in \cref{thm:gaussian-amplification} by combining
+weighted fidelity, compact-observable limits, a least-noise moment,
+and Gaussian translation in \cref{prop:flat-prior-converse}.
 
-The classical parameter space has
-dimension \(k=0\) for the orbital problem and \(k=d-1\) for the full problem.
+The classical parameter space has dimension \(k=0\) in the orbital model
+and \(k=d-1\) in the full model.
 All trace-class-valued integrals below are Bochner integrals in trace norm.
 For classical--quantum maps, complete positivity means positivity of
 \(\operatorname{id}_{M_a}\otimes\Lambda\) for every \(a\ge1\), with the
@@ -4032,7 +3770,7 @@ completely positive map
 \end{equation}
 for every \(X\in\cT_1(\cH_0)\) and every compact
 \(K\in\mathcal K(\cH_1)\).  If
-\(\Tr\Gamma_j(X)\le c\Tr X\) for every \(X\ge0\), then
+\(\limsup_j\Tr\Gamma_j(X)\le c\Tr X\) for every \(X\ge0\), then
 \(\Tr\Gamma(X)\le c\Tr X\).
 
 Suppose in addition that
@@ -4063,9 +3801,9 @@ to every compact \(K\), producing a
 bounded complex-linear map
 \(\Gamma^*:\mathcal K(\cH_1)\to\mathcal B(\cH_0)\).
 
-For every positive block matrix \(A=[K_{ab}]\) of compact operators,
-\([\Gamma_j^*(K_{ab})]\ge0\); its entrywise weak-* limit is
-\([\Gamma^*(K_{ab})]\ge0\).  Thus \(\Gamma^*\) is completely positive.
+For every positive block matrix \([K_{ab}]\) of compact operators,
+\([\Gamma_j^*(K_{ab})]\ge0\), so its entrywise weak-* limit
+\([\Gamma^*(K_{ab})]\) is positive.  Thus \(\Gamma^*\) is completely positive.
 
 Since \(\mathcal K(\cH_1)^*=\cT_1(\cH_1)\), define \(\Gamma(X)\) by
 \[
@@ -4078,6 +3816,7 @@ finite-rank projections and \(X\ge0\), then
 \[
   \Tr\Gamma(X)
   =\sup_N\lim_j\Tr[\Gamma_j(X)P_N]
+  \le\limsup_j\Tr\Gamma_j(X)
   \le c\Tr X.
 \]
 Finally, for fixed \(g,X\) and compact \(K\), the operator
@@ -4103,10 +3842,6 @@ Fix \(\gamma>1\).  For \(s\ge1\) and
   =\bigotimes_{\ell=1}^s\tau_{q_\ell^{(\gamma)}}.
 \]
 
-The multimode idler representation expresses the output number law as a
-mixture of product negative-binomial laws.  A direct coupling then gives
-the least-noise moment, without phase averaging or a mode-by-mode argument.
-
 \begin{fact}[Covariant-amplifier representation]
 \label{fact:covariant-amplifier-representation}
 Let \(G_1,\ldots,G_s>1\), and write
@@ -4129,27 +3864,18 @@ number diagonal, or a product state.
 \end{fact}
 
 \begin{proof}
-Covariance implies that
-\(\Lambda^*(D(w))D(\sqrt{\mathbf G}w)^*\) commutes with every displacement.
-Irreducibility of the Weyl system therefore gives
-\[
-  \Lambda^*(D(w))=f(w)D(\sqrt{\mathbf G}w)
-\]
-for a scalar function \(f\).  In real phase-space coordinates the associated
-defect symplectic form is
+Covariance and Weyl irreducibility give
+\(\Lambda^*(D(w))=f(w)D(\sqrt{\mathbf G}w)\).  Vacuum matrix elements
+show that \(f\) is continuous at zero, so \(\Lambda\) is a linear
+bosonic channel.  Its defect form is
 \(\bigoplus_{\ell=1}^s(1-G_\ell)\Omega_2\), where
 \(\Omega_2=\left(\begin{smallmatrix}0&1\\-1&0\end{smallmatrix}\right)\).
-It is nondegenerate, so the quantum Bochner criterion \cite{Holevo1982}
-identifies \(f\), after modewise rescaling and phase conjugation, with the
-characteristic function of a unique joint idler state.
-In the exact dilation theorem \cite[Lemma~7]{LamiSabapathyWinter2018},
-take the system matrix
-\(\bigoplus_\ell\sqrt{G_\ell}I_2\) and the noise matrix
-\(\bigoplus_\ell\sqrt{G_\ell-1}\diag(1,-1)\).
-These are precisely the system and idler blocks of the product of two-mode
-squeezers in \eqref{eq:covariant-amplifier-idler}.  The one-mode gain-\(2\)
-case is also derived directly in
-\cite[Appendix~A]{GutaMatsumoto2006MixedGaussianCloning}.
+This form is invertible, so \cite[Lemma~7]{LamiSabapathyWinter2018}
+gives an exact dilation with \(s\) idler modes.  Choose the noise matrix
+\(\bigoplus_\ell\sqrt{G_\ell-1}\diag(1,-1)\) and complete these
+blocks with a product of two-mode squeezers, yielding
+\eqref{eq:covariant-amplifier-idler}.  The noise matrix is invertible,
+so \(f\) determines the idler characteristic function and hence its state.
 \end{proof}
 
 \begin{proposition}[Least-noise moment]
@@ -4166,7 +3892,7 @@ Let
   W(\widehat{\mathbf N}):=\prod_{\ell=1}^s w_\ell(\widehat N_\ell),
 \)
 where every \(w_\ell\) is bounded, nonnegative, and nonincreasing on
-\(\mathbb Z_{\ge0}\), then
+\(\mathbb Z_{\ge0}\).  Then
 \begin{equation}\label{eq:least-noise-moment}
   \Tr[\Gamma(\tau)W(\widehat{\mathbf N})]
   \le\Tr[\Gamma(\tau)]
@@ -4188,7 +3914,7 @@ The quantum-limited amplifier \(\cA_G\) sends vacuum to
 \end{equation}
 The composite
 \(\mathcal B=\Lambda\circ\bigotimes_\ell\cA_{1/(1-q_\ell)}\)
-sends joint vacuum to \(\Lambda(\tau)\) and has modewise gains
+therefore sends joint vacuum to \(\Lambda(\tau)\), with modewise gains
 \[
   G_\ell=\frac{\gamma}{1-q_\ell},\qquad
   \lambda_\ell=1-G_\ell^{-1}=q_\ell^{(\gamma)}.
@@ -4217,13 +3943,13 @@ the output number probabilities:
     \binom{k_\ell+l_\ell}{l_\ell}
     (1-\lambda_\ell)^{l_\ell+1}\lambda_\ell^{k_\ell}.
 \end{equation}
-Thus, conditional on \(\mathbf l\), the coordinates are independent
-\(\mathrm{NB}(l_\ell+1,\lambda_\ell)\) variables.  The weights
-\(a_{\mathbf l}\) may be correlated; no product or phase-invariance
+Conditional on \(\mathbf l\), the coordinates are independent
+\(\mathrm{NB}(l_\ell+1,\lambda_\ell)\) variables; the mixing law
+\(a_{\mathbf l}\) may be correlated.  No product or phase-invariance
 assumption on the idler is needed.
 
-Sample \(\mathbf L\) with law \(a_{\mathbf l}\), independently of geometric
-variables \(Z_{\ell,j}\), all independent, with
+Sample \(\mathbf L\) with law \(a_{\mathbf l}\) and, independently,
+mutually independent geometric variables \(Z_{\ell,j}\) with
 \(\Pr(Z_{\ell,j}=k)=(1-\lambda_\ell)\lambda_\ell^k\) for \(j,k\ge0\).
 The coupling
 \[
@@ -4240,8 +3966,7 @@ Since each \(w_\ell\) is nonnegative and nonincreasing,
   =\Tr[\tau^{(\gamma)}W].
 \]
 Multiplying by \(c=\Tr\Gamma(\tau)\) proves
-\eqref{eq:least-noise-moment}.  The one-mode gain-\(2\) stochastic order is
-also established in \cite[Lemma~2.3]{GutaMatsumoto2006MixedGaussianCloning}.
+\eqref{eq:least-noise-moment}.
 \end{proof}
 
 Specialize to \(s=r_d\), \(q_\ell=q_{ij}\),
@@ -4268,10 +3993,9 @@ Here \(\widehat N_{ij}\) is the number operator of the mode indexed by
 \(i<j\), and \(\lvert\mathbf k\rvert:=\sum_{i<j}k_{ij}\) is the total
 occupation number.
 Since \(q_{ij}<q_{ij}^{(\gamma)}\), each \(w_{ij}(n)\) is positive, bounded,
-and strictly decreasing in \(n\), and the eigenvalues of \(W_\gamma\) tend
-to zero as \(\lvert\mathbf k\rvert\to\infty\).
-Thus \(W_\gamma\) is bounded,
-injective, and compact.  Its definition gives
+and strictly decreasing, and the eigenvalues of \(W_\gamma\) tend to zero
+as \(\lvert\mathbf k\rvert\to\infty\).  Thus \(W_\gamma\) is bounded,
+injective, and compact, with
 \begin{equation}\label{eq:quantum-witness-identities}
   \Tr(\tau_p^{(\gamma)}W_\gamma)
   =\Tr(\tau_p W_\gamma^{-1})
@@ -4398,9 +4122,9 @@ The group law and the change of variables \(u=\eta+\xi\) give
     \frac1{|\Xi_{L_j}|}\int_{\Xi_{L_j}}A_{j,u}(R)\,\dd u.
 \end{aligned}
 \]
-The integrals cancel on the intersection of the two averaging sets.
-Since \(\mathcal U_\xi^{\mathrm{out}}\) is a trace-norm isometry and each
-\(A_{j,u}\) is a channel, hence a trace-norm contraction, this gives
+Cancel the intersection of the two averaging sets.  Since
+\(\mathcal U_\xi^{\mathrm{out}}\) is a trace-norm isometry and each
+\(A_{j,u}\) is a channel, hence a trace-norm contraction,
 \begin{equation}\label{eq:unified-approx-covariance}
   \|\Lambda_j(\mathcal U_\xi^{\mathrm{in}}R)
     -\mathcal U_\xi^{\mathrm{out}}\Lambda_j(R)\|_1
@@ -4451,27 +4175,23 @@ Letting \(\varepsilon\downarrow0\) proves
 \(g_1*u_\varepsilon\to g_1\) in \(L^1\).  Dominated convergence gives
 \(e_j\to0\).
 
-Taking
-\(\xi=(0,z)\) in \eqref{eq:unified-approx-covariance}, multiplying by
-\(\chi\), and integrating gives
+Taking \(\xi=(0,z)\) in \eqref{eq:unified-approx-covariance} and integrating
+against \(\chi\) gives
 \[
  \|\Gamma_j^\chi(D(z)XD(z)^*)
    -D(\sqrt\gamma z)\Gamma_j^\chi(X)D(\sqrt\gamma z)^*\|_1
  \le\|\chi\|_\infty b_j(0,z)\|X\|_1\longrightarrow0.
 \]
-Hence, after passing to a subsequence, \cref{lem:compact-cp-limit} gives a
-completely positive, displacement-covariant limit \(\Gamma^\chi\) such that
+Hence, after passing to a subsequence, \cref{lem:compact-cp-limit} and
+\eqref{eq:weighted-map-trace-bound} give a completely positive,
+displacement-covariant limit \(\Gamma^\chi\) with
+\(\Tr\Gamma^\chi(X)\le c_k\Tr X\) for \(X\ge0\), such that
 \begin{equation}\label{eq:weighted-map-limit}
   \Tr[\Gamma_j^\chi(X)K]
   \longrightarrow\Tr[\Gamma^\chi(X)K]
 \end{equation}
-for trace-class \(X\) and compact \(K\).
-For \(X\ge0\), testing against finite-rank projections and using
-\eqref{eq:weighted-map-trace-bound} gives
-\[
-  \Tr\Gamma^\chi(X)\le c_k\Tr X.
-\]
-In particular, the limiting map is trace nonincreasing.
+for trace-class \(X\) and compact \(K\).  Since \(c_k\le1\), the limit is
+trace nonincreasing.
 With
 \[
   M_j
@@ -4747,12 +4467,6 @@ All phase-space linear bosonic channels are approximately Gaussian dilatable,
 \doi{10.1088/1367-2630/aae738}{\emph{New J. Phys.} \textbf{20}, 113012 (2018)},
 \arxiv{1806.11042}.
 
-\bibitem[Hol82]{Holevo1982}
-A. S. Holevo,
-\emph{Probabilistic and Statistical Aspects of Quantum Theory},
-North-Holland, Amsterdam (1982);
-\doi{10.1007/978-88-7642-378-9}{2nd ed., Edizioni della Normale, Pisa (2011)}.
-
 \bibitem[BR97]{BarnettRadmore1997}
 S. M. Barnett and P. M. Radmore,
 \emph{Methods in Theoretical Quantum Optics},
@@ -4783,12 +4497,6 @@ V. Strassen,
 The existence of probability measures with given marginals,
 \doi{10.1214/aoms/1177700153}{\emph{Ann. Math. Statist.} \textbf{36},
 423--439 (1965)}.
-
-\bibitem[RS80]{ReedSimon1980}
-M. Reed and B. Simon,
-\href{https://shop.elsevier.com/books/i-functional-analysis/reed/978-0-12-585050-6}{\emph{Methods
-of Modern Mathematical Physics I: Functional Analysis}},
-revised and enlarged ed., Academic Press, San Diego (1980).
 
 \bibitem[KW01]{KeylWerner2001Spectrum}
 M. Keyl and R. F. Werner,
