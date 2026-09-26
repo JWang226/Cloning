@@ -115,7 +115,7 @@ When the spectrum is unknown, one spectrum-independent cloner attains
 uniformly on compact subsets of the simple full-rank chamber.  This
 channel is minimax optimal on compact spectral sets whose interior in the
 full spectral hyperplane is dense in the set.  The two factors quantify
-eigenbasis and spectral uncertainty.  \JF{1} Our channels combine classical
+spectral and eigenbasis uncertainty.  Our channels combine classical
 processing of Schur--Weyl labels with a covariant Cartan-sector channel;
 local asymptotic normality and a Gaussian fidelity bound against arbitrary
 channels yield the converses.  For flat projector states \(\rho=P/r\),
@@ -123,7 +123,7 @@ with \(P\) a rank-\(r\) orthogonal projector, we separately prove the
 optimum \(\gamma^{-r(d-r)/2}\).  Computing the exact asymptotic fidelity
 of purify--clone--trace (PCT) at simple full-rank spectra, and bounding it
 from above for projector states, we show that our cloners strictly
-outperform PCT at every fixed gain on both families. \JF{2}
+outperform PCT at every fixed gain on both families.
 \end{abstract}
 
 \vspace{1em}
@@ -397,19 +397,14 @@ taken in the full \((d-1)\)-dimensional hyperplane \(\mathsf A_d\): its
 spectral directions give the converse factor \(\Fcl(\gamma,d)\), and
 density extends the bound to the infimum over \(K\); see
 \cref{sec:minimax-completion}.
-\JF{Please spell out the converse: any competing channel sequence has
-worst-case fidelity over all of \(K\) at most
-\(\inf_{p\in K}\Funiv(\gamma,p)\). Explain how density extends the bound
-from interior spectra to this infimum over \(K\).}
-The condition matters.  For
-\(K=\{p\}\), the known-spectrum optimum is
-\(\Forb(\gamma,p)>\Funiv(\gamma,p)\), although part~\textup{(a)} still
-describes the spectrum-independent cloner.
-\JF{Please clarify: for \(K=\{p\}\), the known-spectrum channel is an
-admissible competitor because it may depend on \(K\), which reveals \(p\).
-The singleton \(K\), not the channel, fails the dense-interior condition
-of part~\textup{(b)}; part~\textup{(a)} still evaluates the specified
-spectrum-independent cloner.}
+The converse in part~\textup{(b)} is minimax: no competing channel sequence
+can asymptotically exceed \(\inf_{p\in K}\Funiv(\gamma,p)\) in worst-case
+fidelity over \(K\times\U(d)\), even though it may outperform
+\(\cC_n^{\mathrm{univ}}\) at particular \((p,g)\).
+For the singleton \(K=\{p\}\), which fails the closure condition in
+part~\textup{(b)}, the known-spectrum channel \(\cC_n^p\) is admissible
+and attains \(\Forb(\gamma,p)>\Funiv(\gamma,p)\); part~\textup{(a)}
+still evaluates the spectrum-independent cloner.
 
 A natural example bounds the smallest eigenvalue and every adjacent gap
 away from zero.  For \(0<\kappa<2/[d(d+1)]\), take
@@ -1018,45 +1013,37 @@ condition,
 uniformly over these distributions as well as \(p,\nu\).
 \end{proposition}
 
-\JF{Please rewrite this intuition paragraph.}
-The mechanism is already visible on states obtained by a fixed number of
-lowering operations.  Writing \(\omega=\nu-\mu\), the Cartan intertwiner
-satisfies
+The factor \(\Forb(\gamma,p)\) naturally appears as the fidelity of the
+thermal product states from \cref{sec:gaussian-amplification}:
 \[
-  V_{\mu,\omega}F_\alpha^{(\nu)}
-  =\bigl(F_\alpha^{(\mu)}\ot I+I\ot F_\alpha^{(\omega)}\bigr)
-    V_{\mu,\omega},
+  \Forb(\gamma,p)=F(\tau_p^{(\gamma)},\tau_p).
 \]
-where \(F_\alpha^{(\lambda)}\) is the lowering operator for
-\(\alpha=e_i-e_j\) on \(\cH_\lambda\).  After normalization, each excitation
-splits binomially between the two factors, with fraction
+To see this in the sector calculation, let \(\alpha=e_i-e_j\) with
+\(i<j\), \(q_\alpha=p_j/p_i\), and
+\(q_\alpha^{(\gamma)}=1-(1-q_\alpha)/\gamma\).  On weight spaces reached
+by a bounded number of lowerings from the highest weight \(\nu\), an
+orthonormalized PBW basis makes \(\rho_{p,\nu}\) diagonal and
+\(\cC_{\mu,\nu}(\rho_{p,\mu})\) asymptotically diagonal.  At a fixed
+basis index \(\mathbf r=(r_\alpha)_\alpha\), their diagonal entries
+converge to the corresponding number-basis entries:
 \[
-  s_{\alpha,n}
-  =\frac{\mu_i-\mu_j}{\nu_i-\nu_j}
-  =\frac1\gamma+o(1)
+\begin{aligned}
+  (\rho_{p,\nu})_{\mathbf r,\mathbf r}
+  &\longrightarrow \prod_\alpha(1-q_\alpha)q_\alpha^{r_\alpha}
+   =(\tau_p)_{\mathbf r,\mathbf r},\\
+  (\cC_{\mu,\nu}(\rho_{p,\mu}))_{\mathbf r,\mathbf r}
+  &\longrightarrow \prod_\alpha(1-q_\alpha^{(\gamma)})
+   (q_\alpha^{(\gamma)})^{r_\alpha}
+   =(\tau_p^{(\gamma)})_{\mathbf r,\mathbf r}.
+\end{aligned}
 \]
-entering the \(\mu\)-factor.  Thus the conditional thermal parameter
-\(q_{ij}=p_j/p_i\) is transformed into
-\begin{equation}\label{eq:sector-thermal-parameter}
-  1-s_{\alpha,n}+s_{\alpha,n}q_{ij}
-  \longrightarrow
-  1-\frac{1-q_{ij}}{\gamma}
-  =:q_{ij}^{(\gamma)}.
-\end{equation}
-Write \(\tau_q=(1-q)\sum_{k\ge0}q^k\proj{k}\) for the thermal state in
-the number basis on the one-mode Fock space of
-\cref{sec:gaussian-amplification}, and put
-\begin{equation}\label{eq:sector-thermal-products}
-  \tau_p=\bigotimes_{i<j}\tau_{q_{ij}},
-  \qquad
-  \tau_p^{(\gamma)}=\bigotimes_{i<j}\tau_{q_{ij}^{(\gamma)}}.
-\end{equation}
-The low-weight matrices of the sector output and ideal sector therefore
-approach those of \(\tau_p^{(\gamma)}\) and \(\tau_p\), whose fidelity is
-\(\Forb(\gamma,p)\).  The output coordinates depend on \(\nu\), not on
-\(\mu\), so the same state limit holds uniformly under mixing.  The exact
-PBW calculation and uniform thermal-tail argument are given in
-Appendix~\ref{app:sector-fidelity}.
+The powers of \(q_\alpha^{(\gamma)}\) in the output entries come from the
+binomial expansion of the Cartan intertwiner: with
+\(s_{\alpha,n}=(\mu_i-\mu_j)/(\nu_i-\nu_j)\to\gamma^{-1}\), its factor
+\((1-s_{\alpha,n}+s_{\alpha,n}q_\alpha)^{r_\alpha}\) tends to
+\((q_\alpha^{(\gamma)})^{r_\alpha}\).  A uniform tail bound extends this
+fixed-weight comparison to the full fidelity in
+\eqref{eq:uniform-cartan-sector-fidelity}.
 
 The second estimate concerns only \(K_n^{\mathrm{rnd}}\).
 
@@ -1083,22 +1070,28 @@ For every such \(K\), the induced output-label law \(Q_{m_n,p}\) from
 \end{equation}
 \end{proposition}
 
-\JF{Please rewrite this intuition paragraph.}
-The uniform shifts in \eqref{eq:randomized-rounding} make the transition rule a
-discrete realization of continuous dilation.  After centering at \(Np\) and
-scaling by \(\sqrt N\), embed a label law as a piecewise-constant density on
-the fundamental cells of the label lattice.  Before fallback replacement,
-the intersection-volume identity \eqref{eq:cell-kernel} identifies the
-embedded rounded law with the target-cell average of the
-\(\sqrt{\gamma_n}\)-dilation of the embedded input law.  Write
+The randomized transition rule \(K_n^{\mathrm{rnd}}\) is a discrete
+realization of the dilation \(\mu\mapsto\gamma_n\mu\): the uniform shifts in
+\eqref{eq:randomized-rounding} spread each input label over nearby output
+labels.  Represent the input Young-label law \(P_{n,p}\) by the
+piecewise-constant density \(\mathcal E_{n,p}P_{n,p}\), formed by centering at
+\(np\), scaling by \(\sqrt n\), and spreading each label mass over its lattice
+cell.  If \(\widetilde Q_{m_n,p}:=P_{n,p}D_n\) is the law of the rounded label
+\(\widetilde\nu\), the intersection-volume identity \eqref{eq:cell-kernel}
+identifies its embedded density \(\mathcal E_{m_n,p}\widetilde Q_{m_n,p}\)
+with the \(\sqrt{\gamma_n}\)-dilation of \(\mathcal E_{n,p}P_{n,p}\), averaged
+over each cell of the \(m_n\)-copy target-label
+lattice.  Write
 \begin{equation}\label{eq:young-covariance}
   \Sigma_p
   :=\left.(\diag(p)-pp^{\mathsf T})\right|_{
     \{x\in\R^d:\,\sum_i x_i=0\}}.
 \end{equation}
-The Young local limit is \(\mathsf N_{0,\Sigma_p}\), so randomized rounding changes the limit
-to \(\mathsf N_{0,\gamma\Sigma_p}\), whereas the ideal \(m_n\)-label law
-still converges to \(\mathsf N_{0,\Sigma_p}\).  Their fidelity (Hellinger affinity) is
+The Young local limit \(\mathcal E_{N,p}P_{N,p}\to\varphi_{0,\Sigma_p}\)
+applies to both the input law at \(N=n\) and the ideal output law at
+\(N=m_n\).  Thus the rounded output converges to
+\(\mathsf N_{0,\gamma\Sigma_p}\), while the ideal output converges to
+\(\mathsf N_{0,\Sigma_p}\).  Their fidelity (Hellinger affinity) is
 \begin{equation}\label{eq:label-gaussian-affinity}
   F\!\left(\mathsf N_{0,\gamma\Sigma_p},
            \mathsf N_{0,\Sigma_p}\right)
@@ -1327,8 +1320,11 @@ number operator \(\widehat N=a^*a\).  We use the Weyl convention
 \begin{equation}\label{eq:Weyl-convention}
   D(z)=\exp(z a^*-\bar z a).
 \end{equation}
-\JF{Move the definition of \(\tau_q\) here.}
-For the thermal states \(\tau_q\) introduced above, commutativity gives
+For \(0\le q<1\), define the number-diagonal thermal state
+\[
+  \tau_q=(1-q)\sum_{k\ge0}q^k\proj{k}.
+\]
+Since these states commute,
 \begin{equation}\label{eq:thermal-root-fidelity}
   F(\tau_q,\tau_{q'})
   =\frac{\sqrt{(1-q)(1-q')}}{1-\sqrt{qq'}}.
@@ -1343,9 +1339,14 @@ Equivalently, \(\cA_G(X)=\Tr_b[S_r(X\ot\proj{0}_b)S_r^*]\), where \(S_r\)
 is a two-mode squeezing unitary with \(\cosh^2 r=G\) and the idler is in
 vacuum.
 
-On \(\cF_{\mathrm{orb}}=\cF^{\ot r_d}\), use the thermal products
-\(\tau_p,\tau_p^{(\gamma)}\) from \eqref{eq:sector-thermal-products} and
-put \(D(z)=\bigotimes_{i<j}D(z_{ij})\).  The three relevant states are
+On \(\cF_{\mathrm{orb}}=\cF^{\ot r_d}\), put
+\(q_{ij}^{(\gamma)}=1-(1-q_{ij})/\gamma\) and define
+\begin{equation}\label{eq:sector-thermal-products}
+  \tau_p=\bigotimes_{i<j}\tau_{q_{ij}},
+  \qquad
+  \tau_p^{(\gamma)}=\bigotimes_{i<j}\tau_{q_{ij}^{(\gamma)}}.
+\end{equation}
+Put \(D(z)=\bigotimes_{i<j}D(z_{ij})\).  The three relevant states are
 \begin{equation}\label{eq:gaussian-amplification-model}
 \begin{aligned}
   \text{input:}\quad
@@ -1437,7 +1438,6 @@ The product amplifier \(\cA_\gamma^{\ot r_d}\) attains
 pushforward \(x\mapsto\sqrt\gamma x\) supplies the Gaussian affinity
 \(\Fcl(\gamma,d)\), attaining \(\Funiv(\gamma,p)\) in the full model.
 
-\JF{rewrite this intuition}
 For the converse, average a near-optimal channel over translates of the
 expanding flat-prior boxes and use a weighted-fidelity witness to reduce
 the problem to an oscillator moment.  The weighted oscillator maps have a
@@ -1645,7 +1645,6 @@ Monotonicity under \(T_n\), followed by
 \]
 \end{proof}
 
-\JF{Revise the paragraph below.}
 \paragraph{Fixed-label asymptotics versus LAN.}
 The thermal states \(\tau_p\) and \(\tau_p^{(\gamma)}\) also appear in
 \cref{prop:sector-fidelity}, but there they are cutoff limits of the
