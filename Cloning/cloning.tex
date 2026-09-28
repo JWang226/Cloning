@@ -846,11 +846,10 @@ The standard bounds
 \le \exp[-ND(\lambda/N\|p)]\) give
 \begin{equation}\label{eq:finite-Young-large-deviation}
   P_{N,p}(\lambda)
-  \le (N+1)^{d(d-1)/2}\exp[-ND(\lambda/N\|p)],
+  \le (N+1)^{d(d-1)/2}\exp[-ND(\lambda/N\|p)].
 \end{equation}
-where \(D\) denotes classical relative entropy, using natural logarithms.
-This is the estimate underlying the Keyl--Werner spectrum
-large-deviation theorem \cite{KeylWerner2001Spectrum}.
+Here \(D\) is classical relative entropy with natural logarithms
+\cite{KeylWerner2001Spectrum}.
 
 There are at most \((N+1)^{d-1}\) partitions of \(N\) with at most \(d\)
 rows.  If \(\lambda\notin\mathsf T_N(p)\), then
@@ -1239,10 +1238,10 @@ the output and target are \(O=\bigoplus_\nu\Xi_{n,p,\nu}\) and
  \qquad Q_G(\nu)=\Tr\Xi_\nu^G.
 \]
 Whenever \(Q_G(\nu)>0\), the mixture statement of
-\cref{prop:sector-fidelity} applies to \(\Xi_\nu^G/Q_G(\nu)\).  The direct-sum fidelity
-identity \eqref{eq:lifted-exact-block-fidelity} and
-the fact that labels with \(Q_G(\nu)=0\) contribute zero to both
-fidelities, and \(F(Q_G,P)\le1\) therefore give
+\cref{prop:sector-fidelity} applies to \(\Xi_\nu^G/Q_G(\nu)\).
+Labels with \(Q_G(\nu)=0\) contribute zero to both fidelities. Thus the
+direct-sum identity \eqref{eq:lifted-exact-block-fidelity} and
+\(F(Q_G,P)\le1\) give
 \[
  \bigl|F(O_G,T)-\Forb(\gamma,p)F(Q_G,P)\bigr|\le\eta_n,
  \qquad \eta_n\longrightarrow0,
@@ -2435,7 +2434,7 @@ squared fidelity by our value \((1+\delta)^{-r(d-r)}\) times
   \left(\frac{\sqrt{1+2\delta}}{1+\delta}\right)^{r-1}
   =1-\frac{r-1}{2}\delta^2+O_r(\delta^3).
 \]
-Thus the asymptotic fidelity gap is at least
+Thus the asymptotic squared-fidelity gap is at least
 \((r-1)\delta^2/2+O_{r,d}(\delta^3)\), while
 \cref{prop:pct-projector-small-error} bounds it above by
 \(O_{r,d}(\delta^2)\).  Our advantage appears at second order,
@@ -2557,7 +2556,7 @@ for \(r=1\).  Neither model allows rank changes, which remains an open question.
 We further conjecture that, at every fixed \(\gamma>1\) and with the same
 prior spectral or rank information available to both protocols,
 Schur--Cartan cloners with transition rules adapted to degenerate or
-rank-deficient spectra outperform PCT on the corresponding families, and
+rank-deficient spectra outperform PCT on the corresponding families of mixed states, and
 that a single spectrum-independent extension strictly beats PCT with rank
 bound \(d\) in the all-state problem
 \eqref{eq:uniform-state-minimax-value}.  The latter would require control
@@ -2987,8 +2986,7 @@ All such pairs \((\mu,\nu)\) are compatible for large \(n\), by the first
 part of the proof.  Let
 \[
   \overline\sigma_{p,\nu}
-  =\sum_\mu a_\mu\,\sigma_{\mu,\nu},
-  \qquad \sigma_{\mu,\nu}=\cC_{\mu,\nu}(\rho_{p,\mu}).
+  =\sum_\mu a_\mu\,\sigma_{\mu,\nu}.
 \]
 For fixed \(L\), let \(\varepsilon_{n,L}\to0\) bound both trace-norm
 errors in \eqref{eq:output-fixed-height-convergence} and
@@ -3737,11 +3735,10 @@ Then
 \]
 For each fixed input \(R\), the integrand is trace-norm continuous and
 bounded in norm by \(\|R\|_1\), so the Bochner integral is well-defined.
-Because \(F\) is invariant under the output
-isometries \(\mathcal U_\xi^{\mathrm{out}}\) and jointly concave, the
-finite-average inequality follows.  Fidelity is concave and trace-norm
-continuous in its first argument, so Riemann sums pass this inequality
-to the Bochner average:
+Fidelity is invariant under the output isometries
+\(\mathcal U_\xi^{\mathrm{out}}\), and is concave and trace-norm continuous
+in its first argument. The finite-average inequality therefore passes
+to the Bochner average by Riemann sums:
 \begin{equation}\label{eq:unified-folner-concavity}
   F_L(\Lambda)
   =\frac1{|\Xi_L|}\int_{\Xi_L}
