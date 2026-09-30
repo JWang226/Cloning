@@ -1,0 +1,19 @@
+# Lean and local verification outputs
+**/.lake/
+**/build/
+**/.audit-work/
+**/verification/runs/
+**/__pycache__/
+*.pyc
+*.olean
+*.ilean
+*.c.o
+
+# Editor and TeX intermediates (existing tracked manuscript files are preserved)
+.DS_Store
+*.aux
+*.fdb_latexmk
+*.fls
+*.out
+*.synctex.gz
+*.toc

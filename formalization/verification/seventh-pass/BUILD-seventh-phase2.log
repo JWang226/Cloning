@@ -1,0 +1,12 @@
+CHECK Cloning/BosonicStochasticOrder.lean
+CHECK Cloning/BosonicMixtureStochasticOrder.lean
+CHECK Cloning/ComplexCoherent.lean
+CHECK Cloning/CoherentKernel.lean
+CHECK Cloning/CoherentContinuity.lean
+CHECK Cloning/ComplexGaussianMoments.lean
+CHECK Cloning/CoherentGaussianMixture.lean
+CHECK Cloning/MultimodeCoherent.lean
+CHECK Cloning/MultimodeLeastNoise.lean
+CHECK Cloning/OrbitalSeededOptimum.lean
+CHECK Cloning/YoungTwoRowConcentration.lean
+CHECK Cloning.lean

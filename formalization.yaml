@@ -1,0 +1,166 @@
+version: v0.3
+project:
+  name: "Mixed-state quantum cloning"
+  proof_assistant: "Lean 4"
+  formalization_directory: formalization
+  entrypoint: formalization/All.lean
+sources:
+  - file: formalization/reference/cloning.tex
+    role: audited_manuscript_snapshot
+    explicit_scope: "This is the source snapshot used by the checked formalization. The existing repository manuscript Cloning/paper_v2/cloningv2.tex has not been checked for equivalence to this snapshot."
+status:
+  overall: partial
+  explicit_scope: "Substantial checked results in explicit operator and probability models, with conditional assembly of the physical main cloning theorems. Public entrypoints add imports and declaration checks only."
+  sorry_count: 0
+  sorry_in_definitions: 0
+  allowed_axioms:
+    - propext
+    - Classical.choice
+    - Quot.sound
+  additional_project_axioms: []
+  verified_library:
+    modules: 136
+    lemmas_and_theorems: 1348
+    unique_compiled_project_constants: 2753
+    explicit_scope: "Counts describe the audited Cloning implementation library; the ten navigation files and All.lean introduce no declarations and are not counted as implementation modules."
+  main_results:
+    - name: "Lifted-sector fidelity and achievability"
+      declaration: "Cloning.MatrixFidelity.lifted_matrix_factorization_bound"
+      sorry_count: 0
+      axioms: ["Classical.choice", "Quot.sound", "propext"]
+      file: formalization/LiftedSectorFidelity.lean
+      status: proved_reduction
+      explicit_scope: "Concrete matrix channel construction, lifted fidelity factorization, deletion control, and achievability propagation are proved. Physical Schur/Cartan identification, retained-sector approximation, discarded-mass estimates, and label limits remain inputs."
+      supporting_declarations:
+        - "Cloning.MatrixCovariantBalance.cartanChannel_of_irreducible_intertwiner"
+        - "Cloning.MatrixFidelity.lifted_matrix_fidelity_converges"
+        - "Cloning.MatrixTransitionAchievability.transition_achievability_bound"
+      source_files:
+        - formalization/Cloning/MatrixCovariantBalance.lean
+        - formalization/Cloning/MatrixFidelityAsymptotics.lean
+        - formalization/Cloning/MatrixTransitionAchievability.lean
+    - name: "Projector converse and dimension factors"
+      declaration: "Cloning.MatrixFidelity.finite_kraus_projector_converse"
+      sorry_count: 0
+      axioms: ["Classical.choice", "Quot.sound", "propext"]
+      file: formalization/ProjectorBounds.lean
+      status: proved_reduction
+      explicit_scope: "The actual finite Kraus-channel projector converse and explicit crossing-root dimension-product asymptotics are proved. The invariant physical block decomposition, representation-dimension identification, and arbitrary-rank Young-law input remain separate."
+      supporting_declarations:
+        - "Cloning.YoungDimensionRatio.projector_sector_factor_tendsto"
+      source_files:
+        - formalization/Cloning/MatrixFidelityProjector.lean
+        - formalization/Cloning/YoungDimensionRatio.lean
+        - formalization/Cloning/YoungDimensionSecondOrder.lean
+    - name: "Classical rounding and concrete Young-law moments"
+      declaration: "Cloning.YoungRounding.roundedDensity_l1_of_local_limit"
+      sorry_count: 0
+      axioms: ["Classical.choice", "Quot.sound", "propext"]
+      file: formalization/ClassicalRounding.lean
+      status: proved_bridge_with_local_limit_input
+      explicit_scope: "The coordinate-lattice rounding PMF, exact dilation/averaging bridge, fixed-reference density convergence from local estimates, Gaussian affinity integral, and both concrete two-row dimension moments are proved. Root-hyperplane measure identification, Young compatibility fallback, its negligible mass, the general-rank local limit, and compact-spectrum uniformity are not proved."
+      supporting_declarations:
+        - "Cloning.YoungRounding.rounding_intertwining_scaled"
+        - "Cloning.GaussianAffinity.integral_product_dilation_eq_classicalValue"
+        - "Cloning.YoungTwoRow.meanDimensionRatio_relative_isBigO"
+        - "Cloning.YoungTwoRow.meanInverseDimensionRatio_relative_isBigO"
+      source_files:
+        - formalization/Cloning/YoungRounding.lean
+        - formalization/Cloning/GaussianAffinity.lean
+        - formalization/Cloning/YoungTwoRowAsymptotics.lean
+        - formalization/Cloning/YoungTwoRowConcentration.lean
+    - name: "Werner occupation and coherent-product limits"
+      declaration: "Cloning.InfiniteOccupationStates.occupation_traceNorm_tendsto"
+      sorry_count: 0
+      axioms: ["Classical.choice", "Quot.sound", "propext"]
+      file: formalization/OccupationLimits.lean
+      status: proved_in_explicit_occupation_models
+      explicit_scope: "The actual normalized Werner binomial-ratio laws converge in trace norm to thermal occupation operators. The constructed CPTP occupation channel also approximates the normalized complex coherent product for every fixed amplitude in the explicit two-level tensor realization. Physical Werner-output identification, general physical symmetric-tensor embeddings, and uniform LAN estimates remain separate."
+      supporting_declarations:
+        - "Cloning.ComplexCoherent.occupationChannel_coherent_product_tendsto"
+      source_files:
+        - formalization/Cloning/InfiniteOccupationStates.lean
+        - formalization/Cloning/ComplexCoherent.lean
+    - name: "Coherent Gaussian mixtures are thermal operators"
+      declaration: "Cloning.MultimodeCoherentGaussianMixture.integral_coherentProjector_gaussian_eq_productThermal"
+      sorry_count: 0
+      axioms: ["Classical.choice", "Quot.sound", "propext"]
+      file: formalization/CoherentGaussianMixtures.lean
+      status: proved_in_canonical_fock_model
+      explicit_scope: "The literal finite product circular Gaussian mixture of normalized coherent projectors equals the product geometric operator as a trace-class Bochner integral. Every coordinate variance is positive; the empty product with zero modes is also covered; actual thermal state fidelity is computed. This does not identify the physical PCT output or construct a general physical occupation embedding."
+      supporting_declarations:
+        - "Cloning.InfiniteDiagonalFidelity.stateFidelity_productGeometric"
+      source_files:
+        - formalization/Cloning/MultimodeCoherentGaussianMixture.lean
+        - formalization/Cloning/InfiniteDiagonalFidelity.lean
+    - name: "Exact bosonic seeded fidelity optimum"
+      declaration: "Cloning.OrbitalSeededOptimum.isGreatest_payoff"
+      sorry_count: 0
+      axioms: ["Classical.choice", "Quot.sound", "propext"]
+      file: formalization/BosonicSeededOptimum.lean
+      status: proved_for_constructed_seeded_family
+      explicit_scope: "The constructed amplifier has the exact thermal output and achieved mode factor. Every correlated or coherent joint idler satisfies the full antitone product-observable bound, and vacuum attains the exact orbitalValue optimum over all joint idler density states. Universality over arbitrary displacement-covariant channels still requires Weyl covariance, the arbitrary-idler representation theorem, and the composite-gain reduction."
+      supporting_declarations:
+        - "Cloning.MultimodeLeastNoise.productObservable_moment_le"
+        - "Cloning.BosonicAmplifier.stateFidelity_channel_gain"
+      source_files:
+        - formalization/Cloning/OrbitalSeededOptimum.lean
+        - formalization/Cloning/MultimodeLeastNoise.lean
+        - formalization/Cloning/BosonicAmplifierThermal.lean
+    - name: "Dimension-independent quantum fidelity estimates"
+      declaration: "Cloning.InfiniteFidelity.fidelity_data_processing"
+      sorry_count: 0
+      axioms: ["Classical.choice", "Quot.sound", "propext"]
+      file: formalization/QuantumFidelity.lean
+      status: proved_for_actual_trace_class_operators
+      explicit_scope: "Data processing, trace-distance continuity, positive deletion, and weighted fidelity are proved for actual positive trace-class operators, including singular inputs. The unbounded-inverse witness version retains an explicit uniform regularized inverse-moment premise; model-specific channels and approximation errors are not supplied by these general inequalities."
+      supporting_declarations:
+        - "Cloning.InfiniteFidelity.stateFidelity_continuity"
+        - "Cloning.InfiniteFidelity.fidelity_deletion_bound"
+        - "Cloning.InfiniteFidelity.fidelity_sq_le_of_regularized_inverse_moment"
+      source_files:
+        - formalization/Cloning/InfiniteChannelFidelity.lean
+        - formalization/Cloning/InfiniteFidelityContinuity.lean
+        - formalization/Cloning/InfiniteFidelityRegularized.lean
+    - name: "Common-subsequence compact CP limits"
+      declaration: "Cloning.InfiniteTraceClass.exists_subsequence_covariant_cp_limit_of_limsup_trace_bound"
+      sorry_count: 0
+      axioms: ["Classical.choice", "Quot.sound", "propext"]
+      file: formalization/CompactCPLimits.lean
+      status: proved_analytic_compactness_theorem
+      explicit_scope: "On separable Hilbert spaces, actual uniformly bounded CP maps with the stated limsup trace bound admit one common subsequence converging on every input and compact observable. Approximate covariance passes to that same limit; trace loss is allowed. Actual finite-output cutoff channels converge uniformly on compact positive input sets. Construction and estimates of the manuscript-specific averaged maps remain separate."
+      supporting_declarations:
+        - "Cloning.InfiniteTraceClass.QuantumChannel.finiteBasisCutoff_tendstoUniformlyOn"
+      source_files:
+        - formalization/Cloning/InfiniteAsymptoticCPCompactness.lean
+        - formalization/Cloning/InfiniteCutoffChannels.lean
+    - name: "Quantum-channel LAN and minimax transfer"
+      declaration: "Cloning.InfiniteLANTransfer.fidelity_transfer"
+      sorry_count: 0
+      axioms: ["Classical.choice", "Quot.sound", "propext"]
+      file: formalization/LANTransfer.lean
+      status: proved_transfer_conditional_on_comparison_errors
+      explicit_scope: "The Hilbert-space channel-composition fidelity estimate and minimax-to-Bayes bound are proved using actual quantum channel laws. Physical forward/reverse LAN channels, their uniform approximation errors, payoff integrability, the continuous classical-quantum register model, and the Gaussian optimization input are not established by this transfer theorem."
+      supporting_declarations:
+        - "Cloning.InfiniteLANTransfer.minimax_le_bayesValue"
+      source_files:
+        - formalization/Cloning/InfiniteLANTransfer.lean
+    - name: "Conditional main cloning assembly and scalar PCT comparison"
+      declaration: "Cloning.known_spectrum_optimum_of_bounds"
+      sorry_count: 0
+      axioms: ["Classical.choice", "Quot.sound", "propext"]
+      file: formalization/ConditionalCloningTheorems.lean
+      status: conditional_main_theorem_assembly
+      explicit_scope: "Known- and unknown-spectrum minimax convergence follows from explicit supplied achievability and converse bounds. These are not end-to-end proofs of the physical cloning theorems. The strict PCT-versus-universal comparison of the explicit scalar limiting formulas is proved; convergence of the actual finite-sample PCT output to that formula remains separate."
+      supporting_declarations:
+        - "Cloning.unknown_spectrum_optimum_of_bounds"
+        - "Cloning.pctValue_lt_universalValue"
+      source_files:
+        - formalization/Cloning/Main.lean
+  remaining_gaps:
+    - "Physical Schur/Cartan/PBW constructions and uniform sector approximation."
+    - "General-rank Young-law identification and local limits, root-hyperplane measure bridge, compatibility fallback, and uniform spectral-family estimates."
+    - "Weyl displacement covariance, universal arbitrary-idler representation, and composite-gain reduction."
+    - "Continuous classical-quantum integration, channel averaging, and Gaussian boundary estimates."
+    - "Physical two-way LAN maps and their uniform comparison errors."
+    - "General physical occupation embedding, Werner-output identification, and remaining PCT output/covariance connection."

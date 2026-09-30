@@ -1,0 +1,47 @@
+name = "mixedStateCloning"
+version = "0.1.0"
+defaultTargets = ["All"]
+moreLeanArgs = ["-DautoImplicit=false"]
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+git = "https://github.com/leanprover-community/mathlib4"
+rev = "f156f7abd91ac67adb22bf999e5a71ba22e22e41"
+
+[[lean_lib]]
+name = "Cloning"
+
+[[lean_lib]]
+name = "All"
+
+[[lean_lib]]
+name = "LiftedSectorFidelity"
+
+[[lean_lib]]
+name = "ProjectorBounds"
+
+[[lean_lib]]
+name = "ClassicalRounding"
+
+[[lean_lib]]
+name = "OccupationLimits"
+
+[[lean_lib]]
+name = "CoherentGaussianMixtures"
+
+[[lean_lib]]
+name = "BosonicSeededOptimum"
+
+[[lean_lib]]
+name = "QuantumFidelity"
+
+[[lean_lib]]
+name = "CompactCPLimits"
+
+[[lean_lib]]
+name = "LANTransfer"
+
+[[lean_lib]]
+name = "ConditionalCloningTheorems"
+

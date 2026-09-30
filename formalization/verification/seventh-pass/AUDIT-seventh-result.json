@@ -1,0 +1,24 @@
+{
+  "started_utc": "2026-09-30T05:30:47.122859+00:00",
+  "completed_utc": "2026-09-30T05:43:11.411583+00:00",
+  "returncode": 0,
+  "source_hashes_unchanged": true,
+  "artifact_hashes_unchanged": true,
+  "lean_binary_unchanged": true,
+  "audit_script_unchanged": true,
+  "freeze_sha256": "bafe0b3d343970a018c09022997e5f619698082854d1ad3a1a5d3f68bb1a1d43",
+  "audit_jobs": 3,
+  "audit_artifact_sha256": {
+    "Audit.lean": "33a58870bce68ec9b93f80853a7fcc2976a300289b1ee25915152b1df46b87a3",
+    "AXIOMS.txt": "2b2ce9ff37ec9e1611502e85b98e90d2e396bbe66bb2a586c0c2d9b48f8f8720",
+    "verification.json": "082cb85cee5b90dd05bd8a48793f6f203119047ad8f028ff713b998f43f9c0f3",
+    "AUDIT-seventh.log": "0d91d3933fe99183e270a150900595823b04cca23b7d252d2773cb3acede9622",
+    "audit-shards/Shard000-of-003.lean": "e9186bbd7e2db8e9660ec3ad27f825ade290c5859481e7fb72d8f7c0a00cc992",
+    "audit-shards/Shard000-of-003.txt": "e8aa309b127b3aeebf9f49a7b409bcecd602bc37a6ccf254f033c5990fa0f303",
+    "audit-shards/Shard001-of-003.lean": "b28ea84cc9cdd99f3f61fecbc95970ab3e3601a77535e6968be9856e92bcc4a1",
+    "audit-shards/Shard001-of-003.txt": "e791046c8e9b1e7137e42deef16ec66b64472fad2ab724229f5d31c03a7d9786",
+    "audit-shards/Shard002-of-003.lean": "d3f6606674e326eeef4e54d8a4afe7bc5fe6e68003b90d2babc610a102a97f09",
+    "audit-shards/Shard002-of-003.txt": "f92f1d1a0b12d485e2f2e37c93409494cab9661db79e7aac6b501d3f36018f65"
+  },
+  "audit_provenance_sha256": "a03e540fc131213bb326c8c7e17e66193a919af6d6e9222ccf49326f330e4d5b"
+}

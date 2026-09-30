@@ -1,0 +1,1320 @@
+{
+  "schema_version": 1,
+  "audit_date_utc": "2026-09-30",
+  "purpose": "Pinned source-level inventory of external Lean resources, with a separately recorded locally adapted and kernel-checked subset. Full external repositories were not rebuilt.",
+  "local_project_toolchain": "leanprover/lean4:v4.29.0-rc6",
+  "fetch_method": {
+    "tool": "mcp__codex_apps__github_fetch_file",
+    "ref": "Every dependency-closure source fetched with an explicit pinned commit ref.",
+    "tree_tool": "mcp__codex_apps__github_fetch (GitHub REST Git trees and branch metadata)",
+    "network_note": "Shell GitHub DNS and several web raw-source opens failed; the GitHub connector returned primary repository code."
+  },
+  "repositories": [
+    {
+      "repository": "https://github.com/mathlib-initiative/Etingof-RepresentationTheory-draft1",
+      "previous_repository": "https://github.com/FormalFrontier/Etingof-RepresentationTheory-draft1",
+      "revision": "9587adb8833ebd14d6f3c586a39fac0241c9df63",
+      "revision_date_utc": "2026-08-25T22:53:22Z",
+      "branch": "main",
+      "lean_toolchain": "leanprover/lean4:v4.32.2",
+      "mathlib_revision": "905b95818eb32af7874a58b427f50c1711a5e96c",
+      "license": {
+        "status": "not_verified",
+        "evidence": "No LICENSE or LICENSE.md in inspected pinned repository root tree; fetching LICENSE returned an error; README contains no license statement; inspected Schur source headers lack per-file license text.",
+        "reuse_note": "Do not infer an open-source reuse license solely from public availability. Clarify licensing before substantial source redistribution."
+      },
+      "relevant_declarations": [
+        {
+          "path": "EtingofRepresentationTheory/Chapter5/Corollary5_19_2.lean",
+          "name": "Etingof.Corollary5_19_2",
+          "line": 33,
+          "url": "https://github.com/mathlib-initiative/Etingof-RepresentationTheory-draft1/blob/9587adb8833ebd14d6f3c586a39fac0241c9df63/EtingofRepresentationTheory/Chapter5/Corollary5_19_2.lean"
+        },
+        {
+          "path": "EtingofRepresentationTheory/Chapter5/SchurWeylPartition.lean",
+          "name": "Etingof.Theorem5_18_4_partition_bimodule_decomposition_equivariant",
+          "line": 375,
+          "url": "https://github.com/mathlib-initiative/Etingof-RepresentationTheory-draft1/blob/9587adb8833ebd14d6f3c586a39fac0241c9df63/EtingofRepresentationTheory/Chapter5/SchurWeylPartition.lean"
+        },
+        {
+          "path": "EtingofRepresentationTheory/Chapter5/SchurWeylPartition.lean",
+          "name": "Etingof.spechtLabelEmbedding",
+          "line": 301
+        },
+        {
+          "path": "EtingofRepresentationTheory/Chapter5/Theorem5_18_4.lean",
+          "name": "Etingof.Theorem5_18_4_centralizers",
+          "line": 274
+        },
+        {
+          "path": "EtingofRepresentationTheory/Chapter5/Theorem5_22_1.lean",
+          "names": [
+            "formalCharacter_schurModule_eq_schurPoly",
+            "schurModule_weight_eq_schurPoly_coeff",
+            "Theorem5_22_1_dim"
+          ],
+          "review_note": "Complementary source review by sector_fidelity inspected this file and its 25-file import cone; it is included in the 33-file closure below."
+        }
+      ],
+      "verified_scope": "Algebraic Schur-Weyl decomposition with genuine injective Specht labels, literal Hom multiplicity spaces, simple and pairwise nonisomorphic multiplicities, and all-vector equivariance for both commuting actions. Characteristic zero algebraically closed field and finite-dimensional base module are the substantive ambient assumptions.",
+      "historical_status_note": "Older issue #5326 reports a vacuous partition decomposition. Current inspected Corollary5_19_2 and SchurWeylPartition explicitly replace that construction. Do not present the historical issue as evidence that the current theorem is vacuous.",
+      "remaining_for_cloning": [
+        "Convert the algebraic equivalence into the Hilbert-space/unitary Schur decomposition needed for matrix block identities.",
+        "Instantiate the paper's representation dimensions, multiplicity factors, and Cartan inclusion balance.",
+        "Prove the paper-specific uniform PBW/thermal approximation and Young-diagram asymptotics."
+      ],
+      "compatibility": "Newer Lean/Mathlib than this project; no direct olean compatibility. Use isolated pinned checkout and a deliberate version migration or narrow source backport after license clarification.",
+      "source_audit": {
+        "seed_import_roots": [
+          "EtingofRepresentationTheory/Chapter5/Corollary5_19_2.lean"
+        ],
+        "project_file_count": 33,
+        "failed_fetches": [],
+        "unvisited_files": [],
+        "files": [
+          {
+            "path": "EtingofRepresentationTheory/Chapter4/Corollary4_2_2.lean",
+            "blob_sha": "855afb3d49d338a5af2fb8a2d2b14d9c39d2aae3",
+            "line_count": 232,
+            "imports": [
+              "Mathlib",
+              "EtingofRepresentationTheory.Infrastructure.IrreducibleEnumeration"
+            ]
+          },
+          {
+            "path": "EtingofRepresentationTheory/Chapter5/Corollary5_15_4.lean",
+            "blob_sha": "0e9b9b4c178ec689b91b4c3ef71a29dc363a8ec7",
+            "line_count": 80,
+            "imports": [
+              "Mathlib"
+            ]
+          },
+          {
+            "path": "EtingofRepresentationTheory/Chapter5/Corollary5_19_2.lean",
+            "blob_sha": "8b5f64f04b47cb39de9fba302fdf53e71204f9fe",
+            "line_count": 67,
+            "imports": [
+              "EtingofRepresentationTheory.Chapter5.SchurWeylPartition"
+            ]
+          },
+          {
+            "path": "EtingofRepresentationTheory/Chapter5/Definition5_12_1.lean",
+            "blob_sha": "32237222226d14c48845a5ee219006fef3a65ab3",
+            "line_count": 421,
+            "imports": [
+              "Mathlib"
+            ]
+          },
+          {
+            "path": "EtingofRepresentationTheory/Chapter5/Definition5_14_2.lean",
+            "blob_sha": "b3601ce009922372e98f082e3d9aa1e5c6158ed6",
+            "line_count": 33,
+            "imports": [
+              "Mathlib"
+            ]
+          },
+          {
+            "path": "EtingofRepresentationTheory/Chapter5/Lemma5_13_1.lean",
+            "blob_sha": "7eac906de7ee538116b0fdd6738f7360d22a9341",
+            "line_count": 774,
+            "imports": [
+              "EtingofRepresentationTheory.Chapter5.Definition5_12_1"
+            ]
+          },
+          {
+            "path": "EtingofRepresentationTheory/Chapter5/Lemma5_13_2.lean",
+            "blob_sha": "c5401b7f9da5f66b92bc899bf4b86343d4864a4a",
+            "line_count": 656,
+            "imports": [
+              "EtingofRepresentationTheory.Chapter5.Lemma5_13_1"
+            ]
+          },
+          {
+            "path": "EtingofRepresentationTheory/Chapter5/Lemma5_13_3.lean",
+            "blob_sha": "672a29c91cdc6a67ff68806e642b2c74b2c340f4",
+            "line_count": 37,
+            "imports": [
+              "EtingofRepresentationTheory.Chapter5.Lemma5_13_1"
+            ]
+          },
+          {
+            "path": "EtingofRepresentationTheory/Chapter5/Lemma5_18_3.lean",
+            "blob_sha": "926420db16619d4d4925f4f6a07818276253b9fb",
+            "line_count": 1000,
+            "imports": [
+              "Mathlib"
+            ]
+          },
+          {
+            "path": "EtingofRepresentationTheory/Chapter5/MultiplicitySpaceBiduality.lean",
+            "blob_sha": "a27744a95168770aa8d6001d3c817b07b4dd8ba6",
+            "line_count": 379,
+            "imports": [
+              "Mathlib",
+              "EtingofRepresentationTheory.Chapter5.Theorem5_18_1"
+            ]
+          },
+          {
+            "path": "EtingofRepresentationTheory/Chapter5/PermDiagonalTrace.lean",
+            "blob_sha": "dc5a8388fc6b0d3a30706ffc248435419eafefc3",
+            "line_count": 139,
+            "imports": [
+              "Mathlib",
+              "EtingofRepresentationTheory.Chapter5.Theorem5_14_3"
+            ]
+          },
+          {
+            "path": "EtingofRepresentationTheory/Chapter5/PowerSumCauchyBilinear.lean",
+            "blob_sha": "c4fcf268e45ee66464114767022499ce07734f78",
+            "line_count": 1523,
+            "imports": [
+              "Mathlib",
+              "EtingofRepresentationTheory.Chapter5.PowerSumCauchyIdentity",
+              "EtingofRepresentationTheory.Chapter5.Theorem5_14_3",
+              "EtingofRepresentationTheory.Chapter5.Proposition5_21_1"
+            ]
+          },
+          {
+            "path": "EtingofRepresentationTheory/Chapter5/PowerSumCauchyIdentity.lean",
+            "blob_sha": "05eccece321e74772b015c7cc9d0d174f341aa1e",
+            "line_count": 278,
+            "imports": [
+              "Mathlib",
+              "EtingofRepresentationTheory.Chapter5.Corollary5_15_4"
+            ]
+          },
+          {
+            "path": "EtingofRepresentationTheory/Chapter5/Proposition5_14_1.lean",
+            "blob_sha": "a3035ce5494cbbb340e293a9f8fff462e68fc6cc",
+            "line_count": 500,
+            "imports": [
+              "Mathlib",
+              "EtingofRepresentationTheory.Chapter5.Definition5_12_1",
+              "EtingofRepresentationTheory.Chapter5.Theorem5_12_2",
+              "EtingofRepresentationTheory.Chapter5.Lemma5_13_2",
+              "EtingofRepresentationTheory.Chapter5.Definition5_14_2"
+            ]
+          },
+          {
+            "path": "EtingofRepresentationTheory/Chapter5/Proposition5_21_1.lean",
+            "blob_sha": "86b59ab6220f0eb0b5fc0ef19fa407ba2f7f7e3a",
+            "line_count": 867,
+            "imports": [
+              "Mathlib"
+            ]
+          },
+          {
+            "path": "EtingofRepresentationTheory/Chapter5/SchurWeylBimoduleFull.lean",
+            "blob_sha": "78cb7018a0df5328b150df6c9b8017853586216c",
+            "line_count": 123,
+            "imports": [
+              "Mathlib",
+              "EtingofRepresentationTheory.Chapter5.Theorem5_18_4",
+              "EtingofRepresentationTheory.Chapter5.MultiplicitySpaceBiduality"
+            ]
+          },
+          {
+            "path": "EtingofRepresentationTheory/Chapter5/SchurWeylPartition.lean",
+            "blob_sha": "0baf5b9048a576eb183b4e07296fefdd6353aece",
+            "line_count": 548,
+            "imports": [
+              "EtingofRepresentationTheory.Chapter5.SchurWeylBimoduleFull",
+              "EtingofRepresentationTheory.Chapter5.Theorem5_12_2_ClassificationGeneral",
+              "EtingofRepresentationTheory.Infrastructure.SimpleModuleCount"
+            ]
+          },
+          {
+            "path": "EtingofRepresentationTheory/Chapter5/Theorem5_12_2_Classification.lean",
+            "blob_sha": "2279e3d2ae38ee3073774ef6ee5195818aceb797",
+            "line_count": 508,
+            "imports": [
+              "Mathlib",
+              "EtingofRepresentationTheory.Chapter5.Theorem5_12_2_Irreducible",
+              "EtingofRepresentationTheory.Chapter5.Theorem5_12_2_Distinct",
+              "EtingofRepresentationTheory.Infrastructure.IrreducibleEnumeration"
+            ]
+          },
+          {
+            "path": "EtingofRepresentationTheory/Chapter5/Theorem5_12_2_ClassificationGeneral.lean",
+            "blob_sha": "6770261f0ce5c7c53deb8cb98f1c56d1f975d73c",
+            "line_count": 560,
+            "imports": [
+              "Mathlib",
+              "EtingofRepresentationTheory.Chapter5.Theorem5_12_2_DistinctGeneral",
+              "EtingofRepresentationTheory.Infrastructure.SpechtModuleSimple",
+              "EtingofRepresentationTheory.Infrastructure.IrreducibleEnumeration",
+              "EtingofRepresentationTheory.Chapter4.Corollary4_2_2"
+            ]
+          },
+          {
+            "path": "EtingofRepresentationTheory/Chapter5/Theorem5_12_2_Distinct.lean",
+            "blob_sha": "9ca220dcbfe404594b627bc59c510246046fc0aa",
+            "line_count": 313,
+            "imports": [
+              "Mathlib",
+              "EtingofRepresentationTheory.Chapter5.Theorem5_12_2_Irreducible",
+              "EtingofRepresentationTheory.Chapter5.Lemma5_13_2",
+              "EtingofRepresentationTheory.Infrastructure.IrreducibleEnumeration",
+              "EtingofRepresentationTheory.Chapter4.Corollary4_2_2"
+            ]
+          },
+          {
+            "path": "EtingofRepresentationTheory/Chapter5/Theorem5_12_2_DistinctGeneral.lean",
+            "blob_sha": "43bcdb996b22cefaaee6ddcf846f04a261235a28",
+            "line_count": 215,
+            "imports": [
+              "EtingofRepresentationTheory.Chapter5.Lemma5_13_2",
+              "EtingofRepresentationTheory.Infrastructure.SpechtModuleSimple"
+            ]
+          },
+          {
+            "path": "EtingofRepresentationTheory/Chapter5/Theorem5_12_2_Irreducible.lean",
+            "blob_sha": "59eddc72770867140eda2a2cf0db6bcb406718cc",
+            "line_count": 266,
+            "imports": [
+              "Mathlib",
+              "EtingofRepresentationTheory.Chapter5.Definition5_12_1",
+              "EtingofRepresentationTheory.Chapter5.Lemma5_13_2",
+              "EtingofRepresentationTheory.Chapter5.Lemma5_13_3"
+            ]
+          },
+          {
+            "path": "EtingofRepresentationTheory/Chapter5/Theorem5_12_2.lean",
+            "blob_sha": "b48d9e8223d455323305e3f08e24b21625c1d9f1",
+            "line_count": 21,
+            "imports": [
+              "EtingofRepresentationTheory.Chapter5.Theorem5_12_2_Irreducible",
+              "EtingofRepresentationTheory.Chapter5.Theorem5_12_2_Distinct",
+              "EtingofRepresentationTheory.Chapter5.Theorem5_12_2_Classification"
+            ]
+          },
+          {
+            "path": "EtingofRepresentationTheory/Chapter5/Theorem5_14_3.lean",
+            "blob_sha": "5970339dd7ba7d593df66f51431fcaeb9553ecc4",
+            "line_count": 965,
+            "imports": [
+              "Mathlib",
+              "EtingofRepresentationTheory.Chapter5.Proposition5_14_1"
+            ]
+          },
+          {
+            "path": "EtingofRepresentationTheory/Chapter5/Theorem5_15_1.lean",
+            "blob_sha": "f130312ff8cb5254311e849cce57a526726f45e8",
+            "line_count": 2874,
+            "imports": [
+              "Mathlib",
+              "EtingofRepresentationTheory.Chapter5.Theorem5_14_3",
+              "EtingofRepresentationTheory.Chapter5.Theorem5_12_2",
+              "EtingofRepresentationTheory.Chapter5.PowerSumCauchyBilinear"
+            ]
+          },
+          {
+            "path": "EtingofRepresentationTheory/Chapter5/Theorem5_18_1.lean",
+            "blob_sha": "ddbc5a6a1fb5956b8c2a35c4a29b563272b74a03",
+            "line_count": 1233,
+            "imports": [
+              "Mathlib"
+            ]
+          },
+          {
+            "path": "EtingofRepresentationTheory/Chapter5/Theorem5_18_2_helpers.lean",
+            "blob_sha": "a5a2b7ab63ffcd15976356fce20d099441c1fcab",
+            "line_count": 294,
+            "imports": [
+              "Mathlib",
+              "EtingofRepresentationTheory.Chapter5.Lemma5_18_3"
+            ]
+          },
+          {
+            "path": "EtingofRepresentationTheory/Chapter5/Theorem5_18_2.lean",
+            "blob_sha": "5488d2d8e9eab76b47691d29ffccf371460e451b",
+            "line_count": 289,
+            "imports": [
+              "Mathlib",
+              "EtingofRepresentationTheory.Chapter5.Lemma5_18_3",
+              "EtingofRepresentationTheory.Chapter5.Theorem5_18_2_helpers"
+            ]
+          },
+          {
+            "path": "EtingofRepresentationTheory/Chapter5/Theorem5_18_4.lean",
+            "blob_sha": "d134b112888a9737f8ccb93180e21ebb5b45a734",
+            "line_count": 750,
+            "imports": [
+              "Mathlib",
+              "EtingofRepresentationTheory.Chapter5.Theorem5_18_1",
+              "EtingofRepresentationTheory.Chapter5.Theorem5_18_2",
+              "EtingofRepresentationTheory.Chapter5.Lemma5_18_3"
+            ]
+          },
+          {
+            "path": "EtingofRepresentationTheory/Chapter5/Theorem5_22_1.lean",
+            "blob_sha": "ee8e447f977790aa44fec4546e77605f221f0953",
+            "line_count": 4189,
+            "imports": [
+              "Mathlib",
+              "EtingofRepresentationTheory.Chapter5.Proposition5_21_1",
+              "EtingofRepresentationTheory.Chapter5.Definition5_12_1",
+              "EtingofRepresentationTheory.Chapter5.Theorem5_18_4",
+              "EtingofRepresentationTheory.Chapter5.PermDiagonalTrace",
+              "EtingofRepresentationTheory.Chapter5.Theorem5_15_1"
+            ]
+          },
+          {
+            "path": "EtingofRepresentationTheory/Infrastructure/IrreducibleEnumeration.lean",
+            "blob_sha": "e00bc19ccd2d4e8c8fc7efa58f7b4f1497969408",
+            "line_count": 831,
+            "imports": [
+              "Mathlib"
+            ]
+          },
+          {
+            "path": "EtingofRepresentationTheory/Infrastructure/SimpleModuleCount.lean",
+            "blob_sha": "35779e42394c39c8d3edcbb82fe74fb93260b32d",
+            "line_count": 245,
+            "imports": [
+              "Mathlib",
+              "EtingofRepresentationTheory.Chapter4.Corollary4_2_2"
+            ]
+          },
+          {
+            "path": "EtingofRepresentationTheory/Infrastructure/SpechtModuleSimple.lean",
+            "blob_sha": "f8124805cd2cfd73497ecf471504709ac3647f00",
+            "line_count": 416,
+            "imports": [
+              "Mathlib",
+              "EtingofRepresentationTheory.Chapter5.Theorem5_22_1",
+              "EtingofRepresentationTheory.Chapter5.Theorem5_12_2_Irreducible"
+            ]
+          }
+        ],
+        "external_import_boundary": "Mathlib only",
+        "marker_scan": {
+          "method": "Fetched every project source in the transitive import closure at the pinned revision. Matched raw UTF-8 source (including comments and strings) using /\\bsorry\\b|\\badmit\\b|\\baxiom\\b|proof_wanted|\\bunsafe\\b|\\bnative_decide\\b/. This is a lexical audit, not proof-kernel execution or an exhaustive test of metaprogramming loopholes.",
+          "markers": [
+            "sorry",
+            "admit",
+            "axiom",
+            "proof_wanted",
+            "unsafe",
+            "native_decide"
+          ],
+          "matching_lines": 0
+        },
+        "locally_rebuilt": false,
+        "kernel_axioms_inspected": false
+      },
+      "pbw_boundary": "No general gl_d PBW ordered-basis theorem was established by this audit. Etingof has separate special Weyl-algebra and sl2 results; these do not provide the paper's uniform PBW estimates. The approved proof_wanted Ado-Iwasawa marker lies outside this Schur import cone."
+    },
+    {
+      "repository": "https://github.com/leanprover-community/physlib",
+      "previous_repository": "https://github.com/HEPLean/PhysLean",
+      "revision": "f6e446ca99fd83b3a60743a61900cb2acb98f531",
+      "revision_date_utc": "2026-09-29T12:06:36Z",
+      "branch": "master",
+      "lean_toolchain": "leanprover/lean4:v4.34.1",
+      "mathlib_revision": "d13f23b723b8a846827a245b89c10fc7d3f11612",
+      "license": {
+        "spdx": "Apache-2.0",
+        "path": "LICENSE",
+        "blob_sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+        "url": "https://github.com/leanprover-community/physlib/blob/f6e446ca99fd83b3a60743a61900cb2acb98f531/LICENSE"
+      },
+      "library_tier": "PhyslibAlpha (repository documents a lighter review process than core Physlib)",
+      "relevant_declarations": [
+        {
+          "path": "PhyslibAlpha/ProbabilisticTheory/HilbertSpace/TraceClass/Basic.lean",
+          "names": [
+            "IsTraceClass",
+            "isTraceClass_iff",
+            "traceNorm",
+            "trace",
+            "traceNorm_eq_of_hilbertBasis",
+            "trace_eq_of_hilbertBasis_of_isSelfAdjoint"
+          ],
+          "url": "https://github.com/leanprover-community/physlib/blob/f6e446ca99fd83b3a60743a61900cb2acb98f531/PhyslibAlpha/ProbabilisticTheory/HilbertSpace/TraceClass/Basic.lean"
+        },
+        {
+          "path": "PhyslibAlpha/ProbabilisticTheory/HilbertSpace/TraceClass/Banach.lean",
+          "names": [
+            "TraceClass",
+            "TraceClass.instNormedSpace",
+            "TraceClass.instCompleteSpace",
+            "isTraceClass_of_tendsto_of_traceNorm_bounded"
+          ],
+          "url": "https://github.com/leanprover-community/physlib/blob/f6e446ca99fd83b3a60743a61900cb2acb98f531/PhyslibAlpha/ProbabilisticTheory/HilbertSpace/TraceClass/Banach.lean"
+        },
+        {
+          "path": "PhyslibAlpha/ProbabilisticTheory/HilbertSpace/TraceClass/Polar.lean",
+          "names": [
+            "Polar.polarFactor",
+            "Polar.polarFactor_mul_absOperator"
+          ]
+        }
+      ],
+      "verified_scope": "Actual trace-class continuous operators on arbitrary complete complex Hilbert spaces, defined through summability of the diagonal of CFC.abs in a Hilbert basis. Basis independence, trace norm, analytic trace, polar decomposition, ideal estimates, trace algebra, and the trace-norm Banach structure are implemented in the inspected cone. No global finite-dimensional assumption is imposed.",
+      "source_audit": {
+        "seed_import_roots": [
+          "PhyslibAlpha/ProbabilisticTheory/HilbertSpace/TraceClass/Banach.lean",
+          "PhyslibAlpha/ProbabilisticTheory/HilbertSpace/TraceClass/TraceAlgebra.lean"
+        ],
+        "project_file_count": 8,
+        "failed_fetches": [],
+        "unvisited_files": [],
+        "files": [
+          {
+            "path": "PhyslibAlpha/ProbabilisticTheory/HilbertSpace/TraceClass/Banach.lean",
+            "blob_sha": "5ca39451b4b42bb0b1f76f3204588b67ab3f8745",
+            "line_count": 411,
+            "imports": [
+              "PhyslibAlpha.ProbabilisticTheory.HilbertSpace.TraceClass.Basic",
+              "PhyslibAlpha.ProbabilisticTheory.HilbertSpace.TraceClass.GeneralProduct",
+              "PhyslibAlpha.ProbabilisticTheory.HilbertSpace.TraceClass.IdealNorm",
+              "Mathlib.Analysis.Normed.Group.Seminorm",
+              "Mathlib.Analysis.Normed.Group.Completeness"
+            ]
+          },
+          {
+            "path": "PhyslibAlpha/ProbabilisticTheory/HilbertSpace/TraceClass/Basic.lean",
+            "blob_sha": "ddccf1580a99e198952628e83c21d21b094f285e",
+            "line_count": 717,
+            "imports": [
+              "Mathlib.Analysis.SpecialFunctions.ContinuousFunctionalCalculus.Abs",
+              "Mathlib.Analysis.InnerProductSpace.StarOrder",
+              "Mathlib.Analysis.InnerProductSpace.l2Space",
+              "Mathlib.Analysis.InnerProductSpace.Trace",
+              "Mathlib.LinearAlgebra.FiniteDimensional.Defs",
+              "Mathlib.LinearAlgebra.Dimension.Finite",
+              "Mathlib.LinearAlgebra.Trace",
+              "Mathlib.LinearAlgebra.Projection",
+              "Mathlib.Topology.Algebra.Module.ContinuousLinearMap.Idempotent"
+            ]
+          },
+          {
+            "path": "PhyslibAlpha/ProbabilisticTheory/HilbertSpace/TraceClass/GeneralIdeal.lean",
+            "blob_sha": "7ba8c586b9941e9280fa0e14c19c8a66353313fc",
+            "line_count": 112,
+            "imports": [
+              "PhyslibAlpha.ProbabilisticTheory.HilbertSpace.TraceClass.Polar",
+              "PhyslibAlpha.ProbabilisticTheory.HilbertSpace.TraceClass.HilbertSchmidt"
+            ]
+          },
+          {
+            "path": "PhyslibAlpha/ProbabilisticTheory/HilbertSpace/TraceClass/GeneralProduct.lean",
+            "blob_sha": "3d4481a37437881e8e90aad0e624440aef505006",
+            "line_count": 185,
+            "imports": [
+              "PhyslibAlpha.ProbabilisticTheory.HilbertSpace.TraceClass.GeneralIdeal"
+            ]
+          },
+          {
+            "path": "PhyslibAlpha/ProbabilisticTheory/HilbertSpace/TraceClass/HilbertSchmidt.lean",
+            "blob_sha": "fbf85edbc753977f3160ccf4d03be194bb636c40",
+            "line_count": 526,
+            "imports": [
+              "PhyslibAlpha.ProbabilisticTheory.HilbertSpace.TraceClass.Basic",
+              "Mathlib.Analysis.MeanInequalities"
+            ]
+          },
+          {
+            "path": "PhyslibAlpha/ProbabilisticTheory/HilbertSpace/TraceClass/IdealNorm.lean",
+            "blob_sha": "0da9f718adea0c06df0f11d55e2bf2d211c61070",
+            "line_count": 372,
+            "imports": [
+              "PhyslibAlpha.ProbabilisticTheory.HilbertSpace.TraceClass.GeneralProduct"
+            ]
+          },
+          {
+            "path": "PhyslibAlpha/ProbabilisticTheory/HilbertSpace/TraceClass/Polar.lean",
+            "blob_sha": "165a8841e3434f1e1036aacca6814d3ef5aab7aa",
+            "line_count": 249,
+            "imports": [
+              "PhyslibAlpha.ProbabilisticTheory.HilbertSpace.TraceClass.Basic",
+              "Mathlib.Analysis.Normed.Operator.Extend",
+              "Mathlib.Analysis.InnerProductSpace.Projection.Basic"
+            ]
+          },
+          {
+            "path": "PhyslibAlpha/ProbabilisticTheory/HilbertSpace/TraceClass/TraceAlgebra.lean",
+            "blob_sha": "3b9f78daf7b160f3da9eeefb7bb0c7f92aef73e0",
+            "line_count": 120,
+            "imports": [
+              "PhyslibAlpha.ProbabilisticTheory.HilbertSpace.TraceClass.IdealNorm",
+              "PhyslibAlpha.ProbabilisticTheory.HilbertSpace.TraceClass.Banach"
+            ]
+          }
+        ],
+        "external_import_boundary": "Mathlib modules only",
+        "marker_scan": {
+          "method": "Fetched every project source in the transitive import closure at the pinned revision. Matched raw UTF-8 source (including comments and strings) using /\\bsorry\\b|\\badmit\\b|\\baxiom\\b|proof_wanted|\\bunsafe\\b|\\bnative_decide\\b/. This is a lexical audit, not proof-kernel execution or an exhaustive test of metaprogramming loopholes.",
+          "markers": [
+            "sorry",
+            "admit",
+            "axiom",
+            "proof_wanted",
+            "unsafe",
+            "native_decide"
+          ],
+          "matching_lines": 0
+        },
+        "locally_rebuilt": false,
+        "kernel_axioms_inspected": false
+      },
+      "density_constructor_caveat": {
+        "path": "PhyslibAlpha/ProbabilisticTheory/HilbertSpace/State/Density.lean",
+        "blob_sha": "068cc2581160a418ab218cf3a7a354cf79724213",
+        "url": "https://github.com/leanprover-community/physlib/blob/f6e446ca99fd83b3a60743a61900cb2acb98f531/PhyslibAlpha/ProbabilisticTheory/HilbertSpace/State/Density.lean",
+        "declaration": "UnitalPositiveLinearMap.ofDensity",
+        "normalization": "(rho : H \u2192\u2097[\u2102] H).trace \u2102 H = 1",
+        "scope": "This uses total finite-dimensional LinearMap.trace, not the newly defined analytic trace-class trace. Its own docstring explicitly restricts intended applicability to finite-dimensional spaces. It is not an infinite-dimensional density-state constructor."
+      },
+      "remaining_for_cloning": [
+        "Bridge the finite matrix fidelity API to the infinite trace-class API.",
+        "Develop normalized trace-class states and required completely positive maps using the analytic trace.",
+        "Prove Gaussian/Fock channel formulas, compact-observable limit passage with possible trace loss, weighted infinite-dimensional estimates and required integrability."
+      ],
+      "compatibility": "Newer Lean/Mathlib and module syntax. An isolated compatibility pilot is being performed separately; that is not a rebuild of this upstream repository.",
+      "pilot_snapshots": "Original Basic, Banach, TraceAlgebra, Polar, HilbertSchmidt, GeneralIdeal, GeneralProduct, IdealNorm snapshots supplied under /tmp/cloning-library-audit/ to gaussian_scalar.",
+      "local_adaptation_record": "See top-level local_adaptations. source_audit.locally_rebuilt refers to the unmodified external checkout; the selected adapted local chain is independently checked."
+    },
+    {
+      "repository": "https://github.com/adambornemann-glitch/Spectra",
+      "revision": "8dbaaf6728d1342ae16acf79fd7eef7c59b37e63",
+      "revision_date_utc": "2026-07-10T07:50:39Z",
+      "branch": "master",
+      "lean_toolchain": "leanprover/lean4:v4.31.0-rc1",
+      "mathlib_revision": "40f05009d036d2e4b488e8a01f559a6036ec2484",
+      "license": {
+        "spdx": "Apache-2.0",
+        "path": "LICENSE",
+        "blob_sha": "921408b0f39987d9704f25c53aead7eba96c1d33",
+        "url": "https://github.com/adambornemann-glitch/Spectra/blob/8dbaaf6728d1342ae16acf79fd7eef7c59b37e63/LICENSE"
+      },
+      "relevant_declarations": [
+        {
+          "path": "Spectra/QuantumMechanics/Channels/TraceClass/Complete.lean",
+          "names": [
+            "Spectra.QuantumMechanics.Channels.TraceClass",
+            "Spectra.QuantumMechanics.Channels.TraceClass.instCompleteSpace"
+          ],
+          "url": "https://github.com/adambornemann-glitch/Spectra/blob/8dbaaf6728d1342ae16acf79fd7eef7c59b37e63/Spectra/QuantumMechanics/Channels/TraceClass/Complete.lean"
+        },
+        {
+          "path": "Spectra/QuantumMechanics/Channels/TraceClass/Fidelity.lean",
+          "names": [
+            "Spectra.QuantumMechanics.Channels.fidelity",
+            "Spectra.QuantumMechanics.Channels.fidelity_comm",
+            "Spectra.QuantumMechanics.Channels.fidelity_le_sqrt_mul",
+            "Spectra.QuantumMechanics.Channels.fidelity_le_one"
+          ],
+          "url": "https://github.com/adambornemann-glitch/Spectra/blob/8dbaaf6728d1342ae16acf79fd7eef7c59b37e63/Spectra/QuantumMechanics/Channels/TraceClass/Fidelity.lean"
+        }
+      ],
+      "verified_scope": "Actual infinite-dimensional trace-class Banach structure and root fidelity defined as traceNorm(sqrtOp rho composed with sqrtOp sigma). The inspected fidelity upper bound explicitly assumes positivity and trace-class membership of both inputs.",
+      "source_audit": {
+        "seed_import_roots": [
+          "Spectra/QuantumMechanics/Channels/TraceClass/Fidelity.lean",
+          "Spectra/QuantumMechanics/Channels/TraceClass/Complete.lean"
+        ],
+        "project_file_count": 13,
+        "failed_fetches": [],
+        "unvisited_files": [],
+        "files": [
+          {
+            "path": "Spectra/QuantumMechanics/Channels/PolarDecomp.lean",
+            "blob_sha": "4de3599f257dcc19290bb153c9b4062e672503d7",
+            "line_count": 145,
+            "imports": [
+              "Mathlib.Analysis.InnerProductSpace.Adjoint",
+              "Mathlib.Analysis.InnerProductSpace.Positive",
+              "Mathlib.Analysis.InnerProductSpace.StarOrder",
+              "Mathlib.Analysis.CStarAlgebra.ContinuousLinearMap",
+              "Mathlib.Analysis.SpecialFunctions.ContinuousFunctionalCalculus.Abs",
+              "Mathlib.Analysis.Normed.Operator.Extend"
+            ]
+          },
+          {
+            "path": "Spectra/QuantumMechanics/Channels/TraceClass/Basic.lean",
+            "blob_sha": "7ee476e565224da7e4287286dd0e993592c595be",
+            "line_count": 120,
+            "imports": [
+              "Spectra.QuantumMechanics.Channels.PolarDecomp",
+              "Mathlib.Analysis.InnerProductSpace.l2Space",
+              "Mathlib.Analysis.SpecialFunctions.ContinuousFunctionalCalculus.Rpow.Basic"
+            ]
+          },
+          {
+            "path": "Spectra/QuantumMechanics/Channels/TraceClass/Complete.lean",
+            "blob_sha": "f8a1690e2bb852aec213be2b189e949857bb59ed",
+            "line_count": 342,
+            "imports": [
+              "Spectra.QuantumMechanics.Channels.TraceClass.Triangle"
+            ]
+          },
+          {
+            "path": "Spectra/QuantumMechanics/Channels/TraceClass/Cyclic.lean",
+            "blob_sha": "610b8aa93dcc43cc659ccedacdefd40af62c63d2",
+            "line_count": 125,
+            "imports": [
+              "Spectra.QuantumMechanics.Channels.TraceClass.Trace",
+              "Spectra.QuantumMechanics.Channels.TraceClass.HilbertSchmidt",
+              "Mathlib.Topology.Algebra.InfiniteSum.Real",
+              "Mathlib.Topology.Algebra.InfiniteSum.Constructions"
+            ]
+          },
+          {
+            "path": "Spectra/QuantumMechanics/Channels/TraceClass/Fidelity.lean",
+            "blob_sha": "91a36484a15b6cc35d7b1bc54d68606b93871be0",
+            "line_count": 190,
+            "imports": [
+              "Spectra.QuantumMechanics.Channels.TraceClass.HilbertSchmidtNorm",
+              "Spectra.QuantumMechanics.Channels.TraceClass.Cyclic",
+              "Mathlib.Analysis.CStarAlgebra.ContinuousFunctionalCalculus.Order"
+            ]
+          },
+          {
+            "path": "Spectra/QuantumMechanics/Channels/TraceClass/HilbertSchmidt.lean",
+            "blob_sha": "ef68b1b0496094bedc724c636b48623435ce9981",
+            "line_count": 121,
+            "imports": [
+              "Spectra.QuantumMechanics.Channels.TraceClass.Norm",
+              "Spectra.QuantumMechanics.Channels.TraceClass.PartialIsometry"
+            ]
+          },
+          {
+            "path": "Spectra/QuantumMechanics/Channels/TraceClass/HilbertSchmidtNorm.lean",
+            "blob_sha": "a68966ac11fbf8835170fe125c6128dfad138f41",
+            "line_count": 215,
+            "imports": [
+              "Spectra.QuantumMechanics.Channels.TraceClass.Product",
+              "Mathlib.Topology.Algebra.InfiniteSum.Order"
+            ]
+          },
+          {
+            "path": "Spectra/QuantumMechanics/Channels/TraceClass/Norm.lean",
+            "blob_sha": "ae4dab59dc47bd20031e2e72a1c00ed54cda39ce",
+            "line_count": 172,
+            "imports": [
+              "Spectra.QuantumMechanics.Channels.TraceClass.Basic"
+            ]
+          },
+          {
+            "path": "Spectra/QuantumMechanics/Channels/TraceClass/PartialIsometry.lean",
+            "blob_sha": "7fdfe977623746e7dbcf8eea111bbc5bb7b6022a",
+            "line_count": 131,
+            "imports": [
+              "Spectra.QuantumMechanics.Channels.TraceClass.Basic",
+              "Mathlib.Analysis.InnerProductSpace.Subspace",
+              "Mathlib.Analysis.InnerProductSpace.LinearMap",
+              "Mathlib.Topology.DenseEmbedding"
+            ]
+          },
+          {
+            "path": "Spectra/QuantumMechanics/Channels/TraceClass/Product.lean",
+            "blob_sha": "f114852212dd450528e2a8bd5899f7bbbfcc10bf",
+            "line_count": 145,
+            "imports": [
+              "Spectra.QuantumMechanics.Channels.TraceClass.HilbertSchmidt"
+            ]
+          },
+          {
+            "path": "Spectra/QuantumMechanics/Channels/TraceClass/Trace.lean",
+            "blob_sha": "c94cbbf99cc8935a2b54132eedf2b5c0b861fd34",
+            "line_count": 305,
+            "imports": [
+              "Spectra.QuantumMechanics.Channels.TraceClass.Norm",
+              "Spectra.QuantumMechanics.Channels.TraceClass.PartialIsometry",
+              "Spectra.QuantumMechanics.Channels.TsumInner"
+            ]
+          },
+          {
+            "path": "Spectra/QuantumMechanics/Channels/TraceClass/Triangle.lean",
+            "blob_sha": "2224428eae059a774de98980163d7b79f3b25b32",
+            "line_count": 114,
+            "imports": [
+              "Spectra.QuantumMechanics.Channels.TraceClass.Trace"
+            ]
+          },
+          {
+            "path": "Spectra/QuantumMechanics/Channels/TsumInner.lean",
+            "blob_sha": "5e4c3f858b5ddb252b3f550b5f0a5b892496616e",
+            "line_count": 100,
+            "imports": [
+              "Mathlib.Analysis.InnerProductSpace.Basic",
+              "Mathlib.Analysis.Normed.Group.InfiniteSum",
+              "Mathlib.Topology.Algebra.InfiniteSum.Order",
+              "Mathlib.Topology.Algebra.InfiniteSum.Ring"
+            ]
+          }
+        ],
+        "external_import_boundary": "Mathlib modules only",
+        "marker_scan": {
+          "method": "Fetched every project source in the transitive import closure at the pinned revision. Matched raw UTF-8 source (including comments and strings) using /\\bsorry\\b|\\badmit\\b|\\baxiom\\b|proof_wanted|\\bunsafe\\b|\\bnative_decide\\b/. This is a lexical audit, not proof-kernel execution or an exhaustive test of metaprogramming loopholes.",
+          "markers": [
+            "sorry",
+            "admit",
+            "axiom",
+            "proof_wanted",
+            "unsafe",
+            "native_decide"
+          ],
+          "matching_lines": 0
+        },
+        "locally_rebuilt": false,
+        "kernel_axioms_inspected": false
+      },
+      "boundary": "README advertises many additional spectral/Fock/operator results. This audit does not certify those unrelated developments or kernel-check the repository. This is a substantive alternative dependency candidate, not yet integrated."
+    }
+  ],
+  "search_findings": {
+    "exact_code_searches": [
+      {
+        "query": "repo:leanprover-community/physlib \"local asymptotic normality\"",
+        "matches": 0
+      },
+      {
+        "query": "repo:adambornemann-glitch/Spectra \"local asymptotic normality\"",
+        "matches": 0
+      },
+      {
+        "query": "language:Lean \"quantum LAN\"",
+        "matches": 0
+      },
+      {
+        "query": "language:Lean \"local limit theorem\"",
+        "matches": 0
+      }
+    ],
+    "negative_search_caveat": "No matching indexed code was found for these exact phrases; this is not a proof that no such Lean result exists."
+  },
+  "recommended_next_steps": [
+    "Use the locally checked trace-class Banach and trace-algebra API to build infinite-state/channel laws and compact-observable limits.",
+    "Clarify licensing and compatibility before importing the Etingof algebraic Schur-Weyl dependency cone; construct the physical unitary representation adapter.",
+    "Prove concrete occupation coefficient asymptotics and apply the now-checked countable Scheffe upgrade.",
+    "Treat uniform PBW/Young local limits and quantum LAN/Gaussian channel construction as separate substantial proof milestones; these are not delivered by the algebraic Schur or trace-class foundations."
+  ],
+  "local_adaptations": {
+    "upstream_repository": "https://github.com/leanprover-community/physlib",
+    "upstream_revision": "f6e446ca99fd83b3a60743a61900cb2acb98f531",
+    "license_file": "PHYSLIB-LICENSE.txt",
+    "modules": [
+      {
+        "module": "Cloning.InfiniteDensityState",
+        "path": "Cloning/InfiniteDensityState.lean",
+        "sha256": "27947b86c16a427efd7edd9bce67aa75cd8d66251252ec04826738b997bee02b",
+        "source_paths_in_header": [
+          "PhyslibAlpha/ProbabilisticTheory/HilbertSpace/TraceClass/RankOne.lean"
+        ],
+        "source_blobs_in_header": [],
+        "source_lines": 123
+      },
+      {
+        "module": "Cloning.InfiniteHilbertSchmidt",
+        "path": "Cloning/InfiniteHilbertSchmidt.lean",
+        "sha256": "bb28ecf75e2de8cb35d60c195b539456da8c1a1d71abfb336ae04001d1ecedf4",
+        "source_paths_in_header": [
+          "PhyslibAlpha/ProbabilisticTheory/HilbertSpace/TraceClass/HilbertSchmidt.lean"
+        ],
+        "source_blobs_in_header": [
+          "fbf85edbc753977f3160ccf4d03be194bb636c40"
+        ],
+        "source_lines": 532
+      },
+      {
+        "module": "Cloning.InfiniteTraceClass",
+        "path": "Cloning/InfiniteTraceClass.lean",
+        "sha256": "8989a10ec2f035d84eeadeb1ab47af9dbbbb80ccbfcdf85f31577d3c5e55f3c9",
+        "source_paths_in_header": [
+          "PhyslibAlpha/ProbabilisticTheory/HilbertSpace/TraceClass/Basic.lean"
+        ],
+        "source_blobs_in_header": [
+          "ddccf1580a99e198952628e83c21d21b094f285e"
+        ],
+        "source_lines": 493
+      },
+      {
+        "module": "Cloning.InfiniteTraceClassAlgebra",
+        "path": "Cloning/InfiniteTraceClassAlgebra.lean",
+        "sha256": "2948a88ebc8097094113c1171e05ec11c333bed31e55a3d1dd19566f5660c3c0",
+        "source_paths_in_header": [
+          "PhyslibAlpha/ProbabilisticTheory/HilbertSpace/TraceClass/TraceAlgebra.lean"
+        ],
+        "source_blobs_in_header": [
+          "3b9f78daf7b160f3da9eeefb7bb0c7f92aef73e0"
+        ],
+        "source_lines": 129
+      },
+      {
+        "module": "Cloning.InfiniteTraceClassBanach",
+        "path": "Cloning/InfiniteTraceClassBanach.lean",
+        "sha256": "7da8cc170d8efeb82ef372672a1e97877f29a4e6324fbd079c5097377184ecd8",
+        "source_paths_in_header": [
+          "PhyslibAlpha/ProbabilisticTheory/HilbertSpace/TraceClass/Banach.lean"
+        ],
+        "source_blobs_in_header": [
+          "5ca39451b4b42bb0b1f76f3204588b67ab3f8745"
+        ],
+        "source_lines": 237
+      },
+      {
+        "module": "Cloning.InfiniteTraceClassBasis",
+        "path": "Cloning/InfiniteTraceClassBasis.lean",
+        "sha256": "a3f87e4d40bc60369a0a42b21ecf465b21a7986031b33abdb3a6a78a9688f642",
+        "source_paths_in_header": [
+          "PhyslibAlpha/ProbabilisticTheory/HilbertSpace/TraceClass/GeneralIdeal.lean"
+        ],
+        "source_blobs_in_header": [
+          "7ba8c586b9941e9280fa0e14c19c8a66353313fc"
+        ],
+        "source_lines": 120
+      },
+      {
+        "module": "Cloning.InfiniteTraceClassIdeal",
+        "path": "Cloning/InfiniteTraceClassIdeal.lean",
+        "sha256": "608476fbd1ddb99fe7d88c6d742667e831e0a6354a4bbb82a514a16ff6faa27f",
+        "source_paths_in_header": [
+          "PhyslibAlpha/ProbabilisticTheory/HilbertSpace/TraceClass/GeneralProduct.lean"
+        ],
+        "source_blobs_in_header": [
+          "3d4481a37437881e8e90aad0e624440aef505006"
+        ],
+        "source_lines": 190
+      },
+      {
+        "module": "Cloning.InfiniteTraceClassNormBounds",
+        "path": "Cloning/InfiniteTraceClassNormBounds.lean",
+        "sha256": "fdca74ea6b29fb54da6c33338321b08885219ef77b08717f0d767e26f5e7905b",
+        "source_paths_in_header": [
+          "PhyslibAlpha/ProbabilisticTheory/HilbertSpace/TraceClass/IdealNorm.lean"
+        ],
+        "source_blobs_in_header": [
+          "0da9f718adea0c06df0f11d55e2bf2d211c61070"
+        ],
+        "source_lines": 380
+      },
+      {
+        "module": "Cloning.InfiniteTraceClassPolar",
+        "path": "Cloning/InfiniteTraceClassPolar.lean",
+        "sha256": "e5e6566ec6ed737fbe6c66fac581a8d7c642cfd809c87ea34d7471af53fad860",
+        "source_paths_in_header": [
+          "PhyslibAlpha/ProbabilisticTheory/HilbertSpace/TraceClass/Polar.lean"
+        ],
+        "source_blobs_in_header": [
+          "165a8841e3434f1e1036aacca6814d3ef5aab7aa"
+        ],
+        "source_lines": 255
+      },
+      {
+        "module": "Cloning.InfiniteTraceClassSpace",
+        "path": "Cloning/InfiniteTraceClassSpace.lean",
+        "sha256": "ad3f1b37724478c6945d5b17a8dc574d0a330a2dd97dba74ce455f0309916cb3",
+        "source_paths_in_header": [
+          "PhyslibAlpha/ProbabilisticTheory/HilbertSpace/TraceClass/Banach.lean"
+        ],
+        "source_blobs_in_header": [
+          "5ca39451b4b42bb0b1f76f3204588b67ab3f8745"
+        ],
+        "source_lines": 201
+      }
+    ],
+    "scope": "Analytic trace-class dependency chain: Basic, Polar, HilbertSchmidt, GeneralIdeal, GeneralProduct, IdealNorm, Banach, TraceAlgebra; plus actual rank-one analytic density states and finite-dimensional trace bridge.",
+    "omission": "The upstream Basic finite-multiplicity tail using a newer idempotent API is omitted. No theorem in the promoted dependency chain uses it.",
+    "compatibility_edits": [
+      "Replace newer module/public syntax with ordinary imports and explicit project namespaces.",
+      "Adapt older ContinuousLinearMap application and orthogonal-projection names.",
+      "Adapt the older Holder/summability result shape and tendsto_finset_sum name.",
+      "Retain CompleteSpace for an operator-order helper required by the pinned version.",
+      "Split the upstream Banach module into space and completeness modules."
+    ],
+    "verification_record": "verification.json, BUILD.log, AXIOMS.txt, Audit.lean",
+    "not_claimed": [
+      "Full upstream repository compilation",
+      "Infinite quantum fidelity or data processing",
+      "Compact-operator/trace-class duality and compact CP limits",
+      "Concrete Weyl/CCR, Fock amplifier or Gaussian channels",
+      "Quantum LAN or uniform Young local limits"
+    ],
+    "additional_source_outside_original_eight_file_cone": {
+      "path": "PhyslibAlpha/ProbabilisticTheory/HilbertSpace/TraceClass/RankOne.lean",
+      "blob_sha": "04ebbf6381840785b8273a5dead693f36690e0f3",
+      "line_count": 87,
+      "url": "https://github.com/leanprover-community/physlib/blob/f6e446ca99fd83b3a60743a61900cb2acb98f531/PhyslibAlpha/ProbabilisticTheory/HilbertSpace/TraceClass/RankOne.lean",
+      "fetch_verified": true,
+      "local_module": "Cloning.InfiniteDensityState",
+      "local_additions": "DensityState structure, pure-state constructor and finite-dimensional constructor using the analytic/algebraic trace bridge."
+    },
+    "verification": {
+      "clean_build": "passed",
+      "axiom_audit": "passed",
+      "coverage": "All compiled constants in the adapted local modules, including definitions, instances and generated helpers.",
+      "allowed_axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "compiled_constants": {
+        "Cloning.InfiniteTraceClass": 42,
+        "Cloning.InfiniteTraceClassPolar": 54,
+        "Cloning.InfiniteHilbertSchmidt": 29,
+        "Cloning.InfiniteTraceClassBasis": 6,
+        "Cloning.InfiniteTraceClassIdeal": 6,
+        "Cloning.InfiniteTraceClassNormBounds": 15,
+        "Cloning.InfiniteTraceClassSpace": 13,
+        "Cloning.InfiniteTraceClassBanach": 22,
+        "Cloning.InfiniteTraceClassAlgebra": 3,
+        "Cloning.InfiniteDensityState": 38
+      }
+    },
+    "not_claimed_scope": "These exclusions describe the imported foundation subset only; original sixth-pass proofs are recorded separately."
+  },
+  "paper_level_inputs": [
+    {
+      "authors": "Kahn and Guta",
+      "arxiv": "0804.3876",
+      "url": "https://arxiv.org/pdf/0804.3876",
+      "relevant_statement": "Theorem 4.3: forward and reverse channels with uniform strong trace-norm approximation on growing local parameter boxes.",
+      "use": "Exact two-way quantum LAN resource for the manuscript; match displacement/generator conventions.",
+      "lean_status": "Not formalized in this project."
+    },
+    {
+      "authors": "Lami, Sabapathy and Winter",
+      "arxiv": "1806.11042",
+      "url": "https://arxiv.org/pdf/1806.11042",
+      "relevant_statement": "Lemma 7: exact Gaussian-unitary dilation with an arbitrary joint idler in the regime of invertible symplectic defect.",
+      "use": "The amplifier gain greater than one has the relevant nondegenerate defect; covariance-to-Weyl-form and quantum Bochner steps remain.",
+      "lean_status": "Not formalized in this project."
+    },
+    {
+      "authors": "Guta and Matsumoto",
+      "arxiv": "quant-ph/0605161",
+      "url": "https://arxiv.org/abs/quant-ph/0605161",
+      "relevant_statement": "Lemma 2.3 least-noise stochastic dominance; Theorem 2.5 Gaussian cloning optimum under trace-distance loss.",
+      "limitation": "This does not establish the manuscript's unrestricted multimode/classical-quantum root-fidelity converse.",
+      "lean_status": "Not imported."
+    }
+  ],
+  "sixth_pass_original_proofs": {
+    "scope": "Original local proofs built on pinned Mathlib and the prior checked Physlib adaptation; not additional upstream code imports.",
+    "modules": [
+      {
+        "path": "Cloning/CoherentCoefficients.lean",
+        "sha256": "f17de6835540d7eec308a6589eff5d1b36985e429e387a176d165892f886ce46"
+      },
+      {
+        "path": "Cloning/InfiniteAsymptoticCPCompactness.lean",
+        "sha256": "82ce3e2185a14e4392e0a63c01ea1f512961d4c1e1cb3b0ffcd8c0c8cfc94dd2"
+      },
+      {
+        "path": "Cloning/InfiniteBilinearWeakClosure.lean",
+        "sha256": "4822b4c191483848044c7869a2ab240bf50aacf49087ccc35e304c839cb1a611"
+      },
+      {
+        "path": "Cloning/InfiniteChannelAdjoint.lean",
+        "sha256": "77d60d293ddd3419c233a0f0a4482a84893fd3ae24f99056c6be83998ccc02bd"
+      },
+      {
+        "path": "Cloning/InfiniteChannelCompactness.lean",
+        "sha256": "a7e873c6c6d308d96ba192591f83e611cae99f2d137693339ce9cfe3f1758869"
+      },
+      {
+        "path": "Cloning/InfiniteChannelCovariance.lean",
+        "sha256": "b1aad62ce97fca7f6c61e95266dc973fa2bc4dbaadd07d7ad34ed8c88852c30f"
+      },
+      {
+        "path": "Cloning/InfiniteChannelFidelity.lean",
+        "sha256": "d7061ff5975b28a37c2b4ecaf6f5dd0593e9d4acb2bd437230604a6b918a2482"
+      },
+      {
+        "path": "Cloning/InfiniteChannelLimitReconstruction.lean",
+        "sha256": "a73e73df19423d65078227a499a508f8d6d5c180d0f77bad8be3c27a61187167"
+      },
+      {
+        "path": "Cloning/InfiniteChannelTraceRepair.lean",
+        "sha256": "94e36fed0f8ad99a26dd495ba84ac2f7e1e073cbca5500deba4fcea73feb29a8"
+      },
+      {
+        "path": "Cloning/InfiniteChannelWeakLimit.lean",
+        "sha256": "b1d447feb9790f0eed60cf418abe86cd576cd6fde06cbfbbe4b0102dae1f35a0"
+      },
+      {
+        "path": "Cloning/InfiniteCompactObservableExtraction.lean",
+        "sha256": "170e3041d4e471cdd579d7bb55cf76b3040921745c9d3f9f2bc9f98769952c91"
+      },
+      {
+        "path": "Cloning/InfiniteCompactObservableLimit.lean",
+        "sha256": "bc2a121cf90e1881b8b9524ae4928b00688da046ece2e7aaf84e68bd66afa44a"
+      },
+      {
+        "path": "Cloning/InfiniteCompletelyPositive.lean",
+        "sha256": "32245e1d9a8ba1f5956156790869ec778b8f5998ca2ed9fa1d4cac131cf84346"
+      },
+      {
+        "path": "Cloning/InfiniteCompletelyPositiveCompactness.lean",
+        "sha256": "2d9a3e0064226d4ffa5912aec89dd99ea248373b2bd0cfb11b1c5b58d6f790e0"
+      },
+      {
+        "path": "Cloning/InfiniteCutoffChannels.lean",
+        "sha256": "25666098af3d01e7e0d4854613f81678ef01cdbaf7338f449d7e6ca6155d8bae"
+      },
+      {
+        "path": "Cloning/InfiniteDiagonalFidelity.lean",
+        "sha256": "0821d4912d32ee2edf4207bb0bdec4d3294e4dc62b74947a162fedcbf6f2b771"
+      },
+      {
+        "path": "Cloning/InfiniteFidelity.lean",
+        "sha256": "28a756850d972dd2ef713f00f74f7e8de29f1c24f5a9a35cadab96750f39569c"
+      },
+      {
+        "path": "Cloning/InfiniteFidelityBlockBound.lean",
+        "sha256": "7df9e86a2a0060b46c7db7d0341dad5e21a4859ae6bdaef4ff2401cc03f66fe6"
+      },
+      {
+        "path": "Cloning/InfiniteFidelityContinuity.lean",
+        "sha256": "16d35acd57d589c44fc9583f58719b46dc80c1875d6ad6443b36422ec7db7098"
+      },
+      {
+        "path": "Cloning/InfiniteFidelityRegularized.lean",
+        "sha256": "af43265af08b9c6ce103bdfab8bfc6cf77980ff5af2db661af9441dfca152a5d"
+      },
+      {
+        "path": "Cloning/InfiniteFidelityWeighted.lean",
+        "sha256": "29bdd4590adb3fc8c242ef011de3691f2810acae46c51340ce7f493d8bb0485a"
+      },
+      {
+        "path": "Cloning/InfiniteFidelityWitness.lean",
+        "sha256": "f416113d46abcfa5c9e9b32c4d379263295bb5a8d5d46025639add1f59e9828f"
+      },
+      {
+        "path": "Cloning/InfiniteFiniteCorner.lean",
+        "sha256": "4fb509a73dfa4fc7bbaa82d2c76dc93aee8f6588a8b8227cc457f95f123e6403"
+      },
+      {
+        "path": "Cloning/InfiniteHilbertSchmidtPositive.lean",
+        "sha256": "71f36ec44421af9391a65b76833b4bda378bd3ffc3016b6d12dcce66cfbfb8b1"
+      },
+      {
+        "path": "Cloning/InfiniteLANTransfer.lean",
+        "sha256": "39591492351819db511fb34dc6b9e9a9446fe9444609658624357b7f78c45a98"
+      },
+      {
+        "path": "Cloning/InfiniteOccupationStates.lean",
+        "sha256": "0376ed479e32903084ed56fecde18cf26e652fbe2cad7f48adffe3aac27b8ddb"
+      },
+      {
+        "path": "Cloning/InfinitePowersStormer.lean",
+        "sha256": "4a33720a0ef8b4f6cc88ab4f17677cc06d419acb16ba51c8b1121c7f71b8d21b"
+      },
+      {
+        "path": "Cloning/InfinitePureStateContinuity.lean",
+        "sha256": "47671bc16e76354c893ac555ba020645c0a8c2dd45c05b57457e1a30e62c8e98"
+      },
+      {
+        "path": "Cloning/InfiniteTraceBoundedMaps.lean",
+        "sha256": "4536aa331d8fff34eb1e623c64ce15ecd4dd03da56298a3cdcb890506203acf8"
+      },
+      {
+        "path": "Cloning/InfiniteTraceClassAsymptoticBound.lean",
+        "sha256": "c5e572e9372e8d0d6c7663b6fe9360f8a7295ae5726bca0da702f191c1afb76b"
+      },
+      {
+        "path": "Cloning/InfiniteTraceClassChannels.lean",
+        "sha256": "3b6d9de42b5722026719eeb442a58f06fd9a392cc779ab7c74a38794569c6eb7"
+      },
+      {
+        "path": "Cloning/InfiniteTraceClassCompactness.lean",
+        "sha256": "8eb28dc897f2af02d8fb26d4f32cab61bb1020f7287f02d8c3ed4fded9915946"
+      },
+      {
+        "path": "Cloning/InfiniteTraceClassCutoff.lean",
+        "sha256": "e570e31011247881893cbfaf4d968d8e469f3ad746906aa52ffa1e66c7ec395a"
+      },
+      {
+        "path": "Cloning/InfiniteTraceClassCutoffConvergence.lean",
+        "sha256": "b6caf25b51859f1df7102cd35840ef2f80f822c7484faf8c856f8ab8045596b9"
+      },
+      {
+        "path": "Cloning/InfiniteTraceClassDecomposition.lean",
+        "sha256": "ef8be20ebb51836026b7e88bae7208c00b673eb4f8505fb2710c2e30196f616b"
+      },
+      {
+        "path": "Cloning/InfiniteTraceClassFamilyCompactness.lean",
+        "sha256": "39027105e02ae2e36298b9eea46c6f1f9ad8cbde53a2c9aa41a26fb92b997d61"
+      },
+      {
+        "path": "Cloning/InfiniteTraceClassNormalPart.lean",
+        "sha256": "8469b8ae54504745af1e6e21f63db4327d2b51be1f802629eae948989f3d7931"
+      },
+      {
+        "path": "Cloning/InfiniteTraceClassPairing.lean",
+        "sha256": "fbcd485b672d276c8613f3494283965e52ffbaee89a8174966ee601c0a41375d"
+      },
+      {
+        "path": "Cloning/InfiniteTraceClassPositive.lean",
+        "sha256": "25dcc7db48784fee49985ef31e71b17e91639c2488235bf67854ebef9d977588"
+      },
+      {
+        "path": "Cloning/InfiniteTraceClassSeparable.lean",
+        "sha256": "54a4f3ba441b14253b6c4b0d4f29742e685e08a4800e4a49100ba26ec09c61de"
+      },
+      {
+        "path": "Cloning/InfiniteTraceClassSeries.lean",
+        "sha256": "98ba76a09434c6054748d723ba1d287be5038c20bfdc114f6f6998149a3eb2c0"
+      },
+      {
+        "path": "Cloning/InfiniteTraceClassWeakLimit.lean",
+        "sha256": "ad34fed64c03af65a8985eaadd8dc5155de79f31045a8a9e3ffbb7ed9c280ea0"
+      },
+      {
+        "path": "Cloning/InfiniteWeakLimitRepair.lean",
+        "sha256": "a1d25deabbde12635f4f715bb9c6814f86f86ddc74962bc05a7e77cb2819c13a"
+      },
+      {
+        "path": "Cloning/PoissonApproximation.lean",
+        "sha256": "25c598034e09e29743da1735cc9c1ebbb0d7caf8e7b04fe7041d5cf07649e08e"
+      },
+      {
+        "path": "Cloning/WernerAsymptotics.lean",
+        "sha256": "7fdd46726b3d0a3118c1ac643c331d70f00994fa94467f52bd6d37546ba4175e"
+      },
+      {
+        "path": "Cloning/WernerNormalization.lean",
+        "sha256": "b5a7da8505638ad6481fa058481dd102819f0fe293993f15130f964d89899c3b"
+      },
+      {
+        "path": "Cloning/YoungDimensionRatio.lean",
+        "sha256": "12687dbf612977ff41db3ec4daa5ff6c1604186778e203564d1a67193c5fba35"
+      },
+      {
+        "path": "Cloning/YoungDimensionSecondOrder.lean",
+        "sha256": "a05357279e910c83c8ef63762fa8bdde50416daf29998a96c1d724b1b7c23b4a"
+      }
+    ],
+    "verification": "Full clean build and all-constant axiom audit in verification.json"
+  },
+  "seventh_pass_original_proofs": {
+    "scope": "Original local constructions and proofs using pinned Mathlib and the previously audited trace-class foundations; no additional upstream project source imports.",
+    "modules": [
+      {
+        "path": "Cloning/BosonicAmplifier.lean",
+        "sha256": "8419f4c3cd8810eafa283344ea9ab903ff8ecf85a800877723d03565cc09627a"
+      },
+      {
+        "path": "Cloning/BosonicAmplifierChannel.lean",
+        "sha256": "b21cd4d8f2d6bf45c6f5b4d040b271ae35a27232102eb0d0536a18c6db4d3103"
+      },
+      {
+        "path": "Cloning/BosonicAmplifierThermal.lean",
+        "sha256": "ce6e8a1974d146818f622b3595f97c9e5866f70041158a98012c222e663b2462"
+      },
+      {
+        "path": "Cloning/BosonicIdlerChannel.lean",
+        "sha256": "5f67ac8f81eccfc10e87fe4c6f18521c93c7753911c35ad54904fd805e193ddb"
+      },
+      {
+        "path": "Cloning/BosonicMixtureStochasticOrder.lean",
+        "sha256": "006f2c98442150ad5e12ea46eb487688e9f8906bb5df3aa6d0c1353180e5e700"
+      },
+      {
+        "path": "Cloning/BosonicNumberLaw.lean",
+        "sha256": "7d30996110bc5994a1b5fcfba4c8a50b622fab0d766ca077dae36e687bdeb15b"
+      },
+      {
+        "path": "Cloning/BosonicStochasticOrder.lean",
+        "sha256": "b772937a0f0dfba3459001e3883004cc65e557d2503fb64839ed6106365b1680"
+      },
+      {
+        "path": "Cloning/CoherentContinuity.lean",
+        "sha256": "ffdef657ca6577824aea47bb2702cc1b6d87f022d402f7cfd66b1f87d430d059"
+      },
+      {
+        "path": "Cloning/CoherentGaussianMixture.lean",
+        "sha256": "b42e36da4fbec94fafe7ba3114e5a27d3104f4a11fd0a4e6ec4b6ab8cd1e4dd6"
+      },
+      {
+        "path": "Cloning/CoherentKernel.lean",
+        "sha256": "74457950127af92cffc842aac9a97d1722a28d357be5c9e61827efaf9d02151c"
+      },
+      {
+        "path": "Cloning/ComplexCoherent.lean",
+        "sha256": "a9e9e3b20fcfdb4e1749d9c519119d4a587b923e1343e2fe7095b2438ebacfe0"
+      },
+      {
+        "path": "Cloning/ComplexGaussianMoments.lean",
+        "sha256": "6d482f7d2991a0bf1ba92d9a4bfd8a0f8702c050a8ce51eee49f421abe604ebb"
+      },
+      {
+        "path": "Cloning/InfiniteIsometricChannel.lean",
+        "sha256": "ca2273aa0eb40967f24dbd5451f3c8800a5f03bffe0058aafb5a8d26d76f2ac6"
+      },
+      {
+        "path": "Cloning/InfiniteKrausChannel.lean",
+        "sha256": "0612f661533ab2f85be32c19d01b1be5b9fa4d7a77ffb4f96adb41c4d688e31d"
+      },
+      {
+        "path": "Cloning/InfiniteRectangularKraus.lean",
+        "sha256": "917ced9b460e4e7195a4a7119683a759ff6afe8bfd3c6e95d9f551d78314ab95"
+      },
+      {
+        "path": "Cloning/MultimodeCoherent.lean",
+        "sha256": "a7073e46cdc701954d0336210ba18058cedceaae7a4044b76383560c7a022d2a"
+      },
+      {
+        "path": "Cloning/MultimodeCoherentGaussianMixture.lean",
+        "sha256": "c04588678fb215938c7169b2869e7eabd073c6540b0a8496a10ae25a58722d6a"
+      },
+      {
+        "path": "Cloning/MultimodeIdler.lean",
+        "sha256": "5b7a97675a2f3590eb8ec50b2e3c1339090afc3c471ded41fbc7ee0d637b6064"
+      },
+      {
+        "path": "Cloning/MultimodeLeastNoise.lean",
+        "sha256": "760dda46b492abb308676e30f61d9a7e9ebae4692f94b313ef9b60d8478e5bd4"
+      },
+      {
+        "path": "Cloning/MultimodeThermalIdlerFidelity.lean",
+        "sha256": "ca6b93bbb1cdbfc2ac38c857a1280e3448930554373904a2e8496093edd25832"
+      },
+      {
+        "path": "Cloning/OccupationChannel.lean",
+        "sha256": "b8238ff0763b6796fc1afe5cde4a0b46f19f17b08dc9ba0864e082b6f35b9a73"
+      },
+      {
+        "path": "Cloning/OccupationCompression.lean",
+        "sha256": "78f7269215d271c9729cab3e04f0cd9807ebe3336ef0cacb64e22482611028a5"
+      },
+      {
+        "path": "Cloning/OrbitalSeededOptimum.lean",
+        "sha256": "6aef710eedddc41ee72e7c9a40e213292da05f58f325379f07e26d35db16d7b9"
+      },
+      {
+        "path": "Cloning/SymmetricOccupation.lean",
+        "sha256": "a26ae4c71a41820a8f0f5fd8c6e26eb0aea93c08147268fe07da5b2d925c0168"
+      },
+      {
+        "path": "Cloning/ThermalIdlerFidelity.lean",
+        "sha256": "8f59a5def6f1fb5caedbb31a30cc404e6157a58a4bf946a3dfe1d24e6b201ba5"
+      },
+      {
+        "path": "Cloning/ThermalWitness.lean",
+        "sha256": "62f24f8373ac0987200e844ab3bd47489754148fdf6a397fe85c1444ec076cff"
+      },
+      {
+        "path": "Cloning/YoungRounding.lean",
+        "sha256": "80672c98d9780b762aa2d119cc109731d3193df847dbc467bfd2a9ad194dedd2"
+      },
+      {
+        "path": "Cloning/YoungTwoRowAsymptotics.lean",
+        "sha256": "b0c63d4988a46b2f44dc39fd133d1f59e0b4160bc92e6044b6f39c09a8888ac7"
+      },
+      {
+        "path": "Cloning/YoungTwoRowConcentration.lean",
+        "sha256": "ec3ee0462478e0a1d2815f32300631032d885c7227f3a04c4557d534ba9a99c1"
+      },
+      {
+        "path": "Cloning/YoungTwoRowMoment.lean",
+        "sha256": "c96877b5b6cd173c0289270486ea34dcec56d243fe7a1f39f2cb9fa9901f9747"
+      }
+    ],
+    "verification": "All canonical Cloning modules cleanly compiled and audited; staging CloningNext names were replaced with Cloning before clean compilation.",
+    "boundaries": "conditional; concrete seeded bosonic Gaussian optimization, Gaussian coherent mixtures, complex occupation-channel limit, coordinate rounding bridge and rank-two dimension moments proved; universal Weyl-covariant representation, physical Schur/Cartan/PBW, arbitrary-rank Young local/uniform limits, LAN channels and continuous classical-quantum averaging remain"
+  }
+}

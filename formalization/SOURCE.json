@@ -1,0 +1,8 @@
+{
+  "manuscript": "cloning.tex",
+  "attachment_id": "file_00000000f4d081fb82ee80d8c24b3720",
+  "working_source_bytes": 197184,
+  "working_source_sha256": "6f2453656031201968aef5cc9c043f7116bb7a1ed1cd2cebb2b905e3df94038d",
+  "provenance": "The attachment service supplied metadata but the attachment download failed. A local cloning.tex with exactly the same filename and byte count (197184) was read as the working reference. Byte-for-byte equality to the attachment has not been independently verified.",
+  "date": "2026-09-29"
+}
