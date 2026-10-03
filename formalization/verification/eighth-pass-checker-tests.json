@@ -1,0 +1,42 @@
+{
+  "status": "passed",
+  "checker_sha256": "64dbb58f4a2b9b887708aa0a9e30366360878da656b5a8cbdfe100d3b6c9a18a",
+  "baseline": {
+    "status": "passed",
+    "checkpoint": "verification/eighth-pass",
+    "modules": 195,
+    "source_theorems_and_lemmas": 1832,
+    "audited_constants": 3776,
+    "manifest_files_checked": 208,
+    "lean_invoked": false,
+    "scope": "saved full-project certificate integrity and exact current source/config match"
+  },
+  "tamper_cases": [
+    {
+      "case": "proof_source",
+      "rejected": true,
+      "reason": "Current sources or dependency pins differ from the audit"
+    },
+    {
+      "case": "raw_axiom_evidence",
+      "rejected": true,
+      "reason": "SHA-256 mismatch: /private<test-copy>/verification/eighth-pass/AXIOMS.txt"
+    },
+    {
+      "case": "dependency_pin",
+      "rejected": true,
+      "reason": "Current sources or dependency pins differ from the audit"
+    },
+    {
+      "case": "extra_proof_source",
+      "rejected": true,
+      "reason": "Current sources or dependency pins differ from the audit"
+    },
+    {
+      "case": "rehash_prepared_only_claim",
+      "rejected": true,
+      "reason": "The latest record is not a completed kernel audit"
+    }
+  ],
+  "serial_shard_guard": "independently tested in semantic review; absent serial directory accepted, present shard directory copied"
+}

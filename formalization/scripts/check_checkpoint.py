@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate the relocated seventh-pass certificate without invoking Lean.
+"""Validate the current saved certificate without invoking Lean.
 
 This checks saved evidence and its agreement with the current Cloning sources.
 It is an integrity/replay check, not a new kernel check or a digital signature.
@@ -68,7 +68,7 @@ def historical_engine(project):
     return engine
 
 
-def validate(project):
+def validate_seventh(project):
     project = project.resolve()
     checkpoint = project / "verification/seventh-pass"
     manifest = read_json(checkpoint / "SHA256SUMS.json")
@@ -184,6 +184,72 @@ def validate(project):
             "raw_constant_reports": original["raw_constant_reports"],
             "manifest_files_checked": len(manifest), "lean_invoked": False,
             "scope": "saved certificate integrity and exact current Cloning source match"}
+
+
+def validate_latest(project, pointer):
+    """Replay a saved full-project audit and check its exact current inputs."""
+    project = project.resolve()
+    record = read_json(pointer)
+    checkpoint = safe_path(project, record["directory"])
+    check_hash(checkpoint / "run.json", record["run_sha256"])
+    run = read_json(checkpoint / "run.json")
+    require(run.get("status") == "passed" and run.get("lean_invoked") is True,
+            "The latest record is not a completed kernel audit")
+    for key in ("build_returncode", "returncode"):
+        require(run.get(key) == 0, f"Latest audit failed: {key}")
+    for key in ("build_input_hashes_unchanged", "input_hashes_unchanged",
+                "artifact_hashes_unchanged"):
+        require(run.get(key) is True, f"Latest audit gate failed: {key}")
+    evidence = run["evidence_sha256"]
+    require(isinstance(evidence, dict) and evidence, "Empty latest evidence inventory")
+    actual_evidence = {p.relative_to(checkpoint).as_posix()
+                       for p in checkpoint.rglob("*") if p.is_file() and p.name != "run.json"}
+    require(actual_evidence == evidence.keys(), "Latest evidence inventory differs")
+    for relative, digest in evidence.items():
+        check_hash(safe_path(checkpoint, relative), digest)
+    current = [*project.glob("*.lean"), *(project / "Cloning").rglob("*.lean"),
+               project / "lean-toolchain", project / "lakefile.toml", project / "lake-manifest.json"]
+    inputs = {p.relative_to(project).as_posix(): sha256(p) for p in current}
+    require(inputs == run["input_sha256"], "Current sources or dependency pins differ from the audit")
+    summary = read_json(checkpoint / "verification.json")
+    require(summary["source_sha256"] == source_hashes(project) == source_hashes(checkpoint),
+            "The audited source snapshot differs from the exact current proof inventory")
+    require(summary.get("axiom_audit") == "passed" and summary.get("lean_exit_code") == 0,
+            "Latest axiom audit did not pass")
+    require(summary.get("allowed_axioms") == ["Classical.choice", "Quot.sound", "propext"],
+            "Unexpected latest allowed-axiom policy")
+    for key in ("unexpected_axioms", "missing_modules", "missing_reports",
+                "duplicate_reports", "conflicting_reports"):
+        require(not summary.get(key), f"Latest audit records a failure: {key}")
+    for run_key, summary_key in (("modules", "modules"), ("theorems", "theorems"),
+                                 ("audited_constants", "audited_constants")):
+        require(run[run_key] == summary[summary_key], f"Latest audit count differs: {run_key}")
+    engine = historical_engine(project)
+    require(sha256(engine) == run["historical_engine_sha256"] == sha256(checkpoint / "audit.py"),
+            "The audited engine differs from the pinned historical engine")
+    with tempfile.TemporaryDirectory(prefix="cloning-latest-check-") as temporary:
+        scratch = Path(temporary)
+        copy_sources(checkpoint, scratch)
+        for name in ("audit.py", "Audit.lean", "AXIOMS.txt", "verification.json"):
+            shutil.copyfile(checkpoint / name, scratch / name)
+        if (checkpoint / "audit-shards").is_dir():
+            shutil.copytree(checkpoint / "audit-shards", scratch / "audit-shards")
+        replay = subprocess.run([sys.executable, str(scratch / "audit.py"), "--resummarize"],
+                                cwd=scratch, text=True, stdout=subprocess.PIPE,
+                                stderr=subprocess.STDOUT, check=False)
+        require(replay.returncode == 0, "Latest audit replay failed:\n" + replay.stdout[-6000:])
+        require(read_json(scratch / "verification.json") == summary,
+                "Recomputed latest audit summary differs from its saved record")
+    return {"status": "passed", "checkpoint": record["directory"],
+            "modules": summary["modules"], "source_theorems_and_lemmas": summary["theorems"],
+            "audited_constants": summary["audited_constants"],
+            "manifest_files_checked": len(evidence), "lean_invoked": False,
+            "scope": "saved full-project certificate integrity and exact current source/config match"}
+
+
+def validate(project):
+    pointer = project / "verification/latest.json"
+    return validate_latest(project, pointer) if pointer.exists() else validate_seventh(project)
 
 
 def main():

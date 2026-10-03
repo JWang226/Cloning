@@ -1,18 +1,24 @@
 import Cloning.InfiniteAsymptoticCPCompactness
 import Cloning.InfiniteCutoffChannels
+import Cloning.ChannelAveraging
+import Cloning.WeylFoelnerLimit
 
 /-!
-# Common-subsequence compact CP limits
+# Common-subsequence CP limits and concrete covariant averages
 
-On separable Hilbert spaces, actual uniformly bounded CP maps with the stated limsup
-trace bound admit one common subsequence converging on every input and compact
-observable. Approximate covariance passes to that same limit; trace loss is allowed.
-Actual finite-output cutoff channels converge uniformly on compact positive input sets.
-Construction and estimates of the manuscript-specific averaged maps remain separate.
+Uniformly bounded CP maps on separable Hilbert spaces admit one common subsequence
+converging on every input and compact observable, with the stated limsup trace bound.
+Actual CPTP Bochner averages and explicit expanding Gaussian priors now supply
+trace-norm approximate covariance for every trace-class input and construct an
+exactly covariant common-subsequence CP limit. Trace loss in that limit is allowed. Payoff preservation and the manuscript-specific weighted trace
+bound are separate from this Gaussian averaging construction.
 
-This public entry point adds no definitions or proofs. The declarations below locate the
-principal result and its supporting statements in the checked library.
+This entry point adds no definitions or proofs.
 -/
 
 #check Cloning.InfiniteTraceClass.exists_subsequence_covariant_cp_limit_of_limsup_trace_bound
 #check Cloning.InfiniteTraceClass.QuantumChannel.finiteBasisCutoff_tendstoUniformlyOn
+#check Cloning.InfiniteTraceClass.QuantumChannel.average
+#check Cloning.MultimodeCoherent.gaussianFoelnerChannel_covariance_tendsto_all
+
+#check Cloning.MultimodeCoherent.exists_gaussianFoelner_covariant_limit

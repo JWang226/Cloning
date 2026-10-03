@@ -6,7 +6,7 @@ This repository contains the mixed-state cloning manuscripts and their Lean 4 fo
 
 - [Manuscript](Cloning/cloning.pdf) · [LaTeX source](Cloning/cloning.tex)
 - [Version 2 manuscript](Cloning/paper_v2/cloningv2.pdf) · [LaTeX source](Cloning/paper_v2/cloningv2.tex)
-- [Formalization status](formalization.yaml) · [Detailed proof report](formalization/verification/seventh-pass/README.md) · [Semantic audit](formalization/verification/seventh-pass/PROOF_AUDIT.md)
+- [Formalization status](formalization.yaml) · [Current progress](formalization/PROGRESS.md) · [Latest verification](formalization/verification/latest.json) · [Historical semantic audit](formalization/verification/seventh-pass/PROOF_AUDIT.md)
 
 ## The results
 
@@ -16,16 +16,16 @@ Each entry point imports the relevant proofs and checks the names of its princip
 | --- | --- | --- |
 | Lifted sector fidelity | [LiftedSectorFidelity.lean](formalization/LiftedSectorFidelity.lean) | Exact finite-matrix sector factorization, trimming estimates, and convergence from explicit classical/sector approximation hypotheses |
 | Projector bounds and channel converse | [ProjectorBounds.lean](formalization/ProjectorBounds.lean) | Concrete matrix bounds and Kraus-channel converse; physical representation identification remains separate |
-| Classical rounding and Young moments | [ClassicalRounding.lean](formalization/ClassicalRounding.lean) | Coordinate-lattice rounding and density bridge; both dimension-product moments for the concrete rank-two law |
-| Occupation and coherent limits | [OccupationLimits.lean](formalization/OccupationLimits.lean) | Actual occupation CPTP channel and fixed-complex-amplitude trace-norm limit in the explicit two-level tensor model |
+| Classical rounding and Young moments | [ClassicalRounding.lean](formalization/ClassicalRounding.lean) | Actual Young fallback and error bounds; Euclidean root-hyperplane volume/covariance; rank-two law moments; general-rank local limit remains open |
+| Occupation and coherent limits | [OccupationLimits.lean](formalization/OccupationLimits.lean) | Full Werner CPTP map and physical sandwich; thermal output limit; two-way compact-uniform coherent comparison in arbitrary finite dimension |
 | Gaussian coherent-state mixtures | [CoherentGaussianMixtures.lean](formalization/CoherentGaussianMixtures.lean) | One- and finite-multimode trace-class Bochner integrals equal the corresponding thermal operators |
-| Bosonic channels and seeded optimum | [BosonicSeededOptimum.lean](formalization/BosonicSeededOptimum.lean) | Actual channels, least-noise bounds, and exact fidelity optimum over arbitrary joint idler density states |
-| Quantum fidelity inequalities | [QuantumFidelity.lean](formalization/QuantumFidelity.lean) | Finite- and infinite-dimensional fidelity, continuity, data processing, and weighted bounds |
-| Compactness of CP maps | [CompactCPLimits.lean](formalization/CompactCPLimits.lean) | Common subsequence and completely positive trace-class limit, with sharp trace bound and covariance |
-| LAN transfer estimates | [LANTransfer.lean](formalization/LANTransfer.lean) | Channel-composition and statistical comparison estimates assuming approximation bounds; no physical LAN construction |
+| Bosonic channels and seeded optimum | [BosonicSeededOptimum.lean](formalization/BosonicSeededOptimum.lean) | Seeded optimum; actual strongly continuous irreducible Weyl representation and algebraic covariant multiplier classification |
+| Quantum fidelity inequalities | [QuantumFidelity.lean](formalization/QuantumFidelity.lean) | Actual quantum and continuous classical–quantum fidelity, weighted bounds, and sigma-finite Bochner Jensen |
+| Compactness of CP maps | [CompactCPLimits.lean](formalization/CompactCPLimits.lean) | Explicit Gaussian CPTP averages and one common subsequence with an exactly covariant CP limit; trace loss is explicit |
+| LAN transfer estimates | [LANTransfer.lean](formalization/LANTransfer.lean) | Transfer estimates and constructed pure-product two-way channels; mixed-state physical LAN remains open |
 | Cloning theorem assembly | [ConditionalCloningTheorems.lean](formalization/ConditionalCloningTheorems.lean) | **Conditional:** known/unknown-spectrum conclusions from explicitly stated remaining inputs |
 
-The audited library contains **136 modules and 1,348 source theorem/lemma declarations**. Its axiom audit covers **2,753 unique compiled project constants**, including definitions, instances, private declarations, and generated helpers. The navigation entry points add no new theorems.
+The audited library contains **195 modules and 1,832 source theorem/lemma declarations**. Its axiom audit covers **3,776 unique compiled project constants**, including definitions, instances, private declarations, and generated helpers. The navigation entry points add no new theorems.
 
 ## Building the formalization
 
@@ -47,7 +47,12 @@ lake build BosonicSeededOptimum
 
 ## Proof checking
 
-The saved seventh-pass checkpoint records a clean compilation and a full Lean axiom-dependency audit. The reorganized project also passes a fresh `lake build All`; see the [build record](formalization/verification/organized-build/result.json). It contains no `sorry`, admitted proofs, or custom axioms; the only permitted axioms are `propext`, `Classical.choice`, and `Quot.sound`.
+The latest full checkpoint records a successful `lake build All` and a Lean
+axiom-dependency audit of every compiled project constant. See the
+[completion record](formalization/verification/eighth-pass/run.json) and
+[current proof report](formalization/PROGRESS.md). The source has no `sorry`,
+admitted proofs, or custom axioms; permitted axioms are `propext`,
+`Classical.choice`, and `Quot.sound`.
 
 From `formalization/`, verify the source and evidence hashes, or rerun the axiom audit after building:
 
@@ -56,19 +61,22 @@ python3 scripts/check_checkpoint.py
 python3 scripts/audit.py --jobs 3
 ```
 
-See [verification instructions](formalization/scripts/README.md) for the distinction between checking the saved evidence and running a fresh audit. The historical evidence is preserved in [`verification/seventh-pass/`](formalization/verification/seventh-pass/); it is not overwritten by the fresh-audit command. This project has a Lean kernel dependency audit, not a Comparator certificate.
+See [verification instructions](formalization/scripts/README.md) for the distinction between checking the saved evidence and running a fresh audit. The latest evidence includes the exact source snapshot, raw axiom reports, and source/configuration hashes. The historical [`seventh-pass`](formalization/verification/seventh-pass/) evidence is preserved separately; fresh audits do not overwrite it. This project has a Lean kernel dependency audit, not a Comparator certificate.
 
 ## Remaining mathematical inputs
 
 The end-to-end formalization still requires:
 
-- The universal Weyl-covariant channel representation needed to extend the proved seeded optimum to all relevant channels.
-- Physical Schur/Cartan identifications and uniform PBW/Fock estimates.
-- General-rank Young laws and uniform local limits, including the root-hyperplane measure and compatibility fallback.
-- Physical LAN channels and their uniform approximation estimates, and the continuous classical–quantum averaging constructions.
-- The remaining physical embedding and channel identifications for the purification-and-cloning comparison.
+- Universal arbitrary-idler reconstruction from CP/normality, amplifier Weyl intertwining, and the composite-gain reduction.
+- Physical Schur/Cartan identifications for general Young sectors and uniform PBW/Fock estimates.
+- General-rank Young-law concentration and compact-spectrum uniform local limits. Root-hyperplane geometry and compatibility fallback are now proved.
+- Physical mixed-state LAN channels and their uniform errors. Pure-product comparison channels are now constructed in every finite dimension.
+- The manuscript-specific flat-prior payoff and weighted trace estimates. Explicit Gaussian averaging and the continuous classical–quantum fidelity foundations are proved.
+- The remaining PCT partial-trace, rotation, and Gaussian-mixture identifications.
 
-The detailed [obligation table](formalization/verification/seventh-pass/README.md#remaining-end-to-end-obligations) records the boundary between each proved component and its remaining application.
+The [current obligation table](formalization/PROGRESS.md) gives the exact proved
+endpoints and remaining application steps. The full cloning assembly remains
+conditional; the additional constructions do not remove those remaining premises.
 
 ## Source provenance
 

@@ -14,25 +14,24 @@ with the pinned Lean toolchain. It is the portable replacement for the archived
 `check_local.py`, whose defaults refer to the original author's machine.
 
 `check_checkpoint.py` runs **no Lean process** and changes no repository files.
-It verifies every original bundle checksum, the exact current `Cloning.lean` and
-`Cloning/` source inventory, the dependency pins, all saved build-phase and audit
-fingerprints, and the successful completion records. Original files moved during
-reorganization are resolved in `verification/seventh-pass/` first, then at the
-project root. The active proof sources are checked separately to prevent an
-archived copy from masking changes.
+When `verification/latest.json` exists, it verifies the referenced completed full
+build and axiom audit: every saved evidence hash, the exact current proof and
+entry-point source inventory, dependency pins, successful return codes, and
+source/artifact stability gates. It then replays the pinned audit engine's
+Python-only `--resummarize` mode in temporary storage and requires an identical
+summary, including complete export coverage and every axiom report. Both serial
+and multi-worker evidence are supported.
 
-The checker copies the audit evidence into temporary storage and runs the original
-auditor's Python-only `--resummarize` mode. This independently rechecks the complete
-module/export inventories in all three shards, identical repeated exports,
-per-constant axiom reports, and all reported counts. The result must equal the
-original completion summary. The extended `verification.json` must preserve every
-field of `AUDIT-seventh-verification.json`.
+Without a latest pointer, the checker validates the historical seventh-pass
+checkpoint against the corresponding exact source inventory. The original
+checkpoint is preserved separately; new proofs are certified by the latest full
+audit, not by that historical record.
 
-This is a check of the saved certificate's integrity and agreement with the
-sources, not a new kernel run or a cryptographic signature. It does not require or
-compare local compiled artifacts against the original machine's `.olean` hashes.
-The new import/`#check` entry points and `All.lean` are checked by Lake; the historical
-all-constant audit covers the unchanged `Cloning` modules.
+This checks saved evidence integrity and agreement with the current sources.
+It is not a fresh kernel run or a cryptographic signature. It does not require
+local compiled artifacts to match another machine's `.olean` hashes. The full
+build includes all public entry points; the axiom audit covers all declarations
+exported by the implementation modules imported by `Cloning.lean`.
 
 For a fresh kernel axiom audit:
 
@@ -64,10 +63,10 @@ python3 scripts/audit.py --prepare-only --jobs 3 --output /tmp/cloning-audit-pre
 ```
 
 This produces a snapshot explicitly marked `prepared_only`, not a passing audit.
-For the saved serial driver, independent reproduction after a build is:
+For the latest saved serial driver, independent reproduction after a build is:
 
 ```sh
-lake env lean -DautoImplicit=false verification/seventh-pass/Audit.lean
+lake env lean -DautoImplicit=false verification/eighth-pass/Audit.lean
 ```
 
 The historical archive is intentionally unchanged. Do not run its `audit.py`
