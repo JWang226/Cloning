@@ -8,7 +8,7 @@ stages with labeled ingredient arrows, a distinct comparison benchmark, and
 Lean evidence. Stage selection highlights direct ingredients and uses; all
 guides, results, and evidence also remain readable without JavaScript.
 
-[Paper → guide → Lean](correspondence.html) connects numbered paper statements,
+[Paper → Lean proof](correspondence.html) connects numbered paper statements,
 their argument locations, guide chapters, and compiled proof endpoints. The
 guide combines main-text sections and appendices in an editorial reading order;
 guide numbers differ from paper section numbers. Each chapter and every proof

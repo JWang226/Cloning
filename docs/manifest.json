@@ -1,6 +1,6 @@
 {
   "generator": "tools/docs-site/build.py",
-  "generator_sha256": "e52b889cf8d464ea934fe2a294caec40ae6812dab212a67650d96f1212498b07",
+  "generator_sha256": "6f5b0223e164d000c65de140a35967ce9dbf263265db3c708996469b16be72e6",
   "recorded_lean_audit": {
     "directory": "verification/kernel-compatible-pass",
     "run_sha256": "6b2c09f61388362d9ff3ae3f63285b9dd09e0cd95254150273bacba6cd9c799a"
@@ -1672,7 +1672,7 @@
   "outputs_sha256": {
     ".nojekyll": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     ".proof-wiki-generated": "95dcbd508bef86bf7742e209dea6f444ac2ab7d324fe553eca4b1043f90011e6",
-    "README.md": "c9a1e32e320261365abc4172e78b1ee192ec89c4ebe010b5d937622ee71e96db",
+    "README.md": "4252dff99be2e2720d32088eed95f71e5c9382f24b99abfd77e0287754cd3356",
     "assets/dependencies.css": "218a79102e6174f2f1689a5260ccc57c996b519eaea05d6ff0e39af702956565",
     "assets/dependencies.js": "cf92876f54b6ad2974255d6870b570403dd2fe4757386efe717f1a0bbd058c31",
     "assets/search-index.js": "584f25f8f25a3c6cfc8c12ca84f75b975b68e272ae306436e6c8a3b1c8d60bbe",
@@ -1681,7 +1681,7 @@
     "assets/vendor/katex/LICENSE": "6d1e989da2c3ac139dc1439143968d201485c6895f1cd5f6c0791bbcdef6296a",
     "assets/vendor/katex/README.md": "82c7f0b77b170aa34c55fc070363b762f3c0f157e2dfe36349a7461b1612ee7b",
     "assets/vendor/katex/katex.min.js": "403aa468599d531038314eeb0c40bd70f692ed8a62a87914ccd7584ad810f99f",
-    "correspondence.html": "b1d5a8290a39f1696b227b58949e72a14e1845e658ad607d2c4b5e86c019127a",
+    "correspondence.html": "070f15504afe570d45099c923fc81f73742410747fda7237e7a8f4cd9df0754c",
     "data/audit-summary.json": "bddf7e6a0b06baff56ec6146bec6a6dd5f0045d2fbfcc5854a9cb1dfbd5a192c",
     "data/comparator-run.json": "10cd07049fa3607797765114c4d970a9e0aa51b408e795641b7f342e50983b7a",
     "data/comparator-status.json": "07fed75dc13182bbe7e9081391c05e19a391694203e05f6873788987c028487e",
@@ -1704,7 +1704,7 @@
     "guides/spectral-comparison.html": "d244a450ecc1bbcb12a72f935a554b069939d4aa2fc070c9869da1b9fcdaf8e3",
     "guides/unknown-spectrum.html": "1af69911d69398a934b9299c1e66189ac20532771b791542a5086e435d715344",
     "guides/young-laws.html": "3d151cbd1e82b986f3db8b4fa3edceb1500f0f6501fce81fd4b96b6ac188aa22",
-    "index.html": "713382b382a6873ac8faf36781ffd17784bb5a8fe629eb401d30c38997a35ed2",
+    "index.html": "de27a0fd7def9e2dc99daef3060ca3ca13975e741716ee917d6eec974eb56c92",
     "reference/PROOF_MAP.md": "90b72fcb4f4b4fac339ed6a8faba35913be72570b01d00ae05925080b804155f",
     "reference/VERIFICATION.md": "1828b8022007c2804b7d96f0ddc6483ebc5924b0dfff45d106a25ae7cd36b097",
     "reference/cloning.tex": "6f2453656031201968aef5cc9c043f7116bb7a1ed1cd2cebb2b905e3df94038d",

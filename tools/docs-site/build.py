@@ -624,7 +624,7 @@ class Wiki:
                 f'<div class="stat"><span class="stat-value">{a["modules"]:,}</span><span class="stat-label">audited Lean modules</span></div>'
                 f'<div class="stat"><span class="stat-value">{a["audited_constants"]:,}</span><span class="stat-label">compiled constants audited</span></div>'
                 '<div class="stat"><span class="stat-value">3</span><span class="stat-label">standard logical axioms only</span></div></section>'
-                '<section class="callout info"><h2>Paper → informal argument → Lean proof</h2>'
+                '<section class="callout info"><h2>Paper → Lean proof</h2>'
                 '<p>Start with a numbered result in the <a href="correspondence.html">paper-to-Lean table</a>. It points to the paper’s statement and proof sections, the corresponding informal guide, and the compiled Lean declarations. The twelve guide chapters follow the proof ingredients and combine material from the main text and appendices; their numbers differ from the paper’s section numbers.</p>'
                 '<p><a href="dependencies.html">The dependency map</a> connects the proof stages and shows the Lean evidence for each contribution.</p>'
                 '<p class="small">The English explanation is editorial. It does not replace the hypotheses in Lean. '
@@ -723,7 +723,7 @@ class Wiki:
             for x in chapter["paper"]["sections"]) + '</ul>'
 
     def render_correspondence(self):
-        body = ('<div class="eyebrow">Paper → informal guide → formal proof</div><h1>From the paper to Lean</h1>'
+        body = ('<div class="eyebrow">Paper → Lean proof</div><h1>From the paper to Lean</h1>'
                 '<p class="lead">Find each of the paper’s 27 numbered results, read its informal argument, and inspect the Lean declarations that formalize it.</p>'
                 '<p>The paper states its four main theorems in §1.1 and develops their arguments later. The guide combines those sections and appendices into twelve chapters. '
                 f'Section and result numbers below refer to <a href="{esc(self.paper["version_url"])}">arXiv v1</a>.</p>'
@@ -1182,7 +1182,7 @@ stages with labeled ingredient arrows, a distinct comparison benchmark, and
 Lean evidence. Stage selection highlights direct ingredients and uses; all
 guides, results, and evidence also remain readable without JavaScript.
 
-[Paper → guide → Lean](correspondence.html) connects numbered paper statements,
+[Paper → Lean proof](correspondence.html) connects numbered paper statements,
 their argument locations, guide chapters, and compiled proof endpoints. The
 guide combines main-text sections and appendices in an editorial reading order;
 guide numbers differ from paper section numbers. Each chapter and every proof

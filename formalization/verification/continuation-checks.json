@@ -148,7 +148,7 @@
     "files": 2034,
     "offline_markdown_links_repaired": 74,
     "checker_verdicts_bound_to_current_audit": true,
-    "manifest_sha256": "99586de6e49acc95024cfe629a95a2ca0a84a8dfdcb1a5517e4dba72b6071078",
+    "manifest_sha256": "a9efa52c2180182f4ce5fb84ba9546a449216331491ba5a65f51da698ad69327",
     "dependency_stages": 12,
     "dependency_edges": 18,
     "paper_sections": 35,
@@ -252,5 +252,12 @@
     ],
     "proof_sources_unchanged": true,
     "verification_evidence_unchanged": true
+  },
+  "paper_heading_revision": {
+    "recorded_utc": "2026-10-04T21:24:32.324985+00:00",
+    "heading": "Paper → Lean proof",
+    "wiki_build": "passed",
+    "local_links_and_anchors": "passed",
+    "proof_sources_unchanged": true
   }
 }
