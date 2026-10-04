@@ -263,6 +263,8 @@ class Wiki:
         if len(set(chapter_ids)) != len(chapter_ids) or any(slug(x) != x for x in chapter_ids):
             raise ValueError("Chapter ids must be unique lowercase URL slugs")
         self.validate_guides()
+        self.dependencies = self.read_json(ROOT / "docs-src/dependencies.json")
+        self.validate_dependencies()
 
     def read(self, path):
         data = path.read_bytes()
@@ -414,12 +416,60 @@ class Wiki:
         if missing:
             raise ValueError("Named results missing a proof guide: " + ", ".join(sorted(missing)))
 
-    def page(self, path, title, body, active="", toc=""):
+    def validate_dependencies(self):
+        """Validate an editorial stage graph and its audited source evidence."""
+        nodes = self.dependencies["nodes"]
+        ids = [n["id"] for n in nodes]
+        expected = {c["id"] for c in self.chapters}
+        if len(ids) != len(set(ids)) or set(ids) != expected:
+            raise ValueError("Dependency stages must match the proof guides exactly once")
+        if self.dependencies.get("default_stage") not in expected:
+            raise ValueError("Unknown default dependency stage")
+        self.dependency_nodes = {n["id"]: n for n in nodes}
+        self.dependency_chapters = {c["id"]: c for c in self.chapters}
+        outgoing = {n: [] for n in ids}
+        seen = set()
+        for edge in self.dependencies["edges"]:
+            source, target = edge["from"], edge["to"]
+            if source not in expected or target not in expected:
+                raise ValueError("Unknown dependency edge stage")
+            if source == target or (source, target) in seen:
+                raise ValueError("Self or duplicate dependency edge")
+            seen.add((source, target))
+            kind = edge.get("kind", "ingredient")
+            if kind not in ("ingredient", "comparison"):
+                raise ValueError("Unknown dependency edge kind")
+            if not edge.get("label") or not edge.get("evidence"):
+                raise ValueError("Dependency edges require a contribution and Lean evidence")
+            if kind == "ingredient":
+                outgoing[source].append(target)
+            for evidence in edge["evidence"]:
+                if not evidence.get("note"):
+                    raise ValueError("Dependency evidence requires an explanation")
+                evidence["_pointer"] = self.resolve(evidence["name"], evidence["file"])
+        visiting, done = set(), set()
+
+        def visit(node):
+            if node in visiting:
+                raise ValueError("Ingredient dependency graph contains a cycle")
+            if node in done:
+                return
+            visiting.add(node)
+            for target in outgoing[node]:
+                visit(target)
+            visiting.remove(node)
+            done.add(node)
+
+        for node in ids:
+            visit(node)
+
+    def page(self, path, title, body, active="", toc="", extra_assets=()):
         depth = len(PurePosixPath(path).parts) - 1
         prefix = "../" * depth
         nav = [
             ("index.html", "Overview", "overview"),
             ("guides/index.html", "Proof guide", "guides"),
+            ("dependencies.html", "Dependency map", "dependencies"),
             ("results/index.html", "27 named results", "results"),
             ("source/index.html", "Lean source", "source"),
             ("verification.html", "Verification", "verification"),
@@ -433,6 +483,10 @@ class Wiki:
             f'<a class="nav-link" href="{prefix}guides/{esc(c["id"])}.html">'
             f'<span class="nav-number">{i:02}</span> {esc(c["title"])}</a>'
             for i, c in enumerate(self.chapters, 1))
+        extra_head = "".join(
+            f'<link rel="stylesheet" href="{prefix}assets/{esc(asset)}">' if asset.endswith(".css")
+            else f'<script defer src="{prefix}assets/{esc(asset)}"></script>'
+            for asset in extra_assets)
         html_text = f'''<!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -443,6 +497,7 @@ class Wiki:
 <script defer src="{prefix}assets/vendor/katex/katex.min.js"></script>
 <script defer src="{prefix}assets/search-index.js"></script>
 <script defer src="{prefix}assets/site.js"></script>
+{extra_head}
 </head><body><a class="skip-link" href="#main">Skip to content</a>
 <div class="site-shell"><aside class="sidebar" id="site-navigation">
 <a class="brand" href="{prefix}index.html"><span class="brand-mark">C</span><span>Cloning<span class="small muted">A Lean proof wiki</span></span></a>
@@ -509,6 +564,7 @@ class Wiki:
                 f'<div class="lead">{paragraphs(self.guides["intro"])}</div>'
                 '<div class="actions"><a class="button" href="guides/index.html">Start the proof guide →</a>'
                 '<a class="button secondary" href="results/index.html">Browse all 27 results</a>'
+                '<a class="button secondary" href="dependencies.html">Explore the dependency map</a>'
                 f'<a class="button secondary" href="{ARXIV}">Read the paper on arXiv ↗</a></div></section>'
                 '<section class="stats" aria-label="Verification snapshot">'
                 f'<div class="stat"><span class="stat-value">27</span><span class="stat-label">named manuscript results</span></div>'
@@ -517,6 +573,7 @@ class Wiki:
                 '<div class="stat"><span class="stat-value">3</span><span class="stat-label">standard logical axioms only</span></div></section>'
                 '<section class="callout info"><h2>Two ways to read this wiki</h2>'
                 '<p>Follow the chapter guide for the mathematical argument, or open a named result to inspect its scope and exact Lean statements. Every proof pointer leads to a complete, offline source page with line anchors.</p>'
+                '<p><a href="dependencies.html">The dependency map</a> connects the proof stages and shows the Lean evidence for each contribution.</p>'
                 '<p class="small">The English explanation is editorial. It does not replace the hypotheses in Lean. '
                 '<a href="scope.html">Read the conventions and open questions →</a></p></section>'
                 '<div class="section-heading"><div><div class="eyebrow">The proof route</div><h2>From finite copies to limiting optima</h2></div>'
@@ -536,6 +593,7 @@ class Wiki:
         body = ('<div class="eyebrow">Read the argument</div><h1>The proof guide</h1>'
                 '<p class="lead">A chapter-by-chapter explanation of the constructions, estimates, and converse arguments. Each step is linked to the declarations that make it precise.</p>'
                 '<div class="notice">Editorial roadmap · the full hypotheses live in Lean.</div>'
+                '<p><a href="../dependencies.html">See how the stages depend on each other →</a></p>'
                 + self.chapter_cards("../"))
         self.page("guides/index.html", "Proof guide", body, "guides")
         for i, c in enumerate(self.chapters):
@@ -544,6 +602,7 @@ class Wiki:
             body = (f'<div class="eyebrow">Proof guide · chapter {i + 1:02} of {len(self.chapters):02}</div>'
                     f'<h1>{esc(c["title"])}</h1><p class="lead">{inline(c["summary"])}</p>'
                     '<div class="notice">English explanation · exact Lean excerpts are shown separately.</div>'
+                    f'<p><a href="../dependencies.html#stage-{esc(c["id"])}">This chapter in the dependency map →</a></p>'
                     '<div class="split-layout"><article class="prose">')
             if c.get("statement"):
                 body += '<section class="callout"><h2>At a glance</h2>' + self.math(c["statement"], True) + "</section>"
@@ -605,7 +664,9 @@ class Wiki:
             chapters = [c for c in self.chapters if result["label"] in c.get("manuscript_labels", [])]
             if chapters:
                 body += '<section class="callout"><h2>Read this part of the proof</h2>' + "".join(
-                    f'<p><a href="../guides/{c["id"]}.html">{esc(c["title"])} →</a></p>' for c in chapters) + "</section>"
+                    f'<p><a href="../guides/{c["id"]}.html">{esc(c["title"])} →</a><br>'
+                    f'<a class="small" href="../dependencies.html#stage-{c["id"]}">View this stage’s dependencies →</a></p>'
+                    for c in chapters) + "</section>"
             body += ('<details class="manuscript-excerpt"><summary>Exact manuscript TeX statement</summary>'
                      '<p class="small muted">Exact source excerpt identifying this statement. Read the paper for the surrounding mathematical exposition and notation.</p>'
                      f'<pre class="code-block"><code>{esc(result["tex"])}</code></pre>'
@@ -615,8 +676,163 @@ class Wiki:
             self.search.append({"title": result["title"], "subtitle": result["label"], "kind": result["kind"].title(),
                                 "url": result["url"], "text": " ".join(p["scope"] for p in result["parts"])})
 
+    def render_dependencies(self):
+        data = self.dependencies
+        nodes, edges = data["nodes"], data["edges"]
+        incoming = {n["id"]: [] for n in nodes}
+        outgoing = {n["id"]: [] for n in nodes}
+        for edge in edges:
+            incoming[edge["to"]].append(edge)
+            outgoing[edge["from"]].append(edge)
+        # A deterministic layered drawing of the ingredient DAG. Comparisons do
+        # not impose a logical dependency or change a stage's layer.
+        depths = {}
+
+        def depth(stage):
+            if stage not in depths:
+                parents = [e["from"] for e in incoming[stage] if e.get("kind", "ingredient") == "ingredient"]
+                depths[stage] = 1 + max(depth(p) for p in parents) if parents else 0
+            return depths[stage]
+
+        isolated = [n for n in nodes if not incoming[n["id"]] and not outgoing[n["id"]]]
+        layers = {}
+        for node in nodes:
+            if node not in isolated:
+                layers.setdefault(depth(node["id"]), []).append(node)
+        width, node_width, node_height, stride = 1100, 190, 70, 120
+        offset = stride if isolated else 0
+        positions = {}
+        for layer, row in sorted(layers.items()):
+            for i, node in enumerate(row):
+                positions[node["id"]] = ((i + .5) * width / len(row), 20 + offset + layer * stride)
+        for i, node in enumerate(isolated):
+            positions[node["id"]] = ((i + .5) * width / len(isolated), 20)
+        height = 20 + offset + max(layers, default=0) * stride + node_height + 30
+        svg = (f'<svg class="dependency-graph" viewBox="0 0 {width} {height}" role="group" '
+               'aria-labelledby="dependency-diagram-title dependency-diagram-desc">'
+               '<title id="dependency-diagram-title">The mixed-state cloning proof stages</title>'
+               '<desc id="dependency-diagram-desc">Solid arrows run from ingredients to the stages that use them. '
+               'Dotted arrows show comparison benchmarks. Select a stage for its guide, results, and Lean evidence.</desc>'
+               '<defs><marker id="dependency-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">'
+               '<path d="M 0 0 L 10 5 L 0 10 z" fill="#175e58"/></marker>'
+               '<marker id="dependency-comparison-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">'
+               '<path d="M 0 0 L 10 5 L 0 10 z" fill="#a36820"/></marker></defs>')
+        for i, edge in enumerate(edges):
+            sx, sy = positions[edge["from"]]
+            tx, ty = positions[edge["to"]]
+            source_edges, target_edges = outgoing[edge["from"]], incoming[edge["to"]]
+            sx += (source_edges.index(edge) - (len(source_edges) - 1) / 2) * 24
+            tx += (target_edges.index(edge) - (len(target_edges) - 1) / 2) * 28
+            sy += node_height
+            kind = edge.get("kind", "ingredient")
+            if ty - sy > stride:
+                # Long edges run through the gaps beside the middle layer,
+                # then turn below it rather than crossing a stage's card.
+                turn = ty - 20 - (i % 3) * 4
+                path = f"M {sx:g} {sy:g} V {turn:g} H {tx:g} V {ty:g}"
+            else:
+                mid = (sy + ty) / 2
+                path = f"M {sx:g} {sy:g} C {sx:g} {mid:g}, {tx:g} {mid:g}, {tx:g} {ty:g}"
+            marker = "dependency-comparison-arrow" if kind == "comparison" else "dependency-arrow"
+            svg += (f'<path class="dependency-edge" data-from="{esc(edge["from"])}" data-to="{esc(edge["to"])}" '
+                    f'data-kind="{kind}" d="{path}" marker-end="url(#{marker})">'
+                    f'<title>{esc(self.dependency_nodes[edge["from"]]["label"])} → '
+                    f'{esc(self.dependency_nodes[edge["to"]]["label"])}: {esc(edge["label"])}</title></path>')
+        for i, node in enumerate(nodes, 1):
+            stage = node["id"]
+            x, y = positions[stage]
+            description = "Definitions used throughout" if node in isolated else f"Proof stage {i:02}"
+            svg += (f'<g class="dependency-node" data-stage="{esc(stage)}"><a href="#stage-{esc(stage)}" '
+                    f'aria-label="Select {esc(node["label"])}">'
+                    f'<rect x="{x - node_width / 2:g}" y="{y:g}" width="{node_width}" height="{node_height}"/>'
+                    f'<text class="dependency-node-number" x="{x:g}" y="{y + 22:g}" text-anchor="middle">{esc(description)}</text>'
+                    f'<text x="{x:g}" y="{y + 47:g}" text-anchor="middle">{esc(node["label"])}</text></a></g>')
+        svg += "</svg>"
+        body = (f'<div class="eyebrow">The proof at a glance</div><h1>{esc(data["title"])}</h1>'
+                f'<p class="lead">{inline(data["intro"])}</p>'
+                f'<div id="dependency-map" class="dependency-map" data-default-stage="{esc(data["default_stage"])}">'
+                '<div class="dependency-legend"><span class="dependency-legend-item"><span class="dependency-legend-line"></span>Ingredient → stage that uses it</span>'
+                '<span class="dependency-legend-item"><span class="dependency-legend-line" data-kind="comparison"></span>Comparison benchmark</span></div>'
+                '<p class="dependency-pan-hint">Swipe the diagram sideways to explore all stages.</p>'
+                '<div class="dependency-graph-wrap" tabindex="0" aria-label="Proof dependency diagram; scroll horizontally on a narrow screen">'
+                + svg + '</div><div class="dependency-controls">'
+                '<p class="small muted">Select a stage to highlight its direct ingredients and uses. Open its guide for the informal argument, or inspect the Lean evidence below.</p>'
+                '<div class="dependency-selectors" role="group" aria-label="Select a proof stage">'
+                + "".join(f'<button type="button" class="dependency-selector" data-stage="{esc(n["id"])}">{esc(n["label"])}</button>' for n in nodes)
+                + '</div><button type="button" id="dependency-reset" class="dependency-reset">Show all stages</button>'
+                f'<p id="dependency-status" class="dependency-status" role="status">All {len(nodes)} stages are shown. Each arrow is explained in the linked stage notes below.</p></div>')
+
+        def edge_list(stage, relations, direction):
+            if not relations:
+                return ""
+            result = f'<h3>{direction}</h3><ul>'
+            for edge in relations:
+                other = edge["from"] if edge["to"] == stage else edge["to"]
+                kind = edge.get("kind", "ingredient")
+                tag = ' <span class="badge">Comparison</span>' if kind == "comparison" else ""
+                result += (f'<li><a href="#stage-{esc(other)}">{esc(self.dependency_nodes[other]["label"])}</a>'
+                           f' — {inline(edge["label"])}{tag}<details class="dependency-evidence"><summary>Lean evidence</summary><ul>')
+                for evidence in edge["evidence"]:
+                    pointer = evidence["_pointer"]
+                    result += (f'<li>{inline(evidence["note"])}<br><a href="{esc(pointer["url"])}">'
+                               f'<code>{esc(pointer["name"])}</code></a> '
+                               f'<span class="small muted">line {pointer["line"]}</span></li>')
+                result += "</ul></details></li>"
+            return result + "</ul>"
+
+        public_nodes, public_edges = [], []
+        for node in nodes:
+            stage = node["id"]
+            chapter = self.dependency_chapters[stage]
+            labels = chapter.get("manuscript_labels", [])
+            body += (f'<article class="dependency-detail" id="stage-{esc(stage)}" data-stage="{esc(stage)}">'
+                     f'<h2>{esc(node["label"])}</h2><p>{inline(chapter["summary"])}</p>'
+                     f'<a class="button secondary" href="guides/{esc(stage)}.html">Read the informal proof guide →</a>')
+            if labels:
+                body += '<h3>Named results</h3><ul>' + "".join(
+                    f'<li><a href="{esc(self.results[label]["url"])}">{esc(self.results[label]["title"])}</a> '
+                    f'<code>{esc(label)}</code></li>' for label in labels) + "</ul>"
+            body += edge_list(stage, incoming[stage], "Ingredients and benchmarks")
+            body += edge_list(stage, outgoing[stage], "Where this stage contributes")
+            endpoints = {p["name"]: p for step in chapter["steps"] for p in step["_pointers"]}
+            endpoints.update({r["_pointer"]["name"]: r["_pointer"] for r in chapter["results"]})
+            body += '<details><summary>Lean endpoints in this stage</summary><ul>' + "".join(
+                f'<li><a href="{esc(p["url"])}"><code>{esc(p["name"])}</code></a></li>'
+                for p in endpoints.values()) + "</ul></details></article>"
+            public_nodes.append({**node, "guide_url": f"guides/{stage}.html", "results": [
+                {k: self.results[label][k] for k in ("label", "title", "url")} for label in labels]})
+            self.search.append({"title": "Dependency map: " + node["label"], "subtitle": chapter["title"],
+                                "kind": "Map", "url": "dependencies.html#stage-" + stage,
+                                "text": chapter["summary"] + " " + " ".join(e["label"] for e in incoming[stage] + outgoing[stage])})
+        for edge in edges:
+            public_edges.append({k: edge.get(k, "ingredient") for k in ("from", "to", "kind", "label")})
+            public_edges[-1]["evidence"] = [{"note": e["note"], **{k: e["_pointer"][k] for k in ("name", "file", "line", "url")}} for e in edge["evidence"]]
+        self.put("data/dependencies.json", json.dumps({"title": data["title"], "semantics": data["legend"],
+                 "source_audit_sha256": self.latest["run_sha256"], "nodes": public_nodes, "edges": public_edges}, indent=2, ensure_ascii=False) + "\n")
+        body += ('</div><section class="callout"><h2>Reading the arrows</h2>' + paragraphs(data["legend"])
+                 + '<p>These stage connections are editorial. The builder checks each source pointer against the compiled audit; the arrow labels summarize the mathematical argument. '
+                 'Qualitative estimates and concrete channel assemblies are identified separately from named generic auxiliary theorems in the evidence notes.</p>'
+                 '<p>The physical problem supplies definitions throughout the proof. The exact all-density optimum remains open; degenerate-spectrum and fixed-rank formulas remain conjectures.</p>'
+                 '<p><a href="scope.html">Open questions and conjectures →</a> · <a href="data/dependencies.json">Download the map data</a></p></section>')
+        self.page("dependencies.html", "Proof dependency map", body, "dependencies",
+                  extra_assets=("dependencies.css", "dependencies.js"))
+        self.search.append({"title": "Dependency map", "subtitle": "Ingredients, results, and Lean evidence",
+                            "kind": "Page", "url": "dependencies.html", "text": "proof dependencies roadmap graph " + data["intro"]})
+
     def render_sources(self):
         rows = []
+        stage_modules = {}
+        for chapter in self.chapters:
+            pointers = [p for step in chapter["steps"] for p in step["_pointers"]]
+            pointers += [r["_pointer"] for r in chapter["results"]]
+            for module in {p["module"] for p in pointers}:
+                stage_modules.setdefault(module, []).append(chapter)
+        for edge in self.dependencies["edges"]:
+            chapter = self.dependency_chapters[edge["to"]]
+            for evidence in edge["evidence"]:
+                chapters = stage_modules.setdefault(evidence["_pointer"]["module"], [])
+                if chapter not in chapters:
+                    chapters.append(chapter)
         for module, info in self.modules.items():
             source_lines = info["text"].splitlines()
             short = module.removeprefix("Cloning.")
@@ -628,6 +844,10 @@ class Wiki:
                     f'<a class="button secondary" href="{GITHUB}{esc(info["file"])}">View on GitHub ↗</a>'
                     '<a href="index.html">All modules</a></div>'
                     '<p class="small muted">Full source copied without mathematical changes from the snapshot whose input hash matches the passing audit. Select a line number for a stable source pointer.</p>')
+            if module in stage_modules:
+                body += '<p class="small">In the dependency map: ' + " · ".join(
+                    f'<a href="../dependencies.html#stage-{c["id"]}">{esc(self.dependency_nodes[c["id"]]["label"])}</a>'
+                    for c in stage_modules[module]) + "</p>"
             if info["declarations"]:
                 body += '<details><summary>Declarations in this module</summary><div class="module-declarations">'
                 body += "".join(f'<a href="#L{d["line"]}"><span class="badge">{esc(d["kind"])}</span> <code>{esc(d["name"])}</code></a>' for d in info["declarations"])
@@ -768,6 +988,7 @@ class Wiki:
         self.render_overview()
         self.render_guides()
         self.render_results()
+        self.render_dependencies()
         self.render_sources()
         self.render_scope()
         self.render_verification()
@@ -775,14 +996,16 @@ class Wiki:
             if path.is_file():
                 self.put("assets/" + path.relative_to(ASSETS).as_posix(), path.read_bytes())
                 self.inputs[path.relative_to(ROOT).as_posix()] = sha(path.read_bytes())
-        for asset in ("assets/site.css", "assets/site.js", "assets/vendor/katex/katex.min.js"):
+        for asset in ("assets/site.css", "assets/site.js", "assets/dependencies.css", "assets/dependencies.js",
+                      "assets/vendor/katex/katex.min.js"):
             if asset not in self.files:
                 raise ValueError("Missing required static asset " + asset)
         self.put("assets/search-index.js", "window.PROOF_SEARCH="
                  + json.dumps(self.search, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
                  + ";\n")
         # New pages must not reuse stale CSS, interactions, or search data from a prior build.
-        for asset in ("assets/site.css", "assets/site.js", "assets/search-index.js"):
+        for asset in ("assets/site.css", "assets/site.js", "assets/search-index.js",
+                      "assets/dependencies.css", "assets/dependencies.js"):
             versioned = asset + "?v=" + sha(self.files[asset])[:12]
             for path in self.files:
                 if path.endswith(".html"):
@@ -801,6 +1024,8 @@ class Wiki:
             "recorded_lean_audit": self.latest,
             "counts": {"named_results": len(self.results), "chapters": len(self.chapters),
                        "source_modules": len(self.modules), "indexed_declarations": len(self.declarations),
+                       "dependency_stages": len(self.dependencies["nodes"]),
+                       "dependency_edges": len(self.dependencies["edges"]),
                        "validated_guide_and_map_declarations": len(pointers), "search_entries": len(self.search)},
             "inputs": dict(sorted(self.inputs.items())),
             "pointers": sorted(pointers.values(), key=lambda x: x["name"]),
@@ -815,7 +1040,11 @@ class Wiki:
 
 Open [index.html](index.html) in a browser. The complete generated site works
 offline, including search, mathematical display, all 27 named manuscript
-results, chapter guides, and the {len(self.modules)} audited Lean module pages.
+results, chapter guides, the [dependency map](dependencies.html), and the
+{len(self.modules)} audited Lean module pages. The map connects twelve proof
+stages with labeled ingredient arrows, a distinct comparison benchmark, and
+Lean evidence. Stage selection highlights direct ingredients and uses; all
+guides, results, and evidence also remain readable without JavaScript.
 
 ## Rebuild and check
 
@@ -831,7 +1060,12 @@ HTML or Markdown link or HTML anchor is broken, or the Lean sources differ
 from the recorded audit.
 It does not execute Lean or replace the project’s existing proof audit.
 
-Author English explanations in docs-src/guides.json. Maintain named-result
+Author English explanations in docs-src/guides.json and the curated dependency
+roadmap in docs-src/dependencies.json. Its stage IDs must match the guides;
+ingredient arrows must be acyclic and every edge must have an audited Lean
+pointer with an explanation. It describes proof stages, not a complete
+proof-term reference graph. Download its resolved data at data/dependencies.json.
+Maintain named-result
 correspondence in formalization/PROOF_MAP.md. Never edit generated HTML.
 The generator and original visual assets live in tools/docs-site/.
 The downloaded proof map preserves the original prose and rewrites its links

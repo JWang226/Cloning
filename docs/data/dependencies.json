@@ -1,0 +1,517 @@
+{
+  "title": "How the proof fits together",
+  "semantics": "Ingredient arrows show contributions to the argument explained in a later stage. Comparison arrows identify an established benchmark, rather than a construction ingredient. Each edge links to compiled Lean declarations explaining the connection.",
+  "source_audit_sha256": "6b2c09f61388362d9ff3ae3f63285b9dd09e0cd95254150273bacba6cd9c799a",
+  "nodes": [
+    {
+      "id": "physical-problem",
+      "label": "Physical problem",
+      "guide_url": "guides/physical-problem.html",
+      "results": []
+    },
+    {
+      "id": "young-laws",
+      "label": "Young laws",
+      "guide_url": "guides/young-laws.html",
+      "results": [
+        {
+          "label": "lem:young-concentration",
+          "title": "Uniform Young concentration",
+          "url": "results/lem-young-concentration.html"
+        },
+        {
+          "label": "lem:uniform-character-normalization",
+          "title": "Uniform character normalization",
+          "url": "results/lem-uniform-character-normalization.html"
+        },
+        {
+          "label": "lem:young-local-limit",
+          "title": "Uniform Young local limit",
+          "url": "results/lem-young-local-limit.html"
+        }
+      ]
+    },
+    {
+      "id": "cartan-sectors",
+      "label": "Cartan sectors",
+      "guide_url": "guides/cartan-sectors.html",
+      "results": [
+        {
+          "label": "lem:PBW-fixed-height",
+          "title": "PBW Gram matrices at fixed height",
+          "url": "results/lem-pbw-fixed-height.html"
+        },
+        {
+          "label": "prop:sector-fidelity",
+          "title": "Uniform Cartan-sector fidelity",
+          "url": "results/prop-sector-fidelity.html"
+        }
+      ]
+    },
+    {
+      "id": "lifted-kernels",
+      "label": "Lifted channels",
+      "guide_url": "guides/lifted-kernels.html",
+      "results": [
+        {
+          "label": "prop:lifted-kernel-bound",
+          "title": "Fidelity of a lifted transition rule",
+          "url": "results/prop-lifted-kernel-bound.html"
+        },
+        {
+          "label": "prop:young-rounding",
+          "title": "Randomized Young-label dilation",
+          "url": "results/prop-young-rounding.html"
+        },
+        {
+          "label": "lem:lifted-fidelity-factorization",
+          "title": "Factorization of the lifted fidelity",
+          "url": "results/lem-lifted-fidelity-factorization.html"
+        },
+        {
+          "label": "lem:randomized-dilation",
+          "title": "Continuous limit of randomized dilation",
+          "url": "results/lem-randomized-dilation.html"
+        }
+      ]
+    },
+    {
+      "id": "gaussian-optimum",
+      "label": "Gaussian optimum",
+      "guide_url": "guides/gaussian-optimum.html",
+      "results": [
+        {
+          "label": "thm:gaussian-amplification",
+          "title": "Gaussian amplification optimum",
+          "url": "results/thm-gaussian-amplification.html"
+        },
+        {
+          "label": "lem:weighted-fidelity",
+          "title": "Weighted fidelity bound",
+          "url": "results/lem-weighted-fidelity.html"
+        },
+        {
+          "label": "lem:compact-cp-limit",
+          "title": "Compact-observable limits of completely positive maps",
+          "url": "results/lem-compact-cp-limit.html"
+        },
+        {
+          "label": "lem:covariant-amplifier-representation",
+          "title": "Covariant-amplifier representation",
+          "url": "results/lem-covariant-amplifier-representation.html"
+        },
+        {
+          "label": "prop:least-noise-moment",
+          "title": "Least-noise moment",
+          "url": "results/prop-least-noise-moment.html"
+        },
+        {
+          "label": "prop:flat-prior-converse",
+          "title": "Flat-prior converse inequality",
+          "url": "results/prop-flat-prior-converse.html"
+        }
+      ]
+    },
+    {
+      "id": "physical-lan",
+      "label": "Physical LAN",
+      "guide_url": "guides/physical-lan.html",
+      "results": [
+        {
+          "label": "thm:LAN-full",
+          "title": "Finite-dimensional LAN and target-sample scaling",
+          "url": "results/thm-lan-full.html"
+        },
+        {
+          "label": "cor:LAN-orb",
+          "title": "Fixed-spectrum LAN",
+          "url": "results/cor-lan-orb.html"
+        },
+        {
+          "label": "lem:LAN-fidelity-transfer",
+          "title": "LAN fidelity transfer",
+          "url": "results/lem-lan-fidelity-transfer.html"
+        }
+      ]
+    },
+    {
+      "id": "known-spectrum",
+      "label": "Known spectrum",
+      "guide_url": "guides/known-spectrum.html",
+      "results": [
+        {
+          "label": "thm:known-optimum",
+          "title": "Known-spectrum optimum",
+          "url": "results/thm-known-optimum.html"
+        }
+      ]
+    },
+    {
+      "id": "unknown-spectrum",
+      "label": "Unknown spectrum",
+      "guide_url": "guides/unknown-spectrum.html",
+      "results": [
+        {
+          "label": "thm:unknown-optimum",
+          "title": "Unknown-spectrum cloner fidelity and compact-set optimum",
+          "url": "results/thm-unknown-optimum.html"
+        }
+      ]
+    },
+    {
+      "id": "grassmann",
+      "label": "Projector optimum",
+      "guide_url": "guides/grassmann.html",
+      "results": [
+        {
+          "label": "lem:exact-compression",
+          "title": "Exact rank-compression identity",
+          "url": "results/lem-exact-compression.html"
+        },
+        {
+          "label": "prop:grassmann-finite-converse",
+          "title": "Projector converse",
+          "url": "results/prop-grassmann-finite-converse.html"
+        },
+        {
+          "label": "thm:grassmann",
+          "title": "Cloning projector states",
+          "url": "results/thm-grassmann.html"
+        }
+      ]
+    },
+    {
+      "id": "purify-clone-trace",
+      "label": "Purify–clone–trace",
+      "guide_url": "guides/purify-clone-trace.html",
+      "results": [
+        {
+          "label": "lem:Werner-Fock",
+          "title": "Werner occupation law",
+          "url": "results/lem-werner-fock.html"
+        },
+        {
+          "label": "thm:pct-comparison",
+          "title": "Comparison with purify–clone–trace",
+          "url": "results/thm-pct-comparison.html"
+        },
+        {
+          "label": "prop:grassmann-pct-comparison",
+          "title": "Finite-sample PCT factorization for projector states",
+          "url": "results/prop-grassmann-pct-comparison.html"
+        }
+      ]
+    },
+    {
+      "id": "small-errors",
+      "label": "Small errors",
+      "guide_url": "guides/small-errors.html",
+      "results": [
+        {
+          "label": "prop:pct-projector-small-error",
+          "title": "PCT's leading projector infidelity coefficient",
+          "url": "results/prop-pct-projector-small-error.html"
+        }
+      ]
+    },
+    {
+      "id": "spectral-comparison",
+      "label": "Spectral bounds",
+      "guide_url": "guides/spectral-comparison.html",
+      "results": []
+    }
+  ],
+  "edges": [
+    {
+      "from": "young-laws",
+      "to": "lifted-kernels",
+      "kind": "ingredient",
+      "label": "Local law in rounding coordinates",
+      "evidence": [
+        {
+          "note": "Uses the moving-spectrum Young L¹ limit in the exact dither coordinates needed by randomized dilation.",
+          "name": "Cloning.YoungHyperplane.headDensity_l1_tendsto",
+          "file": "formalization/Cloning/YoungPhysicalRoundingCoordinates.lean",
+          "line": 82,
+          "url": "source/Cloning.YoungPhysicalRoundingCoordinates.html#L82"
+        }
+      ]
+    },
+    {
+      "from": "young-laws",
+      "to": "physical-lan",
+      "kind": "ingredient",
+      "label": "Classical register approximation",
+      "evidence": [
+        {
+          "note": "Recenters the moving-spectrum Young L¹ limit at the fixed LAN base spectrum.",
+          "name": "Cloning.YoungHyperplane.fixedBaseYoungDensity_l1_tendsto",
+          "file": "formalization/Cloning/TensorLANEmbeddingClassicalCenter.lean",
+          "line": 63,
+          "url": "source/Cloning.TensorLANEmbeddingClassicalCenter.html#L63"
+        }
+      ]
+    },
+    {
+      "from": "cartan-sectors",
+      "to": "lifted-kernels",
+      "kind": "ingredient",
+      "label": "Uniform mixture fidelity",
+      "evidence": [
+        {
+          "note": "Invokes the shrinking-window mixture theorem to bound the lifted payoff by orbital fidelity times kernel affinity, with discarded-mass error.",
+          "name": "Cloning.TensorCloning.eventually_uniform_kernel_factorization_bound",
+          "file": "formalization/Cloning/TensorCloningLiftedFactorization.lean",
+          "line": 80,
+          "url": "source/Cloning.TensorCloningLiftedFactorization.html#L80"
+        }
+      ]
+    },
+    {
+      "from": "cartan-sectors",
+      "to": "known-spectrum",
+      "kind": "ingredient",
+      "label": "Typical sector transitions",
+      "evidence": [
+        {
+          "note": "Uses the concrete qualitative Cartan transition-fidelity limit on typical pairs, rather than the named quantitative PBW rate theorem.",
+          "name": "Cloning.TensorCloning.eventually_uniform_typical_transitionFidelity",
+          "file": "formalization/Cloning/TensorCloningAchievability.lean",
+          "line": 17,
+          "url": "source/Cloning.TensorCloningAchievability.html#L17"
+        }
+      ]
+    },
+    {
+      "from": "cartan-sectors",
+      "to": "unknown-spectrum",
+      "kind": "ingredient",
+      "label": "Retained universal sectors",
+      "evidence": [
+        {
+          "note": "Uses the moving-spectrum qualitative Cartan transition limit for retained universal labels, not the named quantitative rate endpoint.",
+          "name": "Cloning.TensorCloning.universalKeep_transitionFidelity_tendsto",
+          "file": "formalization/Cloning/TensorCloningUniversalSector.lean",
+          "line": 18,
+          "url": "source/Cloning.TensorCloningUniversalSector.html#L18"
+        }
+      ]
+    },
+    {
+      "from": "lifted-kernels",
+      "to": "known-spectrum",
+      "kind": "ingredient",
+      "label": "Physical mixture assembly",
+      "evidence": [
+        {
+          "note": "Assembles the concrete sector-mixture lower bound and atypical-mass loss; it does not invoke the generic lifted-factorization endpoint.",
+          "name": "Cloning.TensorCloning.knownSpectrumChannel_payoff_lower_typical",
+          "file": "formalization/Cloning/TensorCloningAchievabilityTypical.lean",
+          "line": 76,
+          "url": "source/Cloning.TensorCloningAchievabilityTypical.html#L76"
+        }
+      ]
+    },
+    {
+      "from": "lifted-kernels",
+      "to": "unknown-spectrum",
+      "kind": "ingredient",
+      "label": "Classical affinity cost",
+      "evidence": [
+        {
+          "note": "Calls the uniform fallback-output affinity theorem to obtain the universal cloner's classical factor.",
+          "name": "Cloning.TensorCloning.eventually_uniform_universalAffinity",
+          "file": "formalization/Cloning/TensorCloningUniversalClassical.lean",
+          "line": 14,
+          "url": "source/Cloning.TensorCloningUniversalClassical.html#L14"
+        }
+      ]
+    },
+    {
+      "from": "gaussian-optimum",
+      "to": "known-spectrum",
+      "kind": "ingredient",
+      "label": "Orbital converse bound",
+      "evidence": [
+        {
+          "note": "The converse chain uses the general optimized Gaussian payoff limit; it does not call the score-window endpoint directly.",
+          "name": "Cloning.MixedLANTransfer.limsup_minimax_le_modeFactor_of_mixed_approximation",
+          "file": "formalization/Cloning/MixedGaussianConverse.lean",
+          "line": 69,
+          "url": "source/Cloning.MixedGaussianConverse.html#L69"
+        },
+        {
+          "note": "Applies the Gaussian transfer bound after removing the classical register for the fixed-spectrum orbit.",
+          "name": "Cloning.PhysicalCloningConverse.limsup_knownSpectrumValue_le_of_compactWindowLAN",
+          "file": "formalization/Cloning/PhysicalCloningConverseKnown.lean",
+          "line": 72,
+          "url": "source/Cloning.PhysicalCloningConverseKnown.html#L72"
+        }
+      ]
+    },
+    {
+      "from": "gaussian-optimum",
+      "to": "unknown-spectrum",
+      "kind": "ingredient",
+      "label": "Hybrid converse bound",
+      "evidence": [
+        {
+          "note": "Calls the general mixed Gaussian converse with physical approximations, retaining both classical and orbital factors.",
+          "name": "Cloning.PhysicalCloningConverse.limsup_statePayoff_le_modeFactor_of_approximations",
+          "file": "formalization/Cloning/PhysicalCloningConverseTransfer.lean",
+          "line": 50,
+          "url": "source/Cloning.PhysicalCloningConverseTransfer.html#L50"
+        },
+        {
+          "note": "Uses that physical payoff bound on local spectral windows; this is a converse interface, not a direct call to the score-window endpoint.",
+          "name": "Cloning.PhysicalCloningConverse.limsup_unknownSpectrumValue_le_of_compactWindowLAN",
+          "file": "formalization/Cloning/PhysicalCloningConverseUnknown.lean",
+          "line": 123,
+          "url": "source/Cloning.PhysicalCloningConverseUnknown.html#L123"
+        }
+      ]
+    },
+    {
+      "from": "physical-lan",
+      "to": "known-spectrum",
+      "kind": "ingredient",
+      "label": "Constructed orbital LAN",
+      "evidence": [
+        {
+          "note": "Instantiates the known-spectrum converse with the constructed physicalCompactWindowLAN witness.",
+          "name": "Cloning.TensorCloning.limsup_knownSpectrumValue_le",
+          "file": "formalization/Cloning/PhysicalCloningKnownTheorem.lean",
+          "line": 33,
+          "url": "source/Cloning.PhysicalCloningKnownTheorem.html#L33"
+        }
+      ]
+    },
+    {
+      "from": "physical-lan",
+      "to": "unknown-spectrum",
+      "kind": "ingredient",
+      "label": "Constructed hybrid LAN",
+      "evidence": [
+        {
+          "note": "Instantiates the unknown-spectrum converse with the constructed physicalCompactWindowLAN witness.",
+          "name": "Cloning.PhysicalCloningConverse.limsup_unknownSpectrumValue_le",
+          "file": "formalization/Cloning/PhysicalCloningConverseUnconditional.lean",
+          "line": 27,
+          "url": "source/Cloning.PhysicalCloningConverseUnconditional.html#L27"
+        }
+      ]
+    },
+    {
+      "from": "physical-lan",
+      "to": "purify-clone-trace",
+      "kind": "ingredient",
+      "label": "Physical PCT fidelity limit",
+      "evidence": [
+        {
+          "note": "Instantiates the PCT fidelity-transfer theorem with constructed compact-window LAN; no LAN premise remains.",
+          "name": "Cloning.PCTPhysicalFidelity.physical_pct_fidelity_unitary",
+          "file": "formalization/Cloning/PCTPhysicalFidelityUnconditional.lean",
+          "line": 18,
+          "url": "source/Cloning.PCTPhysicalFidelityUnconditional.html#L18"
+        }
+      ]
+    },
+    {
+      "from": "known-spectrum",
+      "to": "small-errors",
+      "kind": "ingredient",
+      "label": "Known-spectrum target brackets",
+      "evidence": [
+        {
+          "note": "Calls knownSpectrumValue_tendsto and combines its squared limit with the scalar small-gain expansion.",
+          "name": "Cloning.ValueExpansion.known_physical_target_brackets",
+          "file": "formalization/Cloning/PhysicalCloningSmallError.lean",
+          "line": 34,
+          "url": "source/Cloning.PhysicalCloningSmallError.html#L34"
+        }
+      ]
+    },
+    {
+      "from": "unknown-spectrum",
+      "to": "small-errors",
+      "kind": "ingredient",
+      "label": "Universal-cloner target brackets",
+      "evidence": [
+        {
+          "note": "Uses prescribed universal-cloner convergence, rather than pointwise unknown-spectrum minimax optimality.",
+          "name": "Cloning.ValueExpansion.universal_physical_target_brackets",
+          "file": "formalization/Cloning/PhysicalCloningSmallError.lean",
+          "line": 120,
+          "url": "source/Cloning.PhysicalCloningSmallError.html#L120"
+        }
+      ]
+    },
+    {
+      "from": "purify-clone-trace",
+      "to": "small-errors",
+      "kind": "ingredient",
+      "label": "PCT target brackets",
+      "evidence": [
+        {
+          "note": "Calls the physical PCT fidelity limit before transferring the scalar squared-infidelity expansion to finite samples.",
+          "name": "Cloning.ValueExpansion.pct_physical_target_brackets",
+          "file": "formalization/Cloning/PhysicalCloningSmallError.lean",
+          "line": 54,
+          "url": "source/Cloning.PhysicalCloningSmallError.html#L54"
+        }
+      ]
+    },
+    {
+      "from": "unknown-spectrum",
+      "to": "spectral-comparison",
+      "kind": "ingredient",
+      "label": "All-density upper bound",
+      "evidence": [
+        {
+          "note": "Restricts the all-density adversary and invokes the unknown-spectrum converse; subsequent scalar infimization gives a bound, not an exact all-state optimum.",
+          "name": "Cloning.PhysicalAllStateMinimax.limsup_value_le_universalValue",
+          "file": "formalization/Cloning/PhysicalAllStateMinimax.lean",
+          "line": 65,
+          "url": "source/Cloning.PhysicalAllStateMinimax.html#L65"
+        }
+      ]
+    },
+    {
+      "from": "purify-clone-trace",
+      "to": "spectral-comparison",
+      "kind": "ingredient",
+      "label": "All-density lower bound",
+      "evidence": [
+        {
+          "note": "Uses the finite PCT Werner lower guarantee on every density matrix, including singular and repeated-eigenvalue states; it does not assume a simple-spectrum limit.",
+          "name": "Cloning.PhysicalAllStateMinimax.fullChannel_payoff_lower",
+          "file": "formalization/Cloning/PhysicalAllStateMinimaxLower.lean",
+          "line": 19,
+          "url": "source/Cloning.PhysicalAllStateMinimaxLower.html#L19"
+        }
+      ]
+    },
+    {
+      "from": "grassmann",
+      "to": "purify-clone-trace",
+      "kind": "comparison",
+      "label": "Projector optimality benchmark",
+      "evidence": [
+        {
+          "note": "Establishes the projector-family optimum used as the comparison benchmark.",
+          "name": "Cloning.PhysicalFlatGrassmann.minimaxValue_tendsto",
+          "file": "formalization/Cloning/PhysicalFlatGrassmannTheorem.lean",
+          "line": 54,
+          "url": "source/Cloning.PhysicalFlatGrassmannTheorem.html#L54"
+        },
+        {
+          "note": "Proves PCT's strict loss against the benchmark formula; this comparison does not claim a direct proof-term call to the Grassmann minimax theorem.",
+          "name": "Cloning.PhysicalFlatPCT.fidelity_limsup_lt_optimal",
+          "file": "formalization/Cloning/PhysicalFlatPCTTheorem.lean",
+          "line": 48,
+          "url": "source/Cloning.PhysicalFlatPCTTheorem.html#L48"
+        }
+      ]
+    }
+  ]
+}

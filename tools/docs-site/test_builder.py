@@ -1,5 +1,8 @@
 """Focused regression tests for exact excerpts and offline integrity checks."""
 import unittest
+from copy import deepcopy
+import json
+import re
 
 from build import ARXIV, Wiki, checker_verdict, lean_mask, offline_proof_map, statement_end, validate_links
 
@@ -90,6 +93,72 @@ class GuideCorrespondenceTests(unittest.TestCase):
         wiki.chapters[0]["manuscript_labels"] = []
         with self.assertRaisesRegex(ValueError, "Named results missing a proof guide"):
             wiki.validate_guides()
+
+
+class DependencyMapTests(unittest.TestCase):
+    def wiki(self):
+        wiki = GuideCorrespondenceTests().wiki()
+        wiki.validate_guides()
+        consumer = deepcopy(wiki.chapters[0])
+        consumer.update(id="consumer", title="The later argument", manuscript_labels=[])
+        wiki.chapters.append(consumer)
+        endpoint = next(iter(wiki.declarations.values()))
+        wiki.latest = {"run_sha256": "bound-audit"}
+        wiki.dependencies = {
+            "title": "Proof route", "intro": "Ingredients and uses.", "legend": "Curated stage contributions.",
+            "default_stage": "consumer",
+            "nodes": [{"id": "example", "label": "Ingredient"}, {"id": "consumer", "label": "Consumer"}],
+            "edges": [{"from": "example", "to": "consumer", "label": "Construct the witness", "kind": "ingredient",
+                       "evidence": [{"name": endpoint["name"], "file": endpoint["file"], "note": "The compiled witness is used."}]}],
+        }
+        return wiki
+
+    def test_stages_cover_guides_and_each_edge_has_compiled_evidence(self):
+        wiki = self.wiki()
+        wiki.dependencies["nodes"].pop()
+        with self.assertRaisesRegex(ValueError, "match the proof guides"):
+            wiki.validate_dependencies()
+        wiki = self.wiki()
+        wiki.dependencies["edges"][0]["evidence"][0]["name"] = "Cloning.missing"
+        with self.assertRaisesRegex(ValueError, "Unresolved or ambiguous"):
+            wiki.validate_dependencies()
+
+    def test_unknown_targets_and_duplicate_edges_fail(self):
+        for change, message in (("unknown", "Unknown dependency edge stage"), ("duplicate", "duplicate dependency edge")):
+            wiki = self.wiki()
+            if change == "unknown":
+                wiki.dependencies["edges"][0]["to"] = "missing"
+            else:
+                wiki.dependencies["edges"].append(deepcopy(wiki.dependencies["edges"][0]))
+            with self.subTest(change=change), self.assertRaisesRegex(ValueError, message):
+                wiki.validate_dependencies()
+
+    def test_ingredient_cycles_fail_and_comparisons_do_not_imply_a_dependency(self):
+        wiki = self.wiki()
+        reverse = deepcopy(wiki.dependencies["edges"][0])
+        reverse.update({"from": "consumer", "to": "example"})
+        wiki.dependencies["edges"].append(reverse)
+        with self.assertRaisesRegex(ValueError, "contains a cycle"):
+            wiki.validate_dependencies()
+        reverse["kind"] = "comparison"
+        wiki.validate_dependencies()
+
+    def test_static_fallback_keeps_stage_guides_results_and_lean_evidence(self):
+        wiki = self.wiki()
+        wiki.validate_dependencies()
+        wiki.render_dependencies()
+        page = wiki.files["dependencies.html"].decode()
+        self.assertIn('data-from="example" data-to="consumer" data-kind="ingredient"', page)
+        self.assertIn('id="stage-example" data-stage="example"', page)
+        self.assertIn('href="guides/example.html"', page)
+        self.assertIn('href="results/thm-example.html"', page)
+        self.assertIn('href="source/Cloning.Example.html#L7"', page)
+        self.assertTrue(all("hidden" not in article for article in re.findall(r"<article[^>]*>", page)))
+        self.assertIn('data-default-stage="consumer"', page)
+        data = json.loads(wiki.files["data/dependencies.json"])
+        self.assertEqual(data["source_audit_sha256"], "bound-audit")
+        self.assertEqual(data["edges"][0]["evidence"][0]["line"], 7)
+        self.assertNotIn("_pointer", str(data))
 
 
 class OfflineIntegrityTests(unittest.TestCase):

@@ -2,7 +2,11 @@
 
 Open [index.html](index.html) in a browser. The complete generated site works
 offline, including search, mathematical display, all 27 named manuscript
-results, chapter guides, and the 982 audited Lean module pages.
+results, chapter guides, the [dependency map](dependencies.html), and the
+982 audited Lean module pages. The map connects twelve proof
+stages with labeled ingredient arrows, a distinct comparison benchmark, and
+Lean evidence. Stage selection highlights direct ingredients and uses; all
+guides, results, and evidence also remain readable without JavaScript.
 
 ## Rebuild and check
 
@@ -18,7 +22,12 @@ HTML or Markdown link or HTML anchor is broken, or the Lean sources differ
 from the recorded audit.
 It does not execute Lean or replace the project’s existing proof audit.
 
-Author English explanations in docs-src/guides.json. Maintain named-result
+Author English explanations in docs-src/guides.json and the curated dependency
+roadmap in docs-src/dependencies.json. Its stage IDs must match the guides;
+ingredient arrows must be acyclic and every edge must have an audited Lean
+pointer with an explanation. It describes proof stages, not a complete
+proof-term reference graph. Download its resolved data at data/dependencies.json.
+Maintain named-result
 correspondence in formalization/PROOF_MAP.md. Never edit generated HTML.
 The generator and original visual assets live in tools/docs-site/.
 The downloaded proof map preserves the original prose and rewrites its links

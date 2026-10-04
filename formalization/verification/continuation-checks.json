@@ -144,11 +144,13 @@
     "named_results": 27,
     "chapters": 12,
     "source_modules": 982,
-    "verified_proof_pointers": 113,
-    "files": 2028,
+    "verified_proof_pointers": 128,
+    "files": 2032,
     "offline_markdown_links_repaired": 74,
     "checker_verdicts_bound_to_current_audit": true,
-    "manifest_sha256": "740f505bdcdab5725b4a44a5d03c412fe35cf0ea0528ecb816fb7d963aa756d4"
+    "manifest_sha256": "c93535d3fc9168589a20207e4f770def4f5aaea72b90658413d2cf4ae06fa609",
+    "dependency_stages": 12,
+    "dependency_edges": 18
   },
   "git_index_preservation": {
     "index_file_sha256": "7c98a3ab2aafbea0cea458f6c8de33ba2ab29d815237f75de482c5e48626fa10",
@@ -184,6 +186,34 @@
     "reader_tex_links": 0,
     "saved_checkpoint": "passed",
     "wiki_check": "passed",
+    "proof_sources_unchanged": true
+  },
+  "dependency_map_revision": {
+    "recorded_utc": "2026-10-04T16:45:10.037045+00:00",
+    "page": "docs/dependencies.html",
+    "resolved_data": "docs/data/dependencies.json",
+    "semantics": "Curated mathematical proof-stage contributions, with a separate comparison benchmark; not a complete extracted proof-term dependency graph.",
+    "stages": 12,
+    "ingredient_edges": 17,
+    "comparison_edges": 1,
+    "lean_evidence_pointers": 21,
+    "source_audit_sha256": "6b2c09f61388362d9ff3ae3f63285b9dd09e0cd95254150273bacba6cd9c799a",
+    "evidence_review": "All evidence declarations match compiled ownership; read-only type/value reference inspection supports the cited ingredient notes and qualifies the comparison edge.",
+    "wiki_tests_passed": 26,
+    "wiki_check": "passed",
+    "saved_checkpoint": "passed",
+    "browser_checks": [
+      "project subpath /Cloning/",
+      "default stage and direct-neighbor highlighting",
+      "distinct comparison highlight",
+      "hash deep links",
+      "Tab/Enter/Space selection and Escape reset",
+      "Lean evidence opens its exact source line",
+      "search opens the dependency map",
+      "static fallback: 12 articles and chart anchor links, inactive controls hidden",
+      "390px mobile layout: diagram scrolls locally, page has no horizontal overflow"
+    ],
+    "standalone_file_browser_check": "Not run: in-app browser URL policy permits only HTTP and HTTPS. Static assets and local links are validated by the builder.",
     "proof_sources_unchanged": true
   }
 }

@@ -601,6 +601,9 @@ status:
       entrypoint: docs/index.html
       guides: 12
       named_results: 27
+      dependency_map: docs/dependencies.html
+      dependency_stages: 12
+      dependency_edges: 18
       generator: tools/docs-site/build.py
       command_from_repository_root: python3 tools/docs-site/build.py --check
       hosting_status: verified_live
