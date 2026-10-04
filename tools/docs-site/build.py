@@ -15,6 +15,7 @@ from pathlib import Path, PurePosixPath
 import re
 import sys
 from urllib.parse import unquote, urlsplit, urlunsplit
+from paper import RESULT_ARGUMENTS, paper_structure
 
 ROOT = Path(__file__).resolve().parents[2]
 FORMAL = ROOT / "formalization"
@@ -229,6 +230,7 @@ class Wiki:
         self.declarations = {}
         self.modules = {}
         self.pointer_uses = []
+        self.read(Path(__file__).with_name("paper.py"))
         self.latest = self.read_json(FORMAL / "verification/latest.json")
         self.audit_dir = FORMAL / self.latest["directory"]
         self.run = self.read_json(self.audit_dir / "run.json")
@@ -252,6 +254,8 @@ class Wiki:
                 self.inventory.append(json.loads(line[len("AXIOM_REPORT "):]))
         self.index_sources()
         self.manuscript = self.parse_manuscript()
+        self.paper = self.read_json(ROOT / "docs-src/paper.json")
+        self.validate_paper()
         self.results = self.parse_map()
         expected = set(self.manuscript)
         if len(expected) != 27 or set(self.results) != expected:
@@ -334,6 +338,10 @@ class Wiki:
 
     def parse_manuscript(self):
         text = self.read(FORMAL / "reference/cloning.tex")
+        sections, numbered = paper_structure(text)
+        self.paper_sections = {s["number"]: s for s in sections}
+        self.paper_labels = {s["label"]: s for s in sections}
+        self.paper_labels.update({"section:" + s["number"]: s for s in sections})
         pattern = re.compile(
             r"\\begin\{(theorem|lemma|proposition|corollary)\}(?:\[([^\]]+)\])?"
             r"(.*?)\\end\{\1\}", re.S)
@@ -342,8 +350,44 @@ class Wiki:
             labels = re.findall(r"\\label\{((?:thm|lem|prop|cor):[^}]+)\}", match[3])
             for label in labels:
                 found[label] = {"kind": match[1], "title": (match[2] or label).replace("--", "–"),
-                                "tex": match[0], "line": text.count("\n", 0, match.start()) + 1}
+                                "tex": match[0], "line": text.count("\n", 0, match.start()) + 1,
+                                **numbered[label],
+                                "argument_sections": RESULT_ARGUMENTS.get(label, [numbered[label]["section"]])}
         return found
+
+    def validate_paper(self):
+        if (self.paper["paper_url"] != ARXIV or self.paper["version"] != "v1" or
+                self.paper["html_url"] != "https://arxiv.org/html/2609.35986v1"):
+            raise ValueError("Paper links must use the reviewed arXiv v1")
+        expected = [{k: s[k] for k in ("number", "title", "anchor")} for s in self.paper_sections.values()]
+        if self.paper["sections"] != expected:
+            raise ValueError("Paper section metadata differs from the frozen manuscript")
+        if set(self.paper["results"]) != set(self.manuscript):
+            raise ValueError("Paper result metadata differs from the frozen manuscript")
+        for label, result in self.manuscript.items():
+            reviewed = self.paper["results"][label]
+            if any(reviewed[k] != result[k] for k in ("number", "citation", "anchor", "section")):
+                raise ValueError("Paper result numbering or anchor differs: " + label)
+            if any(number not in self.paper_sections for number in result["argument_sections"]):
+                raise ValueError("Unknown paper argument section: " + label)
+
+    def paper_reference(self, label):
+        if label in self.manuscript:
+            result = self.manuscript[label]
+            return {"text": result["citation"], "url": self.paper["html_url"] + "#" + result["anchor"]}
+        if label in self.paper_labels:
+            section = self.paper_labels[label]
+            number = section["number"]
+            prefix = "Appendix " if len(number) == 1 and number.isalpha() else "§"
+            return {"text": prefix + number + " · " + section["title"],
+                    "url": self.paper["html_url"] + "#" + section["anchor"]}
+        raise ValueError("Unknown paper reference " + label)
+
+    def paper_link(self, label, compact=False):
+        reference = self.paper_reference(label)
+        text = reference["text"].split(" · ")[0] if compact else reference["text"]
+        context = f' title="{esc(reference["text"])}"' if compact else ""
+        return f'<a href="{esc(reference["url"])}"{context}>{esc(text)}</a>'
 
     def parse_map(self):
         content = self.read(FORMAL / "PROOF_MAP.md")
@@ -393,6 +437,18 @@ class Wiki:
                     raise ValueError(f"Missing guide field {field} in {chapter['id']}")
             for step in chapter["steps"]:
                 step["_pointers"] = [self.resolve(x["name"], x["file"]) for x in step.get("lean", [])]
+                if not step.get("paper_labels"):
+                    raise ValueError("Guide step needs a paper reference: " + chapter["id"])
+                for label in step["paper_labels"]:
+                    self.paper_reference(label)
+            paper = chapter.get("paper", {})
+            if not paper.get("sections") or not paper.get("explanation"):
+                raise ValueError("Guide needs its paper correspondence: " + chapter["id"])
+            for location in paper["sections"]:
+                if location.get("role") not in ("statement", "argument", "supporting", "discussion"):
+                    raise ValueError("Unknown paper correspondence role")
+                if location["label"] not in self.paper_labels:
+                    raise ValueError("Unknown guide paper section " + location["label"])
             for result in chapter["results"]:
                 result["_pointer"] = self.resolve(result["name"], result["file"])
                 if result.get("label", "").startswith(("thm:", "lem:", "prop:", "cor:")):
@@ -468,6 +524,7 @@ class Wiki:
         prefix = "../" * depth
         nav = [
             ("index.html", "Overview", "overview"),
+            ("correspondence.html", "Paper ↔ Lean", "correspondence"),
             ("guides/index.html", "Proof guide", "guides"),
             ("dependencies.html", "Dependency map", "dependencies"),
             ("results/index.html", "27 named results", "results"),
@@ -479,10 +536,6 @@ class Wiki:
             f'<a class="nav-link{" active" if key == active else ""}" href="{prefix}{url}"'
             + (' aria-current="page"' if key == active else "") + f'>{esc(label)}</a>'
             for url, label, key in nav)
-        chapters_nav = "".join(
-            f'<a class="nav-link" href="{prefix}guides/{esc(c["id"])}.html">'
-            f'<span class="nav-number">{i:02}</span> {esc(c["title"])}</a>'
-            for i, c in enumerate(self.chapters, 1))
         extra_head = "".join(
             f'<link rel="stylesheet" href="{prefix}assets/{esc(asset)}">' if asset.endswith(".css")
             else f'<script defer src="{prefix}assets/{esc(asset)}"></script>'
@@ -501,8 +554,7 @@ class Wiki:
 </head><body><a class="skip-link" href="#main">Skip to content</a>
 <div class="site-shell"><aside class="sidebar" id="site-navigation">
 <a class="brand" href="{prefix}index.html"><span class="brand-mark">C</span><span>Cloning<span class="small muted">A Lean proof wiki</span></span></a>
-<nav aria-label="Main navigation"><div class="nav-section">Explore</div>{nav_html}
-<div class="nav-section">Read the proof</div>{chapters_nav}</nav>
+<nav aria-label="Main navigation"><div class="nav-section">Explore</div>{nav_html}</nav>
 <div class="sidebar-footer"><span class="badge">Lean 4</span><p>Manuscript → proof → source</p>
 <a href="https://github.com/JWang226/Cloning">Repository ↗</a></div></aside>
 <div class="main-shell"><header class="topbar">
@@ -543,10 +595,9 @@ class Wiki:
 
     def result_card(self, result, prefix):
         scopes = " ".join(p["scope"] for p in result["parts"])
-        search = result["title"] + " " + result["label"] + " " + scopes
+        search = result["title"] + " " + result["label"] + " " + result["citation"] + " " + scopes
         return (f'<article class="result-card" data-filter-text="{esc(search.lower())}">'
-                f'<div class="badges"><span class="badge">{esc(result["kind"])}</span>'
-                f'<code class="small muted">{esc(result["label"])}</code></div>'
+                f'<div class="badges"><span class="badge">{esc(result["citation"])}</span></div>'
                 f'<h3><a href="{prefix}{result["url"]}">{esc(result["title"])}</a></h3>'
                 f'<p>{inline(scopes)}</p><a class="card-arrow" href="{prefix}{result["url"]}">Read statement & proof pointers →</a></article>')
 
@@ -554,6 +605,8 @@ class Wiki:
         return '<div class="cards">' + "".join(
             f'<a class="card" href="{prefix}guides/{c["id"]}.html"><span class="card-index">{i:02}</span>'
             f'<h3>{esc(c["title"])}</h3><p>{inline(c["summary"])}</p>'
+            '<p class="paper-step-location">Paper: ' + ", ".join(
+                esc(self.paper_reference(x["label"])["text"].split(" · ")[0]) for x in c["paper"]["sections"]) + '</p>'
             '<span class="card-arrow">Follow the argument →</span></a>'
             for i, c in enumerate(self.chapters, 1)) + "</div>"
 
@@ -564,15 +617,15 @@ class Wiki:
                 f'<div class="lead">{paragraphs(self.guides["intro"])}</div>'
                 '<div class="actions"><a class="button" href="guides/index.html">Start the proof guide →</a>'
                 '<a class="button secondary" href="results/index.html">Browse all 27 results</a>'
-                '<a class="button secondary" href="dependencies.html">Explore the dependency map</a>'
+                '<a class="button secondary" href="correspondence.html">Paper ↔ Lean correspondence</a>'
                 f'<a class="button secondary" href="{ARXIV}">Read the paper on arXiv ↗</a></div></section>'
                 '<section class="stats" aria-label="Verification snapshot">'
                 f'<div class="stat"><span class="stat-value">27</span><span class="stat-label">named manuscript results</span></div>'
                 f'<div class="stat"><span class="stat-value">{a["modules"]:,}</span><span class="stat-label">audited Lean modules</span></div>'
                 f'<div class="stat"><span class="stat-value">{a["audited_constants"]:,}</span><span class="stat-label">compiled constants audited</span></div>'
                 '<div class="stat"><span class="stat-value">3</span><span class="stat-label">standard logical axioms only</span></div></section>'
-                '<section class="callout info"><h2>Two ways to read this wiki</h2>'
-                '<p>Follow the chapter guide for the mathematical argument, or open a named result to inspect its scope and exact Lean statements. Every proof pointer leads to a complete, offline source page with line anchors.</p>'
+                '<section class="callout info"><h2>Paper → informal argument → Lean proof</h2>'
+                '<p>Start with a numbered result in the <a href="correspondence.html">paper-to-Lean table</a>. It points to the paper’s statement and proof sections, the corresponding informal guide, and the compiled Lean declarations. The twelve guide chapters follow the proof ingredients and combine material from the main text and appendices; their numbers differ from the paper’s section numbers.</p>'
                 '<p><a href="dependencies.html">The dependency map</a> connects the proof stages and shows the Lean evidence for each contribution.</p>'
                 '<p class="small">The English explanation is editorial. It does not replace the hypotheses in Lean. '
                 '<a href="scope.html">Read the conventions and open questions →</a></p></section>'
@@ -591,43 +644,64 @@ class Wiki:
 
     def render_guides(self):
         body = ('<div class="eyebrow">Read the argument</div><h1>The proof guide</h1>'
-                '<p class="lead">A chapter-by-chapter explanation of the constructions, estimates, and converse arguments. Each step is linked to the declarations that make it precise.</p>'
-                '<div class="notice">Editorial roadmap · the full hypotheses live in Lean.</div>'
+                '<p class="lead">These twelve chapters reorganize the paper’s arguments by proof ingredient. A chapter can combine several paper sections and appendices. Guide numbers describe this reading order; paper references retain the paper’s numbering.</p>'
+                '<p><a href="../correspondence.html">Find a numbered paper result and its Lean proof →</a></p>'
                 '<p><a href="../dependencies.html">See how the stages depend on each other →</a></p>'
-                + self.chapter_cards("../"))
+                '<h2 id="paper-correspondence">Guide chapters and their paper locations</h2>'
+                '<p class="small muted">Section and theorem references link to arXiv v1. Open a guide for the informal steps and their Lean counterparts.</p>'
+                '<div class="paper-guide-table" tabindex="0" aria-label="Guide chapter correspondence; scroll horizontally on a narrow screen"><table>'
+                '<thead><tr><th>Informal guide</th><th>Where in the paper</th><th>Paper results → Lean</th></tr></thead><tbody>')
+        for i, c in enumerate(self.chapters, 1):
+            body += (f'<tr><td><a href="{c["id"]}.html"><strong>{i:02} · {esc(c["title"])}</strong></a>'
+                     f'<p class="small">{inline(c["paper"]["explanation"])}</p></td><td>'
+                     + self.paper_locations(c) + '</td><td>')
+            if c.get("manuscript_labels"):
+                body += '<ul>' + "".join(f'<li><a href="../{self.results[label]["url"]}">{esc(self.results[label]["citation"])}</a></li>'
+                                         for label in c["manuscript_labels"]) + '</ul>'
+            else:
+                body += '<p class="small">Definitions and discussion; Lean pointers are in the guide.</p>'
+            body += '</td></tr>'
+        body += '</tbody></table></div>'
         self.page("guides/index.html", "Proof guide", body, "guides")
         for i, c in enumerate(self.chapters):
             steps_toc = "".join(f'<a href="#step-{j}">{j}. {esc(s["title"])}</a>'
                                 for j, s in enumerate(c["steps"], 1))
             body = (f'<div class="eyebrow">Proof guide · chapter {i + 1:02} of {len(self.chapters):02}</div>'
-                    f'<h1>{esc(c["title"])}</h1><p class="lead">{inline(c["summary"])}</p>'
-                    '<div class="notice">English explanation · exact Lean excerpts are shown separately.</div>'
-                    f'<p><a href="../dependencies.html#stage-{esc(c["id"])}">This chapter in the dependency map →</a></p>'
-                    '<div class="split-layout"><article class="prose">')
+                    f'<h1>{esc(c["title"])}</h1><p class="paper-step-location">Paper: '
+                    + " · ".join(self.paper_link(label, compact=True) for label in c.get("manuscript_labels", []))
+                    + (' · ' if c.get("manuscript_labels") else '')
+                    + " · ".join(self.paper_link(x["label"], compact=True) for x in c["paper"]["sections"])
+                    + f'</p><p class="lead">{inline(c["summary"])}</p>')
+            body += (f'<section class="paper-correspondence" id="paper"><h2>Where this guide fits in the paper</h2>'
+                     + paragraphs(c["paper"]["explanation"]) + self.paper_locations(c)
+                     + '<p class="small">Guide numbering follows the reading order; the linked sections retain the paper’s numbering.</p>'
+                     f'<p class="small"><a href="../dependencies.html#stage-{esc(c["id"])}">This chapter in the dependency map →</a></p></section>')
+            body += '<div class="split-layout"><article class="prose">'
             if c.get("statement"):
                 body += '<section class="callout"><h2>At a glance</h2>' + self.math(c["statement"], True) + "</section>"
             body += '<section id="assumptions"><h2>Setting and assumptions</h2>' + items(c["assumptions"]) + "</section>"
             for j, step in enumerate(c["steps"], 1):
                 body += (f'<section class="step" id="step-{j}"><div class="step-number">{j:02}</div>'
                          f'<h2>{esc(step["title"])}</h2>' + paragraphs(step["explanation"])
+                         + '<p class="paper-step-location">Paper: ' + " · ".join(self.paper_link(label) for label in step["paper_labels"]) + '</p>'
                          + "".join(self.declaration(d, compact=True) for d in step["_pointers"]) + "</section>")
             body += '<section id="results"><h2>Results reached in this chapter</h2>'
             for result in c["results"]:
                 label = result["label"]
                 if label in self.results:
-                    body += f'<p><a href="../{self.results[label]["url"]}">{esc(self.results[label]["title"])}</a> <code>{esc(label)}</code></p>'
+                    body += f'<p><a href="../{self.results[label]["url"]}">{esc(self.results[label]["citation"])} · {esc(self.results[label]["title"])}</a></p>'
                 else:
                     body += "<h3>" + esc(label) + "</h3>"
                 body += self.declaration(result["_pointer"], compact=True)
             if c.get("manuscript_labels"):
                 body += '<h3>Corresponding manuscript statements</h3><ul>' + "".join(
-                    f'<li><a href="../{self.results[label]["url"]}">{esc(self.results[label]["title"])}</a> '
-                    f'<code>{esc(label)}</code></li>' for label in c["manuscript_labels"]) + "</ul>"
+                    f'<li><a href="../{self.results[label]["url"]}">{esc(self.results[label]["citation"])} · {esc(self.results[label]["title"])}</a></li>'
+                    for label in c["manuscript_labels"]) + "</ul>"
             body += "</section>"
             if c["limitations"]:
                 body += '<section class="callout" id="boundaries"><h2>Scope of this step</h2>' + items(c["limitations"]) + "</section>"
             body += ('</article><aside class="toc" aria-label="On this page"><div class="nav-section">In this chapter</div>'
-                     '<a href="#assumptions">Setting and assumptions</a>' + steps_toc
+                     '<a href="#paper">Where in the paper</a><a href="#assumptions">Setting and assumptions</a>' + steps_toc
                      + '<a href="#results">Results reached</a>'
                      + ('<a href="#boundaries">Scope</a>' if c["limitations"] else "") + "</aside></div>")
             body += '<nav class="chapter-prevnext" aria-label="Previous and next chapter">'
@@ -639,7 +713,50 @@ class Wiki:
             url = "guides/" + c["id"] + ".html"
             self.page(url, c["title"], body, "guides")
             self.search.append({"title": c["title"], "subtitle": f"Chapter {i + 1:02}", "kind": "Guide",
-                                "url": url, "text": c["summary"] + " " + " ".join(s["explanation"] for s in c["steps"])})
+                                "url": url, "text": c["summary"] + " " + c["paper"]["explanation"] + " "
+                                + " ".join(self.paper_reference(x["label"])["text"] for x in c["paper"]["sections"])
+                                + " " + " ".join(s["explanation"] for s in c["steps"])})
+
+    def paper_locations(self, chapter):
+        return '<ul class="paper-location-list">' + "".join(
+            f'<li><span class="badge paper-location">{esc(x["role"].title())}</span> {self.paper_link(x["label"])}</li>'
+            for x in chapter["paper"]["sections"]) + '</ul>'
+
+    def render_correspondence(self):
+        body = ('<div class="eyebrow">Paper → informal guide → formal proof</div><h1>From the paper to Lean</h1>'
+                '<p class="lead">Find each of the paper’s 27 numbered results, read its informal argument, and inspect the Lean declarations that formalize it.</p>'
+                '<p>The paper states its four main theorems in §1.1 and develops their arguments later. The guide combines those sections and appendices into twelve chapters. '
+                f'Section and result numbers below refer to <a href="{esc(self.paper["version_url"])}">arXiv v1</a>.</p>'
+                '<p><a href="guides/index.html#paper-correspondence">How every guide chapter relates to the paper →</a></p>'
+                '<div class="paper-guide-table" tabindex="0" aria-label="Paper to Lean correspondence; scroll horizontally on a narrow screen">'
+                '<table><thead><tr><th>Paper statement</th><th>Paper argument</th><th>Informal proof guide</th><th>Lean proof endpoints</th></tr></thead><tbody>')
+        records = []
+        for result in self.results.values():
+            guides = [c for c in self.chapters if result["label"] in c.get("manuscript_labels", [])]
+            endpoints = {p["name"]: p for part in result["parts"] for p in part["pointers"]}
+            body += (f'<tr id="{slug(result["label"])}"><td>{self.paper_link(result["label"])}'
+                     f'<p><a href="{result["url"]}">{esc(result["title"])}</a></p></td><td><ul>'
+                     + "".join('<li>' + self.paper_link('section:' + number) + '</li>' for number in result["argument_sections"])
+                     + '</ul></td><td><ul>' + "".join(f'<li><a href="guides/{c["id"]}.html">{esc(c["title"])}</a></li>' for c in guides)
+                     + '</ul></td><td><ul>' + "".join(f'<li><a href="{esc(p["url"])}"><code>{esc(p["name"])}</code></a></li>' for p in endpoints.values())
+                     + '</ul></td></tr>')
+            records.append({"label": result["label"], "citation": result["citation"], "title": result["title"],
+                            "statement_url": self.paper_reference(result["label"])["url"],
+                            "statement_section": result["section"],
+                            "argument_sections": [self.paper_reference('section:' + number) for number in result["argument_sections"]],
+                            "guide_urls": [f'guides/{c["id"]}.html' for c in guides],
+                            "lean": [{k: p[k] for k in ("name", "file", "line", "url")} for p in endpoints.values()]})
+        body += ('</tbody></table></div><section class="callout"><h2>How to read the correspondence</h2>'
+                 '<p>Paper links locate the statement and its argument. Guide links explain the construction and estimates; Lean links show exact compiled statements and complete proof bodies. '
+                 'Result pages record hypotheses and any distinctions between a general paper statement and the concrete formal endpoints.</p>'
+                 '<p>The LAN guide describes the constructed Lean witnesses underlying the LAN theorem that the paper obtains from cited work. Discussion of all-density optima and degenerate spectra remains distinct from proved results.</p>'
+                 '<a href="data/paper-correspondence.json">Download the correspondence data</a></section>')
+        self.page("correspondence.html", "Paper to Lean correspondence", body, "correspondence")
+        self.put("data/paper-correspondence.json", json.dumps({"paper_version": self.paper["version_url"],
+                 "paper_html": self.paper["html_url"], "source_audit_sha256": self.latest["run_sha256"],
+                 "results": records}, indent=2, ensure_ascii=False) + '\n')
+        self.search.append({"title": "Paper to Lean correspondence", "subtitle": "Numbered paper statements, informal arguments, and compiled proofs",
+                            "kind": "Page", "url": "correspondence.html", "text": "paper sections appendices theorem numbers guide chapters formal proof correspondence"})
 
     def render_results(self):
         body = ('<div class="eyebrow">Manuscript → Lean</div><h1>All 27 named results</h1>'
@@ -652,12 +769,16 @@ class Wiki:
                 + "".join(self.result_card(r, "../") for r in self.results.values()) + "</div>")
         self.page("results/index.html", "27 named results", body, "results")
         for result in self.results.values():
-            body = (f'<div class="eyebrow">{esc(result["kind"])} · manuscript result</div><h1>{esc(result["title"])}</h1>'
-                    f'<p><code>{esc(result["label"])}</code> <span class="badge">Mapped to compiled Lean</span></p>'
+            body = (f'<div class="eyebrow">{esc(result["citation"])} · paper result</div><h1>{esc(result["title"])}</h1>'
+                    f'<p>{self.paper_link(result["label"])} <span class="badge">Mapped to compiled Lean</span></p>'
+                    '<section class="paper-correspondence"><h2>Paper statement and informal argument</h2>'
+                    '<p><strong>Statement:</strong> ' + self.paper_link('section:' + result["section"]) + '</p>'
+                    '<p><strong>Argument:</strong> ' + ' · '.join(self.paper_link('section:' + number) for number in result["argument_sections"]) + '</p>'
+                    f'<p><a href="../correspondence.html#{slug(result["label"])}">This result in the paper-to-Lean table →</a></p></section>'
                     '<div class="notice">Scope notes below come from the manuscript-to-Lean map. Exact source excerpts are the formal reference.</div>')
             for part in result["parts"]:
                 if len(result["parts"]) > 1:
-                    body += "<h2>" + esc(part["label"]) + "</h2>"
+                    body += "<h2>" + esc(part["label"].replace(result["label"], result["citation"])) + "</h2>"
                 body += '<section class="callout info"><h2>Hypotheses and correspondence</h2>' + paragraphs(part["scope"]) + "</section>"
                 body += '<h2>Concrete Lean endpoints</h2><p class="small muted">These are exact statement excerpts, with proof bodies omitted. Section variables, instances, namespaces, imports, and proof bodies are visible in the linked full module.</p>'
                 body += "".join(self.declaration(d) for d in part["pointers"])
@@ -669,12 +790,13 @@ class Wiki:
                     for c in chapters) + "</section>"
             body += ('<details class="manuscript-excerpt"><summary>Exact manuscript TeX statement</summary>'
                      '<p class="small muted">Exact source excerpt identifying this statement. Read the paper for the surrounding mathematical exposition and notation.</p>'
+                     f'<p class="small muted">Repository identifier: <code>{esc(result["label"])}</code></p>'
                      f'<pre class="code-block"><code>{esc(result["tex"])}</code></pre>'
                      f'<a href="{ARXIV}">Read the paper on arXiv ↗</a></details>')
             body += '<p><a href="index.html">← All named results</a></p>'
             self.page(result["url"], result["title"], body, "results")
-            self.search.append({"title": result["title"], "subtitle": result["label"], "kind": result["kind"].title(),
-                                "url": result["url"], "text": " ".join(p["scope"] for p in result["parts"])})
+            self.search.append({"title": result["title"], "subtitle": result["citation"], "kind": result["kind"].title(),
+                                "url": result["url"], "text": result["label"] + ' ' + " ".join(p["scope"] for p in result["parts"])})
 
     def render_dependencies(self):
         data = self.dependencies
@@ -791,7 +913,8 @@ class Wiki:
             if labels:
                 body += '<h3>Named results</h3><ul>' + "".join(
                     f'<li><a href="{esc(self.results[label]["url"])}">{esc(self.results[label]["title"])}</a> '
-                    f'<code>{esc(label)}</code></li>' for label in labels) + "</ul>"
+                    f'<span class="badge">{esc(self.results[label]["citation"])}</span></li>' for label in labels) + "</ul>"
+            body += '<details><summary>Where this stage appears in the paper</summary>' + self.paper_locations(chapter) + '</details>'
             body += edge_list(stage, incoming[stage], "Ingredients and benchmarks")
             body += edge_list(stage, outgoing[stage], "Where this stage contributes")
             endpoints = {p["name"]: p for step in chapter["steps"] for p in step["_pointers"]}
@@ -822,6 +945,10 @@ class Wiki:
     def render_sources(self):
         rows = []
         stage_modules = {}
+        paper_modules = {}
+        for result in self.results.values():
+            for module in {p["module"] for part in result["parts"] for p in part["pointers"]}:
+                paper_modules.setdefault(module, []).append(result)
         for chapter in self.chapters:
             pointers = [p for step in chapter["steps"] for p in step["_pointers"]]
             pointers += [r["_pointer"] for r in chapter["results"]]
@@ -848,6 +975,11 @@ class Wiki:
                 body += '<p class="small">In the dependency map: ' + " · ".join(
                     f'<a href="../dependencies.html#stage-{c["id"]}">{esc(self.dependency_nodes[c["id"]]["label"])}</a>'
                     for c in stage_modules[module]) + "</p>"
+            if module in paper_modules:
+                body += '<details class="paper-correspondence"><summary>Paper ↔ Lean correspondence in this module</summary><ul>' + "".join(
+                    f'<li>{self.paper_link(r["label"])} · <a href="../{r["url"]}">{esc(r["title"])}</a> · '
+                    f'<a href="../correspondence.html#{slug(r["label"])}">Informal argument and formal endpoints</a></li>'
+                    for r in paper_modules[module]) + '</ul></details>'
             if info["declarations"]:
                 body += '<details><summary>Declarations in this module</summary><div class="module-declarations">'
                 body += "".join(f'<a href="#L{d["line"]}"><span class="badge">{esc(d["kind"])}</span> <code>{esc(d["name"])}</code></a>' for d in info["declarations"])
@@ -986,6 +1118,7 @@ class Wiki:
 
     def render(self):
         self.render_overview()
+        self.render_correspondence()
         self.render_guides()
         self.render_results()
         self.render_dependencies()
@@ -1026,6 +1159,9 @@ class Wiki:
                        "source_modules": len(self.modules), "indexed_declarations": len(self.declarations),
                        "dependency_stages": len(self.dependencies["nodes"]),
                        "dependency_edges": len(self.dependencies["edges"]),
+                       "paper_sections": len(self.paper_sections),
+                       "guides_with_paper_correspondence": len(self.chapters),
+                       "guide_steps_with_paper_references": sum(len(c["steps"]) for c in self.chapters),
                        "validated_guide_and_map_declarations": len(pointers), "search_entries": len(self.search)},
             "inputs": dict(sorted(self.inputs.items())),
             "pointers": sorted(pointers.values(), key=lambda x: x["name"]),
@@ -1046,6 +1182,13 @@ stages with labeled ingredient arrows, a distinct comparison benchmark, and
 Lean evidence. Stage selection highlights direct ingredients and uses; all
 guides, results, and evidence also remain readable without JavaScript.
 
+[Paper → guide → Lean](correspondence.html) connects numbered paper statements,
+their argument locations, guide chapters, and compiled proof endpoints. The
+guide combines main-text sections and appendices in an editorial reading order;
+guide numbers differ from paper section numbers. Each chapter and every proof
+step display paper references. The sidebar keeps only the main navigation.
+External paper links point to arXiv v1; the guide and Lean source remain bundled.
+
 ## Rebuild and check
 
 Run from the repository root with Python 3.10 or newer:
@@ -1060,7 +1203,14 @@ HTML or Markdown link or HTML anchor is broken, or the Lean sources differ
 from the recorded audit.
 It does not execute Lean or replace the project’s existing proof audit.
 
-Author English explanations in docs-src/guides.json and the curated dependency
+Author English explanations and paper references in docs-src/guides.json.
+Every chapter needs its paper locations and every step needs paper_labels.
+The frozen paper determines section and shared theorem numbering, including
+remarks. tools/docs-site/paper.py reads these counters; docs-src/paper.json
+records the reviewed arXiv v1 headings/fragments and retrieved HTML hash.
+The build rejects mismatched numbers, missing paper references, and bad pointers.
+data/paper-correspondence.json contains the resolved result correspondence.
+Author the curated dependency
 roadmap in docs-src/dependencies.json. Its stage IDs must match the guides;
 ingredient arrows must be acyclic and every edge must have an audited Lean
 pointer with an explanation. It describes proof stages, not a complete

@@ -8,6 +8,13 @@ stages with labeled ingredient arrows, a distinct comparison benchmark, and
 Lean evidence. Stage selection highlights direct ingredients and uses; all
 guides, results, and evidence also remain readable without JavaScript.
 
+[Paper → guide → Lean](correspondence.html) connects numbered paper statements,
+their argument locations, guide chapters, and compiled proof endpoints. The
+guide combines main-text sections and appendices in an editorial reading order;
+guide numbers differ from paper section numbers. Each chapter and every proof
+step display paper references. The sidebar keeps only the main navigation.
+External paper links point to arXiv v1; the guide and Lean source remain bundled.
+
 ## Rebuild and check
 
 Run from the repository root with Python 3.10 or newer:
@@ -22,7 +29,14 @@ HTML or Markdown link or HTML anchor is broken, or the Lean sources differ
 from the recorded audit.
 It does not execute Lean or replace the project’s existing proof audit.
 
-Author English explanations in docs-src/guides.json and the curated dependency
+Author English explanations and paper references in docs-src/guides.json.
+Every chapter needs its paper locations and every step needs paper_labels.
+The frozen paper determines section and shared theorem numbering, including
+remarks. tools/docs-site/paper.py reads these counters; docs-src/paper.json
+records the reviewed arXiv v1 headings/fragments and retrieved HTML hash.
+The build rejects mismatched numbers, missing paper references, and bad pointers.
+data/paper-correspondence.json contains the resolved result correspondence.
+Author the curated dependency
 roadmap in docs-src/dependencies.json. Its stage IDs must match the guides;
 ingredient arrows must be acyclic and every edge must have an audited Lean
 pointer with an explanation. It describes proof stages, not a complete

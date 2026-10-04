@@ -5,6 +5,7 @@ import json
 import re
 
 from build import ARXIV, Wiki, checker_verdict, lean_mask, offline_proof_map, statement_end, validate_links
+from paper import paper_structure
 
 
 class SourceExcerptTests(unittest.TestCase):
@@ -40,18 +41,30 @@ class GuideCorrespondenceTests(unittest.TestCase):
         wiki.declarations = {endpoint["name"]: endpoint}
         wiki.pointer_uses = []
         wiki.chapters = [{"id": "example", "title": "An informal proof", "summary": "Proof flow.",
+                          "paper": {"sections": [{"label": "sec:main-results", "role": "statement"}],
+                                    "explanation": "Connect the paper statement to its construction."},
                           "assumptions": ["The exact hypotheses are linked."],
                           "steps": [{"title": "Construct the witness", "explanation": "Then conclude.",
+                                     "paper_labels": ["thm:example"],
                                      "lean": [{"name": endpoint["name"], "file": endpoint["file"]}]}],
                           "results": [{"label": "A readable conclusion", "name": endpoint["name"],
                                        "file": endpoint["file"]}],
                           "limitations": [], "manuscript_labels": ["thm:example"]}]
         wiki.results = {"thm:example": {"label": "thm:example", "title": "The manuscript theorem",
                          "kind": "theorem", "url": "results/thm-example.html", "tex": "Exact TeX.",
+                         "number": "1.1", "citation": "Theorem 1.1", "anchor": "S1.Thmtheorem1",
+                         "section": "1.1", "argument_sections": ["1.1"],
                          "line": 17, "parts": [{"label": "thm:example", "scope": "Exact scope.",
                                                 "pointers": [endpoint]}]}}
         wiki.files = {}
         wiki.search = []
+        wiki.manuscript = wiki.results
+        wiki.paper = {"html_url": "https://arxiv.org/html/2609.35986v1",
+                      "paper_url": ARXIV, "version": "v1", "version_url": ARXIV + "v1"}
+        section = {"number": "1.1", "title": "Results", "anchor": "S1.SS1", "label": "sec:main-results"}
+        wiki.paper_sections = {"1.1": section}
+        wiki.paper_labels = {"sec:main-results": section, "section:1.1": section}
+        wiki.latest = {"run_sha256": "bound-audit"}
         return wiki
 
     def test_friendly_headings_and_reciprocal_named_result_links(self):
@@ -62,7 +75,7 @@ class GuideCorrespondenceTests(unittest.TestCase):
         guide = wiki.files["guides/example.html"].decode()
         result = wiki.files["results/thm-example.html"].decode()
         self.assertIn("<h3>A readable conclusion</h3>", guide)
-        self.assertIn('href="../results/thm-example.html">The manuscript theorem</a>', guide)
+        self.assertIn('href="../results/thm-example.html">Theorem 1.1 · The manuscript theorem</a>', guide)
         self.assertIn("Read this part of the proof", result)
         self.assertIn('href="../guides/example.html">An informal proof', result)
         self.assertIn(f'href="{ARXIV}">Read the paper on arXiv', result)
@@ -93,6 +106,70 @@ class GuideCorrespondenceTests(unittest.TestCase):
         wiki.chapters[0]["manuscript_labels"] = []
         with self.assertRaisesRegex(ValueError, "Named results missing a proof guide"):
             wiki.validate_guides()
+
+
+class PaperCorrespondenceTests(unittest.TestCase):
+    def test_remarks_consume_numbers_and_starred_headings_do_not(self):
+        text = r"""\section{Introduction}\label{sec:intro}
+\subsection{Results}\label{sec:results}
+\begin{theorem}\label{thm:first}True\end{theorem}
+\begin{remark}A numbering check.\end{remark}
+\section*{Glossary}
+\begin{corollary}\label{cor:third}True\end{corollary}
+\appendix
+\section{Auxiliary proof}\label[appendix]{app:aux}
+\begin{lemma}\label{lem:appendix}True\end{lemma}"""
+        sections, results = paper_structure(text)
+        self.assertEqual([s["number"] for s in sections], ["1", "1.1", "A"])
+        self.assertEqual(results["cor:third"]["citation"], "Corollary 1.3")
+        self.assertEqual(results["cor:third"]["anchor"], "S1.Thmtheorem3")
+        self.assertEqual(results["lem:appendix"]["citation"], "Lemma A.1")
+        self.assertEqual(sections[-1]["label"], "app:aux")
+
+    def test_unknown_or_missing_step_paper_reference_fails(self):
+        for references in ([], ["section:99"]):
+            wiki = GuideCorrespondenceTests().wiki()
+            wiki.chapters[0]["steps"][0]["paper_labels"] = references
+            with self.subTest(references=references), self.assertRaisesRegex(ValueError, "paper reference"):
+                wiki.validate_guides()
+
+    def test_reviewed_arxiv_numbering_drift_fails(self):
+        wiki = GuideCorrespondenceTests().wiki()
+        wiki.paper["sections"] = [{k: s[k] for k in ("number", "title", "anchor")} for s in wiki.paper_sections.values()]
+        wiki.paper["results"] = {label: {k: r[k] for k in ("number", "citation", "anchor", "section")} for label, r in wiki.results.items()}
+        wiki.validate_paper()
+        wiki.paper["results"]["thm:example"]["anchor"] = "S1.Thmtheorem2"
+        with self.assertRaisesRegex(ValueError, "numbering or anchor differs"):
+            wiki.validate_paper()
+
+    def test_crosswalk_separates_statement_argument_guide_and_lean(self):
+        wiki = GuideCorrespondenceTests().wiki()
+        section = {"number": "2.3", "title": "Cloning fidelity", "anchor": "S2.SS3", "label": "sec:proof"}
+        wiki.paper_sections["2.3"] = section
+        wiki.paper_labels["section:2.3"] = section
+        wiki.results["thm:example"]["argument_sections"] = ["2.3"]
+        wiki.render_correspondence()
+        page = wiki.files["correspondence.html"].decode()
+        for href in ('https://arxiv.org/html/2609.35986v1#S1.Thmtheorem1',
+                     'https://arxiv.org/html/2609.35986v1#S2.SS3',
+                     'guides/example.html', 'source/Cloning.Example.html#L7'):
+            self.assertIn('href="' + href + '"', page)
+        data = json.loads(wiki.files["data/paper-correspondence.json"])["results"][0]
+        self.assertEqual(data["statement_section"], "1.1")
+        self.assertIn("§2.3", data["argument_sections"][0]["text"])
+
+    def test_sidebar_keeps_high_level_navigation_without_chapter_subtabs(self):
+        wiki = GuideCorrespondenceTests().wiki()
+        wiki.validate_guides()
+        wiki.render_guides()
+        page = wiki.files["guides/example.html"].decode()
+        sidebar = re.search(r'<aside class="sidebar".*?</aside>', page, re.S)[0]
+        self.assertIn('href="../guides/index.html"', sidebar)
+        self.assertIn('href="../correspondence.html"', sidebar)
+        self.assertNotIn('guides/example.html', sidebar)
+        self.assertNotIn('Read the proof', sidebar)
+        self.assertIn("Where this guide fits in the paper", page)
+        self.assertIn('href="https://arxiv.org/html/2609.35986v1#S1.Thmtheorem1"', page)
 
 
 class DependencyMapTests(unittest.TestCase):

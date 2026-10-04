@@ -1,0 +1,376 @@
+{
+  "paper_url": "https://arxiv.org/abs/2609.35986",
+  "version": "v1",
+  "version_url": "https://arxiv.org/abs/2609.35986v1",
+  "html_url": "https://arxiv.org/html/2609.35986v1",
+  "retrieved_utc": "2026-10-04",
+  "html_sha256": "72c6c88166fc5ab726eac29d9196ae0cca7d95b9305d1f714a27dc9a76a82e96",
+  "sections": [
+    {
+      "number": "1",
+      "title": "Introduction",
+      "anchor": "S1"
+    },
+    {
+      "number": "1.1",
+      "title": "Results",
+      "anchor": "S1.SS1"
+    },
+    {
+      "number": "1.2",
+      "title": "Scope and limitations",
+      "anchor": "S1.SS2"
+    },
+    {
+      "number": "1.3",
+      "title": "Earlier and related work",
+      "anchor": "S1.SS3"
+    },
+    {
+      "number": "1.4",
+      "title": "Organization",
+      "anchor": "S1.SS4"
+    },
+    {
+      "number": "2",
+      "title": "Cloner construction and achievability",
+      "anchor": "S2"
+    },
+    {
+      "number": "2.1",
+      "title": "Cartan-sector channel and label rules",
+      "anchor": "S2.SS1"
+    },
+    {
+      "number": "2.2",
+      "title": "Sector and label fidelity estimates",
+      "anchor": "S2.SS2"
+    },
+    {
+      "number": "2.3",
+      "title": "Cloning fidelity",
+      "anchor": "S2.SS3"
+    },
+    {
+      "number": "3",
+      "title": "Optimality from LAN and Gaussian converses",
+      "anchor": "S3"
+    },
+    {
+      "number": "3.1",
+      "title": "Local parametrization and Gaussian amplification",
+      "anchor": "S3.SS1"
+    },
+    {
+      "number": "3.2",
+      "title": "Local asymptotic normality",
+      "anchor": "S3.SS2"
+    },
+    {
+      "number": "3.3",
+      "title": "Minimax converses",
+      "anchor": "S3.SS3"
+    },
+    {
+      "number": "4",
+      "title": "Cloning projector states",
+      "anchor": "S4"
+    },
+    {
+      "number": "4.1",
+      "title": "Exact rank compression",
+      "anchor": "S4.SS1"
+    },
+    {
+      "number": "4.2",
+      "title": "Achievability",
+      "anchor": "S4.SS2"
+    },
+    {
+      "number": "4.3",
+      "title": "Converse",
+      "anchor": "S4.SS3"
+    },
+    {
+      "number": "5",
+      "title": "Fixed-gain comparison with PCT",
+      "anchor": "S5"
+    },
+    {
+      "number": "6",
+      "title": "Discussion",
+      "anchor": "S6"
+    },
+    {
+      "number": "6.1",
+      "title": "Dependence on spectral mixedness",
+      "anchor": "S6.SS1"
+    },
+    {
+      "number": "6.2",
+      "title": "Worst-case cloning over all states",
+      "anchor": "S6.SS2"
+    },
+    {
+      "number": "6.3",
+      "title": "High-fidelity sample complexity",
+      "anchor": "S6.SS3"
+    },
+    {
+      "number": "6.4",
+      "title": "Conjectures for degenerate and rank-deficient spectra",
+      "anchor": "S6.SS4"
+    },
+    {
+      "number": "A",
+      "title": "Exact-weight PBW calculation of the sector fidelity",
+      "anchor": "A1"
+    },
+    {
+      "number": "A.1",
+      "title": "PBW vectors on complete weight spaces",
+      "anchor": "A1.SS1"
+    },
+    {
+      "number": "A.2",
+      "title": "Character normalization and fixed-height matrices",
+      "anchor": "A1.SS2"
+    },
+    {
+      "number": "B",
+      "title": "Young local limit and randomized rounding",
+      "anchor": "A2"
+    },
+    {
+      "number": "C",
+      "title": "Unified Gaussian flat-prior converse",
+      "anchor": "A3"
+    },
+    {
+      "number": "C.1",
+      "title": "Weighted fidelity and compact limits",
+      "anchor": "A3.SS1"
+    },
+    {
+      "number": "C.2",
+      "title": "The least-noise oscillator moment",
+      "anchor": "A3.SS2"
+    },
+    {
+      "number": "C.3",
+      "title": "One flat-prior converse for both Gaussian models",
+      "anchor": "A3.SS3"
+    },
+    {
+      "number": "D",
+      "title": "Comparison with purify–clone–trace",
+      "anchor": "A4"
+    },
+    {
+      "number": "D.1",
+      "title": "Common preliminaries",
+      "anchor": "A4.SS1"
+    },
+    {
+      "number": "D.2",
+      "title": "Simple full-rank spectra",
+      "anchor": "A4.SS2"
+    },
+    {
+      "number": "D.3",
+      "title": "Projector states",
+      "anchor": "A4.SS3"
+    }
+  ],
+  "results": {
+    "thm:known-optimum": {
+      "number": "1.1",
+      "citation": "Theorem 1.1",
+      "anchor": "S1.Thmtheorem1",
+      "section": "1.1",
+      "heading": "Theorem 1.1 (Known-spectrum optimum)."
+    },
+    "thm:unknown-optimum": {
+      "number": "1.2",
+      "citation": "Theorem 1.2",
+      "anchor": "S1.Thmtheorem2",
+      "section": "1.1",
+      "heading": "Theorem 1.2 (Unknown-spectrum cloner fidelity and compact-set optimum)."
+    },
+    "thm:grassmann": {
+      "number": "1.3",
+      "citation": "Theorem 1.3",
+      "anchor": "S1.Thmtheorem3",
+      "section": "1.1",
+      "heading": "Theorem 1.3 (Cloning projector states)."
+    },
+    "thm:pct-comparison": {
+      "number": "1.4",
+      "citation": "Theorem 1.4",
+      "anchor": "S1.Thmtheorem4",
+      "section": "1.1",
+      "heading": "Theorem 1.4 (Comparison with purify–clone–trace)."
+    },
+    "lem:young-concentration": {
+      "number": "2.1",
+      "citation": "Lemma 2.1",
+      "anchor": "S2.Thmtheorem1",
+      "section": "2",
+      "heading": "Lemma 2.1 (Uniform Young concentration)."
+    },
+    "prop:lifted-kernel-bound": {
+      "number": "2.2",
+      "citation": "Proposition 2.2",
+      "anchor": "S2.Thmtheorem2",
+      "section": "2.1",
+      "heading": "Proposition 2.2 (Fidelity of a lifted transition rule)."
+    },
+    "prop:sector-fidelity": {
+      "number": "2.3",
+      "citation": "Proposition 2.3",
+      "anchor": "S2.Thmtheorem3",
+      "section": "2.2",
+      "heading": "Proposition 2.3 (Uniform Cartan-sector fidelity)."
+    },
+    "prop:young-rounding": {
+      "number": "2.4",
+      "citation": "Proposition 2.4",
+      "anchor": "S2.Thmtheorem4",
+      "section": "2.2",
+      "heading": "Proposition 2.4 (Randomized Young-label dilation)."
+    },
+    "lem:lifted-fidelity-factorization": {
+      "number": "2.5",
+      "citation": "Lemma 2.5",
+      "anchor": "S2.Thmtheorem5",
+      "section": "2.3",
+      "heading": "Lemma 2.5 (Factorization of the lifted fidelity)."
+    },
+    "thm:gaussian-amplification": {
+      "number": "3.1",
+      "citation": "Theorem 3.1",
+      "anchor": "S3.Thmtheorem1",
+      "section": "3.1",
+      "heading": "Theorem 3.1 (Gaussian amplification optimum)."
+    },
+    "thm:LAN-full": {
+      "number": "3.2",
+      "citation": "Theorem 3.2",
+      "anchor": "S3.Thmtheorem2",
+      "section": "3.2",
+      "heading": "Theorem 3.2 (Finite-dimensional LAN and target-sample scaling)."
+    },
+    "cor:LAN-orb": {
+      "number": "3.4",
+      "citation": "Corollary 3.4",
+      "anchor": "S3.Thmtheorem4",
+      "section": "3.2",
+      "heading": "Corollary 3.4 (Fixed-spectrum LAN)."
+    },
+    "lem:LAN-fidelity-transfer": {
+      "number": "3.5",
+      "citation": "Lemma 3.5",
+      "anchor": "S3.Thmtheorem5",
+      "section": "3.2",
+      "heading": "Lemma 3.5 (LAN fidelity transfer)."
+    },
+    "lem:exact-compression": {
+      "number": "4.1",
+      "citation": "Lemma 4.1",
+      "anchor": "S4.Thmtheorem1",
+      "section": "4.1",
+      "heading": "Lemma 4.1 (Exact rank-compression identity)."
+    },
+    "prop:grassmann-finite-converse": {
+      "number": "4.2",
+      "citation": "Proposition 4.2",
+      "anchor": "S4.Thmtheorem2",
+      "section": "4.3",
+      "heading": "Proposition 4.2 (Projector converse)."
+    },
+    "lem:PBW-fixed-height": {
+      "number": "A.1",
+      "citation": "Lemma A.1",
+      "anchor": "A1.Thmtheorem1",
+      "section": "A.1",
+      "heading": "Lemma A.1 (PBW Gram matrices at fixed height)."
+    },
+    "lem:uniform-character-normalization": {
+      "number": "A.2",
+      "citation": "Lemma A.2",
+      "anchor": "A1.Thmtheorem2",
+      "section": "A.2",
+      "heading": "Lemma A.2 (Uniform character normalization)."
+    },
+    "lem:young-local-limit": {
+      "number": "B.1",
+      "citation": "Lemma B.1",
+      "anchor": "A2.Thmtheorem1",
+      "section": "B",
+      "heading": "Lemma B.1 (Uniform Young local limit)."
+    },
+    "lem:randomized-dilation": {
+      "number": "B.2",
+      "citation": "Lemma B.2",
+      "anchor": "A2.Thmtheorem2",
+      "section": "B",
+      "heading": "Lemma B.2 (Continuous limit of randomized dilation)."
+    },
+    "lem:weighted-fidelity": {
+      "number": "C.1",
+      "citation": "Lemma C.1",
+      "anchor": "A3.Thmtheorem1",
+      "section": "C.1",
+      "heading": "Lemma C.1 (Weighted fidelity bound)."
+    },
+    "lem:compact-cp-limit": {
+      "number": "C.2",
+      "citation": "Lemma C.2",
+      "anchor": "A3.Thmtheorem2",
+      "section": "C.1",
+      "heading": "Lemma C.2 (Compact-observable limits of completely positive maps)."
+    },
+    "lem:covariant-amplifier-representation": {
+      "number": "C.3",
+      "citation": "Lemma C.3",
+      "anchor": "A3.Thmtheorem3",
+      "section": "C.2",
+      "heading": "Lemma C.3 (Covariant-amplifier representation)."
+    },
+    "prop:least-noise-moment": {
+      "number": "C.4",
+      "citation": "Proposition C.4",
+      "anchor": "A3.Thmtheorem4",
+      "section": "C.2",
+      "heading": "Proposition C.4 (Least-noise moment)."
+    },
+    "prop:flat-prior-converse": {
+      "number": "C.5",
+      "citation": "Proposition C.5",
+      "anchor": "A3.Thmtheorem5",
+      "section": "C.3",
+      "heading": "Proposition C.5 (Flat-prior converse inequality)."
+    },
+    "lem:Werner-Fock": {
+      "number": "D.1",
+      "citation": "Lemma D.1",
+      "anchor": "A4.Thmtheorem1",
+      "section": "D.1",
+      "heading": "Lemma D.1 (Werner occupation law)."
+    },
+    "prop:grassmann-pct-comparison": {
+      "number": "D.2",
+      "citation": "Proposition D.2",
+      "anchor": "A4.Thmtheorem2",
+      "section": "D.3",
+      "heading": "Proposition D.2 (Finite-sample PCT factorization for projector states)."
+    },
+    "prop:pct-projector-small-error": {
+      "number": "D.3",
+      "citation": "Proposition D.3",
+      "anchor": "A4.Thmtheorem3",
+      "section": "D.3",
+      "heading": "Proposition D.3 (PCT’s leading projector infidelity coefficient)."
+    }
+  }
+}

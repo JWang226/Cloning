@@ -2,7 +2,7 @@
 
 Lean proofs for **all 27 named results** in the frozen reference snapshot: known- and unknown-spectrum cloning, projector-state optimality, purify–clone–trace comparisons, and supporting estimates. Read the [paper](https://arxiv.org/abs/2609.35986); the audited manuscript snapshot is identified in [SOURCE.json](formalization/SOURCE.json).
 
-Read the [proof wiki](https://jwang226.github.io/Cloning/): twelve informal proof guides, all 27 named results, exact Lean statements, and searchable source. The interactive [dependency map](https://jwang226.github.io/Cloning/dependencies.html) connects the proof stages to their guides, results, and Lean evidence. The [bundled pages](docs/index.html) also work offline. The [proof map](formalization/PROOF_MAP.md) records assumptions, fidelity conventions, dimensions, and limits.
+Read the [proof wiki](https://jwang226.github.io/Cloning/). Its [paper-to-Lean table](https://jwang226.github.io/Cloning/correspondence.html) connects all 27 numbered paper results to their statement and argument locations, informal guides, and compiled Lean declarations. The twelve guides combine paper sections and appendices; each step links back to the paper and its Lean counterpart. An interactive [dependency map](https://jwang226.github.io/Cloning/dependencies.html) shows the proof ingredients. The [bundled pages](docs/index.html) also work offline. The [proof map](formalization/PROOF_MAP.md) records assumptions, conventions, and scope.
 
 ## Verification
 

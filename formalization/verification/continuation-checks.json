@@ -145,12 +145,15 @@
     "chapters": 12,
     "source_modules": 982,
     "verified_proof_pointers": 128,
-    "files": 2032,
+    "files": 2034,
     "offline_markdown_links_repaired": 74,
     "checker_verdicts_bound_to_current_audit": true,
-    "manifest_sha256": "c93535d3fc9168589a20207e4f770def4f5aaea72b90658413d2cf4ae06fa609",
+    "manifest_sha256": "99586de6e49acc95024cfe629a95a2ca0a84a8dfdcb1a5517e4dba72b6071078",
     "dependency_stages": 12,
-    "dependency_edges": 18
+    "dependency_edges": 18,
+    "paper_sections": 35,
+    "guides_with_paper_correspondence": 12,
+    "guide_steps_with_paper_references": 53
   },
   "git_index_preservation": {
     "index_file_sha256": "7c98a3ab2aafbea0cea458f6c8de33ba2ab29d815237f75de482c5e48626fa10",
@@ -215,5 +218,39 @@
     ],
     "standalone_file_browser_check": "Not run: in-app browser URL policy permits only HTTP and HTTPS. Static assets and local links are validated by the builder.",
     "proof_sources_unchanged": true
+  },
+  "paper_correspondence_revision": {
+    "recorded_utc": "2026-10-04T20:59:40.356969+00:00",
+    "page": "docs/correspondence.html",
+    "resolved_data": "docs/data/paper-correspondence.json",
+    "paper_url": "https://arxiv.org/abs/2609.35986",
+    "paper_version_url": "https://arxiv.org/abs/2609.35986v1",
+    "paper_html_sha256": "72c6c88166fc5ab726eac29d9196ae0cca7d95b9305d1f714a27dc9a76a82e96",
+    "reviewed_paper_sections": 35,
+    "numbered_results": 27,
+    "mapped_guide_chapters": 12,
+    "guide_steps_with_paper_references": 53,
+    "chapter_paper_locations": 43,
+    "step_paper_references": 71,
+    "semantics": "Reviewed paper statement and argument locations, editorial guide order, and exact compiled Lean endpoints; formal scope qualifications remain on result pages.",
+    "source_audit_sha256": "6b2c09f61388362d9ff3ae3f63285b9dd09e0cd95254150273bacba6cd9c799a",
+    "sidebar_main_links": 8,
+    "sidebar_individual_chapter_links": 0,
+    "reader_tex_links": 0,
+    "wiki_tests_passed": 31,
+    "wiki_check": "passed",
+    "saved_checkpoint": "passed",
+    "browser_checks": [
+      "desktop chapter header shows numbered paper result and section references",
+      "chapter-to-paper table and 27-result correspondence table",
+      "keyboard follows correspondence endpoint to the exact compiled Lean line",
+      "source correspondence disclosure links back to the numbered result row",
+      "390px mobile menu navigates to Paper ↔ Lean",
+      "390px guide correspondence panel appears before the in-page table of contents",
+      "390px tables scroll locally without page horizontal overflow",
+      "project subpath /Cloning/"
+    ],
+    "proof_sources_unchanged": true,
+    "verification_evidence_unchanged": true
   }
 }

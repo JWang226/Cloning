@@ -1,0 +1,891 @@
+{
+  "paper_version": "https://arxiv.org/abs/2609.35986v1",
+  "paper_html": "https://arxiv.org/html/2609.35986v1",
+  "source_audit_sha256": "6b2c09f61388362d9ff3ae3f63285b9dd09e0cd95254150273bacba6cd9c799a",
+  "results": [
+    {
+      "label": "thm:known-optimum",
+      "citation": "Theorem 1.1",
+      "title": "Known-spectrum optimum",
+      "statement_url": "https://arxiv.org/html/2609.35986v1#S1.Thmtheorem1",
+      "statement_section": "1.1",
+      "argument_sections": [
+        {
+          "text": "§2.1 · Cartan-sector channel and label rules",
+          "url": "https://arxiv.org/html/2609.35986v1#S2.SS1"
+        },
+        {
+          "text": "§2.3 · Cloning fidelity",
+          "url": "https://arxiv.org/html/2609.35986v1#S2.SS3"
+        },
+        {
+          "text": "§3.3 · Minimax converses",
+          "url": "https://arxiv.org/html/2609.35986v1#S3.SS3"
+        }
+      ],
+      "guide_urls": [
+        "guides/known-spectrum.html"
+      ],
+      "lean": [
+        {
+          "name": "Cloning.TensorCloning.knownSpectrumValue_tendsto",
+          "file": "formalization/Cloning/PhysicalCloningKnownTheorem.lean",
+          "line": 45,
+          "url": "source/Cloning.PhysicalCloningKnownTheorem.html#L45"
+        },
+        {
+          "name": "Cloning.TensorCloning.eventually_uniform_prescribedKnownSpectrumChannel_payoff",
+          "file": "formalization/Cloning/TensorCloningPrescribedLimits.lean",
+          "line": 29,
+          "url": "source/Cloning.TensorCloningPrescribedLimits.html#L29"
+        }
+      ]
+    },
+    {
+      "label": "thm:unknown-optimum",
+      "citation": "Theorem 1.2",
+      "title": "Unknown-spectrum cloner fidelity and compact-set optimum",
+      "statement_url": "https://arxiv.org/html/2609.35986v1#S1.Thmtheorem2",
+      "statement_section": "1.1",
+      "argument_sections": [
+        {
+          "text": "§2.1 · Cartan-sector channel and label rules",
+          "url": "https://arxiv.org/html/2609.35986v1#S2.SS1"
+        },
+        {
+          "text": "§2.2 · Sector and label fidelity estimates",
+          "url": "https://arxiv.org/html/2609.35986v1#S2.SS2"
+        },
+        {
+          "text": "§2.3 · Cloning fidelity",
+          "url": "https://arxiv.org/html/2609.35986v1#S2.SS3"
+        },
+        {
+          "text": "§3.3 · Minimax converses",
+          "url": "https://arxiv.org/html/2609.35986v1#S3.SS3"
+        }
+      ],
+      "guide_urls": [
+        "guides/unknown-spectrum.html"
+      ],
+      "lean": [
+        {
+          "name": "Cloning.TensorCloning.eventually_uniform_prescribedUniversalChannel_payoff",
+          "file": "formalization/Cloning/TensorCloningPrescribedLimits.lean",
+          "line": 40,
+          "url": "source/Cloning.TensorCloningPrescribedLimits.html#L40"
+        },
+        {
+          "name": "Cloning.TensorCloning.prescribedUniversalChannel_covariant",
+          "file": "formalization/Cloning/TensorCloningPrescribed.lean",
+          "line": 70,
+          "url": "source/Cloning.TensorCloningPrescribed.html#L70"
+        },
+        {
+          "name": "Cloning.TensorCloning.unknownSpectrumValue_tendsto_affine",
+          "file": "formalization/Cloning/SpectralAffineTheorem.lean",
+          "line": 12,
+          "url": "source/Cloning.SpectralAffineTheorem.html#L12"
+        }
+      ]
+    },
+    {
+      "label": "thm:grassmann",
+      "citation": "Theorem 1.3",
+      "title": "Cloning projector states",
+      "statement_url": "https://arxiv.org/html/2609.35986v1#S1.Thmtheorem3",
+      "statement_section": "1.1",
+      "argument_sections": [
+        {
+          "text": "§4.1 · Exact rank compression",
+          "url": "https://arxiv.org/html/2609.35986v1#S4.SS1"
+        },
+        {
+          "text": "§4.2 · Achievability",
+          "url": "https://arxiv.org/html/2609.35986v1#S4.SS2"
+        },
+        {
+          "text": "§4.3 · Converse",
+          "url": "https://arxiv.org/html/2609.35986v1#S4.SS3"
+        }
+      ],
+      "guide_urls": [
+        "guides/grassmann.html"
+      ],
+      "lean": [
+        {
+          "name": "Cloning.PhysicalFlatGrassmann.minimaxValue_tendsto",
+          "file": "formalization/Cloning/PhysicalFlatGrassmannTheorem.lean",
+          "line": 54,
+          "url": "source/Cloning.PhysicalFlatGrassmannTheorem.html#L54"
+        },
+        {
+          "name": "Cloning.TensorCloning.prescribedRankFlatChannel_uniform",
+          "file": "formalization/Cloning/TensorCloningPrescribedLimits.lean",
+          "line": 57,
+          "url": "source/Cloning.TensorCloningPrescribedLimits.html#L57"
+        }
+      ]
+    },
+    {
+      "label": "thm:pct-comparison",
+      "citation": "Theorem 1.4",
+      "title": "Comparison with purify–clone–trace",
+      "statement_url": "https://arxiv.org/html/2609.35986v1#S1.Thmtheorem4",
+      "statement_section": "1.1",
+      "argument_sections": [
+        {
+          "text": "§5 · Fixed-gain comparison with PCT",
+          "url": "https://arxiv.org/html/2609.35986v1#S5"
+        },
+        {
+          "text": "§D.1 · Common preliminaries",
+          "url": "https://arxiv.org/html/2609.35986v1#A4.SS1"
+        },
+        {
+          "text": "§D.2 · Simple full-rank spectra",
+          "url": "https://arxiv.org/html/2609.35986v1#A4.SS2"
+        },
+        {
+          "text": "§D.3 · Projector states",
+          "url": "https://arxiv.org/html/2609.35986v1#A4.SS3"
+        }
+      ],
+      "guide_urls": [
+        "guides/purify-clone-trace.html"
+      ],
+      "lean": [
+        {
+          "name": "Cloning.PCTPrescribed.fullChannel_fidelity_tendsto",
+          "file": "formalization/Cloning/PCTPrescribedFull.lean",
+          "line": 33,
+          "url": "source/Cloning.PCTPrescribedFull.html#L33"
+        },
+        {
+          "name": "Cloning.pctValue_lt_universalValue",
+          "file": "formalization/Cloning/Main.lean",
+          "line": 91,
+          "url": "source/Cloning.Main.html#L91"
+        },
+        {
+          "name": "Cloning.pctValue_closedForm",
+          "file": "formalization/Cloning/PCTClosedForm.lean",
+          "line": 54,
+          "url": "source/Cloning.PCTClosedForm.html#L54"
+        },
+        {
+          "name": "Cloning.PCTPrescribed.rankFidelity_limsup_le",
+          "file": "formalization/Cloning/PCTPrescribedRankTheorem.lean",
+          "line": 21,
+          "url": "source/Cloning.PCTPrescribedRankTheorem.html#L21"
+        },
+        {
+          "name": "Cloning.PCTPrescribed.rankFidelity_limsup_lt_optimal",
+          "file": "formalization/Cloning/PCTPrescribedRankTheorem.lean",
+          "line": 30,
+          "url": "source/Cloning.PCTPrescribedRankTheorem.html#L30"
+        },
+        {
+          "name": "Cloning.PCTPrescribed.rankFidelity_uniform_upper",
+          "file": "formalization/Cloning/PCTPrescribedRankTheorem.lean",
+          "line": 39,
+          "url": "source/Cloning.PCTPrescribedRankTheorem.html#L39"
+        }
+      ]
+    },
+    {
+      "label": "lem:young-concentration",
+      "citation": "Lemma 2.1",
+      "title": "Uniform Young concentration",
+      "statement_url": "https://arxiv.org/html/2609.35986v1#S2.Thmtheorem1",
+      "statement_section": "2",
+      "argument_sections": [
+        {
+          "text": "§2 · Cloner construction and achievability",
+          "url": "https://arxiv.org/html/2609.35986v1#S2"
+        }
+      ],
+      "guide_urls": [
+        "guides/young-laws.html"
+      ],
+      "lean": [
+        {
+          "name": "Cloning.TensorLie.exists_tensorYoungPMF_uniform_exp_threshold",
+          "file": "formalization/Cloning/TensorSchurDecompositionSharpConcentration.lean",
+          "line": 103,
+          "url": "source/Cloning.TensorSchurDecompositionSharpConcentration.html#L103"
+        }
+      ]
+    },
+    {
+      "label": "prop:lifted-kernel-bound",
+      "citation": "Proposition 2.2",
+      "title": "Fidelity of a lifted transition rule",
+      "statement_url": "https://arxiv.org/html/2609.35986v1#S2.Thmtheorem2",
+      "statement_section": "2.1",
+      "argument_sections": [
+        {
+          "text": "§2.1 · Cartan-sector channel and label rules",
+          "url": "https://arxiv.org/html/2609.35986v1#S2.SS1"
+        }
+      ],
+      "guide_urls": [
+        "guides/lifted-kernels.html"
+      ],
+      "lean": [
+        {
+          "name": "Cloning.TensorCloning.spectrumPayoff_eq_copyBlocks",
+          "file": "formalization/Cloning/TensorCloningBlockFidelity.lean",
+          "line": 76,
+          "url": "source/Cloning.TensorCloningBlockFidelity.html#L76"
+        },
+        {
+          "name": "Cloning.MatrixLiftedChannel.liftedOutput_fidelity",
+          "file": "formalization/Cloning/MatrixLiftedChannel.lean",
+          "line": 133,
+          "url": "source/Cloning.MatrixLiftedChannel.html#L133"
+        }
+      ]
+    },
+    {
+      "label": "prop:sector-fidelity",
+      "citation": "Proposition 2.3",
+      "title": "Uniform Cartan-sector fidelity",
+      "statement_url": "https://arxiv.org/html/2609.35986v1#S2.Thmtheorem3",
+      "statement_section": "2.2",
+      "argument_sections": [
+        {
+          "text": "§A.1 · PBW vectors on complete weight spaces",
+          "url": "https://arxiv.org/html/2609.35986v1#A1.SS1"
+        },
+        {
+          "text": "§A.2 · Character normalization and fixed-height matrices",
+          "url": "https://arxiv.org/html/2609.35986v1#A1.SS2"
+        }
+      ],
+      "guide_urls": [
+        "guides/cartan-sectors.html"
+      ],
+      "lean": [
+        {
+          "name": "Cloning.TensorCloning.eventually_uniform_shrinkingWindow_mixture_fidelity",
+          "file": "formalization/Cloning/TensorCloningShrinkingWindows.lean",
+          "line": 37,
+          "url": "source/Cloning.TensorCloningShrinkingWindows.html#L37"
+        },
+        {
+          "name": "Cloning.TensorCloning.eventually_uniform_shrinkingWindow_sector_fidelity",
+          "file": "formalization/Cloning/TensorCloningShrinkingWindows.lean",
+          "line": 201,
+          "url": "source/Cloning.TensorCloningShrinkingWindows.html#L201"
+        },
+        {
+          "name": "Cloning.TensorCloning.eventually_uniform_shrinkingWindow_compatible",
+          "file": "formalization/Cloning/TensorCloningShrinkingWindows.lean",
+          "line": 143,
+          "url": "source/Cloning.TensorCloningShrinkingWindows.html#L143"
+        }
+      ]
+    },
+    {
+      "label": "prop:young-rounding",
+      "citation": "Proposition 2.4",
+      "title": "Randomized Young-label dilation",
+      "statement_url": "https://arxiv.org/html/2609.35986v1#S2.Thmtheorem4",
+      "statement_section": "2.2",
+      "argument_sections": [
+        {
+          "text": "Appendix B · Young local limit and randomized rounding",
+          "url": "https://arxiv.org/html/2609.35986v1#A2"
+        }
+      ],
+      "guide_urls": [
+        "guides/lifted-kernels.html"
+      ],
+      "lean": [
+        {
+          "name": "Cloning.YoungCompatibility.eventually_rounding_support_compatible",
+          "file": "formalization/Cloning/YoungCompatibility.lean",
+          "line": 143,
+          "url": "source/Cloning.YoungCompatibility.html#L143"
+        },
+        {
+          "name": "Cloning.YoungHyperplane.uniform_tensorYoungFallbackOutput_affinity",
+          "file": "formalization/Cloning/YoungPhysicalRounding.lean",
+          "line": 76,
+          "url": "source/Cloning.YoungPhysicalRounding.html#L76"
+        }
+      ]
+    },
+    {
+      "label": "lem:lifted-fidelity-factorization",
+      "citation": "Lemma 2.5",
+      "title": "Factorization of the lifted fidelity",
+      "statement_url": "https://arxiv.org/html/2609.35986v1#S2.Thmtheorem5",
+      "statement_section": "2.3",
+      "argument_sections": [
+        {
+          "text": "§2.3 · Cloning fidelity",
+          "url": "https://arxiv.org/html/2609.35986v1#S2.SS3"
+        }
+      ],
+      "guide_urls": [
+        "guides/lifted-kernels.html"
+      ],
+      "lean": [
+        {
+          "name": "Cloning.TensorCloning.eventually_uniform_lifted_fidelity_factorization",
+          "file": "formalization/Cloning/TensorCloningLiftedFactorization.lean",
+          "line": 133,
+          "url": "source/Cloning.TensorCloningLiftedFactorization.html#L133"
+        }
+      ]
+    },
+    {
+      "label": "thm:gaussian-amplification",
+      "citation": "Theorem 3.1",
+      "title": "Gaussian amplification optimum",
+      "statement_url": "https://arxiv.org/html/2609.35986v1#S3.Thmtheorem1",
+      "statement_section": "3.1",
+      "argument_sections": [
+        {
+          "text": "§3.1 · Local parametrization and Gaussian amplification",
+          "url": "https://arxiv.org/html/2609.35986v1#S3.SS1"
+        },
+        {
+          "text": "§C.1 · Weighted fidelity and compact limits",
+          "url": "https://arxiv.org/html/2609.35986v1#A3.SS1"
+        },
+        {
+          "text": "§C.2 · The least-noise oscillator moment",
+          "url": "https://arxiv.org/html/2609.35986v1#A3.SS2"
+        },
+        {
+          "text": "§C.3 · One flat-prior converse for both Gaussian models",
+          "url": "https://arxiv.org/html/2609.35986v1#A3.SS3"
+        }
+      ],
+      "guide_urls": [
+        "guides/gaussian-optimum.html"
+      ],
+      "lean": [
+        {
+          "name": "Cloning.Hybrid.PhaseBody.gaussian_optimalPayoff_tendsto",
+          "file": "formalization/Cloning/HybridGaussianFlatBody.lean",
+          "line": 128,
+          "url": "source/Cloning.HybridGaussianFlatBody.html#L128"
+        },
+        {
+          "name": "Cloning.PCTJointGaussianWhitening.scoreGaussianOptimal_tendsto",
+          "file": "formalization/Cloning/HybridGaussianScoreOptimum.lean",
+          "line": 64,
+          "url": "source/Cloning.HybridGaussianScoreOptimum.html#L64"
+        }
+      ]
+    },
+    {
+      "label": "thm:LAN-full",
+      "citation": "Theorem 3.2",
+      "title": "Finite-dimensional LAN and target-sample scaling",
+      "statement_url": "https://arxiv.org/html/2609.35986v1#S3.Thmtheorem2",
+      "statement_section": "3.2",
+      "argument_sections": [
+        {
+          "text": "§3.2 · Local asymptotic normality",
+          "url": "https://arxiv.org/html/2609.35986v1#S3.SS2"
+        }
+      ],
+      "guide_urls": [
+        "guides/physical-lan.html"
+      ],
+      "lean": [
+        {
+          "name": "Cloning.TensorLAN.nonempty_physicalCompactWindowLAN",
+          "file": "formalization/Cloning/TensorLANEmbeddingCompactLAN.lean",
+          "line": 19,
+          "url": "source/Cloning.TensorLANEmbeddingCompactLAN.html#L19"
+        },
+        {
+          "name": "Cloning.TensorLAN.physicalCompactWindowLAN",
+          "file": "formalization/Cloning/TensorLANEmbeddingCompactLAN.lean",
+          "line": 46,
+          "url": "source/Cloning.TensorLANEmbeddingCompactLAN.html#L46"
+        },
+        {
+          "name": "Cloning.PhysicalCloningConverse.scaled_window_approximations",
+          "file": "formalization/Cloning/PhysicalCloningConverseWindows.lean",
+          "line": 43,
+          "url": "source/Cloning.PhysicalCloningConverseWindows.html#L43"
+        }
+      ]
+    },
+    {
+      "label": "cor:LAN-orb",
+      "citation": "Corollary 3.4",
+      "title": "Fixed-spectrum LAN",
+      "statement_url": "https://arxiv.org/html/2609.35986v1#S3.Thmtheorem4",
+      "statement_section": "3.2",
+      "argument_sections": [
+        {
+          "text": "§3.2 · Local asymptotic normality",
+          "url": "https://arxiv.org/html/2609.35986v1#S3.SS2"
+        }
+      ],
+      "guide_urls": [
+        "guides/physical-lan.html"
+      ],
+      "lean": [
+        {
+          "name": "Cloning.PhysicalCloningConverse.known_fixedWindow_errors",
+          "file": "formalization/Cloning/PhysicalCloningConverseKnown.lean",
+          "line": 25,
+          "url": "source/Cloning.PhysicalCloningConverseKnown.html#L25"
+        },
+        {
+          "name": "Cloning.TensorLAN.physicalCompactWindowLAN",
+          "file": "formalization/Cloning/TensorLANEmbeddingCompactLAN.lean",
+          "line": 46,
+          "url": "source/Cloning.TensorLANEmbeddingCompactLAN.html#L46"
+        },
+        {
+          "name": "Cloning.PhysicalCloningConverse.removeClassicalForward",
+          "file": "formalization/Cloning/PhysicalCloningConverseQuantumReduction.lean",
+          "line": 27,
+          "url": "source/Cloning.PhysicalCloningConverseQuantumReduction.html#L27"
+        },
+        {
+          "name": "Cloning.PhysicalCloningConverse.removeClassicalReverse",
+          "file": "formalization/Cloning/PhysicalCloningConverseQuantumReduction.lean",
+          "line": 22,
+          "url": "source/Cloning.PhysicalCloningConverseQuantumReduction.html#L22"
+        }
+      ]
+    },
+    {
+      "label": "lem:LAN-fidelity-transfer",
+      "citation": "Lemma 3.5",
+      "title": "LAN fidelity transfer",
+      "statement_url": "https://arxiv.org/html/2609.35986v1#S3.Thmtheorem5",
+      "statement_section": "3.2",
+      "argument_sections": [
+        {
+          "text": "§3.2 · Local asymptotic normality",
+          "url": "https://arxiv.org/html/2609.35986v1#S3.SS2"
+        }
+      ],
+      "guide_urls": [
+        "guides/physical-lan.html"
+      ],
+      "lean": [
+        {
+          "name": "Cloning.MixedLANTransfer.fidelity_transfer",
+          "file": "formalization/Cloning/MixedLANTransfer.lean",
+          "line": 60,
+          "url": "source/Cloning.MixedLANTransfer.html#L60"
+        }
+      ]
+    },
+    {
+      "label": "lem:exact-compression",
+      "citation": "Lemma 4.1",
+      "title": "Exact rank-compression identity",
+      "statement_url": "https://arxiv.org/html/2609.35986v1#S4.Thmtheorem1",
+      "statement_section": "4.1",
+      "argument_sections": [
+        {
+          "text": "§4.1 · Exact rank compression",
+          "url": "https://arxiv.org/html/2609.35986v1#S4.SS1"
+        }
+      ],
+      "guide_urls": [
+        "guides/grassmann.html"
+      ],
+      "lean": [
+        {
+          "name": "Cloning.TensorLie.sectorGibbsDensity_padSpectrum",
+          "file": "formalization/Cloning/TensorPositiveSpectrumCompression.lean",
+          "line": 167,
+          "url": "source/Cloning.TensorPositiveSpectrumCompression.html#L167"
+        },
+        {
+          "name": "Cloning.TensorLie.physicalCartanMatrixChannel_rank_supported_compression",
+          "file": "formalization/Cloning/TensorRankCartanCompression.lean",
+          "line": 53,
+          "url": "source/Cloning.TensorRankCartanCompression.html#L53"
+        },
+        {
+          "name": "Cloning.TensorLie.nonnegativeCartanGibbsFidelity_padSpectrum",
+          "file": "formalization/Cloning/TensorPositiveSpectrumCompressionFidelity.lean",
+          "line": 43,
+          "url": "source/Cloning.TensorPositiveSpectrumCompressionFidelity.html#L43"
+        }
+      ]
+    },
+    {
+      "label": "prop:grassmann-finite-converse",
+      "citation": "Proposition 4.2",
+      "title": "Projector converse",
+      "statement_url": "https://arxiv.org/html/2609.35986v1#S4.Thmtheorem2",
+      "statement_section": "4.3",
+      "argument_sections": [
+        {
+          "text": "§4.3 · Converse",
+          "url": "https://arxiv.org/html/2609.35986v1#S4.SS3"
+        }
+      ],
+      "guide_urls": [
+        "guides/grassmann.html"
+      ],
+      "lean": [
+        {
+          "name": "Cloning.PhysicalFlatConverse.minimaxValue_le_flatConverseBound",
+          "file": "formalization/Cloning/PhysicalFlatConverseFinite.lean",
+          "line": 117,
+          "url": "source/Cloning.PhysicalFlatConverseFinite.html#L117"
+        },
+        {
+          "name": "Cloning.PhysicalFlatGrassmann.minimaxValue_eq_orbit",
+          "file": "formalization/Cloning/PhysicalFlatGrassmannTheorem.lean",
+          "line": 43,
+          "url": "source/Cloning.PhysicalFlatGrassmannTheorem.html#L43"
+        }
+      ]
+    },
+    {
+      "label": "lem:PBW-fixed-height",
+      "citation": "Lemma A.1",
+      "title": "PBW Gram matrices at fixed height",
+      "statement_url": "https://arxiv.org/html/2609.35986v1#A1.Thmtheorem1",
+      "statement_section": "A.1",
+      "argument_sections": [
+        {
+          "text": "§A.1 · PBW vectors on complete weight spaces",
+          "url": "https://arxiv.org/html/2609.35986v1#A1.SS1"
+        }
+      ],
+      "guide_urls": [
+        "guides/cartan-sectors.html"
+      ],
+      "lean": [
+        {
+          "name": "Cloning.TensorLie.eventually_weightGram_rate",
+          "file": "formalization/Cloning/PBWSymmetricFrameRateGram.lean",
+          "line": 15,
+          "url": "source/Cloning.PBWSymmetricFrameRateGram.html#L15"
+        },
+        {
+          "name": "Cloning.TensorLie.eventually_weightSymmetricBasis_rate",
+          "file": "formalization/Cloning/PBWSymmetricFrameRateBlocks.lean",
+          "line": 52,
+          "url": "source/Cloning.PBWSymmetricFrameRateBlocks.html#L52"
+        }
+      ]
+    },
+    {
+      "label": "lem:uniform-character-normalization",
+      "citation": "Lemma A.2",
+      "title": "Uniform character normalization",
+      "statement_url": "https://arxiv.org/html/2609.35986v1#A1.Thmtheorem2",
+      "statement_section": "A.2",
+      "argument_sections": [
+        {
+          "text": "§A.2 · Character normalization and fixed-height matrices",
+          "url": "https://arxiv.org/html/2609.35986v1#A1.SS2"
+        }
+      ],
+      "guide_urls": [
+        "guides/young-laws.html"
+      ],
+      "lean": [
+        {
+          "name": "Cloning.YoungMultinomial.eventually_uniform_character_normalization",
+          "file": "formalization/Cloning/YoungUniformCharacterWindows.lean",
+          "line": 29,
+          "url": "source/Cloning.YoungUniformCharacterWindows.html#L29"
+        }
+      ]
+    },
+    {
+      "label": "lem:young-local-limit",
+      "citation": "Lemma B.1",
+      "title": "Uniform Young local limit",
+      "statement_url": "https://arxiv.org/html/2609.35986v1#A2.Thmtheorem1",
+      "statement_section": "B",
+      "argument_sections": [
+        {
+          "text": "Appendix B · Young local limit and randomized rounding",
+          "url": "https://arxiv.org/html/2609.35986v1#A2"
+        }
+      ],
+      "guide_urls": [
+        "guides/young-laws.html"
+      ],
+      "lean": [
+        {
+          "name": "Cloning.YoungHyperplane.uniform_tensorYoungDensity_l1",
+          "file": "formalization/Cloning/YoungUniformLocalPhysicalL1.lean",
+          "line": 64,
+          "url": "source/Cloning.YoungUniformLocalPhysicalL1.html#L64"
+        }
+      ]
+    },
+    {
+      "label": "lem:randomized-dilation",
+      "citation": "Lemma B.2",
+      "title": "Continuous limit of randomized dilation",
+      "statement_url": "https://arxiv.org/html/2609.35986v1#A2.Thmtheorem2",
+      "statement_section": "B",
+      "argument_sections": [
+        {
+          "text": "Appendix B · Young local limit and randomized rounding",
+          "url": "https://arxiv.org/html/2609.35986v1#A2"
+        }
+      ],
+      "guide_urls": [
+        "guides/lifted-kernels.html"
+      ],
+      "lean": [
+        {
+          "name": "Cloning.YoungHyperplane.uniform_rounded_tensorYoungDensity_l1",
+          "file": "formalization/Cloning/YoungPhysicalRoundingUniformDensity.lean",
+          "line": 64,
+          "url": "source/Cloning.YoungPhysicalRoundingUniformDensity.html#L64"
+        },
+        {
+          "name": "Cloning.YoungHyperplane.uniform_tensorYoungRawOutput_affinity",
+          "file": "formalization/Cloning/YoungPhysicalRoundingAffinity.lean",
+          "line": 74,
+          "url": "source/Cloning.YoungPhysicalRoundingAffinity.html#L74"
+        }
+      ]
+    },
+    {
+      "label": "lem:weighted-fidelity",
+      "citation": "Lemma C.1",
+      "title": "Weighted fidelity bound",
+      "statement_url": "https://arxiv.org/html/2609.35986v1#A3.Thmtheorem1",
+      "statement_section": "C.1",
+      "argument_sections": [
+        {
+          "text": "§C.1 · Weighted fidelity and compact limits",
+          "url": "https://arxiv.org/html/2609.35986v1#A3.SS1"
+        }
+      ],
+      "guide_urls": [
+        "guides/gaussian-optimum.html"
+      ],
+      "lean": [
+        {
+          "name": "Cloning.InfiniteFidelity.fidelity_sq_le_of_regularized_inverse_limit",
+          "file": "formalization/Cloning/InfiniteFidelityRegularizedLimit.lean",
+          "line": 16,
+          "url": "source/Cloning.InfiniteFidelityRegularizedLimit.html#L16"
+        },
+        {
+          "name": "Cloning.Hybrid.PositiveField.rootFidelity_sq_le_weighted_productPositive_of_inverse_limit",
+          "file": "formalization/Cloning/HybridWeightedFidelityLimit.lean",
+          "line": 66,
+          "url": "source/Cloning.HybridWeightedFidelityLimit.html#L66"
+        }
+      ]
+    },
+    {
+      "label": "lem:compact-cp-limit",
+      "citation": "Lemma C.2",
+      "title": "Compact-observable limits of completely positive maps",
+      "statement_url": "https://arxiv.org/html/2609.35986v1#A3.Thmtheorem2",
+      "statement_section": "C.1",
+      "argument_sections": [
+        {
+          "text": "§C.1 · Weighted fidelity and compact limits",
+          "url": "https://arxiv.org/html/2609.35986v1#A3.SS1"
+        }
+      ],
+      "guide_urls": [
+        "guides/gaussian-optimum.html"
+      ],
+      "lean": [
+        {
+          "name": "Cloning.InfiniteTraceClass.exists_subsequence_covariant_cp_limit_of_limsup_trace_bound",
+          "file": "formalization/Cloning/InfiniteAsymptoticCPCompactness.lean",
+          "line": 128,
+          "url": "source/Cloning.InfiniteAsymptoticCPCompactness.html#L128"
+        }
+      ]
+    },
+    {
+      "label": "lem:covariant-amplifier-representation",
+      "citation": "Lemma C.3",
+      "title": "Covariant-amplifier representation",
+      "statement_url": "https://arxiv.org/html/2609.35986v1#A3.Thmtheorem3",
+      "statement_section": "C.2",
+      "argument_sections": [
+        {
+          "text": "§C.2 · The least-noise oscillator moment",
+          "url": "https://arxiv.org/html/2609.35986v1#A3.SS2"
+        }
+      ],
+      "guide_urls": [
+        "guides/gaussian-optimum.html"
+      ],
+      "lean": [
+        {
+          "name": "Cloning.WeylSqueezer.covariantChannel_exists_dilation",
+          "file": "formalization/Cloning/WeylSqueezerRepresentation.lean",
+          "line": 15,
+          "url": "source/Cloning.WeylSqueezerRepresentation.html#L15"
+        },
+        {
+          "name": "Cloning.MultimodeCoherent.quantumChannel_diagonal_existsUnique_idler",
+          "file": "formalization/Cloning/WeylDiagonalRepresentation.lean",
+          "line": 31,
+          "url": "source/Cloning.WeylDiagonalRepresentation.html#L31"
+        }
+      ]
+    },
+    {
+      "label": "prop:least-noise-moment",
+      "citation": "Proposition C.4",
+      "title": "Least-noise moment",
+      "statement_url": "https://arxiv.org/html/2609.35986v1#A3.Thmtheorem4",
+      "statement_section": "C.2",
+      "argument_sections": [
+        {
+          "text": "§C.2 · The least-noise oscillator moment",
+          "url": "https://arxiv.org/html/2609.35986v1#A3.SS2"
+        }
+      ],
+      "guide_urls": [
+        "guides/gaussian-optimum.html"
+      ],
+      "lean": [
+        {
+          "name": "Cloning.CovariantAmplifier.covariant_cpTNI_product_moment_le",
+          "file": "formalization/Cloning/CovariantAmplifierLeastNoise.lean",
+          "line": 98,
+          "url": "source/Cloning.CovariantAmplifierLeastNoise.html#L98"
+        }
+      ]
+    },
+    {
+      "label": "prop:flat-prior-converse",
+      "citation": "Proposition C.5",
+      "title": "Flat-prior converse inequality",
+      "statement_url": "https://arxiv.org/html/2609.35986v1#A3.Thmtheorem5",
+      "statement_section": "C.3",
+      "argument_sections": [
+        {
+          "text": "§C.3 · One flat-prior converse for both Gaussian models",
+          "url": "https://arxiv.org/html/2609.35986v1#A3.SS3"
+        }
+      ],
+      "guide_urls": [
+        "guides/gaussian-optimum.html"
+      ],
+      "lean": [
+        {
+          "name": "Cloning.PCTJointGaussianWhitening.scoreGaussianOptimal_limsup_le",
+          "file": "formalization/Cloning/HybridGaussianScoreOptimum.lean",
+          "line": 82,
+          "url": "source/Cloning.HybridGaussianScoreOptimum.html#L82"
+        },
+        {
+          "name": "Cloning.Hybrid.PhaseBody.eventually_forall_gaussian_payoff_le",
+          "file": "formalization/Cloning/HybridGaussianFlatBody.lean",
+          "line": 115,
+          "url": "source/Cloning.HybridGaussianFlatBody.html#L115"
+        }
+      ]
+    },
+    {
+      "label": "lem:Werner-Fock",
+      "citation": "Lemma D.1",
+      "title": "Werner occupation law",
+      "statement_url": "https://arxiv.org/html/2609.35986v1#A4.Thmtheorem1",
+      "statement_section": "D.1",
+      "argument_sections": [
+        {
+          "text": "§D.1 · Common preliminaries",
+          "url": "https://arxiv.org/html/2609.35986v1#A4.SS1"
+        }
+      ],
+      "guide_urls": [
+        "guides/purify-clone-trace.html"
+      ],
+      "lean": [
+        {
+          "name": "Cloning.GeneralSymmetricOccupation.occupationRecovery_wernerOutput",
+          "file": "formalization/Cloning/WernerPhysicalPullback.lean",
+          "line": 142,
+          "url": "source/Cloning.WernerPhysicalPullback.html#L142"
+        },
+        {
+          "name": "Cloning.GeneralSymmetricOccupation.physical_werner_traceNorm_limit",
+          "file": "formalization/Cloning/WernerPhysicalPullback.lean",
+          "line": 242,
+          "url": "source/Cloning.WernerPhysicalPullback.html#L242"
+        },
+        {
+          "name": "Cloning.WernerAsymptotics.coefficient_eq_wernerWeight",
+          "file": "formalization/Cloning/WernerAsymptotics.lean",
+          "line": 26,
+          "url": "source/Cloning.WernerAsymptotics.html#L26"
+        }
+      ]
+    },
+    {
+      "label": "prop:grassmann-pct-comparison",
+      "citation": "Proposition D.2",
+      "title": "Finite-sample PCT factorization for projector states",
+      "statement_url": "https://arxiv.org/html/2609.35986v1#A4.Thmtheorem2",
+      "statement_section": "D.3",
+      "argument_sections": [
+        {
+          "text": "§D.3 · Projector states",
+          "url": "https://arxiv.org/html/2609.35986v1#A4.SS3"
+        }
+      ],
+      "guide_urls": [
+        "guides/purify-clone-trace.html"
+      ],
+      "lean": [
+        {
+          "name": "Cloning.PhysicalFlatPCT.fidelity_eq_supportFactor",
+          "file": "formalization/Cloning/PhysicalFlatPCTTheorem.lean",
+          "line": 17,
+          "url": "source/Cloning.PhysicalFlatPCTTheorem.html#L17"
+        }
+      ]
+    },
+    {
+      "label": "prop:pct-projector-small-error",
+      "citation": "Proposition D.3",
+      "title": "PCT's leading projector infidelity coefficient",
+      "statement_url": "https://arxiv.org/html/2609.35986v1#A4.Thmtheorem3",
+      "statement_section": "D.3",
+      "argument_sections": [
+        {
+          "text": "§D.3 · Projector states",
+          "url": "https://arxiv.org/html/2609.35986v1#A4.SS3"
+        }
+      ],
+      "guide_urls": [
+        "guides/small-errors.html"
+      ],
+      "lean": [
+        {
+          "name": "Cloning.PCTProjectorPurity.physical_error_envelopes",
+          "file": "formalization/Cloning/PCTProjectorPurityEnvelopeTheorem.lean",
+          "line": 48,
+          "url": "source/Cloning.PCTProjectorPurityEnvelopeTheorem.html#L48"
+        },
+        {
+          "name": "Cloning.PCTProjectorPurity.physical_small_gain_coefficient",
+          "file": "formalization/Cloning/PCTProjectorPurityEnvelopeTheorem.lean",
+          "line": 60,
+          "url": "source/Cloning.PCTProjectorPurityEnvelopeTheorem.html#L60"
+        }
+      ]
+    }
+  ]
+}

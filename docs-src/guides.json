@@ -1,6 +1,6 @@
 {
   "title": "Mixed-state cloning: an informal guide to the Lean proofs",
-  "intro": "These twelve guides explain the main proof routes in the unchanged reference manuscript and connect each step to an existing Lean declaration. Read them alongside formalization/PROOF_MAP.md for the complete map of 27 named statements. The explanations are informal navigation aids: the linked statements supply the exact hypotheses, while the repository’s verification records supply recorded build and axiom-audit evidence; separate checker run status is explicit. The final physical endpoints construct their channels and approximation witnesses; legacy conditional assembly interfaces remain available but are not used as substitutes for those endpoints.",
+  "intro": "These twelve guides explain the proof routes of the paper on arXiv and connect each step to an existing Lean declaration. Guide numbering differs from the paper: the chapters follow an editorial reading order, bringing supporting appendices forward and reuniting theorem statements with their achievability and converse arguments. Each chapter records the corresponding paper sections and explains its relation to the Lean implementation. The proof map gives the complete correspondence for 27 named statements. The explanations are informal navigation aids: linked Lean statements supply the exact hypotheses, and verification records supply recorded build, axiom-audit, and separate checker evidence. The final physical endpoints construct their channels and approximation witnesses; legacy conditional assembly interfaces remain available but are not substitutes for those endpoints.",
   "chapters": [
     {
       "id": "physical-problem",
@@ -24,6 +24,9 @@
               "name": "Cloning.TensorCloning.statePayoff_le_one",
               "file": "formalization/Cloning/TensorCloningPayoff.lean"
             }
+          ],
+          "paper_labels": [
+            "sec:main-results"
           ]
         },
         {
@@ -34,6 +37,9 @@
               "name": "Cloning.InfiniteTraceClass.QuantumChannel",
               "file": "formalization/Cloning/InfiniteCompletelyPositive.lean"
             }
+          ],
+          "paper_labels": [
+            "sec:main-results"
           ]
         },
         {
@@ -56,6 +62,10 @@
               "name": "Cloning.TensorCloning.unknownSpectrumValue",
               "file": "formalization/Cloning/TensorCloningPayoff.lean"
             }
+          ],
+          "paper_labels": [
+            "thm:known-optimum",
+            "thm:unknown-optimum"
           ]
         },
         {
@@ -86,6 +96,9 @@
               "name": "Cloning.Thermal.classicalBase",
               "file": "formalization/Cloning/Thermal.lean"
             }
+          ],
+          "paper_labels": [
+            "sec:main-results"
           ]
         }
       ],
@@ -111,7 +124,20 @@
         "The positive simple-spectrum family excludes repeated eigenvalues and rank loss; the flat-projector family is treated separately."
       ],
       "statement": "\\begin{gathered}F(\\rho,\\sigma)=\\operatorname{Tr}\\sqrt{\\sqrt\\rho\\,\\sigma\\sqrt\\rho},\\\\f_\\gamma(q)=\\frac{\\sqrt\\gamma+\\sqrt{q(\\gamma-1+q)}}{\\gamma+q},\\qquad 0\\le q<1,\\\\F_{\\mathrm{orb}}(\\gamma,p)=\\prod_{i<j}f_\\gamma(p_j/p_i),\\\\F_{\\mathrm{cl}}(\\gamma,D)=\\left(\\frac{2\\sqrt\\gamma}{1+\\gamma}\\right)^{(D-1)/2},\\\\F_{\\mathrm{univ}}(\\gamma,p)=F_{\\mathrm{cl}}(\\gamma,D)F_{\\mathrm{orb}}(\\gamma,p).\\end{gathered}",
-      "manuscript_labels": []
+      "manuscript_labels": [],
+      "paper": {
+        "sections": [
+          {
+            "label": "sec:main-results",
+            "role": "statement"
+          },
+          {
+            "label": "sec:remarks",
+            "role": "discussion"
+          }
+        ],
+        "explanation": "Collects the payoff conventions, limiting factors, and four main theorem statements from Section 1.1 before the proofs begin. Lean implements literal density states, CPTP competitors, and minimax quantifiers; the scalar definitions alone do not establish physical channel limits."
+      }
     },
     {
       "id": "young-laws",
@@ -135,6 +161,9 @@
               "name": "Cloning.TensorLie.exists_tensorYoungPMF_uniform_exp_threshold",
               "file": "formalization/Cloning/TensorSchurDecompositionSharpConcentration.lean"
             }
+          ],
+          "paper_labels": [
+            "lem:young-concentration"
           ]
         },
         {
@@ -145,6 +174,9 @@
               "name": "Cloning.YoungMultinomial.eventually_uniform_character_normalization",
               "file": "formalization/Cloning/YoungUniformCharacterWindows.lean"
             }
+          ],
+          "paper_labels": [
+            "lem:uniform-character-normalization"
           ]
         },
         {
@@ -155,6 +187,9 @@
               "name": "Cloning.YoungHyperplane.uniform_tensorYoungDensity_l1",
               "file": "formalization/Cloning/YoungUniformLocalPhysicalL1.lean"
             }
+          ],
+          "paper_labels": [
+            "lem:young-local-limit"
           ]
         }
       ],
@@ -183,7 +218,28 @@
         "lem:young-concentration",
         "lem:uniform-character-normalization",
         "lem:young-local-limit"
-      ]
+      ],
+      "paper": {
+        "sections": [
+          {
+            "label": "sec:achievability",
+            "role": "statement"
+          },
+          {
+            "label": "sec:uniform-estimates-achievability",
+            "role": "supporting"
+          },
+          {
+            "label": "section:A.2",
+            "role": "supporting"
+          },
+          {
+            "label": "app:young-rounding",
+            "role": "argument"
+          }
+        ],
+        "explanation": "Separates the Young concentration estimate at the start of Section 2, character normalization in Appendix A, and local limit in Appendix B into one probabilistic foundation. Lean proves moving-spectrum and compact-uniform versions with their respective hypotheses; the concentration estimate is more general than the simple-spectrum local limits."
+      }
     },
     {
       "id": "cartan-sectors",
@@ -203,6 +259,9 @@
               "name": "Cloning.TensorLie.eventually_weightGram_rate",
               "file": "formalization/Cloning/PBWSymmetricFrameRateGram.lean"
             }
+          ],
+          "paper_labels": [
+            "lem:PBW-fixed-height"
           ]
         },
         {
@@ -213,6 +272,10 @@
               "name": "Cloning.TensorLie.eventually_weightSymmetricBasis_rate",
               "file": "formalization/Cloning/PBWSymmetricFrameRateBlocks.lean"
             }
+          ],
+          "paper_labels": [
+            "lem:PBW-fixed-height",
+            "section:A.1"
           ]
         },
         {
@@ -223,6 +286,9 @@
               "name": "Cloning.TensorLie.eventually_cartan_symmetricFrame_product_rate",
               "file": "formalization/Cloning/PBWSymmetricFrameRateCartan.lean"
             }
+          ],
+          "paper_labels": [
+            "section:A.2"
           ]
         },
         {
@@ -237,6 +303,10 @@
               "name": "Cloning.TensorCloning.eventually_uniform_shrinkingWindow_mixture_fidelity_fintype",
               "file": "formalization/Cloning/TensorCloningShrinkingMixture.lean"
             }
+          ],
+          "paper_labels": [
+            "prop:sector-fidelity",
+            "section:A.2"
           ]
         },
         {
@@ -247,6 +317,9 @@
               "name": "Cloning.TensorCloning.eventually_uniform_shrinkingWindow_compatible",
               "file": "formalization/Cloning/TensorCloningShrinkingWindows.lean"
             }
+          ],
+          "paper_labels": [
+            "prop:sector-fidelity"
           ]
         }
       ],
@@ -274,7 +347,24 @@
       "manuscript_labels": [
         "lem:PBW-fixed-height",
         "prop:sector-fidelity"
-      ]
+      ],
+      "paper": {
+        "sections": [
+          {
+            "label": "sec:uniform-estimates-achievability",
+            "role": "statement"
+          },
+          {
+            "label": "app:sector-fidelity",
+            "role": "argument"
+          },
+          {
+            "label": "sec:cartan-sector-lifting",
+            "role": "supporting"
+          }
+        ],
+        "explanation": "Unpacks the Appendix A proof of the sector-fidelity proposition in Section 2.2 into PBW Gram and frame estimates, Cartan coefficients, and thermal cutoff removal. Lean provides the named quantitative auxiliaries alongside the qualitative Cartan transition limits used by the concrete physical protocols; neither asserts a rate over the whole unbounded Fock basis."
+      }
     },
     {
       "id": "lifted-kernels",
@@ -298,6 +388,10 @@
               "name": "Cloning.TensorCloning.channel_apply",
               "file": "formalization/Cloning/TensorCloningChannel.lean"
             }
+          ],
+          "paper_labels": [
+            "prop:lifted-kernel-bound",
+            "sec:cartan-sector-lifting"
           ]
         },
         {
@@ -308,6 +402,9 @@
               "name": "Cloning.TensorCloning.spectrumPayoff_eq_copyBlocks",
               "file": "formalization/Cloning/TensorCloningBlockFidelity.lean"
             }
+          ],
+          "paper_labels": [
+            "prop:lifted-kernel-bound"
           ]
         },
         {
@@ -322,6 +419,9 @@
               "name": "Cloning.TensorCloning.eventually_uniform_lifted_fidelity_factorization",
               "file": "formalization/Cloning/TensorCloningLiftedFactorization.lean"
             }
+          ],
+          "paper_labels": [
+            "lem:lifted-fidelity-factorization"
           ]
         },
         {
@@ -340,6 +440,10 @@
               "name": "Cloning.YoungHyperplane.uniform_tensorYoungFallbackOutput_affinity",
               "file": "formalization/Cloning/YoungPhysicalRounding.lean"
             }
+          ],
+          "paper_labels": [
+            "lem:randomized-dilation",
+            "prop:young-rounding"
           ]
         }
       ],
@@ -369,7 +473,28 @@
         "prop:young-rounding",
         "lem:lifted-fidelity-factorization",
         "lem:randomized-dilation"
-      ]
+      ],
+      "paper": {
+        "sections": [
+          {
+            "label": "sec:cartan-sector-lifting",
+            "role": "argument"
+          },
+          {
+            "label": "sec:uniform-estimates-achievability",
+            "role": "statement"
+          },
+          {
+            "label": "sec:achievability-completion",
+            "role": "argument"
+          },
+          {
+            "label": "app:young-rounding",
+            "role": "argument"
+          }
+        ],
+        "explanation": "Combines the channel and label rules of Section 2.1, the fidelity factorization of Section 2.3, and the randomized-dilation proof in Appendix B. Lean formalizes both the generic lifted-kernel estimates and concrete protocol assembly variants, retaining the discarded-mass hypothesis and distinguishing raw rounding from fallback."
+      }
     },
     {
       "id": "gaussian-optimum",
@@ -393,6 +518,9 @@
               "name": "Cloning.Hybrid.PositiveField.rootFidelity_sq_le_weighted_productPositive_of_inverse_limit",
               "file": "formalization/Cloning/HybridWeightedFidelityLimit.lean"
             }
+          ],
+          "paper_labels": [
+            "lem:weighted-fidelity"
           ]
         },
         {
@@ -403,6 +531,9 @@
               "name": "Cloning.InfiniteTraceClass.exists_subsequence_covariant_cp_limit_of_limsup_trace_bound",
               "file": "formalization/Cloning/InfiniteAsymptoticCPCompactness.lean"
             }
+          ],
+          "paper_labels": [
+            "lem:compact-cp-limit"
           ]
         },
         {
@@ -417,6 +548,9 @@
               "name": "Cloning.MultimodeCoherent.quantumChannel_diagonal_existsUnique_idler",
               "file": "formalization/Cloning/WeylDiagonalRepresentation.lean"
             }
+          ],
+          "paper_labels": [
+            "lem:covariant-amplifier-representation"
           ]
         },
         {
@@ -431,6 +565,9 @@
               "name": "Cloning.Hybrid.PhaseBody.eventually_forall_gaussian_payoff_le",
               "file": "formalization/Cloning/HybridGaussianFlatBody.lean"
             }
+          ],
+          "paper_labels": [
+            "prop:least-noise-moment"
           ]
         },
         {
@@ -449,6 +586,10 @@
               "name": "Cloning.PCTJointGaussianWhitening.normalized_score_integral_eq_intrinsic",
               "file": "formalization/Cloning/ScoreReferenceMeasure.lean"
             }
+          ],
+          "paper_labels": [
+            "thm:gaussian-amplification",
+            "prop:flat-prior-converse"
           ]
         }
       ],
@@ -475,7 +616,20 @@
         "lem:covariant-amplifier-representation",
         "prop:least-noise-moment",
         "prop:flat-prior-converse"
-      ]
+      ],
+      "paper": {
+        "sections": [
+          {
+            "label": "sec:gaussian-amplification",
+            "role": "statement"
+          },
+          {
+            "label": "app:gaussian-converse",
+            "role": "argument"
+          }
+        ],
+        "explanation": "Moves the Appendix C proof behind the Gaussian amplification theorem of Section 3.1 ahead of the physical LAN application. Lean proves the general Gaussian converse and its score-window instance using arbitrary competitors and possibly trace-losing CP limits; Gaussian optimality is a conclusion, not a restriction on competing channels."
+      }
     },
     {
       "id": "physical-lan",
@@ -499,6 +653,9 @@
               "name": "Cloning.TensorLAN.physicalCompactWindowLAN",
               "file": "formalization/Cloning/TensorLANEmbeddingCompactLAN.lean"
             }
+          ],
+          "paper_labels": [
+            "thm:LAN-full"
           ]
         },
         {
@@ -509,6 +666,9 @@
               "name": "Cloning.PhysicalCloningConverse.scaled_window_approximations",
               "file": "formalization/Cloning/PhysicalCloningConverseWindows.lean"
             }
+          ],
+          "paper_labels": [
+            "thm:LAN-full"
           ]
         },
         {
@@ -519,6 +679,9 @@
               "name": "Cloning.MixedLANTransfer.fidelity_transfer",
               "file": "formalization/Cloning/MixedLANTransfer.lean"
             }
+          ],
+          "paper_labels": [
+            "lem:LAN-fidelity-transfer"
           ]
         },
         {
@@ -537,6 +700,9 @@
               "name": "Cloning.PhysicalCloningConverse.known_fixedWindow_errors",
               "file": "formalization/Cloning/PhysicalCloningConverseKnown.lean"
             }
+          ],
+          "paper_labels": [
+            "cor:LAN-orb"
           ]
         }
       ],
@@ -565,7 +731,24 @@
         "thm:LAN-full",
         "cor:LAN-orb",
         "lem:LAN-fidelity-transfer"
-      ]
+      ],
+      "paper": {
+        "sections": [
+          {
+            "label": "sec:local-asymptotic-normality",
+            "role": "argument"
+          },
+          {
+            "label": "sec:gaussian-amplification",
+            "role": "supporting"
+          },
+          {
+            "label": "sec:minimax-completion",
+            "role": "supporting"
+          }
+        ],
+        "explanation": "Expands the LAN theorem, orbital reduction, and fidelity-transfer lemma in Section 3.2, with the coordinates of Section 3.1 and their use in Section 3.3. The paper invokes the cited finite-dimensional LAN construction; Lean constructs genuine forward and reverse channel witnesses internally and then proves target scaling and transfer on fixed compact windows."
+      }
     },
     {
       "id": "known-spectrum",
@@ -589,6 +772,9 @@
               "name": "Cloning.TensorCloning.knownCopyWeight_sum",
               "file": "formalization/Cloning/TensorCloningChannel.lean"
             }
+          ],
+          "paper_labels": [
+            "sec:cartan-sector-lifting"
           ]
         },
         {
@@ -599,6 +785,10 @@
               "name": "Cloning.TensorCloning.eventually_uniform_prescribedKnownSpectrumChannel_payoff",
               "file": "formalization/Cloning/TensorCloningPrescribedLimits.lean"
             }
+          ],
+          "paper_labels": [
+            "thm:known-optimum",
+            "sec:achievability-completion"
           ]
         },
         {
@@ -609,6 +799,9 @@
               "name": "Cloning.PhysicalCloningConverse.limsup_knownSpectrumValue_le",
               "file": "formalization/Cloning/PhysicalCloningConverseUnconditional.lean"
             }
+          ],
+          "paper_labels": [
+            "sec:minimax-completion"
           ]
         },
         {
@@ -619,6 +812,10 @@
               "name": "Cloning.TensorCloning.knownSpectrumValue_tendsto",
               "file": "formalization/Cloning/PhysicalCloningKnownTheorem.lean"
             }
+          ],
+          "paper_labels": [
+            "thm:known-optimum",
+            "sec:minimax-completion"
           ]
         }
       ],
@@ -641,7 +838,28 @@
       "statement": "\\lim_{n\\to\\infty}\\sup_{\\mathcal M_n}\\inf_{U\\in\\mathrm U(D)}F\\!\\left(\\mathcal M_n(\\rho_{p,U}^{\\otimes n}),\\rho_{p,U}^{\\otimes m_n}\\right)=F_{\\mathrm{orb}}(\\gamma,p).",
       "manuscript_labels": [
         "thm:known-optimum"
-      ]
+      ],
+      "paper": {
+        "sections": [
+          {
+            "label": "sec:main-results",
+            "role": "statement"
+          },
+          {
+            "label": "sec:cartan-sector-lifting",
+            "role": "supporting"
+          },
+          {
+            "label": "sec:achievability-completion",
+            "role": "argument"
+          },
+          {
+            "label": "sec:minimax-completion",
+            "role": "argument"
+          }
+        ],
+        "explanation": "Reunites the known-spectrum theorem in Section 1.1 with its exact target-label rule in Section 2.1, attainment in Section 2.3, and converse in Section 3.3. Lean combines concrete sector and probability assembly with the constructed LAN witness; the final optimum is unconditional, although reusable intermediate interfaces remain available."
+      }
     },
     {
       "id": "unknown-spectrum",
@@ -662,6 +880,9 @@
               "name": "Cloning.TensorCloning.prescribedUniversalChannel_covariant",
               "file": "formalization/Cloning/TensorCloningPrescribed.lean"
             }
+          ],
+          "paper_labels": [
+            "sec:cartan-sector-lifting"
           ]
         },
         {
@@ -672,6 +893,10 @@
               "name": "Cloning.TensorCloning.eventually_uniform_prescribedUniversalChannel_payoff",
               "file": "formalization/Cloning/TensorCloningPrescribedLimits.lean"
             }
+          ],
+          "paper_labels": [
+            "thm:unknown-optimum",
+            "sec:achievability-completion"
           ]
         },
         {
@@ -682,6 +907,9 @@
               "name": "Cloning.PhysicalCloningConverse.limsup_unknownSpectrumValue_le",
               "file": "formalization/Cloning/PhysicalCloningConverseUnconditional.lean"
             }
+          ],
+          "paper_labels": [
+            "sec:minimax-completion"
           ]
         },
         {
@@ -696,6 +924,10 @@
               "name": "Cloning.TensorCloning.unknownSpectrumValue_tendsto_affine",
               "file": "formalization/Cloning/SpectralAffineTheorem.lean"
             }
+          ],
+          "paper_labels": [
+            "thm:unknown-optimum",
+            "sec:minimax-completion"
           ]
         },
         {
@@ -714,6 +946,9 @@
               "name": "Cloning.SpectralGap.gapSet_empty_above_threshold",
               "file": "formalization/Cloning/SpectralGapThreshold.lean"
             }
+          ],
+          "paper_labels": [
+            "sec:main-results"
           ]
         }
       ],
@@ -741,7 +976,32 @@
       "statement": "\\lim_{n\\to\\infty}\\sup_{\\mathcal M_n}\\inf_{p\\in K,\\,U\\in\\mathrm U(D)}F\\!\\left(\\mathcal M_n(\\rho_{p,U}^{\\otimes n}),\\rho_{p,U}^{\\otimes m_n}\\right)=\\inf_{p\\in K}F_{\\mathrm{univ}}(\\gamma,p).",
       "manuscript_labels": [
         "thm:unknown-optimum"
-      ]
+      ],
+      "paper": {
+        "sections": [
+          {
+            "label": "sec:main-results",
+            "role": "statement"
+          },
+          {
+            "label": "sec:cartan-sector-lifting",
+            "role": "supporting"
+          },
+          {
+            "label": "sec:achievability-completion",
+            "role": "argument"
+          },
+          {
+            "label": "sec:minimax-completion",
+            "role": "argument"
+          },
+          {
+            "label": "app:young-rounding",
+            "role": "supporting"
+          }
+        ],
+        "explanation": "Reunites both parts of the unknown-spectrum theorem with randomized rounding, compact-uniform attainment, and the full spectral-window converse. Lean uses the concrete universal protocol and proves the dense-interior extension in the full trace-one affine hyperplane; universal-cloner convergence on a singleton does not establish unknown-spectrum minimax optimality there."
+      }
     },
     {
       "id": "grassmann",
@@ -761,6 +1021,9 @@
               "name": "Cloning.TensorLie.sectorGibbsDensity_padSpectrum",
               "file": "formalization/Cloning/TensorPositiveSpectrumCompression.lean"
             }
+          ],
+          "paper_labels": [
+            "lem:exact-compression"
           ]
         },
         {
@@ -775,6 +1038,9 @@
               "name": "Cloning.TensorLie.nonnegativeCartanGibbsFidelity_padSpectrum",
               "file": "formalization/Cloning/TensorPositiveSpectrumCompressionFidelity.lean"
             }
+          ],
+          "paper_labels": [
+            "lem:exact-compression"
           ]
         },
         {
@@ -785,6 +1051,10 @@
               "name": "Cloning.TensorCloning.prescribedRankFlatChannel_uniform",
               "file": "formalization/Cloning/TensorCloningPrescribedLimits.lean"
             }
+          ],
+          "paper_labels": [
+            "thm:grassmann",
+            "sec:grassmann-achievability"
           ]
         },
         {
@@ -799,6 +1069,10 @@
               "name": "Cloning.PhysicalFlatGrassmann.minimaxValue_eq_orbit",
               "file": "formalization/Cloning/PhysicalFlatGrassmannTheorem.lean"
             }
+          ],
+          "paper_labels": [
+            "prop:grassmann-finite-converse",
+            "section:4.3"
           ]
         },
         {
@@ -813,6 +1087,10 @@
               "name": "Cloning.PhysicalFlatConverse.minimaxValue_upper_excess_isBigO",
               "file": "formalization/Cloning/PhysicalFlatRateBounded.lean"
             }
+          ],
+          "paper_labels": [
+            "thm:grassmann",
+            "section:4.3"
           ]
         }
       ],
@@ -842,7 +1120,28 @@
         "lem:exact-compression",
         "prop:grassmann-finite-converse",
         "thm:grassmann"
-      ]
+      ],
+      "paper": {
+        "sections": [
+          {
+            "label": "sec:main-results",
+            "role": "statement"
+          },
+          {
+            "label": "sec:compression",
+            "role": "argument"
+          },
+          {
+            "label": "sec:grassmann-achievability",
+            "role": "argument"
+          },
+          {
+            "label": "section:4.3",
+            "role": "argument"
+          }
+        ],
+        "explanation": "Follows the independent projector-state branch of Section 4: exact rank compression, achievability, and the finite converse in Section 4.3 complete the theorem stated in Section 1.1. Lean identifies the literal projector minimax with its orbit formulation and proves the attaining-channel limit and finite upper bound; this does not extend to nonflat rank-deficient spectra."
+      }
     },
     {
       "id": "purify-clone-trace",
@@ -871,6 +1170,10 @@
               "name": "Cloning.WernerAsymptotics.coefficient_eq_wernerWeight",
               "file": "formalization/Cloning/WernerAsymptotics.lean"
             }
+          ],
+          "paper_labels": [
+            "lem:Werner-Fock",
+            "app:pct-preliminaries"
           ]
         },
         {
@@ -885,6 +1188,10 @@
               "name": "Cloning.pctValue_closedForm",
               "file": "formalization/Cloning/PCTClosedForm.lean"
             }
+          ],
+          "paper_labels": [
+            "thm:pct-comparison",
+            "app:pct-full-rank"
           ]
         },
         {
@@ -903,6 +1210,10 @@
               "name": "Cloning.PCTPrescribed.rankFidelity_limsup_lt_optimal",
               "file": "formalization/Cloning/PCTPrescribedRankTheorem.lean"
             }
+          ],
+          "paper_labels": [
+            "thm:pct-comparison",
+            "prop:grassmann-pct-comparison"
           ]
         },
         {
@@ -921,6 +1232,10 @@
               "name": "Cloning.PCTPrescribed.rankChannel_uniform_asymptotic_lower",
               "file": "formalization/Cloning/PCTPrescribedRankGuarantee.lean"
             }
+          ],
+          "paper_labels": [
+            "app:pct-preliminaries",
+            "sec:small-error"
           ]
         }
       ],
@@ -949,7 +1264,36 @@
         "lem:Werner-Fock",
         "thm:pct-comparison",
         "prop:grassmann-pct-comparison"
-      ]
+      ],
+      "paper": {
+        "sections": [
+          {
+            "label": "sec:main-results",
+            "role": "statement"
+          },
+          {
+            "label": "sec:pct-comparison",
+            "role": "argument"
+          },
+          {
+            "label": "app:pct-preliminaries",
+            "role": "supporting"
+          },
+          {
+            "label": "app:pct-full-rank",
+            "role": "argument"
+          },
+          {
+            "label": "app:pct-projector",
+            "role": "argument"
+          },
+          {
+            "label": "sec:small-error",
+            "role": "discussion"
+          }
+        ],
+        "explanation": "Unpacks the PCT comparison theorem and Section 5 through the Werner and channel preliminaries of Appendix D.1 and the full-rank and projector arguments of D.2–D.3. Lean proves the full-environment limit, the projector limsup comparison, and rank-bound guarantees; it does not replace the projector upper bound by an asserted fixed-gain limit."
+      }
     },
     {
       "id": "small-errors",
@@ -981,6 +1325,9 @@
               "name": "Cloning.ValueExpansion.known_target_brackets",
               "file": "formalization/Cloning/CloningValueExpansionTarget.lean"
             }
+          ],
+          "paper_labels": [
+            "sec:small-error"
           ]
         },
         {
@@ -999,6 +1346,9 @@
               "name": "Cloning.ValueExpansion.universal_physical_target_brackets",
               "file": "formalization/Cloning/PhysicalCloningSmallError.lean"
             }
+          ],
+          "paper_labels": [
+            "sec:small-error"
           ]
         },
         {
@@ -1017,6 +1367,10 @@
               "name": "Cloning.PCTProjectorPurity.physical_target_brackets",
               "file": "formalization/Cloning/PCTProjectorPurityTargets.lean"
             }
+          ],
+          "paper_labels": [
+            "prop:pct-projector-small-error",
+            "app:pct-projector"
           ]
         },
         {
@@ -1039,6 +1393,9 @@
               "name": "Cloning.Thermal.modeFactor_near_pure_infidelity",
               "file": "formalization/Cloning/ThermalNearPure.lean"
             }
+          ],
+          "paper_labels": [
+            "sec:small-error"
           ]
         },
         {
@@ -1049,6 +1406,9 @@
               "name": "Cloning.QubitDegeneracy.concrete_noncommuting_limits",
               "file": "formalization/Cloning/QubitDegeneracy.lean"
             }
+          ],
+          "paper_labels": [
+            "sec:conjectures"
           ]
         }
       ],
@@ -1076,7 +1436,24 @@
       ],
       "manuscript_labels": [
         "prop:pct-projector-small-error"
-      ]
+      ],
+      "paper": {
+        "sections": [
+          {
+            "label": "sec:small-error",
+            "role": "discussion"
+          },
+          {
+            "label": "app:pct-projector",
+            "role": "argument"
+          },
+          {
+            "label": "sec:conjectures",
+            "role": "discussion"
+          }
+        ],
+        "explanation": "Separates the expansions and projector-PCT envelopes in Section 6.3 and Appendix D.3 from the qubit limit-order example discussed in Section 6.4. Lean proves physical target brackets in the stated iterated limits and a concrete qubit obstruction; it does not infer a uniform joint finite-sample rate or prove the general degenerate-spectrum conjectures."
+      }
     },
     {
       "id": "spectral-comparison",
@@ -1108,6 +1485,9 @@
               "name": "Cloning.ValueComparison.spectrumMajorizedBy_of_ratios",
               "file": "formalization/Cloning/SpectralRatioMajorization.lean"
             }
+          ],
+          "paper_labels": [
+            "sec:spectral-mixedness"
           ]
         },
         {
@@ -1122,6 +1502,9 @@
               "name": "Cloning.ValueComparison.majorization_does_not_order_universal",
               "file": "formalization/Cloning/SpectralRatioMajorizationCounterexample.lean"
             }
+          ],
+          "paper_labels": [
+            "sec:spectral-mixedness"
           ]
         },
         {
@@ -1136,6 +1519,9 @@
               "name": "Cloning.ValueComparison.universalValue_iInf",
               "file": "formalization/Cloning/CloningValueComparisonInfimum.lean"
             }
+          ],
+          "paper_labels": [
+            "section:6.2"
           ]
         },
         {
@@ -1146,6 +1532,9 @@
               "name": "Cloning.PhysicalAllStateMinimax.all_density_minimax_bounds",
               "file": "formalization/Cloning/PhysicalAllStateMinimaxBounds.lean"
             }
+          ],
+          "paper_labels": [
+            "section:6.2"
           ]
         },
         {
@@ -1160,6 +1549,9 @@
               "name": "Cloning.ValueComparison.allStateLowerBound_largeGain_ratio",
               "file": "formalization/Cloning/CloningValueComparisonLargeGain.lean"
             }
+          ],
+          "paper_labels": [
+            "section:6.2"
           ]
         }
       ],
@@ -1185,7 +1577,24 @@
         "The conjectured general degenerate-orbit and nonflat fixed-rank local formulas are not promoted to proved theorems."
       ],
       "statement": "\\gamma^{-(D^2-1)/2}\\le\\liminf_n V_n^{\\mathrm{all}}\\le\\limsup_n V_n^{\\mathrm{all}}\\le F_{\\mathrm{cl}}(\\gamma,D)\\,\\gamma^{-D(D-1)/4}.",
-      "manuscript_labels": []
+      "manuscript_labels": [],
+      "paper": {
+        "sections": [
+          {
+            "label": "sec:spectral-mixedness",
+            "role": "discussion"
+          },
+          {
+            "label": "section:6.2",
+            "role": "discussion"
+          },
+          {
+            "label": "sec:conjectures",
+            "role": "discussion"
+          }
+        ],
+        "explanation": "Turns the spectral-order observations in Section 6.1 and the all-state bounds in Section 6.2 into separate monotonicity, exact counterexample, geometric-infimum, and minimax-bound results in Lean. The exact all-density optimum, PCT optimality for that problem, and the general conjectures of Section 6.4 remain open."
+      }
     }
   ],
   "scope": {
