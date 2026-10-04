@@ -10,7 +10,7 @@
 *.ilean
 *.c.o
 
-# Editor and TeX intermediates (existing tracked manuscript files are preserved)
+# Editor and TeX intermediates
 .DS_Store
 *.aux
 *.fdb_latexmk
@@ -18,3 +18,7 @@
 *.out
 *.synctex.gz
 *.toc
+
+# Manuscript build logs and superseded draft
+/Cloning/*.log
+/Cloning/paper_v2/

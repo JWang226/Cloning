@@ -83,14 +83,12 @@
 \renewcommand{\thefootnote}{\fnsymbol{footnote}}
 \footnotetext[1]{\textit{Leinweber Institute for Theoretical Physics,
   Stanford University, Stanford, CA 94305, USA}}
-\footnotetext[2]{\textit{Zyphra, San Francisco, CA 94105, USA.}
-  \enspace Email:
-  \href{mailto:wang.jinzhao226@gmail.com}{\texttt{wang.jinzhao226@gmail.com}}}
+\footnotetext[2]{\textit{Zyphra, San Francisco, CA 94105, USA.}}
 \endgroup
 
 \begin{abstract}
 We determine asymptotic global fidelities of cloning generic
-mixed states with simple full-rank spectra. In fixed dimension $d$, let $n$ inputs and
+mixed states with simple (non-degenerate) full-rank spectra. In fixed dimension $d$, let $n$ inputs and
 $m_n$ outputs satisfy $m_n/n\to\gamma>1$.  For a known simple
 full-rank spectrum $p_1>\cdots>p_d>0$, we prove that the optimal root
 fidelity between the entire output and the product target state is
@@ -113,17 +111,16 @@ processing of Schur--Weyl labels with a covariant Cartan-sector channel.
 Local asymptotic normality and a Gaussian fidelity bound against arbitrary
 channels yield the converses.  For flat projector states $\rho=P/r$,
 with $P$ a rank-$r$ orthogonal projector, we separately prove the
-optimum $\gamma^{-r(d-r)/2}$.  Furthermore, computing the exact asymptotic fidelity
-of purify--clone--trace (PCT) at simple full-rank spectra, and bounding it
-from above for projector states, we show that our cloners strictly
+optimum $\gamma^{-r(d-r)/2}$.  Furthermore, we estimate the exact asymptotic fidelity
+of purify--clone--trace (PCT), and show that our cloners strictly
 outperform PCT at every fixed gain for simple full-rank spectra and
-rank-$r$ projector states with $1<r<d$.
+rank-$r$ projector states with $1<r<d$. We also provide a \href{https://github.com/JWang226/Cloning}{Lean certificate} of our proofs.
 \end{abstract}
 
 \vspace{3em}
 \begin{samepage}
 \paragraph{Generative AI usage.}
-The original idea for the cloner construction is due to the authors. We
+The idea for the cloner construction is due to the authors. We
 initially conjectured its asymptotic optimality but did not have a complete
 proof.  We used OpenAI's ChatGPT (Sol~5.6 and 6) and Anthropic's Claude
 (Fable~5 and 5.1) to assist with the analysis: the evaluation of the
@@ -153,13 +150,13 @@ without determining the optimal global fidelity in our setting
 \cite{BuscemiDArianoMacchiavelloPerinotti2005Optimal,BuscemiDArianoMacchiavelloPerinotti2006,DangFan2007,FanLiuShi2007,Kazakov2007,LiTheilHarrowChuang2026,FanizzaGrinkoScharnhorstSpilecki2026,JeonSohnOh2026}.
 We resolve this fixed-gain global-fidelity problem in the generic
 mixed-state regime of simple full-rank spectra: the eigenvalues are
-strictly positive and pairwise distinct.  Such states form an open dense
+strictly positive and distinct.  Such states form an open dense
 subset of the state space.\footnote{They also have full measure under
 Hilbert--Schmidt volume: the excluded states are zeros of the determinant
 or the characteristic-polynomial discriminant.}  We determine the
 known-spectrum orbit optimum and, when the spectrum is unknown, the
 compact-set minimax optimum for spectral sets with dense full-dimensional
-interior.
+interior. We also provide a \href{https://github.com/JWang226/Cloning}{Lean certificate} of our proofs, that is Comparator checked.
 
 \subsection{Results}\label{sec:main-results}
 
@@ -327,7 +324,7 @@ There exists a sequence of spectrum-independent, \(\U(d)\)-covariant channels
 \(\cC_n^{\mathrm{univ}}\), defined by \cref{eq:universal-cloner-definition},
 with the following properties.
 \begin{enumerate}
-\item[(a)] For every compact \(K\Subset\Delta_d^\circ\),
+\item[(a)] (Achievability) For every compact \(K\Subset\Delta_d^\circ\),
 \begin{equation}\label{eq:unknown-uniform-achievability}
   \lim_{n\to\infty}
   \sup_{\substack{p\in K\\g\in\U(d)}}
@@ -339,7 +336,7 @@ with the following properties.
   \right|=0.
 \end{equation}
 
-\item[(b)] Let \(K\Subset\Delta_d^\circ\) be nonempty and
+\item[(b)](Converse) Let \(K\Subset\Delta_d^\circ\) be nonempty and
   satisfy
   \(K=\overline{\operatorname{int}_{\mathsf A_d}K}^{\,\mathsf A_d}\).
 Then
@@ -355,21 +352,21 @@ qudits.
 \end{enumerate}
 \end{theorem}
 
-Part~\textup{(a)} evaluates one prescribed cloner, even on singleton or
+We give a few remarks on our claims. Part~\textup{(a)} evaluates one prescribed cloner, even on singleton or
 lower-dimensional sets.  In part~\textup{(b)}, the competing channel may
 depend on \(K\), but not on the actual \(p\) or \(g\).  The interior is
 taken in the full \((d-1)\)-dimensional hyperplane \(\mathsf A_d\): its
 spectral directions give the converse factor \(\Fcl(\gamma,d)\), and
-density extends the bound to the infimum over \(K\). See
-\cref{sec:minimax-completion}.
-The converse in part~\textup{(b)} is minimax: no competing channel sequence
+density extends the bound to the infimum over \(K\). 
+
+The converse in part~\textup{(b)} is minimax (cf.
+\cref{sec:minimax-completion}.): no competing channel sequence
 can asymptotically exceed \(\inf_{p\in K}\Funiv(\gamma,p)\) in worst-case
 fidelity over \(K\times\U(d)\), even though it may outperform
 \(\cC_n^{\mathrm{univ}}\) at particular \((p,g)\).
 For the singleton \(K=\{p\}\), which fails the closure condition in
 part~\textup{(b)}, the known-spectrum channel \(\cC_n^p\) is admissible
-and attains \(\Forb(\gamma,p)>\Funiv(\gamma,p)\). Part~\textup{(a)}
-still evaluates the spectrum-independent cloner.
+and attains \(\Forb(\gamma,p)>\Funiv(\gamma,p)\). 
 
 A natural example bounds the smallest eigenvalue and every adjacent gap
 away from zero.  For \(0<\kappa<2/[d(d+1)]\), take
@@ -390,7 +387,7 @@ choose \(\kappa'\in(\kappa,2/[d(d+1)])\) and set
 \(\kappa=2/[d(d+1)]\), the constraints force a singleton, so the
 compact-set theorem no longer applies.}
 
-\Cref{fig:schur-cartan-cloner} summarizes the common construction.
+\Cref{fig:schur-cartan-cloner} summarizes our cloner construction.
 Schur--Weyl duality separates a Young label, carrying spectral information,
 from a conditional irreducible state, carrying eigenbasis information
 \cite{KeylWerner2001Spectrum}.  Each cloner processes the label classically
@@ -612,78 +609,63 @@ noncommuting limits at degeneracies, are discussed in \cref{sec:conjectures}.
 \paragraph{Pure-state cloning.}
 Universal qubit cloners
 \cite{BuzekHillery1996,GisinMassar1997,
-BrussDiVincenzoEkertFuchsMacchiavelloSmolin1998} were followed by Werner's
-solution of global universal cloning in arbitrary dimension
-\cite{Werner1998} and Keyl--Werner's optimality result for individual-clone
-tests \cite{KeylWerner1999}.  State-dependent global cloning was developed
-in \cite{BrussDiVincenzoEkertFuchsMacchiavelloSmolin1998,CheflesBarnett1999}.
-The many-output limit for individual clones is tied to estimation
+BrussDiVincenzoEkertFuchsMacchiavelloSmolin1998} were followed by optimal
+arbitrary-dimensional cloning under global \cite{Werner1998} and
+individual-clone criteria \cite{KeylWerner1999}.
+State-dependent global cloning was also studied
+\cite{BrussDiVincenzoEkertFuchsMacchiavelloSmolin1998,CheflesBarnett1999}.
+In the many-output limit, individual-clone performance is tied to estimation
 \cite{MassarPopescu1995,BrussEkertMacchiavello1998,BaeAcin2006,
-ChiribellaDAriano2006}.  For joint fidelity, optimal measure-and-prepare
-outputs need not be independent copies of an estimate
+ChiribellaDAriano2006}, but optimal measure-and-prepare outputs under joint
+fidelity need not be independent copies of an estimate
 \cite{ChiribellaYang2014Optimal}.
-This distinction also matters for coherent-state and phase-covariant cloning
-\cite{CerfKrugerNavezWernerWolf2005,KimChitambar2022}: Cerf et al. prove
-Gaussian optimality for joint fidelity, although non-Gaussian operations
-can improve single-clone fidelity.  Reviews include
+Coherent-state and phase-covariant cloning likewise depend on the criterion
+\cite{CerfKrugerNavezWernerWolf2005,KimChitambar2022}.  See also the reviews
 \cite{ScaraniIblisdirGisinAcin2005,Chiribella2011EstimationCloning,
 FanWangJingYueShiZhangMu2014}.
 
 \paragraph{Mixed-state cloning, broadcasting, and PCT.}
-Exact broadcasting, and hence cloning, of a noncommuting family is
-impossible \cite{BarnumCavesFuchsJozsaSchumacher1996,KalevHen2008}.
-Approximate results include global-fidelity, relative-error, and
-state-dependent bounds for finite ensembles
+Exact broadcasting of noncommuting states is impossible
+\cite{BarnumCavesFuchsJozsaSchumacher1996,KalevHen2008}.
+Approximate results cover finite ensembles
 \cite{Rastegin2003Upper,Rastegin2002Relative,Rastegin2003StateDependent},
-cloners for symmetric-subspace inputs and identical mixed qubits under
-one-site shrinking-factor criteria \cite{Fan2003,FanLiuShi2007}, a
-restricted mixed-qubit construction under averaged Hilbert--Schmidt loss
-\cite{Kazakov2007}, and entropic limitations on simultaneous approximate
-cloning and broadcasting \cite{LemmWilde2017}.
-Cirac--Ekert--Macchiavello solved mixed-qubit purification and a
-cloning/estimation problem under local fidelity
-\cite{CiracEkertMacchiavello1999}.  Keyl--Werner studied asymptotic
-purification rates under both one-site and joint-product tests
-\cite{KeylWerner2001Purification}.  Multi-input broadcasting and
-superbroadcasting also optimize marginals and permit correlations
+local shrinking criteria \cite{Fan2003,FanLiuShi2007}, Hilbert--Schmidt loss
+\cite{Kazakov2007}, and entropic constraints \cite{LemmWilde2017}.
+Purification has been studied under local and joint-product tests
+\cite{CiracEkertMacchiavello1999,KeylWerner2001Purification}.
+Broadcasting and superbroadcasting optimize marginals while allowing correlations
 \cite{DArianoMacchiavelloPerinotti2005,
 BuscemiDArianoMacchiavelloPerinotti2005Optimal,
-BuscemiDArianoMacchiavelloPerinotti2006,DangFan2007}. These criteria do not
-determine fidelity with the joint product target.
+BuscemiDArianoMacchiavelloPerinotti2006,DangFan2007}.
+Marginal quality alone does not determine global product fidelity.
 
-Random purification \cite{TangWrightZhandry2025,
-GirardiMeleLami2025} also reduces mixed-state tomography to pure-state
-tomography \cite{PelecanosSpileckiTangWright2025}.  Combined with pure-state
-cloning, it gives a global-fidelity guarantee for bounded-rank mixed states
-\cite{LiTheilHarrowChuang2026}.  Concurrent work shows
-that PCT attains the optimal sample complexity up to constants for squared
-fidelity \(1-\epsilon\), uniformly over states of rank at most \(r\)
+PCT combines random purification
+\cite{TangWrightZhandry2025,GirardiMeleLami2025}, also used in tomography
+\cite{PelecanosSpileckiTangWright2025}, with pure-state cloning
+\cite{LiTheilHarrowChuang2026}.
+It attains optimal sample complexity up to constants for squared fidelity
+\(1-\epsilon\) over states of rank at most \(r\)
 \cite{FanizzaGrinkoScharnhorstSpilecki2026,JeonSohnOh2026}.
-These worst-case high-fidelity results use a different order of limits
-from our exact fixed-gain values. See \cref{sec:small-error}.
+These bounds use a different order of limits from our fixed-gain fidelities
+(\cref{sec:small-error}).
 
 \paragraph{Gaussian cloning and LAN.}
-Gu{\c t}{\u a}--Matsumoto solved cloning of displaced thermal oscillator
-states with known temperature under joint norm-distance loss, reducing it
-to amplification and proving Gaussian optimality by stochastic ordering
+Gu{\c t}{\u a}--Matsumoto proved Gaussian optimality for displaced
+thermal-state cloning at known temperature under joint norm-distance loss
 \cite{GutaMatsumoto2006MixedGaussianCloning}.
-Gu{\c t}{\u a}--Bowles--Adesso used LAN to derive trace-norm
-teleportation benchmarks for i.i.d. qubits and displaced thermal states
-\cite{GutaBowlesAdesso2010Teleportation}.
-Bowles--Gu{\c t}{\u a}--Adesso used LAN for asymptotically optimal
-mixed-qubit purification and dilution under global trace-norm loss
-\cite{BowlesGutaAdesso2011Purification}. Related methods solve qudit channel
-reversal \cite{BowlesGutaAdesso2012Reversal}.  These norm-distance results
-do not determine our fidelity constants, separate spectral and orbital
-costs, or finite-dimensional cloners.
-
-The relevant LAN framework was developed in
+Quantum local asymptotic normality (LAN) links Gaussian and many-copy
+finite-dimensional models, with applications to trace-norm
+teleportation benchmarks \cite{GutaBowlesAdesso2010Teleportation},
+mixed-qubit purification and dilution \cite{BowlesGutaAdesso2011Purification},
+and channel reversal \cite{BowlesGutaAdesso2012Reversal}.
+We use LAN
 \cite{GutaJencova2007LAN,GutaKahn2006LANQubits,
-KahnGuta2009LANFiniteDimensional,YamagataFujiwaraGill2013LAN}.
-Our fidelity amplification bound is attained by the least-noise amplifier
+KahnGuta2009LANFiniteDimensional} and a global-fidelity bound attained by the
+least-noise amplifier
 \cite{Caves1982LinearAmplifiers,GutaMatsumoto2006MixedGaussianCloning}.
-Low-rank LAN has a different mode structure \cite{LahiryNussbaum2024}. We
-treat the boundary directly only for flat projector states.
+Together with our cloners, these give the separate spectral and orbital costs.
+Low-rank LAN has a different mode structure \cite{LahiryNussbaum2024};
+our boundary results concern flat projector states.
 
 \subsection{Organization}
 
@@ -4283,7 +4265,7 @@ Tracing out \(E^m\) gives
   \label{eq:grassmann-pct-system-compression}
 \end{equation}
 Compressing to the target support \(P^{\ot m}\) leaves fidelity
-unchanged. Homogeneity then proves \eqref{eq:grassmann-pct-factorization}.
+unchanged. Homogeneity then yields \eqref{eq:grassmann-pct-factorization}.
 \end{proof}
 
 \begin{proof}[Proof of \cref{thm:pct-comparison}\textup{(b)}]
@@ -4817,11 +4799,6 @@ W. K. Wootters and W. H. Zurek,
 A single quantum cannot be cloned,
 \doi{10.1038/299802a0}{\emph{Nature} \textbf{299}, 802--803 (1982)}.
 
-\bibitem[YFG13]{YamagataFujiwaraGill2013LAN}
-K. Yamagata, A. Fujiwara, and R. D. Gill,
-Quantum local asymptotic normality based on a new quantum likelihood ratio,
-\doi{10.1214/13-AOS1147}{\emph{Ann. Statist.} \textbf{41}, 2197--2217 (2013)},
-\arxiv{1210.3749}.
 
 \end{thebibliography}
 
