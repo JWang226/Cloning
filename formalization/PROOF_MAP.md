@@ -1,6 +1,6 @@
 # Manuscript-to-Lean map
 
-Reference: [cloning.tex](reference/cloning.tex). This map records statement correspondence, not merely import coverage. Names below are actual declarations; linked files contain their full hypotheses. The current build and axiom-audit evidence is recorded separately in [PROGRESS.md](PROGRESS.md) and [verification/latest.json](verification/latest.json).
+Paper: [Asymptotically Optimal Mixed-State Cloning](https://arxiv.org/abs/2609.35986). This map records statement correspondence against the frozen audited manuscript snapshot, not merely import coverage. Names below are actual declarations; linked files contain their full hypotheses. The current build and axiom-audit evidence is recorded separately in [PROGRESS.md](PROGRESS.md) and [verification/latest.json](verification/latest.json).
 
 The four main physical theorem families are instantiated for the constructed channels and actual CPTP competitors. The reconciliation covers all 27 named theorem, proposition, lemma and corollary statements, including their uniformity, support and rate requirements. Historical `*_of_compactWindowLAN` results and the generic assembly theorems in `Main.lean` remain conditional interfaces; they are not the final physical certificate.
 

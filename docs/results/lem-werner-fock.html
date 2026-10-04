@@ -29,7 +29,7 @@
     Tendsto (fun n ↦ ‖(occupationRecovery (m n) s).toLinearMap
       (wernerOutput (s := s) (inputSlots n (m n) (hm n))) -
         Cloning.InfiniteOccupationStates.thermalOperator (@numberVector s) γ‖) atTop (𝓝 0)</code></pre></div></article><article class="declaration"><div class="declaration-header"><a href="../source/Cloning.WernerAsymptotics.html#L26"><code>Cloning.WernerAsymptotics.coefficient_eq_wernerWeight</code></a><span class="badge">theorem</span></div><p class="small muted">WernerAsymptotics.lean · line 26 · <a href="../source/Cloning.WernerAsymptotics.html#L26">Full source and context</a> · <a href="https://github.com/JWang226/Cloning/blob/main/formalization/Cloning/WernerAsymptotics.lean#L26">GitHub ↗</a> · <button class="copy-button" data-copy-target="lean-cloning-wernerasymptotics-coefficient-eq-wernerweight-194" aria-label="Copy Lean excerpt">Copy</button></p><div class="code-wrap"><pre class="code-block" id="lean-cloning-wernerasymptotics-coefficient-eq-wernerweight-194"><code>theorem coefficient_eq_wernerWeight (n m s t : ℕ) :
-    coefficient n m s t = Occupation.wernerWeight n m (s + 1) t</code></pre></div></article><section class="callout"><h2>Read this part of the proof</h2><p><a href="../guides/purify-clone-trace.html">Purify–clone–trace: exact channels, limits, and guarantees →</a></p></section><details class="manuscript-excerpt"><summary>Exact manuscript TeX statement</summary><p class="small muted">Copied from the reference manuscript. Macro definitions and surrounding notation are in the complete TeX source.</p><pre class="code-block"><code>\begin{lemma}[Werner occupation law]
+    coefficient n m s t = Occupation.wernerWeight n m (s + 1) t</code></pre></div></article><section class="callout"><h2>Read this part of the proof</h2><p><a href="../guides/purify-clone-trace.html">Purify–clone–trace: exact channels, limits, and guarantees →</a></p></section><details class="manuscript-excerpt"><summary>Exact manuscript TeX statement</summary><p class="small muted">Exact source excerpt identifying this statement. Read the paper for the surrounding mathematical exposition and notation.</p><pre class="code-block"><code>\begin{lemma}[Werner occupation law]
 \label{lem:Werner-Fock}
 The output \(\mathcal W_{n,m}^{(D)}(\proj\psi^{\ot n})\) is diagonal
 in this occupation basis, with eigenvalue
@@ -49,7 +49,7 @@ symmetric Fock space \(\Gamma_s(\psi^\perp)\), with occupation basis
     -\tau_{(\gamma-1)/\gamma}^{\ot(D-1)}\right\|_1
   \longrightarrow0.
 \end{equation}
-\end{lemma}</code></pre><a href="../reference/cloning.tex">Download the complete reference source</a> · <a href="https://github.com/JWang226/Cloning/blob/main/formalization/reference/cloning.tex#L3932">GitHub, line 3932 ↗</a></details><p><a href="index.html">← All named results</a></p></main>
+\end{lemma}</code></pre><a href="https://arxiv.org/abs/2609.35986">Read the paper on arXiv ↗</a></details><p><a href="index.html">← All named results</a></p></main>
 <footer class="footer">English guides explain the argument. Lean source and its hypotheses determine the formal claims.
 <a href="../verification.html">Audit evidence</a> · <a href="../scope.html">Scope</a></footer>
 </div></div></body></html>

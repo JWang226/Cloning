@@ -40,7 +40,7 @@
     (p : ν → ℝ) (hp : ∀ j, 0 ≤ p j) :
     fidelity (liftedOutput Φ ρ τ joint)
       (Matrix.blockDiagonal&#x27; (fun j =&gt; (p j • (σ j).matrix) ⊗ₖ (τ j).matrix)) =
-      ∑ j, Real.sqrt (p j) * fidelity (transitionOutput Φ ρ joint j) (σ j).matrix</code></pre></div></article><section class="callout"><h2>Read this part of the proof</h2><p><a href="../guides/lifted-kernels.html">Lifted channels, randomized dilation, and factorization →</a></p></section><details class="manuscript-excerpt"><summary>Exact manuscript TeX statement</summary><p class="small muted">Copied from the reference manuscript. Macro definitions and surrounding notation are in the complete TeX source.</p><pre class="code-block"><code>\begin{proposition}[Fidelity of a lifted transition rule]
+      ∑ j, Real.sqrt (p j) * fidelity (transitionOutput Φ ρ joint j) (σ j).matrix</code></pre></div></article><section class="callout"><h2>Read this part of the proof</h2><p><a href="../guides/lifted-kernels.html">Lifted channels, randomized dilation, and factorization →</a></p></section><details class="manuscript-excerpt"><summary>Exact manuscript TeX statement</summary><p class="small muted">Exact source excerpt identifying this statement. Read the paper for the surrounding mathematical exposition and notation.</p><pre class="code-block"><code>\begin{proposition}[Fidelity of a lifted transition rule]
 \label{prop:lifted-kernel-bound}
 Fix \(p\in\Delta_d^\circ\) and \(g\in\U(d)\).  Let
 \begin{equation}\label{eq:lifted-label-laws}
@@ -65,7 +65,7 @@ The lifted channel has fidelity
   =\sum_{\nu\in\mathsf Y_{m_n}}
    \sqrt{P_{m_n,p}(\nu)}\,F(\Xi_{n,p,\nu},\rho_{p,\nu}).
 \end{equation}
-\end{proposition}</code></pre><a href="../reference/cloning.tex">Download the complete reference source</a> · <a href="https://github.com/JWang226/Cloning/blob/main/formalization/reference/cloning.tex#L926">GitHub, line 926 ↗</a></details><p><a href="index.html">← All named results</a></p></main>
+\end{proposition}</code></pre><a href="https://arxiv.org/abs/2609.35986">Read the paper on arXiv ↗</a></details><p><a href="index.html">← All named results</a></p></main>
 <footer class="footer">English guides explain the argument. Lean source and its hypotheses determine the formal claims.
 <a href="../verification.html">Audit evidence</a> · <a href="../scope.html">Scope</a></footer>
 </div></div></body></html>

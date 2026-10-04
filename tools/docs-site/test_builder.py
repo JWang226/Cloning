@@ -1,7 +1,7 @@
 """Focused regression tests for exact excerpts and offline integrity checks."""
 import unittest
 
-from build import Wiki, checker_verdict, lean_mask, offline_proof_map, statement_end, validate_links
+from build import ARXIV, Wiki, checker_verdict, lean_mask, offline_proof_map, statement_end, validate_links
 
 
 class SourceExcerptTests(unittest.TestCase):
@@ -62,6 +62,16 @@ class GuideCorrespondenceTests(unittest.TestCase):
         self.assertIn('href="../results/thm-example.html">The manuscript theorem</a>', guide)
         self.assertIn("Read this part of the proof", result)
         self.assertIn('href="../guides/example.html">An informal proof', result)
+        self.assertIn(f'href="{ARXIV}">Read the paper on arXiv', result)
+        self.assertNotIn('href="../reference/cloning.tex', result)
+
+    def test_overview_prominently_links_the_paper(self):
+        wiki = self.wiki()
+        wiki.audit = {"modules": 1, "audited_constants": 1}
+        wiki.guides = {"title": "An informal proof", "intro": "Read the argument."}
+        wiki.render_overview()
+        self.assertIn(f'class="button secondary" href="{ARXIV}">Read the paper on arXiv',
+                      wiki.files["index.html"].decode())
 
     def test_unknown_manuscript_labels_fail(self):
         wiki = self.wiki()
@@ -105,6 +115,18 @@ class OfflineIntegrityTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "leaves generated docs"):
             validate_links({"index.html": b'<a href="../formalization/X.lean">x</a>'})
 
+    def test_reader_facing_tex_links_are_rejected_locally_and_externally(self):
+        for path, content in (
+            ("index.html", b'<a href="reference/cloning.tex">paper</a>'),
+            ("index.html", b'<a href="https://example.org/cloning.tex#L7">paper</a>'),
+            ("README.md", b'[paper](https://example.org/cloning%2Etex?download=1)'),
+            ("README.md", b'[paper](<https://example.org/cloning.tex>)'),
+            ("README.md", b'[paper][source]\n\n[source]: <https://example.org/cloning.tex>'),
+        ):
+            with self.subTest(path=path, content=content):
+                with self.assertRaisesRegex(ValueError, "Reader-facing TeX source link"):
+                    validate_links({path: content, "reference/cloning.tex": b"source"})
+
 
 class ProofMapDownloadTests(unittest.TestCase):
     def setUp(self):
@@ -123,17 +145,23 @@ class ProofMapDownloadTests(unittest.TestCase):
             "Upstream: [reference](https://example.org/proof#statement).\n"
         )
         self.files["reference/PROOF_MAP.md"] = original.encode()
-        with self.assertRaisesRegex(ValueError, "Broken local link"):
+        with self.assertRaisesRegex(ValueError, "Reader-facing TeX source link"):
             validate_links(self.files)
 
         rewritten = offline_proof_map(original)
-        self.assertIn("[cloning.tex](cloning.tex)", rewritten)
+        self.assertIn(f"[paper on arXiv]({ARXIV})", rewritten)
         self.assertIn("[progress](../verification.html)", rewritten)
         self.assertIn("[snapshot](../data/audit-summary.json)", rewritten)
         self.assertIn("[Example.lean](../source/Cloning.Example.html#L17)", rewritten)
         self.assertIn("https://example.org/proof#statement", rewritten)
         self.files["reference/PROOF_MAP.md"] = rewritten.encode()
         validate_links(self.files)
+
+    def test_legacy_manuscript_fragments_become_a_paper_link(self):
+        for href in ("reference/cloning.tex#L17", "cloning.tex?download=1",
+                     "https://github.com/example/repo/blob/main/formalization/reference/cloning.tex#L17"):
+            with self.subTest(href=href):
+                self.assertEqual(offline_proof_map(f"[source]({href})"), f"[paper on arXiv]({ARXIV})")
 
     def test_source_fragment_is_preserved_and_validated(self):
         rewritten = offline_proof_map("[endpoint](Cloning/Example.lean#L99)")

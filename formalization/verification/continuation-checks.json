@@ -148,7 +148,7 @@
     "files": 2028,
     "offline_markdown_links_repaired": 74,
     "checker_verdicts_bound_to_current_audit": true,
-    "manifest_sha256": "260681887d5518ad30b4a6a56e39dfd083dab2271b0c3581e88054891f0b36e6"
+    "manifest_sha256": "740f505bdcdab5725b4a44a5d03c412fe35cf0ea0528ecb816fb7d963aa756d4"
   },
   "git_index_preservation": {
     "index_file_sha256": "7c98a3ab2aafbea0cea458f6c8de33ba2ab29d815237f75de482c5e48626fa10",
@@ -165,7 +165,7 @@
     "reviewed_utc": "2026-10-04T06:34:04.991882+00:00",
     "repository": "https://github.com/JWang226/Cloning",
     "branch": "main",
-    "proof_wiki_tests_passed": 19,
+    "proof_wiki_tests_passed": 22,
     "named_results_with_reciprocal_guide_links": 27,
     "local_browser_checks": [
       "declaration search opens the exact Lean line",
@@ -177,5 +177,13 @@
     "large_exports_and_caches": "ignored; excluded from publication",
     "local_handoff": "CODEX_HANDOFF.md remains local",
     "whitespace_scope": "Authored documentation and generator changes pass; byte-exact manuscript, proof snapshots, upstream licenses and raw verification logs are preserved."
+  },
+  "paper_link_revision": {
+    "recorded_utc": "2026-10-04T06:50:24.650885+00:00",
+    "paper_url": "https://arxiv.org/abs/2609.35986",
+    "reader_tex_links": 0,
+    "saved_checkpoint": "passed",
+    "wiki_check": "passed",
+    "proof_sources_unchanged": true
   }
 }

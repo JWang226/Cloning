@@ -27,14 +27,14 @@
     (ε : ℝ) (hε : 0 &lt; ε) :
     ∃ N₀ : ℕ, ∀ N ≥ N₀, ∀ (p : Fin (d + 1) → ℝ) (hpK : p ∈ K),
       (∫ x, |tensorYoungDensity d N p (fun i ↦ (hp0 p hpK i).le) (hp p hpK) x -
-        covarianceGaussian d p (hp p hpK) x| ∂volume) &lt; ε</code></pre></div></article><section class="callout"><h2>Read this part of the proof</h2><p><a href="../guides/young-laws.html">Young labels: concentration and the local Gaussian law →</a></p></section><details class="manuscript-excerpt"><summary>Exact manuscript TeX statement</summary><p class="small muted">Copied from the reference manuscript. Macro definitions and surrounding notation are in the complete TeX source.</p><pre class="code-block"><code>\begin{lemma}[Uniform Young local limit]\label{lem:young-local-limit}
+        covarianceGaussian d p (hp p hpK) x| ∂volume) &lt; ε</code></pre></div></article><section class="callout"><h2>Read this part of the proof</h2><p><a href="../guides/young-laws.html">Young labels: concentration and the local Gaussian law →</a></p></section><details class="manuscript-excerpt"><summary>Exact manuscript TeX statement</summary><p class="small muted">Exact source excerpt identifying this statement. Read the paper for the surrounding mathematical exposition and notation.</p><pre class="code-block"><code>\begin{lemma}[Uniform Young local limit]\label{lem:young-local-limit}
 For every compact \(K\Subset\Delta_d^\circ\),
 \begin{equation}\label{eq:young-local-limit}
   \sup_{p\in K}
   \left\|\mathcal I_{N,p}P_{N,p}-\varphi_{0,\Sigma_p}\right\|_1
   \longrightarrow0.
 \end{equation}
-\end{lemma}</code></pre><a href="../reference/cloning.tex">Download the complete reference source</a> · <a href="https://github.com/JWang226/Cloning/blob/main/formalization/reference/cloning.tex#L3134">GitHub, line 3134 ↗</a></details><p><a href="index.html">← All named results</a></p></main>
+\end{lemma}</code></pre><a href="https://arxiv.org/abs/2609.35986">Read the paper on arXiv ↗</a></details><p><a href="index.html">← All named results</a></p></main>
 <footer class="footer">English guides explain the argument. Lean source and its hypotheses determine the formal claims.
 <a href="../verification.html">Audit evidence</a> · <a href="../scope.html">Scope</a></footer>
 </div></div></body></html>

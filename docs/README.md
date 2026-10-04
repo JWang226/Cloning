@@ -22,7 +22,7 @@ Author English explanations in docs-src/guides.json. Maintain named-result
 correspondence in formalization/PROOF_MAP.md. Never edit generated HTML.
 The generator and original visual assets live in tools/docs-site/.
 The downloaded proof map preserves the original prose and rewrites its links
-to the bundled manuscript, source pages, and verification evidence.
+to the paper on arXiv, offline source pages, and verification evidence.
 
 Exact source is authoritative. Statement excerpts may inherit section variables,
 instances, and namespaces; full linked source pages preserve all this context.

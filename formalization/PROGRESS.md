@@ -2,7 +2,7 @@
 
 The remaining proof obligations are closed. The current library contains **982 implementation modules**; the complete `lake build All` passed (**4,563 jobs**) and the all-declaration axiom audit passed for **14,345 unique compiled project constants**. Source/artifact stability passed. Comparator and the unmodified independent Nanoda kernel passed against this same audited source.
 
-The [manuscript-to-Lean map](PROOF_MAP.md) reconciles **all 27 named theorem, proposition, lemma and corollary statements** of the frozen [working manuscript](reference/cloning.tex). It records concrete declarations, dimension offsets, root-versus-squared fidelity, uniformity and order of limits. The [completion semantic review](verification/completion-semantic-review.md) records the statement differences found and resolved.
+The [manuscript-to-Lean map](PROOF_MAP.md) reconciles **all 27 named theorem, proposition, lemma and corollary statements** of the frozen working manuscript snapshot. It records concrete declarations, dimension offsets, root-versus-squared fidelity, uniformity and order of limits. The [completion semantic review](verification/completion-semantic-review.md) records the statement differences found and resolved. Read the [paper](https://arxiv.org/abs/2609.35986); the audited snapshot remains the one identified in [SOURCE.json](SOURCE.json).
 
 ## Completed scope
 

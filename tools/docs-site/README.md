@@ -6,13 +6,13 @@ From the repository root:
     python3 tools/docs-site/build.py --check
 
 Python 3.10 or newer is the only build requirement. Open docs/index.html
-directly in a browser; no server or network connection is needed.
+directly in a browser; the bundled proof pages need no server or network connection.
 
 The generator reads:
 
 - docs-src/guides.json: editorial chapter explanations and explicit proof pointers.
 - formalization/PROOF_MAP.md: manuscript-to-Lean correspondence.
-- formalization/reference/cloning.tex: the 27 named manuscript statements.
+- The frozen reference snapshot identified in formalization/SOURCE.json: the 27 named manuscript statements.
 - The snapshot selected by formalization/verification/latest.json.
 - Comparator and Nanoda status summaries and any linked archived run records.
 - Every audited implementation module and the original static assets here.
@@ -37,8 +37,8 @@ without proof bodies; linked modules preserve inherited section variables,
 instances, and namespace context.
 
 The downloadable proof map keeps the source map's prose and rewrites its links
-to the bundled manuscript, exact source pages, and verification evidence.
-The repository's formalization/PROOF_MAP.md is unchanged.
+to the [paper](https://arxiv.org/abs/2609.35986), exact source pages, and verification evidence.
+The generator leaves the repository's formalization/PROOF_MAP.md unmodified.
 
 Checker status is rendered from its saved summary. A pass requires a hash-matched
 archived full-run record, a matching audit binding and tool lock, the checker

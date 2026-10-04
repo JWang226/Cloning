@@ -21,9 +21,11 @@ FORMAL = ROOT / "formalization"
 OUT = ROOT / "docs"
 ASSETS = Path(__file__).parent / "assets"
 GITHUB = "https://github.com/JWang226/Cloning/blob/main/"
+ARXIV = "https://arxiv.org/abs/2609.35986"
 GENERATED_MARKER = ".proof-wiki-generated"
 TICK = chr(96)
 MARKDOWN_LINK = re.compile(r"\[[^\]\n]*\]\(([^)\s]+)\)")
+MARKDOWN_REFERENCE = re.compile(r"(?m)^ {0,3}\[[^\]\n]+\]:\s*(?:<([^>\n]+)>|(\S+))")
 
 
 def esc(value):
@@ -41,18 +43,19 @@ def slug(value):
 
 
 def offline_proof_map(text):
-    """Keep the repository map's prose, with links relative to docs/reference/."""
+    """Link the paper on arXiv and keep proof/evidence links offline."""
     pages = {
-        "reference/cloning.tex": "cloning.tex",
         "PROGRESS.md": "../verification.html",
         "verification/latest.json": "../data/audit-summary.json",
     }
 
     def rewrite(match):
         url = urlsplit(match[1])
+        path = unquote(url.path)
+        if path == "cloning.tex" or path.endswith("/reference/cloning.tex") or path == "reference/cloning.tex":
+            return "[paper on arXiv](" + ARXIV + ")"
         if url.scheme or url.netloc or not url.path:
             return match[0]
-        path = unquote(url.path)
         target = pages.get(path, url.path)
         if path.startswith("Cloning/") and path.endswith(".lean"):
             module = path[:-len(".lean")].replace("/", ".")
@@ -505,7 +508,8 @@ class Wiki:
                 f'<h1>{esc(self.guides.get("title", "The proof of mixed-state cloning"))}</h1>'
                 f'<div class="lead">{paragraphs(self.guides["intro"])}</div>'
                 '<div class="actions"><a class="button" href="guides/index.html">Start the proof guide →</a>'
-                '<a class="button secondary" href="results/index.html">Browse all 27 results</a></div></section>'
+                '<a class="button secondary" href="results/index.html">Browse all 27 results</a>'
+                f'<a class="button secondary" href="{ARXIV}">Read the paper on arXiv ↗</a></div></section>'
                 '<section class="stats" aria-label="Verification snapshot">'
                 f'<div class="stat"><span class="stat-value">27</span><span class="stat-label">named manuscript results</span></div>'
                 f'<div class="stat"><span class="stat-value">{a["modules"]:,}</span><span class="stat-label">audited Lean modules</span></div>'
@@ -603,10 +607,9 @@ class Wiki:
                 body += '<section class="callout"><h2>Read this part of the proof</h2>' + "".join(
                     f'<p><a href="../guides/{c["id"]}.html">{esc(c["title"])} →</a></p>' for c in chapters) + "</section>"
             body += ('<details class="manuscript-excerpt"><summary>Exact manuscript TeX statement</summary>'
-                     '<p class="small muted">Copied from the reference manuscript. Macro definitions and surrounding notation are in the complete TeX source.</p>'
+                     '<p class="small muted">Exact source excerpt identifying this statement. Read the paper for the surrounding mathematical exposition and notation.</p>'
                      f'<pre class="code-block"><code>{esc(result["tex"])}</code></pre>'
-                     f'<a href="../reference/cloning.tex">Download the complete reference source</a> · '
-                     f'<a href="{GITHUB}formalization/reference/cloning.tex#L{result["line"]}">GitHub, line {result["line"]} ↗</a></details>')
+                     f'<a href="{ARXIV}">Read the paper on arXiv ↗</a></details>')
             body += '<p><a href="index.html">← All named results</a></p>'
             self.page(result["url"], result["title"], body, "results")
             self.search.append({"title": result["title"], "subtitle": result["label"], "kind": result["kind"].title(),
@@ -832,7 +835,7 @@ Author English explanations in docs-src/guides.json. Maintain named-result
 correspondence in formalization/PROOF_MAP.md. Never edit generated HTML.
 The generator and original visual assets live in tools/docs-site/.
 The downloaded proof map preserves the original prose and rewrites its links
-to the bundled manuscript, source pages, and verification evidence.
+to the paper on arXiv, offline source pages, and verification evidence.
 
 Exact source is authoritative. Statement excerpts may inherit section variables,
 instances, and namespaces; full linked source pages preserve all this context.
@@ -897,10 +900,14 @@ def validate_links(files):
             pages[path] = parser
             links[path] = parser.links
         elif path.endswith(".md"):
-            links[path] = [match[1] for match in MARKDOWN_LINK.finditer(content.decode())]
+            text = content.decode()
+            links[path] = [match[1].strip("<>") for match in MARKDOWN_LINK.finditer(text)]
+            links[path].extend(match[1] or match[2] for match in MARKDOWN_REFERENCE.finditer(text))
     for path, references in links.items():
         for href in references:
             url = urlsplit(href)
+            if unquote(url.path).lower().endswith(".tex"):
+                raise ValueError(f"Reader-facing TeX source link is not allowed: {path}: {href}")
             if url.scheme or url.netloc:
                 continue
             raw = unquote(url.path)
