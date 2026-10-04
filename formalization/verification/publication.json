@@ -1,0 +1,37 @@
+{
+  "verified_utc": "2026-10-04T06:44:10.053640+00:00",
+  "repository": "https://github.com/JWang226/Cloning",
+  "published_proof_snapshot_commit": "5e7224815fbf5bdb29719d44ab595d791787a21e",
+  "hosting": {
+    "provider": "GitHub Pages",
+    "url": "https://jwang226.github.io/Cloning/",
+    "source": {
+      "branch": "main",
+      "path": "/docs"
+    },
+    "build_id": 1258899887,
+    "build_status": "built",
+    "https_enforced": true,
+    "public_home_matches_reviewed_output": true,
+    "public_manifest_matches_reviewed_output": true,
+    "home_sha256": "243ab524c822af353ae28cf9b61474e78daceacd946b6ed0ba9651c510c3da1e",
+    "manifest_sha256": "260681887d5518ad30b4a6a56e39dfd083dab2271b0c3581e88054891f0b36e6"
+  },
+  "fresh_published_clone": {
+    "commit": "5e7224815fbf5bdb29719d44ab595d791787a21e",
+    "saved_checkpoint_status": "passed",
+    "audit_manifest_files_checked": 995,
+    "lean_invoked": false,
+    "wiki_check_status": "passed",
+    "wiki_named_results": 27,
+    "wiki_chapters": 12,
+    "wiki_verified_proof_pointers": 113,
+    "wiki_files": 2028,
+    "build_cache_present": false
+  },
+  "browser_checks": [
+    "public guide renders with MathML and no formula errors",
+    "declaration search opens Cloning.PhysicalCloningKnownTheorem.html#L45"
+  ],
+  "scope": "Publication and saved-evidence checks; no new Lean, Comparator or Nanoda proof run."
+}

@@ -2,7 +2,7 @@
 
 Lean proofs for **all 27 named results** in the frozen [reference manuscript](formalization/reference/cloning.tex): known- and unknown-spectrum cloning, projector-state optimality, purify–clone–trace comparisons, and supporting estimates.
 
-Read the [proof wiki](docs/index.html) locally or offline: twelve proof guides, exact Lean statements, searchable source, and declaration links. The [proof map](formalization/PROOF_MAP.md) connects manuscript labels to Lean and records assumptions, fidelity conventions, dimensions, and limits.
+Read the [proof wiki](https://jwang226.github.io/Cloning/): twelve informal proof guides, all 27 named results, exact Lean statements, and searchable source. Each result links to its guide and Lean declarations. The [bundled pages](docs/index.html) also work offline. The [proof map](formalization/PROOF_MAP.md) records assumptions, fidelity conventions, dimensions, and limits.
 
 ## Verification
 

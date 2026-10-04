@@ -603,8 +603,10 @@ status:
       named_results: 27
       generator: tools/docs-site/build.py
       command_from_repository_root: python3 tools/docs-site/build.py --check
-      hosting_status: not_verified
-      hosting_scope: Public publication has not been verified.
+      hosting_status: verified_live
+      public_url: https://jwang226.github.io/Cloning/
+      hosting_scope: GitHub Pages serves main/docs; public homepage and manifest match the reviewed site.
+      publication_record: formalization/verification/publication.json
   main_theorems: proved_and_audited
   working_build:
     implementation_imports: 982
