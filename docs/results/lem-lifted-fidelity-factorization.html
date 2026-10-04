@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="An offline guide to the Lean formalization of asymptotic mixed-state quantum cloning. Exact source, proof routes, and audited scope.">
+<title>Factorization of the lifted fidelity · Cloning proof wiki</title>
+<link rel="stylesheet" href="../assets/site.css?v=1811c00ea983">
+<script>window.PROOF_ROOT="../";</script>
+<script defer src="../assets/vendor/katex/katex.min.js"></script>
+<script defer src="../assets/search-index.js?v=850aee981cdc"></script>
+<script defer src="../assets/site.js?v=4bfaac1f06b1"></script>
+</head><body><a class="skip-link" href="#main">Skip to content</a>
+<div class="site-shell"><aside class="sidebar" id="site-navigation">
+<a class="brand" href="../index.html"><span class="brand-mark">C</span><span>Cloning<span class="small muted">A Lean proof wiki</span></span></a>
+<nav aria-label="Main navigation"><div class="nav-section">Explore</div><a class="nav-link" href="../index.html">Overview</a><a class="nav-link" href="../guides/index.html">Proof guide</a><a class="nav-link active" href="../results/index.html" aria-current="page">27 named results</a><a class="nav-link" href="../source/index.html">Lean source</a><a class="nav-link" href="../verification.html">Verification</a><a class="nav-link" href="../scope.html">Scope &amp; conventions</a>
+<div class="nav-section">Read the proof</div><a class="nav-link" href="../guides/physical-problem.html"><span class="nav-number">01</span> The physical problem and its conventions</a><a class="nav-link" href="../guides/young-laws.html"><span class="nav-number">02</span> Young labels: concentration and the local Gaussian law</a><a class="nav-link" href="../guides/cartan-sectors.html"><span class="nav-number">03</span> From PBW frames to uniform Cartan-sector fidelity</a><a class="nav-link" href="../guides/lifted-kernels.html"><span class="nav-number">04</span> Lifted channels, randomized dilation, and factorization</a><a class="nav-link" href="../guides/gaussian-optimum.html"><span class="nav-number">05</span> Gaussian amplification against arbitrary competitors</a><a class="nav-link" href="../guides/physical-lan.html"><span class="nav-number">06</span> Constructed LAN and fidelity transfer</a><a class="nav-link" href="../guides/known-spectrum.html"><span class="nav-number">07</span> The known-spectrum optimum</a><a class="nav-link" href="../guides/unknown-spectrum.html"><span class="nav-number">08</span> One universal cloner and the compact-set optimum</a><a class="nav-link" href="../guides/grassmann.html"><span class="nav-number">09</span> Exact rank compression and projector-state optimality</a><a class="nav-link" href="../guides/purify-clone-trace.html"><span class="nav-number">10</span> Purify–clone–trace: exact channels, limits, and guarantees</a><a class="nav-link" href="../guides/small-errors.html"><span class="nav-number">11</span> Small errors, rank boundaries, and noncommuting limits</a><a class="nav-link" href="../guides/spectral-comparison.html"><span class="nav-number">12</span> Spectral order and what is known for all states</a></nav>
+<div class="sidebar-footer"><span class="badge">Lean 4</span><p>Manuscript → proof → source</p>
+<a href="https://github.com/JWang226/Cloning">Repository ↗</a></div></aside>
+<div class="main-shell"><header class="topbar">
+<button id="nav-toggle" class="button secondary" aria-controls="site-navigation" aria-expanded="false" aria-label="Toggle navigation">Menu</button>
+<div class="search-wrap"><label class="sr-only" for="site-search">Search the proof wiki</label>
+<input id="site-search" type="search" placeholder="Search results, concepts, or Lean names…" autocomplete="off" aria-controls="search-results" aria-expanded="false" role="combobox" aria-autocomplete="list">
+<div id="search-results" class="search-results" role="listbox" hidden></div></div>
+<span class="small muted topbar-label">Offline · exact source</span></header>
+<main id="main" class="content"><div class="eyebrow">lemma · manuscript result</div><h1>Factorization of the lifted fidelity</h1><p><code>lem:lifted-fidelity-factorization</code> <span class="badge">Mapped to compiled Lean</span></p><div class="notice">Scope notes below come from the manuscript-to-Lean map. Exact source excerpts are the formal reference.</div><section class="callout info"><h2>Hypotheses and correspondence</h2><p>Actual lifted channels for arbitrary spectrum-dependent stochastic transition tables, arbitrary shrinking windows, and the manuscript&#x27;s uniform vanishing discarded joint-label mass. The proof derives the sector estimates and eigenbasis uniformity; it does not assume factorization. The copy-index formulation includes the usual Young-label kernels.</p></section><h2>Concrete Lean endpoints</h2><p class="small muted">These are exact statement excerpts, with proof bodies omitted. Section variables, instances, namespaces, imports, and proof bodies are visible in the linked full module.</p><article class="declaration"><div class="declaration-header"><a href="../source/Cloning.TensorCloningLiftedFactorization.html#L133"><code>Cloning.TensorCloning.eventually_uniform_lifted_fidelity_factorization</code></a><span class="badge">theorem</span></div><p class="small muted">TensorCloningLiftedFactorization.lean · line 133 · <a href="../source/Cloning.TensorCloningLiftedFactorization.html#L133">Full source and context</a> · <a href="https://github.com/JWang226/Cloning/blob/main/formalization/Cloning/TensorCloningLiftedFactorization.lean#L133">GitHub ↗</a> · <button class="copy-button" data-copy-target="lean-cloning-tensorcloning-eventually-uniform-lifted-fidelity-factorization-162" aria-label="Copy Lean excerpt">Copy</button></p><div class="code-wrap"><pre class="code-block" id="lean-cloning-tensorcloning-eventually-uniform-lifted-fidelity-factorization-162"><code>theorem eventually_uniform_lifted_fidelity_factorization
+    (K : Set (SimpleSpectrum (d+1))) (hK : IsCompact K)
+    (m : ℕ → ℕ) (γ : ℝ) (hγ : 1&lt;γ)
+    (hgain : Tendsto (fun n =&gt; (m n : ℝ)/n) atTop (𝓝 γ))
+    (δ : ℕ → ℝ) (hδ : Tendsto δ atTop (𝓝 0))
+    (q : ∀ n,SimpleSpectrum (d+1) → SchurCopy n (d+1) → SchurCopy (m n) (d+1) → ℝ)
+    (hq : ∀ n p i j,0≤q n p i j) (hs : ∀ n p i,∑ j,q n p i j=1)
+    (hbad : ∀ η : ℝ,0&lt;η → ∀ᶠ n in atTop,∀ p∈K,
+      kernelBadMass n (m n) (d+1) p.eigenvalue (δ n) (q n p)&lt;η)
+    (ε : ℝ) (hε : 0&lt;ε) :
+    ∀ᶠ n in atTop,∀ p∈K,∀ U : unitary (Matrix (Fin (d+1)) (Fin (d+1)) ℂ),
+      |spectrumPayoff n (m n) (channel n (m n) (d+1) (q n p) (hq n p) (hs n p)) p U-
+        orbitalValue γ p*kernelAffinity n (m n) (d+1) p.eigenvalue (q n p)|&lt;ε</code></pre></div></article><section class="callout"><h2>Read this part of the proof</h2><p><a href="../guides/lifted-kernels.html">Lifted channels, randomized dilation, and factorization →</a></p></section><details class="manuscript-excerpt"><summary>Exact manuscript TeX statement</summary><p class="small muted">Copied from the reference manuscript. Macro definitions and surrounding notation are in the complete TeX source.</p><pre class="code-block"><code>\begin{lemma}[Factorization of the lifted fidelity]
+\label{lem:lifted-fidelity-factorization}
+Fix \(K\Subset\Delta_d^\circ\).  For each \(p\in K\), choose a transition
+rule \(\mathsf K_n^{(p)}:\mathsf Y_n\rightsquigarrow\mathsf Y_{m_n}\).
+Use \(\mathsf J_{n,p},Q_{m_n,p}\) from \eqref{eq:lifted-label-laws}
+and \(\Xi_{n,p,\nu}\) from \eqref{eq:lifted-output-block} with
+\(\mathsf K_n=\mathsf K_n^{(p)}\).
+\(P_{m_n,p}\) is the target Young-label law from \eqref{eq:schur-state}.
+Suppose that,
+for some \(\delta_n\to0\), the set of close label pairs
+\[
+ G_{n,p}
+ =\left\{(\mu,\nu)\in\mathsf Y_n\times\mathsf Y_{m_n}:
+   \left\|\frac\mu n-p\right\|_\infty\le\delta_n,\
+   \left\|\frac\nu{m_n}-p\right\|_\infty\le\delta_n\right\}
+\]
+satisfies \(\sup_{p\in K}\mathsf J_{n,p}(G_{n,p}^c)\to0\).
+Then, uniformly for \(p\in K\) and \(g\in\U(d)\),
+\begin{equation}\label{eq:lifted-fidelity-factorization}
+ F\!\left(\mathcal Q_n[\mathsf K_n^{(p)}](\rho_{p,g}^{\ot n}),
+                         \rho_{p,g}^{\ot m_n}\right)
+ =\Forb(\gamma,p)F(Q_{m_n,p},P_{m_n,p})+o(1).
+\end{equation}
+\end{lemma}</code></pre><a href="../reference/cloning.tex">Download the complete reference source</a> · <a href="https://github.com/JWang226/Cloning/blob/main/formalization/reference/cloning.tex#L1200">GitHub, line 1200 ↗</a></details><p><a href="index.html">← All named results</a></p></main>
+<footer class="footer">English guides explain the argument. Lean source and its hypotheses determine the formal claims.
+<a href="../verification.html">Audit evidence</a> · <a href="../scope.html">Scope</a></footer>
+</div></div></body></html>

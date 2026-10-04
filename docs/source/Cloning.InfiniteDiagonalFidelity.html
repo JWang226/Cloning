@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="An offline guide to the Lean formalization of asymptotic mixed-state quantum cloning. Exact source, proof routes, and audited scope.">
+<title>InfiniteDiagonalFidelity · Lean source · Cloning proof wiki</title>
+<link rel="stylesheet" href="../assets/site.css?v=1811c00ea983">
+<script>window.PROOF_ROOT="../";</script>
+<script defer src="../assets/vendor/katex/katex.min.js"></script>
+<script defer src="../assets/search-index.js?v=850aee981cdc"></script>
+<script defer src="../assets/site.js?v=4bfaac1f06b1"></script>
+</head><body><a class="skip-link" href="#main">Skip to content</a>
+<div class="site-shell"><aside class="sidebar" id="site-navigation">
+<a class="brand" href="../index.html"><span class="brand-mark">C</span><span>Cloning<span class="small muted">A Lean proof wiki</span></span></a>
+<nav aria-label="Main navigation"><div class="nav-section">Explore</div><a class="nav-link" href="../index.html">Overview</a><a class="nav-link" href="../guides/index.html">Proof guide</a><a class="nav-link" href="../results/index.html">27 named results</a><a class="nav-link active" href="../source/index.html" aria-current="page">Lean source</a><a class="nav-link" href="../verification.html">Verification</a><a class="nav-link" href="../scope.html">Scope &amp; conventions</a>
+<div class="nav-section">Read the proof</div><a class="nav-link" href="../guides/physical-problem.html"><span class="nav-number">01</span> The physical problem and its conventions</a><a class="nav-link" href="../guides/young-laws.html"><span class="nav-number">02</span> Young labels: concentration and the local Gaussian law</a><a class="nav-link" href="../guides/cartan-sectors.html"><span class="nav-number">03</span> From PBW frames to uniform Cartan-sector fidelity</a><a class="nav-link" href="../guides/lifted-kernels.html"><span class="nav-number">04</span> Lifted channels, randomized dilation, and factorization</a><a class="nav-link" href="../guides/gaussian-optimum.html"><span class="nav-number">05</span> Gaussian amplification against arbitrary competitors</a><a class="nav-link" href="../guides/physical-lan.html"><span class="nav-number">06</span> Constructed LAN and fidelity transfer</a><a class="nav-link" href="../guides/known-spectrum.html"><span class="nav-number">07</span> The known-spectrum optimum</a><a class="nav-link" href="../guides/unknown-spectrum.html"><span class="nav-number">08</span> One universal cloner and the compact-set optimum</a><a class="nav-link" href="../guides/grassmann.html"><span class="nav-number">09</span> Exact rank compression and projector-state optimality</a><a class="nav-link" href="../guides/purify-clone-trace.html"><span class="nav-number">10</span> Purify–clone–trace: exact channels, limits, and guarantees</a><a class="nav-link" href="../guides/small-errors.html"><span class="nav-number">11</span> Small errors, rank boundaries, and noncommuting limits</a><a class="nav-link" href="../guides/spectral-comparison.html"><span class="nav-number">12</span> Spectral order and what is known for all states</a></nav>
+<div class="sidebar-footer"><span class="badge">Lean 4</span><p>Manuscript → proof → source</p>
+<a href="https://github.com/JWang226/Cloning">Repository ↗</a></div></aside>
+<div class="main-shell"><header class="topbar">
+<button id="nav-toggle" class="button secondary" aria-controls="site-navigation" aria-expanded="false" aria-label="Toggle navigation">Menu</button>
+<div class="search-wrap"><label class="sr-only" for="site-search">Search the proof wiki</label>
+<input id="site-search" type="search" placeholder="Search results, concepts, or Lean names…" autocomplete="off" aria-controls="search-results" aria-expanded="false" role="combobox" aria-autocomplete="list">
+<div id="search-results" class="search-results" role="listbox" hidden></div></div>
+<span class="small muted topbar-label">Offline · exact source</span></header>
+<main id="main" class="content"><div class="eyebrow">Exact Lean source</div><h1 class="source-title">InfiniteDiagonalFidelity</h1><p><code>formalization/Cloning/InfiniteDiagonalFidelity.lean</code></p><p class="small muted">Source hash: <code>0821d4912d32ee2edf4207bb0bdec4d3294e4dc62b74947a162fedcbf6f2b771</code></p><div class="actions"><a class="button secondary" href="raw/Cloning.InfiniteDiagonalFidelity.lean">Download .lean</a><a class="button secondary" href="https://github.com/JWang226/Cloning/blob/main/formalization/Cloning/InfiniteDiagonalFidelity.lean">View on GitHub ↗</a><a href="index.html">All modules</a></div><p class="small muted">Full source copied without mathematical changes from the snapshot whose input hash matches the passing audit. Select a line number for a stable source pointer.</p><details><summary>Declarations in this module</summary><div class="module-declarations"><a href="#L25"><span class="badge">theorem</span> <code>Cloning.InfiniteDiagonalFidelity.matrixOf_vectorMixture_basis</code></a><a href="#L42"><span class="badge">theorem</span> <code>Cloning.InfiniteDiagonalFidelity.fidelity_vectorMixture</code></a><a href="#L86"><span class="badge">theorem</span> <code>Cloning.InfiniteDiagonalFidelity.stateFidelity_vectorMixture</code></a><a href="#L94"><span class="badge">definition</span> <code>Cloning.InfiniteDiagonalFidelity.geometricState</code></a><a href="#L101"><span class="badge">theorem</span> <code>Cloning.InfiniteDiagonalFidelity.stateFidelity_geometric</code></a><a href="#L111"><span class="badge">definition</span> <code>Cloning.InfiniteDiagonalFidelity.productGeometricState</code></a><a href="#L119"><span class="badge">theorem</span> <code>Cloning.InfiniteDiagonalFidelity.stateFidelity_productGeometric</code></a></div></details><div class="code-wrap source-wrap"><pre class="source-lines"><code><span class="source-line" id="L1"><a class="line-no" href="#L1" aria-label="Line 1">1</a><span class="line-code">import Cloning.InfiniteFidelityBlockBound</span></span>
+<span class="source-line" id="L2"><a class="line-no" href="#L2" aria-label="Line 2">2</a><span class="line-code">import Cloning.InfiniteOccupationStates</span></span>
+<span class="source-line" id="L3"><a class="line-no" href="#L3" aria-label="Line 3">3</a><span class="line-code">import Cloning.MatrixFidelityScaling</span></span>
+<span class="source-line" id="L4"><a class="line-no" href="#L4" aria-label="Line 4">4</a><span class="line-code"> </span></span>
+<span class="source-line" id="L5"><a class="line-no" href="#L5" aria-label="Line 5">5</a><span class="line-code">/-!</span></span>
+<span class="source-line" id="L6"><a class="line-no" href="#L6" aria-label="Line 6">6</a><span class="line-code"># Fidelity of actual diagonal and thermal density operators</span></span>
+<span class="source-line" id="L7"><a class="line-no" href="#L7" aria-label="Line 7">7</a><span class="line-code"> </span></span>
+<span class="source-line" id="L8"><a class="line-no" href="#L8" aria-label="Line 8">8</a><span class="line-code">Finite Hilbert-basis compressions identify diagonal operator fidelity with</span></span>
+<span class="source-line" id="L9"><a class="line-no" href="#L9" aria-label="Line 9">9</a><span class="line-code">finite Hellinger sums. Trace-norm convergence of the compressions and fidelity</span></span>
+<span class="source-line" id="L10"><a class="line-no" href="#L10" aria-label="Line 10">10</a><span class="line-code">continuity then give the countable identity. Geometric thermal density</span></span>
+<span class="source-line" id="L11"><a class="line-no" href="#L11" aria-label="Line 11">11</a><span class="line-code">operators, including multimode ones, consequently have the previously proved</span></span>
+<span class="source-line" id="L12"><a class="line-no" href="#L12" aria-label="Line 12">12</a><span class="line-code">scalar thermal fidelity formula.</span></span>
+<span class="source-line" id="L13"><a class="line-no" href="#L13" aria-label="Line 13">13</a><span class="line-code">-/</span></span>
+<span class="source-line" id="L14"><a class="line-no" href="#L14" aria-label="Line 14">14</a><span class="line-code"> </span></span>
+<span class="source-line" id="L15"><a class="line-no" href="#L15" aria-label="Line 15">15</a><span class="line-code">namespace Cloning.InfiniteDiagonalFidelity</span></span>
+<span class="source-line" id="L16"><a class="line-no" href="#L16" aria-label="Line 16">16</a><span class="line-code"> </span></span>
+<span class="source-line" id="L17"><a class="line-no" href="#L17" aria-label="Line 17">17</a><span class="line-code">noncomputable section</span></span>
+<span class="source-line" id="L18"><a class="line-no" href="#L18" aria-label="Line 18">18</a><span class="line-code">set_option backward.isDefEq.respectTransparency false</span></span>
+<span class="source-line" id="L19"><a class="line-no" href="#L19" aria-label="Line 19">19</a><span class="line-code">open scoped ComplexOrder InnerProductSpace Topology BigOperators MatrixOrder</span></span>
+<span class="source-line" id="L20"><a class="line-no" href="#L20" aria-label="Line 20">20</a><span class="line-code">open Filter InfiniteTraceClass InfiniteFidelity</span></span>
+<span class="source-line" id="L21"><a class="line-no" href="#L21" aria-label="Line 21">21</a><span class="line-code"> </span></span>
+<span class="source-line" id="L22"><a class="line-no" href="#L22" aria-label="Line 22">22</a><span class="line-code">variable {H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]</span></span>
+<span class="source-line" id="L23"><a class="line-no" href="#L23" aria-label="Line 23">23</a><span class="line-code">variable {ι : Type*}</span></span>
+<span class="source-line" id="L24"><a class="line-no" href="#L24" aria-label="Line 24">24</a><span class="line-code"> </span></span>
+<span class="source-line" id="L25"><a class="line-no" href="#L25" aria-label="Line 25">25</a><span class="line-code">theorem matrixOf_vectorMixture_basis [DecidableEq ι] (b : HilbertBasis ι ℂ H)</span></span>
+<span class="source-line" id="L26"><a class="line-no" href="#L26" aria-label="Line 26">26</a><span class="line-code">    (p : ι → ℝ) (hp : Summable p) (s : Finset ι) :</span></span>
+<span class="source-line" id="L27"><a class="line-no" href="#L27" aria-label="Line 27">27</a><span class="line-code">    InfiniteFiniteCorner.matrixOf (fun i : s ↦ b i) (vectorMixture b p).1 =</span></span>
+<span class="source-line" id="L28"><a class="line-no" href="#L28" aria-label="Line 28">28</a><span class="line-code">      Matrix.diagonal (fun i : s ↦ (p i : ℂ)) := by</span></span>
+<span class="source-line" id="L29"><a class="line-no" href="#L29" aria-label="Line 29">29</a><span class="line-code">  classical</span></span>
+<span class="source-line" id="L30"><a class="line-no" href="#L30" aria-label="Line 30">30</a><span class="line-code">  ext i j</span></span>
+<span class="source-line" id="L31"><a class="line-no" href="#L31" aria-label="Line 31">31</a><span class="line-code">  change ⟪b i, (vectorMixture b p).1 (b j)⟫_ℂ = _</span></span>
+<span class="source-line" id="L32"><a class="line-no" href="#L32" aria-label="Line 32">32</a><span class="line-code">  rw [InfiniteOccupationStates.vectorMixture_apply_basis b p hp j, inner_smul_right,</span></span>
+<span class="source-line" id="L33"><a class="line-no" href="#L33" aria-label="Line 33">33</a><span class="line-code">    orthonormal_iff_ite.mp b.orthonormal]</span></span>
+<span class="source-line" id="L34"><a class="line-no" href="#L34" aria-label="Line 34">34</a><span class="line-code">  by_cases hij : i = j</span></span>
+<span class="source-line" id="L35"><a class="line-no" href="#L35" aria-label="Line 35">35</a><span class="line-code">  · subst j</span></span>
+<span class="source-line" id="L36"><a class="line-no" href="#L36" aria-label="Line 36">36</a><span class="line-code">    simp</span></span>
+<span class="source-line" id="L37"><a class="line-no" href="#L37" aria-label="Line 37">37</a><span class="line-code">  · have hval : (i : ι) ≠ j := fun h ↦ hij (Subtype.ext h)</span></span>
+<span class="source-line" id="L38"><a class="line-no" href="#L38" aria-label="Line 38">38</a><span class="line-code">    simp [hij, hval]</span></span>
+<span class="source-line" id="L39"><a class="line-no" href="#L39" aria-label="Line 39">39</a><span class="line-code"> </span></span>
+<span class="source-line" id="L40"><a class="line-no" href="#L40" aria-label="Line 40">40</a><span class="line-code">/-- Actual infinite-dimensional fidelity of arbitrary nonnegative summable</span></span>
+<span class="source-line" id="L41"><a class="line-no" href="#L41" aria-label="Line 41">41</a><span class="line-code">diagonal operators equals their countable Hellinger affinity. -/</span></span>
+<span class="source-line" id="L42"><a class="line-no" href="#L42" aria-label="Line 42">42</a><span class="line-code">theorem fidelity_vectorMixture (b : HilbertBasis ι ℂ H) (p q : ι → ℝ)</span></span>
+<span class="source-line" id="L43"><a class="line-no" href="#L43" aria-label="Line 43">43</a><span class="line-code">    (hp0 : ∀ i, 0 ≤ p i) (hq0 : ∀ i, 0 ≤ q i)</span></span>
+<span class="source-line" id="L44"><a class="line-no" href="#L44" aria-label="Line 44">44</a><span class="line-code">    (hp : Summable p) (hq : Summable q) :</span></span>
+<span class="source-line" id="L45"><a class="line-no" href="#L45" aria-label="Line 45">45</a><span class="line-code">    fidelity (vectorMixture b p).1 (vectorMixture b q).1</span></span>
+<span class="source-line" id="L46"><a class="line-no" href="#L46" aria-label="Line 46">46</a><span class="line-code">      (vectorMixture_nonneg b b.orthonormal.norm_eq_one p hp hp0)</span></span>
+<span class="source-line" id="L47"><a class="line-no" href="#L47" aria-label="Line 47">47</a><span class="line-code">      (vectorMixture_nonneg b b.orthonormal.norm_eq_one q hq hq0)</span></span>
+<span class="source-line" id="L48"><a class="line-no" href="#L48" aria-label="Line 48">48</a><span class="line-code">      (vectorMixture b p).2 (vectorMixture b q).2 = CountableScheffe.affinity p q := by</span></span>
+<span class="source-line" id="L49"><a class="line-no" href="#L49" aria-label="Line 49">49</a><span class="line-code">  classical</span></span>
+<span class="source-line" id="L50"><a class="line-no" href="#L50" aria-label="Line 50">50</a><span class="line-code">  let A := vectorMixture b p</span></span>
+<span class="source-line" id="L51"><a class="line-no" href="#L51" aria-label="Line 51">51</a><span class="line-code">  let B := vectorMixture b q</span></span>
+<span class="source-line" id="L52"><a class="line-no" href="#L52" aria-label="Line 52">52</a><span class="line-code">  have hA : 0 ≤ A.1 := vectorMixture_nonneg b b.orthonormal.norm_eq_one p hp hp0</span></span>
+<span class="source-line" id="L53"><a class="line-no" href="#L53" aria-label="Line 53">53</a><span class="line-code">  have hB : 0 ≤ B.1 := vectorMixture_nonneg b b.orthonormal.norm_eq_one q hq hq0</span></span>
+<span class="source-line" id="L54"><a class="line-no" href="#L54" aria-label="Line 54">54</a><span class="line-code">  let compress := fun (s : Finset ι) (T : TraceClass H) ↦</span></span>
+<span class="source-line" id="L55"><a class="line-no" href="#L55" aria-label="Line 55">55</a><span class="line-code">    sandwichCLM (basisProjection b s) (basisProjection b s) T</span></span>
+<span class="source-line" id="L56"><a class="line-no" href="#L56" aria-label="Line 56">56</a><span class="line-code">  have hpos (s : Finset ι) (T : TraceClass H) (hT : 0 ≤ T.1) :</span></span>
+<span class="source-line" id="L57"><a class="line-no" href="#L57" aria-label="Line 57">57</a><span class="line-code">      0 ≤ (compress s T).1 :=</span></span>
+<span class="source-line" id="L58"><a class="line-no" href="#L58" aria-label="Line 58">58</a><span class="line-code">    sandwichCLM_nonneg (basisProjection_isStarProjection b s).isSelfAdjoint T hT</span></span>
+<span class="source-line" id="L59"><a class="line-no" href="#L59" aria-label="Line 59">59</a><span class="line-code">  have hfid := tendsto_fidelity_traceClass (fun s ↦ compress s A) (fun s ↦ compress s B)</span></span>
+<span class="source-line" id="L60"><a class="line-no" href="#L60" aria-label="Line 60">60</a><span class="line-code">    A B (fun s ↦ hpos s A hA) (fun s ↦ hpos s B hB) hA hB</span></span>
+<span class="source-line" id="L61"><a class="line-no" href="#L61" aria-label="Line 61">61</a><span class="line-code">    (basis_sandwich_tendsto b A) (basis_sandwich_tendsto b B)</span></span>
+<span class="source-line" id="L62"><a class="line-no" href="#L62" aria-label="Line 62">62</a><span class="line-code">  have hfinite (s : Finset ι) :</span></span>
+<span class="source-line" id="L63"><a class="line-no" href="#L63" aria-label="Line 63">63</a><span class="line-code">      fidelity (compress s A).1 (compress s B).1 (hpos s A hA) (hpos s B hB)</span></span>
+<span class="source-line" id="L64"><a class="line-no" href="#L64" aria-label="Line 64">64</a><span class="line-code">        (compress s A).2 (compress s B).2 =</span></span>
+<span class="source-line" id="L65"><a class="line-no" href="#L65" aria-label="Line 65">65</a><span class="line-code">      ∑ i ∈ s, Real.sqrt (p i) * Real.sqrt (q i) := by</span></span>
+<span class="source-line" id="L66"><a class="line-no" href="#L66" aria-label="Line 66">66</a><span class="line-code">    let v : s → H := fun i ↦ b i</span></span>
+<span class="source-line" id="L67"><a class="line-no" href="#L67" aria-label="Line 67">67</a><span class="line-code">    have hv : Orthonormal ℂ v := InfiniteFiniteCorner.basisFamily_orthonormal b s</span></span>
+<span class="source-line" id="L68"><a class="line-no" href="#L68" aria-label="Line 68">68</a><span class="line-code">    have eF : fidelity (compress s A).1 (compress s B).1 (hpos s A hA) (hpos s B hB)</span></span>
+<span class="source-line" id="L69"><a class="line-no" href="#L69" aria-label="Line 69">69</a><span class="line-code">        (compress s A).2 (compress s B).2 =</span></span>
+<span class="source-line" id="L70"><a class="line-no" href="#L70" aria-label="Line 70">70</a><span class="line-code">        MatrixFidelity.fidelity (InfiniteFiniteCorner.matrixOf v A.1)</span></span>
+<span class="source-line" id="L71"><a class="line-no" href="#L71" aria-label="Line 71">71</a><span class="line-code">          (InfiniteFiniteCorner.matrixOf v B.1) := by</span></span>
+<span class="source-line" id="L72"><a class="line-no" href="#L72" aria-label="Line 72">72</a><span class="line-code">      simpa only [v, compress, InfiniteFiniteCorner.ofMatrix_matrixOf_basis, sandwichCLM_coe] using</span></span>
+<span class="source-line" id="L73"><a class="line-no" href="#L73" aria-label="Line 73">73</a><span class="line-code">        InfiniteFiniteCorner.fidelity_ofMatrix hv</span></span>
+<span class="source-line" id="L74"><a class="line-no" href="#L74" aria-label="Line 74">74</a><span class="line-code">          (InfiniteFiniteCorner.matrixOf_posSemidef v hA)</span></span>
+<span class="source-line" id="L75"><a class="line-no" href="#L75" aria-label="Line 75">75</a><span class="line-code">          (InfiniteFiniteCorner.matrixOf_posSemidef v hB)</span></span>
+<span class="source-line" id="L76"><a class="line-no" href="#L76" aria-label="Line 76">76</a><span class="line-code">    rw [eF]</span></span>
+<span class="source-line" id="L77"><a class="line-no" href="#L77" aria-label="Line 77">77</a><span class="line-code">    change MatrixFidelity.fidelity</span></span>
+<span class="source-line" id="L78"><a class="line-no" href="#L78" aria-label="Line 78">78</a><span class="line-code">      (InfiniteFiniteCorner.matrixOf (fun i : s ↦ b i) (vectorMixture b p).1)</span></span>
+<span class="source-line" id="L79"><a class="line-no" href="#L79" aria-label="Line 79">79</a><span class="line-code">      (InfiniteFiniteCorner.matrixOf (fun i : s ↦ b i) (vectorMixture b q).1) = _</span></span>
+<span class="source-line" id="L80"><a class="line-no" href="#L80" aria-label="Line 80">80</a><span class="line-code">    rw [matrixOf_vectorMixture_basis b p hp s, matrixOf_vectorMixture_basis b q hq s,</span></span>
+<span class="source-line" id="L81"><a class="line-no" href="#L81" aria-label="Line 81">81</a><span class="line-code">      MatrixFidelity.fidelity_diagonal_real _ _ (fun i : s ↦ hp0 i) (fun i : s ↦ hq0 i)]</span></span>
+<span class="source-line" id="L82"><a class="line-no" href="#L82" aria-label="Line 82">82</a><span class="line-code">    exact Finset.sum_coe_sort s (fun i ↦ Real.sqrt (p i) * Real.sqrt (q i))</span></span>
+<span class="source-line" id="L83"><a class="line-no" href="#L83" aria-label="Line 83">83</a><span class="line-code">  simp_rw [hfinite] at hfid</span></span>
+<span class="source-line" id="L84"><a class="line-no" href="#L84" aria-label="Line 84">84</a><span class="line-code">  exact tendsto_nhds_unique hfid (CountableScheffe.affinity_summable p q hp0 hq0 hp hq).hasSum</span></span>
+<span class="source-line" id="L85"><a class="line-no" href="#L85" aria-label="Line 85">85</a><span class="line-code"> </span></span>
+<span class="source-line" id="L86"><a class="line-no" href="#L86" aria-label="Line 86">86</a><span class="line-code">theorem stateFidelity_vectorMixture (b : HilbertBasis ι ℂ H) (p q : ι → ℝ)</span></span>
+<span class="source-line" id="L87"><a class="line-no" href="#L87" aria-label="Line 87">87</a><span class="line-code">    (hp0 : ∀ i, 0 ≤ p i) (hq0 : ∀ i, 0 ≤ q i) (hp : HasSum p 1) (hq : HasSum q 1) :</span></span>
+<span class="source-line" id="L88"><a class="line-no" href="#L88" aria-label="Line 88">88</a><span class="line-code">    stateFidelity (DensityState.vectorMixture b b.orthonormal.norm_eq_one p hp0 hp)</span></span>
+<span class="source-line" id="L89"><a class="line-no" href="#L89" aria-label="Line 89">89</a><span class="line-code">      (DensityState.vectorMixture b b.orthonormal.norm_eq_one q hq0 hq) =</span></span>
+<span class="source-line" id="L90"><a class="line-no" href="#L90" aria-label="Line 90">90</a><span class="line-code">      CountableScheffe.affinity p q :=</span></span>
+<span class="source-line" id="L91"><a class="line-no" href="#L91" aria-label="Line 91">91</a><span class="line-code">  fidelity_vectorMixture b p q hp0 hq0 hp.summable hq.summable</span></span>
+<span class="source-line" id="L92"><a class="line-no" href="#L92" aria-label="Line 92">92</a><span class="line-code"> </span></span>
+<span class="source-line" id="L93"><a class="line-no" href="#L93" aria-label="Line 93">93</a><span class="line-code">/-- A one-mode geometric thermal density operator in an actual occupation basis. -/</span></span>
+<span class="source-line" id="L94"><a class="line-no" href="#L94" aria-label="Line 94">94</a><span class="line-code">def geometricState (b : HilbertBasis ℕ ℂ H) (q : ℝ) (hq0 : 0 ≤ q) (hq1 : q &lt; 1) :</span></span>
+<span class="source-line" id="L95"><a class="line-no" href="#L95" aria-label="Line 95">95</a><span class="line-code">    DensityState H :=</span></span>
+<span class="source-line" id="L96"><a class="line-no" href="#L96" aria-label="Line 96">96</a><span class="line-code">  DensityState.vectorMixture b b.orthonormal.norm_eq_one (Thermal.geometric q)</span></span>
+<span class="source-line" id="L97"><a class="line-no" href="#L97" aria-label="Line 97">97</a><span class="line-code">    (Thermal.geometric_nonneg hq0 hq1.le) (Thermal.geometric_hasSum hq0 hq1)</span></span>
+<span class="source-line" id="L98"><a class="line-no" href="#L98" aria-label="Line 98">98</a><span class="line-code"> </span></span>
+<span class="source-line" id="L99"><a class="line-no" href="#L99" aria-label="Line 99">99</a><span class="line-code">/-- The scalar thermal formula is the fidelity of the actual normalized</span></span>
+<span class="source-line" id="L100"><a class="line-no" href="#L100" aria-label="Line 100">100</a><span class="line-code">infinite-dimensional thermal density operators. -/</span></span>
+<span class="source-line" id="L101"><a class="line-no" href="#L101" aria-label="Line 101">101</a><span class="line-code">theorem stateFidelity_geometric (b : HilbertBasis ℕ ℂ H) (q x : ℝ)</span></span>
+<span class="source-line" id="L102"><a class="line-no" href="#L102" aria-label="Line 102">102</a><span class="line-code">    (hq0 : 0 ≤ q) (hq1 : q &lt; 1) (hx0 : 0 ≤ x) (hx1 : x &lt; 1) :</span></span>
+<span class="source-line" id="L103"><a class="line-no" href="#L103" aria-label="Line 103">103</a><span class="line-code">    stateFidelity (geometricState b q hq0 hq1) (geometricState b x hx0 hx1) =</span></span>
+<span class="source-line" id="L104"><a class="line-no" href="#L104" aria-label="Line 104">104</a><span class="line-code">      Thermal.fidelity q x := by</span></span>
+<span class="source-line" id="L105"><a class="line-no" href="#L105" aria-label="Line 105">105</a><span class="line-code">  rw [geometricState, geometricState, stateFidelity_vectorMixture]</span></span>
+<span class="source-line" id="L106"><a class="line-no" href="#L106" aria-label="Line 106">106</a><span class="line-code">  unfold CountableScheffe.affinity</span></span>
+<span class="source-line" id="L107"><a class="line-no" href="#L107" aria-label="Line 107">107</a><span class="line-code">  simp_rw [← Real.sqrt_mul (Thermal.geometric_nonneg hq0 hq1.le _)]</span></span>
+<span class="source-line" id="L108"><a class="line-no" href="#L108" aria-label="Line 108">108</a><span class="line-code">  exact Thermal.affinity_tsum hq0 hq1 hx0 hx1</span></span>
+<span class="source-line" id="L109"><a class="line-no" href="#L109" aria-label="Line 109">109</a><span class="line-code"> </span></span>
+<span class="source-line" id="L110"><a class="line-no" href="#L110" aria-label="Line 110">110</a><span class="line-code">/-- The actual multimode product-geometric occupation density operator. -/</span></span>
+<span class="source-line" id="L111"><a class="line-no" href="#L111" aria-label="Line 111">111</a><span class="line-code">def productGeometricState {s : ℕ} (b : HilbertBasis (Fin s → ℕ) ℂ H)</span></span>
+<span class="source-line" id="L112"><a class="line-no" href="#L112" aria-label="Line 112">112</a><span class="line-code">    (q : Fin s → ℝ) (hq0 : ∀ i, 0 ≤ q i) (hq1 : ∀ i, q i &lt; 1) : DensityState H :=</span></span>
+<span class="source-line" id="L113"><a class="line-no" href="#L113" aria-label="Line 113">113</a><span class="line-code">  DensityState.vectorMixture b b.orthonormal.norm_eq_one</span></span>
+<span class="source-line" id="L114"><a class="line-no" href="#L114" aria-label="Line 114">114</a><span class="line-code">    (fun k ↦ ∏ i, Thermal.geometric (q i) (k i))</span></span>
+<span class="source-line" id="L115"><a class="line-no" href="#L115" aria-label="Line 115">115</a><span class="line-code">    (fun k ↦ Finset.prod_nonneg (fun i _ ↦ Thermal.geometric_nonneg (hq0 i) (hq1 i).le (k i)))</span></span>
+<span class="source-line" id="L116"><a class="line-no" href="#L116" aria-label="Line 116">116</a><span class="line-code">    (Thermal.multimode_geometric_hasSum hq0 hq1)</span></span>
+<span class="source-line" id="L117"><a class="line-no" href="#L117" aria-label="Line 117">117</a><span class="line-code"> </span></span>
+<span class="source-line" id="L118"><a class="line-no" href="#L118" aria-label="Line 118">118</a><span class="line-code">/-- Thermal fidelity is multiplicative on actual multimode density operators. -/</span></span>
+<span class="source-line" id="L119"><a class="line-no" href="#L119" aria-label="Line 119">119</a><span class="line-code">theorem stateFidelity_productGeometric {s : ℕ} (b : HilbertBasis (Fin s → ℕ) ℂ H)</span></span>
+<span class="source-line" id="L120"><a class="line-no" href="#L120" aria-label="Line 120">120</a><span class="line-code">    (q x : Fin s → ℝ) (hq0 : ∀ i, 0 ≤ q i) (hq1 : ∀ i, q i &lt; 1)</span></span>
+<span class="source-line" id="L121"><a class="line-no" href="#L121" aria-label="Line 121">121</a><span class="line-code">    (hx0 : ∀ i, 0 ≤ x i) (hx1 : ∀ i, x i &lt; 1) :</span></span>
+<span class="source-line" id="L122"><a class="line-no" href="#L122" aria-label="Line 122">122</a><span class="line-code">    stateFidelity (productGeometricState b q hq0 hq1)</span></span>
+<span class="source-line" id="L123"><a class="line-no" href="#L123" aria-label="Line 123">123</a><span class="line-code">      (productGeometricState b x hx0 hx1) = ∏ i, Thermal.fidelity (q i) (x i) := by</span></span>
+<span class="source-line" id="L124"><a class="line-no" href="#L124" aria-label="Line 124">124</a><span class="line-code">  rw [productGeometricState, productGeometricState, stateFidelity_vectorMixture]</span></span>
+<span class="source-line" id="L125"><a class="line-no" href="#L125" aria-label="Line 125">125</a><span class="line-code">  unfold CountableScheffe.affinity</span></span>
+<span class="source-line" id="L126"><a class="line-no" href="#L126" aria-label="Line 126">126</a><span class="line-code">  have hp (k : Fin s → ℕ) : 0 ≤ ∏ i, Thermal.geometric (q i) (k i) :=</span></span>
+<span class="source-line" id="L127"><a class="line-no" href="#L127" aria-label="Line 127">127</a><span class="line-code">    Finset.prod_nonneg (fun i _ ↦ Thermal.geometric_nonneg (hq0 i) (hq1 i).le (k i))</span></span>
+<span class="source-line" id="L128"><a class="line-no" href="#L128" aria-label="Line 128">128</a><span class="line-code">  simp_rw [← Real.sqrt_mul (hp _)]</span></span>
+<span class="source-line" id="L129"><a class="line-no" href="#L129" aria-label="Line 129">129</a><span class="line-code">  exact (Thermal.multimode_affinity_of_product_laws hq0 hq1 hx0 hx1).tsum_eq</span></span>
+<span class="source-line" id="L130"><a class="line-no" href="#L130" aria-label="Line 130">130</a><span class="line-code"> </span></span>
+<span class="source-line" id="L131"><a class="line-no" href="#L131" aria-label="Line 131">131</a><span class="line-code">end</span></span>
+<span class="source-line" id="L132"><a class="line-no" href="#L132" aria-label="Line 132">132</a><span class="line-code">end Cloning.InfiniteDiagonalFidelity</span></span>
+</code></pre></div></main>
+<footer class="footer">English guides explain the argument. Lean source and its hypotheses determine the formal claims.
+<a href="../verification.html">Audit evidence</a> · <a href="../scope.html">Scope</a></footer>
+</div></div></body></html>

@@ -1,0 +1,16 @@
+{
+  "status": "passed",
+  "checkpoint": "verification/kernel-compatible-pass",
+  "modules": 982,
+  "source_theorems_and_lemmas": 6350,
+  "audited_constants": 14345,
+  "manifest_files_checked": 995,
+  "lean_invoked": false,
+  "scope": "saved full-project certificate integrity and exact current source/config match",
+  "run_sha256": "6b2c09f61388362d9ff3ae3f63285b9dd09e0cd95254150273bacba6cd9c799a",
+  "recorded_utc": "2026-10-04T05:56:05.027889+00:00",
+  "command": [
+    "python3",
+    "scripts/check_checkpoint.py"
+  ]
+}

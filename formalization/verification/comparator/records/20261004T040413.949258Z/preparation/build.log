@@ -1,0 +1,14 @@
+⚠ [2/3] Built Solution (9.9s)
+warning: Solution.lean:119:18: unused variable `hr`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Solution.lean:231:32: unused variable `hK`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Solution.lean:335:22: unused variable `hp`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Solution.lean:425:49: unused variable `hW`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+Build completed successfully (3 jobs).

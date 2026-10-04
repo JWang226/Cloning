@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="An offline guide to the Lean formalization of asymptotic mixed-state quantum cloning. Exact source, proof routes, and audited scope.">
+<title>BosonicNumberLaw · Lean source · Cloning proof wiki</title>
+<link rel="stylesheet" href="../assets/site.css?v=1811c00ea983">
+<script>window.PROOF_ROOT="../";</script>
+<script defer src="../assets/vendor/katex/katex.min.js"></script>
+<script defer src="../assets/search-index.js?v=850aee981cdc"></script>
+<script defer src="../assets/site.js?v=4bfaac1f06b1"></script>
+</head><body><a class="skip-link" href="#main">Skip to content</a>
+<div class="site-shell"><aside class="sidebar" id="site-navigation">
+<a class="brand" href="../index.html"><span class="brand-mark">C</span><span>Cloning<span class="small muted">A Lean proof wiki</span></span></a>
+<nav aria-label="Main navigation"><div class="nav-section">Explore</div><a class="nav-link" href="../index.html">Overview</a><a class="nav-link" href="../guides/index.html">Proof guide</a><a class="nav-link" href="../results/index.html">27 named results</a><a class="nav-link active" href="../source/index.html" aria-current="page">Lean source</a><a class="nav-link" href="../verification.html">Verification</a><a class="nav-link" href="../scope.html">Scope &amp; conventions</a>
+<div class="nav-section">Read the proof</div><a class="nav-link" href="../guides/physical-problem.html"><span class="nav-number">01</span> The physical problem and its conventions</a><a class="nav-link" href="../guides/young-laws.html"><span class="nav-number">02</span> Young labels: concentration and the local Gaussian law</a><a class="nav-link" href="../guides/cartan-sectors.html"><span class="nav-number">03</span> From PBW frames to uniform Cartan-sector fidelity</a><a class="nav-link" href="../guides/lifted-kernels.html"><span class="nav-number">04</span> Lifted channels, randomized dilation, and factorization</a><a class="nav-link" href="../guides/gaussian-optimum.html"><span class="nav-number">05</span> Gaussian amplification against arbitrary competitors</a><a class="nav-link" href="../guides/physical-lan.html"><span class="nav-number">06</span> Constructed LAN and fidelity transfer</a><a class="nav-link" href="../guides/known-spectrum.html"><span class="nav-number">07</span> The known-spectrum optimum</a><a class="nav-link" href="../guides/unknown-spectrum.html"><span class="nav-number">08</span> One universal cloner and the compact-set optimum</a><a class="nav-link" href="../guides/grassmann.html"><span class="nav-number">09</span> Exact rank compression and projector-state optimality</a><a class="nav-link" href="../guides/purify-clone-trace.html"><span class="nav-number">10</span> Purify–clone–trace: exact channels, limits, and guarantees</a><a class="nav-link" href="../guides/small-errors.html"><span class="nav-number">11</span> Small errors, rank boundaries, and noncommuting limits</a><a class="nav-link" href="../guides/spectral-comparison.html"><span class="nav-number">12</span> Spectral order and what is known for all states</a></nav>
+<div class="sidebar-footer"><span class="badge">Lean 4</span><p>Manuscript → proof → source</p>
+<a href="https://github.com/JWang226/Cloning">Repository ↗</a></div></aside>
+<div class="main-shell"><header class="topbar">
+<button id="nav-toggle" class="button secondary" aria-controls="site-navigation" aria-expanded="false" aria-label="Toggle navigation">Menu</button>
+<div class="search-wrap"><label class="sr-only" for="site-search">Search the proof wiki</label>
+<input id="site-search" type="search" placeholder="Search results, concepts, or Lean names…" autocomplete="off" aria-controls="search-results" aria-expanded="false" role="combobox" aria-autocomplete="list">
+<div id="search-results" class="search-results" role="listbox" hidden></div></div>
+<span class="small muted topbar-label">Offline · exact source</span></header>
+<main id="main" class="content"><div class="eyebrow">Exact Lean source</div><h1 class="source-title">BosonicNumberLaw</h1><p><code>formalization/Cloning/BosonicNumberLaw.lean</code></p><p class="small muted">Source hash: <code>7d30996110bc5994a1b5fcfba4c8a50b622fab0d766ca077dae36e687bdeb15b</code></p><div class="actions"><a class="button secondary" href="raw/Cloning.BosonicNumberLaw.lean">Download .lean</a><a class="button secondary" href="https://github.com/JWang226/Cloning/blob/main/formalization/Cloning/BosonicNumberLaw.lean">View on GitHub ↗</a><a href="index.html">All modules</a></div><p class="small muted">Full source copied without mathematical changes from the snapshot whose input hash matches the passing audit. Select a line number for a stable source pointer.</p><details><summary>Declarations in this module</summary><div class="module-declarations"><a href="#L22"><span class="badge">definition</span> <code>Cloning.BosonicNumberLaw.seededLaw</code></a><a href="#L26"><span class="badge">definition</span> <code>Cloning.BosonicNumberLaw.pgfBase</code></a><a href="#L28"><span class="badge">theorem</span> <code>Cloning.BosonicNumberLaw.seededLaw_nonneg</code></a><a href="#L35"><span class="badge">theorem</span> <code>Cloning.BosonicNumberLaw.seededLaw_pgf_hasSum</code></a><a href="#L49"><span class="badge">theorem</span> <code>Cloning.BosonicNumberLaw.seededLaw_hasSum</code></a><a href="#L55"><span class="badge">theorem</span> <code>Cloning.BosonicNumberLaw.seededLaw_zero</code></a><a href="#L59"><span class="badge">theorem</span> <code>Cloning.BosonicNumberLaw.pgfBase_nonneg</code></a><a href="#L66"><span class="badge">theorem</span> <code>Cloning.BosonicNumberLaw.pgfBase_le_one</code></a><a href="#L73"><span class="badge">theorem</span> <code>Cloning.BosonicNumberLaw.seededLaw_moment_le</code></a><a href="#L86"><span class="badge">definition</span> <code>Cloning.BosonicNumberLaw.transition</code></a><a href="#L89"><span class="badge">definition</span> <code>Cloning.BosonicNumberLaw.thermalOutput</code></a><a href="#L93"><span class="badge">theorem</span> <code>Cloning.BosonicNumberLaw.thermalOutput_eq</code></a><a href="#L105"><span class="badge">theorem</span> <code>Cloning.BosonicNumberLaw.thermalOutput_eq_tsum</code></a><a href="#L117"><span class="badge">theorem</span> <code>Cloning.BosonicNumberLaw.thermalOutput_gain</code></a><a href="#L124"><span class="badge">definition</span> <code>Cloning.BosonicNumberLaw.productLaw</code></a><a href="#L127"><span class="badge">definition</span> <code>Cloning.BosonicNumberLaw.productTest</code></a><a href="#L129"><span class="badge">theorem</span> <code>Cloning.BosonicNumberLaw.productLaw_nonneg</code></a><a href="#L134"><span class="badge">theorem</span> <code>Cloning.BosonicNumberLaw.productLaw_hasSum</code></a><a href="#L143"><span class="badge">theorem</span> <code>Cloning.BosonicNumberLaw.productLaw_pgf_hasSum</code></a><a href="#L156"><span class="badge">theorem</span> <code>Cloning.BosonicNumberLaw.productLaw_moment_le</code></a><a href="#L168"><span class="badge">theorem</span> <code>Cloning.BosonicNumberLaw.productTest_nonneg</code></a><a href="#L172"><span class="badge">theorem</span> <code>Cloning.BosonicNumberLaw.productTest_le_one</code></a><a href="#L179"><span class="badge">definition</span> <code>Cloning.BosonicNumberLaw.mixtureLaw</code></a><a href="#L182"><span class="badge">theorem</span> <code>Cloning.BosonicNumberLaw.mixtureLaw_nonneg</code></a><a href="#L187"><span class="badge">theorem</span> <code>Cloning.BosonicNumberLaw.mixtureJoint_summable</code></a><a href="#L200"><span class="badge">theorem</span> <code>Cloning.BosonicNumberLaw.mixtureLaw_hasSum</code></a><a href="#L215"><span class="badge">theorem</span> <code>Cloning.BosonicNumberLaw.mixtureLaw_pgf_eq</code></a><a href="#L236"><span class="badge">theorem</span> <code>Cloning.BosonicNumberLaw.mixtureLaw_moment_le</code></a><a href="#L261"><span class="badge">theorem</span> <code>Cloning.BosonicNumberLaw.seededLaw_witness_hasSum</code></a><a href="#L276"><span class="badge">theorem</span> <code>Cloning.BosonicNumberLaw.witness_pgfBase_eq_fidelity</code></a><a href="#L285"><span class="badge">theorem</span> <code>Cloning.BosonicNumberLaw.seededLaw_witness_moment_le</code></a><a href="#L300"><span class="badge">theorem</span> <code>Cloning.BosonicNumberLaw.mixtureLaw_witness_moment_le</code></a></div></details><div class="code-wrap source-wrap"><pre class="source-lines"><code><span class="source-line" id="L1"><a class="line-no" href="#L1" aria-label="Line 1">1</a><span class="line-code">import Cloning.Thermal</span></span>
+<span class="source-line" id="L2"><a class="line-no" href="#L2" aria-label="Line 2">2</a><span class="line-code">import Mathlib.Analysis.SpecificLimits.Normed</span></span>
+<span class="source-line" id="L3"><a class="line-no" href="#L3" aria-label="Line 3">3</a><span class="line-code"> </span></span>
+<span class="source-line" id="L4"><a class="line-no" href="#L4" aria-label="Line 4">4</a><span class="line-code">/-!</span></span>
+<span class="source-line" id="L5"><a class="line-no" href="#L5" aria-label="Line 5">5</a><span class="line-code"># Seeded bosonic number laws and thermal amplification</span></span>
+<span class="source-line" id="L6"><a class="line-no" href="#L6" aria-label="Line 6">6</a><span class="line-code"> </span></span>
+<span class="source-line" id="L7"><a class="line-no" href="#L7" aria-label="Line 7">7</a><span class="line-code">The negative-binomial coefficients are normalized and their generating</span></span>
+<span class="source-line" id="L8"><a class="line-no" href="#L8" aria-label="Line 8">8</a><span class="line-code">function is evaluated as a convergent series. Finite binomial convolution</span></span>
+<span class="source-line" id="L9"><a class="line-no" href="#L9" aria-label="Line 9">9</a><span class="line-code">identifies the amplified thermal input law. These are exact scalar formulas;</span></span>
+<span class="source-line" id="L10"><a class="line-no" href="#L10" aria-label="Line 10">10</a><span class="line-code">the separate amplifier module supplies the operator realization.</span></span>
+<span class="source-line" id="L11"><a class="line-no" href="#L11" aria-label="Line 11">11</a><span class="line-code">-/</span></span>
+<span class="source-line" id="L12"><a class="line-no" href="#L12" aria-label="Line 12">12</a><span class="line-code"> </span></span>
+<span class="source-line" id="L13"><a class="line-no" href="#L13" aria-label="Line 13">13</a><span class="line-code">noncomputable section</span></span>
+<span class="source-line" id="L14"><a class="line-no" href="#L14" aria-label="Line 14">14</a><span class="line-code">open scoped BigOperators Topology</span></span>
+<span class="source-line" id="L15"><a class="line-no" href="#L15" aria-label="Line 15">15</a><span class="line-code"> </span></span>
+<span class="source-line" id="L16"><a class="line-no" href="#L16" aria-label="Line 16">16</a><span class="line-code">namespace Cloning.BosonicNumberLaw</span></span>
+<span class="source-line" id="L17"><a class="line-no" href="#L17" aria-label="Line 17">17</a><span class="line-code"> </span></span>
+<span class="source-line" id="L18"><a class="line-no" href="#L18" aria-label="Line 18">18</a><span class="line-code">set_option backward.isDefEq.respectTransparency false</span></span>
+<span class="source-line" id="L19"><a class="line-no" href="#L19" aria-label="Line 19">19</a><span class="line-code">set_option maxHeartbeats 600000</span></span>
+<span class="source-line" id="L20"><a class="line-no" href="#L20" aria-label="Line 20">20</a><span class="line-code"> </span></span>
+<span class="source-line" id="L21"><a class="line-no" href="#L21" aria-label="Line 21">21</a><span class="line-code">/-- Number probabilities for vacuum signal and an idler seed of `l` quanta. -/</span></span>
+<span class="source-line" id="L22"><a class="line-no" href="#L22" aria-label="Line 22">22</a><span class="line-code">def seededLaw (r : ℝ) (l k : ℕ) : ℝ :=</span></span>
+<span class="source-line" id="L23"><a class="line-no" href="#L23" aria-label="Line 23">23</a><span class="line-code">  ((l + k).choose l : ℝ) * (1 - r) ^ (l + 1) * r ^ k</span></span>
+<span class="source-line" id="L24"><a class="line-no" href="#L24" aria-label="Line 24">24</a><span class="line-code"> </span></span>
+<span class="source-line" id="L25"><a class="line-no" href="#L25" aria-label="Line 25">25</a><span class="line-code">/-- The geometric probability generating function. -/</span></span>
+<span class="source-line" id="L26"><a class="line-no" href="#L26" aria-label="Line 26">26</a><span class="line-code">def pgfBase (r z : ℝ) : ℝ := (1 - r) / (1 - r * z)</span></span>
+<span class="source-line" id="L27"><a class="line-no" href="#L27" aria-label="Line 27">27</a><span class="line-code"> </span></span>
+<span class="source-line" id="L28"><a class="line-no" href="#L28" aria-label="Line 28">28</a><span class="line-code">theorem seededLaw_nonneg {r : ℝ} (hr0 : 0 ≤ r) (hr1 : r &lt; 1) (l k : ℕ) :</span></span>
+<span class="source-line" id="L29"><a class="line-no" href="#L29" aria-label="Line 29">29</a><span class="line-code">    0 ≤ seededLaw r l k := by</span></span>
+<span class="source-line" id="L30"><a class="line-no" href="#L30" aria-label="Line 30">30</a><span class="line-code">  unfold seededLaw</span></span>
+<span class="source-line" id="L31"><a class="line-no" href="#L31" aria-label="Line 31">31</a><span class="line-code">  exact mul_nonneg (mul_nonneg (Nat.cast_nonneg _) (pow_nonneg (by linarith) _))</span></span>
+<span class="source-line" id="L32"><a class="line-no" href="#L32" aria-label="Line 32">32</a><span class="line-code">    (pow_nonneg hr0 _)</span></span>
+<span class="source-line" id="L33"><a class="line-no" href="#L33" aria-label="Line 33">33</a><span class="line-code"> </span></span>
+<span class="source-line" id="L34"><a class="line-no" href="#L34" aria-label="Line 34">34</a><span class="line-code">/-- Exact seeded number generating function, including `z=1` and zero noise. -/</span></span>
+<span class="source-line" id="L35"><a class="line-no" href="#L35" aria-label="Line 35">35</a><span class="line-code">theorem seededLaw_pgf_hasSum {r z : ℝ} (hr0 : 0 ≤ r) (hr1 : r &lt; 1)</span></span>
+<span class="source-line" id="L36"><a class="line-no" href="#L36" aria-label="Line 36">36</a><span class="line-code">    (hz0 : 0 ≤ z) (hz1 : z ≤ 1) (l : ℕ) :</span></span>
+<span class="source-line" id="L37"><a class="line-no" href="#L37" aria-label="Line 37">37</a><span class="line-code">    HasSum (fun k ↦ seededLaw r l k * z ^ k) (pgfBase r z ^ (l + 1)) := by</span></span>
+<span class="source-line" id="L38"><a class="line-no" href="#L38" aria-label="Line 38">38</a><span class="line-code">  have hrz0 : 0 ≤ r * z := mul_nonneg hr0 hz0</span></span>
+<span class="source-line" id="L39"><a class="line-no" href="#L39" aria-label="Line 39">39</a><span class="line-code">  have hrz1 : r * z &lt; 1 := (mul_le_of_le_one_right hr0 hz1).trans_lt hr1</span></span>
+<span class="source-line" id="L40"><a class="line-no" href="#L40" aria-label="Line 40">40</a><span class="line-code">  have hnorm : ‖r * z‖ &lt; 1 := by simpa only [Real.norm_eq_abs, abs_of_nonneg hrz0]</span></span>
+<span class="source-line" id="L41"><a class="line-no" href="#L41" aria-label="Line 41">41</a><span class="line-code">  have hs := (hasSum_choose_mul_geometric_of_norm_lt_one l hnorm).mul_left ((1 - r) ^ (l + 1))</span></span>
+<span class="source-line" id="L42"><a class="line-no" href="#L42" aria-label="Line 42">42</a><span class="line-code">  convert hs using 1</span></span>
+<span class="source-line" id="L43"><a class="line-no" href="#L43" aria-label="Line 43">43</a><span class="line-code">  · ext k</span></span>
+<span class="source-line" id="L44"><a class="line-no" href="#L44" aria-label="Line 44">44</a><span class="line-code">    simp only [seededLaw, Nat.add_comm, mul_pow]</span></span>
+<span class="source-line" id="L45"><a class="line-no" href="#L45" aria-label="Line 45">45</a><span class="line-code">    ring</span></span>
+<span class="source-line" id="L46"><a class="line-no" href="#L46" aria-label="Line 46">46</a><span class="line-code">  · simp only [pgfBase, div_pow]</span></span>
+<span class="source-line" id="L47"><a class="line-no" href="#L47" aria-label="Line 47">47</a><span class="line-code">    ring</span></span>
+<span class="source-line" id="L48"><a class="line-no" href="#L48" aria-label="Line 48">48</a><span class="line-code"> </span></span>
+<span class="source-line" id="L49"><a class="line-no" href="#L49" aria-label="Line 49">49</a><span class="line-code">theorem seededLaw_hasSum {r : ℝ} (hr0 : 0 ≤ r) (hr1 : r &lt; 1) (l : ℕ) :</span></span>
+<span class="source-line" id="L50"><a class="line-no" href="#L50" aria-label="Line 50">50</a><span class="line-code">    HasSum (seededLaw r l) 1 := by</span></span>
+<span class="source-line" id="L51"><a class="line-no" href="#L51" aria-label="Line 51">51</a><span class="line-code">  have hne : 1 - r ≠ 0 := by linarith</span></span>
+<span class="source-line" id="L52"><a class="line-no" href="#L52" aria-label="Line 52">52</a><span class="line-code">  simpa only [one_pow, mul_one, pgfBase, div_self hne] using</span></span>
+<span class="source-line" id="L53"><a class="line-no" href="#L53" aria-label="Line 53">53</a><span class="line-code">    seededLaw_pgf_hasSum hr0 hr1 (show (0 : ℝ) ≤ 1 by norm_num) le_rfl l</span></span>
+<span class="source-line" id="L54"><a class="line-no" href="#L54" aria-label="Line 54">54</a><span class="line-code"> </span></span>
+<span class="source-line" id="L55"><a class="line-no" href="#L55" aria-label="Line 55">55</a><span class="line-code">theorem seededLaw_zero (r : ℝ) (k : ℕ) :</span></span>
+<span class="source-line" id="L56"><a class="line-no" href="#L56" aria-label="Line 56">56</a><span class="line-code">    seededLaw r 0 k = Cloning.Thermal.geometric r k := by</span></span>
+<span class="source-line" id="L57"><a class="line-no" href="#L57" aria-label="Line 57">57</a><span class="line-code">  simp [seededLaw, Cloning.Thermal.geometric]</span></span>
+<span class="source-line" id="L58"><a class="line-no" href="#L58" aria-label="Line 58">58</a><span class="line-code"> </span></span>
+<span class="source-line" id="L59"><a class="line-no" href="#L59" aria-label="Line 59">59</a><span class="line-code">theorem pgfBase_nonneg {r z : ℝ} (hr0 : 0 ≤ r) (hr1 : r &lt; 1)</span></span>
+<span class="source-line" id="L60"><a class="line-no" href="#L60" aria-label="Line 60">60</a><span class="line-code">    (hz1 : z ≤ 1) : 0 ≤ pgfBase r z := by</span></span>
+<span class="source-line" id="L61"><a class="line-no" href="#L61" aria-label="Line 61">61</a><span class="line-code">  unfold pgfBase</span></span>
+<span class="source-line" id="L62"><a class="line-no" href="#L62" aria-label="Line 62">62</a><span class="line-code">  exact div_nonneg (by linarith) (by</span></span>
+<span class="source-line" id="L63"><a class="line-no" href="#L63" aria-label="Line 63">63</a><span class="line-code">    have h := mul_le_of_le_one_right hr0 hz1</span></span>
+<span class="source-line" id="L64"><a class="line-no" href="#L64" aria-label="Line 64">64</a><span class="line-code">    linarith)</span></span>
+<span class="source-line" id="L65"><a class="line-no" href="#L65" aria-label="Line 65">65</a><span class="line-code"> </span></span>
+<span class="source-line" id="L66"><a class="line-no" href="#L66" aria-label="Line 66">66</a><span class="line-code">theorem pgfBase_le_one {r z : ℝ} (hr0 : 0 ≤ r) (hr1 : r &lt; 1)</span></span>
+<span class="source-line" id="L67"><a class="line-no" href="#L67" aria-label="Line 67">67</a><span class="line-code">    (hz1 : z ≤ 1) : pgfBase r z ≤ 1 := by</span></span>
+<span class="source-line" id="L68"><a class="line-no" href="#L68" aria-label="Line 68">68</a><span class="line-code">  have hmul := mul_le_of_le_one_right hr0 hz1</span></span>
+<span class="source-line" id="L69"><a class="line-no" href="#L69" aria-label="Line 69">69</a><span class="line-code">  have hden : 0 &lt; 1 - r * z := by linarith</span></span>
+<span class="source-line" id="L70"><a class="line-no" href="#L70" aria-label="Line 70">70</a><span class="line-code">  exact (div_le_one hden).mpr (by linarith)</span></span>
+<span class="source-line" id="L71"><a class="line-no" href="#L71" aria-label="Line 71">71</a><span class="line-code"> </span></span>
+<span class="source-line" id="L72"><a class="line-no" href="#L72" aria-label="Line 72">72</a><span class="line-code">/-- Every seeded exponential moment is bounded by the vacuum-idler moment. -/</span></span>
+<span class="source-line" id="L73"><a class="line-no" href="#L73" aria-label="Line 73">73</a><span class="line-code">theorem seededLaw_moment_le {r z : ℝ} (hr0 : 0 ≤ r) (hr1 : r &lt; 1)</span></span>
+<span class="source-line" id="L74"><a class="line-no" href="#L74" aria-label="Line 74">74</a><span class="line-code">    (hz0 : 0 ≤ z) (hz1 : z ≤ 1) (l : ℕ) :</span></span>
+<span class="source-line" id="L75"><a class="line-no" href="#L75" aria-label="Line 75">75</a><span class="line-code">    (∑&#x27; k, seededLaw r l k * z ^ k) ≤ pgfBase r z := by</span></span>
+<span class="source-line" id="L76"><a class="line-no" href="#L76" aria-label="Line 76">76</a><span class="line-code">  rw [(seededLaw_pgf_hasSum hr0 hr1 hz0 hz1 l).tsum_eq]</span></span>
+<span class="source-line" id="L77"><a class="line-no" href="#L77" aria-label="Line 77">77</a><span class="line-code">  have h0 := pgfBase_nonneg hr0 hr1 hz1</span></span>
+<span class="source-line" id="L78"><a class="line-no" href="#L78" aria-label="Line 78">78</a><span class="line-code">  have h1 := pgfBase_le_one hr0 hr1 hz1</span></span>
+<span class="source-line" id="L79"><a class="line-no" href="#L79" aria-label="Line 79">79</a><span class="line-code">  induction l with</span></span>
+<span class="source-line" id="L80"><a class="line-no" href="#L80" aria-label="Line 80">80</a><span class="line-code">  | zero =&gt; simp</span></span>
+<span class="source-line" id="L81"><a class="line-no" href="#L81" aria-label="Line 81">81</a><span class="line-code">  | succ l ih =&gt;</span></span>
+<span class="source-line" id="L82"><a class="line-no" href="#L82" aria-label="Line 82">82</a><span class="line-code">      rw [pow_succ]</span></span>
+<span class="source-line" id="L83"><a class="line-no" href="#L83" aria-label="Line 83">83</a><span class="line-code">      exact (mul_le_mul_of_nonneg_right ih h0).trans (mul_le_of_le_one_right h0 h1)</span></span>
+<span class="source-line" id="L84"><a class="line-no" href="#L84" aria-label="Line 84">84</a><span class="line-code"> </span></span>
+<span class="source-line" id="L85"><a class="line-no" href="#L85" aria-label="Line 85">85</a><span class="line-code">/-- The output number transition, padded by zero below the input number. -/</span></span>
+<span class="source-line" id="L86"><a class="line-no" href="#L86" aria-label="Line 86">86</a><span class="line-code">def transition (r : ℝ) (n t : ℕ) : ℝ :=</span></span>
+<span class="source-line" id="L87"><a class="line-no" href="#L87" aria-label="Line 87">87</a><span class="line-code">  if n ≤ t then seededLaw r n (t - n) else 0</span></span>
+<span class="source-line" id="L88"><a class="line-no" href="#L88" aria-label="Line 88">88</a><span class="line-code"> </span></span>
+<span class="source-line" id="L89"><a class="line-no" href="#L89" aria-label="Line 89">89</a><span class="line-code">def thermalOutput (r q : ℝ) (t : ℕ) : ℝ :=</span></span>
+<span class="source-line" id="L90"><a class="line-no" href="#L90" aria-label="Line 90">90</a><span class="line-code">  ∑ n ∈ Finset.range (t + 1), Cloning.Thermal.geometric q n * seededLaw r n (t - n)</span></span>
+<span class="source-line" id="L91"><a class="line-no" href="#L91" aria-label="Line 91">91</a><span class="line-code"> </span></span>
+<span class="source-line" id="L92"><a class="line-no" href="#L92" aria-label="Line 92">92</a><span class="line-code">/-- Binomial convolution proves the actual thermal-input output probabilities. -/</span></span>
+<span class="source-line" id="L93"><a class="line-no" href="#L93" aria-label="Line 93">93</a><span class="line-code">theorem thermalOutput_eq (r q : ℝ) (t : ℕ) :</span></span>
+<span class="source-line" id="L94"><a class="line-no" href="#L94" aria-label="Line 94">94</a><span class="line-code">    thermalOutput r q t = Cloning.Thermal.geometric (r + (1 - r) * q) t := by</span></span>
+<span class="source-line" id="L95"><a class="line-no" href="#L95" aria-label="Line 95">95</a><span class="line-code">  have he : 1 - (r + (1 - r) * q) = (1 - q) * (1 - r) := by ring</span></span>
+<span class="source-line" id="L96"><a class="line-no" href="#L96" aria-label="Line 96">96</a><span class="line-code">  have hb : r + (1 - r) * q = q * (1 - r) + r := by ring</span></span>
+<span class="source-line" id="L97"><a class="line-no" href="#L97" aria-label="Line 97">97</a><span class="line-code">  rw [thermalOutput, Cloning.Thermal.geometric, he, hb, add_pow, Finset.mul_sum]</span></span>
+<span class="source-line" id="L98"><a class="line-no" href="#L98" aria-label="Line 98">98</a><span class="line-code">  apply Finset.sum_congr rfl</span></span>
+<span class="source-line" id="L99"><a class="line-no" href="#L99" aria-label="Line 99">99</a><span class="line-code">  intro n hn</span></span>
+<span class="source-line" id="L100"><a class="line-no" href="#L100" aria-label="Line 100">100</a><span class="line-code">  have hnt : n ≤ t := Nat.lt_succ_iff.mp (Finset.mem_range.mp hn)</span></span>
+<span class="source-line" id="L101"><a class="line-no" href="#L101" aria-label="Line 101">101</a><span class="line-code">  rw [seededLaw, show n + (t - n) = t by omega, Cloning.Thermal.geometric,</span></span>
+<span class="source-line" id="L102"><a class="line-no" href="#L102" aria-label="Line 102">102</a><span class="line-code">    pow_succ, mul_pow]</span></span>
+<span class="source-line" id="L103"><a class="line-no" href="#L103" aria-label="Line 103">103</a><span class="line-code">  ring</span></span>
+<span class="source-line" id="L104"><a class="line-no" href="#L104" aria-label="Line 104">104</a><span class="line-code"> </span></span>
+<span class="source-line" id="L105"><a class="line-no" href="#L105" aria-label="Line 105">105</a><span class="line-code">theorem thermalOutput_eq_tsum (r q : ℝ) (t : ℕ) :</span></span>
+<span class="source-line" id="L106"><a class="line-no" href="#L106" aria-label="Line 106">106</a><span class="line-code">    thermalOutput r q t = ∑&#x27; n, Cloning.Thermal.geometric q n * transition r n t := by</span></span>
+<span class="source-line" id="L107"><a class="line-no" href="#L107" aria-label="Line 107">107</a><span class="line-code">  rw [tsum_eq_sum (s := Finset.range (t + 1))]</span></span>
+<span class="source-line" id="L108"><a class="line-no" href="#L108" aria-label="Line 108">108</a><span class="line-code">  · apply Finset.sum_congr rfl</span></span>
+<span class="source-line" id="L109"><a class="line-no" href="#L109" aria-label="Line 109">109</a><span class="line-code">    intro n hn</span></span>
+<span class="source-line" id="L110"><a class="line-no" href="#L110" aria-label="Line 110">110</a><span class="line-code">    simp only [transition, if_pos (Nat.lt_succ_iff.mp (Finset.mem_range.mp hn))]</span></span>
+<span class="source-line" id="L111"><a class="line-no" href="#L111" aria-label="Line 111">111</a><span class="line-code">  · intro n hn</span></span>
+<span class="source-line" id="L112"><a class="line-no" href="#L112" aria-label="Line 112">112</a><span class="line-code">    have hnt : ¬ n ≤ t := by simpa only [Finset.mem_range, Nat.lt_succ_iff] using hn</span></span>
+<span class="source-line" id="L113"><a class="line-no" href="#L113" aria-label="Line 113">113</a><span class="line-code">    simp only [transition, if_neg hnt, mul_zero]</span></span>
+<span class="source-line" id="L114"><a class="line-no" href="#L114" aria-label="Line 114">114</a><span class="line-code"> </span></span>
+<span class="source-line" id="L115"><a class="line-no" href="#L115" aria-label="Line 115">115</a><span class="line-code">/-- In gain notation the derived parameter is exactly the manuscript&#x27;s</span></span>
+<span class="source-line" id="L116"><a class="line-no" href="#L116" aria-label="Line 116">116</a><span class="line-code">`q ↦ 1-(1-q)/g`. -/</span></span>
+<span class="source-line" id="L117"><a class="line-no" href="#L117" aria-label="Line 117">117</a><span class="line-code">theorem thermalOutput_gain (g q : ℝ) (t : ℕ) :</span></span>
+<span class="source-line" id="L118"><a class="line-no" href="#L118" aria-label="Line 118">118</a><span class="line-code">    thermalOutput (1 - 1 / g) q t = Cloning.Thermal.geometric (Cloning.Thermal.amplified g q) t := by</span></span>
+<span class="source-line" id="L119"><a class="line-no" href="#L119" aria-label="Line 119">119</a><span class="line-code">  rw [thermalOutput_eq]</span></span>
+<span class="source-line" id="L120"><a class="line-no" href="#L120" aria-label="Line 120">120</a><span class="line-code">  congr 1</span></span>
+<span class="source-line" id="L121"><a class="line-no" href="#L121" aria-label="Line 121">121</a><span class="line-code">  unfold Cloning.Thermal.amplified</span></span>
+<span class="source-line" id="L122"><a class="line-no" href="#L122" aria-label="Line 122">122</a><span class="line-code">  ring</span></span>
+<span class="source-line" id="L123"><a class="line-no" href="#L123" aria-label="Line 123">123</a><span class="line-code"> </span></span>
+<span class="source-line" id="L124"><a class="line-no" href="#L124" aria-label="Line 124">124</a><span class="line-code">def productLaw {s : ℕ} (r : Fin s → ℝ) (l k : Fin s → ℕ) : ℝ :=</span></span>
+<span class="source-line" id="L125"><a class="line-no" href="#L125" aria-label="Line 125">125</a><span class="line-code">  ∏ i, seededLaw (r i) (l i) (k i)</span></span>
+<span class="source-line" id="L126"><a class="line-no" href="#L126" aria-label="Line 126">126</a><span class="line-code"> </span></span>
+<span class="source-line" id="L127"><a class="line-no" href="#L127" aria-label="Line 127">127</a><span class="line-code">def productTest {s : ℕ} (z : Fin s → ℝ) (k : Fin s → ℕ) : ℝ := ∏ i, z i ^ k i</span></span>
+<span class="source-line" id="L128"><a class="line-no" href="#L128" aria-label="Line 128">128</a><span class="line-code"> </span></span>
+<span class="source-line" id="L129"><a class="line-no" href="#L129" aria-label="Line 129">129</a><span class="line-code">theorem productLaw_nonneg {s : ℕ} {r : Fin s → ℝ}</span></span>
+<span class="source-line" id="L130"><a class="line-no" href="#L130" aria-label="Line 130">130</a><span class="line-code">    (hr0 : ∀ i, 0 ≤ r i) (hr1 : ∀ i, r i &lt; 1) (l k : Fin s → ℕ) :</span></span>
+<span class="source-line" id="L131"><a class="line-no" href="#L131" aria-label="Line 131">131</a><span class="line-code">    0 ≤ productLaw r l k :=</span></span>
+<span class="source-line" id="L132"><a class="line-no" href="#L132" aria-label="Line 132">132</a><span class="line-code">  Finset.prod_nonneg (fun i _ ↦ seededLaw_nonneg (hr0 i) (hr1 i) _ _)</span></span>
+<span class="source-line" id="L133"><a class="line-no" href="#L133" aria-label="Line 133">133</a><span class="line-code"> </span></span>
+<span class="source-line" id="L134"><a class="line-no" href="#L134" aria-label="Line 134">134</a><span class="line-code">theorem productLaw_hasSum {s : ℕ} {r : Fin s → ℝ}</span></span>
+<span class="source-line" id="L135"><a class="line-no" href="#L135" aria-label="Line 135">135</a><span class="line-code">    (hr0 : ∀ i, 0 ≤ r i) (hr1 : ∀ i, r i &lt; 1) (l : Fin s → ℕ) :</span></span>
+<span class="source-line" id="L136"><a class="line-no" href="#L136" aria-label="Line 136">136</a><span class="line-code">    HasSum (productLaw r l) 1 := by</span></span>
+<span class="source-line" id="L137"><a class="line-no" href="#L137" aria-label="Line 137">137</a><span class="line-code">  simpa only [productLaw, Finset.prod_const_one] using</span></span>
+<span class="source-line" id="L138"><a class="line-no" href="#L138" aria-label="Line 138">138</a><span class="line-code">    Cloning.Thermal.hasSum_fin_product s (fun i k ↦ seededLaw (r i) (l i) k)</span></span>
+<span class="source-line" id="L139"><a class="line-no" href="#L139" aria-label="Line 139">139</a><span class="line-code">      (fun _ ↦ 1) (fun i k ↦ seededLaw_nonneg (hr0 i) (hr1 i) _ _)</span></span>
+<span class="source-line" id="L140"><a class="line-no" href="#L140" aria-label="Line 140">140</a><span class="line-code">      (fun i ↦ seededLaw_hasSum (hr0 i) (hr1 i) _)</span></span>
+<span class="source-line" id="L141"><a class="line-no" href="#L141" aria-label="Line 141">141</a><span class="line-code"> </span></span>
+<span class="source-line" id="L142"><a class="line-no" href="#L142" aria-label="Line 142">142</a><span class="line-code">/-- Exact joint generating function for an arbitrary fixed idler number tuple. -/</span></span>
+<span class="source-line" id="L143"><a class="line-no" href="#L143" aria-label="Line 143">143</a><span class="line-code">theorem productLaw_pgf_hasSum {s : ℕ} {r z : Fin s → ℝ}</span></span>
+<span class="source-line" id="L144"><a class="line-no" href="#L144" aria-label="Line 144">144</a><span class="line-code">    (hr0 : ∀ i, 0 ≤ r i) (hr1 : ∀ i, r i &lt; 1)</span></span>
+<span class="source-line" id="L145"><a class="line-no" href="#L145" aria-label="Line 145">145</a><span class="line-code">    (hz0 : ∀ i, 0 ≤ z i) (hz1 : ∀ i, z i ≤ 1) (l : Fin s → ℕ) :</span></span>
+<span class="source-line" id="L146"><a class="line-no" href="#L146" aria-label="Line 146">146</a><span class="line-code">    HasSum (fun k ↦ productLaw r l k * productTest z k)</span></span>
+<span class="source-line" id="L147"><a class="line-no" href="#L147" aria-label="Line 147">147</a><span class="line-code">      (∏ i, pgfBase (r i) (z i) ^ (l i + 1)) := by</span></span>
+<span class="source-line" id="L148"><a class="line-no" href="#L148" aria-label="Line 148">148</a><span class="line-code">  simpa only [productLaw, productTest, Finset.prod_mul_distrib] using</span></span>
+<span class="source-line" id="L149"><a class="line-no" href="#L149" aria-label="Line 149">149</a><span class="line-code">    Cloning.Thermal.hasSum_fin_product s</span></span>
+<span class="source-line" id="L150"><a class="line-no" href="#L150" aria-label="Line 150">150</a><span class="line-code">      (fun i k ↦ seededLaw (r i) (l i) k * z i ^ k)</span></span>
+<span class="source-line" id="L151"><a class="line-no" href="#L151" aria-label="Line 151">151</a><span class="line-code">      (fun i ↦ pgfBase (r i) (z i) ^ (l i + 1))</span></span>
+<span class="source-line" id="L152"><a class="line-no" href="#L152" aria-label="Line 152">152</a><span class="line-code">      (fun i k ↦ mul_nonneg (seededLaw_nonneg (hr0 i) (hr1 i) _ _) (pow_nonneg (hz0 i) _))</span></span>
+<span class="source-line" id="L153"><a class="line-no" href="#L153" aria-label="Line 153">153</a><span class="line-code">      (fun i ↦ seededLaw_pgf_hasSum (hr0 i) (hr1 i) (hz0 i) (hz1 i) _)</span></span>
+<span class="source-line" id="L154"><a class="line-no" href="#L154" aria-label="Line 154">154</a><span class="line-code"> </span></span>
+<span class="source-line" id="L155"><a class="line-no" href="#L155" aria-label="Line 155">155</a><span class="line-code">/-- Multimode least-noise exponential moment for every idler seed. -/</span></span>
+<span class="source-line" id="L156"><a class="line-no" href="#L156" aria-label="Line 156">156</a><span class="line-code">theorem productLaw_moment_le {s : ℕ} {r z : Fin s → ℝ}</span></span>
+<span class="source-line" id="L157"><a class="line-no" href="#L157" aria-label="Line 157">157</a><span class="line-code">    (hr0 : ∀ i, 0 ≤ r i) (hr1 : ∀ i, r i &lt; 1)</span></span>
+<span class="source-line" id="L158"><a class="line-no" href="#L158" aria-label="Line 158">158</a><span class="line-code">    (hz0 : ∀ i, 0 ≤ z i) (hz1 : ∀ i, z i ≤ 1) (l : Fin s → ℕ) :</span></span>
+<span class="source-line" id="L159"><a class="line-no" href="#L159" aria-label="Line 159">159</a><span class="line-code">    (∑&#x27; k, productLaw r l k * productTest z k) ≤ ∏ i, pgfBase (r i) (z i) := by</span></span>
+<span class="source-line" id="L160"><a class="line-no" href="#L160" aria-label="Line 160">160</a><span class="line-code">  rw [(productLaw_pgf_hasSum hr0 hr1 hz0 hz1 l).tsum_eq]</span></span>
+<span class="source-line" id="L161"><a class="line-no" href="#L161" aria-label="Line 161">161</a><span class="line-code">  apply Finset.prod_le_prod</span></span>
+<span class="source-line" id="L162"><a class="line-no" href="#L162" aria-label="Line 162">162</a><span class="line-code">  · intro i hi</span></span>
+<span class="source-line" id="L163"><a class="line-no" href="#L163" aria-label="Line 163">163</a><span class="line-code">    exact pow_nonneg (pgfBase_nonneg (hr0 i) (hr1 i) (hz1 i)) _</span></span>
+<span class="source-line" id="L164"><a class="line-no" href="#L164" aria-label="Line 164">164</a><span class="line-code">  · intro i hi</span></span>
+<span class="source-line" id="L165"><a class="line-no" href="#L165" aria-label="Line 165">165</a><span class="line-code">    rw [← (seededLaw_pgf_hasSum (hr0 i) (hr1 i) (hz0 i) (hz1 i) (l i)).tsum_eq]</span></span>
+<span class="source-line" id="L166"><a class="line-no" href="#L166" aria-label="Line 166">166</a><span class="line-code">    exact seededLaw_moment_le (hr0 i) (hr1 i) (hz0 i) (hz1 i) (l i)</span></span>
+<span class="source-line" id="L167"><a class="line-no" href="#L167" aria-label="Line 167">167</a><span class="line-code"> </span></span>
+<span class="source-line" id="L168"><a class="line-no" href="#L168" aria-label="Line 168">168</a><span class="line-code">theorem productTest_nonneg {s : ℕ} {z : Fin s → ℝ} (hz0 : ∀ i, 0 ≤ z i)</span></span>
+<span class="source-line" id="L169"><a class="line-no" href="#L169" aria-label="Line 169">169</a><span class="line-code">    (k : Fin s → ℕ) : 0 ≤ productTest z k :=</span></span>
+<span class="source-line" id="L170"><a class="line-no" href="#L170" aria-label="Line 170">170</a><span class="line-code">  Finset.prod_nonneg (fun i _ ↦ pow_nonneg (hz0 i) _)</span></span>
+<span class="source-line" id="L171"><a class="line-no" href="#L171" aria-label="Line 171">171</a><span class="line-code"> </span></span>
+<span class="source-line" id="L172"><a class="line-no" href="#L172" aria-label="Line 172">172</a><span class="line-code">theorem productTest_le_one {s : ℕ} {z : Fin s → ℝ} (hz0 : ∀ i, 0 ≤ z i)</span></span>
+<span class="source-line" id="L173"><a class="line-no" href="#L173" aria-label="Line 173">173</a><span class="line-code">    (hz1 : ∀ i, z i ≤ 1) (k : Fin s → ℕ) : productTest z k ≤ 1 := by</span></span>
+<span class="source-line" id="L174"><a class="line-no" href="#L174" aria-label="Line 174">174</a><span class="line-code">  apply Finset.prod_le_one</span></span>
+<span class="source-line" id="L175"><a class="line-no" href="#L175" aria-label="Line 175">175</a><span class="line-code">  · intro i hi; exact pow_nonneg (hz0 i) _</span></span>
+<span class="source-line" id="L176"><a class="line-no" href="#L176" aria-label="Line 176">176</a><span class="line-code">  · intro i hi; exact pow_le_one₀ (hz0 i) (hz1 i)</span></span>
+<span class="source-line" id="L177"><a class="line-no" href="#L177" aria-label="Line 177">177</a><span class="line-code"> </span></span>
+<span class="source-line" id="L178"><a class="line-no" href="#L178" aria-label="Line 178">178</a><span class="line-code">/-- Arbitrarily correlated idler-number mixing; no product assumption on `a`. -/</span></span>
+<span class="source-line" id="L179"><a class="line-no" href="#L179" aria-label="Line 179">179</a><span class="line-code">def mixtureLaw {s : ℕ} (r : Fin s → ℝ) (a : (Fin s → ℕ) → ℝ)</span></span>
+<span class="source-line" id="L180"><a class="line-no" href="#L180" aria-label="Line 180">180</a><span class="line-code">    (k : Fin s → ℕ) : ℝ := ∑&#x27; l, a l * productLaw r l k</span></span>
+<span class="source-line" id="L181"><a class="line-no" href="#L181" aria-label="Line 181">181</a><span class="line-code"> </span></span>
+<span class="source-line" id="L182"><a class="line-no" href="#L182" aria-label="Line 182">182</a><span class="line-code">theorem mixtureLaw_nonneg {s : ℕ} {r : Fin s → ℝ} {a : (Fin s → ℕ) → ℝ}</span></span>
+<span class="source-line" id="L183"><a class="line-no" href="#L183" aria-label="Line 183">183</a><span class="line-code">    (hr0 : ∀ i, 0 ≤ r i) (hr1 : ∀ i, r i &lt; 1) (ha0 : ∀ l, 0 ≤ a l)</span></span>
+<span class="source-line" id="L184"><a class="line-no" href="#L184" aria-label="Line 184">184</a><span class="line-code">    (k : Fin s → ℕ) : 0 ≤ mixtureLaw r a k :=</span></span>
+<span class="source-line" id="L185"><a class="line-no" href="#L185" aria-label="Line 185">185</a><span class="line-code">  tsum_nonneg (fun l ↦ mul_nonneg (ha0 l) (productLaw_nonneg hr0 hr1 l k))</span></span>
+<span class="source-line" id="L186"><a class="line-no" href="#L186" aria-label="Line 186">186</a><span class="line-code"> </span></span>
+<span class="source-line" id="L187"><a class="line-no" href="#L187" aria-label="Line 187">187</a><span class="line-code">theorem mixtureJoint_summable {s : ℕ} {r : Fin s → ℝ} {a : (Fin s → ℕ) → ℝ}</span></span>
+<span class="source-line" id="L188"><a class="line-no" href="#L188" aria-label="Line 188">188</a><span class="line-code">    (hr0 : ∀ i, 0 ≤ r i) (hr1 : ∀ i, r i &lt; 1) (ha0 : ∀ l, 0 ≤ a l)</span></span>
+<span class="source-line" id="L189"><a class="line-no" href="#L189" aria-label="Line 189">189</a><span class="line-code">    (ha : Summable a) :</span></span>
+<span class="source-line" id="L190"><a class="line-no" href="#L190" aria-label="Line 190">190</a><span class="line-code">    Summable (fun lk : (Fin s → ℕ) × (Fin s → ℕ) ↦ a lk.1 * productLaw r lk.1 lk.2) := by</span></span>
+<span class="source-line" id="L191"><a class="line-no" href="#L191" aria-label="Line 191">191</a><span class="line-code">  apply (summable_prod_of_nonneg (fun lk ↦</span></span>
+<span class="source-line" id="L192"><a class="line-no" href="#L192" aria-label="Line 192">192</a><span class="line-code">    mul_nonneg (ha0 lk.1) (productLaw_nonneg hr0 hr1 _ _))).mpr</span></span>
+<span class="source-line" id="L193"><a class="line-no" href="#L193" aria-label="Line 193">193</a><span class="line-code">  refine ⟨fun l ↦ (productLaw_hasSum hr0 hr1 l).summable.mul_left (a l), ?_⟩</span></span>
+<span class="source-line" id="L194"><a class="line-no" href="#L194" aria-label="Line 194">194</a><span class="line-code">  convert ha using 1</span></span>
+<span class="source-line" id="L195"><a class="line-no" href="#L195" aria-label="Line 195">195</a><span class="line-code">  ext l</span></span>
+<span class="source-line" id="L196"><a class="line-no" href="#L196" aria-label="Line 196">196</a><span class="line-code">  change (∑&#x27; k, a l * productLaw r l k) = a l</span></span>
+<span class="source-line" id="L197"><a class="line-no" href="#L197" aria-label="Line 197">197</a><span class="line-code">  rw [tsum_mul_left, (productLaw_hasSum hr0 hr1 l).tsum_eq, mul_one]</span></span>
+<span class="source-line" id="L198"><a class="line-no" href="#L198" aria-label="Line 198">198</a><span class="line-code"> </span></span>
+<span class="source-line" id="L199"><a class="line-no" href="#L199" aria-label="Line 199">199</a><span class="line-code">/-- The correlated output law has exactly the idler&#x27;s total mass. -/</span></span>
+<span class="source-line" id="L200"><a class="line-no" href="#L200" aria-label="Line 200">200</a><span class="line-code">theorem mixtureLaw_hasSum {s : ℕ} {r : Fin s → ℝ} {a : (Fin s → ℕ) → ℝ} {c : ℝ}</span></span>
+<span class="source-line" id="L201"><a class="line-no" href="#L201" aria-label="Line 201">201</a><span class="line-code">    (hr0 : ∀ i, 0 ≤ r i) (hr1 : ∀ i, r i &lt; 1) (ha0 : ∀ l, 0 ≤ a l)</span></span>
+<span class="source-line" id="L202"><a class="line-no" href="#L202" aria-label="Line 202">202</a><span class="line-code">    (ha : HasSum a c) : HasSum (mixtureLaw r a) c := by</span></span>
+<span class="source-line" id="L203"><a class="line-no" href="#L203" aria-label="Line 203">203</a><span class="line-code">  have hs := mixtureJoint_summable hr0 hr1 ha0 ha.summable</span></span>
+<span class="source-line" id="L204"><a class="line-no" href="#L204" aria-label="Line 204">204</a><span class="line-code">  have hcol : Summable (mixtureLaw r a) := hs.prod_symm.prod</span></span>
+<span class="source-line" id="L205"><a class="line-no" href="#L205" aria-label="Line 205">205</a><span class="line-code">  have heq : (∑&#x27; k, mixtureLaw r a k) = c := by</span></span>
+<span class="source-line" id="L206"><a class="line-no" href="#L206" aria-label="Line 206">206</a><span class="line-code">    unfold mixtureLaw</span></span>
+<span class="source-line" id="L207"><a class="line-no" href="#L207" aria-label="Line 207">207</a><span class="line-code">    rw [hs.tsum_comm (f := fun l k ↦ a l * productLaw r l k)]</span></span>
+<span class="source-line" id="L208"><a class="line-no" href="#L208" aria-label="Line 208">208</a><span class="line-code">    simp_rw [tsum_mul_left, (productLaw_hasSum hr0 hr1 _).tsum_eq, mul_one]</span></span>
+<span class="source-line" id="L209"><a class="line-no" href="#L209" aria-label="Line 209">209</a><span class="line-code">    exact ha.tsum_eq</span></span>
+<span class="source-line" id="L210"><a class="line-no" href="#L210" aria-label="Line 210">210</a><span class="line-code">  rw [← heq]</span></span>
+<span class="source-line" id="L211"><a class="line-no" href="#L211" aria-label="Line 211">211</a><span class="line-code">  exact hcol.hasSum</span></span>
+<span class="source-line" id="L212"><a class="line-no" href="#L212" aria-label="Line 212">212</a><span class="line-code"> </span></span>
+<span class="source-line" id="L213"><a class="line-no" href="#L213" aria-label="Line 213">213</a><span class="line-code">/-- Exact correlated-mixture generating function, with Fubini justified by</span></span>
+<span class="source-line" id="L214"><a class="line-no" href="#L214" aria-label="Line 214">214</a><span class="line-code">summability of the actual nonnegative joint law. -/</span></span>
+<span class="source-line" id="L215"><a class="line-no" href="#L215" aria-label="Line 215">215</a><span class="line-code">theorem mixtureLaw_pgf_eq {s : ℕ} {r z : Fin s → ℝ} {a : (Fin s → ℕ) → ℝ}</span></span>
+<span class="source-line" id="L216"><a class="line-no" href="#L216" aria-label="Line 216">216</a><span class="line-code">    (hr0 : ∀ i, 0 ≤ r i) (hr1 : ∀ i, r i &lt; 1)</span></span>
+<span class="source-line" id="L217"><a class="line-no" href="#L217" aria-label="Line 217">217</a><span class="line-code">    (hz0 : ∀ i, 0 ≤ z i) (hz1 : ∀ i, z i ≤ 1)</span></span>
+<span class="source-line" id="L218"><a class="line-no" href="#L218" aria-label="Line 218">218</a><span class="line-code">    (ha0 : ∀ l, 0 ≤ a l) (ha : Summable a) :</span></span>
+<span class="source-line" id="L219"><a class="line-no" href="#L219" aria-label="Line 219">219</a><span class="line-code">    (∑&#x27; k, mixtureLaw r a k * productTest z k) =</span></span>
+<span class="source-line" id="L220"><a class="line-no" href="#L220" aria-label="Line 220">220</a><span class="line-code">      ∑&#x27; l, a l * ∏ i, pgfBase (r i) (z i) ^ (l i + 1) := by</span></span>
+<span class="source-line" id="L221"><a class="line-no" href="#L221" aria-label="Line 221">221</a><span class="line-code">  have hs := mixtureJoint_summable hr0 hr1 ha0 ha</span></span>
+<span class="source-line" id="L222"><a class="line-no" href="#L222" aria-label="Line 222">222</a><span class="line-code">  have hw : Summable (fun lk : (Fin s → ℕ) × (Fin s → ℕ) ↦</span></span>
+<span class="source-line" id="L223"><a class="line-no" href="#L223" aria-label="Line 223">223</a><span class="line-code">      a lk.1 * productLaw r lk.1 lk.2 * productTest z lk.2) := by</span></span>
+<span class="source-line" id="L224"><a class="line-no" href="#L224" aria-label="Line 224">224</a><span class="line-code">    apply hs.of_norm_bounded</span></span>
+<span class="source-line" id="L225"><a class="line-no" href="#L225" aria-label="Line 225">225</a><span class="line-code">    intro lk</span></span>
+<span class="source-line" id="L226"><a class="line-no" href="#L226" aria-label="Line 226">226</a><span class="line-code">    have hp := mul_nonneg (ha0 lk.1) (productLaw_nonneg hr0 hr1 lk.1 lk.2)</span></span>
+<span class="source-line" id="L227"><a class="line-no" href="#L227" aria-label="Line 227">227</a><span class="line-code">    rw [Real.norm_eq_abs, abs_of_nonneg (mul_nonneg hp (productTest_nonneg hz0 _))]</span></span>
+<span class="source-line" id="L228"><a class="line-no" href="#L228" aria-label="Line 228">228</a><span class="line-code">    exact mul_le_of_le_one_right hp (productTest_le_one hz0 hz1 _)</span></span>
+<span class="source-line" id="L229"><a class="line-no" href="#L229" aria-label="Line 229">229</a><span class="line-code">  unfold mixtureLaw</span></span>
+<span class="source-line" id="L230"><a class="line-no" href="#L230" aria-label="Line 230">230</a><span class="line-code">  simp_rw [← tsum_mul_right]</span></span>
+<span class="source-line" id="L231"><a class="line-no" href="#L231" aria-label="Line 231">231</a><span class="line-code">  rw [hw.tsum_comm (f := fun l k ↦ a l * productLaw r l k * productTest z k)]</span></span>
+<span class="source-line" id="L232"><a class="line-no" href="#L232" aria-label="Line 232">232</a><span class="line-code">  simp_rw [mul_assoc, tsum_mul_left, (productLaw_pgf_hasSum hr0 hr1 hz0 hz1 _).tsum_eq]</span></span>
+<span class="source-line" id="L233"><a class="line-no" href="#L233" aria-label="Line 233">233</a><span class="line-code"> </span></span>
+<span class="source-line" id="L234"><a class="line-no" href="#L234" aria-label="Line 234">234</a><span class="line-code">/-- The least-noise exponential-moment inequality for any correlated idler</span></span>
+<span class="source-line" id="L235"><a class="line-no" href="#L235" aria-label="Line 235">235</a><span class="line-code">mixing law, including deficient total mass `c`. -/</span></span>
+<span class="source-line" id="L236"><a class="line-no" href="#L236" aria-label="Line 236">236</a><span class="line-code">theorem mixtureLaw_moment_le {s : ℕ} {r z : Fin s → ℝ}</span></span>
+<span class="source-line" id="L237"><a class="line-no" href="#L237" aria-label="Line 237">237</a><span class="line-code">    {a : (Fin s → ℕ) → ℝ} {c : ℝ}</span></span>
+<span class="source-line" id="L238"><a class="line-no" href="#L238" aria-label="Line 238">238</a><span class="line-code">    (hr0 : ∀ i, 0 ≤ r i) (hr1 : ∀ i, r i &lt; 1)</span></span>
+<span class="source-line" id="L239"><a class="line-no" href="#L239" aria-label="Line 239">239</a><span class="line-code">    (hz0 : ∀ i, 0 ≤ z i) (hz1 : ∀ i, z i ≤ 1)</span></span>
+<span class="source-line" id="L240"><a class="line-no" href="#L240" aria-label="Line 240">240</a><span class="line-code">    (ha0 : ∀ l, 0 ≤ a l) (ha : HasSum a c) :</span></span>
+<span class="source-line" id="L241"><a class="line-no" href="#L241" aria-label="Line 241">241</a><span class="line-code">    (∑&#x27; k, mixtureLaw r a k * productTest z k) ≤ c * ∏ i, pgfBase (r i) (z i) := by</span></span>
+<span class="source-line" id="L242"><a class="line-no" href="#L242" aria-label="Line 242">242</a><span class="line-code">  rw [mixtureLaw_pgf_eq hr0 hr1 hz0 hz1 ha0 ha.summable]</span></span>
+<span class="source-line" id="L243"><a class="line-no" href="#L243" aria-label="Line 243">243</a><span class="line-code">  have hM0 (l : Fin s → ℕ) : 0 ≤ ∏ i, pgfBase (r i) (z i) ^ (l i + 1) :=</span></span>
+<span class="source-line" id="L244"><a class="line-no" href="#L244" aria-label="Line 244">244</a><span class="line-code">    Finset.prod_nonneg (fun i _ ↦ pow_nonneg (pgfBase_nonneg (hr0 i) (hr1 i) (hz1 i)) _)</span></span>
+<span class="source-line" id="L245"><a class="line-no" href="#L245" aria-label="Line 245">245</a><span class="line-code">  have hM (l : Fin s → ℕ) : (∏ i, pgfBase (r i) (z i) ^ (l i + 1)) ≤</span></span>
+<span class="source-line" id="L246"><a class="line-no" href="#L246" aria-label="Line 246">246</a><span class="line-code">      ∏ i, pgfBase (r i) (z i) := by</span></span>
+<span class="source-line" id="L247"><a class="line-no" href="#L247" aria-label="Line 247">247</a><span class="line-code">    rw [← (productLaw_pgf_hasSum hr0 hr1 hz0 hz1 l).tsum_eq]</span></span>
+<span class="source-line" id="L248"><a class="line-no" href="#L248" aria-label="Line 248">248</a><span class="line-code">    exact productLaw_moment_le hr0 hr1 hz0 hz1 l</span></span>
+<span class="source-line" id="L249"><a class="line-no" href="#L249" aria-label="Line 249">249</a><span class="line-code">  have hmajor := ha.summable.mul_right (∏ i, pgfBase (r i) (z i))</span></span>
+<span class="source-line" id="L250"><a class="line-no" href="#L250" aria-label="Line 250">250</a><span class="line-code">  have hminor : Summable (fun l ↦ a l * ∏ i, pgfBase (r i) (z i) ^ (l i + 1)) := by</span></span>
+<span class="source-line" id="L251"><a class="line-no" href="#L251" aria-label="Line 251">251</a><span class="line-code">    apply hmajor.of_norm_bounded</span></span>
+<span class="source-line" id="L252"><a class="line-no" href="#L252" aria-label="Line 252">252</a><span class="line-code">    intro l</span></span>
+<span class="source-line" id="L253"><a class="line-no" href="#L253" aria-label="Line 253">253</a><span class="line-code">    rw [Real.norm_eq_abs, abs_of_nonneg (mul_nonneg (ha0 l) (hM0 l))]</span></span>
+<span class="source-line" id="L254"><a class="line-no" href="#L254" aria-label="Line 254">254</a><span class="line-code">    exact mul_le_mul_of_nonneg_left (hM l) (ha0 l)</span></span>
+<span class="source-line" id="L255"><a class="line-no" href="#L255" aria-label="Line 255">255</a><span class="line-code">  calc</span></span>
+<span class="source-line" id="L256"><a class="line-no" href="#L256" aria-label="Line 256">256</a><span class="line-code">    _ ≤ ∑&#x27; l, a l * ∏ i, pgfBase (r i) (z i) :=</span></span>
+<span class="source-line" id="L257"><a class="line-no" href="#L257" aria-label="Line 257">257</a><span class="line-code">      hminor.tsum_le_tsum (fun l ↦ mul_le_mul_of_nonneg_left (hM l) (ha0 l)) hmajor</span></span>
+<span class="source-line" id="L258"><a class="line-no" href="#L258" aria-label="Line 258">258</a><span class="line-code">    _ = _ := by rw [tsum_mul_right, ha.tsum_eq]</span></span>
+<span class="source-line" id="L259"><a class="line-no" href="#L259" aria-label="Line 259">259</a><span class="line-code"> </span></span>
+<span class="source-line" id="L260"><a class="line-no" href="#L260" aria-label="Line 260">260</a><span class="line-code">/-- Exact seeded expectation of the thermal fidelity witness. -/</span></span>
+<span class="source-line" id="L261"><a class="line-no" href="#L261" aria-label="Line 261">261</a><span class="line-code">theorem seededLaw_witness_hasSum {q x : ℝ} (hq0 : 0 &lt; q) (hqx : q &lt; x)</span></span>
+<span class="source-line" id="L262"><a class="line-no" href="#L262" aria-label="Line 262">262</a><span class="line-code">    (hx1 : x &lt; 1) (l : ℕ) :</span></span>
+<span class="source-line" id="L263"><a class="line-no" href="#L263" aria-label="Line 263">263</a><span class="line-code">    HasSum (fun k ↦ seededLaw x l k * Cloning.Thermal.witness q x k)</span></span>
+<span class="source-line" id="L264"><a class="line-no" href="#L264" aria-label="Line 264">264</a><span class="line-code">      (Real.sqrt ((1 - q) / (1 - x)) * pgfBase x (Real.sqrt (q / x)) ^ (l + 1)) := by</span></span>
+<span class="source-line" id="L265"><a class="line-no" href="#L265" aria-label="Line 265">265</a><span class="line-code">  have hx0 : 0 &lt; x := hq0.trans hqx</span></span>
+<span class="source-line" id="L266"><a class="line-no" href="#L266" aria-label="Line 266">266</a><span class="line-code">  have hz1 : Real.sqrt (q / x) ≤ 1 :=</span></span>
+<span class="source-line" id="L267"><a class="line-no" href="#L267" aria-label="Line 267">267</a><span class="line-code">    Real.sqrt_le_one.mpr ((div_le_one hx0).mpr hqx.le)</span></span>
+<span class="source-line" id="L268"><a class="line-no" href="#L268" aria-label="Line 268">268</a><span class="line-code">  convert (seededLaw_pgf_hasSum hx0.le hx1 (Real.sqrt_nonneg _) hz1 l).mul_left</span></span>
+<span class="source-line" id="L269"><a class="line-no" href="#L269" aria-label="Line 269">269</a><span class="line-code">    (Real.sqrt ((1 - q) / (1 - x))) using 1</span></span>
+<span class="source-line" id="L270"><a class="line-no" href="#L270" aria-label="Line 270">270</a><span class="line-code">  ext k</span></span>
+<span class="source-line" id="L271"><a class="line-no" href="#L271" aria-label="Line 271">271</a><span class="line-code">  rw [Cloning.Thermal.witness_closed hq0.le (hqx.trans hx1) hx0.le hx1]</span></span>
+<span class="source-line" id="L272"><a class="line-no" href="#L272" aria-label="Line 272">272</a><span class="line-code">  ring</span></span>
+<span class="source-line" id="L273"><a class="line-no" href="#L273" aria-label="Line 273">273</a><span class="line-code"> </span></span>
+<span class="source-line" id="L274"><a class="line-no" href="#L274" aria-label="Line 274">274</a><span class="line-code">/-- The vacuum prefactor is identified by uniqueness of the two convergent</span></span>
+<span class="source-line" id="L275"><a class="line-no" href="#L275" aria-label="Line 275">275</a><span class="line-code">series, avoiding an additional algebraic assumption about the witness. -/</span></span>
+<span class="source-line" id="L276"><a class="line-no" href="#L276" aria-label="Line 276">276</a><span class="line-code">theorem witness_pgfBase_eq_fidelity {q x : ℝ} (hq0 : 0 &lt; q) (hqx : q &lt; x)</span></span>
+<span class="source-line" id="L277"><a class="line-no" href="#L277" aria-label="Line 277">277</a><span class="line-code">    (hx1 : x &lt; 1) :</span></span>
+<span class="source-line" id="L278"><a class="line-no" href="#L278" aria-label="Line 278">278</a><span class="line-code">    Real.sqrt ((1 - q) / (1 - x)) * pgfBase x (Real.sqrt (q / x)) =</span></span>
+<span class="source-line" id="L279"><a class="line-no" href="#L279" aria-label="Line 279">279</a><span class="line-code">      Cloning.Thermal.fidelity q x := by</span></span>
+<span class="source-line" id="L280"><a class="line-no" href="#L280" aria-label="Line 280">280</a><span class="line-code">  have h := seededLaw_witness_hasSum hq0 hqx hx1 0</span></span>
+<span class="source-line" id="L281"><a class="line-no" href="#L281" aria-label="Line 281">281</a><span class="line-code">  simp only [seededLaw_zero, zero_add, pow_one] at h</span></span>
+<span class="source-line" id="L282"><a class="line-no" href="#L282" aria-label="Line 282">282</a><span class="line-code">  exact h.unique (Cloning.Thermal.witness_moment_hasSum hq0 (hqx.trans hx1)</span></span>
+<span class="source-line" id="L283"><a class="line-no" href="#L283" aria-label="Line 283">283</a><span class="line-code">    (hq0.trans hqx) hx1)</span></span>
+<span class="source-line" id="L284"><a class="line-no" href="#L284" aria-label="Line 284">284</a><span class="line-code"> </span></span>
+<span class="source-line" id="L285"><a class="line-no" href="#L285" aria-label="Line 285">285</a><span class="line-code">theorem seededLaw_witness_moment_le {q x : ℝ} (hq0 : 0 &lt; q) (hqx : q &lt; x)</span></span>
+<span class="source-line" id="L286"><a class="line-no" href="#L286" aria-label="Line 286">286</a><span class="line-code">    (hx1 : x &lt; 1) (l : ℕ) :</span></span>
+<span class="source-line" id="L287"><a class="line-no" href="#L287" aria-label="Line 287">287</a><span class="line-code">    (∑&#x27; k, seededLaw x l k * Cloning.Thermal.witness q x k) ≤</span></span>
+<span class="source-line" id="L288"><a class="line-no" href="#L288" aria-label="Line 288">288</a><span class="line-code">      Cloning.Thermal.fidelity q x := by</span></span>
+<span class="source-line" id="L289"><a class="line-no" href="#L289" aria-label="Line 289">289</a><span class="line-code">  have hx0 := hq0.trans hqx</span></span>
+<span class="source-line" id="L290"><a class="line-no" href="#L290" aria-label="Line 290">290</a><span class="line-code">  have hz1 : Real.sqrt (q / x) ≤ 1 :=</span></span>
+<span class="source-line" id="L291"><a class="line-no" href="#L291" aria-label="Line 291">291</a><span class="line-code">    Real.sqrt_le_one.mpr ((div_le_one hx0).mpr hqx.le)</span></span>
+<span class="source-line" id="L292"><a class="line-no" href="#L292" aria-label="Line 292">292</a><span class="line-code">  rw [(seededLaw_witness_hasSum hq0 hqx hx1 l).tsum_eq,</span></span>
+<span class="source-line" id="L293"><a class="line-no" href="#L293" aria-label="Line 293">293</a><span class="line-code">    ← witness_pgfBase_eq_fidelity hq0 hqx hx1]</span></span>
+<span class="source-line" id="L294"><a class="line-no" href="#L294" aria-label="Line 294">294</a><span class="line-code">  apply mul_le_mul_of_nonneg_left _ (Real.sqrt_nonneg _)</span></span>
+<span class="source-line" id="L295"><a class="line-no" href="#L295" aria-label="Line 295">295</a><span class="line-code">  rw [← (seededLaw_pgf_hasSum hx0.le hx1 (Real.sqrt_nonneg _) hz1 l).tsum_eq]</span></span>
+<span class="source-line" id="L296"><a class="line-no" href="#L296" aria-label="Line 296">296</a><span class="line-code">  exact seededLaw_moment_le hx0.le hx1 (Real.sqrt_nonneg _) hz1 l</span></span>
+<span class="source-line" id="L297"><a class="line-no" href="#L297" aria-label="Line 297">297</a><span class="line-code"> </span></span>
+<span class="source-line" id="L298"><a class="line-no" href="#L298" aria-label="Line 298">298</a><span class="line-code">/-- The exact product thermal witness obeys the least-noise bound for every</span></span>
+<span class="source-line" id="L299"><a class="line-no" href="#L299" aria-label="Line 299">299</a><span class="line-code">correlated countable idler law. Deficient mass is allowed. -/</span></span>
+<span class="source-line" id="L300"><a class="line-no" href="#L300" aria-label="Line 300">300</a><span class="line-code">theorem mixtureLaw_witness_moment_le {s : ℕ} {q x : Fin s → ℝ}</span></span>
+<span class="source-line" id="L301"><a class="line-no" href="#L301" aria-label="Line 301">301</a><span class="line-code">    {a : (Fin s → ℕ) → ℝ} {c : ℝ}</span></span>
+<span class="source-line" id="L302"><a class="line-no" href="#L302" aria-label="Line 302">302</a><span class="line-code">    (hq0 : ∀ i, 0 &lt; q i) (hqx : ∀ i, q i &lt; x i) (hx1 : ∀ i, x i &lt; 1)</span></span>
+<span class="source-line" id="L303"><a class="line-no" href="#L303" aria-label="Line 303">303</a><span class="line-code">    (ha0 : ∀ l, 0 ≤ a l) (ha : HasSum a c) :</span></span>
+<span class="source-line" id="L304"><a class="line-no" href="#L304" aria-label="Line 304">304</a><span class="line-code">    (∑&#x27; k, mixtureLaw x a k * ∏ i, Cloning.Thermal.witness (q i) (x i) (k i)) ≤</span></span>
+<span class="source-line" id="L305"><a class="line-no" href="#L305" aria-label="Line 305">305</a><span class="line-code">      c * ∏ i, Cloning.Thermal.fidelity (q i) (x i) := by</span></span>
+<span class="source-line" id="L306"><a class="line-no" href="#L306" aria-label="Line 306">306</a><span class="line-code">  let C : ℝ := ∏ i, Real.sqrt ((1 - q i) / (1 - x i))</span></span>
+<span class="source-line" id="L307"><a class="line-no" href="#L307" aria-label="Line 307">307</a><span class="line-code">  let z : Fin s → ℝ := fun i ↦ Real.sqrt (q i / x i)</span></span>
+<span class="source-line" id="L308"><a class="line-no" href="#L308" aria-label="Line 308">308</a><span class="line-code">  have hx0 (i) : 0 &lt; x i := (hq0 i).trans (hqx i)</span></span>
+<span class="source-line" id="L309"><a class="line-no" href="#L309" aria-label="Line 309">309</a><span class="line-code">  have hz0 (i) : 0 ≤ z i := Real.sqrt_nonneg _</span></span>
+<span class="source-line" id="L310"><a class="line-no" href="#L310" aria-label="Line 310">310</a><span class="line-code">  have hz1 (i) : z i ≤ 1 :=</span></span>
+<span class="source-line" id="L311"><a class="line-no" href="#L311" aria-label="Line 311">311</a><span class="line-code">    Real.sqrt_le_one.mpr ((div_le_one (hx0 i)).mpr (hqx i).le)</span></span>
+<span class="source-line" id="L312"><a class="line-no" href="#L312" aria-label="Line 312">312</a><span class="line-code">  have hC : 0 ≤ C := Finset.prod_nonneg (fun i _ ↦ Real.sqrt_nonneg _)</span></span>
+<span class="source-line" id="L313"><a class="line-no" href="#L313" aria-label="Line 313">313</a><span class="line-code">  have hterm (k : Fin s → ℕ) :</span></span>
+<span class="source-line" id="L314"><a class="line-no" href="#L314" aria-label="Line 314">314</a><span class="line-code">      (∏ i, Cloning.Thermal.witness (q i) (x i) (k i)) = C * productTest z k := by</span></span>
+<span class="source-line" id="L315"><a class="line-no" href="#L315" aria-label="Line 315">315</a><span class="line-code">    simp only [Cloning.Thermal.witness_closed (hq0 _).le ((hqx _).trans (hx1 _))</span></span>
+<span class="source-line" id="L316"><a class="line-no" href="#L316" aria-label="Line 316">316</a><span class="line-code">      (hx0 _).le (hx1 _), Finset.prod_mul_distrib, C, productTest, z]</span></span>
+<span class="source-line" id="L317"><a class="line-no" href="#L317" aria-label="Line 317">317</a><span class="line-code">  simp_rw [hterm, ← mul_assoc, mul_right_comm (mixtureLaw x a _) C]</span></span>
+<span class="source-line" id="L318"><a class="line-no" href="#L318" aria-label="Line 318">318</a><span class="line-code">  rw [tsum_mul_right]</span></span>
+<span class="source-line" id="L319"><a class="line-no" href="#L319" aria-label="Line 319">319</a><span class="line-code">  calc</span></span>
+<span class="source-line" id="L320"><a class="line-no" href="#L320" aria-label="Line 320">320</a><span class="line-code">    _ ≤ (c * ∏ i, pgfBase (x i) (z i)) * C :=</span></span>
+<span class="source-line" id="L321"><a class="line-no" href="#L321" aria-label="Line 321">321</a><span class="line-code">      mul_le_mul_of_nonneg_right</span></span>
+<span class="source-line" id="L322"><a class="line-no" href="#L322" aria-label="Line 322">322</a><span class="line-code">        (mixtureLaw_moment_le (fun i ↦ (hx0 i).le) hx1 hz0 hz1 ha0 ha) hC</span></span>
+<span class="source-line" id="L323"><a class="line-no" href="#L323" aria-label="Line 323">323</a><span class="line-code">    _ = _ := by</span></span>
+<span class="source-line" id="L324"><a class="line-no" href="#L324" aria-label="Line 324">324</a><span class="line-code">      rw [mul_assoc, mul_comm (∏ i, pgfBase (x i) (z i)) C, ← Finset.prod_mul_distrib]</span></span>
+<span class="source-line" id="L325"><a class="line-no" href="#L325" aria-label="Line 325">325</a><span class="line-code">      congr 1</span></span>
+<span class="source-line" id="L326"><a class="line-no" href="#L326" aria-label="Line 326">326</a><span class="line-code">      apply Finset.prod_congr rfl</span></span>
+<span class="source-line" id="L327"><a class="line-no" href="#L327" aria-label="Line 327">327</a><span class="line-code">      intro i hi</span></span>
+<span class="source-line" id="L328"><a class="line-no" href="#L328" aria-label="Line 328">328</a><span class="line-code">      exact witness_pgfBase_eq_fidelity (hq0 i) (hqx i) (hx1 i)</span></span>
+<span class="source-line" id="L329"><a class="line-no" href="#L329" aria-label="Line 329">329</a><span class="line-code"> </span></span>
+<span class="source-line" id="L330"><a class="line-no" href="#L330" aria-label="Line 330">330</a><span class="line-code">end Cloning.BosonicNumberLaw</span></span>
+</code></pre></div></main>
+<footer class="footer">English guides explain the argument. Lean source and its hypotheses determine the formal claims.
+<a href="../verification.html">Audit evidence</a> · <a href="../scope.html">Scope</a></footer>
+</div></div></body></html>

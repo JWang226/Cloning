@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="An offline guide to the Lean formalization of asymptotic mixed-state quantum cloning. Exact source, proof routes, and audited scope.">
+<title>Lifted channels, randomized dilation, and factorization · Cloning proof wiki</title>
+<link rel="stylesheet" href="../assets/site.css?v=1811c00ea983">
+<script>window.PROOF_ROOT="../";</script>
+<script defer src="../assets/vendor/katex/katex.min.js"></script>
+<script defer src="../assets/search-index.js?v=850aee981cdc"></script>
+<script defer src="../assets/site.js?v=4bfaac1f06b1"></script>
+</head><body><a class="skip-link" href="#main">Skip to content</a>
+<div class="site-shell"><aside class="sidebar" id="site-navigation">
+<a class="brand" href="../index.html"><span class="brand-mark">C</span><span>Cloning<span class="small muted">A Lean proof wiki</span></span></a>
+<nav aria-label="Main navigation"><div class="nav-section">Explore</div><a class="nav-link" href="../index.html">Overview</a><a class="nav-link active" href="../guides/index.html" aria-current="page">Proof guide</a><a class="nav-link" href="../results/index.html">27 named results</a><a class="nav-link" href="../source/index.html">Lean source</a><a class="nav-link" href="../verification.html">Verification</a><a class="nav-link" href="../scope.html">Scope &amp; conventions</a>
+<div class="nav-section">Read the proof</div><a class="nav-link" href="../guides/physical-problem.html"><span class="nav-number">01</span> The physical problem and its conventions</a><a class="nav-link" href="../guides/young-laws.html"><span class="nav-number">02</span> Young labels: concentration and the local Gaussian law</a><a class="nav-link" href="../guides/cartan-sectors.html"><span class="nav-number">03</span> From PBW frames to uniform Cartan-sector fidelity</a><a class="nav-link" href="../guides/lifted-kernels.html"><span class="nav-number">04</span> Lifted channels, randomized dilation, and factorization</a><a class="nav-link" href="../guides/gaussian-optimum.html"><span class="nav-number">05</span> Gaussian amplification against arbitrary competitors</a><a class="nav-link" href="../guides/physical-lan.html"><span class="nav-number">06</span> Constructed LAN and fidelity transfer</a><a class="nav-link" href="../guides/known-spectrum.html"><span class="nav-number">07</span> The known-spectrum optimum</a><a class="nav-link" href="../guides/unknown-spectrum.html"><span class="nav-number">08</span> One universal cloner and the compact-set optimum</a><a class="nav-link" href="../guides/grassmann.html"><span class="nav-number">09</span> Exact rank compression and projector-state optimality</a><a class="nav-link" href="../guides/purify-clone-trace.html"><span class="nav-number">10</span> Purify–clone–trace: exact channels, limits, and guarantees</a><a class="nav-link" href="../guides/small-errors.html"><span class="nav-number">11</span> Small errors, rank boundaries, and noncommuting limits</a><a class="nav-link" href="../guides/spectral-comparison.html"><span class="nav-number">12</span> Spectral order and what is known for all states</a></nav>
+<div class="sidebar-footer"><span class="badge">Lean 4</span><p>Manuscript → proof → source</p>
+<a href="https://github.com/JWang226/Cloning">Repository ↗</a></div></aside>
+<div class="main-shell"><header class="topbar">
+<button id="nav-toggle" class="button secondary" aria-controls="site-navigation" aria-expanded="false" aria-label="Toggle navigation">Menu</button>
+<div class="search-wrap"><label class="sr-only" for="site-search">Search the proof wiki</label>
+<input id="site-search" type="search" placeholder="Search results, concepts, or Lean names…" autocomplete="off" aria-controls="search-results" aria-expanded="false" role="combobox" aria-autocomplete="list">
+<div id="search-results" class="search-results" role="listbox" hidden></div></div>
+<span class="small muted topbar-label">Offline · exact source</span></header>
+<main id="main" class="content"><div class="eyebrow">Proof guide · chapter 04 of 12</div><h1>Lifted channels, randomized dilation, and factorization</h1><p class="lead">A stochastic rule on Schur labels becomes a genuine covariant channel by applying the corresponding sector transition. An exact block-fidelity identity and a discarded-mass estimate turn the sector theorem into a uniform statement for arbitrary lifted kernels.</p><div class="notice">English explanation · exact Lean excerpts are shown separately.</div><div class="split-layout"><article class="prose"><section id="assumptions"><h2>Setting and assumptions</h2><ul><li>A transition table has nonnegative entries and each source row sums to one.</li><li>For asymptotic factorization, its joint input-output label law has uniformly vanishing mass outside a common shrinking spectral window.</li><li>Simple spectra range over a compact set and m(n)/n→γ&gt;1. The kernel may depend on the spectrum in the general factorization theorem.</li></ul></section><section class="step" id="step-1"><div class="step-number">01</div><h2>Build the channel before evaluating it</h2><p>The physical Schur instrument measures a source copy, samples a target copy from the stochastic table, applies the Cartan transition when compatible, and uses a defined fallback otherwise. The construction is CPTP on every input operator. Physical code indexes irreducible copies; ordinary Young-label rules are represented by distributing their multiplicity copies.</p><article class="declaration"><div class="declaration-header"><a href="../source/Cloning.TensorCloningChannel.html#L58"><code>Cloning.TensorCloning.channel</code></a><span class="badge">definition</span></div><p class="small muted">TensorCloningChannel.lean · line 58 · <a href="../source/Cloning.TensorCloningChannel.html#L58">Full source and context</a> · <a href="https://github.com/JWang226/Cloning/blob/main/formalization/Cloning/TensorCloningChannel.lean#L58">GitHub ↗</a> · <button class="copy-button" data-copy-target="lean-cloning-tensorcloning-channel-33" aria-label="Copy Lean excerpt">Copy</button></p><details><summary>Exact Lean statement excerpt</summary><div class="code-wrap"><pre class="code-block" id="lean-cloning-tensorcloning-channel-33"><code>def channel (n m d : ℕ) (q : SchurCopy n d → SchurCopy m d → ℝ)
+    (hq : ∀ i j, 0 ≤ q i j) (hs : ∀ i, ∑ j, q i j = 1) :
+    QuantumChannel (TensorRegister n (Fin d)) (TensorRegister m (Fin d))</code></pre></div></details></article><article class="declaration"><div class="declaration-header"><a href="../source/Cloning.TensorCloningChannel.html#L69"><code>Cloning.TensorCloning.channel_apply</code></a><span class="badge">theorem</span></div><p class="small muted">TensorCloningChannel.lean · line 69 · <a href="../source/Cloning.TensorCloningChannel.html#L69">Full source and context</a> · <a href="https://github.com/JWang226/Cloning/blob/main/formalization/Cloning/TensorCloningChannel.lean#L69">GitHub ↗</a> · <button class="copy-button" data-copy-target="lean-cloning-tensorcloning-channel-apply-34" aria-label="Copy Lean excerpt">Copy</button></p><details><summary>Exact Lean statement excerpt</summary><div class="code-wrap"><pre class="code-block" id="lean-cloning-tensorcloning-channel-apply-34"><code>theorem channel_apply (n m d : ℕ) (q : SchurCopy n d → SchurCopy m d → ℝ)
+    (hq : ∀ i j, 0 ≤ q i j) (hs : ∀ i, ∑ j, q i j = 1)
+    (A : TraceClass (TensorRegister n (Fin d))) :
+    (channel n m d q hq hs).toLinearMap A =
+      ∑ i : SchurCopy n d, ∑ j : SchurCopy m d,
+        (q i j : ℂ) • (copyTransition n m d i j).toLinearMap
+          (conjugationLinearMap
+            ((recursivePhysicalDecomposition n d).get i).canonicalEmbedding.toContinuousLinearMap.adjoint A)</code></pre></div></details></article></section><section class="step" id="step-2"><div class="step-number">02</div><h2>Use the exact direct-sum formula</h2><p>After Schur decomposition, each output block is a weighted sum of sector outputs. The exact identity expresses the global physical fidelity through those blocks. This retains the conditional mixtures that would be lost by simply averaging individual sector fidelities.</p><article class="declaration"><div class="declaration-header"><a href="../source/Cloning.TensorCloningBlockFidelity.html#L76"><code>Cloning.TensorCloning.spectrumPayoff_eq_copyBlocks</code></a><span class="badge">theorem</span></div><p class="small muted">TensorCloningBlockFidelity.lean · line 76 · <a href="../source/Cloning.TensorCloningBlockFidelity.html#L76">Full source and context</a> · <a href="https://github.com/JWang226/Cloning/blob/main/formalization/Cloning/TensorCloningBlockFidelity.lean#L76">GitHub ↗</a> · <button class="copy-button" data-copy-target="lean-cloning-tensorcloning-spectrumpayoff-eq-copyblocks-35" aria-label="Copy Lean excerpt">Copy</button></p><details><summary>Exact Lean statement excerpt</summary><div class="code-wrap"><pre class="code-block" id="lean-cloning-tensorcloning-spectrumpayoff-eq-copyblocks-35"><code>theorem spectrumPayoff_eq_copyBlocks {d : ℕ} (n m : ℕ)
+    (Φ : QuantumChannel (TensorRegister n (Fin (d+1))) (TensorRegister m (Fin (d+1))))
+    (p : SimpleSpectrum (d+1)) (U : unitary (Matrix (Fin (d+1)) (Fin (d+1)) ℂ))
+    (w : SchurCopy n (d+1) → SchurCopy m (d+1) → ℝ) (hw : ∀ i j, 0 ≤ w i j)
+    (hΦ : Φ.toLinearMap (matrixTensorPower (U.val * Matrix.diagonal (fun a ↦ (p.eigenvalue a : ℂ)) * U.valᴴ) n) =
+      ∑ ij : SchurCopy n (d+1) × SchurCopy m (d+1), (w ij.1 ij.2 : ℂ) •
+        (copyTransition n m (d+1) ij.1 ij.2).toLinearMap
+          (canonicalRotatedGibbs ((recursivePhysicalDecomposition n (d+1)).get ij.1) U p.eigenvalue)) :
+    spectrumPayoff n m Φ p U =
+      (orthogonalSum (fun j : SchurCopy m (d+1) ↦ ((recursivePhysicalDecomposition m (d+1)).get j).canonicalEmbedding)
+        (copyOutputBlock n m (d+1) p.eigenvalue p.positive U w hw)).rootFidelity
+      (orthogonalSum (fun j : SchurCopy m (d+1) ↦ ((recursivePhysicalDecomposition m (d+1)).get j).canonicalEmbedding)
+        (fun j ↦ PositiveTraceClass.scale ⟨knownCopyWeight m (d+1) p.eigenvalue j, knownCopyWeight_nonneg _ _ _ _⟩
+          (copySectorState ((recursivePhysicalDecomposition m (d+1)).get j) U p.eigenvalue p.positive)))</code></pre></div></details></article></section><section class="step" id="step-3"><div class="step-number">03</div><h2>Trim only small joint-label mass</h2><p>Retain close source-target pairs, normalize every nonzero retained output block, and apply the common-target mixture theorem. Fidelity continuity controls the omitted quantum output and the omitted classical law. The resulting error is at most η+2√b, where b is the actual discarded joint-label mass. Sending η and b to zero proves factorization for arbitrary stochastic kernels satisfying the stated concentration condition.</p><article class="declaration"><div class="declaration-header"><a href="../source/Cloning.TensorCloningLiftedFactorization.html#L80"><code>Cloning.TensorCloning.eventually_uniform_kernel_factorization_bound</code></a><span class="badge">theorem</span></div><p class="small muted">TensorCloningLiftedFactorization.lean · line 80 · <a href="../source/Cloning.TensorCloningLiftedFactorization.html#L80">Full source and context</a> · <a href="https://github.com/JWang226/Cloning/blob/main/formalization/Cloning/TensorCloningLiftedFactorization.lean#L80">GitHub ↗</a> · <button class="copy-button" data-copy-target="lean-cloning-tensorcloning-eventually-uniform-kernel-factorization-bound-36" aria-label="Copy Lean excerpt">Copy</button></p><details><summary>Exact Lean statement excerpt</summary><div class="code-wrap"><pre class="code-block" id="lean-cloning-tensorcloning-eventually-uniform-kernel-factorization-bound-36"><code>theorem eventually_uniform_kernel_factorization_bound
+    (K : Set (SimpleSpectrum (d+1))) (hK : IsCompact K)
+    (m : ℕ → ℕ) (γ : ℝ) (hγ : 1&lt;γ)
+    (hgain : Tendsto (fun n =&gt; (m n : ℝ)/n) atTop (𝓝 γ))
+    (δ : ℕ → ℝ) (hδ : Tendsto δ atTop (𝓝 0)) (η : ℝ) (hη : 0&lt;η) :
+    ∀ᶠ (n : ℕ) in atTop,∀ p∈K,
+      ∀ (q : SchurCopy n (d+1) → SchurCopy (m n) (d+1) → ℝ)
+        (hq : ∀ i j,0≤q i j) (hs : ∀ i,∑ j,q i j=1),
+      ∀ U : unitary (Matrix (Fin (d+1)) (Fin (d+1)) ℂ),
+      |spectrumPayoff n (m n) (channel n (m n) (d+1) q hq hs) p U-
+        orbitalValue γ p*kernelAffinity n (m n) (d+1) p.eigenvalue q|≤
+      η+2*Real.sqrt (kernelBadMass n (m n) (d+1) p.eigenvalue (δ n) q)</code></pre></div></details></article><article class="declaration"><div class="declaration-header"><a href="../source/Cloning.TensorCloningLiftedFactorization.html#L133"><code>Cloning.TensorCloning.eventually_uniform_lifted_fidelity_factorization</code></a><span class="badge">theorem</span></div><p class="small muted">TensorCloningLiftedFactorization.lean · line 133 · <a href="../source/Cloning.TensorCloningLiftedFactorization.html#L133">Full source and context</a> · <a href="https://github.com/JWang226/Cloning/blob/main/formalization/Cloning/TensorCloningLiftedFactorization.lean#L133">GitHub ↗</a> · <button class="copy-button" data-copy-target="lean-cloning-tensorcloning-eventually-uniform-lifted-fidelity-factorization-37" aria-label="Copy Lean excerpt">Copy</button></p><details><summary>Exact Lean statement excerpt</summary><div class="code-wrap"><pre class="code-block" id="lean-cloning-tensorcloning-eventually-uniform-lifted-fidelity-factorization-37"><code>theorem eventually_uniform_lifted_fidelity_factorization
+    (K : Set (SimpleSpectrum (d+1))) (hK : IsCompact K)
+    (m : ℕ → ℕ) (γ : ℝ) (hγ : 1&lt;γ)
+    (hgain : Tendsto (fun n =&gt; (m n : ℝ)/n) atTop (𝓝 γ))
+    (δ : ℕ → ℝ) (hδ : Tendsto δ atTop (𝓝 0))
+    (q : ∀ n,SimpleSpectrum (d+1) → SchurCopy n (d+1) → SchurCopy (m n) (d+1) → ℝ)
+    (hq : ∀ n p i j,0≤q n p i j) (hs : ∀ n p i,∑ j,q n p i j=1)
+    (hbad : ∀ η : ℝ,0&lt;η → ∀ᶠ n in atTop,∀ p∈K,
+      kernelBadMass n (m n) (d+1) p.eigenvalue (δ n) (q n p)&lt;η)
+    (ε : ℝ) (hε : 0&lt;ε) :
+    ∀ᶠ n in atTop,∀ p∈K,∀ U : unitary (Matrix (Fin (d+1)) (Fin (d+1)) ℂ),
+      |spectrumPayoff n (m n) (channel n (m n) (d+1) (q n p) (hq n p) (hs n p)) p U-
+        orbitalValue γ p*kernelAffinity n (m n) (d+1) p.eigenvalue (q n p)|&lt;ε</code></pre></div></details></article></section><section class="step" id="step-4"><div class="step-number">04</div><h2>Generate unknown labels by randomized dilation</h2><p>The universal rule dilates the observed input label by m/n and rounds on the trace-one lattice with bounded error. On the central window the rounded output is eventually compatible; elsewhere a fallback keeps the channel defined. L1 continuity under dilation compares the raw law with a Gaussian of covariance γΣ_p, and Gaussian affinity supplies the classical factor.</p><article class="declaration"><div class="declaration-header"><a href="../source/Cloning.YoungCompatibility.html#L143"><code>Cloning.YoungCompatibility.eventually_rounding_support_compatible</code></a><span class="badge">theorem</span></div><p class="small muted">YoungCompatibility.lean · line 143 · <a href="../source/Cloning.YoungCompatibility.html#L143">Full source and context</a> · <a href="https://github.com/JWang226/Cloning/blob/main/formalization/Cloning/YoungCompatibility.lean#L143">GitHub ↗</a> · <button class="copy-button" data-copy-target="lean-cloning-youngcompatibility-eventually-rounding-support-compatible-38" aria-label="Copy Lean excerpt">Copy</button></p><details><summary>Exact Lean statement excerpt</summary><div class="code-wrap"><pre class="code-block" id="lean-cloning-youngcompatibility-eventually-rounding-support-compatible-38"><code>theorem eventually_rounding_support_compatible {d : ℕ} (hd : 1 ≤ d)
+    (m : ℕ → ℤ) (γn ε : ℕ → ℝ) (γ a : ℝ)
+    (ha : 0 &lt; a) (hγ : 1 &lt; γ)
+    (hγn : Tendsto γn atTop (𝓝 γ)) (hε : Tendsto ε atTop (𝓝 0))
+    (hm : ∀ n, (m n : ℝ) = γn n * (n : ℝ)) :
+    ∀ᶠ (n : ℕ) in atTop, ∀ (p : Fin (d + 1) → ℝ),
+      (∀ i, a ≤ p i) → (∀ i j, i &lt; j → a ≤ p i - p j) →
+      ∀ (μ : Fin (d + 1) → ℤ), (∑ i, μ i = (n : ℤ)) →
+      (∀ i, |(μ i : ℝ) - (n : ℝ) * p i| ≤ (n : ℝ) * ε n) →
+      ∀ z, YoungRounding.roundingPMF (γn n) (fun i ↦ (μ i.castSucc : ℝ)) z ≠ 0 →
+        Compatible (n : ℤ) (m n) μ (complete (m n) z)</code></pre></div></details></article><article class="declaration"><div class="declaration-header"><a href="../source/Cloning.YoungPhysicalRoundingUniformDensity.html#L64"><code>Cloning.YoungHyperplane.uniform_rounded_tensorYoungDensity_l1</code></a><span class="badge">theorem</span></div><p class="small muted">YoungPhysicalRoundingUniformDensity.lean · line 64 · <a href="../source/Cloning.YoungPhysicalRoundingUniformDensity.html#L64">Full source and context</a> · <a href="https://github.com/JWang226/Cloning/blob/main/formalization/Cloning/YoungPhysicalRoundingUniformDensity.lean#L64">GitHub ↗</a> · <button class="copy-button" data-copy-target="lean-cloning-younghyperplane-uniform-rounded-tensoryoungdensity-l1-39" aria-label="Copy Lean excerpt">Copy</button></p><details><summary>Exact Lean statement excerpt</summary><div class="code-wrap"><pre class="code-block" id="lean-cloning-younghyperplane-uniform-rounded-tensoryoungdensity-l1-39"><code>theorem uniform_rounded_tensorYoungDensity_l1 (d : ℕ)
+    (K : Set (Fin (d+1) → ℝ)) (hK : IsCompact K)
+    (hp : ∀ p∈K,∑ i,p i=1) (hp0 : ∀ p∈K,∀ i,0&lt;p i)
+    (hord : ∀ p∈K,StrictAnti p)
+    (m : ℕ → ℕ) (hm : Tendsto m atTop atTop)
+    (γ : ℝ) (hγ : 0&lt;γ) (hratio : Tendsto (fun n =&gt; (m n : ℝ)/n) atTop (𝓝 γ))
+    (ε : ℝ) (hε : 0&lt;ε) :
+    ∃ N₀ : ℕ,∀ N≥N₀,∀ (p : Fin (d+1) → ℝ) (hpK : p∈K),
+      (∫ x,|roundedDensity (Real.sqrt (m N : ℝ))⁻¹ (headAnchor d (m N) p)
+        ((m N : ℝ)/N) (tensorYoungHeadPMF d N p (fun i =&gt; (hp0 p hpK i).le) (hp p hpK)) x-
+        affineDensity (Real.sqrt γ) 0 (headGaussian d p (hp p hpK)) x|)&lt;ε</code></pre></div></details></article><article class="declaration"><div class="declaration-header"><a href="../source/Cloning.YoungPhysicalRounding.html#L76"><code>Cloning.YoungHyperplane.uniform_tensorYoungFallbackOutput_affinity</code></a><span class="badge">theorem</span></div><p class="small muted">YoungPhysicalRounding.lean · line 76 · <a href="../source/Cloning.YoungPhysicalRounding.html#L76">Full source and context</a> · <a href="https://github.com/JWang226/Cloning/blob/main/formalization/Cloning/YoungPhysicalRounding.lean#L76">GitHub ↗</a> · <button class="copy-button" data-copy-target="lean-cloning-younghyperplane-uniform-tensoryoungfallbackoutput-affinity-40" aria-label="Copy Lean excerpt">Copy</button></p><details><summary>Exact Lean statement excerpt</summary><div class="code-wrap"><pre class="code-block" id="lean-cloning-younghyperplane-uniform-tensoryoungfallbackoutput-affinity-40"><code>theorem uniform_tensorYoungFallbackOutput_affinity {d : ℕ} (hd : 1 ≤ d)
+    (K : Set (Fin (d+1) → ℝ)) (hK : IsCompact K)
+    (hp : ∀ p ∈ K, ∑ i, p i = 1) (hp0 : ∀ p ∈ K, ∀ i, 0 &lt; p i)
+    (hord : ∀ p ∈ K, StrictAnti p)
+    (m : ℕ → ℕ) (hm : Tendsto m atTop atTop)
+    (γ : ℝ) (hγ : 1 &lt; γ) (hratio : Tendsto (fun n ↦ (m n : ℝ)/n) atTop (𝓝 γ))
+    (ε : ℝ) (hε : 0 &lt; ε) :
+    ∃ N₀ : ℕ, ∀ N ≥ N₀, ∀ (p : Fin (d+1) → ℝ) (hpK : p ∈ K),
+      |CountableScheffe.affinity
+        (probability (tensorYoungFallbackOutput d N (m N) ((m N : ℝ)/N) p
+          (fun i ↦ (hp0 p hpK i).le) (hp p hpK)))
+        (probability (tensorYoungIntegerPMF d (m N) p
+          (fun i ↦ (hp0 p hpK i).le) (hp p hpK))) - Cloning.classicalValue γ (d+1)| &lt; ε</code></pre></div></details></article></section><section id="results"><h2>Results reached in this chapter</h2><h3>Lifted fidelity factorization</h3><article class="declaration"><div class="declaration-header"><a href="../source/Cloning.TensorCloningLiftedFactorization.html#L133"><code>Cloning.TensorCloning.eventually_uniform_lifted_fidelity_factorization</code></a><span class="badge">theorem</span></div><p class="small muted">TensorCloningLiftedFactorization.lean · line 133 · <a href="../source/Cloning.TensorCloningLiftedFactorization.html#L133">Full source and context</a> · <a href="https://github.com/JWang226/Cloning/blob/main/formalization/Cloning/TensorCloningLiftedFactorization.lean#L133">GitHub ↗</a> · <button class="copy-button" data-copy-target="lean-cloning-tensorcloning-eventually-uniform-lifted-fidelity-factorization-41" aria-label="Copy Lean excerpt">Copy</button></p><details><summary>Exact Lean statement excerpt</summary><div class="code-wrap"><pre class="code-block" id="lean-cloning-tensorcloning-eventually-uniform-lifted-fidelity-factorization-41"><code>theorem eventually_uniform_lifted_fidelity_factorization
+    (K : Set (SimpleSpectrum (d+1))) (hK : IsCompact K)
+    (m : ℕ → ℕ) (γ : ℝ) (hγ : 1&lt;γ)
+    (hgain : Tendsto (fun n =&gt; (m n : ℝ)/n) atTop (𝓝 γ))
+    (δ : ℕ → ℝ) (hδ : Tendsto δ atTop (𝓝 0))
+    (q : ∀ n,SimpleSpectrum (d+1) → SchurCopy n (d+1) → SchurCopy (m n) (d+1) → ℝ)
+    (hq : ∀ n p i j,0≤q n p i j) (hs : ∀ n p i,∑ j,q n p i j=1)
+    (hbad : ∀ η : ℝ,0&lt;η → ∀ᶠ n in atTop,∀ p∈K,
+      kernelBadMass n (m n) (d+1) p.eigenvalue (δ n) (q n p)&lt;η)
+    (ε : ℝ) (hε : 0&lt;ε) :
+    ∀ᶠ n in atTop,∀ p∈K,∀ U : unitary (Matrix (Fin (d+1)) (Fin (d+1)) ℂ),
+      |spectrumPayoff n (m n) (channel n (m n) (d+1) (q n p) (hq n p) (hs n p)) p U-
+        orbitalValue γ p*kernelAffinity n (m n) (d+1) p.eigenvalue (q n p)|&lt;ε</code></pre></div></details></article><h3>Raw randomized-dilation density</h3><article class="declaration"><div class="declaration-header"><a href="../source/Cloning.YoungPhysicalRoundingUniformDensity.html#L64"><code>Cloning.YoungHyperplane.uniform_rounded_tensorYoungDensity_l1</code></a><span class="badge">theorem</span></div><p class="small muted">YoungPhysicalRoundingUniformDensity.lean · line 64 · <a href="../source/Cloning.YoungPhysicalRoundingUniformDensity.html#L64">Full source and context</a> · <a href="https://github.com/JWang226/Cloning/blob/main/formalization/Cloning/YoungPhysicalRoundingUniformDensity.lean#L64">GitHub ↗</a> · <button class="copy-button" data-copy-target="lean-cloning-younghyperplane-uniform-rounded-tensoryoungdensity-l1-42" aria-label="Copy Lean excerpt">Copy</button></p><details><summary>Exact Lean statement excerpt</summary><div class="code-wrap"><pre class="code-block" id="lean-cloning-younghyperplane-uniform-rounded-tensoryoungdensity-l1-42"><code>theorem uniform_rounded_tensorYoungDensity_l1 (d : ℕ)
+    (K : Set (Fin (d+1) → ℝ)) (hK : IsCompact K)
+    (hp : ∀ p∈K,∑ i,p i=1) (hp0 : ∀ p∈K,∀ i,0&lt;p i)
+    (hord : ∀ p∈K,StrictAnti p)
+    (m : ℕ → ℕ) (hm : Tendsto m atTop atTop)
+    (γ : ℝ) (hγ : 0&lt;γ) (hratio : Tendsto (fun n =&gt; (m n : ℝ)/n) atTop (𝓝 γ))
+    (ε : ℝ) (hε : 0&lt;ε) :
+    ∃ N₀ : ℕ,∀ N≥N₀,∀ (p : Fin (d+1) → ℝ) (hpK : p∈K),
+      (∫ x,|roundedDensity (Real.sqrt (m N : ℝ))⁻¹ (headAnchor d (m N) p)
+        ((m N : ℝ)/N) (tensorYoungHeadPMF d N p (fun i =&gt; (hp0 p hpK i).le) (hp p hpK)) x-
+        affineDensity (Real.sqrt γ) 0 (headGaussian d p (hp p hpK)) x|)&lt;ε</code></pre></div></details></article><h3>Fallback output affinity</h3><article class="declaration"><div class="declaration-header"><a href="../source/Cloning.YoungPhysicalRounding.html#L76"><code>Cloning.YoungHyperplane.uniform_tensorYoungFallbackOutput_affinity</code></a><span class="badge">theorem</span></div><p class="small muted">YoungPhysicalRounding.lean · line 76 · <a href="../source/Cloning.YoungPhysicalRounding.html#L76">Full source and context</a> · <a href="https://github.com/JWang226/Cloning/blob/main/formalization/Cloning/YoungPhysicalRounding.lean#L76">GitHub ↗</a> · <button class="copy-button" data-copy-target="lean-cloning-younghyperplane-uniform-tensoryoungfallbackoutput-affinity-43" aria-label="Copy Lean excerpt">Copy</button></p><details><summary>Exact Lean statement excerpt</summary><div class="code-wrap"><pre class="code-block" id="lean-cloning-younghyperplane-uniform-tensoryoungfallbackoutput-affinity-43"><code>theorem uniform_tensorYoungFallbackOutput_affinity {d : ℕ} (hd : 1 ≤ d)
+    (K : Set (Fin (d+1) → ℝ)) (hK : IsCompact K)
+    (hp : ∀ p ∈ K, ∑ i, p i = 1) (hp0 : ∀ p ∈ K, ∀ i, 0 &lt; p i)
+    (hord : ∀ p ∈ K, StrictAnti p)
+    (m : ℕ → ℕ) (hm : Tendsto m atTop atTop)
+    (γ : ℝ) (hγ : 1 &lt; γ) (hratio : Tendsto (fun n ↦ (m n : ℝ)/n) atTop (𝓝 γ))
+    (ε : ℝ) (hε : 0 &lt; ε) :
+    ∃ N₀ : ℕ, ∀ N ≥ N₀, ∀ (p : Fin (d+1) → ℝ) (hpK : p ∈ K),
+      |CountableScheffe.affinity
+        (probability (tensorYoungFallbackOutput d N (m N) ((m N : ℝ)/N) p
+          (fun i ↦ (hp0 p hpK i).le) (hp p hpK)))
+        (probability (tensorYoungIntegerPMF d (m N) p
+          (fun i ↦ (hp0 p hpK i).le) (hp p hpK))) - Cloning.classicalValue γ (d+1)| &lt; ε</code></pre></div></details></article><h3>Corresponding manuscript statements</h3><ul><li><a href="../results/prop-lifted-kernel-bound.html">Fidelity of a lifted transition rule</a> <code>prop:lifted-kernel-bound</code></li><li><a href="../results/prop-young-rounding.html">Randomized Young-label dilation</a> <code>prop:young-rounding</code></li><li><a href="../results/lem-lifted-fidelity-factorization.html">Factorization of the lifted fidelity</a> <code>lem:lifted-fidelity-factorization</code></li><li><a href="../results/lem-randomized-dilation.html">Continuous limit of randomized dilation</a> <code>lem:randomized-dilation</code></li></ul></section><section class="callout" id="boundaries"><h2>Scope of this step</h2><ul><li>An arbitrary stochastic kernel need not concentrate. Vanishing discarded mass is a genuine hypothesis of the general factorization theorem.</li><li>The raw rounded law and the fallback law are distinct objects; their comparison uses control of the fallback probability.</li></ul></section></article><aside class="toc" aria-label="On this page"><div class="nav-section">In this chapter</div><a href="#assumptions">Setting and assumptions</a><a href="#step-1">1. Build the channel before evaluating it</a><a href="#step-2">2. Use the exact direct-sum formula</a><a href="#step-3">3. Trim only small joint-label mass</a><a href="#step-4">4. Generate unknown labels by randomized dilation</a><a href="#results">Results reached</a><a href="#boundaries">Scope</a></aside></div><nav class="chapter-prevnext" aria-label="Previous and next chapter"><a href="cartan-sectors.html">← From PBW frames to uniform Cartan-sector fidelity</a><a href="gaussian-optimum.html">Gaussian amplification against arbitrary competitors →</a></nav></main>
+<footer class="footer">English guides explain the argument. Lean source and its hypotheses determine the formal claims.
+<a href="../verification.html">Audit evidence</a> · <a href="../scope.html">Scope</a></footer>
+</div></div></body></html>

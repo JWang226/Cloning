@@ -1,0 +1,5 @@
+/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/formalization/verification/nanoda/.work/diagnostics/CheckPartialDependencies.lean:9:9: error: unexpected token 'matches'; expected '(', ':=', '|', identifier or term
+/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/formalization/verification/nanoda/.work/diagnostics/CheckPartialDependencies.lean:5:0: error: don't know how to synthesize placeholder
+context:
+case m
+⊢ Type

@@ -1,0 +1,18 @@
+{
+  "export_file_path": "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/formalization/verification/nanoda/.work/run-20261004T055629.624926Z/cloning.ndjson",
+  "nat_extension": true,
+  "num_threads": 1,
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "pp_declars": [],
+  "pp_to_stdout": true,
+  "print_axioms": true,
+  "print_success_message": true,
+  "string_extension": true,
+  "unpermitted_axiom_hard_error": true,
+  "unsafe_permit_all_axioms": false,
+  "use_stdin": false
+}

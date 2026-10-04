@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="An offline guide to the Lean formalization of asymptotic mixed-state quantum cloning. Exact source, proof routes, and audited scope.">
+<title>PBWSymmetricFrameRateWeightSpace · Lean source · Cloning proof wiki</title>
+<link rel="stylesheet" href="../assets/site.css?v=1811c00ea983">
+<script>window.PROOF_ROOT="../";</script>
+<script defer src="../assets/vendor/katex/katex.min.js"></script>
+<script defer src="../assets/search-index.js?v=850aee981cdc"></script>
+<script defer src="../assets/site.js?v=4bfaac1f06b1"></script>
+</head><body><a class="skip-link" href="#main">Skip to content</a>
+<div class="site-shell"><aside class="sidebar" id="site-navigation">
+<a class="brand" href="../index.html"><span class="brand-mark">C</span><span>Cloning<span class="small muted">A Lean proof wiki</span></span></a>
+<nav aria-label="Main navigation"><div class="nav-section">Explore</div><a class="nav-link" href="../index.html">Overview</a><a class="nav-link" href="../guides/index.html">Proof guide</a><a class="nav-link" href="../results/index.html">27 named results</a><a class="nav-link active" href="../source/index.html" aria-current="page">Lean source</a><a class="nav-link" href="../verification.html">Verification</a><a class="nav-link" href="../scope.html">Scope &amp; conventions</a>
+<div class="nav-section">Read the proof</div><a class="nav-link" href="../guides/physical-problem.html"><span class="nav-number">01</span> The physical problem and its conventions</a><a class="nav-link" href="../guides/young-laws.html"><span class="nav-number">02</span> Young labels: concentration and the local Gaussian law</a><a class="nav-link" href="../guides/cartan-sectors.html"><span class="nav-number">03</span> From PBW frames to uniform Cartan-sector fidelity</a><a class="nav-link" href="../guides/lifted-kernels.html"><span class="nav-number">04</span> Lifted channels, randomized dilation, and factorization</a><a class="nav-link" href="../guides/gaussian-optimum.html"><span class="nav-number">05</span> Gaussian amplification against arbitrary competitors</a><a class="nav-link" href="../guides/physical-lan.html"><span class="nav-number">06</span> Constructed LAN and fidelity transfer</a><a class="nav-link" href="../guides/known-spectrum.html"><span class="nav-number">07</span> The known-spectrum optimum</a><a class="nav-link" href="../guides/unknown-spectrum.html"><span class="nav-number">08</span> One universal cloner and the compact-set optimum</a><a class="nav-link" href="../guides/grassmann.html"><span class="nav-number">09</span> Exact rank compression and projector-state optimality</a><a class="nav-link" href="../guides/purify-clone-trace.html"><span class="nav-number">10</span> Purify–clone–trace: exact channels, limits, and guarantees</a><a class="nav-link" href="../guides/small-errors.html"><span class="nav-number">11</span> Small errors, rank boundaries, and noncommuting limits</a><a class="nav-link" href="../guides/spectral-comparison.html"><span class="nav-number">12</span> Spectral order and what is known for all states</a></nav>
+<div class="sidebar-footer"><span class="badge">Lean 4</span><p>Manuscript → proof → source</p>
+<a href="https://github.com/JWang226/Cloning">Repository ↗</a></div></aside>
+<div class="main-shell"><header class="topbar">
+<button id="nav-toggle" class="button secondary" aria-controls="site-navigation" aria-expanded="false" aria-label="Toggle navigation">Menu</button>
+<div class="search-wrap"><label class="sr-only" for="site-search">Search the proof wiki</label>
+<input id="site-search" type="search" placeholder="Search results, concepts, or Lean names…" autocomplete="off" aria-controls="search-results" aria-expanded="false" role="combobox" aria-autocomplete="list">
+<div id="search-results" class="search-results" role="listbox" hidden></div></div>
+<span class="small muted topbar-label">Offline · exact source</span></header>
+<main id="main" class="content"><div class="eyebrow">Exact Lean source</div><h1 class="source-title">PBWSymmetricFrameRateWeightSpace</h1><p><code>formalization/Cloning/PBWSymmetricFrameRateWeightSpace.lean</code></p><p class="small muted">Source hash: <code>2543bb7b0383e4f61f9fcc1b6bd67b60cbe147c08c3cfb2fcb92e349725634f5</code></p><div class="actions"><a class="button secondary" href="raw/Cloning.PBWSymmetricFrameRateWeightSpace.lean">Download .lean</a><a class="button secondary" href="https://github.com/JWang226/Cloning/blob/main/formalization/Cloning/PBWSymmetricFrameRateWeightSpace.lean">View on GitHub ↗</a><a href="index.html">All modules</a></div><p class="small muted">Full source copied without mathematical changes from the snapshot whose input hash matches the passing audit. Select a line number for a stable source pointer.</p><details><summary>Declarations in this module</summary><div class="module-declarations"><a href="#L16"><span class="badge">theorem</span> <code>Cloning.PBWSymmetricFrame.span_inter_of_orthogonal</code></a><a href="#L60"><span class="badge">definition</span> <code>Cloning.TensorLie.cartanWeightSpace</code></a><a href="#L65"><span class="badge">theorem</span> <code>Cloning.TensorLie.mem_cartanWeightSpace</code></a><a href="#L72"><span class="badge">definition</span> <code>Cloning.TensorLie.WeightOccupation</code></a><a href="#L78"><span class="badge">theorem</span> <code>Cloning.TensorLie.canonicalWeight_span</code></a><a href="#L105"><span class="badge">theorem</span> <code>Cloning.TensorLie.cyclicWeight_eq_cutoffWeight</code></a></div></details><div class="code-wrap source-wrap"><pre class="source-lines"><code><span class="source-line" id="L1"><a class="line-no" href="#L1" aria-label="Line 1">1</a><span class="line-code">import Cloning.PBWSymmetricFrameRateMatrix</span></span>
+<span class="source-line" id="L2"><a class="line-no" href="#L2" aria-label="Line 2">2</a><span class="line-code">import Cloning.TensorGibbsHeight</span></span>
+<span class="source-line" id="L3"><a class="line-no" href="#L3" aria-label="Line 3">3</a><span class="line-code">import Cloning.TensorPBWFiniteSector</span></span>
+<span class="source-line" id="L4"><a class="line-no" href="#L4" aria-label="Line 4">4</a><span class="line-code"> </span></span>
+<span class="source-line" id="L5"><a class="line-no" href="#L5" aria-label="Line 5">5</a><span class="line-code">/-! Exact physical Cartan weight spaces are spanned by the matching canonical</span></span>
+<span class="source-line" id="L6"><a class="line-no" href="#L6" aria-label="Line 6">6</a><span class="line-code">PBW occupations. This identifies the symmetric block frame with the actual</span></span>
+<span class="source-line" id="L7"><a class="line-no" href="#L7" aria-label="Line 7">7</a><span class="line-code">weight space, rather than only with an abstract coordinate span. -/</span></span>
+<span class="source-line" id="L8"><a class="line-no" href="#L8" aria-label="Line 8">8</a><span class="line-code">noncomputable section</span></span>
+<span class="source-line" id="L9"><a class="line-no" href="#L9" aria-label="Line 9">9</a><span class="line-code">open scoped ComplexOrder InnerProductSpace Topology BigOperators</span></span>
+<span class="source-line" id="L10"><a class="line-no" href="#L10" aria-label="Line 10">10</a><span class="line-code">namespace Cloning.PBWSymmetricFrame</span></span>
+<span class="source-line" id="L11"><a class="line-no" href="#L11" aria-label="Line 11">11</a><span class="line-code">set_option backward.isDefEq.respectTransparency false</span></span>
+<span class="source-line" id="L12"><a class="line-no" href="#L12" aria-label="Line 12">12</a><span class="line-code">set_option maxHeartbeats 1000000</span></span>
+<span class="source-line" id="L13"><a class="line-no" href="#L13" aria-label="Line 13">13</a><span class="line-code">variable {ι H : Type*} [Fintype ι] [DecidableEq ι]</span></span>
+<span class="source-line" id="L14"><a class="line-no" href="#L14" aria-label="Line 14">14</a><span class="line-code">  [NormedAddCommGroup H] [InnerProductSpace ℂ H] [FiniteDimensional ℂ H]</span></span>
+<span class="source-line" id="L15"><a class="line-no" href="#L15" aria-label="Line 15">15</a><span class="line-code"> </span></span>
+<span class="source-line" id="L16"><a class="line-no" href="#L16" aria-label="Line 16">16</a><span class="line-code">theorem span_inter_of_orthogonal (v : ι→H) (W : Submodule ℂ H) (P : ι→Prop)</span></span>
+<span class="source-line" id="L17"><a class="line-no" href="#L17" aria-label="Line 17">17</a><span class="line-code">    [DecidablePred P] (hkeep : ∀i,P i→v i∈W)</span></span>
+<span class="source-line" id="L18"><a class="line-no" href="#L18" aria-label="Line 18">18</a><span class="line-code">    (hdrop : ∀i,¬P i→∀x∈W,⟪v i,x⟫_ℂ=0) :</span></span>
+<span class="source-line" id="L19"><a class="line-no" href="#L19" aria-label="Line 19">19</a><span class="line-code">    Submodule.span ℂ (Set.range v) ⊓ W=</span></span>
+<span class="source-line" id="L20"><a class="line-no" href="#L20" aria-label="Line 20">20</a><span class="line-code">      Submodule.span ℂ (Set.range (fun i : {i // P i}=&gt;v i.val)) := by</span></span>
+<span class="source-line" id="L21"><a class="line-no" href="#L21" aria-label="Line 21">21</a><span class="line-code">  let S := Submodule.span ℂ (Set.range (fun i : {i // P i}=&gt;v i.val))</span></span>
+<span class="source-line" id="L22"><a class="line-no" href="#L22" aria-label="Line 22">22</a><span class="line-code">  have hS : S≤W := Submodule.span_le.mpr (by rintro _ ⟨i,rfl⟩; exact hkeep i.val i.property)</span></span>
+<span class="source-line" id="L23"><a class="line-no" href="#L23" aria-label="Line 23">23</a><span class="line-code">  have hSV : S≤Submodule.span ℂ (Set.range v) :=</span></span>
+<span class="source-line" id="L24"><a class="line-no" href="#L24" aria-label="Line 24">24</a><span class="line-code">    Submodule.span_le.mpr (by rintro _ ⟨i,rfl⟩; exact Submodule.subset_span ⟨i.val,rfl⟩)</span></span>
+<span class="source-line" id="L25"><a class="line-no" href="#L25" aria-label="Line 25">25</a><span class="line-code">  apply le_antisymm</span></span>
+<span class="source-line" id="L26"><a class="line-no" href="#L26" aria-label="Line 26">26</a><span class="line-code">  · intro x hx</span></span>
+<span class="source-line" id="L27"><a class="line-no" href="#L27" aria-label="Line 27">27</a><span class="line-code">    let y := S.starProjection x</span></span>
+<span class="source-line" id="L28"><a class="line-no" href="#L28" aria-label="Line 28">28</a><span class="line-code">    let z := x-y</span></span>
+<span class="source-line" id="L29"><a class="line-no" href="#L29" aria-label="Line 29">29</a><span class="line-code">    have hy : y∈S := (S.orthogonalProjection x).property</span></span>
+<span class="source-line" id="L30"><a class="line-no" href="#L30" aria-label="Line 30">30</a><span class="line-code">    have hzW : z∈W := W.sub_mem hx.2 (hS hy)</span></span>
+<span class="source-line" id="L31"><a class="line-no" href="#L31" aria-label="Line 31">31</a><span class="line-code">    have hzV : z∈Submodule.span ℂ (Set.range v) :=</span></span>
+<span class="source-line" id="L32"><a class="line-no" href="#L32" aria-label="Line 32">32</a><span class="line-code">      Submodule.sub_mem _ hx.1 (hSV hy)</span></span>
+<span class="source-line" id="L33"><a class="line-no" href="#L33" aria-label="Line 33">33</a><span class="line-code">    have hzS : z∈Sᗮ := S.sub_starProjection_mem_orthogonal x</span></span>
+<span class="source-line" id="L34"><a class="line-no" href="#L34" aria-label="Line 34">34</a><span class="line-code">    have hi (i : ι) : ⟪v i,z⟫_ℂ=0 := by</span></span>
+<span class="source-line" id="L35"><a class="line-no" href="#L35" aria-label="Line 35">35</a><span class="line-code">      by_cases h : P i</span></span>
+<span class="source-line" id="L36"><a class="line-no" href="#L36" aria-label="Line 36">36</a><span class="line-code">      · exact (S.mem_orthogonal z).mp hzS (v i) (Submodule.subset_span ⟨⟨i,h⟩,rfl⟩)</span></span>
+<span class="source-line" id="L37"><a class="line-no" href="#L37" aria-label="Line 37">37</a><span class="line-code">      · exact hdrop i h z hzW</span></span>
+<span class="source-line" id="L38"><a class="line-no" href="#L38" aria-label="Line 38">38</a><span class="line-code">    have hall : ∀a∈Submodule.span ℂ (Set.range v),⟪a,z⟫_ℂ=0 := by</span></span>
+<span class="source-line" id="L39"><a class="line-no" href="#L39" aria-label="Line 39">39</a><span class="line-code">      intro a ha</span></span>
+<span class="source-line" id="L40"><a class="line-no" href="#L40" aria-label="Line 40">40</a><span class="line-code">      induction ha using Submodule.span_induction with</span></span>
+<span class="source-line" id="L41"><a class="line-no" href="#L41" aria-label="Line 41">41</a><span class="line-code">      | mem a ha =&gt; rcases ha with ⟨i,rfl⟩; exact hi i</span></span>
+<span class="source-line" id="L42"><a class="line-no" href="#L42" aria-label="Line 42">42</a><span class="line-code">      | zero =&gt; simp</span></span>
+<span class="source-line" id="L43"><a class="line-no" href="#L43" aria-label="Line 43">43</a><span class="line-code">      | add a b ha hb h1 h2 =&gt; simp [inner_add_left,h1,h2]</span></span>
+<span class="source-line" id="L44"><a class="line-no" href="#L44" aria-label="Line 44">44</a><span class="line-code">      | smul c a ha h =&gt; simp [inner_smul_left,h]</span></span>
+<span class="source-line" id="L45"><a class="line-no" href="#L45" aria-label="Line 45">45</a><span class="line-code">    have hz : z=0 := inner_self_eq_zero.mp (hall z hzV)</span></span>
+<span class="source-line" id="L46"><a class="line-no" href="#L46" aria-label="Line 46">46</a><span class="line-code">    have he : x=y := sub_eq_zero.mp hz</span></span>
+<span class="source-line" id="L47"><a class="line-no" href="#L47" aria-label="Line 47">47</a><span class="line-code">    exact he ▸ hy</span></span>
+<span class="source-line" id="L48"><a class="line-no" href="#L48" aria-label="Line 48">48</a><span class="line-code">  · exact le_inf hSV hS</span></span>
+<span class="source-line" id="L49"><a class="line-no" href="#L49" aria-label="Line 49">49</a><span class="line-code"> </span></span>
+<span class="source-line" id="L50"><a class="line-no" href="#L50" aria-label="Line 50">50</a><span class="line-code">end Cloning.PBWSymmetricFrame</span></span>
+<span class="source-line" id="L51"><a class="line-no" href="#L51" aria-label="Line 51">51</a><span class="line-code"> </span></span>
+<span class="source-line" id="L52"><a class="line-no" href="#L52" aria-label="Line 52">52</a><span class="line-code">namespace Cloning.TensorLie</span></span>
+<span class="source-line" id="L53"><a class="line-no" href="#L53" aria-label="Line 53">53</a><span class="line-code">open PBWSymmetricFrame Cloning.PCT</span></span>
+<span class="source-line" id="L54"><a class="line-no" href="#L54" aria-label="Line 54">54</a><span class="line-code">set_option backward.isDefEq.respectTransparency false</span></span>
+<span class="source-line" id="L55"><a class="line-no" href="#L55" aria-label="Line 55">55</a><span class="line-code">set_option maxHeartbeats 1000000</span></span>
+<span class="source-line" id="L56"><a class="line-no" href="#L56" aria-label="Line 56">56</a><span class="line-code">variable {n d : ℕ}</span></span>
+<span class="source-line" id="L57"><a class="line-no" href="#L57" aria-label="Line 57">57</a><span class="line-code">local instance : FiniteDimensional ℂ (TensorRegister n (Fin d)) :=</span></span>
+<span class="source-line" id="L58"><a class="line-no" href="#L58" aria-label="Line 58">58</a><span class="line-code">  (registerBasis (Fin n→Fin d)).toOrthonormalBasis.toBasis.finiteDimensional_of_finite</span></span>
+<span class="source-line" id="L59"><a class="line-no" href="#L59" aria-label="Line 59">59</a><span class="line-code"> </span></span>
+<span class="source-line" id="L60"><a class="line-no" href="#L60" aria-label="Line 60">60</a><span class="line-code">def cartanWeightSpace (n : ℕ) (mu : Fin d→ℕ) (η : Fin d→ℤ) :</span></span>
+<span class="source-line" id="L61"><a class="line-no" href="#L61" aria-label="Line 61">61</a><span class="line-code">    Submodule ℂ (TensorRegister n (Fin d)) :=</span></span>
+<span class="source-line" id="L62"><a class="line-no" href="#L62" aria-label="Line 62">62</a><span class="line-code">  ⨅ a : Fin d,LinearMap.ker ((collectiveGenerator n a a).toLinearMap-</span></span>
+<span class="source-line" id="L63"><a class="line-no" href="#L63" aria-label="Line 63">63</a><span class="line-code">    ((mu a:ℂ)+(η a:ℂ)) • LinearMap.id)</span></span>
+<span class="source-line" id="L64"><a class="line-no" href="#L64" aria-label="Line 64">64</a><span class="line-code"> </span></span>
+<span class="source-line" id="L65"><a class="line-no" href="#L65" aria-label="Line 65">65</a><span class="line-code">theorem mem_cartanWeightSpace (mu : Fin d→ℕ) (η : Fin d→ℤ)</span></span>
+<span class="source-line" id="L66"><a class="line-no" href="#L66" aria-label="Line 66">66</a><span class="line-code">    (x : TensorRegister n (Fin d)) : x∈cartanWeightSpace n mu η ↔</span></span>
+<span class="source-line" id="L67"><a class="line-no" href="#L67" aria-label="Line 67">67</a><span class="line-code">      ∀a,collectiveGenerator n a a x=((mu a:ℂ)+(η a:ℂ)) • x := by</span></span>
+<span class="source-line" id="L68"><a class="line-no" href="#L68" aria-label="Line 68">68</a><span class="line-code">  simp only [cartanWeightSpace,Submodule.mem_iInf,LinearMap.mem_ker,</span></span>
+<span class="source-line" id="L69"><a class="line-no" href="#L69" aria-label="Line 69">69</a><span class="line-code">    LinearMap.sub_apply,LinearMap.smul_apply,LinearMap.id_apply,sub_eq_zero,</span></span>
+<span class="source-line" id="L70"><a class="line-no" href="#L70" aria-label="Line 70">70</a><span class="line-code">    ContinuousLinearMap.coe_coe]</span></span>
+<span class="source-line" id="L71"><a class="line-no" href="#L71" aria-label="Line 71">71</a><span class="line-code"> </span></span>
+<span class="source-line" id="L72"><a class="line-no" href="#L72" aria-label="Line 72">72</a><span class="line-code">def WeightOccupation (d R : ℕ) (η : Fin d→ℤ) :=</span></span>
+<span class="source-line" id="L73"><a class="line-no" href="#L73" aria-label="Line 73">73</a><span class="line-code">  {k : HeightOccupation d R // loweringWeight (canonicalWord k.val)=η}</span></span>
+<span class="source-line" id="L74"><a class="line-no" href="#L74" aria-label="Line 74">74</a><span class="line-code"> </span></span>
+<span class="source-line" id="L75"><a class="line-no" href="#L75" aria-label="Line 75">75</a><span class="line-code">instance (d R : ℕ) (η : Fin d→ℤ) : Fintype (WeightOccupation d R η) :=</span></span>
+<span class="source-line" id="L76"><a class="line-no" href="#L76" aria-label="Line 76">76</a><span class="line-code">  inferInstanceAs (Fintype {k : HeightOccupation d R // loweringWeight (canonicalWord k.val)=η})</span></span>
+<span class="source-line" id="L77"><a class="line-no" href="#L77" aria-label="Line 77">77</a><span class="line-code"> </span></span>
+<span class="source-line" id="L78"><a class="line-no" href="#L78" aria-label="Line 78">78</a><span class="line-code">theorem canonicalWeight_span (Ω : TensorRegister n (Fin d)) (mu : Fin d→ℕ)</span></span>
+<span class="source-line" id="L79"><a class="line-no" href="#L79" aria-label="Line 79">79</a><span class="line-code">    (hweight : ∀a,collectiveGenerator n a a Ω=(mu a:ℂ) • Ω)</span></span>
+<span class="source-line" id="L80"><a class="line-no" href="#L80" aria-label="Line 80">80</a><span class="line-code">    (R : ℕ) (η : Fin d→ℤ) :</span></span>
+<span class="source-line" id="L81"><a class="line-no" href="#L81" aria-label="Line 81">81</a><span class="line-code">    cyclicCutoff Ω (R:ℤ) ⊓ cartanWeightSpace n mu η=</span></span>
+<span class="source-line" id="L82"><a class="line-no" href="#L82" aria-label="Line 82">82</a><span class="line-code">      Submodule.span ℂ (Set.range (fun k : WeightOccupation d R η=&gt;</span></span>
+<span class="source-line" id="L83"><a class="line-no" href="#L83" aria-label="Line 83">83</a><span class="line-code">        loweringWord Ω (canonicalWord k.val.val))) := by</span></span>
+<span class="source-line" id="L84"><a class="line-no" href="#L84" aria-label="Line 84">84</a><span class="line-code">  classical</span></span>
+<span class="source-line" id="L85"><a class="line-no" href="#L85" aria-label="Line 85">85</a><span class="line-code">  rw [cyclicCutoff_eq_span_canonical]</span></span>
+<span class="source-line" id="L86"><a class="line-no" href="#L86" aria-label="Line 86">86</a><span class="line-code">  apply span_inter_of_orthogonal</span></span>
+<span class="source-line" id="L87"><a class="line-no" href="#L87" aria-label="Line 87">87</a><span class="line-code">  · intro k hk</span></span>
+<span class="source-line" id="L88"><a class="line-no" href="#L88" aria-label="Line 88">88</a><span class="line-code">    apply (mem_cartanWeightSpace mu η _).mpr</span></span>
+<span class="source-line" id="L89"><a class="line-no" href="#L89" aria-label="Line 89">89</a><span class="line-code">    intro a</span></span>
+<span class="source-line" id="L90"><a class="line-no" href="#L90" aria-label="Line 90">90</a><span class="line-code">    rw [cartan_loweringWord Ω (fun a=&gt;(mu a:ℂ)) hweight, hk]</span></span>
+<span class="source-line" id="L91"><a class="line-no" href="#L91" aria-label="Line 91">91</a><span class="line-code">  · intro k hk x hx</span></span>
+<span class="source-line" id="L92"><a class="line-no" href="#L92" aria-label="Line 92">92</a><span class="line-code">    obtain ⟨a,ha⟩ := Function.ne_iff.mp hk</span></span>
+<span class="source-line" id="L93"><a class="line-no" href="#L93" aria-label="Line 93">93</a><span class="line-code">    apply inner_eq_zero_of_real_eigenvalues (collectiveGenerator n a a).toLinearMap</span></span>
+<span class="source-line" id="L94"><a class="line-no" href="#L94" aria-label="Line 94">94</a><span class="line-code">      (cartan_isSymmetric a) _ _ ((mu a:ℝ)+loweringWeight (canonicalWord k.val) a)</span></span>
+<span class="source-line" id="L95"><a class="line-no" href="#L95" aria-label="Line 95">95</a><span class="line-code">        ((mu a:ℝ)+η a)</span></span>
+<span class="source-line" id="L96"><a class="line-no" href="#L96" aria-label="Line 96">96</a><span class="line-code">    · simpa only [Complex.ofReal_add,Complex.ofReal_natCast,Complex.ofReal_intCast] using</span></span>
+<span class="source-line" id="L97"><a class="line-no" href="#L97" aria-label="Line 97">97</a><span class="line-code">        cartan_loweringWord Ω (fun a=&gt;(mu a:ℂ)) hweight (canonicalWord k.val) a</span></span>
+<span class="source-line" id="L98"><a class="line-no" href="#L98" aria-label="Line 98">98</a><span class="line-code">    · simpa only [Complex.ofReal_add,Complex.ofReal_natCast,Complex.ofReal_intCast] using</span></span>
+<span class="source-line" id="L99"><a class="line-no" href="#L99" aria-label="Line 99">99</a><span class="line-code">        (mem_cartanWeightSpace mu η x).mp hx a</span></span>
+<span class="source-line" id="L100"><a class="line-no" href="#L100" aria-label="Line 100">100</a><span class="line-code">    · intro he</span></span>
+<span class="source-line" id="L101"><a class="line-no" href="#L101" aria-label="Line 101">101</a><span class="line-code">      exact ha (by exact_mod_cast add_left_cancel he)</span></span>
+<span class="source-line" id="L102"><a class="line-no" href="#L102" aria-label="Line 102">102</a><span class="line-code"> </span></span>
+<span class="source-line" id="L103"><a class="line-no" href="#L103" aria-label="Line 103">103</a><span class="line-code">/-- If the weight has height at most `R`, its full physical eigenspace in the</span></span>
+<span class="source-line" id="L104"><a class="line-no" href="#L104" aria-label="Line 104">104</a><span class="line-code">cyclic sector is already the finite-height block. -/</span></span>
+<span class="source-line" id="L105"><a class="line-no" href="#L105" aria-label="Line 105">105</a><span class="line-code">theorem cyclicWeight_eq_cutoffWeight (Ω : TensorRegister n (Fin d)) (mu : Fin d→ℕ)</span></span>
+<span class="source-line" id="L106"><a class="line-no" href="#L106" aria-label="Line 106">106</a><span class="line-code">    (hweight : ∀a,collectiveGenerator n a a Ω=(mu a:ℂ) • Ω)</span></span>
+<span class="source-line" id="L107"><a class="line-no" href="#L107" aria-label="Line 107">107</a><span class="line-code">    (R : ℕ) (η : Fin d→ℤ) (hη : ∑a,(a.val:ℤ)*η a≤(R:ℤ)) :</span></span>
+<span class="source-line" id="L108"><a class="line-no" href="#L108" aria-label="Line 108">108</a><span class="line-code">    cyclicSector Ω ⊓ cartanWeightSpace n mu η=</span></span>
+<span class="source-line" id="L109"><a class="line-no" href="#L109" aria-label="Line 109">109</a><span class="line-code">      cyclicCutoff Ω (R:ℤ) ⊓ cartanWeightSpace n mu η := by</span></span>
+<span class="source-line" id="L110"><a class="line-no" href="#L110" aria-label="Line 110">110</a><span class="line-code">  apply le_antisymm</span></span>
+<span class="source-line" id="L111"><a class="line-no" href="#L111" aria-label="Line 111">111</a><span class="line-code">  · rw [cyclicSector_eq_tensorSize_cutoff Ω mu hweight,</span></span>
+<span class="source-line" id="L112"><a class="line-no" href="#L112" aria-label="Line 112">112</a><span class="line-code">      canonicalWeight_span Ω mu hweight (n*d) η]</span></span>
+<span class="source-line" id="L113"><a class="line-no" href="#L113" aria-label="Line 113">113</a><span class="line-code">    apply Submodule.span_le.mpr</span></span>
+<span class="source-line" id="L114"><a class="line-no" href="#L114" aria-label="Line 114">114</a><span class="line-code">    rintro _ ⟨k,rfl⟩</span></span>
+<span class="source-line" id="L115"><a class="line-no" href="#L115" aria-label="Line 115">115</a><span class="line-code">    constructor</span></span>
+<span class="source-line" id="L116"><a class="line-no" href="#L116" aria-label="Line 116">116</a><span class="line-code">    · apply loweringWord_mem_cyclicCutoff</span></span>
+<span class="source-line" id="L117"><a class="line-no" href="#L117" aria-label="Line 117">117</a><span class="line-code">      rw [←loweringWeight_index_sum,k.property]</span></span>
+<span class="source-line" id="L118"><a class="line-no" href="#L118" aria-label="Line 118">118</a><span class="line-code">      exact hη</span></span>
+<span class="source-line" id="L119"><a class="line-no" href="#L119" aria-label="Line 119">119</a><span class="line-code">    · apply (mem_cartanWeightSpace mu η _).mpr</span></span>
+<span class="source-line" id="L120"><a class="line-no" href="#L120" aria-label="Line 120">120</a><span class="line-code">      intro a</span></span>
+<span class="source-line" id="L121"><a class="line-no" href="#L121" aria-label="Line 121">121</a><span class="line-code">      rw [cartan_loweringWord Ω (fun a=&gt;(mu a:ℂ)) hweight,k.property]</span></span>
+<span class="source-line" id="L122"><a class="line-no" href="#L122" aria-label="Line 122">122</a><span class="line-code">  · exact inf_le_inf (cyclicCutoff_le_cyclicSector Ω _) le_rfl</span></span>
+<span class="source-line" id="L123"><a class="line-no" href="#L123" aria-label="Line 123">123</a><span class="line-code"> </span></span>
+<span class="source-line" id="L124"><a class="line-no" href="#L124" aria-label="Line 124">124</a><span class="line-code">end Cloning.TensorLie</span></span>
+</code></pre></div></main>
+<footer class="footer">English guides explain the argument. Lean source and its hypotheses determine the formal claims.
+<a href="../verification.html">Audit evidence</a> · <a href="../scope.html">Scope</a></footer>
+</div></div></body></html>

@@ -2,6 +2,7 @@
 **/.lake/
 **/build/
 **/.audit-work/
+**/.verify-work/
 **/verification/runs/
 **/__pycache__/
 *.pyc

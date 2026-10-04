@@ -1,0 +1,332 @@
+{
+  "Cloning.MultimodeCoherent.numberIterate._unsafe_rec": {
+    "audit_module": "Cloning.WeylNumberTaylor",
+    "originating_definition": "Cloning.MultimodeCoherent.numberIterate",
+    "source_declarations": [
+      {
+        "file": "Cloning/WeylNumberTaylor.lean",
+        "line": 58,
+        "text": "def numberIterate (a : Fin d \u2192 \u2102) (c : NumberCoefficients d) : \u2115 \u2192 NumberCoefficients d"
+      }
+    ]
+  },
+  "Cloning.PBW.errorTerms._unsafe_rec": {
+    "audit_module": "Cloning.PBWNormalOrdering",
+    "originating_definition": "Cloning.PBW.errorTerms",
+    "source_declarations": [
+      {
+        "file": "Cloning/PBWNormalOrdering.lean",
+        "line": 83,
+        "text": "def errorTerms (F A : \u03b9 \u2192 H \u2192L[\u2102] H) (\u03a9 : H) (i : \u03b9) : List \u03b9 \u2192 List H"
+      }
+    ]
+  },
+  "Cloning.PBW.gramConstant._unsafe_rec": {
+    "audit_module": "Cloning.PBWNormalOrdering",
+    "originating_definition": "Cloning.PBW.gramConstant",
+    "source_declarations": [
+      {
+        "file": "Cloning/PBWNormalOrdering.lean",
+        "line": 149,
+        "text": "def gramConstant (L : \u2115) : \u2115 \u2192 \u2115"
+      }
+    ]
+  },
+  "Cloning.PBW.occupationFactorial._unsafe_rec": {
+    "audit_module": "Cloning.PBWNormalOrdering",
+    "originating_definition": "Cloning.PBW.occupationFactorial",
+    "source_declarations": [
+      {
+        "file": "Cloning/PBWNormalOrdering.lean",
+        "line": 264,
+        "text": "def occupationFactorial : List \u03b9 \u2192 \u2115"
+      }
+    ]
+  },
+  "Cloning.PBW.removeOne._unsafe_rec": {
+    "audit_module": "Cloning.PBWNormalOrdering",
+    "originating_definition": "Cloning.PBW.removeOne",
+    "source_declarations": [
+      {
+        "file": "Cloning/PBWNormalOrdering.lean",
+        "line": 35,
+        "text": "def removeOne (i : \u03b9) : List \u03b9 \u2192 List (List \u03b9)"
+      }
+    ]
+  },
+  "Cloning.PBW.wick._unsafe_rec": {
+    "audit_module": "Cloning.PBWNormalOrdering",
+    "originating_definition": "Cloning.PBW.wick",
+    "source_declarations": [
+      {
+        "file": "Cloning/PBWNormalOrdering.lean",
+        "line": 67,
+        "text": "def wick : List \u03b9 \u2192 List \u03b9 \u2192 \u2115"
+      }
+    ]
+  },
+  "Cloning.PBW.word._unsafe_rec": {
+    "audit_module": "Cloning.PBWNormalOrdering",
+    "originating_definition": "Cloning.PBW.word",
+    "source_declarations": [
+      {
+        "file": "Cloning/PBWNormalOrdering.lean",
+        "line": 26,
+        "text": "def word (F : \u03b9 \u2192 H \u2192L[\u2102] H) : List \u03b9 \u2192 H \u2192 H"
+      }
+    ]
+  },
+  "Cloning.TensorLie.highestAction._unsafe_rec": {
+    "audit_module": "Cloning.TensorHighestGramAction",
+    "originating_definition": "Cloning.TensorLie.highestAction",
+    "source_declarations": [
+      {
+        "file": "Cloning/TensorHighestGramAction.lean",
+        "line": 16,
+        "text": "def highestAction (mu : Fin d \u2192 \u2102) (a b : Fin d) : List (PositiveRoot d) \u2192 FormalLowering d"
+      }
+    ]
+  },
+  "Cloning.TensorLie.loweringHeight._unsafe_rec": {
+    "audit_module": "Cloning.TensorCyclicFiltration",
+    "originating_definition": "Cloning.TensorLie.loweringHeight",
+    "source_declarations": [
+      {
+        "file": "Cloning/TensorCyclicFiltration.lean",
+        "line": 22,
+        "text": "def loweringHeight : List (PositiveRoot d) \u2192 \u2115"
+      }
+    ]
+  },
+  "Cloning.TensorLie.loweringOperator._unsafe_rec": {
+    "audit_module": "Cloning.TensorPBWOrder",
+    "originating_definition": "Cloning.TensorLie.loweringOperator",
+    "source_declarations": [
+      {
+        "file": "Cloning/TensorPBWOrder.lean",
+        "line": 86,
+        "text": "def loweringOperator (n : \u2115) : List (PositiveRoot d) \u2192"
+      }
+    ]
+  },
+  "Cloning.TensorLie.loweringScale._unsafe_rec": {
+    "audit_module": "Cloning.TensorPBWNormalization",
+    "originating_definition": "Cloning.TensorLie.loweringScale",
+    "source_declarations": [
+      {
+        "file": "Cloning/TensorPBWNormalization.lean",
+        "line": 13,
+        "text": "def loweringScale (mu : Fin d \u2192 \u2115) : List (PositiveRoot d) \u2192 \u2102"
+      }
+    ]
+  },
+  "Cloning.TensorLie.loweringSplits._unsafe_rec": {
+    "audit_module": "Cloning.TensorCartanWordSplit",
+    "originating_definition": "Cloning.TensorLie.loweringSplits",
+    "source_declarations": [
+      {
+        "file": "Cloning/TensorCartanWordSplit.lean",
+        "line": 16,
+        "text": "def loweringSplits : List (PositiveRoot d) \u2192 List (List (PositiveRoot d) \u00d7 List (PositiveRoot d))"
+      }
+    ]
+  },
+  "Cloning.TensorLie.loweringWeight._unsafe_rec": {
+    "audit_module": "Cloning.TensorPBWWeight",
+    "originating_definition": "Cloning.TensorLie.loweringWeight",
+    "source_declarations": [
+      {
+        "file": "Cloning/TensorPBWWeight.lean",
+        "line": 17,
+        "text": "def loweringWeight : List (PositiveRoot d) \u2192 (Fin d \u2192 \u2124)"
+      }
+    ]
+  },
+  "Cloning.TensorLie.loweringWord._unsafe_rec": {
+    "audit_module": "Cloning.TensorCyclicFiltration",
+    "originating_definition": "Cloning.TensorLie.loweringWord",
+    "source_declarations": [
+      {
+        "file": "Cloning/TensorCyclicFiltration.lean",
+        "line": 26,
+        "text": "def loweringWord (\u03a9 : TensorRegister n (Fin d)) :"
+      }
+    ]
+  },
+  "Cloning.TensorLie.physicalSectorListSpan._unsafe_rec": {
+    "audit_module": "Cloning.TensorSchurDecomposition",
+    "originating_definition": "Cloning.TensorLie.physicalSectorListSpan",
+    "source_declarations": [
+      {
+        "file": "Cloning/TensorSchurDecomposition.lean",
+        "line": 16,
+        "text": "def physicalSectorListSpan : List (PhysicalHighestTensor n d) \u2192 Submodule \u2102 (TensorRegister n (Fin d))"
+      }
+    ]
+  },
+  "Cloning.TensorLie.recursivePhysicalDecomposition._unsafe_rec": {
+    "audit_module": "Cloning.TensorSchurMultiplicityDecomposition",
+    "originating_definition": "Cloning.TensorLie.recursivePhysicalDecomposition",
+    "source_declarations": [
+      {
+        "file": "Cloning/TensorSchurMultiplicityDecomposition.lean",
+        "line": 39,
+        "text": "def recursivePhysicalDecomposition : (n d : \u2115) \u2192 List (PhysicalHighestTensor n d)"
+      }
+    ]
+  },
+  "Cloning.TensorLie.rootInversions._unsafe_rec": {
+    "audit_module": "Cloning.TensorPBWOrder",
+    "originating_definition": "Cloning.TensorLie.rootInversions",
+    "source_declarations": [
+      {
+        "file": "Cloning/TensorPBWOrder.lean",
+        "line": 34,
+        "text": "def rootInversions : List (PositiveRoot d) \u2192 \u2115"
+      }
+    ]
+  },
+  "Cloning.TensorLie.rootOccupationSplits._unsafe_rec": {
+    "audit_module": "Cloning.TensorCartanSplitMultiplicity",
+    "originating_definition": "Cloning.TensorLie.rootOccupationSplits",
+    "source_declarations": [
+      {
+        "file": "Cloning/TensorCartanSplitMultiplicity.lean",
+        "line": 39,
+        "text": "def rootOccupationSplits : List (PositiveRoot d) \u2192 List (PositiveRoot d \u2192 \u2115)"
+      }
+    ]
+  },
+  "Cloning.YoungGeneral.shapeAdd._unsafe_rec": {
+    "audit_module": "Cloning.YoungRSKTableau",
+    "originating_definition": "Cloning.YoungGeneral.shapeAdd",
+    "source_declarations": [
+      {
+        "file": "Cloning/YoungRSKTableau.lean",
+        "line": 31,
+        "text": "def shapeAdd : List \u2115 \u2192 \u2115 \u2192 List \u2115"
+      }
+    ]
+  },
+  "Cloning.YoungGeneral.shapeRemovable._unsafe_rec": {
+    "audit_module": "Cloning.YoungRSKShape",
+    "originating_definition": "Cloning.YoungGeneral.shapeRemovable",
+    "source_declarations": [
+      {
+        "file": "Cloning/YoungRSKShape.lean",
+        "line": 9,
+        "text": "def shapeRemovable : List \u2115 \u2192 \u2115 \u2192 Prop"
+      }
+    ]
+  },
+  "Cloning.YoungGeneral.tableauInsert._unsafe_rec": {
+    "audit_module": "Cloning.YoungRSKTableau",
+    "originating_definition": "Cloning.YoungGeneral.tableauInsert",
+    "source_declarations": [
+      {
+        "file": "Cloning/YoungRSKTableau.lean",
+        "line": 15,
+        "text": "def tableauInsert {d : \u2115} : List (RowContent d) \u2192 Fin d \u2192 List (RowContent d) \u00d7 \u2115"
+      }
+    ]
+  },
+  "Cloning.YoungGeneral.tableauRemovable._unsafe_rec": {
+    "audit_module": "Cloning.YoungRSKTableauReverse",
+    "originating_definition": "Cloning.YoungGeneral.tableauRemovable",
+    "source_declarations": [
+      {
+        "file": "Cloning/YoungRSKTableauReverse.lean",
+        "line": 25,
+        "text": "def tableauRemovable {d : \u2115} : List (RowContent d) \u2192 \u2115 \u2192 Prop"
+      }
+    ]
+  },
+  "Cloning.YoungGeneral.tableauReverse._unsafe_rec": {
+    "audit_module": "Cloning.YoungRSKTableauReverse",
+    "originating_definition": "Cloning.YoungGeneral.tableauReverse",
+    "source_declarations": [
+      {
+        "file": "Cloning/YoungRSKTableauReverse.lean",
+        "line": 11,
+        "text": "def tableauReverse {d : \u2115} : List (RowContent d) \u2192 \u2115 \u2192 Option (List (RowContent d) \u00d7 Fin d)"
+      }
+    ]
+  },
+  "Cloning.YoungTwoRow.Path._unsafe_rec": {
+    "audit_module": "Cloning.YoungTwoRowMoment",
+    "originating_definition": "Cloning.YoungTwoRow.Path",
+    "source_declarations": [
+      {
+        "file": "Cloning/YoungTwoRowMoment.lean",
+        "line": 25,
+        "text": "def Path : \u2115 \u2192 Type"
+      }
+    ]
+  },
+  "Cloning.YoungTwoRow.legal._unsafe_rec": {
+    "audit_module": "Cloning.YoungTwoRowMoment",
+    "originating_definition": "Cloning.YoungTwoRow.legal",
+    "source_declarations": [
+      {
+        "file": "Cloning/YoungTwoRowMoment.lean",
+        "line": 50,
+        "text": "def legal : (N : \u2115) \u2192 Path N \u2192 Prop"
+      }
+    ]
+  },
+  "Cloning.YoungTwoRow.lowerRow._unsafe_rec": {
+    "audit_module": "Cloning.YoungTwoRowMoment",
+    "originating_definition": "Cloning.YoungTwoRow.lowerRow",
+    "source_declarations": [
+      {
+        "file": "Cloning/YoungTwoRowMoment.lean",
+        "line": 61,
+        "text": "def lowerRow : (N : \u2115) \u2192 Path N \u2192 \u2115"
+      }
+    ]
+  },
+  "Cloning.YoungTwoRow.pathFintype._unsafe_rec": {
+    "audit_module": "Cloning.YoungTwoRowMoment",
+    "originating_definition": "Cloning.YoungTwoRow.pathFintype",
+    "source_declarations": [
+      {
+        "file": "Cloning/YoungTwoRowMoment.lean",
+        "line": 29,
+        "text": "instance pathFintype : (N : \u2115) \u2192 Fintype (Path N)"
+      }
+    ]
+  },
+  "Cloning.YoungTwoRow.spin._unsafe_rec": {
+    "audit_module": "Cloning.YoungTwoRowMoment",
+    "originating_definition": "Cloning.YoungTwoRow.spin",
+    "source_declarations": [
+      {
+        "file": "Cloning/YoungTwoRowMoment.lean",
+        "line": 42,
+        "text": "def spin : (N : \u2115) \u2192 Path N \u2192 \u2115"
+      }
+    ]
+  },
+  "Cloning.YoungTwoRow.upperRow._unsafe_rec": {
+    "audit_module": "Cloning.YoungTwoRowMoment",
+    "originating_definition": "Cloning.YoungTwoRow.upperRow",
+    "source_declarations": [
+      {
+        "file": "Cloning/YoungTwoRowMoment.lean",
+        "line": 57,
+        "text": "def upperRow : (N : \u2115) \u2192 Path N \u2192 \u2115"
+      }
+    ]
+  },
+  "Cloning.YoungTwoRow.weight._unsafe_rec": {
+    "audit_module": "Cloning.YoungTwoRowMoment",
+    "originating_definition": "Cloning.YoungTwoRow.weight",
+    "source_declarations": [
+      {
+        "file": "Cloning/YoungTwoRowMoment.lean",
+        "line": 46,
+        "text": "def weight : (N : \u2115) \u2192 Path N \u2192 \u211d"
+      }
+    ]
+  }
+}

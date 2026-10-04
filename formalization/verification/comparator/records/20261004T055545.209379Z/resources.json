@@ -1,0 +1,6 @@
+{
+  "run_elapsed_seconds": 348.760544,
+  "timed_command_elapsed_seconds": 349.96,
+  "timed_command_maximum_resident_set_bytes": 3614605312,
+  "scope": "macOS /usr/bin/time -l report for the runner command; not simultaneous aggregate memory across all processes"
+}

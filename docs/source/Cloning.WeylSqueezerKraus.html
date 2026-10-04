@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="An offline guide to the Lean formalization of asymptotic mixed-state quantum cloning. Exact source, proof routes, and audited scope.">
+<title>WeylSqueezerKraus · Lean source · Cloning proof wiki</title>
+<link rel="stylesheet" href="../assets/site.css?v=1811c00ea983">
+<script>window.PROOF_ROOT="../";</script>
+<script defer src="../assets/vendor/katex/katex.min.js"></script>
+<script defer src="../assets/search-index.js?v=850aee981cdc"></script>
+<script defer src="../assets/site.js?v=4bfaac1f06b1"></script>
+</head><body><a class="skip-link" href="#main">Skip to content</a>
+<div class="site-shell"><aside class="sidebar" id="site-navigation">
+<a class="brand" href="../index.html"><span class="brand-mark">C</span><span>Cloning<span class="small muted">A Lean proof wiki</span></span></a>
+<nav aria-label="Main navigation"><div class="nav-section">Explore</div><a class="nav-link" href="../index.html">Overview</a><a class="nav-link" href="../guides/index.html">Proof guide</a><a class="nav-link" href="../results/index.html">27 named results</a><a class="nav-link active" href="../source/index.html" aria-current="page">Lean source</a><a class="nav-link" href="../verification.html">Verification</a><a class="nav-link" href="../scope.html">Scope &amp; conventions</a>
+<div class="nav-section">Read the proof</div><a class="nav-link" href="../guides/physical-problem.html"><span class="nav-number">01</span> The physical problem and its conventions</a><a class="nav-link" href="../guides/young-laws.html"><span class="nav-number">02</span> Young labels: concentration and the local Gaussian law</a><a class="nav-link" href="../guides/cartan-sectors.html"><span class="nav-number">03</span> From PBW frames to uniform Cartan-sector fidelity</a><a class="nav-link" href="../guides/lifted-kernels.html"><span class="nav-number">04</span> Lifted channels, randomized dilation, and factorization</a><a class="nav-link" href="../guides/gaussian-optimum.html"><span class="nav-number">05</span> Gaussian amplification against arbitrary competitors</a><a class="nav-link" href="../guides/physical-lan.html"><span class="nav-number">06</span> Constructed LAN and fidelity transfer</a><a class="nav-link" href="../guides/known-spectrum.html"><span class="nav-number">07</span> The known-spectrum optimum</a><a class="nav-link" href="../guides/unknown-spectrum.html"><span class="nav-number">08</span> One universal cloner and the compact-set optimum</a><a class="nav-link" href="../guides/grassmann.html"><span class="nav-number">09</span> Exact rank compression and projector-state optimality</a><a class="nav-link" href="../guides/purify-clone-trace.html"><span class="nav-number">10</span> Purify–clone–trace: exact channels, limits, and guarantees</a><a class="nav-link" href="../guides/small-errors.html"><span class="nav-number">11</span> Small errors, rank boundaries, and noncommuting limits</a><a class="nav-link" href="../guides/spectral-comparison.html"><span class="nav-number">12</span> Spectral order and what is known for all states</a></nav>
+<div class="sidebar-footer"><span class="badge">Lean 4</span><p>Manuscript → proof → source</p>
+<a href="https://github.com/JWang226/Cloning">Repository ↗</a></div></aside>
+<div class="main-shell"><header class="topbar">
+<button id="nav-toggle" class="button secondary" aria-controls="site-navigation" aria-expanded="false" aria-label="Toggle navigation">Menu</button>
+<div class="search-wrap"><label class="sr-only" for="site-search">Search the proof wiki</label>
+<input id="site-search" type="search" placeholder="Search results, concepts, or Lean names…" autocomplete="off" aria-controls="search-results" aria-expanded="false" role="combobox" aria-autocomplete="list">
+<div id="search-results" class="search-results" role="listbox" hidden></div></div>
+<span class="small muted topbar-label">Offline · exact source</span></header>
+<main id="main" class="content"><div class="eyebrow">Exact Lean source</div><h1 class="source-title">WeylSqueezerKraus</h1><p><code>formalization/Cloning/WeylSqueezerKraus.lean</code></p><p class="small muted">Source hash: <code>85467d629695d620464d5e68534cc3c21954a9a5eeaa77b6969a003f344ce869</code></p><div class="actions"><a class="button secondary" href="raw/Cloning.WeylSqueezerKraus.lean">Download .lean</a><a class="button secondary" href="https://github.com/JWang226/Cloning/blob/main/formalization/Cloning/WeylSqueezerKraus.lean">View on GitHub ↗</a><a href="index.html">All modules</a></div><p class="small muted">Full source copied without mathematical changes from the snapshot whose input hash matches the passing audit. Select a line number for a stable source pointer.</p><details><summary>Declarations in this module</summary><div class="module-declarations"><a href="#L14"><span class="badge">theorem</span> <code>Cloning.WeylSqueezer.rectangularKraus_pairing_pure_hasSum</code></a><a href="#L29"><span class="badge">theorem</span> <code>Cloning.WeylSqueezer.channel_pairing_of_pure</code></a></div></details><div class="code-wrap source-wrap"><pre class="source-lines"><code><span class="source-line" id="L1"><a class="line-no" href="#L1" aria-label="Line 1">1</a><span class="line-code">import Cloning.InfiniteRectangularKraus</span></span>
+<span class="source-line" id="L2"><a class="line-no" href="#L2" aria-label="Line 2">2</a><span class="line-code">import Cloning.HeisenbergDual</span></span>
+<span class="source-line" id="L3"><a class="line-no" href="#L3" aria-label="Line 3">3</a><span class="line-code"> </span></span>
+<span class="source-line" id="L4"><a class="line-no" href="#L4" aria-label="Line 4">4</a><span class="line-code">/-! Exact bounded-observable formulas for actual Kraus channels. -/</span></span>
+<span class="source-line" id="L5"><a class="line-no" href="#L5" aria-label="Line 5">5</a><span class="line-code">noncomputable section</span></span>
+<span class="source-line" id="L6"><a class="line-no" href="#L6" aria-label="Line 6">6</a><span class="line-code">open scoped InnerProductSpace Topology</span></span>
+<span class="source-line" id="L7"><a class="line-no" href="#L7" aria-label="Line 7">7</a><span class="line-code">namespace Cloning.WeylSqueezer</span></span>
+<span class="source-line" id="L8"><a class="line-no" href="#L8" aria-label="Line 8">8</a><span class="line-code">open Cloning.InfiniteTraceClass</span></span>
+<span class="source-line" id="L9"><a class="line-no" href="#L9" aria-label="Line 9">9</a><span class="line-code">set_option backward.isDefEq.respectTransparency false</span></span>
+<span class="source-line" id="L10"><a class="line-no" href="#L10" aria-label="Line 10">10</a><span class="line-code">variable {ι H K : Type*}</span></span>
+<span class="source-line" id="L11"><a class="line-no" href="#L11" aria-label="Line 11">11</a><span class="line-code">  [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]</span></span>
+<span class="source-line" id="L12"><a class="line-no" href="#L12" aria-label="Line 12">12</a><span class="line-code">  [NormedAddCommGroup K] [InnerProductSpace ℂ K] [CompleteSpace K]</span></span>
+<span class="source-line" id="L13"><a class="line-no" href="#L13" aria-label="Line 13">13</a><span class="line-code"> </span></span>
+<span class="source-line" id="L14"><a class="line-no" href="#L14" aria-label="Line 14">14</a><span class="line-code">theorem rectangularKraus_pairing_pure_hasSum</span></span>
+<span class="source-line" id="L15"><a class="line-no" href="#L15" aria-label="Line 15">15</a><span class="line-code">    (V : ι → H →L[ℂ] K) (hV : RectangularKrausComplete V)</span></span>
+<span class="source-line" id="L16"><a class="line-no" href="#L16" aria-label="Line 16">16</a><span class="line-code">    (x : H) (A : K →L[ℂ] K) :</span></span>
+<span class="source-line" id="L17"><a class="line-no" href="#L17" aria-label="Line 17">17</a><span class="line-code">    HasSum (fun i =&gt; ⟪V i x,A (V i x)⟫_ℂ)</span></span>
+<span class="source-line" id="L18"><a class="line-no" href="#L18" aria-label="Line 18">18</a><span class="line-code">      (tracePairing ((QuantumChannel.ofRectangularKraus V hV).toLinearMap</span></span>
+<span class="source-line" id="L19"><a class="line-no" href="#L19" aria-label="Line 19">19</a><span class="line-code">        (vectorProjector x)) A) := by</span></span>
+<span class="source-line" id="L20"><a class="line-no" href="#L20" aria-label="Line 20">20</a><span class="line-code">  have hh := (QuantumChannel.ofRectangularKraus_vectorProjector_hasSum V hV x).mapL</span></span>
+<span class="source-line" id="L21"><a class="line-no" href="#L21" aria-label="Line 21">21</a><span class="line-code">    (tracePairingCLM.flip A)</span></span>
+<span class="source-line" id="L22"><a class="line-no" href="#L22" aria-label="Line 22">22</a><span class="line-code">  change HasSum (fun i =&gt; tracePairing (vectorProjector (V i x)) A) _ at hh</span></span>
+<span class="source-line" id="L23"><a class="line-no" href="#L23" aria-label="Line 23">23</a><span class="line-code">  have he (i : ι) : tracePairing (vectorProjector (V i x)) A=⟪V i x,A (V i x)⟫_ℂ :=</span></span>
+<span class="source-line" id="L24"><a class="line-no" href="#L24" aria-label="Line 24">24</a><span class="line-code">    tracePairing_rankOneOperator _ _ A</span></span>
+<span class="source-line" id="L25"><a class="line-no" href="#L25" aria-label="Line 25">25</a><span class="line-code">  simpa only [he] using hh</span></span>
+<span class="source-line" id="L26"><a class="line-no" href="#L26" aria-label="Line 26">26</a><span class="line-code"> </span></span>
+<span class="source-line" id="L27"><a class="line-no" href="#L27" aria-label="Line 27">27</a><span class="line-code">/-- A bounded-observable identity verified on every pure vector extends to all</span></span>
+<span class="source-line" id="L28"><a class="line-no" href="#L28" aria-label="Line 28">28</a><span class="line-code">complex trace-class inputs, including arbitrary mixed states and coherences. -/</span></span>
+<span class="source-line" id="L29"><a class="line-no" href="#L29" aria-label="Line 29">29</a><span class="line-code">theorem channel_pairing_of_pure (Φ : QuantumChannel H K)</span></span>
+<span class="source-line" id="L30"><a class="line-no" href="#L30" aria-label="Line 30">30</a><span class="line-code">    (A : K →L[ℂ] K) (B : H →L[ℂ] H) (c : ℂ)</span></span>
+<span class="source-line" id="L31"><a class="line-no" href="#L31" aria-label="Line 31">31</a><span class="line-code">    (hpure : ∀x : H,tracePairing (Φ.toLinearMap (vectorProjector x)) A=</span></span>
+<span class="source-line" id="L32"><a class="line-no" href="#L32" aria-label="Line 32">32</a><span class="line-code">      c*⟪x,B x⟫_ℂ) (T : TraceClass H) :</span></span>
+<span class="source-line" id="L33"><a class="line-no" href="#L33" aria-label="Line 33">33</a><span class="line-code">    tracePairing (Φ.toLinearMap T) A=c*tracePairing T B := by</span></span>
+<span class="source-line" id="L34"><a class="line-no" href="#L34" aria-label="Line 34">34</a><span class="line-code">  have he : (tracePairingCLM.flip A).comp</span></span>
+<span class="source-line" id="L35"><a class="line-no" href="#L35" aria-label="Line 35">35</a><span class="line-code">      Φ.toPositiveTracePreservingMap.toContinuousLinearMap=c • tracePairingCLM.flip B := by</span></span>
+<span class="source-line" id="L36"><a class="line-no" href="#L36" aria-label="Line 36">36</a><span class="line-code">    apply traceClass_functional_ext</span></span>
+<span class="source-line" id="L37"><a class="line-no" href="#L37" aria-label="Line 37">37</a><span class="line-code">    intro x</span></span>
+<span class="source-line" id="L38"><a class="line-no" href="#L38" aria-label="Line 38">38</a><span class="line-code">    change tracePairing (Φ.toLinearMap (vectorProjector x)) A=</span></span>
+<span class="source-line" id="L39"><a class="line-no" href="#L39" aria-label="Line 39">39</a><span class="line-code">      c*tracePairing (vectorProjector x) B</span></span>
+<span class="source-line" id="L40"><a class="line-no" href="#L40" aria-label="Line 40">40</a><span class="line-code">    rw [show tracePairing (vectorProjector x) B=⟪x,B x⟫_ℂ from tracePairing_rankOneOperator x x B]</span></span>
+<span class="source-line" id="L41"><a class="line-no" href="#L41" aria-label="Line 41">41</a><span class="line-code">    exact hpure x</span></span>
+<span class="source-line" id="L42"><a class="line-no" href="#L42" aria-label="Line 42">42</a><span class="line-code">  exact congrArg (fun f : TraceClass H →L[ℂ] ℂ =&gt; f T) he</span></span>
+<span class="source-line" id="L43"><a class="line-no" href="#L43" aria-label="Line 43">43</a><span class="line-code"> </span></span>
+<span class="source-line" id="L44"><a class="line-no" href="#L44" aria-label="Line 44">44</a><span class="line-code">end Cloning.WeylSqueezer</span></span>
+</code></pre></div></main>
+<footer class="footer">English guides explain the argument. Lean source and its hypotheses determine the formal claims.
+<a href="../verification.html">Audit evidence</a> · <a href="../scope.html">Scope</a></footer>
+</div></div></body></html>

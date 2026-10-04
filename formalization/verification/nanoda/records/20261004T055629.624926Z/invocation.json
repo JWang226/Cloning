@@ -1,0 +1,40 @@
+{
+  "LEAN_PATH": "unset",
+  "PATH_prefix": [
+    "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/formalization/verification/nanoda/.work/rust-local/cargo/bin",
+    "/Users/jw/.elan/bin"
+  ],
+  "command": [
+    "/usr/bin/time",
+    "-l",
+    "bash",
+    "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/formalization/verification/nanoda/run.sh",
+    "--run",
+    "--threads",
+    "1"
+  ],
+  "completed_utc": "2026-10-04T06:05:12.757167+00:00",
+  "cwd": "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/formalization",
+  "elapsed_seconds": 523.3328392500043,
+  "environment_overrides": {
+    "CARGO_BUILD_JOBS": "1",
+    "CARGO_HOME": "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/formalization/verification/nanoda/.work/rust-local/cargo",
+    "RUSTUP_HOME": "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/formalization/verification/nanoda/.work/rust-local/rustup",
+    "TMPDIR": "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/formalization/verification/nanoda/.work/rust-local/tmp"
+  },
+  "harness_sha256": {
+    "verification/nanoda/ExportCloning.lean": "4187326f3133ba7c4ae9c6845dc779b03a5eaba363c4bb1affda0eb5042149b9",
+    "verification/nanoda/nanoda-config.json": "83baa2035f2bd5c5d53e461f220a3f8d777cc0d11bdfd8c92257a1851acd23d2",
+    "verification/nanoda/reproduce.py": "f8b408e765f39406c449ee9ed224a557c3ff5147f03f139d7d2cef985cf62be4",
+    "verification/nanoda/run.sh": "2ad7b7e6c788ba8e57b06d3f0e106cfe5ac6ff614801f74d600c635e46d35e95",
+    "verification/nanoda/test_reproduce.py": "aa1b1ff3676e117a9be15742370aaf47667c7d5c50c94be12d4e2e99c92fff42",
+    "verification/tools-lock.json": "8aa8601c9f7aa6cca546c687e67e730e3be416c3a3169130af9cc50fee04581e"
+  },
+  "new_run_directories": [
+    "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/formalization/verification/nanoda/.work/run-20261004T055629.624926Z"
+  ],
+  "pid": 6787,
+  "returncode": 0,
+  "scope": "official_bound_full_runner",
+  "started_utc": "2026-10-04T05:56:29.419102+00:00"
+}

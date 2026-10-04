@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="An offline guide to the Lean formalization of asymptotic mixed-state quantum cloning. Exact source, proof routes, and audited scope.">
+<title>HybridFoelnerPayoff · Lean source · Cloning proof wiki</title>
+<link rel="stylesheet" href="../assets/site.css?v=1811c00ea983">
+<script>window.PROOF_ROOT="../";</script>
+<script defer src="../assets/vendor/katex/katex.min.js"></script>
+<script defer src="../assets/search-index.js?v=850aee981cdc"></script>
+<script defer src="../assets/site.js?v=4bfaac1f06b1"></script>
+</head><body><a class="skip-link" href="#main">Skip to content</a>
+<div class="site-shell"><aside class="sidebar" id="site-navigation">
+<a class="brand" href="../index.html"><span class="brand-mark">C</span><span>Cloning<span class="small muted">A Lean proof wiki</span></span></a>
+<nav aria-label="Main navigation"><div class="nav-section">Explore</div><a class="nav-link" href="../index.html">Overview</a><a class="nav-link" href="../guides/index.html">Proof guide</a><a class="nav-link" href="../results/index.html">27 named results</a><a class="nav-link active" href="../source/index.html" aria-current="page">Lean source</a><a class="nav-link" href="../verification.html">Verification</a><a class="nav-link" href="../scope.html">Scope &amp; conventions</a>
+<div class="nav-section">Read the proof</div><a class="nav-link" href="../guides/physical-problem.html"><span class="nav-number">01</span> The physical problem and its conventions</a><a class="nav-link" href="../guides/young-laws.html"><span class="nav-number">02</span> Young labels: concentration and the local Gaussian law</a><a class="nav-link" href="../guides/cartan-sectors.html"><span class="nav-number">03</span> From PBW frames to uniform Cartan-sector fidelity</a><a class="nav-link" href="../guides/lifted-kernels.html"><span class="nav-number">04</span> Lifted channels, randomized dilation, and factorization</a><a class="nav-link" href="../guides/gaussian-optimum.html"><span class="nav-number">05</span> Gaussian amplification against arbitrary competitors</a><a class="nav-link" href="../guides/physical-lan.html"><span class="nav-number">06</span> Constructed LAN and fidelity transfer</a><a class="nav-link" href="../guides/known-spectrum.html"><span class="nav-number">07</span> The known-spectrum optimum</a><a class="nav-link" href="../guides/unknown-spectrum.html"><span class="nav-number">08</span> One universal cloner and the compact-set optimum</a><a class="nav-link" href="../guides/grassmann.html"><span class="nav-number">09</span> Exact rank compression and projector-state optimality</a><a class="nav-link" href="../guides/purify-clone-trace.html"><span class="nav-number">10</span> Purify–clone–trace: exact channels, limits, and guarantees</a><a class="nav-link" href="../guides/small-errors.html"><span class="nav-number">11</span> Small errors, rank boundaries, and noncommuting limits</a><a class="nav-link" href="../guides/spectral-comparison.html"><span class="nav-number">12</span> Spectral order and what is known for all states</a></nav>
+<div class="sidebar-footer"><span class="badge">Lean 4</span><p>Manuscript → proof → source</p>
+<a href="https://github.com/JWang226/Cloning">Repository ↗</a></div></aside>
+<div class="main-shell"><header class="topbar">
+<button id="nav-toggle" class="button secondary" aria-controls="site-navigation" aria-expanded="false" aria-label="Toggle navigation">Menu</button>
+<div class="search-wrap"><label class="sr-only" for="site-search">Search the proof wiki</label>
+<input id="site-search" type="search" placeholder="Search results, concepts, or Lean names…" autocomplete="off" aria-controls="search-results" aria-expanded="false" role="combobox" aria-autocomplete="list">
+<div id="search-results" class="search-results" role="listbox" hidden></div></div>
+<span class="small muted topbar-label">Offline · exact source</span></header>
+<main id="main" class="content"><div class="eyebrow">Exact Lean source</div><h1 class="source-title">HybridFoelnerPayoff</h1><p><code>formalization/Cloning/HybridFoelnerPayoff.lean</code></p><p class="small muted">Source hash: <code>a0c200ccb7cea82d54e5d417793b39f52b55791a6e79dbeeda8db16a7b194fda</code></p><div class="actions"><a class="button secondary" href="raw/Cloning.HybridFoelnerPayoff.lean">Download .lean</a><a class="button secondary" href="https://github.com/JWang226/Cloning/blob/main/formalization/Cloning/HybridFoelnerPayoff.lean">View on GitHub ↗</a><a href="index.html">All modules</a></div><p class="small muted">Full source copied without mathematical changes from the snapshot whose input hash matches the passing audit. Select a line number for a stable source pointer.</p><details><summary>Declarations in this module</summary><div class="module-declarations"><a href="#L15"><span class="badge">theorem</span> <code>Cloning.Hybrid.PositiveField.weightedMarginal_eq_weightedL1Integral</code></a><a href="#L23"><span class="badge">theorem</span> <code>Cloning.Hybrid.PositiveField.product_toL1_eq_prepareL1</code></a><a href="#L36"><span class="badge">definition</span> <code>Cloning.Hybrid.gaussianThermalField</code></a><a href="#L44"><span class="badge">theorem</span> <code>Cloning.Hybrid.gaussianThermalField_toL1</code></a><a href="#L52"><span class="badge">theorem</span> <code>Cloning.Hybrid.weightedMarginal_channel_gaussianThermal_eq</code></a><a href="#L69"><span class="badge">theorem</span> <code>Cloning.Hybrid.gaussianThermal_output_rootFidelity_sq_le</code></a><a href="#L98"><span class="badge">theorem</span> <code>Cloning.Hybrid.eventually_gaussianThermal_output_rootFidelity_le</code></a></div></details><div class="code-wrap source-wrap"><pre class="source-lines"><code><span class="source-line" id="L1"><a class="line-no" href="#L1" aria-label="Line 1">1</a><span class="line-code">import Cloning.HybridFoelnerThermal</span></span>
+<span class="source-line" id="L2"><a class="line-no" href="#L2" aria-label="Line 2">2</a><span class="line-code"> </span></span>
+<span class="source-line" id="L3"><a class="line-no" href="#L3" aria-label="Line 3">3</a><span class="line-code">/-! Weighted fidelity of the actual hybrid channel output, with exact L¹</span></span>
+<span class="source-line" id="L4"><a class="line-no" href="#L4" aria-label="Line 4">4</a><span class="line-code">preparation and weighted marginal identifications. -/</span></span>
+<span class="source-line" id="L5"><a class="line-no" href="#L5" aria-label="Line 5">5</a><span class="line-code">noncomputable section</span></span>
+<span class="source-line" id="L6"><a class="line-no" href="#L6" aria-label="Line 6">6</a><span class="line-code">open scoped ComplexOrder InnerProductSpace Topology BigOperators</span></span>
+<span class="source-line" id="L7"><a class="line-no" href="#L7" aria-label="Line 7">7</a><span class="line-code">open MeasureTheory Filter Cloning.InfiniteTraceClass</span></span>
+<span class="source-line" id="L8"><a class="line-no" href="#L8" aria-label="Line 8">8</a><span class="line-code">open Cloning.MultimodeCoherent Cloning.MultimodeCoherentGaussianMixture Cloning.ThermalWitness</span></span>
+<span class="source-line" id="L9"><a class="line-no" href="#L9" aria-label="Line 9">9</a><span class="line-code">namespace Cloning.Hybrid</span></span>
+<span class="source-line" id="L10"><a class="line-no" href="#L10" aria-label="Line 10">10</a><span class="line-code">set_option backward.isDefEq.respectTransparency false</span></span>
+<span class="source-line" id="L11"><a class="line-no" href="#L11" aria-label="Line 11">11</a><span class="line-code">set_option maxHeartbeats 1200000</span></span>
+<span class="source-line" id="L12"><a class="line-no" href="#L12" aria-label="Line 12">12</a><span class="line-code">variable {Ω H : Type*} [MeasurableSpace Ω] {μ : Measure Ω}</span></span>
+<span class="source-line" id="L13"><a class="line-no" href="#L13" aria-label="Line 13">13</a><span class="line-code">  [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]</span></span>
+<span class="source-line" id="L14"><a class="line-no" href="#L14" aria-label="Line 14">14</a><span class="line-code"> </span></span>
+<span class="source-line" id="L15"><a class="line-no" href="#L15" aria-label="Line 15">15</a><span class="line-code">lemma PositiveField.weightedMarginal_eq_weightedL1Integral</span></span>
+<span class="source-line" id="L16"><a class="line-no" href="#L16" aria-label="Line 16">16</a><span class="line-code">    (R : PositiveField (H := H) μ) (χ : Ω → ℝ)</span></span>
+<span class="source-line" id="L17"><a class="line-no" href="#L17" aria-label="Line 17">17</a><span class="line-code">    (hχ : AEStronglyMeasurable χ μ) {C : ℝ} (hbound : ∀ y, ‖χ y‖ ≤ C) :</span></span>
+<span class="source-line" id="L18"><a class="line-no" href="#L18" aria-label="Line 18">18</a><span class="line-code">    R.weightedMarginal χ = weightedL1Integral χ hχ hbound R.toL1 := by</span></span>
+<span class="source-line" id="L19"><a class="line-no" href="#L19" aria-label="Line 19">19</a><span class="line-code">  apply integral_congr_ae</span></span>
+<span class="source-line" id="L20"><a class="line-no" href="#L20" aria-label="Line 20">20</a><span class="line-code">  filter_upwards [R.coe_toL1] with y hy</span></span>
+<span class="source-line" id="L21"><a class="line-no" href="#L21" aria-label="Line 21">21</a><span class="line-code">  rw [hy]</span></span>
+<span class="source-line" id="L22"><a class="line-no" href="#L22" aria-label="Line 22">22</a><span class="line-code"> </span></span>
+<span class="source-line" id="L23"><a class="line-no" href="#L23" aria-label="Line 23">23</a><span class="line-code">lemma PositiveField.product_toL1_eq_prepareL1</span></span>
+<span class="source-line" id="L24"><a class="line-no" href="#L24" aria-label="Line 24">24</a><span class="line-code">    (G : Ω → ℝ) (hG : Integrable G μ) (hG0 : ∀ y, 0 ≤ G y) (T : DensityState H) :</span></span>
+<span class="source-line" id="L25"><a class="line-no" href="#L25" aria-label="Line 25">25</a><span class="line-code">    (PositiveField.product G hG hG0 T).toL1 =</span></span>
+<span class="source-line" id="L26"><a class="line-no" href="#L26" aria-label="Line 26">26</a><span class="line-code">      prepareL1 G hG (TraceClass.ofOperator T.op T.traceClass) := by</span></span>
+<span class="source-line" id="L27"><a class="line-no" href="#L27" aria-label="Line 27">27</a><span class="line-code">  apply Lp.ext</span></span>
+<span class="source-line" id="L28"><a class="line-no" href="#L28" aria-label="Line 28">28</a><span class="line-code">  filter_upwards [(PositiveField.product G hG hG0 T).coe_toL1,</span></span>
+<span class="source-line" id="L29"><a class="line-no" href="#L29" aria-label="Line 29">29</a><span class="line-code">    prepareL1_ae G hG (TraceClass.ofOperator T.op T.traceClass)] with y hy hz</span></span>
+<span class="source-line" id="L30"><a class="line-no" href="#L30" aria-label="Line 30">30</a><span class="line-code">  rw [hy, hz, PositiveField.product_value]</span></span>
+<span class="source-line" id="L31"><a class="line-no" href="#L31" aria-label="Line 31">31</a><span class="line-code"> </span></span>
+<span class="source-line" id="L32"><a class="line-no" href="#L32" aria-label="Line 32">32</a><span class="line-code">variable {k s : ℕ}</span></span>
+<span class="source-line" id="L33"><a class="line-no" href="#L33" aria-label="Line 33">33</a><span class="line-code"> </span></span>
+<span class="source-line" id="L34"><a class="line-no" href="#L34" aria-label="Line 34">34</a><span class="line-code">/-- The actual centered Gaussian--thermal density shared by the input and</span></span>
+<span class="source-line" id="L35"><a class="line-no" href="#L35" aria-label="Line 35">35</a><span class="line-code">target of the hybrid model. -/</span></span>
+<span class="source-line" id="L36"><a class="line-no" href="#L36" aria-label="Line 36">36</a><span class="line-code">def gaussianThermalField (a : Fin k → ℝ) (ha : ∀ i, 0 &lt; a i)</span></span>
+<span class="source-line" id="L37"><a class="line-no" href="#L37" aria-label="Line 37">37</a><span class="line-code">    (q : Fin s → ℝ) (hq0 : ∀ i, 0 ≤ q i) (hq1 : ∀ i, q i &lt; 1) :</span></span>
+<span class="source-line" id="L38"><a class="line-no" href="#L38" aria-label="Line 38">38</a><span class="line-code">    PositiveField (H := Fock s) (volume : Measure (Fin k → ℝ)) :=</span></span>
+<span class="source-line" id="L39"><a class="line-no" href="#L39" aria-label="Line 39">39</a><span class="line-code">  PositiveField.product (GaussianAffinity.productDensity a)</span></span>
+<span class="source-line" id="L40"><a class="line-no" href="#L40" aria-label="Line 40">40</a><span class="line-code">    (GaussianAffinity.integrable_productDensity a ha)</span></span>
+<span class="source-line" id="L41"><a class="line-no" href="#L41" aria-label="Line 41">41</a><span class="line-code">    (GaussianAffinity.productDensity_nonneg a)</span></span>
+<span class="source-line" id="L42"><a class="line-no" href="#L42" aria-label="Line 42">42</a><span class="line-code">    (InfiniteDiagonalFidelity.productGeometricState (numberBasis s) q hq0 hq1)</span></span>
+<span class="source-line" id="L43"><a class="line-no" href="#L43" aria-label="Line 43">43</a><span class="line-code"> </span></span>
+<span class="source-line" id="L44"><a class="line-no" href="#L44" aria-label="Line 44">44</a><span class="line-code">lemma gaussianThermalField_toL1 (a : Fin k → ℝ) (ha : ∀ i, 0 &lt; a i)</span></span>
+<span class="source-line" id="L45"><a class="line-no" href="#L45" aria-label="Line 45">45</a><span class="line-code">    (q : Fin s → ℝ) (hq0 : ∀ i, 0 ≤ q i) (hq1 : ∀ i, q i &lt; 1) :</span></span>
+<span class="source-line" id="L46"><a class="line-no" href="#L46" aria-label="Line 46">46</a><span class="line-code">    (gaussianThermalField a ha q hq0 hq1).toL1 =</span></span>
+<span class="source-line" id="L47"><a class="line-no" href="#L47" aria-label="Line 47">47</a><span class="line-code">      prepareL1 (GaussianAffinity.productDensity a) (GaussianAffinity.integrable_productDensity a ha)</span></span>
+<span class="source-line" id="L48"><a class="line-no" href="#L48" aria-label="Line 48">48</a><span class="line-code">        (vectorMixture (numberBasis s) (productGeometric q)) := by</span></span>
+<span class="source-line" id="L49"><a class="line-no" href="#L49" aria-label="Line 49">49</a><span class="line-code">  rw [gaussianThermalField, PositiveField.product_toL1_eq_prepareL1]</span></span>
+<span class="source-line" id="L50"><a class="line-no" href="#L50" aria-label="Line 50">50</a><span class="line-code">  rfl</span></span>
+<span class="source-line" id="L51"><a class="line-no" href="#L51" aria-label="Line 51">51</a><span class="line-code"> </span></span>
+<span class="source-line" id="L52"><a class="line-no" href="#L52" aria-label="Line 52">52</a><span class="line-code">lemma weightedMarginal_channel_gaussianThermal_eq</span></span>
+<span class="source-line" id="L53"><a class="line-no" href="#L53" aria-label="Line 53">53</a><span class="line-code">    (Λ : Lp (TraceClass (Fock s)) 1 (volume : Measure (Fin k → ℝ)) →ₗ[ℂ]</span></span>
+<span class="source-line" id="L54"><a class="line-no" href="#L54" aria-label="Line 54">54</a><span class="line-code">      Lp (TraceClass (Fock s)) 1 (volume : Measure (Fin k → ℝ)))</span></span>
+<span class="source-line" id="L55"><a class="line-no" href="#L55" aria-label="Line 55">55</a><span class="line-code">    (a : Fin k → ℝ) (ha : ∀ i, 0 &lt; a i)</span></span>
+<span class="source-line" id="L56"><a class="line-no" href="#L56" aria-label="Line 56">56</a><span class="line-code">    (q : Fin s → ℝ) (hq0 : ∀ i, 0 ≤ q i) (hq1 : ∀ i, q i &lt; 1)</span></span>
+<span class="source-line" id="L57"><a class="line-no" href="#L57" aria-label="Line 57">57</a><span class="line-code">    (R : PositiveField (H := Fock s) (volume : Measure (Fin k → ℝ)))</span></span>
+<span class="source-line" id="L58"><a class="line-no" href="#L58" aria-label="Line 58">58</a><span class="line-code">    (hR : R.toL1 = Λ (gaussianThermalField a ha q hq0 hq1).toL1)</span></span>
+<span class="source-line" id="L59"><a class="line-no" href="#L59" aria-label="Line 59">59</a><span class="line-code">    (χ : (Fin k → ℝ) → ℝ) (hχ : AEStronglyMeasurable χ volume)</span></span>
+<span class="source-line" id="L60"><a class="line-no" href="#L60" aria-label="Line 60">60</a><span class="line-code">    {C : ℝ} (hbound : ∀ y, ‖χ y‖ ≤ C) :</span></span>
+<span class="source-line" id="L61"><a class="line-no" href="#L61" aria-label="Line 61">61</a><span class="line-code">    R.weightedMarginal χ = weightedQuantumMap Λ</span></span>
+<span class="source-line" id="L62"><a class="line-no" href="#L62" aria-label="Line 62">62</a><span class="line-code">      (GaussianAffinity.productDensity a) (GaussianAffinity.integrable_productDensity a ha)</span></span>
+<span class="source-line" id="L63"><a class="line-no" href="#L63" aria-label="Line 63">63</a><span class="line-code">      χ hχ hbound (vectorMixture (numberBasis s) (productGeometric q)) := by</span></span>
+<span class="source-line" id="L64"><a class="line-no" href="#L64" aria-label="Line 64">64</a><span class="line-code">  rw [R.weightedMarginal_eq_weightedL1Integral χ hχ hbound, hR, gaussianThermalField_toL1]</span></span>
+<span class="source-line" id="L65"><a class="line-no" href="#L65" aria-label="Line 65">65</a><span class="line-code">  rfl</span></span>
+<span class="source-line" id="L66"><a class="line-no" href="#L66" aria-label="Line 66">66</a><span class="line-code"> </span></span>
+<span class="source-line" id="L67"><a class="line-no" href="#L67" aria-label="Line 67">67</a><span class="line-code">/-- The concrete weighted fidelity inequality of an actual hybrid output</span></span>
+<span class="source-line" id="L68"><a class="line-no" href="#L68" aria-label="Line 68">68</a><span class="line-code">uses precisely the quantum map extracted from the same channel. -/</span></span>
+<span class="source-line" id="L69"><a class="line-no" href="#L69" aria-label="Line 69">69</a><span class="line-code">theorem gaussianThermal_output_rootFidelity_sq_le</span></span>
+<span class="source-line" id="L70"><a class="line-no" href="#L70" aria-label="Line 70">70</a><span class="line-code">    (Λ : Lp (TraceClass (Fock s)) 1 (volume : Measure (Fin k → ℝ)) →ₗ[ℂ]</span></span>
+<span class="source-line" id="L71"><a class="line-no" href="#L71" aria-label="Line 71">71</a><span class="line-code">      Lp (TraceClass (Fock s)) 1 (volume : Measure (Fin k → ℝ)))</span></span>
+<span class="source-line" id="L72"><a class="line-no" href="#L72" aria-label="Line 72">72</a><span class="line-code">    (a : Fin k → ℝ) (ha : ∀ i, 0 &lt; a i) (g : ℝ) (hg : 1 &lt; g)</span></span>
+<span class="source-line" id="L73"><a class="line-no" href="#L73" aria-label="Line 73">73</a><span class="line-code">    (q : Fin s → ℝ) (hq0 : ∀ i, 0 &lt; q i) (hq1 : ∀ i, q i &lt; 1)</span></span>
+<span class="source-line" id="L74"><a class="line-no" href="#L74" aria-label="Line 74">74</a><span class="line-code">    (R : PositiveField (H := Fock s) (volume : Measure (Fin k → ℝ)))</span></span>
+<span class="source-line" id="L75"><a class="line-no" href="#L75" aria-label="Line 75">75</a><span class="line-code">    (hR : R.toL1 = Λ (gaussianThermalField a ha q (fun i =&gt; (hq0 i).le) hq1).toL1)</span></span>
+<span class="source-line" id="L76"><a class="line-no" href="#L76" aria-label="Line 76">76</a><span class="line-code">    (hχ : AEStronglyMeasurable</span></span>
+<span class="source-line" id="L77"><a class="line-no" href="#L77" aria-label="Line 77">77</a><span class="line-code">      (GaussianAffinity.productWitness a (fun i =&gt; a i / g)) volume)</span></span>
+<span class="source-line" id="L78"><a class="line-no" href="#L78" aria-label="Line 78">78</a><span class="line-code">    {C : ℝ} (hbound : ∀ y,</span></span>
+<span class="source-line" id="L79"><a class="line-no" href="#L79" aria-label="Line 79">79</a><span class="line-code">      ‖GaussianAffinity.productWitness a (fun i =&gt; a i / g) y‖ ≤ C) :</span></span>
+<span class="source-line" id="L80"><a class="line-no" href="#L80" aria-label="Line 80">80</a><span class="line-code">    R.rootFidelity (gaussianThermalField a ha q (fun i =&gt; (hq0 i).le) hq1) ^ 2 ≤</span></span>
+<span class="source-line" id="L81"><a class="line-no" href="#L81" aria-label="Line 81">81</a><span class="line-code">      (tracePairing (weightedQuantumMap Λ (GaussianAffinity.productDensity a)</span></span>
+<span class="source-line" id="L82"><a class="line-no" href="#L82" aria-label="Line 82">82</a><span class="line-code">        (GaussianAffinity.integrable_productDensity a ha)</span></span>
+<span class="source-line" id="L83"><a class="line-no" href="#L83" aria-label="Line 83">83</a><span class="line-code">        (GaussianAffinity.productWitness a (fun i =&gt; a i / g)) hχ hbound</span></span>
+<span class="source-line" id="L84"><a class="line-no" href="#L84" aria-label="Line 84">84</a><span class="line-code">        (vectorMixture (numberBasis s) (productGeometric q)))</span></span>
+<span class="source-line" id="L85"><a class="line-no" href="#L85" aria-label="Line 85">85</a><span class="line-code">        (productWitnessOperator (numberBasis s) q (fun i =&gt; Thermal.amplified g (q i)))).re *</span></span>
+<span class="source-line" id="L86"><a class="line-no" href="#L86" aria-label="Line 86">86</a><span class="line-code">      Thermal.classicalBase g ^ ((k : ℝ) / 2) *</span></span>
+<span class="source-line" id="L87"><a class="line-no" href="#L87" aria-label="Line 87">87</a><span class="line-code">        ∏ i, Thermal.fidelity (q i) (Thermal.amplified g (q i)) := by</span></span>
+<span class="source-line" id="L88"><a class="line-no" href="#L88" aria-label="Line 88">88</a><span class="line-code">  have h := R.rootFidelity_sq_le_gaussian_thermal a ha hg.le (numberBasis s) q</span></span>
+<span class="source-line" id="L89"><a class="line-no" href="#L89" aria-label="Line 89">89</a><span class="line-code">    (fun i =&gt; Thermal.amplified g (q i)) hq0</span></span>
+<span class="source-line" id="L90"><a class="line-no" href="#L90" aria-label="Line 90">90</a><span class="line-code">    (fun i =&gt; Thermal.lt_amplified hg (hq1 i))</span></span>
+<span class="source-line" id="L91"><a class="line-no" href="#L91" aria-label="Line 91">91</a><span class="line-code">    (fun i =&gt; Thermal.amplified_lt_one (by linarith) (hq1 i))</span></span>
+<span class="source-line" id="L92"><a class="line-no" href="#L92" aria-label="Line 92">92</a><span class="line-code">  rw [weightedMarginal_channel_gaussianThermal_eq Λ a ha q _ hq1 R hR _ hχ hbound] at h</span></span>
+<span class="source-line" id="L93"><a class="line-no" href="#L93" aria-label="Line 93">93</a><span class="line-code">  exact h</span></span>
+<span class="source-line" id="L94"><a class="line-no" href="#L94" aria-label="Line 94">94</a><span class="line-code"> </span></span>
+<span class="source-line" id="L95"><a class="line-no" href="#L95" aria-label="Line 95">95</a><span class="line-code">/-- Every asymptotically covariant sequence of genuine hybrid channels has</span></span>
+<span class="source-line" id="L96"><a class="line-no" href="#L96" aria-label="Line 96">96</a><span class="line-code">eventually at most the sharp Gaussian--thermal root-fidelity payoff. The</span></span>
+<span class="source-line" id="L97"><a class="line-no" href="#L97" aria-label="Line 97">97</a><span class="line-code">channels can vary independently with the scale. -/</span></span>
+<span class="source-line" id="L98"><a class="line-no" href="#L98" aria-label="Line 98">98</a><span class="line-code">theorem eventually_gaussianThermal_output_rootFidelity_le</span></span>
+<span class="source-line" id="L99"><a class="line-no" href="#L99" aria-label="Line 99">99</a><span class="line-code">    (Λ : ℕ → Lp (TraceClass (Fock s)) 1 (volume : Measure (Fin k → ℝ)) →L[ℂ]</span></span>
+<span class="source-line" id="L100"><a class="line-no" href="#L100" aria-label="Line 100">100</a><span class="line-code">      Lp (TraceClass (Fock s)) 1 (volume : Measure (Fin k → ℝ)))</span></span>
+<span class="source-line" id="L101"><a class="line-no" href="#L101" aria-label="Line 101">101</a><span class="line-code">    (hΛ : ∀ n, L1CompletelyPositive (Λ n).toLinearMap)</span></span>
+<span class="source-line" id="L102"><a class="line-no" href="#L102" aria-label="Line 102">102</a><span class="line-code">    (hTP : ∀ n, L1TracePreserving (Λ n).toLinearMap)</span></span>
+<span class="source-line" id="L103"><a class="line-no" href="#L103" aria-label="Line 103">103</a><span class="line-code">    (a : Fin k → ℝ) (ha : ∀ i, 0 &lt; a i) (g : ℝ) (hg : 1 &lt; g)</span></span>
+<span class="source-line" id="L104"><a class="line-no" href="#L104" aria-label="Line 104">104</a><span class="line-code">    (q : Fin s → ℝ) (hq0 : ∀ i, 0 &lt; q i) (hq1 : ∀ i, q i &lt; 1)</span></span>
+<span class="source-line" id="L105"><a class="line-no" href="#L105" aria-label="Line 105">105</a><span class="line-code">    (b : ℕ → (Fin k → ℝ) → ℝ)</span></span>
+<span class="source-line" id="L106"><a class="line-no" href="#L106" aria-label="Line 106">106</a><span class="line-code">    (hb : ∀ n, AEStronglyMeasurable (b n) volume)</span></span>
+<span class="source-line" id="L107"><a class="line-no" href="#L107" aria-label="Line 107">107</a><span class="line-code">    {B : ℝ} (hbbound : ∀ n h, ‖b n h‖ ≤ B)</span></span>
+<span class="source-line" id="L108"><a class="line-no" href="#L108" aria-label="Line 108">108</a><span class="line-code">    (hlim : ∀ h, Tendsto (fun n =&gt; b n h) atTop (𝓝 0))</span></span>
+<span class="source-line" id="L109"><a class="line-no" href="#L109" aria-label="Line 109">109</a><span class="line-code">    (hclassical : ∀ n h R, ‖Λ n (classicalTranslation h R) -</span></span>
+<span class="source-line" id="L110"><a class="line-no" href="#L110" aria-label="Line 110">110</a><span class="line-code">      classicalTranslation (Real.sqrt g • h) (Λ n R)‖ ≤ b n h * ‖R‖)</span></span>
+<span class="source-line" id="L111"><a class="line-no" href="#L111" aria-label="Line 111">111</a><span class="line-code">    (hquantum : ∀ z R, Tendsto (fun n =&gt;</span></span>
+<span class="source-line" id="L112"><a class="line-no" href="#L112" aria-label="Line 112">112</a><span class="line-code">      ‖Λ n (quantumL1Action z R) - quantumL1Action (Real.sqrt g • z) (Λ n R)‖)</span></span>
+<span class="source-line" id="L113"><a class="line-no" href="#L113" aria-label="Line 113">113</a><span class="line-code">        atTop (𝓝 0))</span></span>
+<span class="source-line" id="L114"><a class="line-no" href="#L114" aria-label="Line 114">114</a><span class="line-code">    (R : ℕ → PositiveField (H := Fock s) (volume : Measure (Fin k → ℝ)))</span></span>
+<span class="source-line" id="L115"><a class="line-no" href="#L115" aria-label="Line 115">115</a><span class="line-code">    (hR : ∀ n, (R n).toL1 = Λ n</span></span>
+<span class="source-line" id="L116"><a class="line-no" href="#L116" aria-label="Line 116">116</a><span class="line-code">      (gaussianThermalField a ha q (fun i =&gt; (hq0 i).le) hq1).toL1) :</span></span>
+<span class="source-line" id="L117"><a class="line-no" href="#L117" aria-label="Line 117">117</a><span class="line-code">    ∀ ε &gt; 0, ∀ᶠ n in atTop,</span></span>
+<span class="source-line" id="L118"><a class="line-no" href="#L118" aria-label="Line 118">118</a><span class="line-code">      (R n).rootFidelity (gaussianThermalField a ha q (fun i =&gt; (hq0 i).le) hq1) ≤</span></span>
+<span class="source-line" id="L119"><a class="line-no" href="#L119" aria-label="Line 119">119</a><span class="line-code">        Thermal.classicalBase g ^ ((k : ℝ) / 2) *</span></span>
+<span class="source-line" id="L120"><a class="line-no" href="#L120" aria-label="Line 120">120</a><span class="line-code">          (∏ i, Thermal.fidelity (q i) (Thermal.amplified g (q i))) + ε := by</span></span>
+<span class="source-line" id="L121"><a class="line-no" href="#L121" aria-label="Line 121">121</a><span class="line-code">  classical</span></span>
+<span class="source-line" id="L122"><a class="line-no" href="#L122" aria-label="Line 122">122</a><span class="line-code">  let χ := GaussianAffinity.productWitness a (fun i =&gt; a i / g)</span></span>
+<span class="source-line" id="L123"><a class="line-no" href="#L123" aria-label="Line 123">123</a><span class="line-code">  let C := ∏ i, Real.sqrt (Real.sqrt (a i) / Real.sqrt (a i / g))</span></span>
+<span class="source-line" id="L124"><a class="line-no" href="#L124" aria-label="Line 124">124</a><span class="line-code">  have hg0 : 0 &lt; g := by linarith</span></span>
+<span class="source-line" id="L125"><a class="line-no" href="#L125" aria-label="Line 125">125</a><span class="line-code">  have hχ : AEStronglyMeasurable χ volume :=</span></span>
+<span class="source-line" id="L126"><a class="line-no" href="#L126" aria-label="Line 126">126</a><span class="line-code">    (GaussianAffinity.continuous_productWitness a _ ha</span></span>
+<span class="source-line" id="L127"><a class="line-no" href="#L127" aria-label="Line 127">127</a><span class="line-code">      (fun i =&gt; div_pos (ha i) hg0)).aestronglyMeasurable</span></span>
+<span class="source-line" id="L128"><a class="line-no" href="#L128" aria-label="Line 128">128</a><span class="line-code">  have hC : 0 ≤ C := Finset.prod_nonneg (fun i _ =&gt; Real.sqrt_nonneg _)</span></span>
+<span class="source-line" id="L129"><a class="line-no" href="#L129" aria-label="Line 129">129</a><span class="line-code">  have hχbound (y : Fin k → ℝ) : ‖χ y‖ ≤ C := by</span></span>
+<span class="source-line" id="L130"><a class="line-no" href="#L130" aria-label="Line 130">130</a><span class="line-code">    rw [Real.norm_eq_abs, abs_of_pos</span></span>
+<span class="source-line" id="L131"><a class="line-no" href="#L131" aria-label="Line 131">131</a><span class="line-code">      (GaussianAffinity.productWitness_pos a _ ha (fun i =&gt; div_pos (ha i) hg0) y)]</span></span>
+<span class="source-line" id="L132"><a class="line-no" href="#L132" aria-label="Line 132">132</a><span class="line-code">    apply GaussianAffinity.productWitness_le a _ ha (fun i =&gt; div_pos (ha i) hg0)</span></span>
+<span class="source-line" id="L133"><a class="line-no" href="#L133" aria-label="Line 133">133</a><span class="line-code">    intro i</span></span>
+<span class="source-line" id="L134"><a class="line-no" href="#L134" aria-label="Line 134">134</a><span class="line-code">    exact (div_le_iff₀ hg0).mpr (by nlinarith [ha i])</span></span>
+<span class="source-line" id="L135"><a class="line-no" href="#L135" aria-label="Line 135">135</a><span class="line-code">  let ck := Thermal.classicalBase g ^ ((k : ℝ) / 2)</span></span>
+<span class="source-line" id="L136"><a class="line-no" href="#L136" aria-label="Line 136">136</a><span class="line-code">  let F := ∏ i, Thermal.fidelity (q i) (Thermal.amplified g (q i))</span></span>
+<span class="source-line" id="L137"><a class="line-no" href="#L137" aria-label="Line 137">137</a><span class="line-code">  have hck : 0 ≤ ck := Real.rpow_nonneg (Thermal.classicalBase_pos hg0).le _</span></span>
+<span class="source-line" id="L138"><a class="line-no" href="#L138" aria-label="Line 138">138</a><span class="line-code">  have hF : 0 ≤ F := Finset.prod_nonneg (fun i _ =&gt;</span></span>
+<span class="source-line" id="L139"><a class="line-no" href="#L139" aria-label="Line 139">139</a><span class="line-code">    (Thermal.fidelity_pos (hq0 i).le (hq1 i)</span></span>
+<span class="source-line" id="L140"><a class="line-no" href="#L140" aria-label="Line 140">140</a><span class="line-code">      ((hq0 i).trans (Thermal.lt_amplified hg (hq1 i))).le</span></span>
+<span class="source-line" id="L141"><a class="line-no" href="#L141" aria-label="Line 141">141</a><span class="line-code">      (Thermal.amplified_lt_one hg0 (hq1 i))).le)</span></span>
+<span class="source-line" id="L142"><a class="line-no" href="#L142" aria-label="Line 142">142</a><span class="line-code">  let W := productWitnessOperator (numberBasis s) q (fun i =&gt; Thermal.amplified g (q i))</span></span>
+<span class="source-line" id="L143"><a class="line-no" href="#L143" aria-label="Line 143">143</a><span class="line-code">  have hW : IsCompactOperator W := productWitnessOperator_compact _ hq0</span></span>
+<span class="source-line" id="L144"><a class="line-no" href="#L144" aria-label="Line 144">144</a><span class="line-code">    (fun i =&gt; Thermal.lt_amplified hg (hq1 i))</span></span>
+<span class="source-line" id="L145"><a class="line-no" href="#L145" aria-label="Line 145">145</a><span class="line-code">    (fun i =&gt; Thermal.amplified_lt_one hg0 (hq1 i))</span></span>
+<span class="source-line" id="L146"><a class="line-no" href="#L146" aria-label="Line 146">146</a><span class="line-code">  let τ := vectorMixture (numberBasis s) (productGeometric q)</span></span>
+<span class="source-line" id="L147"><a class="line-no" href="#L147" aria-label="Line 147">147</a><span class="line-code">  intro ε hε</span></span>
+<span class="source-line" id="L148"><a class="line-no" href="#L148" aria-label="Line 148">148</a><span class="line-code">  by_contra h</span></span>
+<span class="source-line" id="L149"><a class="line-no" href="#L149" aria-label="Line 149">149</a><span class="line-code">  have hf : ∃ᶠ n in atTop, ck * F + ε &lt;</span></span>
+<span class="source-line" id="L150"><a class="line-no" href="#L150" aria-label="Line 150">150</a><span class="line-code">      (R n).rootFidelity (gaussianThermalField a ha q (fun i =&gt; (hq0 i).le) hq1) := by</span></span>
+<span class="source-line" id="L151"><a class="line-no" href="#L151" aria-label="Line 151">151</a><span class="line-code">    simpa only [Filter.Frequently, not_lt, ck, F] using h</span></span>
+<span class="source-line" id="L152"><a class="line-no" href="#L152" aria-label="Line 152">152</a><span class="line-code">  obtain ⟨scale, hscale, hbad⟩ := exists_seq_forall_of_frequently hf</span></span>
+<span class="source-line" id="L153"><a class="line-no" href="#L153" aria-label="Line 153">153</a><span class="line-code">  obtain ⟨Γ, hΓ, htrace, hcov, φ, hφ, hcompact⟩ :=</span></span>
+<span class="source-line" id="L154"><a class="line-no" href="#L154" aria-label="Line 154">154</a><span class="line-code">    exists_gaussian_weighted_covariant_residual (fun n =&gt; Λ (scale n))</span></span>
+<span class="source-line" id="L155"><a class="line-no" href="#L155" aria-label="Line 155">155</a><span class="line-code">      (fun n =&gt; hΛ (scale n)) (fun n =&gt; hTP (scale n)) a ha hg.le hχ hC hχbound</span></span>
+<span class="source-line" id="L156"><a class="line-no" href="#L156" aria-label="Line 156">156</a><span class="line-code">      (fun n =&gt; b (scale n)) (fun n =&gt; hb (scale n))</span></span>
+<span class="source-line" id="L157"><a class="line-no" href="#L157" aria-label="Line 157">157</a><span class="line-code">      (fun n h =&gt; hbbound (scale n) h) (fun h =&gt; (hlim h).comp hscale)</span></span>
+<span class="source-line" id="L158"><a class="line-no" href="#L158" aria-label="Line 158">158</a><span class="line-code">      (fun n =&gt; hclassical (scale n)) (fun z A =&gt; (hquantum z A).comp hscale)</span></span>
+<span class="source-line" id="L159"><a class="line-no" href="#L159" aria-label="Line 159">159</a><span class="line-code">  have hmoment : (tracePairing (Γ τ) W).re ≤ ck * F :=</span></span>
+<span class="source-line" id="L160"><a class="line-no" href="#L160" aria-label="Line 160">160</a><span class="line-code">    hybrid_residual_thermal_witness_moment_le Γ hΓ g hg htrace hcov hq0 hq1</span></span>
+<span class="source-line" id="L161"><a class="line-no" href="#L161" aria-label="Line 161">161</a><span class="line-code">  have hmomentMul : (tracePairing (Γ τ) W).re * ck * F ≤ (ck * F) ^ 2 := by</span></span>
+<span class="source-line" id="L162"><a class="line-no" href="#L162" aria-label="Line 162">162</a><span class="line-code">    have ht := mul_le_mul_of_nonneg_right hmoment (mul_nonneg hck hF)</span></span>
+<span class="source-line" id="L163"><a class="line-no" href="#L163" aria-label="Line 163">163</a><span class="line-code">    nlinarith</span></span>
+<span class="source-line" id="L164"><a class="line-no" href="#L164" aria-label="Line 164">164</a><span class="line-code">  have hlimM := (((Complex.continuous_re.tendsto _).comp (hcompact τ W hW)).mul_const ck).mul_const F</span></span>
+<span class="source-line" id="L165"><a class="line-no" href="#L165" aria-label="Line 165">165</a><span class="line-code">  have hnear := hlimM.eventually_lt_const</span></span>
+<span class="source-line" id="L166"><a class="line-no" href="#L166" aria-label="Line 166">166</a><span class="line-code">    (lt_add_of_pos_right _ (show 0 &lt; ε ^ 2 / 2 by positivity))</span></span>
+<span class="source-line" id="L167"><a class="line-no" href="#L167" aria-label="Line 167">167</a><span class="line-code">  obtain ⟨n, hn⟩ := hnear.exists</span></span>
+<span class="source-line" id="L168"><a class="line-no" href="#L168" aria-label="Line 168">168</a><span class="line-code">  have hweighted := gaussianThermal_output_rootFidelity_sq_le</span></span>
+<span class="source-line" id="L169"><a class="line-no" href="#L169" aria-label="Line 169">169</a><span class="line-code">    (Λ (scale (φ n))).toLinearMap a ha g hg q hq0 hq1 (R (scale (φ n)))</span></span>
+<span class="source-line" id="L170"><a class="line-no" href="#L170" aria-label="Line 170">170</a><span class="line-code">    (hR (scale (φ n))) hχ hχbound</span></span>
+<span class="source-line" id="L171"><a class="line-no" href="#L171" aria-label="Line 171">171</a><span class="line-code">  have hbadn := hbad (φ n)</span></span>
+<span class="source-line" id="L172"><a class="line-no" href="#L172" aria-label="Line 172">172</a><span class="line-code">  have hsq := (sq_lt_sq₀ (add_nonneg (mul_nonneg hck hF) hε.le)</span></span>
+<span class="source-line" id="L173"><a class="line-no" href="#L173" aria-label="Line 173">173</a><span class="line-code">    ((R (scale (φ n))).rootFidelity_nonneg _)).mpr hbadn</span></span>
+<span class="source-line" id="L174"><a class="line-no" href="#L174" aria-label="Line 174">174</a><span class="line-code">  change _ &lt; (tracePairing (Γ τ) W).re * ck * F + ε ^ 2 / 2 at hn</span></span>
+<span class="source-line" id="L175"><a class="line-no" href="#L175" aria-label="Line 175">175</a><span class="line-code">  change (R (scale (φ n))).rootFidelity</span></span>
+<span class="source-line" id="L176"><a class="line-no" href="#L176" aria-label="Line 176">176</a><span class="line-code">      (gaussianThermalField a ha q (fun i =&gt; (hq0 i).le) hq1) ^ 2 ≤</span></span>
+<span class="source-line" id="L177"><a class="line-no" href="#L177" aria-label="Line 177">177</a><span class="line-code">    (tracePairing _ W).re * ck * F at hweighted</span></span>
+<span class="source-line" id="L178"><a class="line-no" href="#L178" aria-label="Line 178">178</a><span class="line-code">  dsimp only [Function.comp_apply, τ] at hn</span></span>
+<span class="source-line" id="L179"><a class="line-no" href="#L179" aria-label="Line 179">179</a><span class="line-code">  nlinarith [mul_nonneg (mul_nonneg hck hF) hε.le]</span></span>
+<span class="source-line" id="L180"><a class="line-no" href="#L180" aria-label="Line 180">180</a><span class="line-code"> </span></span>
+<span class="source-line" id="L181"><a class="line-no" href="#L181" aria-label="Line 181">181</a><span class="line-code">end Cloning.Hybrid</span></span>
+</code></pre></div></main>
+<footer class="footer">English guides explain the argument. Lean source and its hypotheses determine the formal claims.
+<a href="../verification.html">Audit evidence</a> · <a href="../scope.html">Scope</a></footer>
+</div></div></body></html>

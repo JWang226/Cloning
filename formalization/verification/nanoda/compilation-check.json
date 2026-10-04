@@ -1,0 +1,57 @@
+{
+  "status": "passed",
+  "scope": "Compile the exact pinned exporter API and unchanged project export driver; do not execute main.",
+  "lean_toolchain": "leanprover/lean4:v4.29.0-rc6",
+  "exporter_commit": "71f41350675895dda791b8ff9c1dfb77d18b3585",
+  "exporter_source_url": "https://github.com/leanprover/lean4export/blob/71f41350675895dda791b8ff9c1dfb77d18b3585/Export.lean",
+  "exporter_source_retrieval": "GitHub connector, byte-exact upstream source",
+  "exporter_source_sha256": "c1c154a1b5d308acb6db78f9bfe8663c7f06c2e7ea288b31ff4e70f0225af704",
+  "driver_source_sha256": "4187326f3133ba7c4ae9c6845dc779b03a5eaba363c4bb1affda0eb5042149b9",
+  "driver_matches_frozen_source": true,
+  "working_directory": "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/formalization",
+  "commands": [
+    {
+      "argv": [
+        "/Users/jw/.elan/bin/lake",
+        "env",
+        "lean",
+        "--root=/tmp/cloning-export-compat.3PHE2C",
+        "-o",
+        "/tmp/cloning-export-compat.3PHE2C/Export.olean",
+        "/tmp/cloning-export-compat.3PHE2C/Export.lean"
+      ],
+      "environment_overrides": {},
+      "exit_code": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "log_bytes": 0,
+      "output_sha256": "93e03e016097e116c10a3186e0e8ff99b1475946ae635a664b9541347a961e88",
+      "output_bytes": 2575200
+    },
+    {
+      "argv": [
+        "/Users/jw/.elan/bin/lake",
+        "env",
+        "lean",
+        "--root=/tmp/cloning-export-compat.3PHE2C",
+        "-o",
+        "/tmp/cloning-export-compat.3PHE2C/ExportCloning.olean",
+        "/tmp/cloning-export-compat.3PHE2C/ExportCloning.lean"
+      ],
+      "environment_overrides": {
+        "LEAN_PATH": "/tmp/cloning-export-compat.3PHE2C"
+      },
+      "exit_code": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "log_bytes": 0,
+      "output_sha256": "0646afdff4f5ac3a62bf282816db9475c22b395032e18453a2cb859fbbcf57bc",
+      "output_bytes": 164232
+    }
+  ],
+  "not_performed": [
+    "Lean --run",
+    "Cloning NDJSON export",
+    "Cargo build",
+    "Nanoda checker execution"
+  ],
+  "evidence_note": "Exit codes reported by the coordinating agent; source/artifact hashes and empty logs independently inspected here."
+}

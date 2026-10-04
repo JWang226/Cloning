@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="An offline guide to the Lean formalization of asymptotic mixed-state quantum cloning. Exact source, proof routes, and audited scope.">
+<title>Weighted fidelity bound · Cloning proof wiki</title>
+<link rel="stylesheet" href="../assets/site.css?v=1811c00ea983">
+<script>window.PROOF_ROOT="../";</script>
+<script defer src="../assets/vendor/katex/katex.min.js"></script>
+<script defer src="../assets/search-index.js?v=850aee981cdc"></script>
+<script defer src="../assets/site.js?v=4bfaac1f06b1"></script>
+</head><body><a class="skip-link" href="#main">Skip to content</a>
+<div class="site-shell"><aside class="sidebar" id="site-navigation">
+<a class="brand" href="../index.html"><span class="brand-mark">C</span><span>Cloning<span class="small muted">A Lean proof wiki</span></span></a>
+<nav aria-label="Main navigation"><div class="nav-section">Explore</div><a class="nav-link" href="../index.html">Overview</a><a class="nav-link" href="../guides/index.html">Proof guide</a><a class="nav-link active" href="../results/index.html" aria-current="page">27 named results</a><a class="nav-link" href="../source/index.html">Lean source</a><a class="nav-link" href="../verification.html">Verification</a><a class="nav-link" href="../scope.html">Scope &amp; conventions</a>
+<div class="nav-section">Read the proof</div><a class="nav-link" href="../guides/physical-problem.html"><span class="nav-number">01</span> The physical problem and its conventions</a><a class="nav-link" href="../guides/young-laws.html"><span class="nav-number">02</span> Young labels: concentration and the local Gaussian law</a><a class="nav-link" href="../guides/cartan-sectors.html"><span class="nav-number">03</span> From PBW frames to uniform Cartan-sector fidelity</a><a class="nav-link" href="../guides/lifted-kernels.html"><span class="nav-number">04</span> Lifted channels, randomized dilation, and factorization</a><a class="nav-link" href="../guides/gaussian-optimum.html"><span class="nav-number">05</span> Gaussian amplification against arbitrary competitors</a><a class="nav-link" href="../guides/physical-lan.html"><span class="nav-number">06</span> Constructed LAN and fidelity transfer</a><a class="nav-link" href="../guides/known-spectrum.html"><span class="nav-number">07</span> The known-spectrum optimum</a><a class="nav-link" href="../guides/unknown-spectrum.html"><span class="nav-number">08</span> One universal cloner and the compact-set optimum</a><a class="nav-link" href="../guides/grassmann.html"><span class="nav-number">09</span> Exact rank compression and projector-state optimality</a><a class="nav-link" href="../guides/purify-clone-trace.html"><span class="nav-number">10</span> Purify–clone–trace: exact channels, limits, and guarantees</a><a class="nav-link" href="../guides/small-errors.html"><span class="nav-number">11</span> Small errors, rank boundaries, and noncommuting limits</a><a class="nav-link" href="../guides/spectral-comparison.html"><span class="nav-number">12</span> Spectral order and what is known for all states</a></nav>
+<div class="sidebar-footer"><span class="badge">Lean 4</span><p>Manuscript → proof → source</p>
+<a href="https://github.com/JWang226/Cloning">Repository ↗</a></div></aside>
+<div class="main-shell"><header class="topbar">
+<button id="nav-toggle" class="button secondary" aria-controls="site-navigation" aria-expanded="false" aria-label="Toggle navigation">Menu</button>
+<div class="search-wrap"><label class="sr-only" for="site-search">Search the proof wiki</label>
+<input id="site-search" type="search" placeholder="Search results, concepts, or Lean names…" autocomplete="off" aria-controls="search-results" aria-expanded="false" role="combobox" aria-autocomplete="list">
+<div id="search-results" class="search-results" role="listbox" hidden></div></div>
+<span class="small muted topbar-label">Offline · exact source</span></header>
+<main id="main" class="content"><div class="eyebrow">lemma · manuscript result</div><h1>Weighted fidelity bound</h1><p><code>lem:weighted-fidelity</code> <span class="badge">Mapped to compiled Lean</span></p><div class="notice">Scope notes below come from the manuscript-to-Lean map. Exact source excerpts are the formal reference.</div><section class="callout info"><h2>Hypotheses and correspondence</h2><p>Exactly the finite regularized inverse-moment limit as ε→0⁺; quantum and hybrid targets may be arbitrary positive trace-class operators, including zero. The hybrid target is the literal integrable field g(y)T, with no trace-one restriction.</p></section><h2>Concrete Lean endpoints</h2><p class="small muted">These are exact statement excerpts, with proof bodies omitted. Section variables, instances, namespaces, imports, and proof bodies are visible in the linked full module.</p><article class="declaration"><div class="declaration-header"><a href="../source/Cloning.InfiniteFidelityRegularizedLimit.html#L16"><code>Cloning.InfiniteFidelity.fidelity_sq_le_of_regularized_inverse_limit</code></a><span class="badge">theorem</span></div><p class="small muted">InfiniteFidelityRegularizedLimit.lean · line 16 · <a href="../source/Cloning.InfiniteFidelityRegularizedLimit.html#L16">Full source and context</a> · <a href="https://github.com/JWang226/Cloning/blob/main/formalization/Cloning/InfiniteFidelityRegularizedLimit.lean#L16">GitHub ↗</a> · <button class="copy-button" data-copy-target="lean-cloning-infinitefidelity-fidelity-sq-le-of-regularized-inverse-limit-184" aria-label="Copy Lean excerpt">Copy</button></p><div class="code-wrap"><pre class="code-block" id="lean-cloning-infinitefidelity-fidelity-sq-le-of-regularized-inverse-limit-184"><code>theorem fidelity_sq_le_of_regularized_inverse_limit {A B W : H→L[ℂ] H}
+    (hA : 0≤A) (hB : 0≤B) (hW : 0≤W)
+    (hTA : IsTraceClass A) (hTB : IsTraceClass B) {M : ℝ}
+    (hInv : Tendsto (fun ε : ℝ=&gt;
+      (trace (B*CFC.rpow (regularizedWeight W ε) (-1))
+        (isTraceClass_mul_mul (A:=1)
+          (B:=CFC.rpow (regularizedWeight W ε) (-1)) hTB)).re)
+      (𝓝[&gt;] (0:ℝ)) (𝓝 M)) :
+    fidelity A B hA hB hTA hTB^2≤
+      (trace (A*W) (isTraceClass_mul_mul (A:=1) (B:=W) hTA)).re*M</code></pre></div></article><article class="declaration"><div class="declaration-header"><a href="../source/Cloning.HybridWeightedFidelityLimit.html#L66"><code>Cloning.Hybrid.PositiveField.rootFidelity_sq_le_weighted_productPositive_of_inverse_limit</code></a><span class="badge">theorem</span></div><p class="small muted">HybridWeightedFidelityLimit.lean · line 66 · <a href="../source/Cloning.HybridWeightedFidelityLimit.html#L66">Full source and context</a> · <a href="https://github.com/JWang226/Cloning/blob/main/formalization/Cloning/HybridWeightedFidelityLimit.lean#L66">GitHub ↗</a> · <button class="copy-button" data-copy-target="lean-cloning-hybrid-positivefield-rootfidelity-sq-le-weighted-productpositive-of-inverse-limit-185" aria-label="Copy Lean excerpt">Copy</button></p><div class="code-wrap"><pre class="code-block" id="lean-cloning-hybrid-positivefield-rootfidelity-sq-le-weighted-productpositive-of-inverse-limit-185"><code>theorem rootFidelity_sq_le_weighted_productPositive_of_inverse_limit
+    (R : PositiveField (H:=H) μ)
+    (g : Ω→ℝ) (hg : Integrable g μ) (hgn : ∀x,0≤g x) (T : PositiveTraceClass H)
+    {W : H→L[ℂ] H} (hW : 0≤W) {M : ℝ}
+    (hInv : Tendsto (regularizedInverseMoment T W) (𝓝[&gt;] (0:ℝ)) (𝓝 M))
+    (χ : Ω→ℝ) (hχ : ∀x,0&lt;χ x)
+    (hweighted : Integrable (fun x=&gt;χ x*witnessMoment (R.value x).1 W) μ)
+    (hclassical : Integrable (fun x=&gt;g x/χ x) μ) :
+    R.rootFidelity (productPositive g hg hgn T)^2≤
+      (∫x,χ x*witnessMoment (R.value x).1 W ∂μ)*
+      (∫x,g x/χ x ∂μ)*M</code></pre></div></article><section class="callout"><h2>Read this part of the proof</h2><p><a href="../guides/gaussian-optimum.html">Gaussian amplification against arbitrary competitors →</a></p></section><details class="manuscript-excerpt"><summary>Exact manuscript TeX statement</summary><p class="small muted">Copied from the reference manuscript. Macro definitions and surrounding notation are in the complete TeX source.</p><pre class="code-block"><code>\begin{lemma}[Weighted fidelity bound]\label{lem:weighted-fidelity}
+Let \(R,T\) be positive trace-class operators, and let \(W\) be bounded,
+positive, and injective.  Define
+\[
+  \Tr(TW^{-1})
+  :=\lim_{\varepsilon\downarrow0}
+  \Tr\bigl(T(W+\varepsilon I)^{-1}\bigr)\in[0,\infty].
+\]
+If this quantity is finite, then
+\begin{equation}\label{eq:weighted-quantum-fidelity}
+  F(R,T)^2\le\Tr(RW)\Tr(TW^{-1}).
+\end{equation}
+
+Let \(\mathsf E\) be a finite-dimensional Euclidean space,
+let \(R\in L^1(\mathsf E;\cT_1(\cF_{\mathrm{orb}}))\) be positive, let
+\(g\) be a probability density on \(\mathsf E\), and let \(\chi&gt;0\) be
+measurable.  For positive \(R,S\) in this space, write
+\(F(R,S)=\int_{\mathsf E}F(R(y),S(y))\,\dd y\), in agreement with the
+hybrid-state convention in \cref{sec:gaussian-LAN}.
+The notation \(gT\) means the density \(y\mapsto g(y)T\).
+Whenever the right-hand side below is finite,
+\begin{equation}\label{eq:weighted-hybrid-fidelity}
+  F(R,gT)^2
+  \le
+  \left(\int_{\mathsf E}\chi(y)\Tr[R(y)W] \,\dd y\right)
+  \left(\int_{\mathsf E}\frac{g(y)}{\chi(y)}\,\dd y\right)
+  \Tr(TW^{-1}).
+\end{equation}
+\end{lemma}</code></pre><a href="../reference/cloning.tex">Download the complete reference source</a> · <a href="https://github.com/JWang226/Cloning/blob/main/formalization/reference/cloning.tex#L3346">GitHub, line 3346 ↗</a></details><p><a href="index.html">← All named results</a></p></main>
+<footer class="footer">English guides explain the argument. Lean source and its hypotheses determine the formal claims.
+<a href="../verification.html">Audit evidence</a> · <a href="../scope.html">Scope</a></footer>
+</div></div></body></html>

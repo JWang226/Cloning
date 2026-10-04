@@ -1,0 +1,143 @@
+{
+  "status": "passed",
+  "files": 15,
+  "added_noncomputable_prefixes": 30,
+  "only_prefix_insertions": true,
+  "sources": [
+    {
+      "file": "Cloning/PBWNormalOrdering.lean",
+      "changed_lines": [
+        26,
+        35,
+        67,
+        83,
+        149,
+        264
+      ],
+      "before_sha256": "b83d0f7cc9e13dc575857929efd0a1c4aa8b1711bc8c035a762ec743956a22dc",
+      "after_sha256": "24e48ee7bb7cba1e608e2f1e20f9bbd386efcbf2a354ef25e94cfea662746157"
+    },
+    {
+      "file": "Cloning/TensorCartanSplitMultiplicity.lean",
+      "changed_lines": [
+        39
+      ],
+      "before_sha256": "6685138d05eacdd69eb5aa663c41094c464395e7e7093754b902f09409814540",
+      "after_sha256": "e30112865c5263bc3a0acb217b001d48e0ec5674d5c99faafb97d17ce2996bb4"
+    },
+    {
+      "file": "Cloning/TensorCartanWordSplit.lean",
+      "changed_lines": [
+        16
+      ],
+      "before_sha256": "c68a7b3f0bbe964310b9e479348bf3d4217db15f285417efe99aacac40352079",
+      "after_sha256": "dc12e38dbb016407683d8bfbfc5d2f1a58aeae1a4ef814e4cc4bf123c1f68094"
+    },
+    {
+      "file": "Cloning/TensorCyclicFiltration.lean",
+      "changed_lines": [
+        22,
+        26
+      ],
+      "before_sha256": "4d9e0d0893d763afeec6b2072ec6d12bbd5addd7abddf0da529a8a5560596b3f",
+      "after_sha256": "bc03ae01896ecf58b0e5fe5abbc4b9d0afa0d3589bcfe8daefe98bb774154357"
+    },
+    {
+      "file": "Cloning/TensorHighestGramAction.lean",
+      "changed_lines": [
+        16
+      ],
+      "before_sha256": "0d017ade86fee06bf2c05123d839884180dbd8f97f00677c938ccb7433f1fa31",
+      "after_sha256": "9abc0bc035bfaa3fba35798490088891a8d83ae2c24d83b20b72394a1946693e"
+    },
+    {
+      "file": "Cloning/TensorPBWNormalization.lean",
+      "changed_lines": [
+        13
+      ],
+      "before_sha256": "feba2487100699fb6f6635a63e52886d9b37965c68e3ba7e45cc059d31265eb1",
+      "after_sha256": "de39a0c28093f471ef5fbe5ad9273aa3d27bf4d3baf0641705289176fb5620ce"
+    },
+    {
+      "file": "Cloning/TensorPBWOrder.lean",
+      "changed_lines": [
+        34,
+        86
+      ],
+      "before_sha256": "38df36ee4d2ba52506fbbeab7c8b97d22c356a1b29c76c95ad0b7a78d5a82a49",
+      "after_sha256": "928daf147bd26219b49d542ae0a65c9694221b0fb996441730655950d4326795"
+    },
+    {
+      "file": "Cloning/TensorPBWWeight.lean",
+      "changed_lines": [
+        17
+      ],
+      "before_sha256": "1635739670afe67696f99ee5309fdaf306b107904fdade14258298489386621f",
+      "after_sha256": "8c97a85a851464576f58ce59db38257185de870bab2aafee9574c310fb585e42"
+    },
+    {
+      "file": "Cloning/TensorSchurDecomposition.lean",
+      "changed_lines": [
+        16
+      ],
+      "before_sha256": "cf4f0ec51a4cdd3699fbf979ac6a090aab778c7dcc9c81ef1ee22e7ba9a23f59",
+      "after_sha256": "4241fbc08fae9924bbf5c15dac45d5344fb7b18c6f2c9f5c0e4abf5234e97fff"
+    },
+    {
+      "file": "Cloning/TensorSchurMultiplicityDecomposition.lean",
+      "changed_lines": [
+        39
+      ],
+      "before_sha256": "3bb49451e48fb6bcb6e8d3b27bd39feaba5006167ac06e7df132cb20c1f73eb3",
+      "after_sha256": "bd5721ff5d712eca284df3dc303b2a22f4ac304453dfe568774c46b9ec9cba85"
+    },
+    {
+      "file": "Cloning/WeylNumberTaylor.lean",
+      "changed_lines": [
+        58
+      ],
+      "before_sha256": "6bd95b08e4b93172cef9fd9ea218d597af6cc3b6bb1ec63b58d24158be12b2bc",
+      "after_sha256": "8da036aeb2af749d583fcfd3aa8bdda9abbc39442a7234bd880fdb87f85f0746"
+    },
+    {
+      "file": "Cloning/YoungRSKShape.lean",
+      "changed_lines": [
+        9
+      ],
+      "before_sha256": "24c1b850b6aafa72160e5c9251d8fa947eea06903ecc4f9fa7c32433fba79b1f",
+      "after_sha256": "e9bea4737b82dfb62603ecb333101a5d3ab8d48cb49502574503c74cb13c1345"
+    },
+    {
+      "file": "Cloning/YoungRSKTableau.lean",
+      "changed_lines": [
+        15,
+        31
+      ],
+      "before_sha256": "b9849c6beb7e5319ec4e5461c13c4c8497bf1ed0be8f5aede41c0b7006b34334",
+      "after_sha256": "69047221d830bac65a77f65bb1049c57edbdc0f50551f188b26f800d6ce7be56"
+    },
+    {
+      "file": "Cloning/YoungRSKTableauReverse.lean",
+      "changed_lines": [
+        11,
+        25
+      ],
+      "before_sha256": "a8a91d3efe8914d9c082f396c9a0ff1ecc1747635a7c62e6a62c5797e3ee6190",
+      "after_sha256": "10b1cc823dcb5dbd15b4f53e9e69ae6d1dced4720681d7d63754071ca08fa84a"
+    },
+    {
+      "file": "Cloning/YoungTwoRowMoment.lean",
+      "changed_lines": [
+        25,
+        29,
+        42,
+        46,
+        50,
+        57,
+        61
+      ],
+      "before_sha256": "c96877b5b6cd173c0289270486ea34dcec56d243fe7a1f39f2cb9fa9901f9747",
+      "after_sha256": "d217af68b3df9ded7304a0159e0d671d6723343844835e7e392a8adda7d8eb7c"
+    }
+  ]
+}

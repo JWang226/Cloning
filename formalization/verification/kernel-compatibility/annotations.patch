@@ -1,0 +1,279 @@
+--- before/Cloning/PBWNormalOrdering.lean
++++ after/Cloning/PBWNormalOrdering.lean
+@@ -23,7 +23,7 @@
+ variable [NormedAddCommGroup H] [InnerProductSpace ℂ H]
+ 
+ /-- Ordered operator word, with the leftmost operator acting last. -/
+-def word (F : ι → H →L[ℂ] H) : List ι → H → H
++noncomputable def word (F : ι → H →L[ℂ] H) : List ι → H → H
+   | [], x => x
+   | i :: w, x => F i (word F w x)
+ 
+@@ -32,7 +32,7 @@
+     word F (i :: w) x = F i (word F w x) := rfl
+ 
+ /-- One deletion for every occurrence of `i`; multiplicities are retained. -/
+-def removeOne (i : ι) : List ι → List (List ι)
++noncomputable def removeOne (i : ι) : List ι → List (List ι)
+   | [] => []
+   | j :: w => (if i = j then [w] else []) ++ (removeOne i w).map (List.cons j)
+ 
+@@ -64,7 +64,7 @@
+ 
+ /-- Bosonic vacuum contraction number, computable recursively for any two words.
+ It counts bijections matching equal root labels. -/
+-def wick : List ι → List ι → ℕ
++noncomputable def wick : List ι → List ι → ℕ
+   | [], v => if v = [] then 1 else 0
+   | i :: u, v => ((removeOne i v).map (wick u)).sum
+ 
+@@ -80,7 +80,7 @@
+ 
+ /-- Terms produced by commuting one annihilator through a creation word.
+ Each term is one commutator defect with the preceding creators applied. -/
+-def errorTerms (F A : ι → H →L[ℂ] H) (Ω : H) (i : ι) : List ι → List H
++noncomputable def errorTerms (F A : ι → H →L[ℂ] H) (Ω : H) (i : ι) : List ι → List H
+   | [] => []
+   | j :: w => commutatorDefect F A i j (word F w Ω) ::
+       (errorTerms F A Ω i w).map (F j)
+@@ -146,7 +146,7 @@
+ 
+ /-- An explicit rank-independent constant for a right word of length at most `L`.
+ The recurrence gives `L + L² + ⋯ + L^k`. -/
+-def gramConstant (L : ℕ) : ℕ → ℕ
++noncomputable def gramConstant (L : ℕ) : ℕ → ℕ
+   | 0 => 0
+   | k + 1 => L * (gramConstant L k + 1)
+ 
+@@ -261,7 +261,7 @@
+ 
+ /-- Product of root-occupation factorials, given without a finiteness assumption
+ on the root-label type. -/
+-def occupationFactorial : List ι → ℕ
++noncomputable def occupationFactorial : List ι → ℕ
+   | [] => 1
+   | i :: u => (u.count i + 1) * occupationFactorial u
+ 
+--- before/Cloning/TensorCartanSplitMultiplicity.lean
++++ after/Cloning/TensorCartanSplitMultiplicity.lean
+@@ -36,7 +36,7 @@
+     omega
+   · simp [rootIncrement, rootDecrement, he]
+ 
+-def rootOccupationSplits : List (PositiveRoot d) → List (PositiveRoot d → ℕ)
++noncomputable def rootOccupationSplits : List (PositiveRoot d) → List (PositiveRoot d → ℕ)
+   | [] => [0]
+   | a :: w => (rootOccupationSplits w).map (rootIncrement a) ++ rootOccupationSplits w
+ 
+--- before/Cloning/TensorCartanWordSplit.lean
++++ after/Cloning/TensorCartanWordSplit.lean
+@@ -13,7 +13,7 @@
+ 
+ /-- All ways to send the successive roots to the left or the right tensor
+ factor, retaining the original order separately within each factor. -/
+-def loweringSplits : List (PositiveRoot d) → List (List (PositiveRoot d) × List (PositiveRoot d))
++noncomputable def loweringSplits : List (PositiveRoot d) → List (List (PositiveRoot d) × List (PositiveRoot d))
+   | [] => [([], [])]
+   | a :: w => (loweringSplits w).map (fun uv => (a :: uv.1, uv.2)) ++
+       (loweringSplits w).map (fun uv => (uv.1, a :: uv.2))
+--- before/Cloning/TensorCyclicFiltration.lean
++++ after/Cloning/TensorCyclicFiltration.lean
+@@ -19,11 +19,11 @@
+   simp only [PositiveRoot.height]
+   omega
+ 
+-def loweringHeight : List (PositiveRoot d) → ℕ
++noncomputable def loweringHeight : List (PositiveRoot d) → ℕ
+   | [] => 0
+   | a :: w => a.height + loweringHeight w
+ 
+-def loweringWord (Ω : TensorRegister n (Fin d)) :
++noncomputable def loweringWord (Ω : TensorRegister n (Fin d)) :
+     List (PositiveRoot d) → TensorRegister n (Fin d)
+   | [] => Ω
+   | a :: w => collectiveGenerator n a.val.2 a.val.1 (loweringWord Ω w)
+--- before/Cloning/TensorHighestGramAction.lean
++++ after/Cloning/TensorHighestGramAction.lean
+@@ -13,7 +13,7 @@
+ 
+ abbrev FormalLowering (d : ℕ) := List (PositiveRoot d) →₀ ℂ
+ 
+-def highestAction (mu : Fin d → ℂ) (a b : Fin d) : List (PositiveRoot d) → FormalLowering d
++noncomputable def highestAction (mu : Fin d → ℂ) (a b : Fin d) : List (PositiveRoot d) → FormalLowering d
+   | [] => if h : b < a then Finsupp.single [⟨(b, a), h⟩] 1
+       else if a = b then Finsupp.single [] (mu a) else 0
+   | c :: w => Finsupp.mapDomain (List.cons c) (highestAction mu a b w) +
+--- before/Cloning/TensorPBWNormalization.lean
++++ after/Cloning/TensorPBWNormalization.lean
+@@ -10,7 +10,7 @@
+ set_option backward.isDefEq.respectTransparency false
+ variable {n d : ℕ}
+ 
+-def loweringScale (mu : Fin d → ℕ) : List (PositiveRoot d) → ℂ
++noncomputable def loweringScale (mu : Fin d → ℕ) : List (PositiveRoot d) → ℂ
+   | [] => 1
+   | a :: w => (((Real.sqrt ((mu a.val.1 : ℝ) - mu a.val.2))⁻¹ : ℝ) : ℂ) * loweringScale mu w
+ 
+--- before/Cloning/TensorPBWOrder.lean
++++ after/Cloning/TensorPBWOrder.lean
+@@ -31,7 +31,7 @@
+ def RootOrdered (w : List (PositiveRoot d)) : Prop :=
+   w.Pairwise (fun a b => rootKey a ≤ rootKey b)
+ 
+-def rootInversions : List (PositiveRoot d) → ℕ
++noncomputable def rootInversions : List (PositiveRoot d) → ℕ
+   | [] => 0
+   | a :: w => rootInversions w + w.countP (fun b => rootKey b < rootKey a)
+ 
+@@ -83,7 +83,7 @@
+   | nil => rfl
+   | cons a p ih => simp only [List.cons_append, loweringWord, ih]
+ 
+-def loweringOperator (n : ℕ) : List (PositiveRoot d) →
++noncomputable def loweringOperator (n : ℕ) : List (PositiveRoot d) →
+     (TensorRegister n (Fin d) →L[ℂ] TensorRegister n (Fin d))
+   | [] => ContinuousLinearMap.id ℂ _
+   | a :: w => collectiveGenerator n a.val.2 a.val.1 * loweringOperator n w
+--- before/Cloning/TensorPBWWeight.lean
++++ after/Cloning/TensorPBWWeight.lean
+@@ -14,7 +14,7 @@
+   (if a = r.val.2 then 1 else 0) - (if a = r.val.1 then 1 else 0)
+ 
+ /-- The exact additive weight change of a lowering word. -/
+-def loweringWeight : List (PositiveRoot d) → (Fin d → ℤ)
++noncomputable def loweringWeight : List (PositiveRoot d) → (Fin d → ℤ)
+   | [] => 0
+   | r :: w => r.weight + loweringWeight w
+ 
+--- before/Cloning/TensorSchurDecomposition.lean
++++ after/Cloning/TensorSchurDecomposition.lean
+@@ -13,7 +13,7 @@
+   (registerBasis (Fin n → Fin d)).toOrthonormalBasis.toBasis.finiteDimensional_of_finite
+ 
+ /-- Finite orthogonal sector sums, allowing repeated partition labels. -/
+-def physicalSectorListSpan : List (PhysicalHighestTensor n d) → Submodule ℂ (TensorRegister n (Fin d))
++noncomputable def physicalSectorListSpan : List (PhysicalHighestTensor n d) → Submodule ℂ (TensorRegister n (Fin d))
+   | [] => ⊥
+   | H :: L => H.sector ⊔ physicalSectorListSpan L
+ 
+--- before/Cloning/TensorSchurMultiplicityDecomposition.lean
++++ after/Cloning/TensorSchurMultiplicityDecomposition.lean
+@@ -36,7 +36,7 @@
+ 
+ /-- The actual list of physical copies, obtained by refining every old copy
+ through every addable row exactly once. -/
+-def recursivePhysicalDecomposition : (n d : ℕ) → List (PhysicalHighestTensor n d)
++noncomputable def recursivePhysicalDecomposition : (n d : ℕ) → List (PhysicalHighestTensor n d)
+   | 0, d => [emptyPhysicalHighest d]
+   | n + 1, d => (recursivePhysicalDecomposition n d).flatMap fundamentalBranchList
+ 
+--- before/Cloning/WeylNumberTaylor.lean
++++ after/Cloning/WeylNumberTaylor.lean
+@@ -55,7 +55,7 @@
+   simpa only [numberVector, Finsupp.linearCombination_apply, Finsupp.sum,
+     map_sum, map_smul, Pi.smul_apply] using h
+ 
+-def numberIterate (a : Fin d → ℂ) (c : NumberCoefficients d) : ℕ → NumberCoefficients d
++noncomputable def numberIterate (a : Fin d → ℂ) (c : NumberCoefficients d) : ℕ → NumberCoefficients d
+   | 0 => c
+   | m+1 => numberGenerator a (numberIterate a c m)
+ 
+--- before/Cloning/YoungRSKShape.lean
++++ after/Cloning/YoungRSKShape.lean
+@@ -6,7 +6,7 @@
+ open scoped BigOperators Classical
+ namespace Cloning.YoungGeneral
+ 
+-def shapeRemovable : List ℕ → ℕ → Prop
++noncomputable def shapeRemovable : List ℕ → ℕ → Prop
+   | [], _ => False
+   | m :: M, 0 => 0 < m ∧ ∀ n ∈ M.head?, n < m
+   | _ :: M, r + 1 => shapeRemovable M r
+--- before/Cloning/YoungRSKTableau.lean
++++ after/Cloning/YoungRSKTableau.lean
+@@ -12,7 +12,7 @@
+ open scoped BigOperators Classical
+ namespace Cloning.YoungGeneral
+ 
+-def tableauInsert {d : ℕ} : List (RowContent d) → Fin d → List (RowContent d) × ℕ
++noncomputable def tableauInsert {d : ℕ} : List (RowContent d) → Fin d → List (RowContent d) × ℕ
+   | [], x => ([rowAdd 0 x], 0)
+   | U :: T, x =>
+     match rowBump U x with
+@@ -28,7 +28,7 @@
+ 
+ def tableauShape {d : ℕ} (T : List (RowContent d)) : List ℕ := T.map rowMass
+ 
+-def shapeAdd : List ℕ → ℕ → List ℕ
++noncomputable def shapeAdd : List ℕ → ℕ → List ℕ
+   | [], _ => [1]
+   | m :: M, 0 => (m + 1) :: M
+   | m :: M, r + 1 => m :: shapeAdd M r
+--- before/Cloning/YoungRSKTableauReverse.lean
++++ after/Cloning/YoungRSKTableauReverse.lean
+@@ -8,7 +8,7 @@
+ open scoped BigOperators Classical
+ namespace Cloning.YoungGeneral
+ 
+-def tableauReverse {d : ℕ} : List (RowContent d) → ℕ → Option (List (RowContent d) × Fin d)
++noncomputable def tableauReverse {d : ℕ} : List (RowContent d) → ℕ → Option (List (RowContent d) × Fin d)
+   | [], _ => none
+   | U :: T, 0 =>
+       match rowLast U with
+@@ -22,7 +22,7 @@
+           | none => none
+           | some x => some (rowReversed U y :: S, x)
+ 
+-def tableauRemovable {d : ℕ} : List (RowContent d) → ℕ → Prop
++noncomputable def tableauRemovable {d : ℕ} : List (RowContent d) → ℕ → Prop
+   | [], _ => False
+   | U :: T, 0 => 0 < ∑ j, U j ∧ ∀ V ∈ T.head?, (∑ j, V j) < ∑ j, U j
+   | _ :: T, r + 1 => tableauRemovable T r
+--- before/Cloning/YoungTwoRowMoment.lean
++++ after/Cloning/YoungTwoRowMoment.lean
+@@ -22,11 +22,11 @@
+ namespace Cloning.YoungTwoRow
+ 
+ /-- Binary histories of length `N`, with the most recent choice at the end. -/
+-def Path : ℕ → Type
++noncomputable def Path : ℕ → Type
+   | 0 => Unit
+   | N + 1 => Path N × Bool
+ 
+-instance pathFintype : (N : ℕ) → Fintype (Path N)
++noncomputable instance pathFintype : (N : ℕ) → Fintype (Path N)
+   | 0 => inferInstanceAs (Fintype Unit)
+   | N + 1 =>
+     letI := pathFintype N
+@@ -39,26 +39,26 @@
+   if b then ((s : ℝ) + 2) / (2 * ((s : ℝ) + 1))
+   else (s : ℝ) / (2 * ((s : ℝ) + 1))
+ 
+-def spin : (N : ℕ) → Path N → ℕ
++noncomputable def spin : (N : ℕ) → Path N → ℕ
+   | 0, _ => 0
+   | N + 1, p => stepSpin (spin N p.1) p.2
+ 
+-def weight : (N : ℕ) → Path N → ℝ
++noncomputable def weight : (N : ℕ) → Path N → ℝ
+   | 0, _ => 1
+   | N + 1, p => weight N p.1 * stepProbability (spin N p.1) p.2
+ 
+-def legal : (N : ℕ) → Path N → Prop
++noncomputable def legal : (N : ℕ) → Path N → Prop
+   | 0, _ => True
+   | N + 1, p => legal N p.1 ∧ (p.2 = true ∨ 0 < spin N p.1)
+ 
+ instance legalDecidable (N : ℕ) (p : Path N) : Decidable (legal N p) :=
+   Classical.propDecidable _
+ 
+-def upperRow : (N : ℕ) → Path N → ℕ
++noncomputable def upperRow : (N : ℕ) → Path N → ℕ
+   | 0, _ => 0
+   | N + 1, p => upperRow N p.1 + if p.2 then 1 else 0
+ 
+-def lowerRow : (N : ℕ) → Path N → ℕ
++noncomputable def lowerRow : (N : ℕ) → Path N → ℕ
+   | 0, _ => 0
+   | N + 1, p => lowerRow N p.1 + if p.2 then 0 else 1
+ 

@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="An offline guide to the Lean formalization of asymptotic mixed-state quantum cloning. Exact source, proof routes, and audited scope.">
+<title>YoungRSKInsertion · Lean source · Cloning proof wiki</title>
+<link rel="stylesheet" href="../assets/site.css?v=1811c00ea983">
+<script>window.PROOF_ROOT="../";</script>
+<script defer src="../assets/vendor/katex/katex.min.js"></script>
+<script defer src="../assets/search-index.js?v=850aee981cdc"></script>
+<script defer src="../assets/site.js?v=4bfaac1f06b1"></script>
+</head><body><a class="skip-link" href="#main">Skip to content</a>
+<div class="site-shell"><aside class="sidebar" id="site-navigation">
+<a class="brand" href="../index.html"><span class="brand-mark">C</span><span>Cloning<span class="small muted">A Lean proof wiki</span></span></a>
+<nav aria-label="Main navigation"><div class="nav-section">Explore</div><a class="nav-link" href="../index.html">Overview</a><a class="nav-link" href="../guides/index.html">Proof guide</a><a class="nav-link" href="../results/index.html">27 named results</a><a class="nav-link active" href="../source/index.html" aria-current="page">Lean source</a><a class="nav-link" href="../verification.html">Verification</a><a class="nav-link" href="../scope.html">Scope &amp; conventions</a>
+<div class="nav-section">Read the proof</div><a class="nav-link" href="../guides/physical-problem.html"><span class="nav-number">01</span> The physical problem and its conventions</a><a class="nav-link" href="../guides/young-laws.html"><span class="nav-number">02</span> Young labels: concentration and the local Gaussian law</a><a class="nav-link" href="../guides/cartan-sectors.html"><span class="nav-number">03</span> From PBW frames to uniform Cartan-sector fidelity</a><a class="nav-link" href="../guides/lifted-kernels.html"><span class="nav-number">04</span> Lifted channels, randomized dilation, and factorization</a><a class="nav-link" href="../guides/gaussian-optimum.html"><span class="nav-number">05</span> Gaussian amplification against arbitrary competitors</a><a class="nav-link" href="../guides/physical-lan.html"><span class="nav-number">06</span> Constructed LAN and fidelity transfer</a><a class="nav-link" href="../guides/known-spectrum.html"><span class="nav-number">07</span> The known-spectrum optimum</a><a class="nav-link" href="../guides/unknown-spectrum.html"><span class="nav-number">08</span> One universal cloner and the compact-set optimum</a><a class="nav-link" href="../guides/grassmann.html"><span class="nav-number">09</span> Exact rank compression and projector-state optimality</a><a class="nav-link" href="../guides/purify-clone-trace.html"><span class="nav-number">10</span> Purify–clone–trace: exact channels, limits, and guarantees</a><a class="nav-link" href="../guides/small-errors.html"><span class="nav-number">11</span> Small errors, rank boundaries, and noncommuting limits</a><a class="nav-link" href="../guides/spectral-comparison.html"><span class="nav-number">12</span> Spectral order and what is known for all states</a></nav>
+<div class="sidebar-footer"><span class="badge">Lean 4</span><p>Manuscript → proof → source</p>
+<a href="https://github.com/JWang226/Cloning">Repository ↗</a></div></aside>
+<div class="main-shell"><header class="topbar">
+<button id="nav-toggle" class="button secondary" aria-controls="site-navigation" aria-expanded="false" aria-label="Toggle navigation">Menu</button>
+<div class="search-wrap"><label class="sr-only" for="site-search">Search the proof wiki</label>
+<input id="site-search" type="search" placeholder="Search results, concepts, or Lean names…" autocomplete="off" aria-controls="search-results" aria-expanded="false" role="combobox" aria-autocomplete="list">
+<div id="search-results" class="search-results" role="listbox" hidden></div></div>
+<span class="small muted topbar-label">Offline · exact source</span></header>
+<main id="main" class="content"><div class="eyebrow">Exact Lean source</div><h1 class="source-title">YoungRSKInsertion</h1><p><code>formalization/Cloning/YoungRSKInsertion.lean</code></p><p class="small muted">Source hash: <code>f839cd5edc832f42e43df582975e6caf554ce7ec1f2b8046b6007d5f579a52cb</code></p><div class="actions"><a class="button secondary" href="raw/Cloning.YoungRSKInsertion.lean">Download .lean</a><a class="button secondary" href="https://github.com/JWang226/Cloning/blob/main/formalization/Cloning/YoungRSKInsertion.lean">View on GitHub ↗</a><a href="index.html">All modules</a></div><p class="small muted">Full source copied without mathematical changes from the snapshot whose input hash matches the passing audit. Select a line number for a stable source pointer.</p><details><summary>Declarations in this module</summary><div class="module-declarations"><a href="#L18"><span class="badge">definition</span> <code>Cloning.YoungGeneral.RowContent</code></a><a href="#L20"><span class="badge">definition</span> <code>Cloning.YoungGeneral.rowAdd</code></a><a href="#L23"><span class="badge">definition</span> <code>Cloning.YoungGeneral.rowRemove</code></a><a href="#L26"><span class="badge">definition</span> <code>Cloning.YoungGeneral.rowReplace</code></a><a href="#L29"><span class="badge">definition</span> <code>Cloning.YoungGeneral.rowBumpCandidates</code></a><a href="#L32"><span class="badge">definition</span> <code>Cloning.YoungGeneral.rowReverseCandidates</code></a><a href="#L35"><span class="badge">definition</span> <code>Cloning.YoungGeneral.rowBump</code></a><a href="#L39"><span class="badge">definition</span> <code>Cloning.YoungGeneral.rowReverseBump</code></a><a href="#L43"><span class="badge">definition</span> <code>Cloning.YoungGeneral.rowInserted</code></a><a href="#L48"><span class="badge">definition</span> <code>Cloning.YoungGeneral.rowReversed</code></a><a href="#L53"><span class="badge">theorem</span> <code>Cloning.YoungGeneral.rowBump_eq_some_iff</code></a><a href="#L77"><span class="badge">theorem</span> <code>Cloning.YoungGeneral.rowReverseBump_eq_some_iff</code></a><a href="#L104"><span class="badge">theorem</span> <code>Cloning.YoungGeneral.rowBump_eq_none_iff</code></a><a href="#L121"><span class="badge">theorem</span> <code>Cloning.YoungGeneral.rowReplace_cancel</code></a><a href="#L137"><span class="badge">theorem</span> <code>Cloning.YoungGeneral.rowReverseBump_after_insert</code></a><a href="#L154"><span class="badge">theorem</span> <code>Cloning.YoungGeneral.rowReversed_after_insert</code></a><a href="#L161"><span class="badge">theorem</span> <code>Cloning.YoungGeneral.rowBump_after_reverse</code></a><a href="#L177"><span class="badge">theorem</span> <code>Cloning.YoungGeneral.rowInserted_after_reverse</code></a><a href="#L184"><span class="badge">theorem</span> <code>Cloning.YoungGeneral.rowReplace_content</code></a><a href="#L199"><span class="badge">theorem</span> <code>Cloning.YoungGeneral.rowReplace_mass</code></a><a href="#L206"><span class="badge">definition</span> <code>Cloning.YoungGeneral.rowPrefix</code></a><a href="#L209"><span class="badge">definition</span> <code>Cloning.YoungGeneral.rowStrictPrefix</code></a><a href="#L212"><span class="badge">theorem</span> <code>Cloning.YoungGeneral.monotone_rowPrefix</code></a><a href="#L219"><span class="badge">theorem</span> <code>Cloning.YoungGeneral.monotone_rowStrictPrefix</code></a><a href="#L227"><span class="badge">theorem</span> <code>Cloning.YoungGeneral.rowPrefix_le_strictPrefix</code></a><a href="#L234"><span class="badge">theorem</span> <code>Cloning.YoungGeneral.rowPrefix_eq_of_no_entries</code></a><a href="#L246"><span class="badge">theorem</span> <code>Cloning.YoungGeneral.rowStrictPrefix_slack</code></a><a href="#L260"><span class="badge">theorem</span> <code>Cloning.YoungGeneral.rowReplace_sum</code></a><a href="#L270"><span class="badge">theorem</span> <code>Cloning.YoungGeneral.rowReplace_prefix</code></a><a href="#L281"><span class="badge">theorem</span> <code>Cloning.YoungGeneral.rowReplace_strictPrefix</code></a><a href="#L292"><span class="badge">theorem</span> <code>Cloning.YoungGeneral.rowAdd_content</code></a><a href="#L298"><span class="badge">theorem</span> <code>Cloning.YoungGeneral.rowAdd_prefix</code></a><a href="#L303"><span class="badge">theorem</span> <code>Cloning.YoungGeneral.rowAdd_strictPrefix</code></a><a href="#L308"><span class="badge">theorem</span> <code>Cloning.YoungGeneral.rowInserted_prefix_of_bump</code></a><a href="#L316"><span class="badge">theorem</span> <code>Cloning.YoungGeneral.rowInserted_prefix_of_none</code></a><a href="#L322"><span class="badge">theorem</span> <code>Cloning.YoungGeneral.rowInserted_strictPrefix_of_bump</code></a><a href="#L330"><span class="badge">theorem</span> <code>Cloning.YoungGeneral.rowInserted_strictPrefix_of_none</code></a><a href="#L336"><span class="badge">theorem</span> <code>Cloning.YoungGeneral.rowRemove_rowAdd</code></a><a href="#L343"><span class="badge">theorem</span> <code>Cloning.YoungGeneral.rowAdd_rowRemove</code></a><a href="#L350"><span class="badge">definition</span> <code>Cloning.YoungGeneral.rowLast</code></a><a href="#L355"><span class="badge">definition</span> <code>Cloning.YoungGeneral.rowDeleteLast</code></a><a href="#L360"><span class="badge">theorem</span> <code>Cloning.YoungGeneral.rowLast_eq_some_iff</code></a><a href="#L384"><span class="badge">theorem</span> <code>Cloning.YoungGeneral.rowLast_after_terminal_insert</code></a><a href="#L395"><span class="badge">theorem</span> <code>Cloning.YoungGeneral.rowDeleteLast_after_terminal_insert</code></a><a href="#L400"><span class="badge">theorem</span> <code>Cloning.YoungGeneral.rowBump_after_deleteLast</code></a><a href="#L411"><span class="badge">theorem</span> <code>Cloning.YoungGeneral.rowInserted_after_deleteLast</code></a><a href="#L416"><span class="badge">theorem</span> <code>Cloning.YoungGeneral.rowAdd_mass</code></a><a href="#L420"><span class="badge">definition</span> <code>Cloning.YoungGeneral.rowMonomial</code></a><a href="#L425"><span class="badge">theorem</span> <code>Cloning.YoungGeneral.rowReplace_monomial</code></a><a href="#L434"><span class="badge">theorem</span> <code>Cloning.YoungGeneral.rowAdd_monomial</code></a></div></details><div class="code-wrap source-wrap"><pre class="source-lines"><code><span class="source-line" id="L1"><a class="line-no" href="#L1" aria-label="Line 1">1</a><span class="line-code">import Cloning.YoungGeneralTableaux</span></span>
+<span class="source-line" id="L2"><a class="line-no" href="#L2" aria-label="Line 2">2</a><span class="line-code">import Mathlib.Data.Finset.Max</span></span>
+<span class="source-line" id="L3"><a class="line-no" href="#L3" aria-label="Line 3">3</a><span class="line-code"> </span></span>
+<span class="source-line" id="L4"><a class="line-no" href="#L4" aria-label="Line 4">4</a><span class="line-code">/-!</span></span>
+<span class="source-line" id="L5"><a class="line-no" href="#L5" aria-label="Line 5">5</a><span class="line-code"># Reversible row insertion on literal letter-count arrays</span></span>
+<span class="source-line" id="L6"><a class="line-no" href="#L6" aria-label="Line 6">6</a><span class="line-code"> </span></span>
+<span class="source-line" id="L7"><a class="line-no" href="#L7" aria-label="Line 7">7</a><span class="line-code">A weakly increasing row is represented by the multiplicity of each letter.</span></span>
+<span class="source-line" id="L8"><a class="line-no" href="#L8" aria-label="Line 8">8</a><span class="line-code">Insertion replaces the least occupied letter strictly above the input;</span></span>
+<span class="source-line" id="L9"><a class="line-no" href="#L9" aria-label="Line 9">9</a><span class="line-code">reverse insertion replaces the greatest occupied letter strictly below the</span></span>
+<span class="source-line" id="L10"><a class="line-no" href="#L10" aria-label="Line 10">10</a><span class="line-code">returned letter. These are the actual RSK row operations, with their local</span></span>
+<span class="source-line" id="L11"><a class="line-no" href="#L11" aria-label="Line 11">11</a><span class="line-code">inverse and monomial-conservation laws proved below.</span></span>
+<span class="source-line" id="L12"><a class="line-no" href="#L12" aria-label="Line 12">12</a><span class="line-code">-/</span></span>
+<span class="source-line" id="L13"><a class="line-no" href="#L13" aria-label="Line 13">13</a><span class="line-code"> </span></span>
+<span class="source-line" id="L14"><a class="line-no" href="#L14" aria-label="Line 14">14</a><span class="line-code">noncomputable section</span></span>
+<span class="source-line" id="L15"><a class="line-no" href="#L15" aria-label="Line 15">15</a><span class="line-code">open scoped BigOperators Classical</span></span>
+<span class="source-line" id="L16"><a class="line-no" href="#L16" aria-label="Line 16">16</a><span class="line-code">namespace Cloning.YoungGeneral</span></span>
+<span class="source-line" id="L17"><a class="line-no" href="#L17" aria-label="Line 17">17</a><span class="line-code"> </span></span>
+<span class="source-line" id="L18"><a class="line-no" href="#L18" aria-label="Line 18">18</a><span class="line-code">abbrev RowContent (d : ℕ) := Fin d → ℕ</span></span>
+<span class="source-line" id="L19"><a class="line-no" href="#L19" aria-label="Line 19">19</a><span class="line-code"> </span></span>
+<span class="source-line" id="L20"><a class="line-no" href="#L20" aria-label="Line 20">20</a><span class="line-code">def rowAdd {d : ℕ} (A : RowContent d) (x : Fin d) : RowContent d :=</span></span>
+<span class="source-line" id="L21"><a class="line-no" href="#L21" aria-label="Line 21">21</a><span class="line-code">  Function.update A x (A x + 1)</span></span>
+<span class="source-line" id="L22"><a class="line-no" href="#L22" aria-label="Line 22">22</a><span class="line-code"> </span></span>
+<span class="source-line" id="L23"><a class="line-no" href="#L23" aria-label="Line 23">23</a><span class="line-code">def rowRemove {d : ℕ} (A : RowContent d) (x : Fin d) : RowContent d :=</span></span>
+<span class="source-line" id="L24"><a class="line-no" href="#L24" aria-label="Line 24">24</a><span class="line-code">  Function.update A x (A x - 1)</span></span>
+<span class="source-line" id="L25"><a class="line-no" href="#L25" aria-label="Line 25">25</a><span class="line-code"> </span></span>
+<span class="source-line" id="L26"><a class="line-no" href="#L26" aria-label="Line 26">26</a><span class="line-code">def rowReplace {d : ℕ} (A : RowContent d) (x y : Fin d) : RowContent d :=</span></span>
+<span class="source-line" id="L27"><a class="line-no" href="#L27" aria-label="Line 27">27</a><span class="line-code">  rowAdd (rowRemove A y) x</span></span>
+<span class="source-line" id="L28"><a class="line-no" href="#L28" aria-label="Line 28">28</a><span class="line-code"> </span></span>
+<span class="source-line" id="L29"><a class="line-no" href="#L29" aria-label="Line 29">29</a><span class="line-code">def rowBumpCandidates {d : ℕ} (A : RowContent d) (x : Fin d) : Finset (Fin d) :=</span></span>
+<span class="source-line" id="L30"><a class="line-no" href="#L30" aria-label="Line 30">30</a><span class="line-code">  Finset.univ.filter (fun y =&gt; x &lt; y ∧ 0 &lt; A y)</span></span>
+<span class="source-line" id="L31"><a class="line-no" href="#L31" aria-label="Line 31">31</a><span class="line-code"> </span></span>
+<span class="source-line" id="L32"><a class="line-no" href="#L32" aria-label="Line 32">32</a><span class="line-code">def rowReverseCandidates {d : ℕ} (A : RowContent d) (y : Fin d) : Finset (Fin d) :=</span></span>
+<span class="source-line" id="L33"><a class="line-no" href="#L33" aria-label="Line 33">33</a><span class="line-code">  Finset.univ.filter (fun x =&gt; x &lt; y ∧ 0 &lt; A x)</span></span>
+<span class="source-line" id="L34"><a class="line-no" href="#L34" aria-label="Line 34">34</a><span class="line-code"> </span></span>
+<span class="source-line" id="L35"><a class="line-no" href="#L35" aria-label="Line 35">35</a><span class="line-code">def rowBump {d : ℕ} (A : RowContent d) (x : Fin d) : Option (Fin d) :=</span></span>
+<span class="source-line" id="L36"><a class="line-no" href="#L36" aria-label="Line 36">36</a><span class="line-code">  if h : (rowBumpCandidates A x).Nonempty then some ((rowBumpCandidates A x).min&#x27; h)</span></span>
+<span class="source-line" id="L37"><a class="line-no" href="#L37" aria-label="Line 37">37</a><span class="line-code">  else none</span></span>
+<span class="source-line" id="L38"><a class="line-no" href="#L38" aria-label="Line 38">38</a><span class="line-code"> </span></span>
+<span class="source-line" id="L39"><a class="line-no" href="#L39" aria-label="Line 39">39</a><span class="line-code">def rowReverseBump {d : ℕ} (A : RowContent d) (y : Fin d) : Option (Fin d) :=</span></span>
+<span class="source-line" id="L40"><a class="line-no" href="#L40" aria-label="Line 40">40</a><span class="line-code">  if h : (rowReverseCandidates A y).Nonempty then some ((rowReverseCandidates A y).max&#x27; h)</span></span>
+<span class="source-line" id="L41"><a class="line-no" href="#L41" aria-label="Line 41">41</a><span class="line-code">  else none</span></span>
+<span class="source-line" id="L42"><a class="line-no" href="#L42" aria-label="Line 42">42</a><span class="line-code"> </span></span>
+<span class="source-line" id="L43"><a class="line-no" href="#L43" aria-label="Line 43">43</a><span class="line-code">def rowInserted {d : ℕ} (A : RowContent d) (x : Fin d) : RowContent d :=</span></span>
+<span class="source-line" id="L44"><a class="line-no" href="#L44" aria-label="Line 44">44</a><span class="line-code">  match rowBump A x with</span></span>
+<span class="source-line" id="L45"><a class="line-no" href="#L45" aria-label="Line 45">45</a><span class="line-code">  | none =&gt; rowAdd A x</span></span>
+<span class="source-line" id="L46"><a class="line-no" href="#L46" aria-label="Line 46">46</a><span class="line-code">  | some y =&gt; rowReplace A x y</span></span>
+<span class="source-line" id="L47"><a class="line-no" href="#L47" aria-label="Line 47">47</a><span class="line-code"> </span></span>
+<span class="source-line" id="L48"><a class="line-no" href="#L48" aria-label="Line 48">48</a><span class="line-code">def rowReversed {d : ℕ} (A : RowContent d) (y : Fin d) : RowContent d :=</span></span>
+<span class="source-line" id="L49"><a class="line-no" href="#L49" aria-label="Line 49">49</a><span class="line-code">  match rowReverseBump A y with</span></span>
+<span class="source-line" id="L50"><a class="line-no" href="#L50" aria-label="Line 50">50</a><span class="line-code">  | none =&gt; A</span></span>
+<span class="source-line" id="L51"><a class="line-no" href="#L51" aria-label="Line 51">51</a><span class="line-code">  | some x =&gt; rowReplace A y x</span></span>
+<span class="source-line" id="L52"><a class="line-no" href="#L52" aria-label="Line 52">52</a><span class="line-code"> </span></span>
+<span class="source-line" id="L53"><a class="line-no" href="#L53" aria-label="Line 53">53</a><span class="line-code">theorem rowBump_eq_some_iff {d : ℕ} (A : RowContent d) (x y : Fin d) :</span></span>
+<span class="source-line" id="L54"><a class="line-no" href="#L54" aria-label="Line 54">54</a><span class="line-code">    rowBump A x = some y ↔ x &lt; y ∧ 0 &lt; A y ∧</span></span>
+<span class="source-line" id="L55"><a class="line-no" href="#L55" aria-label="Line 55">55</a><span class="line-code">      ∀ z, x &lt; z → 0 &lt; A z → y ≤ z := by</span></span>
+<span class="source-line" id="L56"><a class="line-no" href="#L56" aria-label="Line 56">56</a><span class="line-code">  classical</span></span>
+<span class="source-line" id="L57"><a class="line-no" href="#L57" aria-label="Line 57">57</a><span class="line-code">  constructor</span></span>
+<span class="source-line" id="L58"><a class="line-no" href="#L58" aria-label="Line 58">58</a><span class="line-code">  · intro he</span></span>
+<span class="source-line" id="L59"><a class="line-no" href="#L59" aria-label="Line 59">59</a><span class="line-code">    unfold rowBump at he</span></span>
+<span class="source-line" id="L60"><a class="line-no" href="#L60" aria-label="Line 60">60</a><span class="line-code">    split_ifs at he with h</span></span>
+<span class="source-line" id="L61"><a class="line-no" href="#L61" aria-label="Line 61">61</a><span class="line-code">    · have hmin := Finset.min&#x27;_mem (rowBumpCandidates A x) h</span></span>
+<span class="source-line" id="L62"><a class="line-no" href="#L62" aria-label="Line 62">62</a><span class="line-code">      have hy : (rowBumpCandidates A x).min&#x27; h = y := Option.some.inj he</span></span>
+<span class="source-line" id="L63"><a class="line-no" href="#L63" aria-label="Line 63">63</a><span class="line-code">      rw [hy] at hmin</span></span>
+<span class="source-line" id="L64"><a class="line-no" href="#L64" aria-label="Line 64">64</a><span class="line-code">      obtain ⟨_, hxy, hypos⟩ := Finset.mem_filter.mp hmin</span></span>
+<span class="source-line" id="L65"><a class="line-no" href="#L65" aria-label="Line 65">65</a><span class="line-code">      refine ⟨hxy, hypos, fun z hxz hzpos =&gt; ?_⟩</span></span>
+<span class="source-line" id="L66"><a class="line-no" href="#L66" aria-label="Line 66">66</a><span class="line-code">      rw [← hy]</span></span>
+<span class="source-line" id="L67"><a class="line-no" href="#L67" aria-label="Line 67">67</a><span class="line-code">      exact Finset.min&#x27;_le _ _ (Finset.mem_filter.mpr ⟨Finset.mem_univ _, hxz, hzpos⟩)</span></span>
+<span class="source-line" id="L68"><a class="line-no" href="#L68" aria-label="Line 68">68</a><span class="line-code">  · rintro ⟨hxy, hypos, hmin⟩</span></span>
+<span class="source-line" id="L69"><a class="line-no" href="#L69" aria-label="Line 69">69</a><span class="line-code">    have hymem : y ∈ rowBumpCandidates A x := by simp [rowBumpCandidates, hxy, hypos]</span></span>
+<span class="source-line" id="L70"><a class="line-no" href="#L70" aria-label="Line 70">70</a><span class="line-code">    have hs : (rowBumpCandidates A x).Nonempty := ⟨y, hymem⟩</span></span>
+<span class="source-line" id="L71"><a class="line-no" href="#L71" aria-label="Line 71">71</a><span class="line-code">    rw [rowBump, dif_pos hs]</span></span>
+<span class="source-line" id="L72"><a class="line-no" href="#L72" aria-label="Line 72">72</a><span class="line-code">    congr 1</span></span>
+<span class="source-line" id="L73"><a class="line-no" href="#L73" aria-label="Line 73">73</a><span class="line-code">    apply le_antisymm (Finset.min&#x27;_le _ _ hymem)</span></span>
+<span class="source-line" id="L74"><a class="line-no" href="#L74" aria-label="Line 74">74</a><span class="line-code">    have hm := Finset.mem_filter.mp (Finset.min&#x27;_mem (rowBumpCandidates A x) hs)</span></span>
+<span class="source-line" id="L75"><a class="line-no" href="#L75" aria-label="Line 75">75</a><span class="line-code">    exact hmin _ hm.2.1 hm.2.2</span></span>
+<span class="source-line" id="L76"><a class="line-no" href="#L76" aria-label="Line 76">76</a><span class="line-code"> </span></span>
+<span class="source-line" id="L77"><a class="line-no" href="#L77" aria-label="Line 77">77</a><span class="line-code">theorem rowReverseBump_eq_some_iff {d : ℕ} (A : RowContent d) (y x : Fin d) :</span></span>
+<span class="source-line" id="L78"><a class="line-no" href="#L78" aria-label="Line 78">78</a><span class="line-code">    rowReverseBump A y = some x ↔ x &lt; y ∧ 0 &lt; A x ∧</span></span>
+<span class="source-line" id="L79"><a class="line-no" href="#L79" aria-label="Line 79">79</a><span class="line-code">      ∀ z, z &lt; y → 0 &lt; A z → z ≤ x := by</span></span>
+<span class="source-line" id="L80"><a class="line-no" href="#L80" aria-label="Line 80">80</a><span class="line-code">  classical</span></span>
+<span class="source-line" id="L81"><a class="line-no" href="#L81" aria-label="Line 81">81</a><span class="line-code">  constructor</span></span>
+<span class="source-line" id="L82"><a class="line-no" href="#L82" aria-label="Line 82">82</a><span class="line-code">  · intro he</span></span>
+<span class="source-line" id="L83"><a class="line-no" href="#L83" aria-label="Line 83">83</a><span class="line-code">    unfold rowReverseBump at he</span></span>
+<span class="source-line" id="L84"><a class="line-no" href="#L84" aria-label="Line 84">84</a><span class="line-code">    split_ifs at he with h</span></span>
+<span class="source-line" id="L85"><a class="line-no" href="#L85" aria-label="Line 85">85</a><span class="line-code">    · have hmax := Finset.max&#x27;_mem (rowReverseCandidates A y) h</span></span>
+<span class="source-line" id="L86"><a class="line-no" href="#L86" aria-label="Line 86">86</a><span class="line-code">      have hx : (rowReverseCandidates A y).max&#x27; h = x := Option.some.inj he</span></span>
+<span class="source-line" id="L87"><a class="line-no" href="#L87" aria-label="Line 87">87</a><span class="line-code">      rw [hx] at hmax</span></span>
+<span class="source-line" id="L88"><a class="line-no" href="#L88" aria-label="Line 88">88</a><span class="line-code">      obtain ⟨_, hxy, hxpos⟩ := Finset.mem_filter.mp hmax</span></span>
+<span class="source-line" id="L89"><a class="line-no" href="#L89" aria-label="Line 89">89</a><span class="line-code">      refine ⟨hxy, hxpos, fun z hzy hzpos =&gt; ?_⟩</span></span>
+<span class="source-line" id="L90"><a class="line-no" href="#L90" aria-label="Line 90">90</a><span class="line-code">      rw [← hx]</span></span>
+<span class="source-line" id="L91"><a class="line-no" href="#L91" aria-label="Line 91">91</a><span class="line-code">      exact Finset.le_max&#x27; _ _ (Finset.mem_filter.mpr ⟨Finset.mem_univ _, hzy, hzpos⟩)</span></span>
+<span class="source-line" id="L92"><a class="line-no" href="#L92" aria-label="Line 92">92</a><span class="line-code">  · rintro ⟨hxy, hxpos, hmax⟩</span></span>
+<span class="source-line" id="L93"><a class="line-no" href="#L93" aria-label="Line 93">93</a><span class="line-code">    have hxmem : x ∈ rowReverseCandidates A y := by</span></span>
+<span class="source-line" id="L94"><a class="line-no" href="#L94" aria-label="Line 94">94</a><span class="line-code">      simp [rowReverseCandidates, hxy, hxpos]</span></span>
+<span class="source-line" id="L95"><a class="line-no" href="#L95" aria-label="Line 95">95</a><span class="line-code">    have hs : (rowReverseCandidates A y).Nonempty := ⟨x, hxmem⟩</span></span>
+<span class="source-line" id="L96"><a class="line-no" href="#L96" aria-label="Line 96">96</a><span class="line-code">    rw [rowReverseBump, dif_pos hs]</span></span>
+<span class="source-line" id="L97"><a class="line-no" href="#L97" aria-label="Line 97">97</a><span class="line-code">    congr 1</span></span>
+<span class="source-line" id="L98"><a class="line-no" href="#L98" aria-label="Line 98">98</a><span class="line-code">    apply le_antisymm _ (Finset.le_max&#x27; _ _ hxmem)</span></span>
+<span class="source-line" id="L99"><a class="line-no" href="#L99" aria-label="Line 99">99</a><span class="line-code">    apply Finset.max&#x27;_le</span></span>
+<span class="source-line" id="L100"><a class="line-no" href="#L100" aria-label="Line 100">100</a><span class="line-code">    intro z hz</span></span>
+<span class="source-line" id="L101"><a class="line-no" href="#L101" aria-label="Line 101">101</a><span class="line-code">    obtain ⟨_, hzy, hzpos⟩ := Finset.mem_filter.mp hz</span></span>
+<span class="source-line" id="L102"><a class="line-no" href="#L102" aria-label="Line 102">102</a><span class="line-code">    exact hmax z hzy hzpos</span></span>
+<span class="source-line" id="L103"><a class="line-no" href="#L103" aria-label="Line 103">103</a><span class="line-code"> </span></span>
+<span class="source-line" id="L104"><a class="line-no" href="#L104" aria-label="Line 104">104</a><span class="line-code">theorem rowBump_eq_none_iff {d : ℕ} (A : RowContent d) (x : Fin d) :</span></span>
+<span class="source-line" id="L105"><a class="line-no" href="#L105" aria-label="Line 105">105</a><span class="line-code">    rowBump A x = none ↔ ∀ y, x &lt; y → A y = 0 := by</span></span>
+<span class="source-line" id="L106"><a class="line-no" href="#L106" aria-label="Line 106">106</a><span class="line-code">  classical</span></span>
+<span class="source-line" id="L107"><a class="line-no" href="#L107" aria-label="Line 107">107</a><span class="line-code">  simp only [rowBump]</span></span>
+<span class="source-line" id="L108"><a class="line-no" href="#L108" aria-label="Line 108">108</a><span class="line-code">  split_ifs with h</span></span>
+<span class="source-line" id="L109"><a class="line-no" href="#L109" aria-label="Line 109">109</a><span class="line-code">  · constructor</span></span>
+<span class="source-line" id="L110"><a class="line-no" href="#L110" aria-label="Line 110">110</a><span class="line-code">    · simp</span></span>
+<span class="source-line" id="L111"><a class="line-no" href="#L111" aria-label="Line 111">111</a><span class="line-code">    · intro he</span></span>
+<span class="source-line" id="L112"><a class="line-no" href="#L112" aria-label="Line 112">112</a><span class="line-code">      obtain ⟨y, hy⟩ := h</span></span>
+<span class="source-line" id="L113"><a class="line-no" href="#L113" aria-label="Line 113">113</a><span class="line-code">      obtain ⟨_, hxy, hypos⟩ := Finset.mem_filter.mp hy</span></span>
+<span class="source-line" id="L114"><a class="line-no" href="#L114" aria-label="Line 114">114</a><span class="line-code">      have := he y hxy</span></span>
+<span class="source-line" id="L115"><a class="line-no" href="#L115" aria-label="Line 115">115</a><span class="line-code">      omega</span></span>
+<span class="source-line" id="L116"><a class="line-no" href="#L116" aria-label="Line 116">116</a><span class="line-code">  · simp only [true_iff]</span></span>
+<span class="source-line" id="L117"><a class="line-no" href="#L117" aria-label="Line 117">117</a><span class="line-code">    intro y hxy</span></span>
+<span class="source-line" id="L118"><a class="line-no" href="#L118" aria-label="Line 118">118</a><span class="line-code">    by_contra hy</span></span>
+<span class="source-line" id="L119"><a class="line-no" href="#L119" aria-label="Line 119">119</a><span class="line-code">    exact h ⟨y, by simp [rowBumpCandidates, hxy, Nat.pos_of_ne_zero hy]⟩</span></span>
+<span class="source-line" id="L120"><a class="line-no" href="#L120" aria-label="Line 120">120</a><span class="line-code"> </span></span>
+<span class="source-line" id="L121"><a class="line-no" href="#L121" aria-label="Line 121">121</a><span class="line-code">theorem rowReplace_cancel {d : ℕ} (A : RowContent d) (x y : Fin d)</span></span>
+<span class="source-line" id="L122"><a class="line-no" href="#L122" aria-label="Line 122">122</a><span class="line-code">    (hxy : x ≠ y) (hy : 0 &lt; A y) :</span></span>
+<span class="source-line" id="L123"><a class="line-no" href="#L123" aria-label="Line 123">123</a><span class="line-code">    rowReplace (rowReplace A x y) y x = A := by</span></span>
+<span class="source-line" id="L124"><a class="line-no" href="#L124" aria-label="Line 124">124</a><span class="line-code">  classical</span></span>
+<span class="source-line" id="L125"><a class="line-no" href="#L125" aria-label="Line 125">125</a><span class="line-code">  funext z</span></span>
+<span class="source-line" id="L126"><a class="line-no" href="#L126" aria-label="Line 126">126</a><span class="line-code">  by_cases hzx : z = x</span></span>
+<span class="source-line" id="L127"><a class="line-no" href="#L127" aria-label="Line 127">127</a><span class="line-code">  · subst z</span></span>
+<span class="source-line" id="L128"><a class="line-no" href="#L128" aria-label="Line 128">128</a><span class="line-code">    simp [rowReplace, rowAdd, rowRemove, hxy, hxy.symm]</span></span>
+<span class="source-line" id="L129"><a class="line-no" href="#L129" aria-label="Line 129">129</a><span class="line-code">  · by_cases hzy : z = y</span></span>
+<span class="source-line" id="L130"><a class="line-no" href="#L130" aria-label="Line 130">130</a><span class="line-code">    · subst z</span></span>
+<span class="source-line" id="L131"><a class="line-no" href="#L131" aria-label="Line 131">131</a><span class="line-code">      simp only [rowReplace, rowAdd, rowRemove, Function.update_apply, hxy, hxy.symm,</span></span>
+<span class="source-line" id="L132"><a class="line-no" href="#L132" aria-label="Line 132">132</a><span class="line-code">        if_true, if_false]</span></span>
+<span class="source-line" id="L133"><a class="line-no" href="#L133" aria-label="Line 133">133</a><span class="line-code">      omega</span></span>
+<span class="source-line" id="L134"><a class="line-no" href="#L134" aria-label="Line 134">134</a><span class="line-code">    · simp [rowReplace, rowAdd, rowRemove, hzx, hzy, hxy, hxy.symm]</span></span>
+<span class="source-line" id="L135"><a class="line-no" href="#L135" aria-label="Line 135">135</a><span class="line-code"> </span></span>
+<span class="source-line" id="L136"><a class="line-no" href="#L136" aria-label="Line 136">136</a><span class="line-code">/-- The reverse search recovers exactly the input letter of a forward bump. -/</span></span>
+<span class="source-line" id="L137"><a class="line-no" href="#L137" aria-label="Line 137">137</a><span class="line-code">theorem rowReverseBump_after_insert {d : ℕ} (A : RowContent d) (x y : Fin d)</span></span>
+<span class="source-line" id="L138"><a class="line-no" href="#L138" aria-label="Line 138">138</a><span class="line-code">    (h : rowBump A x = some y) : rowReverseBump (rowInserted A x) y = some x := by</span></span>
+<span class="source-line" id="L139"><a class="line-no" href="#L139" aria-label="Line 139">139</a><span class="line-code">  classical</span></span>
+<span class="source-line" id="L140"><a class="line-no" href="#L140" aria-label="Line 140">140</a><span class="line-code">  obtain ⟨hxy, hypos, hmin⟩ := (rowBump_eq_some_iff A x y).mp h</span></span>
+<span class="source-line" id="L141"><a class="line-no" href="#L141" aria-label="Line 141">141</a><span class="line-code">  rw [rowInserted, h]</span></span>
+<span class="source-line" id="L142"><a class="line-no" href="#L142" aria-label="Line 142">142</a><span class="line-code">  apply (rowReverseBump_eq_some_iff _ _ _).mpr</span></span>
+<span class="source-line" id="L143"><a class="line-no" href="#L143" aria-label="Line 143">143</a><span class="line-code">  refine ⟨hxy, ?_, ?_⟩</span></span>
+<span class="source-line" id="L144"><a class="line-no" href="#L144" aria-label="Line 144">144</a><span class="line-code">  · simp [rowReplace, rowAdd, rowRemove, ne_of_lt hxy]</span></span>
+<span class="source-line" id="L145"><a class="line-no" href="#L145" aria-label="Line 145">145</a><span class="line-code">  · intro z hzy hzpos</span></span>
+<span class="source-line" id="L146"><a class="line-no" href="#L146" aria-label="Line 146">146</a><span class="line-code">    by_contra hzx</span></span>
+<span class="source-line" id="L147"><a class="line-no" href="#L147" aria-label="Line 147">147</a><span class="line-code">    have hxz : x &lt; z := lt_of_not_ge hzx</span></span>
+<span class="source-line" id="L148"><a class="line-no" href="#L148" aria-label="Line 148">148</a><span class="line-code">    have hzold : 0 &lt; A z := by</span></span>
+<span class="source-line" id="L149"><a class="line-no" href="#L149" aria-label="Line 149">149</a><span class="line-code">      simpa [rowReplace, rowAdd, rowRemove, Function.update_apply,</span></span>
+<span class="source-line" id="L150"><a class="line-no" href="#L150" aria-label="Line 150">150</a><span class="line-code">        ne_of_gt hxz, ne_of_lt hzy, ne_of_lt hxy] using hzpos</span></span>
+<span class="source-line" id="L151"><a class="line-no" href="#L151" aria-label="Line 151">151</a><span class="line-code">    exact (not_le_of_gt hzy) (hmin z hxz hzold)</span></span>
+<span class="source-line" id="L152"><a class="line-no" href="#L152" aria-label="Line 152">152</a><span class="line-code"> </span></span>
+<span class="source-line" id="L153"><a class="line-no" href="#L153" aria-label="Line 153">153</a><span class="line-code">/-- Forward insertion followed by its selected reverse step restores the row. -/</span></span>
+<span class="source-line" id="L154"><a class="line-no" href="#L154" aria-label="Line 154">154</a><span class="line-code">theorem rowReversed_after_insert {d : ℕ} (A : RowContent d) (x y : Fin d)</span></span>
+<span class="source-line" id="L155"><a class="line-no" href="#L155" aria-label="Line 155">155</a><span class="line-code">    (h : rowBump A x = some y) : rowReversed (rowInserted A x) y = A := by</span></span>
+<span class="source-line" id="L156"><a class="line-no" href="#L156" aria-label="Line 156">156</a><span class="line-code">  rw [rowReversed, rowReverseBump_after_insert A x y h, rowInserted, h]</span></span>
+<span class="source-line" id="L157"><a class="line-no" href="#L157" aria-label="Line 157">157</a><span class="line-code">  obtain ⟨hxy, hypos, _⟩ := (rowBump_eq_some_iff A x y).mp h</span></span>
+<span class="source-line" id="L158"><a class="line-no" href="#L158" aria-label="Line 158">158</a><span class="line-code">  exact rowReplace_cancel A x y (ne_of_lt hxy) hypos</span></span>
+<span class="source-line" id="L159"><a class="line-no" href="#L159" aria-label="Line 159">159</a><span class="line-code"> </span></span>
+<span class="source-line" id="L160"><a class="line-no" href="#L160" aria-label="Line 160">160</a><span class="line-code">/-- Conversely, a reverse bump is recovered by forward insertion. -/</span></span>
+<span class="source-line" id="L161"><a class="line-no" href="#L161" aria-label="Line 161">161</a><span class="line-code">theorem rowBump_after_reverse {d : ℕ} (A : RowContent d) (y x : Fin d)</span></span>
+<span class="source-line" id="L162"><a class="line-no" href="#L162" aria-label="Line 162">162</a><span class="line-code">    (h : rowReverseBump A y = some x) : rowBump (rowReversed A y) x = some y := by</span></span>
+<span class="source-line" id="L163"><a class="line-no" href="#L163" aria-label="Line 163">163</a><span class="line-code">  classical</span></span>
+<span class="source-line" id="L164"><a class="line-no" href="#L164" aria-label="Line 164">164</a><span class="line-code">  obtain ⟨hxy, hxpos, hmax⟩ := (rowReverseBump_eq_some_iff A y x).mp h</span></span>
+<span class="source-line" id="L165"><a class="line-no" href="#L165" aria-label="Line 165">165</a><span class="line-code">  rw [rowReversed, h]</span></span>
+<span class="source-line" id="L166"><a class="line-no" href="#L166" aria-label="Line 166">166</a><span class="line-code">  apply (rowBump_eq_some_iff _ _ _).mpr</span></span>
+<span class="source-line" id="L167"><a class="line-no" href="#L167" aria-label="Line 167">167</a><span class="line-code">  refine ⟨hxy, ?_, ?_⟩</span></span>
+<span class="source-line" id="L168"><a class="line-no" href="#L168" aria-label="Line 168">168</a><span class="line-code">  · simp [rowReplace, rowAdd, rowRemove, (ne_of_lt hxy).symm]</span></span>
+<span class="source-line" id="L169"><a class="line-no" href="#L169" aria-label="Line 169">169</a><span class="line-code">  · intro z hxz hzpos</span></span>
+<span class="source-line" id="L170"><a class="line-no" href="#L170" aria-label="Line 170">170</a><span class="line-code">    by_contra hzy</span></span>
+<span class="source-line" id="L171"><a class="line-no" href="#L171" aria-label="Line 171">171</a><span class="line-code">    have hzy&#x27; : z &lt; y := lt_of_not_ge hzy</span></span>
+<span class="source-line" id="L172"><a class="line-no" href="#L172" aria-label="Line 172">172</a><span class="line-code">    have hzold : 0 &lt; A z := by</span></span>
+<span class="source-line" id="L173"><a class="line-no" href="#L173" aria-label="Line 173">173</a><span class="line-code">      simpa [rowReplace, rowAdd, rowRemove, Function.update_apply,</span></span>
+<span class="source-line" id="L174"><a class="line-no" href="#L174" aria-label="Line 174">174</a><span class="line-code">        ne_of_gt hxz, ne_of_lt hzy&#x27;, (ne_of_lt hxy).symm] using hzpos</span></span>
+<span class="source-line" id="L175"><a class="line-no" href="#L175" aria-label="Line 175">175</a><span class="line-code">    exact (not_le_of_gt hxz) (hmax z hzy&#x27; hzold)</span></span>
+<span class="source-line" id="L176"><a class="line-no" href="#L176" aria-label="Line 176">176</a><span class="line-code"> </span></span>
+<span class="source-line" id="L177"><a class="line-no" href="#L177" aria-label="Line 177">177</a><span class="line-code">theorem rowInserted_after_reverse {d : ℕ} (A : RowContent d) (y x : Fin d)</span></span>
+<span class="source-line" id="L178"><a class="line-no" href="#L178" aria-label="Line 178">178</a><span class="line-code">    (h : rowReverseBump A y = some x) : rowInserted (rowReversed A y) x = A := by</span></span>
+<span class="source-line" id="L179"><a class="line-no" href="#L179" aria-label="Line 179">179</a><span class="line-code">  rw [rowInserted, rowBump_after_reverse A y x h, rowReversed, h]</span></span>
+<span class="source-line" id="L180"><a class="line-no" href="#L180" aria-label="Line 180">180</a><span class="line-code">  obtain ⟨hxy, hxpos, _⟩ := (rowReverseBump_eq_some_iff A y x).mp h</span></span>
+<span class="source-line" id="L181"><a class="line-no" href="#L181" aria-label="Line 181">181</a><span class="line-code">  exact rowReplace_cancel A y x (ne_of_lt hxy).symm hxpos</span></span>
+<span class="source-line" id="L182"><a class="line-no" href="#L182" aria-label="Line 182">182</a><span class="line-code"> </span></span>
+<span class="source-line" id="L183"><a class="line-no" href="#L183" aria-label="Line 183">183</a><span class="line-code">/-- Literal conservation of each letter multiplicity at a bump. -/</span></span>
+<span class="source-line" id="L184"><a class="line-no" href="#L184" aria-label="Line 184">184</a><span class="line-code">theorem rowReplace_content {d : ℕ} (A : RowContent d) (x y j : Fin d)</span></span>
+<span class="source-line" id="L185"><a class="line-no" href="#L185" aria-label="Line 185">185</a><span class="line-code">    (hxy : x ≠ y) (hy : 0 &lt; A y) :</span></span>
+<span class="source-line" id="L186"><a class="line-no" href="#L186" aria-label="Line 186">186</a><span class="line-code">    rowReplace A x y j + (if j = y then 1 else 0) =</span></span>
+<span class="source-line" id="L187"><a class="line-no" href="#L187" aria-label="Line 187">187</a><span class="line-code">      A j + (if j = x then 1 else 0) := by</span></span>
+<span class="source-line" id="L188"><a class="line-no" href="#L188" aria-label="Line 188">188</a><span class="line-code">  classical</span></span>
+<span class="source-line" id="L189"><a class="line-no" href="#L189" aria-label="Line 189">189</a><span class="line-code">  by_cases hjx : j = x</span></span>
+<span class="source-line" id="L190"><a class="line-no" href="#L190" aria-label="Line 190">190</a><span class="line-code">  · subst j</span></span>
+<span class="source-line" id="L191"><a class="line-no" href="#L191" aria-label="Line 191">191</a><span class="line-code">    simp [rowReplace, rowAdd, rowRemove, hxy]</span></span>
+<span class="source-line" id="L192"><a class="line-no" href="#L192" aria-label="Line 192">192</a><span class="line-code">  · by_cases hjy : j = y</span></span>
+<span class="source-line" id="L193"><a class="line-no" href="#L193" aria-label="Line 193">193</a><span class="line-code">    · subst j</span></span>
+<span class="source-line" id="L194"><a class="line-no" href="#L194" aria-label="Line 194">194</a><span class="line-code">      simp only [rowReplace, rowAdd, rowRemove, Function.update_apply, hxy, hxy.symm,</span></span>
+<span class="source-line" id="L195"><a class="line-no" href="#L195" aria-label="Line 195">195</a><span class="line-code">        if_true, if_false, add_zero]</span></span>
+<span class="source-line" id="L196"><a class="line-no" href="#L196" aria-label="Line 196">196</a><span class="line-code">      omega</span></span>
+<span class="source-line" id="L197"><a class="line-no" href="#L197" aria-label="Line 197">197</a><span class="line-code">    · simp [rowReplace, rowAdd, rowRemove, hjx, hjy, hxy]</span></span>
+<span class="source-line" id="L198"><a class="line-no" href="#L198" aria-label="Line 198">198</a><span class="line-code"> </span></span>
+<span class="source-line" id="L199"><a class="line-no" href="#L199" aria-label="Line 199">199</a><span class="line-code">theorem rowReplace_mass {d : ℕ} (A : RowContent d) (x y : Fin d)</span></span>
+<span class="source-line" id="L200"><a class="line-no" href="#L200" aria-label="Line 200">200</a><span class="line-code">    (hxy : x ≠ y) (hy : 0 &lt; A y) : ∑ j, rowReplace A x y j = ∑ j, A j := by</span></span>
+<span class="source-line" id="L201"><a class="line-no" href="#L201" aria-label="Line 201">201</a><span class="line-code">  have h := Finset.sum_congr (s₁ := Finset.univ) rfl</span></span>
+<span class="source-line" id="L202"><a class="line-no" href="#L202" aria-label="Line 202">202</a><span class="line-code">    (fun j _ =&gt; rowReplace_content A x y j hxy hy)</span></span>
+<span class="source-line" id="L203"><a class="line-no" href="#L203" aria-label="Line 203">203</a><span class="line-code">  simp only [Finset.sum_add_distrib] at h</span></span>
+<span class="source-line" id="L204"><a class="line-no" href="#L204" aria-label="Line 204">204</a><span class="line-code">  simpa using h</span></span>
+<span class="source-line" id="L205"><a class="line-no" href="#L205" aria-label="Line 205">205</a><span class="line-code"> </span></span>
+<span class="source-line" id="L206"><a class="line-no" href="#L206" aria-label="Line 206">206</a><span class="line-code">def rowPrefix {d : ℕ} (A : RowContent d) (k : Fin d) : ℕ :=</span></span>
+<span class="source-line" id="L207"><a class="line-no" href="#L207" aria-label="Line 207">207</a><span class="line-code">  ∑ j ∈ Finset.univ.filter (fun j =&gt; j ≤ k), A j</span></span>
+<span class="source-line" id="L208"><a class="line-no" href="#L208" aria-label="Line 208">208</a><span class="line-code"> </span></span>
+<span class="source-line" id="L209"><a class="line-no" href="#L209" aria-label="Line 209">209</a><span class="line-code">def rowStrictPrefix {d : ℕ} (A : RowContent d) (k : Fin d) : ℕ :=</span></span>
+<span class="source-line" id="L210"><a class="line-no" href="#L210" aria-label="Line 210">210</a><span class="line-code">  ∑ j ∈ Finset.univ.filter (fun j =&gt; j &lt; k), A j</span></span>
+<span class="source-line" id="L211"><a class="line-no" href="#L211" aria-label="Line 211">211</a><span class="line-code"> </span></span>
+<span class="source-line" id="L212"><a class="line-no" href="#L212" aria-label="Line 212">212</a><span class="line-code">theorem monotone_rowPrefix {d : ℕ} (A : RowContent d) : Monotone (rowPrefix A) := by</span></span>
+<span class="source-line" id="L213"><a class="line-no" href="#L213" aria-label="Line 213">213</a><span class="line-code">  intro b k hbk</span></span>
+<span class="source-line" id="L214"><a class="line-no" href="#L214" aria-label="Line 214">214</a><span class="line-code">  apply Finset.sum_le_sum_of_subset</span></span>
+<span class="source-line" id="L215"><a class="line-no" href="#L215" aria-label="Line 215">215</a><span class="line-code">  intro j hj</span></span>
+<span class="source-line" id="L216"><a class="line-no" href="#L216" aria-label="Line 216">216</a><span class="line-code">  simp only [Finset.mem_filter, Finset.mem_univ, true_and] at hj ⊢</span></span>
+<span class="source-line" id="L217"><a class="line-no" href="#L217" aria-label="Line 217">217</a><span class="line-code">  exact hj.trans hbk</span></span>
+<span class="source-line" id="L218"><a class="line-no" href="#L218" aria-label="Line 218">218</a><span class="line-code"> </span></span>
+<span class="source-line" id="L219"><a class="line-no" href="#L219" aria-label="Line 219">219</a><span class="line-code">theorem monotone_rowStrictPrefix {d : ℕ} (A : RowContent d) :</span></span>
+<span class="source-line" id="L220"><a class="line-no" href="#L220" aria-label="Line 220">220</a><span class="line-code">    Monotone (rowStrictPrefix A) := by</span></span>
+<span class="source-line" id="L221"><a class="line-no" href="#L221" aria-label="Line 221">221</a><span class="line-code">  intro b k hbk</span></span>
+<span class="source-line" id="L222"><a class="line-no" href="#L222" aria-label="Line 222">222</a><span class="line-code">  apply Finset.sum_le_sum_of_subset</span></span>
+<span class="source-line" id="L223"><a class="line-no" href="#L223" aria-label="Line 223">223</a><span class="line-code">  intro j hj</span></span>
+<span class="source-line" id="L224"><a class="line-no" href="#L224" aria-label="Line 224">224</a><span class="line-code">  simp only [Finset.mem_filter, Finset.mem_univ, true_and] at hj ⊢</span></span>
+<span class="source-line" id="L225"><a class="line-no" href="#L225" aria-label="Line 225">225</a><span class="line-code">  exact hj.trans_le hbk</span></span>
+<span class="source-line" id="L226"><a class="line-no" href="#L226" aria-label="Line 226">226</a><span class="line-code"> </span></span>
+<span class="source-line" id="L227"><a class="line-no" href="#L227" aria-label="Line 227">227</a><span class="line-code">theorem rowPrefix_le_strictPrefix {d : ℕ} (A : RowContent d) (b k : Fin d)</span></span>
+<span class="source-line" id="L228"><a class="line-no" href="#L228" aria-label="Line 228">228</a><span class="line-code">    (hbk : b &lt; k) : rowPrefix A b ≤ rowStrictPrefix A k := by</span></span>
+<span class="source-line" id="L229"><a class="line-no" href="#L229" aria-label="Line 229">229</a><span class="line-code">  apply Finset.sum_le_sum_of_subset</span></span>
+<span class="source-line" id="L230"><a class="line-no" href="#L230" aria-label="Line 230">230</a><span class="line-code">  intro j hj</span></span>
+<span class="source-line" id="L231"><a class="line-no" href="#L231" aria-label="Line 231">231</a><span class="line-code">  simp only [Finset.mem_filter, Finset.mem_univ, true_and] at hj ⊢</span></span>
+<span class="source-line" id="L232"><a class="line-no" href="#L232" aria-label="Line 232">232</a><span class="line-code">  exact hj.trans_lt hbk</span></span>
+<span class="source-line" id="L233"><a class="line-no" href="#L233" aria-label="Line 233">233</a><span class="line-code"> </span></span>
+<span class="source-line" id="L234"><a class="line-no" href="#L234" aria-label="Line 234">234</a><span class="line-code">theorem rowPrefix_eq_of_no_entries {d : ℕ} (A : RowContent d) (b k : Fin d)</span></span>
+<span class="source-line" id="L235"><a class="line-no" href="#L235" aria-label="Line 235">235</a><span class="line-code">    (hbk : b ≤ k) (hzero : ∀ j, b &lt; j → j ≤ k → A j = 0) :</span></span>
+<span class="source-line" id="L236"><a class="line-no" href="#L236" aria-label="Line 236">236</a><span class="line-code">    rowPrefix A k = rowPrefix A b := by</span></span>
+<span class="source-line" id="L237"><a class="line-no" href="#L237" aria-label="Line 237">237</a><span class="line-code">  symm</span></span>
+<span class="source-line" id="L238"><a class="line-no" href="#L238" aria-label="Line 238">238</a><span class="line-code">  apply Finset.sum_subset</span></span>
+<span class="source-line" id="L239"><a class="line-no" href="#L239" aria-label="Line 239">239</a><span class="line-code">  · intro j hj</span></span>
+<span class="source-line" id="L240"><a class="line-no" href="#L240" aria-label="Line 240">240</a><span class="line-code">    simp only [Finset.mem_filter, Finset.mem_univ, true_and] at hj ⊢</span></span>
+<span class="source-line" id="L241"><a class="line-no" href="#L241" aria-label="Line 241">241</a><span class="line-code">    exact hj.trans hbk</span></span>
+<span class="source-line" id="L242"><a class="line-no" href="#L242" aria-label="Line 242">242</a><span class="line-code">  · intro j hj hjnot</span></span>
+<span class="source-line" id="L243"><a class="line-no" href="#L243" aria-label="Line 243">243</a><span class="line-code">    simp only [Finset.mem_filter, Finset.mem_univ, true_and, not_le] at hj hjnot</span></span>
+<span class="source-line" id="L244"><a class="line-no" href="#L244" aria-label="Line 244">244</a><span class="line-code">    exact hzero j hjnot hj</span></span>
+<span class="source-line" id="L245"><a class="line-no" href="#L245" aria-label="Line 245">245</a><span class="line-code"> </span></span>
+<span class="source-line" id="L246"><a class="line-no" href="#L246" aria-label="Line 246">246</a><span class="line-code">theorem rowStrictPrefix_slack {d : ℕ} (A : RowContent d) (b k : Fin d)</span></span>
+<span class="source-line" id="L247"><a class="line-no" href="#L247" aria-label="Line 247">247</a><span class="line-code">    (hbk : b &lt; k) (hb : 0 &lt; A b) : rowStrictPrefix A b + 1 ≤ rowStrictPrefix A k := by</span></span>
+<span class="source-line" id="L248"><a class="line-no" href="#L248" aria-label="Line 248">248</a><span class="line-code">  have hs : insert b (Finset.univ.filter (fun j =&gt; j &lt; b)) ⊆</span></span>
+<span class="source-line" id="L249"><a class="line-no" href="#L249" aria-label="Line 249">249</a><span class="line-code">      Finset.univ.filter (fun j =&gt; j &lt; k) := by</span></span>
+<span class="source-line" id="L250"><a class="line-no" href="#L250" aria-label="Line 250">250</a><span class="line-code">    intro j hj</span></span>
+<span class="source-line" id="L251"><a class="line-no" href="#L251" aria-label="Line 251">251</a><span class="line-code">    simp only [Finset.mem_insert, Finset.mem_filter, Finset.mem_univ, true_and] at hj ⊢</span></span>
+<span class="source-line" id="L252"><a class="line-no" href="#L252" aria-label="Line 252">252</a><span class="line-code">    rcases hj with rfl | hj</span></span>
+<span class="source-line" id="L253"><a class="line-no" href="#L253" aria-label="Line 253">253</a><span class="line-code">    · exact hbk</span></span>
+<span class="source-line" id="L254"><a class="line-no" href="#L254" aria-label="Line 254">254</a><span class="line-code">    · exact hj.trans hbk</span></span>
+<span class="source-line" id="L255"><a class="line-no" href="#L255" aria-label="Line 255">255</a><span class="line-code">  have h := Finset.sum_le_sum_of_subset (f := A) hs</span></span>
+<span class="source-line" id="L256"><a class="line-no" href="#L256" aria-label="Line 256">256</a><span class="line-code">  rw [Finset.sum_insert (by simp)] at h</span></span>
+<span class="source-line" id="L257"><a class="line-no" href="#L257" aria-label="Line 257">257</a><span class="line-code">  change A b + rowStrictPrefix A b ≤ rowStrictPrefix A k at h</span></span>
+<span class="source-line" id="L258"><a class="line-no" href="#L258" aria-label="Line 258">258</a><span class="line-code">  omega</span></span>
+<span class="source-line" id="L259"><a class="line-no" href="#L259" aria-label="Line 259">259</a><span class="line-code"> </span></span>
+<span class="source-line" id="L260"><a class="line-no" href="#L260" aria-label="Line 260">260</a><span class="line-code">theorem rowReplace_sum {d : ℕ} (A : RowContent d) (x y : Fin d)</span></span>
+<span class="source-line" id="L261"><a class="line-no" href="#L261" aria-label="Line 261">261</a><span class="line-code">    (hxy : x ≠ y) (hy : 0 &lt; A y) (s : Finset (Fin d)) :</span></span>
+<span class="source-line" id="L262"><a class="line-no" href="#L262" aria-label="Line 262">262</a><span class="line-code">    (∑ j ∈ s, rowReplace A x y j) + (if y ∈ s then 1 else 0) =</span></span>
+<span class="source-line" id="L263"><a class="line-no" href="#L263" aria-label="Line 263">263</a><span class="line-code">      (∑ j ∈ s, A j) + (if x ∈ s then 1 else 0) := by</span></span>
+<span class="source-line" id="L264"><a class="line-no" href="#L264" aria-label="Line 264">264</a><span class="line-code">  have h := Finset.sum_congr (s₁ := s) rfl</span></span>
+<span class="source-line" id="L265"><a class="line-no" href="#L265" aria-label="Line 265">265</a><span class="line-code">    (fun j _ =&gt; rowReplace_content A x y j hxy hy)</span></span>
+<span class="source-line" id="L266"><a class="line-no" href="#L266" aria-label="Line 266">266</a><span class="line-code">  simpa only [Finset.sum_add_distrib, Finset.sum_ite_eq&#x27;] using h</span></span>
+<span class="source-line" id="L267"><a class="line-no" href="#L267" aria-label="Line 267">267</a><span class="line-code"> </span></span>
+<span class="source-line" id="L268"><a class="line-no" href="#L268" aria-label="Line 268">268</a><span class="line-code">/-- Replacing the least larger letter increases exactly the intermediate</span></span>
+<span class="source-line" id="L269"><a class="line-no" href="#L269" aria-label="Line 269">269</a><span class="line-code">weak prefixes. -/</span></span>
+<span class="source-line" id="L270"><a class="line-no" href="#L270" aria-label="Line 270">270</a><span class="line-code">theorem rowReplace_prefix {d : ℕ} (A : RowContent d) (x y k : Fin d)</span></span>
+<span class="source-line" id="L271"><a class="line-no" href="#L271" aria-label="Line 271">271</a><span class="line-code">    (hxy : x &lt; y) (hy : 0 &lt; A y) :</span></span>
+<span class="source-line" id="L272"><a class="line-no" href="#L272" aria-label="Line 272">272</a><span class="line-code">    rowPrefix (rowReplace A x y) k = rowPrefix A k +</span></span>
+<span class="source-line" id="L273"><a class="line-no" href="#L273" aria-label="Line 273">273</a><span class="line-code">      (if x ≤ k ∧ k &lt; y then 1 else 0) := by</span></span>
+<span class="source-line" id="L274"><a class="line-no" href="#L274" aria-label="Line 274">274</a><span class="line-code">  have h := rowReplace_sum A x y (ne_of_lt hxy) hy</span></span>
+<span class="source-line" id="L275"><a class="line-no" href="#L275" aria-label="Line 275">275</a><span class="line-code">    (Finset.univ.filter (fun j =&gt; j ≤ k))</span></span>
+<span class="source-line" id="L276"><a class="line-no" href="#L276" aria-label="Line 276">276</a><span class="line-code">  simp only [Finset.mem_filter, Finset.mem_univ, true_and] at h</span></span>
+<span class="source-line" id="L277"><a class="line-no" href="#L277" aria-label="Line 277">277</a><span class="line-code">  change rowPrefix (rowReplace A x y) k + (if y ≤ k then 1 else 0) =</span></span>
+<span class="source-line" id="L278"><a class="line-no" href="#L278" aria-label="Line 278">278</a><span class="line-code">    rowPrefix A k + (if x ≤ k then 1 else 0) at h</span></span>
+<span class="source-line" id="L279"><a class="line-no" href="#L279" aria-label="Line 279">279</a><span class="line-code">  split_ifs at h ⊢ &lt;;&gt; omega</span></span>
+<span class="source-line" id="L280"><a class="line-no" href="#L280" aria-label="Line 280">280</a><span class="line-code"> </span></span>
+<span class="source-line" id="L281"><a class="line-no" href="#L281" aria-label="Line 281">281</a><span class="line-code">theorem rowReplace_strictPrefix {d : ℕ} (A : RowContent d) (x y k : Fin d)</span></span>
+<span class="source-line" id="L282"><a class="line-no" href="#L282" aria-label="Line 282">282</a><span class="line-code">    (hxy : x &lt; y) (hy : 0 &lt; A y) :</span></span>
+<span class="source-line" id="L283"><a class="line-no" href="#L283" aria-label="Line 283">283</a><span class="line-code">    rowStrictPrefix (rowReplace A x y) k = rowStrictPrefix A k +</span></span>
+<span class="source-line" id="L284"><a class="line-no" href="#L284" aria-label="Line 284">284</a><span class="line-code">      (if x &lt; k ∧ k ≤ y then 1 else 0) := by</span></span>
+<span class="source-line" id="L285"><a class="line-no" href="#L285" aria-label="Line 285">285</a><span class="line-code">  have h := rowReplace_sum A x y (ne_of_lt hxy) hy</span></span>
+<span class="source-line" id="L286"><a class="line-no" href="#L286" aria-label="Line 286">286</a><span class="line-code">    (Finset.univ.filter (fun j =&gt; j &lt; k))</span></span>
+<span class="source-line" id="L287"><a class="line-no" href="#L287" aria-label="Line 287">287</a><span class="line-code">  simp only [Finset.mem_filter, Finset.mem_univ, true_and] at h</span></span>
+<span class="source-line" id="L288"><a class="line-no" href="#L288" aria-label="Line 288">288</a><span class="line-code">  change rowStrictPrefix (rowReplace A x y) k + (if y &lt; k then 1 else 0) =</span></span>
+<span class="source-line" id="L289"><a class="line-no" href="#L289" aria-label="Line 289">289</a><span class="line-code">    rowStrictPrefix A k + (if x &lt; k then 1 else 0) at h</span></span>
+<span class="source-line" id="L290"><a class="line-no" href="#L290" aria-label="Line 290">290</a><span class="line-code">  split_ifs at h ⊢ &lt;;&gt; omega</span></span>
+<span class="source-line" id="L291"><a class="line-no" href="#L291" aria-label="Line 291">291</a><span class="line-code"> </span></span>
+<span class="source-line" id="L292"><a class="line-no" href="#L292" aria-label="Line 292">292</a><span class="line-code">theorem rowAdd_content {d : ℕ} (A : RowContent d) (x j : Fin d) :</span></span>
+<span class="source-line" id="L293"><a class="line-no" href="#L293" aria-label="Line 293">293</a><span class="line-code">    rowAdd A x j = A j + (if j = x then 1 else 0) := by</span></span>
+<span class="source-line" id="L294"><a class="line-no" href="#L294" aria-label="Line 294">294</a><span class="line-code">  by_cases h : j = x</span></span>
+<span class="source-line" id="L295"><a class="line-no" href="#L295" aria-label="Line 295">295</a><span class="line-code">  · subst j; simp [rowAdd]</span></span>
+<span class="source-line" id="L296"><a class="line-no" href="#L296" aria-label="Line 296">296</a><span class="line-code">  · simp [rowAdd, h]</span></span>
+<span class="source-line" id="L297"><a class="line-no" href="#L297" aria-label="Line 297">297</a><span class="line-code"> </span></span>
+<span class="source-line" id="L298"><a class="line-no" href="#L298" aria-label="Line 298">298</a><span class="line-code">theorem rowAdd_prefix {d : ℕ} (A : RowContent d) (x k : Fin d) :</span></span>
+<span class="source-line" id="L299"><a class="line-no" href="#L299" aria-label="Line 299">299</a><span class="line-code">    rowPrefix (rowAdd A x) k = rowPrefix A k + (if x ≤ k then 1 else 0) := by</span></span>
+<span class="source-line" id="L300"><a class="line-no" href="#L300" aria-label="Line 300">300</a><span class="line-code">  simp only [rowPrefix, rowAdd_content, Finset.sum_add_distrib,</span></span>
+<span class="source-line" id="L301"><a class="line-no" href="#L301" aria-label="Line 301">301</a><span class="line-code">    Finset.sum_ite_eq&#x27;, Finset.mem_filter, Finset.mem_univ, true_and]</span></span>
+<span class="source-line" id="L302"><a class="line-no" href="#L302" aria-label="Line 302">302</a><span class="line-code"> </span></span>
+<span class="source-line" id="L303"><a class="line-no" href="#L303" aria-label="Line 303">303</a><span class="line-code">theorem rowAdd_strictPrefix {d : ℕ} (A : RowContent d) (x k : Fin d) :</span></span>
+<span class="source-line" id="L304"><a class="line-no" href="#L304" aria-label="Line 304">304</a><span class="line-code">    rowStrictPrefix (rowAdd A x) k = rowStrictPrefix A k + (if x &lt; k then 1 else 0) := by</span></span>
+<span class="source-line" id="L305"><a class="line-no" href="#L305" aria-label="Line 305">305</a><span class="line-code">  simp only [rowStrictPrefix, rowAdd_content, Finset.sum_add_distrib,</span></span>
+<span class="source-line" id="L306"><a class="line-no" href="#L306" aria-label="Line 306">306</a><span class="line-code">    Finset.sum_ite_eq&#x27;, Finset.mem_filter, Finset.mem_univ, true_and]</span></span>
+<span class="source-line" id="L307"><a class="line-no" href="#L307" aria-label="Line 307">307</a><span class="line-code"> </span></span>
+<span class="source-line" id="L308"><a class="line-no" href="#L308" aria-label="Line 308">308</a><span class="line-code">theorem rowInserted_prefix_of_bump {d : ℕ} (A : RowContent d) (x y k : Fin d)</span></span>
+<span class="source-line" id="L309"><a class="line-no" href="#L309" aria-label="Line 309">309</a><span class="line-code">    (h : rowBump A x = some y) :</span></span>
+<span class="source-line" id="L310"><a class="line-no" href="#L310" aria-label="Line 310">310</a><span class="line-code">    rowPrefix (rowInserted A x) k = rowPrefix A k +</span></span>
+<span class="source-line" id="L311"><a class="line-no" href="#L311" aria-label="Line 311">311</a><span class="line-code">      (if x ≤ k ∧ k &lt; y then 1 else 0) := by</span></span>
+<span class="source-line" id="L312"><a class="line-no" href="#L312" aria-label="Line 312">312</a><span class="line-code">  rw [rowInserted, h]</span></span>
+<span class="source-line" id="L313"><a class="line-no" href="#L313" aria-label="Line 313">313</a><span class="line-code">  obtain ⟨hxy, hy, _⟩ := (rowBump_eq_some_iff A x y).mp h</span></span>
+<span class="source-line" id="L314"><a class="line-no" href="#L314" aria-label="Line 314">314</a><span class="line-code">  exact rowReplace_prefix A x y k hxy hy</span></span>
+<span class="source-line" id="L315"><a class="line-no" href="#L315" aria-label="Line 315">315</a><span class="line-code"> </span></span>
+<span class="source-line" id="L316"><a class="line-no" href="#L316" aria-label="Line 316">316</a><span class="line-code">theorem rowInserted_prefix_of_none {d : ℕ} (A : RowContent d) (x k : Fin d)</span></span>
+<span class="source-line" id="L317"><a class="line-no" href="#L317" aria-label="Line 317">317</a><span class="line-code">    (h : rowBump A x = none) :</span></span>
+<span class="source-line" id="L318"><a class="line-no" href="#L318" aria-label="Line 318">318</a><span class="line-code">    rowPrefix (rowInserted A x) k = rowPrefix A k + (if x ≤ k then 1 else 0) := by</span></span>
+<span class="source-line" id="L319"><a class="line-no" href="#L319" aria-label="Line 319">319</a><span class="line-code">  rw [rowInserted, h]</span></span>
+<span class="source-line" id="L320"><a class="line-no" href="#L320" aria-label="Line 320">320</a><span class="line-code">  exact rowAdd_prefix A x k</span></span>
+<span class="source-line" id="L321"><a class="line-no" href="#L321" aria-label="Line 321">321</a><span class="line-code"> </span></span>
+<span class="source-line" id="L322"><a class="line-no" href="#L322" aria-label="Line 322">322</a><span class="line-code">theorem rowInserted_strictPrefix_of_bump {d : ℕ} (A : RowContent d) (x y k : Fin d)</span></span>
+<span class="source-line" id="L323"><a class="line-no" href="#L323" aria-label="Line 323">323</a><span class="line-code">    (h : rowBump A x = some y) :</span></span>
+<span class="source-line" id="L324"><a class="line-no" href="#L324" aria-label="Line 324">324</a><span class="line-code">    rowStrictPrefix (rowInserted A x) k = rowStrictPrefix A k +</span></span>
+<span class="source-line" id="L325"><a class="line-no" href="#L325" aria-label="Line 325">325</a><span class="line-code">      (if x &lt; k ∧ k ≤ y then 1 else 0) := by</span></span>
+<span class="source-line" id="L326"><a class="line-no" href="#L326" aria-label="Line 326">326</a><span class="line-code">  rw [rowInserted, h]</span></span>
+<span class="source-line" id="L327"><a class="line-no" href="#L327" aria-label="Line 327">327</a><span class="line-code">  obtain ⟨hxy, hy, _⟩ := (rowBump_eq_some_iff A x y).mp h</span></span>
+<span class="source-line" id="L328"><a class="line-no" href="#L328" aria-label="Line 328">328</a><span class="line-code">  exact rowReplace_strictPrefix A x y k hxy hy</span></span>
+<span class="source-line" id="L329"><a class="line-no" href="#L329" aria-label="Line 329">329</a><span class="line-code"> </span></span>
+<span class="source-line" id="L330"><a class="line-no" href="#L330" aria-label="Line 330">330</a><span class="line-code">theorem rowInserted_strictPrefix_of_none {d : ℕ} (A : RowContent d) (x k : Fin d)</span></span>
+<span class="source-line" id="L331"><a class="line-no" href="#L331" aria-label="Line 331">331</a><span class="line-code">    (h : rowBump A x = none) :</span></span>
+<span class="source-line" id="L332"><a class="line-no" href="#L332" aria-label="Line 332">332</a><span class="line-code">    rowStrictPrefix (rowInserted A x) k = rowStrictPrefix A k + (if x &lt; k then 1 else 0) := by</span></span>
+<span class="source-line" id="L333"><a class="line-no" href="#L333" aria-label="Line 333">333</a><span class="line-code">  rw [rowInserted, h]</span></span>
+<span class="source-line" id="L334"><a class="line-no" href="#L334" aria-label="Line 334">334</a><span class="line-code">  exact rowAdd_strictPrefix A x k</span></span>
+<span class="source-line" id="L335"><a class="line-no" href="#L335" aria-label="Line 335">335</a><span class="line-code"> </span></span>
+<span class="source-line" id="L336"><a class="line-no" href="#L336" aria-label="Line 336">336</a><span class="line-code">@[simp] theorem rowRemove_rowAdd {d : ℕ} (A : RowContent d) (x : Fin d) :</span></span>
+<span class="source-line" id="L337"><a class="line-no" href="#L337" aria-label="Line 337">337</a><span class="line-code">    rowRemove (rowAdd A x) x = A := by</span></span>
+<span class="source-line" id="L338"><a class="line-no" href="#L338" aria-label="Line 338">338</a><span class="line-code">  funext j</span></span>
+<span class="source-line" id="L339"><a class="line-no" href="#L339" aria-label="Line 339">339</a><span class="line-code">  by_cases h : j = x</span></span>
+<span class="source-line" id="L340"><a class="line-no" href="#L340" aria-label="Line 340">340</a><span class="line-code">  · subst j; simp [rowRemove, rowAdd]</span></span>
+<span class="source-line" id="L341"><a class="line-no" href="#L341" aria-label="Line 341">341</a><span class="line-code">  · simp [rowRemove, rowAdd, h]</span></span>
+<span class="source-line" id="L342"><a class="line-no" href="#L342" aria-label="Line 342">342</a><span class="line-code"> </span></span>
+<span class="source-line" id="L343"><a class="line-no" href="#L343" aria-label="Line 343">343</a><span class="line-code">theorem rowAdd_rowRemove {d : ℕ} (A : RowContent d) (x : Fin d) (hx : 0 &lt; A x) :</span></span>
+<span class="source-line" id="L344"><a class="line-no" href="#L344" aria-label="Line 344">344</a><span class="line-code">    rowAdd (rowRemove A x) x = A := by</span></span>
+<span class="source-line" id="L345"><a class="line-no" href="#L345" aria-label="Line 345">345</a><span class="line-code">  funext j</span></span>
+<span class="source-line" id="L346"><a class="line-no" href="#L346" aria-label="Line 346">346</a><span class="line-code">  by_cases h : j = x</span></span>
+<span class="source-line" id="L347"><a class="line-no" href="#L347" aria-label="Line 347">347</a><span class="line-code">  · subst j; simp only [rowRemove, rowAdd, Function.update_self]; omega</span></span>
+<span class="source-line" id="L348"><a class="line-no" href="#L348" aria-label="Line 348">348</a><span class="line-code">  · simp [rowRemove, rowAdd, h]</span></span>
+<span class="source-line" id="L349"><a class="line-no" href="#L349" aria-label="Line 349">349</a><span class="line-code"> </span></span>
+<span class="source-line" id="L350"><a class="line-no" href="#L350" aria-label="Line 350">350</a><span class="line-code">def rowLast {d : ℕ} (A : RowContent d) : Option (Fin d) :=</span></span>
+<span class="source-line" id="L351"><a class="line-no" href="#L351" aria-label="Line 351">351</a><span class="line-code">  if h : (Finset.univ.filter (fun x =&gt; 0 &lt; A x)).Nonempty then</span></span>
+<span class="source-line" id="L352"><a class="line-no" href="#L352" aria-label="Line 352">352</a><span class="line-code">    some ((Finset.univ.filter (fun x =&gt; 0 &lt; A x)).max&#x27; h)</span></span>
+<span class="source-line" id="L353"><a class="line-no" href="#L353" aria-label="Line 353">353</a><span class="line-code">  else none</span></span>
+<span class="source-line" id="L354"><a class="line-no" href="#L354" aria-label="Line 354">354</a><span class="line-code"> </span></span>
+<span class="source-line" id="L355"><a class="line-no" href="#L355" aria-label="Line 355">355</a><span class="line-code">def rowDeleteLast {d : ℕ} (A : RowContent d) : RowContent d :=</span></span>
+<span class="source-line" id="L356"><a class="line-no" href="#L356" aria-label="Line 356">356</a><span class="line-code">  match rowLast A with</span></span>
+<span class="source-line" id="L357"><a class="line-no" href="#L357" aria-label="Line 357">357</a><span class="line-code">  | none =&gt; A</span></span>
+<span class="source-line" id="L358"><a class="line-no" href="#L358" aria-label="Line 358">358</a><span class="line-code">  | some x =&gt; rowRemove A x</span></span>
+<span class="source-line" id="L359"><a class="line-no" href="#L359" aria-label="Line 359">359</a><span class="line-code"> </span></span>
+<span class="source-line" id="L360"><a class="line-no" href="#L360" aria-label="Line 360">360</a><span class="line-code">theorem rowLast_eq_some_iff {d : ℕ} (A : RowContent d) (x : Fin d) :</span></span>
+<span class="source-line" id="L361"><a class="line-no" href="#L361" aria-label="Line 361">361</a><span class="line-code">    rowLast A = some x ↔ 0 &lt; A x ∧ ∀ y, 0 &lt; A y → y ≤ x := by</span></span>
+<span class="source-line" id="L362"><a class="line-no" href="#L362" aria-label="Line 362">362</a><span class="line-code">  classical</span></span>
+<span class="source-line" id="L363"><a class="line-no" href="#L363" aria-label="Line 363">363</a><span class="line-code">  constructor</span></span>
+<span class="source-line" id="L364"><a class="line-no" href="#L364" aria-label="Line 364">364</a><span class="line-code">  · intro he</span></span>
+<span class="source-line" id="L365"><a class="line-no" href="#L365" aria-label="Line 365">365</a><span class="line-code">    unfold rowLast at he</span></span>
+<span class="source-line" id="L366"><a class="line-no" href="#L366" aria-label="Line 366">366</a><span class="line-code">    split_ifs at he with hs</span></span>
+<span class="source-line" id="L367"><a class="line-no" href="#L367" aria-label="Line 367">367</a><span class="line-code">    have he&#x27; := Option.some.inj he</span></span>
+<span class="source-line" id="L368"><a class="line-no" href="#L368" aria-label="Line 368">368</a><span class="line-code">    have hm := Finset.max&#x27;_mem _ hs</span></span>
+<span class="source-line" id="L369"><a class="line-no" href="#L369" aria-label="Line 369">369</a><span class="line-code">    rw [he&#x27;] at hm</span></span>
+<span class="source-line" id="L370"><a class="line-no" href="#L370" aria-label="Line 370">370</a><span class="line-code">    refine ⟨(Finset.mem_filter.mp hm).2, ?_⟩</span></span>
+<span class="source-line" id="L371"><a class="line-no" href="#L371" aria-label="Line 371">371</a><span class="line-code">    intro y hy</span></span>
+<span class="source-line" id="L372"><a class="line-no" href="#L372" aria-label="Line 372">372</a><span class="line-code">    rw [← he&#x27;]</span></span>
+<span class="source-line" id="L373"><a class="line-no" href="#L373" aria-label="Line 373">373</a><span class="line-code">    exact Finset.le_max&#x27; _ _ (by simp [hy])</span></span>
+<span class="source-line" id="L374"><a class="line-no" href="#L374" aria-label="Line 374">374</a><span class="line-code">  · rintro ⟨hx, hmax⟩</span></span>
+<span class="source-line" id="L375"><a class="line-no" href="#L375" aria-label="Line 375">375</a><span class="line-code">    have hm : x ∈ Finset.univ.filter (fun y =&gt; 0 &lt; A y) := by simp [hx]</span></span>
+<span class="source-line" id="L376"><a class="line-no" href="#L376" aria-label="Line 376">376</a><span class="line-code">    have hs : (Finset.univ.filter (fun y =&gt; 0 &lt; A y)).Nonempty := ⟨x, hm⟩</span></span>
+<span class="source-line" id="L377"><a class="line-no" href="#L377" aria-label="Line 377">377</a><span class="line-code">    rw [rowLast, dif_pos hs]</span></span>
+<span class="source-line" id="L378"><a class="line-no" href="#L378" aria-label="Line 378">378</a><span class="line-code">    congr 1</span></span>
+<span class="source-line" id="L379"><a class="line-no" href="#L379" aria-label="Line 379">379</a><span class="line-code">    apply le_antisymm _ (Finset.le_max&#x27; _ _ hm)</span></span>
+<span class="source-line" id="L380"><a class="line-no" href="#L380" aria-label="Line 380">380</a><span class="line-code">    apply Finset.max&#x27;_le</span></span>
+<span class="source-line" id="L381"><a class="line-no" href="#L381" aria-label="Line 381">381</a><span class="line-code">    intro y hy</span></span>
+<span class="source-line" id="L382"><a class="line-no" href="#L382" aria-label="Line 382">382</a><span class="line-code">    exact hmax y (Finset.mem_filter.mp hy).2</span></span>
+<span class="source-line" id="L383"><a class="line-no" href="#L383" aria-label="Line 383">383</a><span class="line-code"> </span></span>
+<span class="source-line" id="L384"><a class="line-no" href="#L384" aria-label="Line 384">384</a><span class="line-code">theorem rowLast_after_terminal_insert {d : ℕ} (A : RowContent d) (x : Fin d)</span></span>
+<span class="source-line" id="L385"><a class="line-no" href="#L385" aria-label="Line 385">385</a><span class="line-code">    (h : rowBump A x = none) : rowLast (rowInserted A x) = some x := by</span></span>
+<span class="source-line" id="L386"><a class="line-no" href="#L386" aria-label="Line 386">386</a><span class="line-code">  rw [rowInserted, h]</span></span>
+<span class="source-line" id="L387"><a class="line-no" href="#L387" aria-label="Line 387">387</a><span class="line-code">  apply (rowLast_eq_some_iff _ _).mpr</span></span>
+<span class="source-line" id="L388"><a class="line-no" href="#L388" aria-label="Line 388">388</a><span class="line-code">  refine ⟨by simp [rowAdd], ?_⟩</span></span>
+<span class="source-line" id="L389"><a class="line-no" href="#L389" aria-label="Line 389">389</a><span class="line-code">  intro y hy</span></span>
+<span class="source-line" id="L390"><a class="line-no" href="#L390" aria-label="Line 390">390</a><span class="line-code">  by_contra hxy</span></span>
+<span class="source-line" id="L391"><a class="line-no" href="#L391" aria-label="Line 391">391</a><span class="line-code">  have hxy&#x27; : x &lt; y := lt_of_not_ge hxy</span></span>
+<span class="source-line" id="L392"><a class="line-no" href="#L392" aria-label="Line 392">392</a><span class="line-code">  have hyzero := (rowBump_eq_none_iff A x).mp h y hxy&#x27;</span></span>
+<span class="source-line" id="L393"><a class="line-no" href="#L393" aria-label="Line 393">393</a><span class="line-code">  simp [rowAdd, ne_of_gt hxy&#x27;, hyzero] at hy</span></span>
+<span class="source-line" id="L394"><a class="line-no" href="#L394" aria-label="Line 394">394</a><span class="line-code"> </span></span>
+<span class="source-line" id="L395"><a class="line-no" href="#L395" aria-label="Line 395">395</a><span class="line-code">theorem rowDeleteLast_after_terminal_insert {d : ℕ} (A : RowContent d) (x : Fin d)</span></span>
+<span class="source-line" id="L396"><a class="line-no" href="#L396" aria-label="Line 396">396</a><span class="line-code">    (h : rowBump A x = none) : rowDeleteLast (rowInserted A x) = A := by</span></span>
+<span class="source-line" id="L397"><a class="line-no" href="#L397" aria-label="Line 397">397</a><span class="line-code">  rw [rowDeleteLast, rowLast_after_terminal_insert A x h, rowInserted, h]</span></span>
+<span class="source-line" id="L398"><a class="line-no" href="#L398" aria-label="Line 398">398</a><span class="line-code">  exact rowRemove_rowAdd A x</span></span>
+<span class="source-line" id="L399"><a class="line-no" href="#L399" aria-label="Line 399">399</a><span class="line-code"> </span></span>
+<span class="source-line" id="L400"><a class="line-no" href="#L400" aria-label="Line 400">400</a><span class="line-code">theorem rowBump_after_deleteLast {d : ℕ} (A : RowContent d) (x : Fin d)</span></span>
+<span class="source-line" id="L401"><a class="line-no" href="#L401" aria-label="Line 401">401</a><span class="line-code">    (h : rowLast A = some x) : rowBump (rowDeleteLast A) x = none := by</span></span>
+<span class="source-line" id="L402"><a class="line-no" href="#L402" aria-label="Line 402">402</a><span class="line-code">  rw [rowDeleteLast, h]</span></span>
+<span class="source-line" id="L403"><a class="line-no" href="#L403" aria-label="Line 403">403</a><span class="line-code">  apply (rowBump_eq_none_iff _ _).mpr</span></span>
+<span class="source-line" id="L404"><a class="line-no" href="#L404" aria-label="Line 404">404</a><span class="line-code">  intro y hxy</span></span>
+<span class="source-line" id="L405"><a class="line-no" href="#L405" aria-label="Line 405">405</a><span class="line-code">  have hyzero : A y = 0 := by</span></span>
+<span class="source-line" id="L406"><a class="line-no" href="#L406" aria-label="Line 406">406</a><span class="line-code">    have hmax := (rowLast_eq_some_iff A x).mp h</span></span>
+<span class="source-line" id="L407"><a class="line-no" href="#L407" aria-label="Line 407">407</a><span class="line-code">    by_contra hy</span></span>
+<span class="source-line" id="L408"><a class="line-no" href="#L408" aria-label="Line 408">408</a><span class="line-code">    exact (not_le_of_gt hxy) (hmax.2 y (Nat.pos_of_ne_zero hy))</span></span>
+<span class="source-line" id="L409"><a class="line-no" href="#L409" aria-label="Line 409">409</a><span class="line-code">  simp [rowRemove, ne_of_gt hxy, hyzero]</span></span>
+<span class="source-line" id="L410"><a class="line-no" href="#L410" aria-label="Line 410">410</a><span class="line-code"> </span></span>
+<span class="source-line" id="L411"><a class="line-no" href="#L411" aria-label="Line 411">411</a><span class="line-code">theorem rowInserted_after_deleteLast {d : ℕ} (A : RowContent d) (x : Fin d)</span></span>
+<span class="source-line" id="L412"><a class="line-no" href="#L412" aria-label="Line 412">412</a><span class="line-code">    (h : rowLast A = some x) : rowInserted (rowDeleteLast A) x = A := by</span></span>
+<span class="source-line" id="L413"><a class="line-no" href="#L413" aria-label="Line 413">413</a><span class="line-code">  rw [rowInserted, rowBump_after_deleteLast A x h, rowDeleteLast, h]</span></span>
+<span class="source-line" id="L414"><a class="line-no" href="#L414" aria-label="Line 414">414</a><span class="line-code">  exact rowAdd_rowRemove A x ((rowLast_eq_some_iff A x).mp h).1</span></span>
+<span class="source-line" id="L415"><a class="line-no" href="#L415" aria-label="Line 415">415</a><span class="line-code"> </span></span>
+<span class="source-line" id="L416"><a class="line-no" href="#L416" aria-label="Line 416">416</a><span class="line-code">theorem rowAdd_mass {d : ℕ} (A : RowContent d) (x : Fin d) :</span></span>
+<span class="source-line" id="L417"><a class="line-no" href="#L417" aria-label="Line 417">417</a><span class="line-code">    (∑ j, rowAdd A x j) = (∑ j, A j) + 1 := by</span></span>
+<span class="source-line" id="L418"><a class="line-no" href="#L418" aria-label="Line 418">418</a><span class="line-code">  simp [rowAdd_content, Finset.sum_add_distrib]</span></span>
+<span class="source-line" id="L419"><a class="line-no" href="#L419" aria-label="Line 419">419</a><span class="line-code"> </span></span>
+<span class="source-line" id="L420"><a class="line-no" href="#L420" aria-label="Line 420">420</a><span class="line-code">def rowMonomial {d : ℕ} (p : Fin d → ℝ) (A : RowContent d) : ℝ :=</span></span>
+<span class="source-line" id="L421"><a class="line-no" href="#L421" aria-label="Line 421">421</a><span class="line-code">  ∏ j, p j ^ A j</span></span>
+<span class="source-line" id="L422"><a class="line-no" href="#L422" aria-label="Line 422">422</a><span class="line-code"> </span></span>
+<span class="source-line" id="L423"><a class="line-no" href="#L423" aria-label="Line 423">423</a><span class="line-code">/-- Multiplicative conservation has no division and remains valid at zero</span></span>
+<span class="source-line" id="L424"><a class="line-no" href="#L424" aria-label="Line 424">424</a><span class="line-code">probabilities. -/</span></span>
+<span class="source-line" id="L425"><a class="line-no" href="#L425" aria-label="Line 425">425</a><span class="line-code">theorem rowReplace_monomial {d : ℕ} (p : Fin d → ℝ) (A : RowContent d)</span></span>
+<span class="source-line" id="L426"><a class="line-no" href="#L426" aria-label="Line 426">426</a><span class="line-code">    (x y : Fin d) (hxy : x ≠ y) (hy : 0 &lt; A y) :</span></span>
+<span class="source-line" id="L427"><a class="line-no" href="#L427" aria-label="Line 427">427</a><span class="line-code">    rowMonomial p (rowReplace A x y) * p y = rowMonomial p A * p x := by</span></span>
+<span class="source-line" id="L428"><a class="line-no" href="#L428" aria-label="Line 428">428</a><span class="line-code">  have h := Finset.prod_congr (s₁ := Finset.univ) rfl</span></span>
+<span class="source-line" id="L429"><a class="line-no" href="#L429" aria-label="Line 429">429</a><span class="line-code">    (fun j _ =&gt; congrArg (fun n : ℕ =&gt; p j ^ n) (rowReplace_content A x y j hxy hy))</span></span>
+<span class="source-line" id="L430"><a class="line-no" href="#L430" aria-label="Line 430">430</a><span class="line-code">  simp only [pow_add, Finset.prod_mul_distrib] at h</span></span>
+<span class="source-line" id="L431"><a class="line-no" href="#L431" aria-label="Line 431">431</a><span class="line-code">  simpa only [rowMonomial, apply_ite, pow_one, pow_zero, Finset.prod_ite_eq&#x27;,</span></span>
+<span class="source-line" id="L432"><a class="line-no" href="#L432" aria-label="Line 432">432</a><span class="line-code">    Finset.mem_univ, if_true] using h</span></span>
+<span class="source-line" id="L433"><a class="line-no" href="#L433" aria-label="Line 433">433</a><span class="line-code"> </span></span>
+<span class="source-line" id="L434"><a class="line-no" href="#L434" aria-label="Line 434">434</a><span class="line-code">theorem rowAdd_monomial {d : ℕ} (p : Fin d → ℝ) (A : RowContent d) (x : Fin d) :</span></span>
+<span class="source-line" id="L435"><a class="line-no" href="#L435" aria-label="Line 435">435</a><span class="line-code">    rowMonomial p (rowAdd A x) = rowMonomial p A * p x := by</span></span>
+<span class="source-line" id="L436"><a class="line-no" href="#L436" aria-label="Line 436">436</a><span class="line-code">  simp only [rowMonomial, rowAdd_content, pow_add, Finset.prod_mul_distrib]</span></span>
+<span class="source-line" id="L437"><a class="line-no" href="#L437" aria-label="Line 437">437</a><span class="line-code">  simp only [apply_ite, pow_one, pow_zero, Finset.prod_ite_eq&#x27;, Finset.mem_univ, if_true]</span></span>
+<span class="source-line" id="L438"><a class="line-no" href="#L438" aria-label="Line 438">438</a><span class="line-code"> </span></span>
+<span class="source-line" id="L439"><a class="line-no" href="#L439" aria-label="Line 439">439</a><span class="line-code">end Cloning.YoungGeneral</span></span>
+</code></pre></div></main>
+<footer class="footer">English guides explain the argument. Lean source and its hypotheses determine the formal claims.
+<a href="../verification.html">Audit evidence</a> · <a href="../scope.html">Scope</a></footer>
+</div></div></body></html>

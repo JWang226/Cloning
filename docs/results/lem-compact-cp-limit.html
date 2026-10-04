@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="An offline guide to the Lean formalization of asymptotic mixed-state quantum cloning. Exact source, proof routes, and audited scope.">
+<title>Compact-observable limits of completely positive maps · Cloning proof wiki</title>
+<link rel="stylesheet" href="../assets/site.css?v=1811c00ea983">
+<script>window.PROOF_ROOT="../";</script>
+<script defer src="../assets/vendor/katex/katex.min.js"></script>
+<script defer src="../assets/search-index.js?v=850aee981cdc"></script>
+<script defer src="../assets/site.js?v=4bfaac1f06b1"></script>
+</head><body><a class="skip-link" href="#main">Skip to content</a>
+<div class="site-shell"><aside class="sidebar" id="site-navigation">
+<a class="brand" href="../index.html"><span class="brand-mark">C</span><span>Cloning<span class="small muted">A Lean proof wiki</span></span></a>
+<nav aria-label="Main navigation"><div class="nav-section">Explore</div><a class="nav-link" href="../index.html">Overview</a><a class="nav-link" href="../guides/index.html">Proof guide</a><a class="nav-link active" href="../results/index.html" aria-current="page">27 named results</a><a class="nav-link" href="../source/index.html">Lean source</a><a class="nav-link" href="../verification.html">Verification</a><a class="nav-link" href="../scope.html">Scope &amp; conventions</a>
+<div class="nav-section">Read the proof</div><a class="nav-link" href="../guides/physical-problem.html"><span class="nav-number">01</span> The physical problem and its conventions</a><a class="nav-link" href="../guides/young-laws.html"><span class="nav-number">02</span> Young labels: concentration and the local Gaussian law</a><a class="nav-link" href="../guides/cartan-sectors.html"><span class="nav-number">03</span> From PBW frames to uniform Cartan-sector fidelity</a><a class="nav-link" href="../guides/lifted-kernels.html"><span class="nav-number">04</span> Lifted channels, randomized dilation, and factorization</a><a class="nav-link" href="../guides/gaussian-optimum.html"><span class="nav-number">05</span> Gaussian amplification against arbitrary competitors</a><a class="nav-link" href="../guides/physical-lan.html"><span class="nav-number">06</span> Constructed LAN and fidelity transfer</a><a class="nav-link" href="../guides/known-spectrum.html"><span class="nav-number">07</span> The known-spectrum optimum</a><a class="nav-link" href="../guides/unknown-spectrum.html"><span class="nav-number">08</span> One universal cloner and the compact-set optimum</a><a class="nav-link" href="../guides/grassmann.html"><span class="nav-number">09</span> Exact rank compression and projector-state optimality</a><a class="nav-link" href="../guides/purify-clone-trace.html"><span class="nav-number">10</span> Purify–clone–trace: exact channels, limits, and guarantees</a><a class="nav-link" href="../guides/small-errors.html"><span class="nav-number">11</span> Small errors, rank boundaries, and noncommuting limits</a><a class="nav-link" href="../guides/spectral-comparison.html"><span class="nav-number">12</span> Spectral order and what is known for all states</a></nav>
+<div class="sidebar-footer"><span class="badge">Lean 4</span><p>Manuscript → proof → source</p>
+<a href="https://github.com/JWang226/Cloning">Repository ↗</a></div></aside>
+<div class="main-shell"><header class="topbar">
+<button id="nav-toggle" class="button secondary" aria-controls="site-navigation" aria-expanded="false" aria-label="Toggle navigation">Menu</button>
+<div class="search-wrap"><label class="sr-only" for="site-search">Search the proof wiki</label>
+<input id="site-search" type="search" placeholder="Search results, concepts, or Lean names…" autocomplete="off" aria-controls="search-results" aria-expanded="false" role="combobox" aria-autocomplete="list">
+<div id="search-results" class="search-results" role="listbox" hidden></div></div>
+<span class="small muted topbar-label">Offline · exact source</span></header>
+<main id="main" class="content"><div class="eyebrow">lemma · manuscript result</div><h1>Compact-observable limits of completely positive maps</h1><p><code>lem:compact-cp-limit</code> <span class="badge">Mapped to compiled Lean</span></p><div class="notice">Scope notes below come from the manuscript-to-Lean map. Exact source excerpts are the formal reference.</div><section class="callout info"><h2>Hypotheses and correspondence</h2><p>One extracted CP limit and subsequence, all trace-class inputs and compact observables, limsup trace bound, arbitrary covariance index set. Escaping trace is permitted; TP is not asserted.</p></section><h2>Concrete Lean endpoints</h2><p class="small muted">These are exact statement excerpts, with proof bodies omitted. Section variables, instances, namespaces, imports, and proof bodies are visible in the linked full module.</p><article class="declaration"><div class="declaration-header"><a href="../source/Cloning.InfiniteAsymptoticCPCompactness.html#L128"><code>Cloning.InfiniteTraceClass.exists_subsequence_covariant_cp_limit_of_limsup_trace_bound</code></a><span class="badge">theorem</span></div><p class="small muted">InfiniteAsymptoticCPCompactness.lean · line 128 · <a href="../source/Cloning.InfiniteAsymptoticCPCompactness.html#L128">Full source and context</a> · <a href="https://github.com/JWang226/Cloning/blob/main/formalization/Cloning/InfiniteAsymptoticCPCompactness.lean#L128">GitHub ↗</a> · <button class="copy-button" data-copy-target="lean-cloning-infinitetraceclass-exists-subsequence-covariant-cp-limit-of-limsup-trace-bound-186" aria-label="Copy Lean excerpt">Copy</button></p><div class="code-wrap"><pre class="code-block" id="lean-cloning-infinitetraceclass-exists-subsequence-covariant-cp-limit-of-limsup-trace-bound-186"><code>theorem exists_subsequence_covariant_cp_limit_of_limsup_trace_bound {G : Type*}
+    (L : ℕ → TraceClass H →L[ℂ] TraceClass K) (M c : ℝ)
+    (hbound : ∀ n, ‖L n‖ ≤ M)
+    (hcp : ∀ n, IsCompletelyPositive (L n).toLinearMap)
+    (htrace : ∀ A, 0 ≤ A.1 →
+      Filter.limsup (fun n =&gt; (traceCLM (L n A)).re) atTop ≤ c * (traceCLM A).re)
+    (U : G → H →L[ℂ] H) (V : G → K →L[ℂ] K)
+    (hdefect : ∀ g A, Tendsto (fun n =&gt;
+      ‖L n (sandwichCLM (U g) (star (U g)) A) -
+        sandwichCLM (V g) (star (V g)) (L n A)‖) atTop (𝓝 (0 : ℝ))) :
+    ∃ Ψ : TraceClass H →ₗ[ℂ] TraceClass K,
+      IsCompletelyPositive Ψ ∧
+      (∀ A, 0 ≤ A.1 → (traceCLM (Ψ A)).re ≤ c * (traceCLM A).re) ∧
+      (∀ g A, Ψ (sandwichCLM (U g) (star (U g)) A) =
+        sandwichCLM (V g) (star (V g)) (Ψ A)) ∧
+      ∃ φ : ℕ → ℕ, StrictMono φ ∧
+        (∀ A x y, Tendsto (fun n =&gt; ⟪x, (L (φ n) A).1 y⟫_ℂ) atTop
+          (𝓝 ⟪x, (Ψ A).1 y⟫_ℂ)) ∧
+        (∀ A (O : K →L[ℂ] K), IsCompactOperator O →
+          Tendsto (fun n =&gt; tracePairing (L (φ n) A) O) atTop
+            (𝓝 (tracePairing (Ψ A) O)))</code></pre></div></article><section class="callout"><h2>Read this part of the proof</h2><p><a href="../guides/gaussian-optimum.html">Gaussian amplification against arbitrary competitors →</a></p></section><details class="manuscript-excerpt"><summary>Exact manuscript TeX statement</summary><p class="small muted">Copied from the reference manuscript. Macro definitions and surrounding notation are in the complete TeX source.</p><pre class="code-block"><code>\begin{lemma}[Compact-observable limits of completely positive maps]
+\label{lem:compact-cp-limit}
+Let \(\cH_0,\cH_1\) be separable Hilbert spaces and let
+\(\Gamma_j:\cT_1(\cH_0)\to\cT_1(\cH_1)\) be completely positive maps with
+\(\sup_j\|\Gamma_j\|_{1\to1}&lt;\infty\).  There are a subsequence and a
+completely positive map
+\(\Gamma:\cT_1(\cH_0)\to\cT_1(\cH_1)\) such that
+\begin{equation}\label{eq:compact-map-convergence}
+  \Tr[\Gamma_j(X)O]\longrightarrow\Tr[\Gamma(X)O]
+\end{equation}
+for every \(X\in\cT_1(\cH_0)\) and every compact operator
+\(O\) on \(\cH_1\).  If
+\(\limsup_j\Tr\Gamma_j(X)\le c\Tr X\) for every \(X\ge0\), then
+\(\Tr\Gamma(X)\le c\Tr X\).
+
+Suppose in addition that
+\(U_g\in\U(\cH_0)\) and \(V_g\in\U(\cH_1)\) are families of
+unitaries indexed by a set \(G\), and that, for every fixed \(g\in G\) and
+\(X\in\cT_1(\cH_0)\),
+\[
+  \|\Gamma_j(U_g X U_g^*)-V_g\Gamma_j(X)V_g^*\|_1
+  \longrightarrow0.
+\]
+Then
+\begin{equation}\label{eq:compact-limit-covariance}
+  \Gamma(U_g X U_g^*)=V_g\Gamma(X)V_g^*
+\end{equation}
+for every \(g\in G\) and \(X\in\cT_1(\cH_0)\).
+\end{lemma}</code></pre><a href="../reference/cloning.tex">Download the complete reference source</a> · <a href="https://github.com/JWang226/Cloning/blob/main/formalization/reference/cloning.tex#L3397">GitHub, line 3397 ↗</a></details><p><a href="index.html">← All named results</a></p></main>
+<footer class="footer">English guides explain the argument. Lean source and its hypotheses determine the formal claims.
+<a href="../verification.html">Audit evidence</a> · <a href="../scope.html">Scope</a></footer>
+</div></div></body></html>

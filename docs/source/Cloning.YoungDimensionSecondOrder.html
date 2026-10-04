@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="An offline guide to the Lean formalization of asymptotic mixed-state quantum cloning. Exact source, proof routes, and audited scope.">
+<title>YoungDimensionSecondOrder · Lean source · Cloning proof wiki</title>
+<link rel="stylesheet" href="../assets/site.css?v=1811c00ea983">
+<script>window.PROOF_ROOT="../";</script>
+<script defer src="../assets/vendor/katex/katex.min.js"></script>
+<script defer src="../assets/search-index.js?v=850aee981cdc"></script>
+<script defer src="../assets/site.js?v=4bfaac1f06b1"></script>
+</head><body><a class="skip-link" href="#main">Skip to content</a>
+<div class="site-shell"><aside class="sidebar" id="site-navigation">
+<a class="brand" href="../index.html"><span class="brand-mark">C</span><span>Cloning<span class="small muted">A Lean proof wiki</span></span></a>
+<nav aria-label="Main navigation"><div class="nav-section">Explore</div><a class="nav-link" href="../index.html">Overview</a><a class="nav-link" href="../guides/index.html">Proof guide</a><a class="nav-link" href="../results/index.html">27 named results</a><a class="nav-link active" href="../source/index.html" aria-current="page">Lean source</a><a class="nav-link" href="../verification.html">Verification</a><a class="nav-link" href="../scope.html">Scope &amp; conventions</a>
+<div class="nav-section">Read the proof</div><a class="nav-link" href="../guides/physical-problem.html"><span class="nav-number">01</span> The physical problem and its conventions</a><a class="nav-link" href="../guides/young-laws.html"><span class="nav-number">02</span> Young labels: concentration and the local Gaussian law</a><a class="nav-link" href="../guides/cartan-sectors.html"><span class="nav-number">03</span> From PBW frames to uniform Cartan-sector fidelity</a><a class="nav-link" href="../guides/lifted-kernels.html"><span class="nav-number">04</span> Lifted channels, randomized dilation, and factorization</a><a class="nav-link" href="../guides/gaussian-optimum.html"><span class="nav-number">05</span> Gaussian amplification against arbitrary competitors</a><a class="nav-link" href="../guides/physical-lan.html"><span class="nav-number">06</span> Constructed LAN and fidelity transfer</a><a class="nav-link" href="../guides/known-spectrum.html"><span class="nav-number">07</span> The known-spectrum optimum</a><a class="nav-link" href="../guides/unknown-spectrum.html"><span class="nav-number">08</span> One universal cloner and the compact-set optimum</a><a class="nav-link" href="../guides/grassmann.html"><span class="nav-number">09</span> Exact rank compression and projector-state optimality</a><a class="nav-link" href="../guides/purify-clone-trace.html"><span class="nav-number">10</span> Purify–clone–trace: exact channels, limits, and guarantees</a><a class="nav-link" href="../guides/small-errors.html"><span class="nav-number">11</span> Small errors, rank boundaries, and noncommuting limits</a><a class="nav-link" href="../guides/spectral-comparison.html"><span class="nav-number">12</span> Spectral order and what is known for all states</a></nav>
+<div class="sidebar-footer"><span class="badge">Lean 4</span><p>Manuscript → proof → source</p>
+<a href="https://github.com/JWang226/Cloning">Repository ↗</a></div></aside>
+<div class="main-shell"><header class="topbar">
+<button id="nav-toggle" class="button secondary" aria-controls="site-navigation" aria-expanded="false" aria-label="Toggle navigation">Menu</button>
+<div class="search-wrap"><label class="sr-only" for="site-search">Search the proof wiki</label>
+<input id="site-search" type="search" placeholder="Search results, concepts, or Lean names…" autocomplete="off" aria-controls="search-results" aria-expanded="false" role="combobox" aria-autocomplete="list">
+<div id="search-results" class="search-results" role="listbox" hidden></div></div>
+<span class="small muted topbar-label">Offline · exact source</span></header>
+<main id="main" class="content"><div class="eyebrow">Exact Lean source</div><h1 class="source-title">YoungDimensionSecondOrder</h1><p><code>formalization/Cloning/YoungDimensionSecondOrder.lean</code></p><p class="small muted">Source hash: <code>a05357279e910c83c8ef63762fa8bdde50416daf29998a96c1d724b1b7c23b4a</code></p><div class="actions"><a class="button secondary" href="raw/Cloning.YoungDimensionSecondOrder.lean">Download .lean</a><a class="button secondary" href="https://github.com/JWang226/Cloning/blob/main/formalization/Cloning/YoungDimensionSecondOrder.lean">View on GitHub ↗</a><a href="index.html">All modules</a></div><p class="small muted">Full source copied without mathematical changes from the snapshot whose input hash matches the passing audit. Select a line number for a stable source pointer.</p><details><summary>Declarations in this module</summary><div class="module-declarations"><a href="#L21"><span class="badge">theorem</span> <code>Cloning.YoungDimensionRatio.product_quadratic_remainder</code></a><a href="#L62"><span class="badge">theorem</span> <code>Cloning.YoungDimensionRatio.product_error_le_linear_add_square_sum</code></a><a href="#L83"><span class="badge">theorem</span> <code>Cloning.YoungDimensionRatio.sum_crossing_fst</code></a><a href="#L89"><span class="badge">theorem</span> <code>Cloning.YoungDimensionRatio.sum_centered_rows</code></a><a href="#L99"><span class="badge">theorem</span> <code>Cloning.YoungDimensionRatio.crossing_error_sum</code></a><a href="#L115"><span class="badge">theorem</span> <code>Cloning.YoungDimensionRatio.crossing_error_sum_bound</code></a><a href="#L136"><span class="badge">theorem</span> <code>Cloning.YoungDimensionRatio.crossing_error_square_sum_bound</code></a><a href="#L177"><span class="badge">theorem</span> <code>Cloning.YoungDimensionRatio.dimensionRatio_second_order_error</code></a><a href="#L222"><span class="badge">definition</span> <code>Cloning.YoungDimensionRatio.secondOrderConstant</code></a><a href="#L228"><span class="badge">theorem</span> <code>Cloning.YoungDimensionRatio.secondOrderConstant_nonneg</code></a><a href="#L235"><span class="badge">theorem</span> <code>Cloning.YoungDimensionRatio.dimensionRatio_second_order_rate</code></a><a href="#L263"><span class="badge">theorem</span> <code>Cloning.YoungDimensionRatio.dimensionRatio_second_order_isBigO</code></a></div></details><div class="code-wrap source-wrap"><pre class="source-lines"><code><span class="source-line" id="L1"><a class="line-no" href="#L1" aria-label="Line 1">1</a><span class="line-code">import Cloning.YoungDimensionRatio</span></span>
+<span class="source-line" id="L2"><a class="line-no" href="#L2" aria-label="Line 2">2</a><span class="line-code">import Mathlib.Algebra.Order.BigOperators.Ring.Finset</span></span>
+<span class="source-line" id="L3"><a class="line-no" href="#L3" aria-label="Line 3">3</a><span class="line-code">import Mathlib.Analysis.Asymptotics.Defs</span></span>
+<span class="source-line" id="L4"><a class="line-no" href="#L4" aria-label="Line 4">4</a><span class="line-code"> </span></span>
+<span class="source-line" id="L5"><a class="line-no" href="#L5" aria-label="Line 5">5</a><span class="line-code">/-!</span></span>
+<span class="source-line" id="L6"><a class="line-no" href="#L6" aria-label="Line 6">6</a><span class="line-code"># Second-order cancellation in Weyl dimension products</span></span>
+<span class="source-line" id="L7"><a class="line-no" href="#L7" aria-label="Line 7">7</a><span class="line-code"> </span></span>
+<span class="source-line" id="L8"><a class="line-no" href="#L8" aria-label="Line 8">8</a><span class="line-code">The finite-product estimate below separates the linear term from a genuinely</span></span>
+<span class="source-line" id="L9"><a class="line-no" href="#L9" aria-label="Line 9">9</a><span class="line-code">quadratic remainder. This is the analytic mechanism behind the cancellation</span></span>
+<span class="source-line" id="L10"><a class="line-no" href="#L10" aria-label="Line 10">10</a><span class="line-code">of centered row fluctuations in the flat-spectrum dimension ratio.</span></span>
+<span class="source-line" id="L11"><a class="line-no" href="#L11" aria-label="Line 11">11</a><span class="line-code">-/</span></span>
+<span class="source-line" id="L12"><a class="line-no" href="#L12" aria-label="Line 12">12</a><span class="line-code"> </span></span>
+<span class="source-line" id="L13"><a class="line-no" href="#L13" aria-label="Line 13">13</a><span class="line-code">noncomputable section</span></span>
+<span class="source-line" id="L14"><a class="line-no" href="#L14" aria-label="Line 14">14</a><span class="line-code">open scoped BigOperators Topology</span></span>
+<span class="source-line" id="L15"><a class="line-no" href="#L15" aria-label="Line 15">15</a><span class="line-code">open Filter</span></span>
+<span class="source-line" id="L16"><a class="line-no" href="#L16" aria-label="Line 16">16</a><span class="line-code"> </span></span>
+<span class="source-line" id="L17"><a class="line-no" href="#L17" aria-label="Line 17">17</a><span class="line-code">namespace Cloning.YoungDimensionRatio</span></span>
+<span class="source-line" id="L18"><a class="line-no" href="#L18" aria-label="Line 18">18</a><span class="line-code"> </span></span>
+<span class="source-line" id="L19"><a class="line-no" href="#L19" aria-label="Line 19">19</a><span class="line-code">/-- A direct finite-product Taylor estimate. No differentiability or</span></span>
+<span class="source-line" id="L20"><a class="line-no" href="#L20" aria-label="Line 20">20</a><span class="line-code">asymptotic expansion is assumed: the remainder bound follows by induction. -/</span></span>
+<span class="source-line" id="L21"><a class="line-no" href="#L21" aria-label="Line 21">21</a><span class="line-code">theorem product_quadratic_remainder {ι : Type*} (S : Finset ι) (x : ι → ℝ)</span></span>
+<span class="source-line" id="L22"><a class="line-no" href="#L22" aria-label="Line 22">22</a><span class="line-code">    (hx : ∀ i ∈ S, |x i| ≤ 1) :</span></span>
+<span class="source-line" id="L23"><a class="line-no" href="#L23" aria-label="Line 23">23</a><span class="line-code">    |(∏ i ∈ S, (1 + x i)) - 1 - ∑ i ∈ S, x i| ≤</span></span>
+<span class="source-line" id="L24"><a class="line-no" href="#L24" aria-label="Line 24">24</a><span class="line-code">      (2 : ℝ) ^ S.card * (∑ i ∈ S, |x i|) ^ 2 := by</span></span>
+<span class="source-line" id="L25"><a class="line-no" href="#L25" aria-label="Line 25">25</a><span class="line-code">  classical</span></span>
+<span class="source-line" id="L26"><a class="line-no" href="#L26" aria-label="Line 26">26</a><span class="line-code">  induction S using Finset.induction_on with</span></span>
+<span class="source-line" id="L27"><a class="line-no" href="#L27" aria-label="Line 27">27</a><span class="line-code">  | empty =&gt; simp</span></span>
+<span class="source-line" id="L28"><a class="line-no" href="#L28" aria-label="Line 28">28</a><span class="line-code">  | @insert a S ha ih =&gt;</span></span>
+<span class="source-line" id="L29"><a class="line-no" href="#L29" aria-label="Line 29">29</a><span class="line-code">    have hxa := hx a (Finset.mem_insert_self a S)</span></span>
+<span class="source-line" id="L30"><a class="line-no" href="#L30" aria-label="Line 30">30</a><span class="line-code">    have hxS : ∀ i ∈ S, |x i| ≤ 1 := fun i hi =&gt; hx i (Finset.mem_insert_of_mem hi)</span></span>
+<span class="source-line" id="L31"><a class="line-no" href="#L31" aria-label="Line 31">31</a><span class="line-code">    have hrest := ih hxS</span></span>
+<span class="source-line" id="L32"><a class="line-no" href="#L32" aria-label="Line 32">32</a><span class="line-code">    have hsum : |∑ i ∈ S, x i| ≤ ∑ i ∈ S, |x i| := Finset.abs_sum_le_sum_abs _ _</span></span>
+<span class="source-line" id="L33"><a class="line-no" href="#L33" aria-label="Line 33">33</a><span class="line-code">    have hsum0 : 0 ≤ ∑ i ∈ S, |x i| := Finset.sum_nonneg (fun _ _ =&gt; abs_nonneg _)</span></span>
+<span class="source-line" id="L34"><a class="line-no" href="#L34" aria-label="Line 34">34</a><span class="line-code">    have hcoef : 1 ≤ (2 : ℝ) ^ S.card := one_le_pow₀ (by norm_num)</span></span>
+<span class="source-line" id="L35"><a class="line-no" href="#L35" aria-label="Line 35">35</a><span class="line-code">    have hfac : |1 + x a| ≤ 2 := by</span></span>
+<span class="source-line" id="L36"><a class="line-no" href="#L36" aria-label="Line 36">36</a><span class="line-code">      calc</span></span>
+<span class="source-line" id="L37"><a class="line-no" href="#L37" aria-label="Line 37">37</a><span class="line-code">        _ ≤ |(1 : ℝ)| + |x a| := abs_add_le _ _</span></span>
+<span class="source-line" id="L38"><a class="line-no" href="#L38" aria-label="Line 38">38</a><span class="line-code">        _ ≤ 2 := by norm_num only [abs_one]; linarith</span></span>
+<span class="source-line" id="L39"><a class="line-no" href="#L39" aria-label="Line 39">39</a><span class="line-code">    simp only [Finset.prod_insert ha, Finset.sum_insert ha, Finset.card_insert_of_notMem ha,</span></span>
+<span class="source-line" id="L40"><a class="line-no" href="#L40" aria-label="Line 40">40</a><span class="line-code">      pow_succ]</span></span>
+<span class="source-line" id="L41"><a class="line-no" href="#L41" aria-label="Line 41">41</a><span class="line-code">    have halg : (1 + x a) * (∏ i ∈ S, (1 + x i)) - 1 - (x a + ∑ i ∈ S, x i) =</span></span>
+<span class="source-line" id="L42"><a class="line-no" href="#L42" aria-label="Line 42">42</a><span class="line-code">        (1 + x a) * ((∏ i ∈ S, (1 + x i)) - 1 - ∑ i ∈ S, x i) +</span></span>
+<span class="source-line" id="L43"><a class="line-no" href="#L43" aria-label="Line 43">43</a><span class="line-code">          x a * (∑ i ∈ S, x i) := by ring</span></span>
+<span class="source-line" id="L44"><a class="line-no" href="#L44" aria-label="Line 44">44</a><span class="line-code">    rw [halg]</span></span>
+<span class="source-line" id="L45"><a class="line-no" href="#L45" aria-label="Line 45">45</a><span class="line-code">    calc</span></span>
+<span class="source-line" id="L46"><a class="line-no" href="#L46" aria-label="Line 46">46</a><span class="line-code">      _ ≤ |1 + x a| * |(∏ i ∈ S, (1 + x i)) - 1 - ∑ i ∈ S, x i| +</span></span>
+<span class="source-line" id="L47"><a class="line-no" href="#L47" aria-label="Line 47">47</a><span class="line-code">          |x a| * |∑ i ∈ S, x i| := by</span></span>
+<span class="source-line" id="L48"><a class="line-no" href="#L48" aria-label="Line 48">48</a><span class="line-code">        simpa only [abs_mul] using abs_add_le</span></span>
+<span class="source-line" id="L49"><a class="line-no" href="#L49" aria-label="Line 49">49</a><span class="line-code">          ((1 + x a) * ((∏ i ∈ S, (1 + x i)) - 1 - ∑ i ∈ S, x i))</span></span>
+<span class="source-line" id="L50"><a class="line-no" href="#L50" aria-label="Line 50">50</a><span class="line-code">          (x a * (∑ i ∈ S, x i))</span></span>
+<span class="source-line" id="L51"><a class="line-no" href="#L51" aria-label="Line 51">51</a><span class="line-code">      _ ≤ 2 * ((2 : ℝ) ^ S.card * (∑ i ∈ S, |x i|) ^ 2) +</span></span>
+<span class="source-line" id="L52"><a class="line-no" href="#L52" aria-label="Line 52">52</a><span class="line-code">          |x a| * (∑ i ∈ S, |x i|) := by</span></span>
+<span class="source-line" id="L53"><a class="line-no" href="#L53" aria-label="Line 53">53</a><span class="line-code">        exact add_le_add (mul_le_mul hfac hrest (abs_nonneg _) (by norm_num))</span></span>
+<span class="source-line" id="L54"><a class="line-no" href="#L54" aria-label="Line 54">54</a><span class="line-code">          (mul_le_mul_of_nonneg_left hsum (abs_nonneg _))</span></span>
+<span class="source-line" id="L55"><a class="line-no" href="#L55" aria-label="Line 55">55</a><span class="line-code">      _ ≤ _ := by</span></span>
+<span class="source-line" id="L56"><a class="line-no" href="#L56" aria-label="Line 56">56</a><span class="line-code">        have hcross := mul_nonneg (show 0 ≤ 4 * (2 : ℝ) ^ S.card - 1 by linarith)</span></span>
+<span class="source-line" id="L57"><a class="line-no" href="#L57" aria-label="Line 57">57</a><span class="line-code">          (mul_nonneg (abs_nonneg (x a)) hsum0)</span></span>
+<span class="source-line" id="L58"><a class="line-no" href="#L58" aria-label="Line 58">58</a><span class="line-code">        have hsquare := mul_nonneg (le_trans zero_le_one hcoef) (sq_nonneg |x a|)</span></span>
+<span class="source-line" id="L59"><a class="line-no" href="#L59" aria-label="Line 59">59</a><span class="line-code">        nlinarith</span></span>
+<span class="source-line" id="L60"><a class="line-no" href="#L60" aria-label="Line 60">60</a><span class="line-code"> </span></span>
+<span class="source-line" id="L61"><a class="line-no" href="#L61" aria-label="Line 61">61</a><span class="line-code">/-- The quadratic remainder can be bounded by the Euclidean square sum. -/</span></span>
+<span class="source-line" id="L62"><a class="line-no" href="#L62" aria-label="Line 62">62</a><span class="line-code">theorem product_error_le_linear_add_square_sum {ι : Type*} (S : Finset ι)</span></span>
+<span class="source-line" id="L63"><a class="line-no" href="#L63" aria-label="Line 63">63</a><span class="line-code">    (x : ι → ℝ) (hx : ∀ i ∈ S, |x i| ≤ 1) :</span></span>
+<span class="source-line" id="L64"><a class="line-no" href="#L64" aria-label="Line 64">64</a><span class="line-code">    |(∏ i ∈ S, (1 + x i)) - 1| ≤</span></span>
+<span class="source-line" id="L65"><a class="line-no" href="#L65" aria-label="Line 65">65</a><span class="line-code">      |∑ i ∈ S, x i| + ((2 : ℝ) ^ S.card * S.card) * (∑ i ∈ S, (x i) ^ 2) := by</span></span>
+<span class="source-line" id="L66"><a class="line-no" href="#L66" aria-label="Line 66">66</a><span class="line-code">  have hrem := product_quadratic_remainder S x hx</span></span>
+<span class="source-line" id="L67"><a class="line-no" href="#L67" aria-label="Line 67">67</a><span class="line-code">  have hcs := Finset.sum_mul_sq_le_sq_mul_sq S (fun i =&gt; |x i|) (fun _ =&gt; (1 : ℝ))</span></span>
+<span class="source-line" id="L68"><a class="line-no" href="#L68" aria-label="Line 68">68</a><span class="line-code">  simp only [mul_one, one_pow, Finset.sum_const, nsmul_eq_mul, mul_one, sq_abs] at hcs</span></span>
+<span class="source-line" id="L69"><a class="line-no" href="#L69" aria-label="Line 69">69</a><span class="line-code">  have hsplit : (∏ i ∈ S, (1 + x i)) - 1 =</span></span>
+<span class="source-line" id="L70"><a class="line-no" href="#L70" aria-label="Line 70">70</a><span class="line-code">      ((∏ i ∈ S, (1 + x i)) - 1 - ∑ i ∈ S, x i) + (∑ i ∈ S, x i) := by ring</span></span>
+<span class="source-line" id="L71"><a class="line-no" href="#L71" aria-label="Line 71">71</a><span class="line-code">  rw [hsplit]</span></span>
+<span class="source-line" id="L72"><a class="line-no" href="#L72" aria-label="Line 72">72</a><span class="line-code">  calc</span></span>
+<span class="source-line" id="L73"><a class="line-no" href="#L73" aria-label="Line 73">73</a><span class="line-code">    _ ≤ |(∏ i ∈ S, (1 + x i)) - 1 - ∑ i ∈ S, x i| + |∑ i ∈ S, x i| := abs_add_le _ _</span></span>
+<span class="source-line" id="L74"><a class="line-no" href="#L74" aria-label="Line 74">74</a><span class="line-code">    _ ≤ (2 : ℝ) ^ S.card * (∑ i ∈ S, |x i|) ^ 2 + |∑ i ∈ S, x i| :=</span></span>
+<span class="source-line" id="L75"><a class="line-no" href="#L75" aria-label="Line 75">75</a><span class="line-code">      add_le_add hrem le_rfl</span></span>
+<span class="source-line" id="L76"><a class="line-no" href="#L76" aria-label="Line 76">76</a><span class="line-code">    _ ≤ (2 : ℝ) ^ S.card * ((∑ i ∈ S, (x i) ^ 2) * S.card) + |∑ i ∈ S, x i| := by</span></span>
+<span class="source-line" id="L77"><a class="line-no" href="#L77" aria-label="Line 77">77</a><span class="line-code">      exact add_le_add (mul_le_mul_of_nonneg_left hcs</span></span>
+<span class="source-line" id="L78"><a class="line-no" href="#L78" aria-label="Line 78">78</a><span class="line-code">        (pow_nonneg (show (0 : ℝ) ≤ 2 by norm_num) S.card)) le_rfl</span></span>
+<span class="source-line" id="L79"><a class="line-no" href="#L79" aria-label="Line 79">79</a><span class="line-code">    _ = _ := by ring</span></span>
+<span class="source-line" id="L80"><a class="line-no" href="#L80" aria-label="Line 80">80</a><span class="line-code"> </span></span>
+<span class="source-line" id="L81"><a class="line-no" href="#L81" aria-label="Line 81">81</a><span class="line-code">/-- Repeating a row quantity over all crossing roots multiplies its sum by</span></span>
+<span class="source-line" id="L82"><a class="line-no" href="#L82" aria-label="Line 82">82</a><span class="line-code">the number of columns beyond the rank boundary. -/</span></span>
+<span class="source-line" id="L83"><a class="line-no" href="#L83" aria-label="Line 83">83</a><span class="line-code">theorem sum_crossing_fst (r k : ℕ) (f : Fin r → ℝ) :</span></span>
+<span class="source-line" id="L84"><a class="line-no" href="#L84" aria-label="Line 84">84</a><span class="line-code">    (∑ a : Fin r × Fin k, f a.1) = (k : ℝ) * ∑ i, f i := by</span></span>
+<span class="source-line" id="L85"><a class="line-no" href="#L85" aria-label="Line 85">85</a><span class="line-code">  simp only [Fintype.sum_prod_type, Finset.sum_const, Finset.card_univ,</span></span>
+<span class="source-line" id="L86"><a class="line-no" href="#L86" aria-label="Line 86">86</a><span class="line-code">    Fintype.card_fin, nsmul_eq_mul, ← Finset.mul_sum]</span></span>
+<span class="source-line" id="L87"><a class="line-no" href="#L87" aria-label="Line 87">87</a><span class="line-code"> </span></span>
+<span class="source-line" id="L88"><a class="line-no" href="#L88" aria-label="Line 88">88</a><span class="line-code">/-- The cancellation used below is proved from the total number of boxes. -/</span></span>
+<span class="source-line" id="L89"><a class="line-no" href="#L89" aria-label="Line 89">89</a><span class="line-code">theorem sum_centered_rows (r : ℕ) (row : Fin r → ℝ) (N : ℝ)</span></span>
+<span class="source-line" id="L90"><a class="line-no" href="#L90" aria-label="Line 90">90</a><span class="line-code">    (hr : 0 &lt; r) (hboxes : ∑ i, row i = N) :</span></span>
+<span class="source-line" id="L91"><a class="line-no" href="#L91" aria-label="Line 91">91</a><span class="line-code">    (∑ i, (row i - N / (r : ℝ))) = 0 := by</span></span>
+<span class="source-line" id="L92"><a class="line-no" href="#L92" aria-label="Line 92">92</a><span class="line-code">  rw [Finset.sum_sub_distrib, hboxes]</span></span>
+<span class="source-line" id="L93"><a class="line-no" href="#L93" aria-label="Line 93">93</a><span class="line-code">  simp only [Finset.sum_const, Finset.card_univ, Fintype.card_fin, nsmul_eq_mul]</span></span>
+<span class="source-line" id="L94"><a class="line-no" href="#L94" aria-label="Line 94">94</a><span class="line-code">  have hr&#x27; : (r : ℝ) ≠ 0 := (Nat.cast_pos.mpr hr).ne&#x27;</span></span>
+<span class="source-line" id="L95"><a class="line-no" href="#L95" aria-label="Line 95">95</a><span class="line-code">  field_simp</span></span>
+<span class="source-line" id="L96"><a class="line-no" href="#L96" aria-label="Line 96">96</a><span class="line-code">  ring</span></span>
+<span class="source-line" id="L97"><a class="line-no" href="#L97" aria-label="Line 97">97</a><span class="line-code"> </span></span>
+<span class="source-line" id="L98"><a class="line-no" href="#L98" aria-label="Line 98">98</a><span class="line-code">/-- The sum of rescaled factor errors contains no centered row term. -/</span></span>
+<span class="source-line" id="L99"><a class="line-no" href="#L99" aria-label="Line 99">99</a><span class="line-code">theorem crossing_error_sum (r k : ℕ) (row : Fin r → ℝ) (N : ℝ)</span></span>
+<span class="source-line" id="L100"><a class="line-no" href="#L100" aria-label="Line 100">100</a><span class="line-code">    (hr : 0 &lt; r) (hN : 0 &lt; N) (hboxes : ∑ i, row i = N) :</span></span>
+<span class="source-line" id="L101"><a class="line-no" href="#L101" aria-label="Line 101">101</a><span class="line-code">    (∑ a : Fin r × Fin k, ((r : ℝ) * (row a.1 + crossingGap a) / N - 1)) =</span></span>
+<span class="source-line" id="L102"><a class="line-no" href="#L102" aria-label="Line 102">102</a><span class="line-code">      (r : ℝ) / N * ∑ a : Fin r × Fin k, crossingGap a := by</span></span>
+<span class="source-line" id="L103"><a class="line-no" href="#L103" aria-label="Line 103">103</a><span class="line-code">  have hr&#x27; : (r : ℝ) ≠ 0 := (Nat.cast_pos.mpr hr).ne&#x27;</span></span>
+<span class="source-line" id="L104"><a class="line-no" href="#L104" aria-label="Line 104">104</a><span class="line-code">  have heq (a : Fin r × Fin k) :</span></span>
+<span class="source-line" id="L105"><a class="line-no" href="#L105" aria-label="Line 105">105</a><span class="line-code">      (r : ℝ) * (row a.1 + crossingGap a) / N - 1 =</span></span>
+<span class="source-line" id="L106"><a class="line-no" href="#L106" aria-label="Line 106">106</a><span class="line-code">        (r : ℝ) / N * ((row a.1 - N / r) + crossingGap a) := by</span></span>
+<span class="source-line" id="L107"><a class="line-no" href="#L107" aria-label="Line 107">107</a><span class="line-code">    field_simp</span></span>
+<span class="source-line" id="L108"><a class="line-no" href="#L108" aria-label="Line 108">108</a><span class="line-code">    ring</span></span>
+<span class="source-line" id="L109"><a class="line-no" href="#L109" aria-label="Line 109">109</a><span class="line-code">  simp_rw [heq]</span></span>
+<span class="source-line" id="L110"><a class="line-no" href="#L110" aria-label="Line 110">110</a><span class="line-code">  rw [← Finset.mul_sum, Finset.sum_add_distrib,</span></span>
+<span class="source-line" id="L111"><a class="line-no" href="#L111" aria-label="Line 111">111</a><span class="line-code">    sum_crossing_fst r k (fun i =&gt; row i - N / r),</span></span>
+<span class="source-line" id="L112"><a class="line-no" href="#L112" aria-label="Line 112">112</a><span class="line-code">    sum_centered_rows r row N hr hboxes]</span></span>
+<span class="source-line" id="L113"><a class="line-no" href="#L113" aria-label="Line 113">113</a><span class="line-code">  ring</span></span>
+<span class="source-line" id="L114"><a class="line-no" href="#L114" aria-label="Line 114">114</a><span class="line-code"> </span></span>
+<span class="source-line" id="L115"><a class="line-no" href="#L115" aria-label="Line 115">115</a><span class="line-code">theorem crossing_error_sum_bound (r k : ℕ) (row : Fin r → ℝ) (N : ℝ)</span></span>
+<span class="source-line" id="L116"><a class="line-no" href="#L116" aria-label="Line 116">116</a><span class="line-code">    (hr : 0 &lt; r) (hN : 0 &lt; N) (hboxes : ∑ i, row i = N) :</span></span>
+<span class="source-line" id="L117"><a class="line-no" href="#L117" aria-label="Line 117">117</a><span class="line-code">    |∑ a : Fin r × Fin k, ((r : ℝ) * (row a.1 + crossingGap a) / N - 1)| ≤</span></span>
+<span class="source-line" id="L118"><a class="line-no" href="#L118" aria-label="Line 118">118</a><span class="line-code">      (r : ℝ) * (r * k : ℕ) * ((r : ℝ) + k) / N := by</span></span>
+<span class="source-line" id="L119"><a class="line-no" href="#L119" aria-label="Line 119">119</a><span class="line-code">  rw [crossing_error_sum r k row N hr hN hboxes]</span></span>
+<span class="source-line" id="L120"><a class="line-no" href="#L120" aria-label="Line 120">120</a><span class="line-code">  have hg0 : 0 ≤ ∑ a : Fin r × Fin k, crossingGap a :=</span></span>
+<span class="source-line" id="L121"><a class="line-no" href="#L121" aria-label="Line 121">121</a><span class="line-code">    Finset.sum_nonneg (fun a _ =&gt; (crossingGap_pos a).le)</span></span>
+<span class="source-line" id="L122"><a class="line-no" href="#L122" aria-label="Line 122">122</a><span class="line-code">  rw [abs_of_nonneg (mul_nonneg (div_nonneg (Nat.cast_nonneg _) hN.le) hg0)]</span></span>
+<span class="source-line" id="L123"><a class="line-no" href="#L123" aria-label="Line 123">123</a><span class="line-code">  have hg : (∑ a : Fin r × Fin k, crossingGap a) ≤</span></span>
+<span class="source-line" id="L124"><a class="line-no" href="#L124" aria-label="Line 124">124</a><span class="line-code">      (r * k : ℕ) * ((r : ℝ) + k) := by</span></span>
+<span class="source-line" id="L125"><a class="line-no" href="#L125" aria-label="Line 125">125</a><span class="line-code">    calc</span></span>
+<span class="source-line" id="L126"><a class="line-no" href="#L126" aria-label="Line 126">126</a><span class="line-code">      _ ≤ ∑ _a : Fin r × Fin k, ((r : ℝ) + k) :=</span></span>
+<span class="source-line" id="L127"><a class="line-no" href="#L127" aria-label="Line 127">127</a><span class="line-code">        Finset.sum_le_sum (fun a _ =&gt; crossingGap_le a)</span></span>
+<span class="source-line" id="L128"><a class="line-no" href="#L128" aria-label="Line 128">128</a><span class="line-code">      _ = _ := by simp [Fintype.card_prod]; ring</span></span>
+<span class="source-line" id="L129"><a class="line-no" href="#L129" aria-label="Line 129">129</a><span class="line-code">  calc</span></span>
+<span class="source-line" id="L130"><a class="line-no" href="#L130" aria-label="Line 130">130</a><span class="line-code">    _ ≤ (r : ℝ) / N * ((r * k : ℕ) * ((r : ℝ) + k)) :=</span></span>
+<span class="source-line" id="L131"><a class="line-no" href="#L131" aria-label="Line 131">131</a><span class="line-code">      mul_le_mul_of_nonneg_left hg (div_nonneg (Nat.cast_nonneg _) hN.le)</span></span>
+<span class="source-line" id="L132"><a class="line-no" href="#L132" aria-label="Line 132">132</a><span class="line-code">    _ = _ := by ring</span></span>
+<span class="source-line" id="L133"><a class="line-no" href="#L133" aria-label="Line 133">133</a><span class="line-code"> </span></span>
+<span class="source-line" id="L134"><a class="line-no" href="#L134" aria-label="Line 134">134</a><span class="line-code">/-- A bound on the second moment of all rescaled factors, in terms of the</span></span>
+<span class="source-line" id="L135"><a class="line-no" href="#L135" aria-label="Line 135">135</a><span class="line-code">actual squared row fluctuations. -/</span></span>
+<span class="source-line" id="L136"><a class="line-no" href="#L136" aria-label="Line 136">136</a><span class="line-code">theorem crossing_error_square_sum_bound (r k : ℕ) (row : Fin r → ℝ) (N : ℝ)</span></span>
+<span class="source-line" id="L137"><a class="line-no" href="#L137" aria-label="Line 137">137</a><span class="line-code">    (hr : 0 &lt; r) (hN : 0 &lt; N) :</span></span>
+<span class="source-line" id="L138"><a class="line-no" href="#L138" aria-label="Line 138">138</a><span class="line-code">    (∑ a : Fin r × Fin k, ((r : ℝ) * (row a.1 + crossingGap a) / N - 1) ^ 2) ≤</span></span>
+<span class="source-line" id="L139"><a class="line-no" href="#L139" aria-label="Line 139">139</a><span class="line-code">      2 * (r : ℝ) ^ 2 / N ^ 2 *</span></span>
+<span class="source-line" id="L140"><a class="line-no" href="#L140" aria-label="Line 140">140</a><span class="line-code">        ((k : ℝ) * (∑ i, (row i - N / r) ^ 2) +</span></span>
+<span class="source-line" id="L141"><a class="line-no" href="#L141" aria-label="Line 141">141</a><span class="line-code">          (r * k : ℕ) * ((r : ℝ) + k) ^ 2) := by</span></span>
+<span class="source-line" id="L142"><a class="line-no" href="#L142" aria-label="Line 142">142</a><span class="line-code">  have hr&#x27; : (r : ℝ) ≠ 0 := (Nat.cast_pos.mpr hr).ne&#x27;</span></span>
+<span class="source-line" id="L143"><a class="line-no" href="#L143" aria-label="Line 143">143</a><span class="line-code">  have hb (a : Fin r × Fin k) :</span></span>
+<span class="source-line" id="L144"><a class="line-no" href="#L144" aria-label="Line 144">144</a><span class="line-code">      ((r : ℝ) * (row a.1 + crossingGap a) / N - 1) ^ 2 ≤</span></span>
+<span class="source-line" id="L145"><a class="line-no" href="#L145" aria-label="Line 145">145</a><span class="line-code">        2 * (r : ℝ) ^ 2 / N ^ 2 *</span></span>
+<span class="source-line" id="L146"><a class="line-no" href="#L146" aria-label="Line 146">146</a><span class="line-code">          ((row a.1 - N / r) ^ 2 + ((r : ℝ) + k) ^ 2) := by</span></span>
+<span class="source-line" id="L147"><a class="line-no" href="#L147" aria-label="Line 147">147</a><span class="line-code">    have hg := crossingGap_le a</span></span>
+<span class="source-line" id="L148"><a class="line-no" href="#L148" aria-label="Line 148">148</a><span class="line-code">    have hg0 := (crossingGap_pos a).le</span></span>
+<span class="source-line" id="L149"><a class="line-no" href="#L149" aria-label="Line 149">149</a><span class="line-code">    have hd0 : 0 ≤ (r : ℝ) + k := add_nonneg (Nat.cast_nonneg _) (Nat.cast_nonneg _)</span></span>
+<span class="source-line" id="L150"><a class="line-no" href="#L150" aria-label="Line 150">150</a><span class="line-code">    have hg2 : crossingGap a ^ 2 ≤ ((r : ℝ) + k) ^ 2 :=</span></span>
+<span class="source-line" id="L151"><a class="line-no" href="#L151" aria-label="Line 151">151</a><span class="line-code">      sq_le_sq₀ hg0 hd0 |&gt;.mpr hg</span></span>
+<span class="source-line" id="L152"><a class="line-no" href="#L152" aria-label="Line 152">152</a><span class="line-code">    have hab : ((row a.1 - N / r) + crossingGap a) ^ 2 ≤</span></span>
+<span class="source-line" id="L153"><a class="line-no" href="#L153" aria-label="Line 153">153</a><span class="line-code">        2 * ((row a.1 - N / r) ^ 2 + ((r : ℝ) + k) ^ 2) := by</span></span>
+<span class="source-line" id="L154"><a class="line-no" href="#L154" aria-label="Line 154">154</a><span class="line-code">      nlinarith [sq_nonneg ((row a.1 - N / r) - crossingGap a)]</span></span>
+<span class="source-line" id="L155"><a class="line-no" href="#L155" aria-label="Line 155">155</a><span class="line-code">    have heq : ((r : ℝ) * (row a.1 + crossingGap a) / N - 1) ^ 2 =</span></span>
+<span class="source-line" id="L156"><a class="line-no" href="#L156" aria-label="Line 156">156</a><span class="line-code">        ((r : ℝ) ^ 2 / N ^ 2) * ((row a.1 - N / r) + crossingGap a) ^ 2 := by</span></span>
+<span class="source-line" id="L157"><a class="line-no" href="#L157" aria-label="Line 157">157</a><span class="line-code">      field_simp</span></span>
+<span class="source-line" id="L158"><a class="line-no" href="#L158" aria-label="Line 158">158</a><span class="line-code">      ring</span></span>
+<span class="source-line" id="L159"><a class="line-no" href="#L159" aria-label="Line 159">159</a><span class="line-code">    rw [heq]</span></span>
+<span class="source-line" id="L160"><a class="line-no" href="#L160" aria-label="Line 160">160</a><span class="line-code">    calc</span></span>
+<span class="source-line" id="L161"><a class="line-no" href="#L161" aria-label="Line 161">161</a><span class="line-code">      _ ≤ ((r : ℝ) ^ 2 / N ^ 2) *</span></span>
+<span class="source-line" id="L162"><a class="line-no" href="#L162" aria-label="Line 162">162</a><span class="line-code">          (2 * ((row a.1 - N / r) ^ 2 + ((r : ℝ) + k) ^ 2)) :=</span></span>
+<span class="source-line" id="L163"><a class="line-no" href="#L163" aria-label="Line 163">163</a><span class="line-code">        mul_le_mul_of_nonneg_left hab (div_nonneg (sq_nonneg _) (sq_nonneg _))</span></span>
+<span class="source-line" id="L164"><a class="line-no" href="#L164" aria-label="Line 164">164</a><span class="line-code">      _ = _ := by ring</span></span>
+<span class="source-line" id="L165"><a class="line-no" href="#L165" aria-label="Line 165">165</a><span class="line-code">  calc</span></span>
+<span class="source-line" id="L166"><a class="line-no" href="#L166" aria-label="Line 166">166</a><span class="line-code">    _ ≤ ∑ a : Fin r × Fin k, 2 * (r : ℝ) ^ 2 / N ^ 2 *</span></span>
+<span class="source-line" id="L167"><a class="line-no" href="#L167" aria-label="Line 167">167</a><span class="line-code">        ((row a.1 - N / r) ^ 2 + ((r : ℝ) + k) ^ 2) :=</span></span>
+<span class="source-line" id="L168"><a class="line-no" href="#L168" aria-label="Line 168">168</a><span class="line-code">      Finset.sum_le_sum (fun a _ =&gt; hb a)</span></span>
+<span class="source-line" id="L169"><a class="line-no" href="#L169" aria-label="Line 169">169</a><span class="line-code">    _ = _ := by</span></span>
+<span class="source-line" id="L170"><a class="line-no" href="#L170" aria-label="Line 170">170</a><span class="line-code">      rw [← Finset.mul_sum, Finset.sum_add_distrib,</span></span>
+<span class="source-line" id="L171"><a class="line-no" href="#L171" aria-label="Line 171">171</a><span class="line-code">        sum_crossing_fst r k (fun i =&gt; (row i - N / r) ^ 2)]</span></span>
+<span class="source-line" id="L172"><a class="line-no" href="#L172" aria-label="Line 172">172</a><span class="line-code">      simp [Fintype.card_prod]</span></span>
+<span class="source-line" id="L173"><a class="line-no" href="#L173" aria-label="Line 173">173</a><span class="line-code"> </span></span>
+<span class="source-line" id="L174"><a class="line-no" href="#L174" aria-label="Line 174">174</a><span class="line-code">/-- The manuscript&#x27;s second-order expansion, with explicit uniform constants.</span></span>
+<span class="source-line" id="L175"><a class="line-no" href="#L175" aria-label="Line 175">175</a><span class="line-code">The only cancellation hypothesis is the actual box count `∑ row = N`.</span></span>
+<span class="source-line" id="L176"><a class="line-no" href="#L176" aria-label="Line 176">176</a><span class="line-code">The proximity assumptions only ensure that every factor error is at most one. -/</span></span>
+<span class="source-line" id="L177"><a class="line-no" href="#L177" aria-label="Line 177">177</a><span class="line-code">theorem dimensionRatio_second_order_error (r k : ℕ) (row : Fin r → ℝ) (N δ : ℝ)</span></span>
+<span class="source-line" id="L178"><a class="line-no" href="#L178" aria-label="Line 178">178</a><span class="line-code">    (hr : 0 &lt; r) (hN : 0 &lt; N) (hboxes : ∑ i, row i = N)</span></span>
+<span class="source-line" id="L179"><a class="line-no" href="#L179" aria-label="Line 179">179</a><span class="line-code">    (hclose : ∀ i, |row i / N - 1 / (r : ℝ)| ≤ δ)</span></span>
+<span class="source-line" id="L180"><a class="line-no" href="#L180" aria-label="Line 180">180</a><span class="line-code">    (hsmall : (r : ℝ) * δ + (r : ℝ) * ((r : ℝ) + k) / N ≤ 1) :</span></span>
+<span class="source-line" id="L181"><a class="line-no" href="#L181" aria-label="Line 181">181</a><span class="line-code">    |dimensionRatio r k row / (leadingConstant r k * N ^ (r * k)) - 1| ≤</span></span>
+<span class="source-line" id="L182"><a class="line-no" href="#L182" aria-label="Line 182">182</a><span class="line-code">      (r : ℝ) * (r * k : ℕ) * ((r : ℝ) + k) / N +</span></span>
+<span class="source-line" id="L183"><a class="line-no" href="#L183" aria-label="Line 183">183</a><span class="line-code">      ((2 : ℝ) ^ (r * k) * (r * k : ℕ)) *</span></span>
+<span class="source-line" id="L184"><a class="line-no" href="#L184" aria-label="Line 184">184</a><span class="line-code">        (2 * (r : ℝ) ^ 2 / N ^ 2 *</span></span>
+<span class="source-line" id="L185"><a class="line-no" href="#L185" aria-label="Line 185">185</a><span class="line-code">          ((k : ℝ) * (∑ i, (row i - N / r) ^ 2) +</span></span>
+<span class="source-line" id="L186"><a class="line-no" href="#L186" aria-label="Line 186">186</a><span class="line-code">            (r * k : ℕ) * ((r : ℝ) + k) ^ 2)) := by</span></span>
+<span class="source-line" id="L187"><a class="line-no" href="#L187" aria-label="Line 187">187</a><span class="line-code">  let x : Fin r × Fin k → ℝ :=</span></span>
+<span class="source-line" id="L188"><a class="line-no" href="#L188" aria-label="Line 188">188</a><span class="line-code">    fun a =&gt; (r : ℝ) * (row a.1 + crossingGap a) / N - 1</span></span>
+<span class="source-line" id="L189"><a class="line-no" href="#L189" aria-label="Line 189">189</a><span class="line-code">  have hx : ∀ a ∈ Finset.univ, |x a| ≤ 1 := by</span></span>
+<span class="source-line" id="L190"><a class="line-no" href="#L190" aria-label="Line 190">190</a><span class="line-code">    intro a _</span></span>
+<span class="source-line" id="L191"><a class="line-no" href="#L191" aria-label="Line 191">191</a><span class="line-code">    exact (rescaled_factor_error r k row N δ hr hN hclose a).trans hsmall</span></span>
+<span class="source-line" id="L192"><a class="line-no" href="#L192" aria-label="Line 192">192</a><span class="line-code">  have hp := product_error_le_linear_add_square_sum Finset.univ x hx</span></span>
+<span class="source-line" id="L193"><a class="line-no" href="#L193" aria-label="Line 193">193</a><span class="line-code">  have hden : leadingConstant r k * N ^ (r * k) ≠ 0 :=</span></span>
+<span class="source-line" id="L194"><a class="line-no" href="#L194" aria-label="Line 194">194</a><span class="line-code">    (mul_pos (leadingConstant_pos r k hr) (pow_pos hN _)).ne&#x27;</span></span>
+<span class="source-line" id="L195"><a class="line-no" href="#L195" aria-label="Line 195">195</a><span class="line-code">  have hx1 (a : Fin r × Fin k) : 1 + x a =</span></span>
+<span class="source-line" id="L196"><a class="line-no" href="#L196" aria-label="Line 196">196</a><span class="line-code">      (r : ℝ) * (row a.1 + crossingGap a) / N := by dsimp [x]; ring</span></span>
+<span class="source-line" id="L197"><a class="line-no" href="#L197" aria-label="Line 197">197</a><span class="line-code">  simp only [Finset.card_univ, Fintype.card_prod, Fintype.card_fin, hx1] at hp</span></span>
+<span class="source-line" id="L198"><a class="line-no" href="#L198" aria-label="Line 198">198</a><span class="line-code">  rw [dimensionRatio_factorization r k row N hr hN, mul_div_cancel_left₀ _ hden]</span></span>
+<span class="source-line" id="L199"><a class="line-no" href="#L199" aria-label="Line 199">199</a><span class="line-code">  exact hp.trans (add_le_add (crossing_error_sum_bound r k row N hr hN hboxes)</span></span>
+<span class="source-line" id="L200"><a class="line-no" href="#L200" aria-label="Line 200">200</a><span class="line-code">    (mul_le_mul_of_nonneg_left (crossing_error_square_sum_bound r k row N hr hN)</span></span>
+<span class="source-line" id="L201"><a class="line-no" href="#L201" aria-label="Line 201">201</a><span class="line-code">      (mul_nonneg (pow_nonneg (by norm_num) _) (Nat.cast_nonneg _))))</span></span>
+<span class="source-line" id="L202"><a class="line-no" href="#L202" aria-label="Line 202">202</a><span class="line-code"> </span></span>
+<span class="source-line" id="L203"><a class="line-no" href="#L203" aria-label="Line 203">203</a><span class="line-code">private theorem second_order_envelope_le (A B C V N : ℝ)</span></span>
+<span class="source-line" id="L204"><a class="line-no" href="#L204" aria-label="Line 204">204</a><span class="line-code">    (hA : 0 ≤ A) (hB : 0 ≤ B) (hC : 0 ≤ C) (hV : 0 ≤ V) (hN : 1 ≤ N) :</span></span>
+<span class="source-line" id="L205"><a class="line-no" href="#L205" aria-label="Line 205">205</a><span class="line-code">    A / N + B * V / N ^ 2 + C / N ^ 2 ≤</span></span>
+<span class="source-line" id="L206"><a class="line-no" href="#L206" aria-label="Line 206">206</a><span class="line-code">      (A + B + C) * (1 / N + V / N ^ 2) := by</span></span>
+<span class="source-line" id="L207"><a class="line-no" href="#L207" aria-label="Line 207">207</a><span class="line-code">  have hN0 : 0 &lt; N := lt_of_lt_of_le zero_lt_one hN</span></span>
+<span class="source-line" id="L208"><a class="line-no" href="#L208" aria-label="Line 208">208</a><span class="line-code">  have hNN : N ≤ N ^ 2 := by nlinarith</span></span>
+<span class="source-line" id="L209"><a class="line-no" href="#L209" aria-label="Line 209">209</a><span class="line-code">  have hinv : 1 / N ^ 2 ≤ 1 / N := one_div_le_one_div_of_le hN0 hNN</span></span>
+<span class="source-line" id="L210"><a class="line-no" href="#L210" aria-label="Line 210">210</a><span class="line-code">  have hCdiv : C / N ^ 2 ≤ C / N := by</span></span>
+<span class="source-line" id="L211"><a class="line-no" href="#L211" aria-label="Line 211">211</a><span class="line-code">    simpa only [mul_one_div] using mul_le_mul_of_nonneg_left hinv hC</span></span>
+<span class="source-line" id="L212"><a class="line-no" href="#L212" aria-label="Line 212">212</a><span class="line-code">  calc</span></span>
+<span class="source-line" id="L213"><a class="line-no" href="#L213" aria-label="Line 213">213</a><span class="line-code">    _ ≤ A / N + B * V / N ^ 2 + C / N := add_le_add le_rfl hCdiv</span></span>
+<span class="source-line" id="L214"><a class="line-no" href="#L214" aria-label="Line 214">214</a><span class="line-code">    _ = (A + C) * (1 / N) + B * (V / N ^ 2) := by ring</span></span>
+<span class="source-line" id="L215"><a class="line-no" href="#L215" aria-label="Line 215">215</a><span class="line-code">    _ ≤ (A + B + C) * (1 / N) + (A + B + C) * (V / N ^ 2) := by</span></span>
+<span class="source-line" id="L216"><a class="line-no" href="#L216" aria-label="Line 216">216</a><span class="line-code">      exact add_le_add</span></span>
+<span class="source-line" id="L217"><a class="line-no" href="#L217" aria-label="Line 217">217</a><span class="line-code">        (mul_le_mul_of_nonneg_right (by linarith) (one_div_nonneg.mpr hN0.le))</span></span>
+<span class="source-line" id="L218"><a class="line-no" href="#L218" aria-label="Line 218">218</a><span class="line-code">        (mul_le_mul_of_nonneg_right (by linarith) (div_nonneg hV (sq_nonneg _)))</span></span>
+<span class="source-line" id="L219"><a class="line-no" href="#L219" aria-label="Line 219">219</a><span class="line-code">    _ = _ := by ring</span></span>
+<span class="source-line" id="L220"><a class="line-no" href="#L220" aria-label="Line 220">220</a><span class="line-code"> </span></span>
+<span class="source-line" id="L221"><a class="line-no" href="#L221" aria-label="Line 221">221</a><span class="line-code">/-- An explicit constant depending only on rank and ambient dimension. -/</span></span>
+<span class="source-line" id="L222"><a class="line-no" href="#L222" aria-label="Line 222">222</a><span class="line-code">def secondOrderConstant (r k : ℕ) : ℝ :=</span></span>
+<span class="source-line" id="L223"><a class="line-no" href="#L223" aria-label="Line 223">223</a><span class="line-code">  (r : ℝ) * (r * k : ℕ) * ((r : ℝ) + k) +</span></span>
+<span class="source-line" id="L224"><a class="line-no" href="#L224" aria-label="Line 224">224</a><span class="line-code">    (2 : ℝ) ^ (r * k) * (r * k : ℕ) * 2 * (r : ℝ) ^ 2 * k +</span></span>
+<span class="source-line" id="L225"><a class="line-no" href="#L225" aria-label="Line 225">225</a><span class="line-code">    (2 : ℝ) ^ (r * k) * (r * k : ℕ) * 2 * (r : ℝ) ^ 2 *</span></span>
+<span class="source-line" id="L226"><a class="line-no" href="#L226" aria-label="Line 226">226</a><span class="line-code">      (r * k : ℕ) * ((r : ℝ) + k) ^ 2</span></span>
+<span class="source-line" id="L227"><a class="line-no" href="#L227" aria-label="Line 227">227</a><span class="line-code"> </span></span>
+<span class="source-line" id="L228"><a class="line-no" href="#L228" aria-label="Line 228">228</a><span class="line-code">theorem secondOrderConstant_nonneg (r k : ℕ) : 0 ≤ secondOrderConstant r k := by</span></span>
+<span class="source-line" id="L229"><a class="line-no" href="#L229" aria-label="Line 229">229</a><span class="line-code">  unfold secondOrderConstant</span></span>
+<span class="source-line" id="L230"><a class="line-no" href="#L230" aria-label="Line 230">230</a><span class="line-code">  positivity</span></span>
+<span class="source-line" id="L231"><a class="line-no" href="#L231" aria-label="Line 231">231</a><span class="line-code"> </span></span>
+<span class="source-line" id="L232"><a class="line-no" href="#L232" aria-label="Line 232">232</a><span class="line-code">/-- The precise manuscript rate `O(1/N + ‖u‖²/N²)`, as a uniform explicit</span></span>
+<span class="source-line" id="L233"><a class="line-no" href="#L233" aria-label="Line 233">233</a><span class="line-code">inequality. Here `uᵢ = rowᵢ - N/r` and the constant depends only on `r,k`.</span></span>
+<span class="source-line" id="L234"><a class="line-no" href="#L234" aria-label="Line 234">234</a><span class="line-code">No representation-dimension identification is asserted by this analytic result. -/</span></span>
+<span class="source-line" id="L235"><a class="line-no" href="#L235" aria-label="Line 235">235</a><span class="line-code">theorem dimensionRatio_second_order_rate (r k : ℕ) (row : Fin r → ℝ) (N δ : ℝ)</span></span>
+<span class="source-line" id="L236"><a class="line-no" href="#L236" aria-label="Line 236">236</a><span class="line-code">    (hr : 0 &lt; r) (hN : 1 ≤ N) (hboxes : ∑ i, row i = N)</span></span>
+<span class="source-line" id="L237"><a class="line-no" href="#L237" aria-label="Line 237">237</a><span class="line-code">    (hclose : ∀ i, |row i / N - 1 / (r : ℝ)| ≤ δ)</span></span>
+<span class="source-line" id="L238"><a class="line-no" href="#L238" aria-label="Line 238">238</a><span class="line-code">    (hsmall : (r : ℝ) * δ + (r : ℝ) * ((r : ℝ) + k) / N ≤ 1) :</span></span>
+<span class="source-line" id="L239"><a class="line-no" href="#L239" aria-label="Line 239">239</a><span class="line-code">    |dimensionRatio r k row / (leadingConstant r k * N ^ (r * k)) - 1| ≤</span></span>
+<span class="source-line" id="L240"><a class="line-no" href="#L240" aria-label="Line 240">240</a><span class="line-code">      secondOrderConstant r k *</span></span>
+<span class="source-line" id="L241"><a class="line-no" href="#L241" aria-label="Line 241">241</a><span class="line-code">        (1 / N + (∑ i, (row i - N / r) ^ 2) / N ^ 2) := by</span></span>
+<span class="source-line" id="L242"><a class="line-no" href="#L242" aria-label="Line 242">242</a><span class="line-code">  have hN0 : 0 &lt; N := lt_of_lt_of_le zero_lt_one hN</span></span>
+<span class="source-line" id="L243"><a class="line-no" href="#L243" aria-label="Line 243">243</a><span class="line-code">  have hbound := dimensionRatio_second_order_error r k row N δ hr hN0 hboxes hclose hsmall</span></span>
+<span class="source-line" id="L244"><a class="line-no" href="#L244" aria-label="Line 244">244</a><span class="line-code">  have henv := second_order_envelope_le</span></span>
+<span class="source-line" id="L245"><a class="line-no" href="#L245" aria-label="Line 245">245</a><span class="line-code">    ((r : ℝ) * (r * k : ℕ) * ((r : ℝ) + k))</span></span>
+<span class="source-line" id="L246"><a class="line-no" href="#L246" aria-label="Line 246">246</a><span class="line-code">    ((2 : ℝ) ^ (r * k) * (r * k : ℕ) * 2 * (r : ℝ) ^ 2 * k)</span></span>
+<span class="source-line" id="L247"><a class="line-no" href="#L247" aria-label="Line 247">247</a><span class="line-code">    ((2 : ℝ) ^ (r * k) * (r * k : ℕ) * 2 * (r : ℝ) ^ 2 *</span></span>
+<span class="source-line" id="L248"><a class="line-no" href="#L248" aria-label="Line 248">248</a><span class="line-code">      (r * k : ℕ) * ((r : ℝ) + k) ^ 2)</span></span>
+<span class="source-line" id="L249"><a class="line-no" href="#L249" aria-label="Line 249">249</a><span class="line-code">    (∑ i, (row i - N / r) ^ 2) N</span></span>
+<span class="source-line" id="L250"><a class="line-no" href="#L250" aria-label="Line 250">250</a><span class="line-code">    (by positivity) (by positivity) (by positivity)</span></span>
+<span class="source-line" id="L251"><a class="line-no" href="#L251" aria-label="Line 251">251</a><span class="line-code">    (Finset.sum_nonneg (fun i _ =&gt; sq_nonneg _)) hN</span></span>
+<span class="source-line" id="L252"><a class="line-no" href="#L252" aria-label="Line 252">252</a><span class="line-code">  apply hbound.trans</span></span>
+<span class="source-line" id="L253"><a class="line-no" href="#L253" aria-label="Line 253">253</a><span class="line-code">  calc</span></span>
+<span class="source-line" id="L254"><a class="line-no" href="#L254" aria-label="Line 254">254</a><span class="line-code">    _ = (r : ℝ) * (r * k : ℕ) * ((r : ℝ) + k) / N +</span></span>
+<span class="source-line" id="L255"><a class="line-no" href="#L255" aria-label="Line 255">255</a><span class="line-code">        ((2 : ℝ) ^ (r * k) * (r * k : ℕ) * 2 * (r : ℝ) ^ 2 * k) *</span></span>
+<span class="source-line" id="L256"><a class="line-no" href="#L256" aria-label="Line 256">256</a><span class="line-code">          (∑ i, (row i - N / r) ^ 2) / N ^ 2 +</span></span>
+<span class="source-line" id="L257"><a class="line-no" href="#L257" aria-label="Line 257">257</a><span class="line-code">        ((2 : ℝ) ^ (r * k) * (r * k : ℕ) * 2 * (r : ℝ) ^ 2 *</span></span>
+<span class="source-line" id="L258"><a class="line-no" href="#L258" aria-label="Line 258">258</a><span class="line-code">          (r * k : ℕ) * ((r : ℝ) + k) ^ 2) / N ^ 2 := by ring</span></span>
+<span class="source-line" id="L259"><a class="line-no" href="#L259" aria-label="Line 259">259</a><span class="line-code">    _ ≤ _ := henv</span></span>
+<span class="source-line" id="L260"><a class="line-no" href="#L260" aria-label="Line 260">260</a><span class="line-code"> </span></span>
+<span class="source-line" id="L261"><a class="line-no" href="#L261" aria-label="Line 261">261</a><span class="line-code">/-- The same estimate in Landau notation. The small-factor condition is now</span></span>
+<span class="source-line" id="L262"><a class="line-no" href="#L262" aria-label="Line 262">262</a><span class="line-code">derived, rather than assumed, from convergence of the actual row proportions. -/</span></span>
+<span class="source-line" id="L263"><a class="line-no" href="#L263" aria-label="Line 263">263</a><span class="line-code">theorem dimensionRatio_second_order_isBigO (r k : ℕ) (hr : 0 &lt; r)</span></span>
+<span class="source-line" id="L264"><a class="line-no" href="#L264" aria-label="Line 264">264</a><span class="line-code">    (row : ℕ → Fin r → ℝ) (N δ : ℕ → ℝ)</span></span>
+<span class="source-line" id="L265"><a class="line-no" href="#L265" aria-label="Line 265">265</a><span class="line-code">    (hN : Tendsto N atTop atTop) (hδ : Tendsto δ atTop (𝓝 0))</span></span>
+<span class="source-line" id="L266"><a class="line-no" href="#L266" aria-label="Line 266">266</a><span class="line-code">    (hboxes : ∀ n, ∑ i, row n i = N n)</span></span>
+<span class="source-line" id="L267"><a class="line-no" href="#L267" aria-label="Line 267">267</a><span class="line-code">    (hclose : ∀ n i, |row n i / N n - 1 / (r : ℝ)| ≤ δ n) :</span></span>
+<span class="source-line" id="L268"><a class="line-no" href="#L268" aria-label="Line 268">268</a><span class="line-code">    Asymptotics.IsBigO atTop</span></span>
+<span class="source-line" id="L269"><a class="line-no" href="#L269" aria-label="Line 269">269</a><span class="line-code">      (fun n =&gt; dimensionRatio r k (row n) /</span></span>
+<span class="source-line" id="L270"><a class="line-no" href="#L270" aria-label="Line 270">270</a><span class="line-code">        (leadingConstant r k * (N n) ^ (r * k)) - 1)</span></span>
+<span class="source-line" id="L271"><a class="line-no" href="#L271" aria-label="Line 271">271</a><span class="line-code">      (fun n =&gt; 1 / N n + (∑ i, (row n i - N n / r) ^ 2) / (N n) ^ 2) := by</span></span>
+<span class="source-line" id="L272"><a class="line-no" href="#L272" aria-label="Line 272">272</a><span class="line-code">  have hinv : Tendsto (fun n =&gt; (N n)⁻¹) atTop (𝓝 (0 : ℝ)) :=</span></span>
+<span class="source-line" id="L273"><a class="line-no" href="#L273" aria-label="Line 273">273</a><span class="line-code">    tendsto_inv_atTop_zero.comp hN</span></span>
+<span class="source-line" id="L274"><a class="line-no" href="#L274" aria-label="Line 274">274</a><span class="line-code">  have harg : Tendsto</span></span>
+<span class="source-line" id="L275"><a class="line-no" href="#L275" aria-label="Line 275">275</a><span class="line-code">      (fun n =&gt; (r : ℝ) * δ n + (r : ℝ) * ((r : ℝ) + k) / N n)</span></span>
+<span class="source-line" id="L276"><a class="line-no" href="#L276" aria-label="Line 276">276</a><span class="line-code">      atTop (𝓝 (0 : ℝ)) := by</span></span>
+<span class="source-line" id="L277"><a class="line-no" href="#L277" aria-label="Line 277">277</a><span class="line-code">    simpa only [div_eq_mul_inv, mul_zero, add_zero] using</span></span>
+<span class="source-line" id="L278"><a class="line-no" href="#L278" aria-label="Line 278">278</a><span class="line-code">      (((tendsto_const_nhds (x := (r : ℝ))).mul hδ).add</span></span>
+<span class="source-line" id="L279"><a class="line-no" href="#L279" aria-label="Line 279">279</a><span class="line-code">        ((tendsto_const_nhds (x := (r : ℝ) * ((r : ℝ) + k))).mul hinv))</span></span>
+<span class="source-line" id="L280"><a class="line-no" href="#L280" aria-label="Line 280">280</a><span class="line-code">  have hsmall : ∀ᶠ n in atTop,</span></span>
+<span class="source-line" id="L281"><a class="line-no" href="#L281" aria-label="Line 281">281</a><span class="line-code">      (r : ℝ) * δ n + (r : ℝ) * ((r : ℝ) + k) / N n &lt; 1 :=</span></span>
+<span class="source-line" id="L282"><a class="line-no" href="#L282" aria-label="Line 282">282</a><span class="line-code">    harg.eventually (eventually_lt_nhds zero_lt_one)</span></span>
+<span class="source-line" id="L283"><a class="line-no" href="#L283" aria-label="Line 283">283</a><span class="line-code">  have hNlarge : ∀ᶠ n in atTop, 1 ≤ N n := hN.eventually (eventually_ge_atTop 1)</span></span>
+<span class="source-line" id="L284"><a class="line-no" href="#L284" aria-label="Line 284">284</a><span class="line-code">  apply Asymptotics.IsBigO.of_bound (secondOrderConstant r k)</span></span>
+<span class="source-line" id="L285"><a class="line-no" href="#L285" aria-label="Line 285">285</a><span class="line-code">  filter_upwards [hNlarge, hsmall] with n hn hs</span></span>
+<span class="source-line" id="L286"><a class="line-no" href="#L286" aria-label="Line 286">286</a><span class="line-code">  have hrate := dimensionRatio_second_order_rate r k (row n) (N n) (δ n)</span></span>
+<span class="source-line" id="L287"><a class="line-no" href="#L287" aria-label="Line 287">287</a><span class="line-code">    hr hn (hboxes n) (hclose n) hs.le</span></span>
+<span class="source-line" id="L288"><a class="line-no" href="#L288" aria-label="Line 288">288</a><span class="line-code">  have hnonneg : 0 ≤ 1 / N n + (∑ i, (row n i - N n / r) ^ 2) / (N n) ^ 2 :=</span></span>
+<span class="source-line" id="L289"><a class="line-no" href="#L289" aria-label="Line 289">289</a><span class="line-code">    add_nonneg (one_div_nonneg.mpr (le_trans zero_le_one hn))</span></span>
+<span class="source-line" id="L290"><a class="line-no" href="#L290" aria-label="Line 290">290</a><span class="line-code">      (div_nonneg (Finset.sum_nonneg (fun i _ =&gt; sq_nonneg _)) (sq_nonneg _))</span></span>
+<span class="source-line" id="L291"><a class="line-no" href="#L291" aria-label="Line 291">291</a><span class="line-code">  simpa only [Real.norm_eq_abs, abs_of_nonneg hnonneg] using hrate</span></span>
+<span class="source-line" id="L292"><a class="line-no" href="#L292" aria-label="Line 292">292</a><span class="line-code"> </span></span>
+<span class="source-line" id="L293"><a class="line-no" href="#L293" aria-label="Line 293">293</a><span class="line-code">end Cloning.YoungDimensionRatio</span></span>
+</code></pre></div></main>
+<footer class="footer">English guides explain the argument. Lean source and its hypotheses determine the formal claims.
+<a href="../verification.html">Audit evidence</a> · <a href="../scope.html">Scope</a></footer>
+</div></div></body></html>

@@ -1,0 +1,53 @@
+[
+  {
+    "check": "python_syntax",
+    "command": [
+      "python3",
+      "-c",
+      "import ast,pathlib; [ast.parse(p.read_text()) for p in pathlib.Path('verification/comparator').glob('*.py')]; print('Python syntax valid')"
+    ],
+    "exit_code": 0,
+    "output": "Python syntax valid\n"
+  },
+  {
+    "check": "shell_syntax",
+    "command": [
+      "bash",
+      "-n",
+      "verification/comparator/run.sh"
+    ],
+    "exit_code": 0,
+    "output": ""
+  },
+  {
+    "check": "configuration",
+    "command": [
+      "bash",
+      "verification/comparator/run.sh",
+      "validate"
+    ],
+    "exit_code": 0,
+    "output": "{\n  \"status\": \"configuration-valid\",\n  \"claims\": 27,\n  \"source_snapshot_matches\": true,\n  \"comparator_executed\": false\n}\n"
+  },
+  {
+    "check": "linux_preflight",
+    "command": [
+      "bash",
+      "verification/comparator/run.sh",
+      "preflight"
+    ],
+    "exit_code": 2,
+    "output": "ERROR: prerequisites missing; no checker was run\n{\n  \"platform\": \"Darwin\",\n  \"python\": \"3.13.2\",\n  \"lake\": \"/Users/jw/.elan/bin/lake\",\n  \"mode\": \"linux-landrun\",\n  \"network\": \"not probed; setup requires GitHub and Go module network access\",\n  \"blockers\": [\n    \"sandboxed comparator requires Linux with Landlock; use a Linux host/VM, or explicitly select --trusted-local\",\n    \"Go go1.25.0 required to build pinned landrun\"\n  ]\n}\n"
+  },
+  {
+    "check": "trusted_local_preflight",
+    "command": [
+      "bash",
+      "verification/comparator/run.sh",
+      "preflight",
+      "--trusted-local"
+    ],
+    "exit_code": 0,
+    "output": "{\n  \"platform\": \"Darwin\",\n  \"python\": \"3.13.2\",\n  \"lake\": \"/Users/jw/.elan/bin/lake\",\n  \"mode\": \"trusted-local-no-sandbox\",\n  \"network\": \"not probed; setup requires GitHub and Go module network access\",\n  \"blockers\": []\n}\n"
+  }
+]

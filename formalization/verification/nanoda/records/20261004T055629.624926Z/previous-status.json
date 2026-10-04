@@ -1,0 +1,20 @@
+{
+  "error": "unsafe/partial def: Cloning.MultimodeCoherent.numberIterate._unsafe_rec",
+  "export_diagnostic": "formalization/verification/nanoda/records/20261004T040757.497668Z/export-diagnostic.json",
+  "failure_phase": "export_safety_validation",
+  "independent_kernel_check": "not_run",
+  "limitations": [
+    "The full export contains 30 compiler-generated partial runtime definitions with ._unsafe_rec suffix; strict policy rejected them before Nanoda execution",
+    "The original export remains under ignored .work; only logs, hash-bound records, roots, and diagnostics are archived in Git",
+    "No independent Rust kernel success is claimed"
+  ],
+  "modules": 982,
+  "project_declarations": 14375,
+  "recorded_utc": "2026-10-04T04:10:08.958336+00:00",
+  "run_record": "formalization/verification/nanoda/records/20261004T040757.497668Z/run.json",
+  "run_record_sha256": "ea55c9f4cbbefa78dbfee72a4041445d5c031bc38d210437973638b1efebe7ab",
+  "scope": "Every audited project constant and dependencies; no requested root was omitted",
+  "source_audit_sha256": "00b03eb5cfff71467000058132c3953d8508a394b22b2a8092a464fb42593dae",
+  "source_binding": "matched",
+  "status": "failed"
+}

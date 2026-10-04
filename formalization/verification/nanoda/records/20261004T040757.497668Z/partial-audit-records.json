@@ -1,0 +1,276 @@
+[
+  {
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "kind": "definition",
+    "module": "Cloning.TensorPBWWeight",
+    "name": "Cloning.TensorLie.loweringWeight._unsafe_rec",
+    "private": false
+  },
+  {
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "kind": "definition",
+    "module": "Cloning.TensorPBWNormalization",
+    "name": "Cloning.TensorLie.loweringScale._unsafe_rec",
+    "private": false
+  },
+  {
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "kind": "definition",
+    "module": "Cloning.TensorHighestGramAction",
+    "name": "Cloning.TensorLie.highestAction._unsafe_rec",
+    "private": false
+  },
+  {
+    "axioms": [],
+    "kind": "definition",
+    "module": "Cloning.TensorCartanWordSplit",
+    "name": "Cloning.TensorLie.loweringSplits._unsafe_rec",
+    "private": false
+  },
+  {
+    "axioms": [],
+    "kind": "definition",
+    "module": "Cloning.YoungRSKTableau",
+    "name": "Cloning.YoungGeneral.shapeAdd._unsafe_rec",
+    "private": false
+  },
+  {
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "kind": "definition",
+    "module": "Cloning.YoungRSKTableau",
+    "name": "Cloning.YoungGeneral.tableauInsert._unsafe_rec",
+    "private": false
+  },
+  {
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "kind": "definition",
+    "module": "Cloning.YoungTwoRowMoment",
+    "name": "Cloning.YoungTwoRow.pathFintype._unsafe_rec",
+    "private": false
+  },
+  {
+    "axioms": [],
+    "kind": "definition",
+    "module": "Cloning.YoungTwoRowMoment",
+    "name": "Cloning.YoungTwoRow.upperRow._unsafe_rec",
+    "private": false
+  },
+  {
+    "axioms": [],
+    "kind": "definition",
+    "module": "Cloning.YoungTwoRowMoment",
+    "name": "Cloning.YoungTwoRow.legal._unsafe_rec",
+    "private": false
+  },
+  {
+    "axioms": [],
+    "kind": "definition",
+    "module": "Cloning.YoungTwoRowMoment",
+    "name": "Cloning.YoungTwoRow.Path._unsafe_rec",
+    "private": false
+  },
+  {
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "kind": "definition",
+    "module": "Cloning.YoungTwoRowMoment",
+    "name": "Cloning.YoungTwoRow.weight._unsafe_rec",
+    "private": false
+  },
+  {
+    "axioms": [],
+    "kind": "definition",
+    "module": "Cloning.YoungTwoRowMoment",
+    "name": "Cloning.YoungTwoRow.lowerRow._unsafe_rec",
+    "private": false
+  },
+  {
+    "axioms": [],
+    "kind": "definition",
+    "module": "Cloning.YoungTwoRowMoment",
+    "name": "Cloning.YoungTwoRow.spin._unsafe_rec",
+    "private": false
+  },
+  {
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "kind": "definition",
+    "module": "Cloning.TensorCyclicFiltration",
+    "name": "Cloning.TensorLie.loweringWord._unsafe_rec",
+    "private": false
+  },
+  {
+    "axioms": [],
+    "kind": "definition",
+    "module": "Cloning.TensorCyclicFiltration",
+    "name": "Cloning.TensorLie.loweringHeight._unsafe_rec",
+    "private": false
+  },
+  {
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "kind": "definition",
+    "module": "Cloning.TensorSchurDecomposition",
+    "name": "Cloning.TensorLie.physicalSectorListSpan._unsafe_rec",
+    "private": false
+  },
+  {
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "kind": "definition",
+    "module": "Cloning.TensorSchurMultiplicityDecomposition",
+    "name": "Cloning.TensorLie.recursivePhysicalDecomposition._unsafe_rec",
+    "private": false
+  },
+  {
+    "axioms": [
+      "propext"
+    ],
+    "kind": "definition",
+    "module": "Cloning.TensorCartanSplitMultiplicity",
+    "name": "Cloning.TensorLie.rootOccupationSplits._unsafe_rec",
+    "private": false
+  },
+  {
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "kind": "definition",
+    "module": "Cloning.WeylNumberTaylor",
+    "name": "Cloning.MultimodeCoherent.numberIterate._unsafe_rec",
+    "private": false
+  },
+  {
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "kind": "definition",
+    "module": "Cloning.YoungRSKTableauReverse",
+    "name": "Cloning.YoungGeneral.tableauRemovable._unsafe_rec",
+    "private": false
+  },
+  {
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "kind": "definition",
+    "module": "Cloning.YoungRSKTableauReverse",
+    "name": "Cloning.YoungGeneral.tableauReverse._unsafe_rec",
+    "private": false
+  },
+  {
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "kind": "definition",
+    "module": "Cloning.PBWNormalOrdering",
+    "name": "Cloning.PBW.word._unsafe_rec",
+    "private": false
+  },
+  {
+    "axioms": [
+      "propext"
+    ],
+    "kind": "definition",
+    "module": "Cloning.PBWNormalOrdering",
+    "name": "Cloning.PBW.wick._unsafe_rec",
+    "private": false
+  },
+  {
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "kind": "definition",
+    "module": "Cloning.PBWNormalOrdering",
+    "name": "Cloning.PBW.errorTerms._unsafe_rec",
+    "private": false
+  },
+  {
+    "axioms": [],
+    "kind": "definition",
+    "module": "Cloning.PBWNormalOrdering",
+    "name": "Cloning.PBW.removeOne._unsafe_rec",
+    "private": false
+  },
+  {
+    "axioms": [],
+    "kind": "definition",
+    "module": "Cloning.PBWNormalOrdering",
+    "name": "Cloning.PBW.occupationFactorial._unsafe_rec",
+    "private": false
+  },
+  {
+    "axioms": [],
+    "kind": "definition",
+    "module": "Cloning.PBWNormalOrdering",
+    "name": "Cloning.PBW.gramConstant._unsafe_rec",
+    "private": false
+  },
+  {
+    "axioms": [],
+    "kind": "definition",
+    "module": "Cloning.TensorPBWOrder",
+    "name": "Cloning.TensorLie.rootInversions._unsafe_rec",
+    "private": false
+  },
+  {
+    "axioms": [
+      "propext",
+      "Classical.choice",
+      "Quot.sound"
+    ],
+    "kind": "definition",
+    "module": "Cloning.TensorPBWOrder",
+    "name": "Cloning.TensorLie.loweringOperator._unsafe_rec",
+    "private": false
+  },
+  {
+    "axioms": [],
+    "kind": "definition",
+    "module": "Cloning.YoungRSKShape",
+    "name": "Cloning.YoungGeneral.shapeRemovable._unsafe_rec",
+    "private": false
+  }
+]

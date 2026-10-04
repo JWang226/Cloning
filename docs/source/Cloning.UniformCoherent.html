@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="An offline guide to the Lean formalization of asymptotic mixed-state quantum cloning. Exact source, proof routes, and audited scope.">
+<title>UniformCoherent · Lean source · Cloning proof wiki</title>
+<link rel="stylesheet" href="../assets/site.css?v=1811c00ea983">
+<script>window.PROOF_ROOT="../";</script>
+<script defer src="../assets/vendor/katex/katex.min.js"></script>
+<script defer src="../assets/search-index.js?v=850aee981cdc"></script>
+<script defer src="../assets/site.js?v=4bfaac1f06b1"></script>
+</head><body><a class="skip-link" href="#main">Skip to content</a>
+<div class="site-shell"><aside class="sidebar" id="site-navigation">
+<a class="brand" href="../index.html"><span class="brand-mark">C</span><span>Cloning<span class="small muted">A Lean proof wiki</span></span></a>
+<nav aria-label="Main navigation"><div class="nav-section">Explore</div><a class="nav-link" href="../index.html">Overview</a><a class="nav-link" href="../guides/index.html">Proof guide</a><a class="nav-link" href="../results/index.html">27 named results</a><a class="nav-link active" href="../source/index.html" aria-current="page">Lean source</a><a class="nav-link" href="../verification.html">Verification</a><a class="nav-link" href="../scope.html">Scope &amp; conventions</a>
+<div class="nav-section">Read the proof</div><a class="nav-link" href="../guides/physical-problem.html"><span class="nav-number">01</span> The physical problem and its conventions</a><a class="nav-link" href="../guides/young-laws.html"><span class="nav-number">02</span> Young labels: concentration and the local Gaussian law</a><a class="nav-link" href="../guides/cartan-sectors.html"><span class="nav-number">03</span> From PBW frames to uniform Cartan-sector fidelity</a><a class="nav-link" href="../guides/lifted-kernels.html"><span class="nav-number">04</span> Lifted channels, randomized dilation, and factorization</a><a class="nav-link" href="../guides/gaussian-optimum.html"><span class="nav-number">05</span> Gaussian amplification against arbitrary competitors</a><a class="nav-link" href="../guides/physical-lan.html"><span class="nav-number">06</span> Constructed LAN and fidelity transfer</a><a class="nav-link" href="../guides/known-spectrum.html"><span class="nav-number">07</span> The known-spectrum optimum</a><a class="nav-link" href="../guides/unknown-spectrum.html"><span class="nav-number">08</span> One universal cloner and the compact-set optimum</a><a class="nav-link" href="../guides/grassmann.html"><span class="nav-number">09</span> Exact rank compression and projector-state optimality</a><a class="nav-link" href="../guides/purify-clone-trace.html"><span class="nav-number">10</span> Purify–clone–trace: exact channels, limits, and guarantees</a><a class="nav-link" href="../guides/small-errors.html"><span class="nav-number">11</span> Small errors, rank boundaries, and noncommuting limits</a><a class="nav-link" href="../guides/spectral-comparison.html"><span class="nav-number">12</span> Spectral order and what is known for all states</a></nav>
+<div class="sidebar-footer"><span class="badge">Lean 4</span><p>Manuscript → proof → source</p>
+<a href="https://github.com/JWang226/Cloning">Repository ↗</a></div></aside>
+<div class="main-shell"><header class="topbar">
+<button id="nav-toggle" class="button secondary" aria-controls="site-navigation" aria-expanded="false" aria-label="Toggle navigation">Menu</button>
+<div class="search-wrap"><label class="sr-only" for="site-search">Search the proof wiki</label>
+<input id="site-search" type="search" placeholder="Search results, concepts, or Lean names…" autocomplete="off" aria-controls="search-results" aria-expanded="false" role="combobox" aria-autocomplete="list">
+<div id="search-results" class="search-results" role="listbox" hidden></div></div>
+<span class="small muted topbar-label">Offline · exact source</span></header>
+<main id="main" class="content"><div class="eyebrow">Exact Lean source</div><h1 class="source-title">UniformCoherent</h1><p><code>formalization/Cloning/UniformCoherent.lean</code></p><p class="small muted">Source hash: <code>5541c4073f77653968c8befc40b32f5afcce5f548763c89048b0ce2c503b6043</code></p><div class="actions"><a class="button secondary" href="raw/Cloning.UniformCoherent.lean">Download .lean</a><a class="button secondary" href="https://github.com/JWang226/Cloning/blob/main/formalization/Cloning/UniformCoherent.lean">View on GitHub ↗</a><a href="index.html">All modules</a></div><p class="small muted">Full source copied without mathematical changes from the snapshot whose input hash matches the passing audit. Select a line number for a stable source pointer.</p><details><summary>Declarations in this module</summary><div class="module-declarations"><a href="#L15"><span class="badge">theorem</span> <code>Cloning.ComplexCoherent.moving_exponential</code></a><a href="#L63"><span class="badge">theorem</span> <code>Cloning.ComplexCoherent.radial_productVector_moving_tendsto</code></a><a href="#L76"><span class="badge">theorem</span> <code>Cloning.ComplexCoherent.radial_coherentVector_moving_tendsto</code></a><a href="#L91"><span class="badge">theorem</span> <code>Cloning.ComplexCoherent.productVector_coherentVector_norm_eq_radial</code></a><a href="#L100"><span class="badge">theorem</span> <code>Cloning.ComplexCoherent.radial_productVector_uniform</code></a><a href="#L123"><span class="badge">theorem</span> <code>Cloning.ComplexCoherent.productVector_coherentVector_uniform_on_closedBall</code></a><a href="#L133"><span class="badge">theorem</span> <code>Cloning.ComplexCoherent.productVector_tendstoUniformlyOn</code></a><a href="#L143"><span class="badge">theorem</span> <code>Cloning.ComplexCoherent.productVector_tendstoUniformlyOn_compact</code></a><a href="#L148"><span class="badge">theorem</span> <code>Cloning.ComplexCoherent.product_projector_distance_le</code></a><a href="#L156"><span class="badge">theorem</span> <code>Cloning.ComplexCoherent.product_projector_tendstoUniformlyOn</code></a><a href="#L170"><span class="badge">theorem</span> <code>Cloning.ComplexCoherent.occupationChannel_coherent_product_distance_le</code></a><a href="#L185"><span class="badge">theorem</span> <code>Cloning.ComplexCoherent.occupationChannel_coherent_product_uniform_on_closedBall</code></a><a href="#L197"><span class="badge">theorem</span> <code>Cloning.ComplexCoherent.occupationChannel_coherent_product_uniform_on_compact</code></a></div></details><div class="code-wrap source-wrap"><pre class="source-lines"><code><span class="source-line" id="L1"><a class="line-no" href="#L1" aria-label="Line 1">1</a><span class="line-code">import Cloning.CoherentContinuity</span></span>
+<span class="source-line" id="L2"><a class="line-no" href="#L2" aria-label="Line 2">2</a><span class="line-code">import Mathlib.Analysis.Calculus.Deriv.Slope</span></span>
+<span class="source-line" id="L3"><a class="line-no" href="#L3" aria-label="Line 3">3</a><span class="line-code">import Mathlib.Analysis.SpecialFunctions.Log.Deriv</span></span>
+<span class="source-line" id="L4"><a class="line-no" href="#L4" aria-label="Line 4">4</a><span class="line-code">import Mathlib.Topology.Sequences</span></span>
+<span class="source-line" id="L5"><a class="line-no" href="#L5" aria-label="Line 5">5</a><span class="line-code"> </span></span>
+<span class="source-line" id="L6"><a class="line-no" href="#L6" aria-label="Line 6">6</a><span class="line-code">/-! Compact-uniform coherent-product limits from moving-parameter probability limits.</span></span>
+<span class="source-line" id="L7"><a class="line-no" href="#L7" aria-label="Line 7">7</a><span class="line-code">No equicontinuity premise is assumed. -/</span></span>
+<span class="source-line" id="L8"><a class="line-no" href="#L8" aria-label="Line 8">8</a><span class="line-code">noncomputable section</span></span>
+<span class="source-line" id="L9"><a class="line-no" href="#L9" aria-label="Line 9">9</a><span class="line-code">open scoped BigOperators Topology</span></span>
+<span class="source-line" id="L10"><a class="line-no" href="#L10" aria-label="Line 10">10</a><span class="line-code">open Filter</span></span>
+<span class="source-line" id="L11"><a class="line-no" href="#L11" aria-label="Line 11">11</a><span class="line-code">namespace Cloning.ComplexCoherent</span></span>
+<span class="source-line" id="L12"><a class="line-no" href="#L12" aria-label="Line 12">12</a><span class="line-code">set_option maxHeartbeats 800000</span></span>
+<span class="source-line" id="L13"><a class="line-no" href="#L13" aria-label="Line 13">13</a><span class="line-code">set_option backward.isDefEq.respectTransparency false</span></span>
+<span class="source-line" id="L14"><a class="line-no" href="#L14" aria-label="Line 14">14</a><span class="line-code"> </span></span>
+<span class="source-line" id="L15"><a class="line-no" href="#L15" aria-label="Line 15">15</a><span class="line-code">theorem moving_exponential (L : ℕ → ℕ) (hL : Tendsto L atTop atTop)</span></span>
+<span class="source-line" id="L16"><a class="line-no" href="#L16" aria-label="Line 16">16</a><span class="line-code">    (t : ℕ → ℝ) {a : ℝ} (ht : Tendsto t atTop (𝓝 a)) (ht0 : ∀ n, 0 ≤ t n) :</span></span>
+<span class="source-line" id="L17"><a class="line-no" href="#L17" aria-label="Line 17">17</a><span class="line-code">    Tendsto (fun n =&gt; (1 + t n / L n) ^ L n) atTop (𝓝 (Real.exp a)) := by</span></span>
+<span class="source-line" id="L18"><a class="line-no" href="#L18" aria-label="Line 18">18</a><span class="line-code">  let ratio : ℝ → ℝ := Function.update (fun x =&gt; Real.log (1 + x) / x) 0 1</span></span>
+<span class="source-line" id="L19"><a class="line-no" href="#L19" aria-label="Line 19">19</a><span class="line-code">  have hd : HasDerivAt (fun x : ℝ =&gt; Real.log (1 + x)) 1 0 := by</span></span>
+<span class="source-line" id="L20"><a class="line-no" href="#L20" aria-label="Line 20">20</a><span class="line-code">    convert ((hasDerivAt_id (0 : ℝ)).const_add 1).log (by norm_num) using 1</span></span>
+<span class="source-line" id="L21"><a class="line-no" href="#L21" aria-label="Line 21">21</a><span class="line-code">    norm_num</span></span>
+<span class="source-line" id="L22"><a class="line-no" href="#L22" aria-label="Line 22">22</a><span class="line-code">  have hc : ContinuousAt ratio 0 := by</span></span>
+<span class="source-line" id="L23"><a class="line-no" href="#L23" aria-label="Line 23">23</a><span class="line-code">    simpa only [ratio, add_zero, Real.log_one, sub_zero] using hd.continuousAt_div</span></span>
+<span class="source-line" id="L24"><a class="line-no" href="#L24" aria-label="Line 24">24</a><span class="line-code">  have hz : Tendsto (fun n =&gt; t n / L n) atTop (𝓝 0) := by</span></span>
+<span class="source-line" id="L25"><a class="line-no" href="#L25" aria-label="Line 25">25</a><span class="line-code">    simpa only [Function.comp_def, div_eq_mul_inv, one_div, one_mul, mul_zero] using</span></span>
+<span class="source-line" id="L26"><a class="line-no" href="#L26" aria-label="Line 26">26</a><span class="line-code">      ht.mul (tendsto_one_div_atTop_nhds_zero_nat.comp hL)</span></span>
+<span class="source-line" id="L27"><a class="line-no" href="#L27" aria-label="Line 27">27</a><span class="line-code">  have hr : Tendsto (fun n =&gt; t n * ratio (t n / L n)) atTop (𝓝 a) := by</span></span>
+<span class="source-line" id="L28"><a class="line-no" href="#L28" aria-label="Line 28">28</a><span class="line-code">    simpa only [Function.comp_def, ratio, Function.update_self, mul_one] using ht.mul (hc.tendsto.comp hz)</span></span>
+<span class="source-line" id="L29"><a class="line-no" href="#L29" aria-label="Line 29">29</a><span class="line-code">  have heq : (fun n =&gt; t n * ratio (t n / L n)) =ᶠ[atTop]</span></span>
+<span class="source-line" id="L30"><a class="line-no" href="#L30" aria-label="Line 30">30</a><span class="line-code">      (fun n =&gt; (L n : ℝ) * Real.log (1 + t n / L n)) := by</span></span>
+<span class="source-line" id="L31"><a class="line-no" href="#L31" aria-label="Line 31">31</a><span class="line-code">    filter_upwards [hL.eventually (eventually_ge_atTop 1)] with n hn</span></span>
+<span class="source-line" id="L32"><a class="line-no" href="#L32" aria-label="Line 32">32</a><span class="line-code">    have hn0 : (L n : ℝ) ≠ 0 := by exact_mod_cast (Nat.ne_of_gt hn)</span></span>
+<span class="source-line" id="L33"><a class="line-no" href="#L33" aria-label="Line 33">33</a><span class="line-code">    by_cases htn : t n = 0</span></span>
+<span class="source-line" id="L34"><a class="line-no" href="#L34" aria-label="Line 34">34</a><span class="line-code">    · simp [htn, ratio]</span></span>
+<span class="source-line" id="L35"><a class="line-no" href="#L35" aria-label="Line 35">35</a><span class="line-code">    · dsimp only [ratio]</span></span>
+<span class="source-line" id="L36"><a class="line-no" href="#L36" aria-label="Line 36">36</a><span class="line-code">      rw [Function.update_of_ne (div_ne_zero htn hn0)]</span></span>
+<span class="source-line" id="L37"><a class="line-no" href="#L37" aria-label="Line 37">37</a><span class="line-code">      field_simp</span></span>
+<span class="source-line" id="L38"><a class="line-no" href="#L38" aria-label="Line 38">38</a><span class="line-code">  have he := (Real.continuous_exp.tendsto a).comp (hr.congr&#x27; heq)</span></span>
+<span class="source-line" id="L39"><a class="line-no" href="#L39" aria-label="Line 39">39</a><span class="line-code">  convert he using 1</span></span>
+<span class="source-line" id="L40"><a class="line-no" href="#L40" aria-label="Line 40">40</a><span class="line-code">  funext n</span></span>
+<span class="source-line" id="L41"><a class="line-no" href="#L41" aria-label="Line 41">41</a><span class="line-code">  simp only [Function.comp_def]</span></span>
+<span class="source-line" id="L42"><a class="line-no" href="#L42" aria-label="Line 42">42</a><span class="line-code">  rw [Real.exp_nat_mul, Real.exp_log (by have := ht0 n; positivity : 0 &lt; 1 + t n / L n)]</span></span>
+<span class="source-line" id="L43"><a class="line-no" href="#L43" aria-label="Line 43">43</a><span class="line-code"> </span></span>
+<span class="source-line" id="L44"><a class="line-no" href="#L44" aria-label="Line 44">44</a><span class="line-code">private theorem moving_binomialWeight (L : ℕ → ℕ) (hL : Tendsto L atTop atTop)</span></span>
+<span class="source-line" id="L45"><a class="line-no" href="#L45" aria-label="Line 45">45</a><span class="line-code">    (t : ℕ → ℝ) {a : ℝ} (ht : Tendsto t atTop (𝓝 a)) (ht0 : ∀ n, 0 ≤ t n)</span></span>
+<span class="source-line" id="L46"><a class="line-no" href="#L46" aria-label="Line 46">46</a><span class="line-code">    (j : ℕ) : Tendsto (fun n =&gt; PoissonApproximation.binomialWeight (t n) (L n) j)</span></span>
+<span class="source-line" id="L47"><a class="line-no" href="#L47" aria-label="Line 47">47</a><span class="line-code">      atTop (𝓝 (PoissonApproximation.poissonWeight a j)) := by</span></span>
+<span class="source-line" id="L48"><a class="line-no" href="#L48" aria-label="Line 48">48</a><span class="line-code">  have hn := (PoissonApproximation.tendsto_binomial_numerator 1 j).comp hL</span></span>
+<span class="source-line" id="L49"><a class="line-no" href="#L49" aria-label="Line 49">49</a><span class="line-code">  simp only [one_pow] at hn</span></span>
+<span class="source-line" id="L50"><a class="line-no" href="#L50" aria-label="Line 50">50</a><span class="line-code">  have hnum := hn.mul (ht.pow j)</span></span>
+<span class="source-line" id="L51"><a class="line-no" href="#L51" aria-label="Line 51">51</a><span class="line-code">  have hden := moving_exponential L hL t ht ht0</span></span>
+<span class="source-line" id="L52"><a class="line-no" href="#L52" aria-label="Line 52">52</a><span class="line-code">  have h := hnum.div hden (Real.exp_ne_zero a)</span></span>
+<span class="source-line" id="L53"><a class="line-no" href="#L53" aria-label="Line 53">53</a><span class="line-code">  convert h using 1</span></span>
+<span class="source-line" id="L54"><a class="line-no" href="#L54" aria-label="Line 54">54</a><span class="line-code">  · funext n</span></span>
+<span class="source-line" id="L55"><a class="line-no" href="#L55" aria-label="Line 55">55</a><span class="line-code">    simp only [PoissonApproximation.binomialWeight, Function.comp_def, Pi.div_apply]</span></span>
+<span class="source-line" id="L56"><a class="line-no" href="#L56" aria-label="Line 56">56</a><span class="line-code">    ring_nf</span></span>
+<span class="source-line" id="L57"><a class="line-no" href="#L57" aria-label="Line 57">57</a><span class="line-code">  · unfold PoissonApproximation.poissonWeight</span></span>
+<span class="source-line" id="L58"><a class="line-no" href="#L58" aria-label="Line 58">58</a><span class="line-code">    rw [Real.exp_neg]</span></span>
+<span class="source-line" id="L59"><a class="line-no" href="#L59" aria-label="Line 59">59</a><span class="line-code">    ring_nf</span></span>
+<span class="source-line" id="L60"><a class="line-no" href="#L60" aria-label="Line 60">60</a><span class="line-code"> </span></span>
+<span class="source-line" id="L61"><a class="line-no" href="#L61" aria-label="Line 61">61</a><span class="line-code">/-- Binomial number-amplitude vectors converge also when the amplitude changes</span></span>
+<span class="source-line" id="L62"><a class="line-no" href="#L62" aria-label="Line 62">62</a><span class="line-code">with the sample size, provided it converges to a finite limit. -/</span></span>
+<span class="source-line" id="L63"><a class="line-no" href="#L63" aria-label="Line 63">63</a><span class="line-code">theorem radial_productVector_moving_tendsto (L : ℕ → ℕ) (hL : Tendsto L atTop atTop)</span></span>
+<span class="source-line" id="L64"><a class="line-no" href="#L64" aria-label="Line 64">64</a><span class="line-code">    (t : ℕ → ℝ) {a : ℝ} (ht : Tendsto t atTop (𝓝 a)) (ht0 : ∀ n, 0 ≤ t n)</span></span>
+<span class="source-line" id="L65"><a class="line-no" href="#L65" aria-label="Line 65">65</a><span class="line-code">    (ha : 0 ≤ a) :</span></span>
+<span class="source-line" id="L66"><a class="line-no" href="#L66" aria-label="Line 66">66</a><span class="line-code">    Tendsto (fun n =&gt; CoherentCoefficients.productVector (t n) (ht0 n) (L n)) atTop</span></span>
+<span class="source-line" id="L67"><a class="line-no" href="#L67" aria-label="Line 67">67</a><span class="line-code">      (𝓝 (CoherentCoefficients.coherentVector a ha)) := by</span></span>
+<span class="source-line" id="L68"><a class="line-no" href="#L68" aria-label="Line 68">68</a><span class="line-code">  exact CoherentCoefficients.amplitudeVector_tendsto _ _</span></span>
+<span class="source-line" id="L69"><a class="line-no" href="#L69" aria-label="Line 69">69</a><span class="line-code">    (fun n =&gt; PoissonApproximation.binomialWeight_nonneg (ht0 n) (L n))</span></span>
+<span class="source-line" id="L70"><a class="line-no" href="#L70" aria-label="Line 70">70</a><span class="line-code">    (PoissonApproximation.poissonWeight_nonneg ha)</span></span>
+<span class="source-line" id="L71"><a class="line-no" href="#L71" aria-label="Line 71">71</a><span class="line-code">    (fun n =&gt; PoissonApproximation.binomialWeight_hasSum (ht0 n) (L n))</span></span>
+<span class="source-line" id="L72"><a class="line-no" href="#L72" aria-label="Line 72">72</a><span class="line-code">    (PoissonApproximation.poissonWeight_hasSum ha)</span></span>
+<span class="source-line" id="L73"><a class="line-no" href="#L73" aria-label="Line 73">73</a><span class="line-code">    (moving_binomialWeight L hL t ht ht0)</span></span>
+<span class="source-line" id="L74"><a class="line-no" href="#L74" aria-label="Line 74">74</a><span class="line-code"> </span></span>
+<span class="source-line" id="L75"><a class="line-no" href="#L75" aria-label="Line 75">75</a><span class="line-code">/-- Continuity of the normalized nonnegative Poisson square-root amplitudes. -/</span></span>
+<span class="source-line" id="L76"><a class="line-no" href="#L76" aria-label="Line 76">76</a><span class="line-code">theorem radial_coherentVector_moving_tendsto</span></span>
+<span class="source-line" id="L77"><a class="line-no" href="#L77" aria-label="Line 77">77</a><span class="line-code">    (t : ℕ → ℝ) {a : ℝ} (ht : Tendsto t atTop (𝓝 a)) (ht0 : ∀ n, 0 ≤ t n)</span></span>
+<span class="source-line" id="L78"><a class="line-no" href="#L78" aria-label="Line 78">78</a><span class="line-code">    (ha : 0 ≤ a) :</span></span>
+<span class="source-line" id="L79"><a class="line-no" href="#L79" aria-label="Line 79">79</a><span class="line-code">    Tendsto (fun n =&gt; CoherentCoefficients.coherentVector (t n) (ht0 n)) atTop</span></span>
+<span class="source-line" id="L80"><a class="line-no" href="#L80" aria-label="Line 80">80</a><span class="line-code">      (𝓝 (CoherentCoefficients.coherentVector a ha)) := by</span></span>
+<span class="source-line" id="L81"><a class="line-no" href="#L81" aria-label="Line 81">81</a><span class="line-code">  apply CoherentCoefficients.amplitudeVector_tendsto _ _</span></span>
+<span class="source-line" id="L82"><a class="line-no" href="#L82" aria-label="Line 82">82</a><span class="line-code">    (fun n =&gt; PoissonApproximation.poissonWeight_nonneg (ht0 n))</span></span>
+<span class="source-line" id="L83"><a class="line-no" href="#L83" aria-label="Line 83">83</a><span class="line-code">    (PoissonApproximation.poissonWeight_nonneg ha)</span></span>
+<span class="source-line" id="L84"><a class="line-no" href="#L84" aria-label="Line 84">84</a><span class="line-code">    (fun n =&gt; PoissonApproximation.poissonWeight_hasSum (ht0 n))</span></span>
+<span class="source-line" id="L85"><a class="line-no" href="#L85" aria-label="Line 85">85</a><span class="line-code">    (PoissonApproximation.poissonWeight_hasSum ha)</span></span>
+<span class="source-line" id="L86"><a class="line-no" href="#L86" aria-label="Line 86">86</a><span class="line-code">  intro j</span></span>
+<span class="source-line" id="L87"><a class="line-no" href="#L87" aria-label="Line 87">87</a><span class="line-code">  exact ((Real.continuous_exp.tendsto _).comp ht.neg |&gt;.mul (ht.pow j)).div_const _</span></span>
+<span class="source-line" id="L88"><a class="line-no" href="#L88" aria-label="Line 88">88</a><span class="line-code"> </span></span>
+<span class="source-line" id="L89"><a class="line-no" href="#L89" aria-label="Line 89">89</a><span class="line-code">/-- The phase isometry removes all phase dependence from the approximation</span></span>
+<span class="source-line" id="L90"><a class="line-no" href="#L90" aria-label="Line 90">90</a><span class="line-code">error, even at zero amplitude. -/</span></span>
+<span class="source-line" id="L91"><a class="line-no" href="#L91" aria-label="Line 91">91</a><span class="line-code">theorem productVector_coherentVector_norm_eq_radial (z : ℂ) (L : ℕ) :</span></span>
+<span class="source-line" id="L92"><a class="line-no" href="#L92" aria-label="Line 92">92</a><span class="line-code">    ‖productVector z L - coherentVector z‖ =</span></span>
+<span class="source-line" id="L93"><a class="line-no" href="#L93" aria-label="Line 93">93</a><span class="line-code">      ‖CoherentCoefficients.productVector (‖z‖ ^ 2) (sq_nonneg _) L -</span></span>
+<span class="source-line" id="L94"><a class="line-no" href="#L94" aria-label="Line 94">94</a><span class="line-code">        CoherentCoefficients.coherentVector (‖z‖ ^ 2) (sq_nonneg _)‖ := by</span></span>
+<span class="source-line" id="L95"><a class="line-no" href="#L95" aria-label="Line 95">95</a><span class="line-code">  rw [productVector, coherentVector, ← map_sub, LinearIsometry.norm_map]</span></span>
+<span class="source-line" id="L96"><a class="line-no" href="#L96" aria-label="Line 96">96</a><span class="line-code"> </span></span>
+<span class="source-line" id="L97"><a class="line-no" href="#L97" aria-label="Line 97">97</a><span class="line-code">/-- Uniform radial approximation on every bounded interval. This is derived</span></span>
+<span class="source-line" id="L98"><a class="line-no" href="#L98" aria-label="Line 98">98</a><span class="line-code">from the moving-parameter limit and sequential compactness, rather than an</span></span>
+<span class="source-line" id="L99"><a class="line-no" href="#L99" aria-label="Line 99">99</a><span class="line-code">assumed uniform approximation theorem. -/</span></span>
+<span class="source-line" id="L100"><a class="line-no" href="#L100" aria-label="Line 100">100</a><span class="line-code">theorem radial_productVector_uniform (R : ℝ) (ε : ℝ) (hε : 0 &lt; ε) :</span></span>
+<span class="source-line" id="L101"><a class="line-no" href="#L101" aria-label="Line 101">101</a><span class="line-code">    ∀ᶠ L in atTop, ∀ (t : ℝ) (ht : 0 ≤ t), t ≤ R →</span></span>
+<span class="source-line" id="L102"><a class="line-no" href="#L102" aria-label="Line 102">102</a><span class="line-code">      ‖CoherentCoefficients.productVector t ht L -</span></span>
+<span class="source-line" id="L103"><a class="line-no" href="#L103" aria-label="Line 103">103</a><span class="line-code">        CoherentCoefficients.coherentVector t ht‖ &lt; ε := by</span></span>
+<span class="source-line" id="L104"><a class="line-no" href="#L104" aria-label="Line 104">104</a><span class="line-code">  classical</span></span>
+<span class="source-line" id="L105"><a class="line-no" href="#L105" aria-label="Line 105">105</a><span class="line-code">  by_contra h</span></span>
+<span class="source-line" id="L106"><a class="line-no" href="#L106" aria-label="Line 106">106</a><span class="line-code">  rw [eventually_atTop] at h</span></span>
+<span class="source-line" id="L107"><a class="line-no" href="#L107" aria-label="Line 107">107</a><span class="line-code">  push_neg at h</span></span>
+<span class="source-line" id="L108"><a class="line-no" href="#L108" aria-label="Line 108">108</a><span class="line-code">  choose L hL t ht0 htR hbad using h</span></span>
+<span class="source-line" id="L109"><a class="line-no" href="#L109" aria-label="Line 109">109</a><span class="line-code">  have hLtop : Tendsto L atTop atTop := tendsto_atTop_mono hL tendsto_id</span></span>
+<span class="source-line" id="L110"><a class="line-no" href="#L110" aria-label="Line 110">110</a><span class="line-code">  obtain ⟨a, ha, φ, hφ, ht⟩ := isCompact_Icc.tendsto_subseq</span></span>
+<span class="source-line" id="L111"><a class="line-no" href="#L111" aria-label="Line 111">111</a><span class="line-code">    (fun n =&gt; (show t n ∈ Set.Icc 0 R from ⟨ht0 n, htR n⟩))</span></span>
+<span class="source-line" id="L112"><a class="line-no" href="#L112" aria-label="Line 112">112</a><span class="line-code">  have hp := radial_productVector_moving_tendsto (L ∘ φ)</span></span>
+<span class="source-line" id="L113"><a class="line-no" href="#L113" aria-label="Line 113">113</a><span class="line-code">    (hLtop.comp hφ.tendsto_atTop) (t ∘ φ) ht (fun n =&gt; ht0 (φ n)) ha.1</span></span>
+<span class="source-line" id="L114"><a class="line-no" href="#L114" aria-label="Line 114">114</a><span class="line-code">  have hc := radial_coherentVector_moving_tendsto (t ∘ φ) ht (fun n =&gt; ht0 (φ n)) ha.1</span></span>
+<span class="source-line" id="L115"><a class="line-no" href="#L115" aria-label="Line 115">115</a><span class="line-code">  have hz : Tendsto (fun n =&gt; ‖CoherentCoefficients.productVector (t (φ n))</span></span>
+<span class="source-line" id="L116"><a class="line-no" href="#L116" aria-label="Line 116">116</a><span class="line-code">      (ht0 (φ n)) (L (φ n)) -</span></span>
+<span class="source-line" id="L117"><a class="line-no" href="#L117" aria-label="Line 117">117</a><span class="line-code">        CoherentCoefficients.coherentVector (t (φ n)) (ht0 (φ n))‖) atTop (𝓝 0) := by</span></span>
+<span class="source-line" id="L118"><a class="line-no" href="#L118" aria-label="Line 118">118</a><span class="line-code">    simpa only [Function.comp_def, sub_self, norm_zero] using (hp.sub hc).norm</span></span>
+<span class="source-line" id="L119"><a class="line-no" href="#L119" aria-label="Line 119">119</a><span class="line-code">  obtain ⟨n, hn⟩ := (hz.eventually (gt_mem_nhds hε)).exists</span></span>
+<span class="source-line" id="L120"><a class="line-no" href="#L120" aria-label="Line 120">120</a><span class="line-code">  exact (not_lt_of_ge (hbad (φ n))) hn</span></span>
+<span class="source-line" id="L121"><a class="line-no" href="#L121" aria-label="Line 121">121</a><span class="line-code"> </span></span>
+<span class="source-line" id="L122"><a class="line-no" href="#L122" aria-label="Line 122">122</a><span class="line-code">/-- Uniform convergence for every bounded complex amplitude window. -/</span></span>
+<span class="source-line" id="L123"><a class="line-no" href="#L123" aria-label="Line 123">123</a><span class="line-code">theorem productVector_coherentVector_uniform_on_closedBall</span></span>
+<span class="source-line" id="L124"><a class="line-no" href="#L124" aria-label="Line 124">124</a><span class="line-code">    (R : ℝ) (ε : ℝ) (hε : 0 &lt; ε) :</span></span>
+<span class="source-line" id="L125"><a class="line-no" href="#L125" aria-label="Line 125">125</a><span class="line-code">    ∀ᶠ L in atTop, ∀ z : ℂ, ‖z‖ ≤ R →</span></span>
+<span class="source-line" id="L126"><a class="line-no" href="#L126" aria-label="Line 126">126</a><span class="line-code">      ‖productVector z L - coherentVector z‖ &lt; ε := by</span></span>
+<span class="source-line" id="L127"><a class="line-no" href="#L127" aria-label="Line 127">127</a><span class="line-code">  filter_upwards [radial_productVector_uniform (R ^ 2) ε hε] with L hL z hz</span></span>
+<span class="source-line" id="L128"><a class="line-no" href="#L128" aria-label="Line 128">128</a><span class="line-code">  rw [productVector_coherentVector_norm_eq_radial]</span></span>
+<span class="source-line" id="L129"><a class="line-no" href="#L129" aria-label="Line 129">129</a><span class="line-code">  exact hL (‖z‖ ^ 2) (sq_nonneg _) (sq_le_sq₀ (norm_nonneg z) (le_trans (norm_nonneg z) hz) |&gt;.mpr hz)</span></span>
+<span class="source-line" id="L130"><a class="line-no" href="#L130" aria-label="Line 130">130</a><span class="line-code"> </span></span>
+<span class="source-line" id="L131"><a class="line-no" href="#L131" aria-label="Line 131">131</a><span class="line-code">/-- The actual complex binomial vectors converge uniformly on every bounded</span></span>
+<span class="source-line" id="L132"><a class="line-no" href="#L132" aria-label="Line 132">132</a><span class="line-code">set of coherent amplitudes in Hilbert norm. -/</span></span>
+<span class="source-line" id="L133"><a class="line-no" href="#L133" aria-label="Line 133">133</a><span class="line-code">theorem productVector_tendstoUniformlyOn {K : Set ℂ} (hK : Bornology.IsBounded K) :</span></span>
+<span class="source-line" id="L134"><a class="line-no" href="#L134" aria-label="Line 134">134</a><span class="line-code">    TendstoUniformlyOn (fun L z =&gt; productVector z L) coherentVector atTop K := by</span></span>
+<span class="source-line" id="L135"><a class="line-no" href="#L135" aria-label="Line 135">135</a><span class="line-code">  obtain ⟨R, hR⟩ := hK.exists_norm_le</span></span>
+<span class="source-line" id="L136"><a class="line-no" href="#L136" aria-label="Line 136">136</a><span class="line-code">  apply Metric.tendstoUniformlyOn_iff.mpr</span></span>
+<span class="source-line" id="L137"><a class="line-no" href="#L137" aria-label="Line 137">137</a><span class="line-code">  intro ε hε</span></span>
+<span class="source-line" id="L138"><a class="line-no" href="#L138" aria-label="Line 138">138</a><span class="line-code">  filter_upwards [productVector_coherentVector_uniform_on_closedBall R ε hε] with L hL z hz</span></span>
+<span class="source-line" id="L139"><a class="line-no" href="#L139" aria-label="Line 139">139</a><span class="line-code">  simpa only [dist_eq_norm, norm_sub_rev] using hL z (hR z hz)</span></span>
+<span class="source-line" id="L140"><a class="line-no" href="#L140" aria-label="Line 140">140</a><span class="line-code"> </span></span>
+<span class="source-line" id="L141"><a class="line-no" href="#L141" aria-label="Line 141">141</a><span class="line-code">/-- Compact-amplitude uniform convergence, in the standard uniform-convergence</span></span>
+<span class="source-line" id="L142"><a class="line-no" href="#L142" aria-label="Line 142">142</a><span class="line-code">API and including the zero amplitude. -/</span></span>
+<span class="source-line" id="L143"><a class="line-no" href="#L143" aria-label="Line 143">143</a><span class="line-code">theorem productVector_tendstoUniformlyOn_compact {K : Set ℂ} (hK : IsCompact K) :</span></span>
+<span class="source-line" id="L144"><a class="line-no" href="#L144" aria-label="Line 144">144</a><span class="line-code">    TendstoUniformlyOn (fun L z =&gt; productVector z L) coherentVector atTop K :=</span></span>
+<span class="source-line" id="L145"><a class="line-no" href="#L145" aria-label="Line 145">145</a><span class="line-code">  productVector_tendstoUniformlyOn hK.isBounded</span></span>
+<span class="source-line" id="L146"><a class="line-no" href="#L146" aria-label="Line 146">146</a><span class="line-code"> </span></span>
+<span class="source-line" id="L147"><a class="line-no" href="#L147" aria-label="Line 147">147</a><span class="line-code">/-- The pure-state trace-norm error is bounded by twice the Hilbert error. -/</span></span>
+<span class="source-line" id="L148"><a class="line-no" href="#L148" aria-label="Line 148">148</a><span class="line-code">theorem product_projector_distance_le (z : ℂ) (L : ℕ) :</span></span>
+<span class="source-line" id="L149"><a class="line-no" href="#L149" aria-label="Line 149">149</a><span class="line-code">    ‖InfiniteTraceClass.vectorProjector (productVector z L) -</span></span>
+<span class="source-line" id="L150"><a class="line-no" href="#L150" aria-label="Line 150">150</a><span class="line-code">      InfiniteTraceClass.vectorProjector (coherentVector z)‖ ≤</span></span>
+<span class="source-line" id="L151"><a class="line-no" href="#L151" aria-label="Line 151">151</a><span class="line-code">        2 * ‖productVector z L - coherentVector z‖ := by</span></span>
+<span class="source-line" id="L152"><a class="line-no" href="#L152" aria-label="Line 152">152</a><span class="line-code">  simpa only [productVector_norm, coherentVector_norm, show (1 : ℝ) + 1 = 2 by norm_num] using</span></span>
+<span class="source-line" id="L153"><a class="line-no" href="#L153" aria-label="Line 153">153</a><span class="line-code">    InfiniteTraceClass.norm_vectorProjector_sub_le (productVector z L) (coherentVector z)</span></span>
+<span class="source-line" id="L154"><a class="line-no" href="#L154" aria-label="Line 154">154</a><span class="line-code"> </span></span>
+<span class="source-line" id="L155"><a class="line-no" href="#L155" aria-label="Line 155">155</a><span class="line-code">/-- Uniform convergence holds for the actual trace-class pure states. -/</span></span>
+<span class="source-line" id="L156"><a class="line-no" href="#L156" aria-label="Line 156">156</a><span class="line-code">theorem product_projector_tendstoUniformlyOn {K : Set ℂ} (hK : Bornology.IsBounded K) :</span></span>
+<span class="source-line" id="L157"><a class="line-no" href="#L157" aria-label="Line 157">157</a><span class="line-code">    TendstoUniformlyOn (fun L z =&gt; InfiniteTraceClass.vectorProjector (productVector z L))</span></span>
+<span class="source-line" id="L158"><a class="line-no" href="#L158" aria-label="Line 158">158</a><span class="line-code">      (fun z =&gt; InfiniteTraceClass.vectorProjector (coherentVector z)) atTop K := by</span></span>
+<span class="source-line" id="L159"><a class="line-no" href="#L159" aria-label="Line 159">159</a><span class="line-code">  obtain ⟨R, hR⟩ := hK.exists_norm_le</span></span>
+<span class="source-line" id="L160"><a class="line-no" href="#L160" aria-label="Line 160">160</a><span class="line-code">  apply Metric.tendstoUniformlyOn_iff.mpr</span></span>
+<span class="source-line" id="L161"><a class="line-no" href="#L161" aria-label="Line 161">161</a><span class="line-code">  intro ε hε</span></span>
+<span class="source-line" id="L162"><a class="line-no" href="#L162" aria-label="Line 162">162</a><span class="line-code">  filter_upwards [productVector_coherentVector_uniform_on_closedBall R (ε / 2) (by positivity)]</span></span>
+<span class="source-line" id="L163"><a class="line-no" href="#L163" aria-label="Line 163">163</a><span class="line-code">    with L hL z hz</span></span>
+<span class="source-line" id="L164"><a class="line-no" href="#L164" aria-label="Line 164">164</a><span class="line-code">  rw [dist_comm, dist_eq_norm]</span></span>
+<span class="source-line" id="L165"><a class="line-no" href="#L165" aria-label="Line 165">165</a><span class="line-code">  exact lt_of_le_of_lt (product_projector_distance_le z L) (by linarith [hL z (hR z hz)])</span></span>
+<span class="source-line" id="L166"><a class="line-no" href="#L166" aria-label="Line 166">166</a><span class="line-code"> </span></span>
+<span class="source-line" id="L167"><a class="line-no" href="#L167" aria-label="Line 167">167</a><span class="line-code">/-- Uniform error bound for the concrete CPTP occupation channel. The output</span></span>
+<span class="source-line" id="L168"><a class="line-no" href="#L168" aria-label="Line 168">168</a><span class="line-code">spaces vary with the sample size, so the statement uses their genuine trace</span></span>
+<span class="source-line" id="L169"><a class="line-no" href="#L169" aria-label="Line 169">169</a><span class="line-code">norms directly. -/</span></span>
+<span class="source-line" id="L170"><a class="line-no" href="#L170" aria-label="Line 170">170</a><span class="line-code">theorem occupationChannel_coherent_product_distance_le (z : ℂ) (L : ℕ) :</span></span>
+<span class="source-line" id="L171"><a class="line-no" href="#L171" aria-label="Line 171">171</a><span class="line-code">    ‖(SymmetricOccupation.occupationChannel L).toLinearMap</span></span>
+<span class="source-line" id="L172"><a class="line-no" href="#L172" aria-label="Line 172">172</a><span class="line-code">      (InfiniteTraceClass.vectorProjector (coherentVector z)) -</span></span>
+<span class="source-line" id="L173"><a class="line-no" href="#L173" aria-label="Line 173">173</a><span class="line-code">        InfiniteTraceClass.vectorProjector (productTensor z L)‖ ≤</span></span>
+<span class="source-line" id="L174"><a class="line-no" href="#L174" aria-label="Line 174">174</a><span class="line-code">      2 * ‖productVector z L - coherentVector z‖ := by</span></span>
+<span class="source-line" id="L175"><a class="line-no" href="#L175" aria-label="Line 175">175</a><span class="line-code">  have h := SymmetricOccupation.occupationChannel_pure_distance_le L</span></span>
+<span class="source-line" id="L176"><a class="line-no" href="#L176" aria-label="Line 176">176</a><span class="line-code">    (coherentVector z) (productVector z L)</span></span>
+<span class="source-line" id="L177"><a class="line-no" href="#L177" aria-label="Line 177">177</a><span class="line-code">    (SymmetricOccupation.restrict_norm_eq_of_support L (productVector z L)</span></span>
+<span class="source-line" id="L178"><a class="line-no" href="#L178" aria-label="Line 178">178</a><span class="line-code">      (fun j hj =&gt; productVector_eq_zero_of_lt z L j hj))</span></span>
+<span class="source-line" id="L179"><a class="line-no" href="#L179" aria-label="Line 179">179</a><span class="line-code">  simpa only [coherentVector_norm, productVector_norm, show (1 : ℝ) + 1 = 2 by norm_num,</span></span>
+<span class="source-line" id="L180"><a class="line-no" href="#L180" aria-label="Line 180">180</a><span class="line-code">    SymmetricOccupation.compression_apply, restrict_productVector, productTensor, norm_sub_rev]</span></span>
+<span class="source-line" id="L181"><a class="line-no" href="#L181" aria-label="Line 181">181</a><span class="line-code">    using h</span></span>
+<span class="source-line" id="L182"><a class="line-no" href="#L182" aria-label="Line 182">182</a><span class="line-code"> </span></span>
+<span class="source-line" id="L183"><a class="line-no" href="#L183" aria-label="Line 183">183</a><span class="line-code">/-- The actual occupation channel approximates the normalized tensor product</span></span>
+<span class="source-line" id="L184"><a class="line-no" href="#L184" aria-label="Line 184">184</a><span class="line-code">states uniformly on every fixed complex amplitude ball. -/</span></span>
+<span class="source-line" id="L185"><a class="line-no" href="#L185" aria-label="Line 185">185</a><span class="line-code">theorem occupationChannel_coherent_product_uniform_on_closedBall</span></span>
+<span class="source-line" id="L186"><a class="line-no" href="#L186" aria-label="Line 186">186</a><span class="line-code">    (R : ℝ) (ε : ℝ) (hε : 0 &lt; ε) :</span></span>
+<span class="source-line" id="L187"><a class="line-no" href="#L187" aria-label="Line 187">187</a><span class="line-code">    ∀ᶠ L in atTop, ∀ z : ℂ, ‖z‖ ≤ R →</span></span>
+<span class="source-line" id="L188"><a class="line-no" href="#L188" aria-label="Line 188">188</a><span class="line-code">      ‖(SymmetricOccupation.occupationChannel L).toLinearMap</span></span>
+<span class="source-line" id="L189"><a class="line-no" href="#L189" aria-label="Line 189">189</a><span class="line-code">        (InfiniteTraceClass.vectorProjector (coherentVector z)) -</span></span>
+<span class="source-line" id="L190"><a class="line-no" href="#L190" aria-label="Line 190">190</a><span class="line-code">          InfiniteTraceClass.vectorProjector (productTensor z L)‖ &lt; ε := by</span></span>
+<span class="source-line" id="L191"><a class="line-no" href="#L191" aria-label="Line 191">191</a><span class="line-code">  filter_upwards [productVector_coherentVector_uniform_on_closedBall R (ε / 2) (by positivity)]</span></span>
+<span class="source-line" id="L192"><a class="line-no" href="#L192" aria-label="Line 192">192</a><span class="line-code">    with L hL z hz</span></span>
+<span class="source-line" id="L193"><a class="line-no" href="#L193" aria-label="Line 193">193</a><span class="line-code">  exact lt_of_le_of_lt (occupationChannel_coherent_product_distance_le z L)</span></span>
+<span class="source-line" id="L194"><a class="line-no" href="#L194" aria-label="Line 194">194</a><span class="line-code">    (by linarith [hL z hz])</span></span>
+<span class="source-line" id="L195"><a class="line-no" href="#L195" aria-label="Line 195">195</a><span class="line-code"> </span></span>
+<span class="source-line" id="L196"><a class="line-no" href="#L196" aria-label="Line 196">196</a><span class="line-code">/-- The corresponding compact-window quantum approximation statement. -/</span></span>
+<span class="source-line" id="L197"><a class="line-no" href="#L197" aria-label="Line 197">197</a><span class="line-code">theorem occupationChannel_coherent_product_uniform_on_compact</span></span>
+<span class="source-line" id="L198"><a class="line-no" href="#L198" aria-label="Line 198">198</a><span class="line-code">    {K : Set ℂ} (hK : IsCompact K) (ε : ℝ) (hε : 0 &lt; ε) :</span></span>
+<span class="source-line" id="L199"><a class="line-no" href="#L199" aria-label="Line 199">199</a><span class="line-code">    ∀ᶠ L in atTop, ∀ z ∈ K,</span></span>
+<span class="source-line" id="L200"><a class="line-no" href="#L200" aria-label="Line 200">200</a><span class="line-code">      ‖(SymmetricOccupation.occupationChannel L).toLinearMap</span></span>
+<span class="source-line" id="L201"><a class="line-no" href="#L201" aria-label="Line 201">201</a><span class="line-code">        (InfiniteTraceClass.vectorProjector (coherentVector z)) -</span></span>
+<span class="source-line" id="L202"><a class="line-no" href="#L202" aria-label="Line 202">202</a><span class="line-code">          InfiniteTraceClass.vectorProjector (productTensor z L)‖ &lt; ε := by</span></span>
+<span class="source-line" id="L203"><a class="line-no" href="#L203" aria-label="Line 203">203</a><span class="line-code">  obtain ⟨R, hR⟩ := hK.isBounded.exists_norm_le</span></span>
+<span class="source-line" id="L204"><a class="line-no" href="#L204" aria-label="Line 204">204</a><span class="line-code">  filter_upwards [occupationChannel_coherent_product_uniform_on_closedBall R ε hε] with L hL z hz</span></span>
+<span class="source-line" id="L205"><a class="line-no" href="#L205" aria-label="Line 205">205</a><span class="line-code">  exact hL z (hR z hz)</span></span>
+<span class="source-line" id="L206"><a class="line-no" href="#L206" aria-label="Line 206">206</a><span class="line-code"> </span></span>
+<span class="source-line" id="L207"><a class="line-no" href="#L207" aria-label="Line 207">207</a><span class="line-code">end Cloning.ComplexCoherent</span></span>
+</code></pre></div></main>
+<footer class="footer">English guides explain the argument. Lean source and its hypotheses determine the formal claims.
+<a href="../verification.html">Audit evidence</a> · <a href="../scope.html">Scope</a></footer>
+</div></div></body></html>

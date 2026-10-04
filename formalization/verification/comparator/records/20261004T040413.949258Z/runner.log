@@ -1,0 +1,6 @@
++ /Users/jw/.elan/bin/lake build lean4export
+Build completed successfully (6 jobs).
++ /Users/jw/.elan/bin/lake build comparator
+Build completed successfully (18 jobs).
++ /Users/jw/.elan/bin/lake env /Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/formalization/verification/comparator/.work/bin/comparator config.json
+Evidence: /Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/formalization/verification/comparator/.work/runs/20261004T040413.949258Z

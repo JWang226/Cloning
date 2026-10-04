@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="An offline guide to the Lean formalization of asymptotic mixed-state quantum cloning. Exact source, proof routes, and audited scope.">
+<title>HybridClassicalAverageBound · Lean source · Cloning proof wiki</title>
+<link rel="stylesheet" href="../assets/site.css?v=1811c00ea983">
+<script>window.PROOF_ROOT="../";</script>
+<script defer src="../assets/vendor/katex/katex.min.js"></script>
+<script defer src="../assets/search-index.js?v=850aee981cdc"></script>
+<script defer src="../assets/site.js?v=4bfaac1f06b1"></script>
+</head><body><a class="skip-link" href="#main">Skip to content</a>
+<div class="site-shell"><aside class="sidebar" id="site-navigation">
+<a class="brand" href="../index.html"><span class="brand-mark">C</span><span>Cloning<span class="small muted">A Lean proof wiki</span></span></a>
+<nav aria-label="Main navigation"><div class="nav-section">Explore</div><a class="nav-link" href="../index.html">Overview</a><a class="nav-link" href="../guides/index.html">Proof guide</a><a class="nav-link" href="../results/index.html">27 named results</a><a class="nav-link active" href="../source/index.html" aria-current="page">Lean source</a><a class="nav-link" href="../verification.html">Verification</a><a class="nav-link" href="../scope.html">Scope &amp; conventions</a>
+<div class="nav-section">Read the proof</div><a class="nav-link" href="../guides/physical-problem.html"><span class="nav-number">01</span> The physical problem and its conventions</a><a class="nav-link" href="../guides/young-laws.html"><span class="nav-number">02</span> Young labels: concentration and the local Gaussian law</a><a class="nav-link" href="../guides/cartan-sectors.html"><span class="nav-number">03</span> From PBW frames to uniform Cartan-sector fidelity</a><a class="nav-link" href="../guides/lifted-kernels.html"><span class="nav-number">04</span> Lifted channels, randomized dilation, and factorization</a><a class="nav-link" href="../guides/gaussian-optimum.html"><span class="nav-number">05</span> Gaussian amplification against arbitrary competitors</a><a class="nav-link" href="../guides/physical-lan.html"><span class="nav-number">06</span> Constructed LAN and fidelity transfer</a><a class="nav-link" href="../guides/known-spectrum.html"><span class="nav-number">07</span> The known-spectrum optimum</a><a class="nav-link" href="../guides/unknown-spectrum.html"><span class="nav-number">08</span> One universal cloner and the compact-set optimum</a><a class="nav-link" href="../guides/grassmann.html"><span class="nav-number">09</span> Exact rank compression and projector-state optimality</a><a class="nav-link" href="../guides/purify-clone-trace.html"><span class="nav-number">10</span> Purify–clone–trace: exact channels, limits, and guarantees</a><a class="nav-link" href="../guides/small-errors.html"><span class="nav-number">11</span> Small errors, rank boundaries, and noncommuting limits</a><a class="nav-link" href="../guides/spectral-comparison.html"><span class="nav-number">12</span> Spectral order and what is known for all states</a></nav>
+<div class="sidebar-footer"><span class="badge">Lean 4</span><p>Manuscript → proof → source</p>
+<a href="https://github.com/JWang226/Cloning">Repository ↗</a></div></aside>
+<div class="main-shell"><header class="topbar">
+<button id="nav-toggle" class="button secondary" aria-controls="site-navigation" aria-expanded="false" aria-label="Toggle navigation">Menu</button>
+<div class="search-wrap"><label class="sr-only" for="site-search">Search the proof wiki</label>
+<input id="site-search" type="search" placeholder="Search results, concepts, or Lean names…" autocomplete="off" aria-controls="search-results" aria-expanded="false" role="combobox" aria-autocomplete="list">
+<div id="search-results" class="search-results" role="listbox" hidden></div></div>
+<span class="small muted topbar-label">Offline · exact source</span></header>
+<main id="main" class="content"><div class="eyebrow">Exact Lean source</div><h1 class="source-title">HybridClassicalAverageBound</h1><p><code>formalization/Cloning/HybridClassicalAverageBound.lean</code></p><p class="small muted">Source hash: <code>a7ac91f861b7bb11f080f9a70d68fd2bbcf029ddbef9da54a5e7d659e356bc1c</code></p><div class="actions"><a class="button secondary" href="raw/Cloning.HybridClassicalAverageBound.lean">Download .lean</a><a class="button secondary" href="https://github.com/JWang226/Cloning/blob/main/formalization/Cloning/HybridClassicalAverageBound.lean">View on GitHub ↗</a><a href="index.html">All modules</a></div><p class="small muted">Full source copied without mathematical changes from the snapshot whose input hash matches the passing audit. Select a line number for a stable source pointer.</p><details><summary>Declarations in this module</summary><div class="module-declarations"><a href="#L18"><span class="badge">theorem</span> <code>Cloning.Hybrid.L1CompletelyPositive.norm_map_of_nonneg</code></a><a href="#L39"><span class="badge">theorem</span> <code>Cloning.Hybrid.integrable_mul_weightedL1Trace_translation</code></a><a href="#L56"><span class="badge">theorem</span> <code>Cloning.Hybrid.weightedL1Trace_gaussian_average_le</code></a><a href="#L124"><span class="badge">theorem</span> <code>Cloning.Hybrid.weightedQuantumMap_gaussian_trace_le</code></a><a href="#L168"><span class="badge">theorem</span> <code>Cloning.Hybrid.tendsto_gaussian_covariance_error_zero</code></a><a href="#L193"><span class="badge">theorem</span> <code>Cloning.Hybrid.eventually_weightedQuantumMap_gaussian_trace_le</code></a></div></details><div class="code-wrap source-wrap"><pre class="source-lines"><code><span class="source-line" id="L1"><a class="line-no" href="#L1" aria-label="Line 1">1</a><span class="line-code">import Cloning.HybridClassicalAverageTrace</span></span>
+<span class="source-line" id="L2"><a class="line-no" href="#L2" aria-label="Line 2">2</a><span class="line-code">import Cloning.HybridClassicalConvolution</span></span>
+<span class="source-line" id="L3"><a class="line-no" href="#L3" aria-label="Line 3">3</a><span class="line-code"> </span></span>
+<span class="source-line" id="L4"><a class="line-no" href="#L4" aria-label="Line 4">4</a><span class="line-code">/-! The sharp Gaussian residual trace bound for actual approximately</span></span>
+<span class="source-line" id="L5"><a class="line-no" href="#L5" aria-label="Line 5">5</a><span class="line-code">translation-covariant hybrid channels. Explicit L¹ approximate identities</span></span>
+<span class="source-line" id="L6"><a class="line-no" href="#L6" aria-label="Line 6">6</a><span class="line-code">remove the input mollifier; neither the sharp trace bound nor density</span></span>
+<span class="source-line" id="L7"><a class="line-no" href="#L7" aria-label="Line 7">7</a><span class="line-code">recovery is an assumption. -/</span></span>
+<span class="source-line" id="L8"><a class="line-no" href="#L8" aria-label="Line 8">8</a><span class="line-code">noncomputable section</span></span>
+<span class="source-line" id="L9"><a class="line-no" href="#L9" aria-label="Line 9">9</a><span class="line-code">open scoped ComplexOrder InnerProductSpace Topology BigOperators</span></span>
+<span class="source-line" id="L10"><a class="line-no" href="#L10" aria-label="Line 10">10</a><span class="line-code">open MeasureTheory Filter Cloning.InfiniteTraceClass</span></span>
+<span class="source-line" id="L11"><a class="line-no" href="#L11" aria-label="Line 11">11</a><span class="line-code">namespace Cloning.Hybrid</span></span>
+<span class="source-line" id="L12"><a class="line-no" href="#L12" aria-label="Line 12">12</a><span class="line-code">set_option backward.isDefEq.respectTransparency false</span></span>
+<span class="source-line" id="L13"><a class="line-no" href="#L13" aria-label="Line 13">13</a><span class="line-code">set_option maxHeartbeats 1000000</span></span>
+<span class="source-line" id="L14"><a class="line-no" href="#L14" aria-label="Line 14">14</a><span class="line-code">variable {k : ℕ} {H K : Type*}</span></span>
+<span class="source-line" id="L15"><a class="line-no" href="#L15" aria-label="Line 15">15</a><span class="line-code">  [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]</span></span>
+<span class="source-line" id="L16"><a class="line-no" href="#L16" aria-label="Line 16">16</a><span class="line-code">  [NormedAddCommGroup K] [InnerProductSpace ℂ K] [CompleteSpace K]</span></span>
+<span class="source-line" id="L17"><a class="line-no" href="#L17" aria-label="Line 17">17</a><span class="line-code"> </span></span>
+<span class="source-line" id="L18"><a class="line-no" href="#L18" aria-label="Line 18">18</a><span class="line-code">lemma L1CompletelyPositive.norm_map_of_nonneg</span></span>
+<span class="source-line" id="L19"><a class="line-no" href="#L19" aria-label="Line 19">19</a><span class="line-code">    {Λ : Lp (TraceClass H) 1 (volume : Measure (Fin k → ℝ)) →ₗ[ℂ]</span></span>
+<span class="source-line" id="L20"><a class="line-no" href="#L20" aria-label="Line 20">20</a><span class="line-code">      Lp (TraceClass K) 1 (volume : Measure (Fin k → ℝ))}</span></span>
+<span class="source-line" id="L21"><a class="line-no" href="#L21" aria-label="Line 21">21</a><span class="line-code">    (hΛ : L1CompletelyPositive Λ) (hTP : L1TracePreserving Λ)</span></span>
+<span class="source-line" id="L22"><a class="line-no" href="#L22" aria-label="Line 22">22</a><span class="line-code">    (A : Lp (TraceClass H) 1 (volume : Measure (Fin k → ℝ)))</span></span>
+<span class="source-line" id="L23"><a class="line-no" href="#L23" aria-label="Line 23">23</a><span class="line-code">    (hA : ∀ᵐ y ∂volume, 0 ≤ (A y).1) : ‖Λ A‖ = ‖A‖ := by</span></span>
+<span class="source-line" id="L24"><a class="line-no" href="#L24" aria-label="Line 24">24</a><span class="line-code">  have hp := hΛ.map_nonneg A hA</span></span>
+<span class="source-line" id="L25"><a class="line-no" href="#L25" aria-label="Line 25">25</a><span class="line-code">  rw [L1.norm_eq_integral_norm, L1.norm_eq_integral_norm]</span></span>
+<span class="source-line" id="L26"><a class="line-no" href="#L26" aria-label="Line 26">26</a><span class="line-code">  calc</span></span>
+<span class="source-line" id="L27"><a class="line-no" href="#L27" aria-label="Line 27">27</a><span class="line-code">    _ = ∫ y, (traceCLM (Λ A y)).re := by</span></span>
+<span class="source-line" id="L28"><a class="line-no" href="#L28" aria-label="Line 28">28</a><span class="line-code">      apply integral_congr_ae</span></span>
+<span class="source-line" id="L29"><a class="line-no" href="#L29" aria-label="Line 29">29</a><span class="line-code">      exact hp.mono fun y hy =&gt; TraceClass.norm_eq_trace_re_of_nonneg _ hy</span></span>
+<span class="source-line" id="L30"><a class="line-no" href="#L30" aria-label="Line 30">30</a><span class="line-code">    _ = (∫ y, traceCLM (Λ A y)).re :=</span></span>
+<span class="source-line" id="L31"><a class="line-no" href="#L31" aria-label="Line 31">31</a><span class="line-code">      Complex.reCLM.integral_comp_comm (traceCLM.integrable_comp (L1.integrable_coeFn _))</span></span>
+<span class="source-line" id="L32"><a class="line-no" href="#L32" aria-label="Line 32">32</a><span class="line-code">    _ = (∫ y, traceCLM (A y)).re := congrArg Complex.re (hTP A)</span></span>
+<span class="source-line" id="L33"><a class="line-no" href="#L33" aria-label="Line 33">33</a><span class="line-code">    _ = ∫ y, (traceCLM (A y)).re :=</span></span>
+<span class="source-line" id="L34"><a class="line-no" href="#L34" aria-label="Line 34">34</a><span class="line-code">      (Complex.reCLM.integral_comp_comm (traceCLM.integrable_comp (L1.integrable_coeFn _))).symm</span></span>
+<span class="source-line" id="L35"><a class="line-no" href="#L35" aria-label="Line 35">35</a><span class="line-code">    _ = _ := by</span></span>
+<span class="source-line" id="L36"><a class="line-no" href="#L36" aria-label="Line 36">36</a><span class="line-code">      apply integral_congr_ae</span></span>
+<span class="source-line" id="L37"><a class="line-no" href="#L37" aria-label="Line 37">37</a><span class="line-code">      exact hA.mono fun y hy =&gt; (TraceClass.norm_eq_trace_re_of_nonneg _ hy).symm</span></span>
+<span class="source-line" id="L38"><a class="line-no" href="#L38" aria-label="Line 38">38</a><span class="line-code"> </span></span>
+<span class="source-line" id="L39"><a class="line-no" href="#L39" aria-label="Line 39">39</a><span class="line-code">lemma integrable_mul_weightedL1Trace_translation</span></span>
+<span class="source-line" id="L40"><a class="line-no" href="#L40" aria-label="Line 40">40</a><span class="line-code">    (G : (Fin k → ℝ) → ℝ) (hG : Integrable G)</span></span>
+<span class="source-line" id="L41"><a class="line-no" href="#L41" aria-label="Line 41">41</a><span class="line-code">    (χ : (Fin k → ℝ) → ℝ) (hχ : AEStronglyMeasurable χ volume)</span></span>
+<span class="source-line" id="L42"><a class="line-no" href="#L42" aria-label="Line 42">42</a><span class="line-code">    {C : ℝ} (hbound : ∀ y, ‖χ y‖ ≤ C) (r : ℝ)</span></span>
+<span class="source-line" id="L43"><a class="line-no" href="#L43" aria-label="Line 43">43</a><span class="line-code">    (R : Lp (TraceClass H) 1 (volume : Measure (Fin k → ℝ))) :</span></span>
+<span class="source-line" id="L44"><a class="line-no" href="#L44" aria-label="Line 44">44</a><span class="line-code">    Integrable (fun h =&gt; G h * weightedL1Trace χ hχ hbound</span></span>
+<span class="source-line" id="L45"><a class="line-no" href="#L45" aria-label="Line 45">45</a><span class="line-code">      (classicalTranslation (r • h) R)) := by</span></span>
+<span class="source-line" id="L46"><a class="line-no" href="#L46" aria-label="Line 46">46</a><span class="line-code">  apply hG.mul_bdd</span></span>
+<span class="source-line" id="L47"><a class="line-no" href="#L47" aria-label="Line 47">47</a><span class="line-code">    ((weightedL1Trace χ hχ hbound).continuous.comp</span></span>
+<span class="source-line" id="L48"><a class="line-no" href="#L48" aria-label="Line 48">48</a><span class="line-code">      ((continuous_classicalTranslation R).comp</span></span>
+<span class="source-line" id="L49"><a class="line-no" href="#L49" aria-label="Line 49">49</a><span class="line-code">        (continuous_const.smul continuous_id))).aestronglyMeasurable</span></span>
+<span class="source-line" id="L50"><a class="line-no" href="#L50" aria-label="Line 50">50</a><span class="line-code">  exact Eventually.of_forall fun h =&gt; by</span></span>
+<span class="source-line" id="L51"><a class="line-no" href="#L51" aria-label="Line 51">51</a><span class="line-code">    simpa only [norm_classicalTranslation] using</span></span>
+<span class="source-line" id="L52"><a class="line-no" href="#L52" aria-label="Line 52">52</a><span class="line-code">      norm_weightedL1Trace_le χ hχ hbound (classicalTranslation (r • h) R)</span></span>
+<span class="source-line" id="L53"><a class="line-no" href="#L53" aria-label="Line 53">53</a><span class="line-code"> </span></span>
+<span class="source-line" id="L54"><a class="line-no" href="#L54" aria-label="Line 54">54</a><span class="line-code">/-- A finite covariance defect gives the sharp Gaussian trace estimate for</span></span>
+<span class="source-line" id="L55"><a class="line-no" href="#L55" aria-label="Line 55">55</a><span class="line-code">an actual Bochner-averaged input. -/</span></span>
+<span class="source-line" id="L56"><a class="line-no" href="#L56" aria-label="Line 56">56</a><span class="line-code">lemma weightedL1Trace_gaussian_average_le</span></span>
+<span class="source-line" id="L57"><a class="line-no" href="#L57" aria-label="Line 57">57</a><span class="line-code">    (Λ : Lp (TraceClass H) 1 (volume : Measure (Fin k → ℝ)) →L[ℂ]</span></span>
+<span class="source-line" id="L58"><a class="line-no" href="#L58" aria-label="Line 58">58</a><span class="line-code">      Lp (TraceClass K) 1 (volume : Measure (Fin k → ℝ)))</span></span>
+<span class="source-line" id="L59"><a class="line-no" href="#L59" aria-label="Line 59">59</a><span class="line-code">    (a : Fin k → ℝ) (ha : ∀ i, 0 &lt; a i) {g : ℝ} (hg : 1 ≤ g)</span></span>
+<span class="source-line" id="L60"><a class="line-no" href="#L60" aria-label="Line 60">60</a><span class="line-code">    (hχ : AEStronglyMeasurable</span></span>
+<span class="source-line" id="L61"><a class="line-no" href="#L61" aria-label="Line 61">61</a><span class="line-code">      (GaussianAffinity.productWitness a (fun i =&gt; a i / g)) volume)</span></span>
+<span class="source-line" id="L62"><a class="line-no" href="#L62" aria-label="Line 62">62</a><span class="line-code">    {C : ℝ} (hC : 0 ≤ C) (hbound : ∀ y,</span></span>
+<span class="source-line" id="L63"><a class="line-no" href="#L63" aria-label="Line 63">63</a><span class="line-code">      ‖GaussianAffinity.productWitness a (fun i =&gt; a i / g) y‖ ≤ C)</span></span>
+<span class="source-line" id="L64"><a class="line-no" href="#L64" aria-label="Line 64">64</a><span class="line-code">    (b : (Fin k → ℝ) → ℝ)</span></span>
+<span class="source-line" id="L65"><a class="line-no" href="#L65" aria-label="Line 65">65</a><span class="line-code">    (hb : Integrable (fun h =&gt; GaussianAffinity.productDensity a h * b h))</span></span>
+<span class="source-line" id="L66"><a class="line-no" href="#L66" aria-label="Line 66">66</a><span class="line-code">    (herror : ∀ h R, ‖Λ (classicalTranslation h R) -</span></span>
+<span class="source-line" id="L67"><a class="line-no" href="#L67" aria-label="Line 67">67</a><span class="line-code">      classicalTranslation (Real.sqrt g • h) (Λ R)‖ ≤ b h * ‖R‖)</span></span>
+<span class="source-line" id="L68"><a class="line-no" href="#L68" aria-label="Line 68">68</a><span class="line-code">    (R : Lp (TraceClass H) 1 (volume : Measure (Fin k → ℝ))) :</span></span>
+<span class="source-line" id="L69"><a class="line-no" href="#L69" aria-label="Line 69">69</a><span class="line-code">    weightedL1Trace (GaussianAffinity.productWitness a (fun i =&gt; a i / g)) hχ hbound</span></span>
+<span class="source-line" id="L70"><a class="line-no" href="#L70" aria-label="Line 70">70</a><span class="line-code">      (Λ (classicalAverage (GaussianAffinity.productDensity a) R)) ≤</span></span>
+<span class="source-line" id="L71"><a class="line-no" href="#L71" aria-label="Line 71">71</a><span class="line-code">      Thermal.classicalBase g ^ ((k : ℝ) / 2) * ‖Λ R‖ +</span></span>
+<span class="source-line" id="L72"><a class="line-no" href="#L72" aria-label="Line 72">72</a><span class="line-code">        C * (∫ h, GaussianAffinity.productDensity a h * b h) * ‖R‖ := by</span></span>
+<span class="source-line" id="L73"><a class="line-no" href="#L73" aria-label="Line 73">73</a><span class="line-code">  let G := GaussianAffinity.productDensity a</span></span>
+<span class="source-line" id="L74"><a class="line-no" href="#L74" aria-label="Line 74">74</a><span class="line-code">  let χ := GaussianAffinity.productWitness a (fun i =&gt; a i / g)</span></span>
+<span class="source-line" id="L75"><a class="line-no" href="#L75" aria-label="Line 75">75</a><span class="line-code">  let Q := weightedL1Trace (H := K) χ hχ hbound</span></span>
+<span class="source-line" id="L76"><a class="line-no" href="#L76" aria-label="Line 76">76</a><span class="line-code">  have hG := GaussianAffinity.integrable_productDensity a ha</span></span>
+<span class="source-line" id="L77"><a class="line-no" href="#L77" aria-label="Line 77">77</a><span class="line-code">  have hI := integrable_classicalAverage_integrand G hG R</span></span>
+<span class="source-line" id="L78"><a class="line-no" href="#L78" aria-label="Line 78">78</a><span class="line-code">  have hi : Integrable (fun h =&gt; G h * Q (Λ (classicalTranslation h R))) := by</span></span>
+<span class="source-line" id="L79"><a class="line-no" href="#L79" aria-label="Line 79">79</a><span class="line-code">    convert (Q.comp (Λ.restrictScalars ℝ)).integrable_comp hI using 1</span></span>
+<span class="source-line" id="L80"><a class="line-no" href="#L80" aria-label="Line 80">80</a><span class="line-code">    funext h</span></span>
+<span class="source-line" id="L81"><a class="line-no" href="#L81" aria-label="Line 81">81</a><span class="line-code">    simp only [ContinuousLinearMap.comp_apply, map_smul, Complex.coe_smul,</span></span>
+<span class="source-line" id="L82"><a class="line-no" href="#L82" aria-label="Line 82">82</a><span class="line-code">      ContinuousLinearMap.coe_restrictScalars&#x27;, smul_eq_mul]</span></span>
+<span class="source-line" id="L83"><a class="line-no" href="#L83" aria-label="Line 83">83</a><span class="line-code">  have ho := integrable_mul_weightedL1Trace_translation G hG χ hχ hbound</span></span>
+<span class="source-line" id="L84"><a class="line-no" href="#L84" aria-label="Line 84">84</a><span class="line-code">    (Real.sqrt g) (Λ R)</span></span>
+<span class="source-line" id="L85"><a class="line-no" href="#L85" aria-label="Line 85">85</a><span class="line-code">  have he : Integrable (fun h =&gt; C * (G h * b h) * ‖R‖) :=</span></span>
+<span class="source-line" id="L86"><a class="line-no" href="#L86" aria-label="Line 86">86</a><span class="line-code">    (hb.const_mul C).mul_const ‖R‖</span></span>
+<span class="source-line" id="L87"><a class="line-no" href="#L87" aria-label="Line 87">87</a><span class="line-code">  have hpoint (h : Fin k → ℝ) :</span></span>
+<span class="source-line" id="L88"><a class="line-no" href="#L88" aria-label="Line 88">88</a><span class="line-code">      Q (Λ (classicalTranslation h R)) ≤</span></span>
+<span class="source-line" id="L89"><a class="line-no" href="#L89" aria-label="Line 89">89</a><span class="line-code">        Q (classicalTranslation (Real.sqrt g • h) (Λ R)) + C * b h * ‖R‖ := by</span></span>
+<span class="source-line" id="L90"><a class="line-no" href="#L90" aria-label="Line 90">90</a><span class="line-code">    have hnorm := (norm_weightedL1Trace_le χ hχ hbound</span></span>
+<span class="source-line" id="L91"><a class="line-no" href="#L91" aria-label="Line 91">91</a><span class="line-code">      (Λ (classicalTranslation h R) - classicalTranslation (Real.sqrt g • h) (Λ R))).trans</span></span>
+<span class="source-line" id="L92"><a class="line-no" href="#L92" aria-label="Line 92">92</a><span class="line-code">      (mul_le_mul_of_nonneg_left (herror h R) hC)</span></span>
+<span class="source-line" id="L93"><a class="line-no" href="#L93" aria-label="Line 93">93</a><span class="line-code">    have hr := (le_abs_self (Q (Λ (classicalTranslation h R) -</span></span>
+<span class="source-line" id="L94"><a class="line-no" href="#L94" aria-label="Line 94">94</a><span class="line-code">      classicalTranslation (Real.sqrt g • h) (Λ R)))).trans hnorm</span></span>
+<span class="source-line" id="L95"><a class="line-no" href="#L95" aria-label="Line 95">95</a><span class="line-code">    rw [map_sub] at hr</span></span>
+<span class="source-line" id="L96"><a class="line-no" href="#L96" aria-label="Line 96">96</a><span class="line-code">    nlinarith</span></span>
+<span class="source-line" id="L97"><a class="line-no" href="#L97" aria-label="Line 97">97</a><span class="line-code">  have heq : Q (Λ (classicalAverage G R)) =</span></span>
+<span class="source-line" id="L98"><a class="line-no" href="#L98" aria-label="Line 98">98</a><span class="line-code">      ∫ h, G h * Q (Λ (classicalTranslation h R)) := by</span></span>
+<span class="source-line" id="L99"><a class="line-no" href="#L99" aria-label="Line 99">99</a><span class="line-code">    change (Q.comp (Λ.restrictScalars ℝ)) (∫ h, (G h : ℂ) • classicalTranslation h R) = _</span></span>
+<span class="source-line" id="L100"><a class="line-no" href="#L100" aria-label="Line 100">100</a><span class="line-code">    rw [← (Q.comp (Λ.restrictScalars ℝ)).integral_comp_comm hI]</span></span>
+<span class="source-line" id="L101"><a class="line-no" href="#L101" aria-label="Line 101">101</a><span class="line-code">    apply integral_congr_ae</span></span>
+<span class="source-line" id="L102"><a class="line-no" href="#L102" aria-label="Line 102">102</a><span class="line-code">    exact Eventually.of_forall fun h =&gt; by</span></span>
+<span class="source-line" id="L103"><a class="line-no" href="#L103" aria-label="Line 103">103</a><span class="line-code">      simp only [ContinuousLinearMap.comp_apply, Complex.coe_smul, map_smul,</span></span>
+<span class="source-line" id="L104"><a class="line-no" href="#L104" aria-label="Line 104">104</a><span class="line-code">        ContinuousLinearMap.coe_restrictScalars&#x27;, smul_eq_mul]</span></span>
+<span class="source-line" id="L105"><a class="line-no" href="#L105" aria-label="Line 105">105</a><span class="line-code">  rw [heq]</span></span>
+<span class="source-line" id="L106"><a class="line-no" href="#L106" aria-label="Line 106">106</a><span class="line-code">  calc</span></span>
+<span class="source-line" id="L107"><a class="line-no" href="#L107" aria-label="Line 107">107</a><span class="line-code">    _ ≤ ∫ h, (G h * Q (classicalTranslation (Real.sqrt g • h) (Λ R)) +</span></span>
+<span class="source-line" id="L108"><a class="line-no" href="#L108" aria-label="Line 108">108</a><span class="line-code">        C * (G h * b h) * ‖R‖) := by</span></span>
+<span class="source-line" id="L109"><a class="line-no" href="#L109" aria-label="Line 109">109</a><span class="line-code">      apply integral_mono hi (ho.add he)</span></span>
+<span class="source-line" id="L110"><a class="line-no" href="#L110" aria-label="Line 110">110</a><span class="line-code">      intro h</span></span>
+<span class="source-line" id="L111"><a class="line-no" href="#L111" aria-label="Line 111">111</a><span class="line-code">      have ht := mul_le_mul_of_nonneg_left (hpoint h)</span></span>
+<span class="source-line" id="L112"><a class="line-no" href="#L112" aria-label="Line 112">112</a><span class="line-code">        (GaussianAffinity.productDensity_nonneg a h)</span></span>
+<span class="source-line" id="L113"><a class="line-no" href="#L113" aria-label="Line 113">113</a><span class="line-code">      convert ht using 1</span></span>
+<span class="source-line" id="L114"><a class="line-no" href="#L114" aria-label="Line 114">114</a><span class="line-code">      dsimp only [G, Q, Pi.add_apply]</span></span>
+<span class="source-line" id="L115"><a class="line-no" href="#L115" aria-label="Line 115">115</a><span class="line-code">      ring</span></span>
+<span class="source-line" id="L116"><a class="line-no" href="#L116" aria-label="Line 116">116</a><span class="line-code">    _ = (∫ h, G h * Q (classicalTranslation (Real.sqrt g • h) (Λ R))) +</span></span>
+<span class="source-line" id="L117"><a class="line-no" href="#L117" aria-label="Line 117">117</a><span class="line-code">        C * (∫ h, G h * b h) * ‖R‖ := by</span></span>
+<span class="source-line" id="L118"><a class="line-no" href="#L118" aria-label="Line 118">118</a><span class="line-code">      rw [integral_add ho he, integral_mul_const, integral_const_mul]</span></span>
+<span class="source-line" id="L119"><a class="line-no" href="#L119" aria-label="Line 119">119</a><span class="line-code">    _ ≤ _ := add_le_add (gaussian_average_weightedL1Trace_le (Λ R) a ha hg hχ hbound) le_rfl</span></span>
+<span class="source-line" id="L120"><a class="line-no" href="#L120" aria-label="Line 120">120</a><span class="line-code"> </span></span>
+<span class="source-line" id="L121"><a class="line-no" href="#L121" aria-label="Line 121">121</a><span class="line-code">/-- The sharp residual trace bound for any actual hybrid channel with a</span></span>
+<span class="source-line" id="L122"><a class="line-no" href="#L122" aria-label="Line 122">122</a><span class="line-code">quantitative classical covariance defect. The input mollifier and its limit</span></span>
+<span class="source-line" id="L123"><a class="line-no" href="#L123" aria-label="Line 123">123</a><span class="line-code">are explicitly constructed in operator-valued L¹. -/</span></span>
+<span class="source-line" id="L124"><a class="line-no" href="#L124" aria-label="Line 124">124</a><span class="line-code">theorem weightedQuantumMap_gaussian_trace_le</span></span>
+<span class="source-line" id="L125"><a class="line-no" href="#L125" aria-label="Line 125">125</a><span class="line-code">    (Λ : Lp (TraceClass H) 1 (volume : Measure (Fin k → ℝ)) →L[ℂ]</span></span>
+<span class="source-line" id="L126"><a class="line-no" href="#L126" aria-label="Line 126">126</a><span class="line-code">      Lp (TraceClass K) 1 (volume : Measure (Fin k → ℝ)))</span></span>
+<span class="source-line" id="L127"><a class="line-no" href="#L127" aria-label="Line 127">127</a><span class="line-code">    (hΛ : L1CompletelyPositive Λ.toLinearMap) (hTP : L1TracePreserving Λ.toLinearMap)</span></span>
+<span class="source-line" id="L128"><a class="line-no" href="#L128" aria-label="Line 128">128</a><span class="line-code">    (a : Fin k → ℝ) (ha : ∀ i, 0 &lt; a i) {g : ℝ} (hg : 1 ≤ g)</span></span>
+<span class="source-line" id="L129"><a class="line-no" href="#L129" aria-label="Line 129">129</a><span class="line-code">    (hχ : AEStronglyMeasurable</span></span>
+<span class="source-line" id="L130"><a class="line-no" href="#L130" aria-label="Line 130">130</a><span class="line-code">      (GaussianAffinity.productWitness a (fun i =&gt; a i / g)) volume)</span></span>
+<span class="source-line" id="L131"><a class="line-no" href="#L131" aria-label="Line 131">131</a><span class="line-code">    {C : ℝ} (hC : 0 ≤ C) (hbound : ∀ y,</span></span>
+<span class="source-line" id="L132"><a class="line-no" href="#L132" aria-label="Line 132">132</a><span class="line-code">      ‖GaussianAffinity.productWitness a (fun i =&gt; a i / g) y‖ ≤ C)</span></span>
+<span class="source-line" id="L133"><a class="line-no" href="#L133" aria-label="Line 133">133</a><span class="line-code">    (b : (Fin k → ℝ) → ℝ)</span></span>
+<span class="source-line" id="L134"><a class="line-no" href="#L134" aria-label="Line 134">134</a><span class="line-code">    (hb : Integrable (fun h =&gt; GaussianAffinity.productDensity a h * b h))</span></span>
+<span class="source-line" id="L135"><a class="line-no" href="#L135" aria-label="Line 135">135</a><span class="line-code">    (herror : ∀ h R, ‖Λ (classicalTranslation h R) -</span></span>
+<span class="source-line" id="L136"><a class="line-no" href="#L136" aria-label="Line 136">136</a><span class="line-code">      classicalTranslation (Real.sqrt g • h) (Λ R)‖ ≤ b h * ‖R‖)</span></span>
+<span class="source-line" id="L137"><a class="line-no" href="#L137" aria-label="Line 137">137</a><span class="line-code">    (X : TraceClass H) (hX : 0 ≤ X.1) :</span></span>
+<span class="source-line" id="L138"><a class="line-no" href="#L138" aria-label="Line 138">138</a><span class="line-code">    (traceCLM (weightedQuantumMap Λ.toLinearMap (GaussianAffinity.productDensity a)</span></span>
+<span class="source-line" id="L139"><a class="line-no" href="#L139" aria-label="Line 139">139</a><span class="line-code">      (GaussianAffinity.integrable_productDensity a ha)</span></span>
+<span class="source-line" id="L140"><a class="line-no" href="#L140" aria-label="Line 140">140</a><span class="line-code">      (GaussianAffinity.productWitness a (fun i =&gt; a i / g)) hχ hbound X)).re ≤</span></span>
+<span class="source-line" id="L141"><a class="line-no" href="#L141" aria-label="Line 141">141</a><span class="line-code">      (Thermal.classicalBase g ^ ((k : ℝ) / 2) +</span></span>
+<span class="source-line" id="L142"><a class="line-no" href="#L142" aria-label="Line 142">142</a><span class="line-code">        C * (∫ h, GaussianAffinity.productDensity a h * b h)) * (traceCLM X).re := by</span></span>
+<span class="source-line" id="L143"><a class="line-no" href="#L143" aria-label="Line 143">143</a><span class="line-code">  let G := GaussianAffinity.productDensity a</span></span>
+<span class="source-line" id="L144"><a class="line-no" href="#L144" aria-label="Line 144">144</a><span class="line-code">  let χ := GaussianAffinity.productWitness a (fun i =&gt; a i / g)</span></span>
+<span class="source-line" id="L145"><a class="line-no" href="#L145" aria-label="Line 145">145</a><span class="line-code">  let Q := weightedL1Trace (H := K) χ hχ hbound</span></span>
+<span class="source-line" id="L146"><a class="line-no" href="#L146" aria-label="Line 146">146</a><span class="line-code">  let U (n : ℕ) := prepareL1 (classicalApproxDensity k n)</span></span>
+<span class="source-line" id="L147"><a class="line-no" href="#L147" aria-label="Line 147">147</a><span class="line-code">    (integrable_classicalApproxDensity k n) X</span></span>
+<span class="source-line" id="L148"><a class="line-no" href="#L148" aria-label="Line 148">148</a><span class="line-code">  have hUn (n : ℕ) : ‖U n‖ = ‖X‖ :=</span></span>
+<span class="source-line" id="L149"><a class="line-no" href="#L149" aria-label="Line 149">149</a><span class="line-code">    norm_prepareL1 _ _ (classicalApproxDensity_nonneg k n)</span></span>
+<span class="source-line" id="L150"><a class="line-no" href="#L150" aria-label="Line 150">150</a><span class="line-code">      (integral_classicalApproxDensity k n) X</span></span>
+<span class="source-line" id="L151"><a class="line-no" href="#L151" aria-label="Line 151">151</a><span class="line-code">  have hUp (n : ℕ) : ∀ᵐ y ∂volume, 0 ≤ (U n y).1 :=</span></span>
+<span class="source-line" id="L152"><a class="line-no" href="#L152" aria-label="Line 152">152</a><span class="line-code">    prepareL1_nonneg _ _ (classicalApproxDensity_nonneg k n) X hX</span></span>
+<span class="source-line" id="L153"><a class="line-no" href="#L153" aria-label="Line 153">153</a><span class="line-code">  have hLn (n : ℕ) : ‖Λ (U n)‖ = ‖X‖ :=</span></span>
+<span class="source-line" id="L154"><a class="line-no" href="#L154" aria-label="Line 154">154</a><span class="line-code">    (hΛ.norm_map_of_nonneg hTP (U n) (hUp n)).trans (hUn n)</span></span>
+<span class="source-line" id="L155"><a class="line-no" href="#L155" aria-label="Line 155">155</a><span class="line-code">  have hboundn (n : ℕ) : Q (Λ (classicalAverage G (U n))) ≤</span></span>
+<span class="source-line" id="L156"><a class="line-no" href="#L156" aria-label="Line 156">156</a><span class="line-code">      (Thermal.classicalBase g ^ ((k : ℝ) / 2) + C * (∫ h, G h * b h)) *</span></span>
+<span class="source-line" id="L157"><a class="line-no" href="#L157" aria-label="Line 157">157</a><span class="line-code">        (traceCLM X).re := by</span></span>
+<span class="source-line" id="L158"><a class="line-no" href="#L158" aria-label="Line 158">158</a><span class="line-code">    have ht := weightedL1Trace_gaussian_average_le Λ a ha hg hχ hC hbound b hb herror (U n)</span></span>
+<span class="source-line" id="L159"><a class="line-no" href="#L159" aria-label="Line 159">159</a><span class="line-code">    rw [hLn n, hUn n, TraceClass.norm_eq_trace_re_of_nonneg X hX] at ht</span></span>
+<span class="source-line" id="L160"><a class="line-no" href="#L160" aria-label="Line 160">160</a><span class="line-code">    exact ht.trans_eq (by dsimp only [G]; rw [traceCLM_apply]; ring)</span></span>
+<span class="source-line" id="L161"><a class="line-no" href="#L161" aria-label="Line 161">161</a><span class="line-code">  have hlim : Tendsto (fun n =&gt; Q (Λ (classicalAverage G (U n)))) atTop</span></span>
+<span class="source-line" id="L162"><a class="line-no" href="#L162" aria-label="Line 162">162</a><span class="line-code">      (𝓝 (Q (Λ (prepareL1 G (GaussianAffinity.integrable_productDensity a ha) X)))) :=</span></span>
+<span class="source-line" id="L163"><a class="line-no" href="#L163" aria-label="Line 163">163</a><span class="line-code">    (Q.continuous.comp Λ.continuous).continuousAt.tendsto.comp</span></span>
+<span class="source-line" id="L164"><a class="line-no" href="#L164" aria-label="Line 164">164</a><span class="line-code">      (classicalAverage_prepareApprox_tendsto G (GaussianAffinity.integrable_productDensity a ha) X)</span></span>
+<span class="source-line" id="L165"><a class="line-no" href="#L165" aria-label="Line 165">165</a><span class="line-code">  exact le_of_tendsto_of_tendsto hlim tendsto_const_nhds (Eventually.of_forall hboundn)</span></span>
+<span class="source-line" id="L166"><a class="line-no" href="#L166" aria-label="Line 166">166</a><span class="line-code"> </span></span>
+<span class="source-line" id="L167"><a class="line-no" href="#L167" aria-label="Line 167">167</a><span class="line-code">/-- Dominated convergence discharges the Gaussian-averaged covariance error. -/</span></span>
+<span class="source-line" id="L168"><a class="line-no" href="#L168" aria-label="Line 168">168</a><span class="line-code">theorem tendsto_gaussian_covariance_error_zero</span></span>
+<span class="source-line" id="L169"><a class="line-no" href="#L169" aria-label="Line 169">169</a><span class="line-code">    (a : Fin k → ℝ) (ha : ∀ i, 0 &lt; a i) (C : ℝ)</span></span>
+<span class="source-line" id="L170"><a class="line-no" href="#L170" aria-label="Line 170">170</a><span class="line-code">    (b : ℕ → (Fin k → ℝ) → ℝ)</span></span>
+<span class="source-line" id="L171"><a class="line-no" href="#L171" aria-label="Line 171">171</a><span class="line-code">    (hb : ∀ n, AEStronglyMeasurable (b n) volume)</span></span>
+<span class="source-line" id="L172"><a class="line-no" href="#L172" aria-label="Line 172">172</a><span class="line-code">    {B : ℝ} (hbound : ∀ n h, ‖b n h‖ ≤ B)</span></span>
+<span class="source-line" id="L173"><a class="line-no" href="#L173" aria-label="Line 173">173</a><span class="line-code">    (hlim : ∀ h, Tendsto (fun n =&gt; b n h) atTop (𝓝 0)) :</span></span>
+<span class="source-line" id="L174"><a class="line-no" href="#L174" aria-label="Line 174">174</a><span class="line-code">    Tendsto (fun n =&gt; C * (∫ h, GaussianAffinity.productDensity a h * b n h))</span></span>
+<span class="source-line" id="L175"><a class="line-no" href="#L175" aria-label="Line 175">175</a><span class="line-code">      atTop (𝓝 0) := by</span></span>
+<span class="source-line" id="L176"><a class="line-no" href="#L176" aria-label="Line 176">176</a><span class="line-code">  have hG := GaussianAffinity.integrable_productDensity a ha</span></span>
+<span class="source-line" id="L177"><a class="line-no" href="#L177" aria-label="Line 177">177</a><span class="line-code">  have ht : Tendsto (fun n =&gt; ∫ h, GaussianAffinity.productDensity a h * b n h)</span></span>
+<span class="source-line" id="L178"><a class="line-no" href="#L178" aria-label="Line 178">178</a><span class="line-code">      atTop (𝓝 (∫ _h : Fin k → ℝ, (0 : ℝ))) := by</span></span>
+<span class="source-line" id="L179"><a class="line-no" href="#L179" aria-label="Line 179">179</a><span class="line-code">    apply tendsto_integral_of_dominated_convergence</span></span>
+<span class="source-line" id="L180"><a class="line-no" href="#L180" aria-label="Line 180">180</a><span class="line-code">      (fun h =&gt; GaussianAffinity.productDensity a h * B)</span></span>
+<span class="source-line" id="L181"><a class="line-no" href="#L181" aria-label="Line 181">181</a><span class="line-code">      (fun n =&gt; hG.aestronglyMeasurable.mul (hb n)) (hG.mul_const B)</span></span>
+<span class="source-line" id="L182"><a class="line-no" href="#L182" aria-label="Line 182">182</a><span class="line-code">    · intro n</span></span>
+<span class="source-line" id="L183"><a class="line-no" href="#L183" aria-label="Line 183">183</a><span class="line-code">      exact Eventually.of_forall fun h =&gt; by</span></span>
+<span class="source-line" id="L184"><a class="line-no" href="#L184" aria-label="Line 184">184</a><span class="line-code">        rw [Pi.mul_apply, norm_mul, Real.norm_of_nonneg (GaussianAffinity.productDensity_nonneg a h)]</span></span>
+<span class="source-line" id="L185"><a class="line-no" href="#L185" aria-label="Line 185">185</a><span class="line-code">        exact mul_le_mul_of_nonneg_left (hbound n h)</span></span>
+<span class="source-line" id="L186"><a class="line-no" href="#L186" aria-label="Line 186">186</a><span class="line-code">          (GaussianAffinity.productDensity_nonneg a h)</span></span>
+<span class="source-line" id="L187"><a class="line-no" href="#L187" aria-label="Line 187">187</a><span class="line-code">    · exact Eventually.of_forall fun h =&gt; by</span></span>
+<span class="source-line" id="L188"><a class="line-no" href="#L188" aria-label="Line 188">188</a><span class="line-code">        simpa using (hlim h).const_mul (GaussianAffinity.productDensity a h)</span></span>
+<span class="source-line" id="L189"><a class="line-no" href="#L189" aria-label="Line 189">189</a><span class="line-code">  simpa using ht.const_mul C</span></span>
+<span class="source-line" id="L190"><a class="line-no" href="#L190" aria-label="Line 190">190</a><span class="line-code"> </span></span>
+<span class="source-line" id="L191"><a class="line-no" href="#L191" aria-label="Line 191">191</a><span class="line-code">/-- The residual trace factor is eventually at most the sharp classical</span></span>
+<span class="source-line" id="L192"><a class="line-no" href="#L192" aria-label="Line 192">192</a><span class="line-code">factor plus any positive tolerance, uniformly over every positive input. -/</span></span>
+<span class="source-line" id="L193"><a class="line-no" href="#L193" aria-label="Line 193">193</a><span class="line-code">theorem eventually_weightedQuantumMap_gaussian_trace_le</span></span>
+<span class="source-line" id="L194"><a class="line-no" href="#L194" aria-label="Line 194">194</a><span class="line-code">    (Λ : ℕ → Lp (TraceClass H) 1 (volume : Measure (Fin k → ℝ)) →L[ℂ]</span></span>
+<span class="source-line" id="L195"><a class="line-no" href="#L195" aria-label="Line 195">195</a><span class="line-code">      Lp (TraceClass K) 1 (volume : Measure (Fin k → ℝ)))</span></span>
+<span class="source-line" id="L196"><a class="line-no" href="#L196" aria-label="Line 196">196</a><span class="line-code">    (hΛ : ∀ n, L1CompletelyPositive (Λ n).toLinearMap)</span></span>
+<span class="source-line" id="L197"><a class="line-no" href="#L197" aria-label="Line 197">197</a><span class="line-code">    (hTP : ∀ n, L1TracePreserving (Λ n).toLinearMap)</span></span>
+<span class="source-line" id="L198"><a class="line-no" href="#L198" aria-label="Line 198">198</a><span class="line-code">    (a : Fin k → ℝ) (ha : ∀ i, 0 &lt; a i) {g : ℝ} (hg : 1 ≤ g)</span></span>
+<span class="source-line" id="L199"><a class="line-no" href="#L199" aria-label="Line 199">199</a><span class="line-code">    (hχ : AEStronglyMeasurable</span></span>
+<span class="source-line" id="L200"><a class="line-no" href="#L200" aria-label="Line 200">200</a><span class="line-code">      (GaussianAffinity.productWitness a (fun i =&gt; a i / g)) volume)</span></span>
+<span class="source-line" id="L201"><a class="line-no" href="#L201" aria-label="Line 201">201</a><span class="line-code">    {C : ℝ} (hC : 0 ≤ C) (hχbound : ∀ y,</span></span>
+<span class="source-line" id="L202"><a class="line-no" href="#L202" aria-label="Line 202">202</a><span class="line-code">      ‖GaussianAffinity.productWitness a (fun i =&gt; a i / g) y‖ ≤ C)</span></span>
+<span class="source-line" id="L203"><a class="line-no" href="#L203" aria-label="Line 203">203</a><span class="line-code">    (b : ℕ → (Fin k → ℝ) → ℝ)</span></span>
+<span class="source-line" id="L204"><a class="line-no" href="#L204" aria-label="Line 204">204</a><span class="line-code">    (hb : ∀ n, AEStronglyMeasurable (b n) volume)</span></span>
+<span class="source-line" id="L205"><a class="line-no" href="#L205" aria-label="Line 205">205</a><span class="line-code">    {B : ℝ} (hbbound : ∀ n h, ‖b n h‖ ≤ B)</span></span>
+<span class="source-line" id="L206"><a class="line-no" href="#L206" aria-label="Line 206">206</a><span class="line-code">    (hlim : ∀ h, Tendsto (fun n =&gt; b n h) atTop (𝓝 0))</span></span>
+<span class="source-line" id="L207"><a class="line-no" href="#L207" aria-label="Line 207">207</a><span class="line-code">    (herror : ∀ n h R, ‖Λ n (classicalTranslation h R) -</span></span>
+<span class="source-line" id="L208"><a class="line-no" href="#L208" aria-label="Line 208">208</a><span class="line-code">      classicalTranslation (Real.sqrt g • h) (Λ n R)‖ ≤ b n h * ‖R‖) :</span></span>
+<span class="source-line" id="L209"><a class="line-no" href="#L209" aria-label="Line 209">209</a><span class="line-code">    ∀ ε &gt; 0, ∀ᶠ n in atTop, ∀ X : TraceClass H, 0 ≤ X.1 →</span></span>
+<span class="source-line" id="L210"><a class="line-no" href="#L210" aria-label="Line 210">210</a><span class="line-code">      (traceCLM (weightedQuantumMap (Λ n).toLinearMap (GaussianAffinity.productDensity a)</span></span>
+<span class="source-line" id="L211"><a class="line-no" href="#L211" aria-label="Line 211">211</a><span class="line-code">        (GaussianAffinity.integrable_productDensity a ha)</span></span>
+<span class="source-line" id="L212"><a class="line-no" href="#L212" aria-label="Line 212">212</a><span class="line-code">        (GaussianAffinity.productWitness a (fun i =&gt; a i / g)) hχ hχbound X)).re ≤</span></span>
+<span class="source-line" id="L213"><a class="line-no" href="#L213" aria-label="Line 213">213</a><span class="line-code">        (Thermal.classicalBase g ^ ((k : ℝ) / 2) + ε) * (traceCLM X).re := by</span></span>
+<span class="source-line" id="L214"><a class="line-no" href="#L214" aria-label="Line 214">214</a><span class="line-code">  intro ε hε</span></span>
+<span class="source-line" id="L215"><a class="line-no" href="#L215" aria-label="Line 215">215</a><span class="line-code">  have ht := tendsto_gaussian_covariance_error_zero a ha C b hb hbbound hlim</span></span>
+<span class="source-line" id="L216"><a class="line-no" href="#L216" aria-label="Line 216">216</a><span class="line-code">  have he := ht.eventually_lt_const hε</span></span>
+<span class="source-line" id="L217"><a class="line-no" href="#L217" aria-label="Line 217">217</a><span class="line-code">  filter_upwards [he] with n hn</span></span>
+<span class="source-line" id="L218"><a class="line-no" href="#L218" aria-label="Line 218">218</a><span class="line-code">  intro X hX</span></span>
+<span class="source-line" id="L219"><a class="line-no" href="#L219" aria-label="Line 219">219</a><span class="line-code">  have hbi : Integrable (fun h =&gt; GaussianAffinity.productDensity a h * b n h) :=</span></span>
+<span class="source-line" id="L220"><a class="line-no" href="#L220" aria-label="Line 220">220</a><span class="line-code">    (GaussianAffinity.integrable_productDensity a ha).mul_bdd (hb n)</span></span>
+<span class="source-line" id="L221"><a class="line-no" href="#L221" aria-label="Line 221">221</a><span class="line-code">      (Eventually.of_forall (hbbound n))</span></span>
+<span class="source-line" id="L222"><a class="line-no" href="#L222" aria-label="Line 222">222</a><span class="line-code">  apply (weightedQuantumMap_gaussian_trace_le (Λ n) (hΛ n) (hTP n) a ha hg</span></span>
+<span class="source-line" id="L223"><a class="line-no" href="#L223" aria-label="Line 223">223</a><span class="line-code">    hχ hC hχbound (b n) hbi (herror n) X hX).trans</span></span>
+<span class="source-line" id="L224"><a class="line-no" href="#L224" aria-label="Line 224">224</a><span class="line-code">  exact mul_le_mul_of_nonneg_right (add_le_add le_rfl hn.le)</span></span>
+<span class="source-line" id="L225"><a class="line-no" href="#L225" aria-label="Line 225">225</a><span class="line-code">    (trace_re_nonneg hX X.2)</span></span>
+<span class="source-line" id="L226"><a class="line-no" href="#L226" aria-label="Line 226">226</a><span class="line-code"> </span></span>
+<span class="source-line" id="L227"><a class="line-no" href="#L227" aria-label="Line 227">227</a><span class="line-code">end Cloning.Hybrid</span></span>
+</code></pre></div></main>
+<footer class="footer">English guides explain the argument. Lean source and its hypotheses determine the formal claims.
+<a href="../verification.html">Audit evidence</a> · <a href="../scope.html">Scope</a></footer>
+</div></div></body></html>

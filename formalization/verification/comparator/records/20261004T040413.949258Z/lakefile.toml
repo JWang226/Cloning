@@ -1,0 +1,10 @@
+name = "cloningVerification"
+version = "0.1.0"
+defaultTargets = ["Challenge", "Solution"]
+moreLeanArgs = ["-DautoImplicit=false"]
+
+[[lean_lib]]
+name = "Challenge"
+
+[[lean_lib]]
+name = "Solution"

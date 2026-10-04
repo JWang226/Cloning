@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="An offline guide to the Lean formalization of asymptotic mixed-state quantum cloning. Exact source, proof routes, and audited scope.">
+<title>Comparison with purify–clone–trace · Cloning proof wiki</title>
+<link rel="stylesheet" href="../assets/site.css?v=1811c00ea983">
+<script>window.PROOF_ROOT="../";</script>
+<script defer src="../assets/vendor/katex/katex.min.js"></script>
+<script defer src="../assets/search-index.js?v=850aee981cdc"></script>
+<script defer src="../assets/site.js?v=4bfaac1f06b1"></script>
+</head><body><a class="skip-link" href="#main">Skip to content</a>
+<div class="site-shell"><aside class="sidebar" id="site-navigation">
+<a class="brand" href="../index.html"><span class="brand-mark">C</span><span>Cloning<span class="small muted">A Lean proof wiki</span></span></a>
+<nav aria-label="Main navigation"><div class="nav-section">Explore</div><a class="nav-link" href="../index.html">Overview</a><a class="nav-link" href="../guides/index.html">Proof guide</a><a class="nav-link active" href="../results/index.html" aria-current="page">27 named results</a><a class="nav-link" href="../source/index.html">Lean source</a><a class="nav-link" href="../verification.html">Verification</a><a class="nav-link" href="../scope.html">Scope &amp; conventions</a>
+<div class="nav-section">Read the proof</div><a class="nav-link" href="../guides/physical-problem.html"><span class="nav-number">01</span> The physical problem and its conventions</a><a class="nav-link" href="../guides/young-laws.html"><span class="nav-number">02</span> Young labels: concentration and the local Gaussian law</a><a class="nav-link" href="../guides/cartan-sectors.html"><span class="nav-number">03</span> From PBW frames to uniform Cartan-sector fidelity</a><a class="nav-link" href="../guides/lifted-kernels.html"><span class="nav-number">04</span> Lifted channels, randomized dilation, and factorization</a><a class="nav-link" href="../guides/gaussian-optimum.html"><span class="nav-number">05</span> Gaussian amplification against arbitrary competitors</a><a class="nav-link" href="../guides/physical-lan.html"><span class="nav-number">06</span> Constructed LAN and fidelity transfer</a><a class="nav-link" href="../guides/known-spectrum.html"><span class="nav-number">07</span> The known-spectrum optimum</a><a class="nav-link" href="../guides/unknown-spectrum.html"><span class="nav-number">08</span> One universal cloner and the compact-set optimum</a><a class="nav-link" href="../guides/grassmann.html"><span class="nav-number">09</span> Exact rank compression and projector-state optimality</a><a class="nav-link" href="../guides/purify-clone-trace.html"><span class="nav-number">10</span> Purify–clone–trace: exact channels, limits, and guarantees</a><a class="nav-link" href="../guides/small-errors.html"><span class="nav-number">11</span> Small errors, rank boundaries, and noncommuting limits</a><a class="nav-link" href="../guides/spectral-comparison.html"><span class="nav-number">12</span> Spectral order and what is known for all states</a></nav>
+<div class="sidebar-footer"><span class="badge">Lean 4</span><p>Manuscript → proof → source</p>
+<a href="https://github.com/JWang226/Cloning">Repository ↗</a></div></aside>
+<div class="main-shell"><header class="topbar">
+<button id="nav-toggle" class="button secondary" aria-controls="site-navigation" aria-expanded="false" aria-label="Toggle navigation">Menu</button>
+<div class="search-wrap"><label class="sr-only" for="site-search">Search the proof wiki</label>
+<input id="site-search" type="search" placeholder="Search results, concepts, or Lean names…" autocomplete="off" aria-controls="search-results" aria-expanded="false" role="combobox" aria-autocomplete="list">
+<div id="search-results" class="search-results" role="listbox" hidden></div></div>
+<span class="small muted topbar-label">Offline · exact source</span></header>
+<main id="main" class="content"><div class="eyebrow">theorem · manuscript result</div><h1>Comparison with purify–clone–trace</h1><p><code>thm:pct-comparison</code> <span class="badge">Mapped to compiled Lean</span></p><div class="notice">Scope notes below come from the manuscript-to-Lean map. Exact source excerpts are the formal reference.</div><h2>thm:pct-comparison (a)</h2><section class="callout info"><h2>Hypotheses and correspondence</h2><p>Actual full-environment PCT; any positive density matrix with simple eigenvalues. Strict comparison requires physical dimension at least two and <code>γ&gt;1</code>. Radical formula is identified with the same <code>pctValue</code>.</p></section><h2>Concrete Lean endpoints</h2><p class="small muted">These are exact statement excerpts, with proof bodies omitted. Section variables, instances, namespaces, imports, and proof bodies are visible in the linked full module.</p><article class="declaration"><div class="declaration-header"><a href="../source/Cloning.PCTPrescribedFull.html#L33"><code>Cloning.PCTPrescribed.fullChannel_fidelity_tendsto</code></a><span class="badge">theorem</span></div><p class="small muted">PCTPrescribedFull.lean · line 33 · <a href="../source/Cloning.PCTPrescribedFull.html#L33">Full source and context</a> · <a href="https://github.com/JWang226/Cloning/blob/main/formalization/Cloning/PCTPrescribedFull.lean#L33">GitHub ↗</a> · <button class="copy-button" data-copy-target="lean-cloning-pctprescribed-fullchannel-fidelity-tendsto-148" aria-label="Copy Lean excerpt">Copy</button></p><div class="code-wrap"><pre class="code-block" id="lean-cloning-pctprescribed-fullchannel-fidelity-tendsto-148"><code>theorem fullChannel_fidelity_tendsto {d : ℕ} (hd : 1≤d)
+    (ρ : Cloning.MatrixFidelity.State (Fin (d+1))) (hpos : ρ.matrix.PosDef)
+    (hsimple : Function.Injective ρ.positive.isHermitian.eigenvalues)
+    (m : ℕ → ℕ) (γ : ℝ) (hγ : 1&lt;γ)
+    (hgain : Tendsto (fun n =&gt; (m n : ℝ)/n) atTop (𝓝 γ)) :
+    Tendsto (fun n =&gt; statePayoff n (m n) (fullChannel d n (m n)) ρ) atTop
+      (𝓝 (Cloning.pctValue γ (densitySpectrum ρ hpos hsimple)))</code></pre></div></article><article class="declaration"><div class="declaration-header"><a href="../source/Cloning.Main.html#L91"><code>Cloning.pctValue_lt_universalValue</code></a><span class="badge">theorem</span></div><p class="small muted">Main.lean · line 91 · <a href="../source/Cloning.Main.html#L91">Full source and context</a> · <a href="https://github.com/JWang226/Cloning/blob/main/formalization/Cloning/Main.lean#L91">GitHub ↗</a> · <button class="copy-button" data-copy-target="lean-cloning-pctvalue-lt-universalvalue-149" aria-label="Copy Lean excerpt">Copy</button></p><div class="code-wrap"><pre class="code-block" id="lean-cloning-pctvalue-lt-universalvalue-149"><code>theorem pctValue_lt_universalValue {d : ℕ} (hd : 2 ≤ d) {g : ℝ}
+    (hg : 1 &lt; g) (p : SimpleSpectrum d) : pctValue g p &lt; universalValue g p</code></pre></div></article><article class="declaration"><div class="declaration-header"><a href="../source/Cloning.PCTClosedForm.html#L54"><code>Cloning.pctValue_closedForm</code></a><span class="badge">theorem</span></div><p class="small muted">PCTClosedForm.lean · line 54 · <a href="../source/Cloning.PCTClosedForm.html#L54">Full source and context</a> · <a href="https://github.com/JWang226/Cloning/blob/main/formalization/Cloning/PCTClosedForm.lean#L54">GitHub ↗</a> · <button class="copy-button" data-copy-target="lean-cloning-pctvalue-closedform-150" aria-label="Copy Lean excerpt">Copy</button></p><div class="code-wrap"><pre class="code-block" id="lean-cloning-pctvalue-closedform-150"><code>theorem pctValue_closedForm {d : ℕ} {g : ℝ} (hg : 1&lt;g) (p : SimpleSpectrum d) :
+    pctValue g p=(Real.sqrt (2*g-1)/g)^(((d : ℝ)-1)/2)*
+      ∏ ij : PairIndex d,
+        (Real.sqrt (g+(g-1)*p.ratio ij)+Real.sqrt (p.ratio ij*(g-1+g*p.ratio ij)))/
+          (g*(1+p.ratio ij))</code></pre></div></article><h2>thm:pct-comparison (b)</h2><section class="callout info"><h2>Hypotheses and correspondence</h2><p>The fixed smaller-environment PCT channel, actual rank-<code>r</code> projectors, dimension <code>r+k</code>. Strict inequality uses <code>r&gt;1</code>; the bound includes the additional classical factor. No fidelity-limit existence is asserted.</p></section><h2>Concrete Lean endpoints</h2><p class="small muted">These are exact statement excerpts, with proof bodies omitted. Section variables, instances, namespaces, imports, and proof bodies are visible in the linked full module.</p><article class="declaration"><div class="declaration-header"><a href="../source/Cloning.PCTPrescribedRankTheorem.html#L21"><code>Cloning.PCTPrescribed.rankFidelity_limsup_le</code></a><span class="badge">theorem</span></div><p class="small muted">PCTPrescribedRankTheorem.lean · line 21 · <a href="../source/Cloning.PCTPrescribedRankTheorem.html#L21">Full source and context</a> · <a href="https://github.com/JWang226/Cloning/blob/main/formalization/Cloning/PCTPrescribedRankTheorem.lean#L21">GitHub ↗</a> · <button class="copy-button" data-copy-target="lean-cloning-pctprescribed-rankfidelity-limsup-le-151" aria-label="Copy Lean excerpt">Copy</button></p><div class="code-wrap"><pre class="code-block" id="lean-cloning-pctprescribed-rankfidelity-limsup-le-151"><code>theorem rankFidelity_limsup_le (d k : ℕ) (P : Projector (d+1) k)
+    (m : ℕ → ℕ) (γ : ℝ) (hγ : 1&lt;γ)
+    (hgain : Tendsto (fun n =&gt; (m n : ℝ)/n) atTop (𝓝 γ)) :
+    limsup (fun n =&gt; rankFidelity d k P n (m n)) atTop ≤
+      γ ^ (-((((d+1)*k : ℕ) : ℝ)/2)) *
+        (Real.sqrt (2*γ-1)/γ) ^ ((((d+1 : ℕ) : ℝ)-1)/2)</code></pre></div></article><article class="declaration"><div class="declaration-header"><a href="../source/Cloning.PCTPrescribedRankTheorem.html#L30"><code>Cloning.PCTPrescribed.rankFidelity_limsup_lt_optimal</code></a><span class="badge">theorem</span></div><p class="small muted">PCTPrescribedRankTheorem.lean · line 30 · <a href="../source/Cloning.PCTPrescribedRankTheorem.html#L30">Full source and context</a> · <a href="https://github.com/JWang226/Cloning/blob/main/formalization/Cloning/PCTPrescribedRankTheorem.lean#L30">GitHub ↗</a> · <button class="copy-button" data-copy-target="lean-cloning-pctprescribed-rankfidelity-limsup-lt-optimal-152" aria-label="Copy Lean excerpt">Copy</button></p><div class="code-wrap"><pre class="code-block" id="lean-cloning-pctprescribed-rankfidelity-limsup-lt-optimal-152"><code>theorem rankFidelity_limsup_lt_optimal (d k : ℕ) (hd : 0&lt;d) (P : Projector (d+1) k)
+    (m : ℕ → ℕ) (γ : ℝ) (hγ : 1&lt;γ)
+    (hgain : Tendsto (fun n =&gt; (m n : ℝ)/n) atTop (𝓝 γ)) :
+    limsup (fun n =&gt; rankFidelity d k P n (m n)) atTop &lt;
+      γ ^ (-((((d+1)*k : ℕ) : ℝ)/2))</code></pre></div></article><article class="declaration"><div class="declaration-header"><a href="../source/Cloning.PCTPrescribedRankTheorem.html#L39"><code>Cloning.PCTPrescribed.rankFidelity_uniform_upper</code></a><span class="badge">theorem</span></div><p class="small muted">PCTPrescribedRankTheorem.lean · line 39 · <a href="../source/Cloning.PCTPrescribedRankTheorem.html#L39">Full source and context</a> · <a href="https://github.com/JWang226/Cloning/blob/main/formalization/Cloning/PCTPrescribedRankTheorem.lean#L39">GitHub ↗</a> · <button class="copy-button" data-copy-target="lean-cloning-pctprescribed-rankfidelity-uniform-upper-153" aria-label="Copy Lean excerpt">Copy</button></p><div class="code-wrap"><pre class="code-block" id="lean-cloning-pctprescribed-rankfidelity-uniform-upper-153"><code>theorem rankFidelity_uniform_upper (d k : ℕ) (m : ℕ → ℕ) (γ : ℝ) (hγ : 1&lt;γ)
+    (hgain : Tendsto (fun n =&gt; (m n : ℝ)/n) atTop (𝓝 γ)) (ε : ℝ) (hε : 0&lt;ε) :
+    ∀ᶠ n in atTop, ∀ P : Projector (d+1) k,
+      rankFidelity d k P n (m n) &lt;
+        γ ^ (-((((d+1)*k : ℕ) : ℝ)/2)) *
+          (Real.sqrt (2*γ-1)/γ) ^ ((((d+1 : ℕ) : ℝ)-1)/2)+ε</code></pre></div></article><section class="callout"><h2>Read this part of the proof</h2><p><a href="../guides/purify-clone-trace.html">Purify–clone–trace: exact channels, limits, and guarantees →</a></p></section><details class="manuscript-excerpt"><summary>Exact manuscript TeX statement</summary><p class="small muted">Copied from the reference manuscript. Macro definitions and surrounding notation are in the complete TeX source.</p><pre class="code-block"><code>\begin{theorem}[Comparison with purify--clone--trace]
+\label{thm:pct-comparison}
+Fix \(\gamma=\lim_{n\to\infty} m_n/n&gt;1\), and let \(\cC_{n,m}^{\mathrm{PCT},r}\) be the
+purify--clone--trace channel with rank bound \(r\).
+\par\noindent\textup{(a)} For \(p\in\Delta_d^\circ\), let
+\(\rho_p=\diag(p_1,\ldots,p_d)\). Then PCT with rank bound \(d\) has
+\begin{equation}\label{eq:full-rank-pct-comparison}
+  \lim_{n\to\infty}
+  F\!\left(\cC_{n,m_n}^{\mathrm{PCT},d}(\rho_p^{\ot n}),
+    \rho_p^{\ot m_n}\right)
+  =F_{\mathrm{PCT}}(\gamma,p)&lt;\Funiv(\gamma,p),
+\end{equation}
+where \(q_{ij}=p_j/p_i\) and
+\begin{equation}\label{eq:pct-fidelity-closed-form}
+  F_{\mathrm{PCT}}(\gamma,p)
+  =\left(\frac{\sqrt{2\gamma-1}}{\gamma}\right)^{(d-1)/2}
+   \prod_{i&lt;j}
+   \frac{\sqrt{\gamma+(\gamma-1)q_{ij}}
+         +\sqrt{q_{ij}(\gamma-1+\gamma q_{ij})}}
+        {\gamma(1+q_{ij})}.
+\end{equation}
+\par\noindent\textup{(b)} Let \(1&lt;r&lt;d\) and let \(P\) be a rank-\(r\)
+orthogonal projector on \(\C^d\). Then PCT with rank bound \(r\) satisfies
+\begin{equation}\label{eq:grassmann-pct-upper-bound}
+  \limsup_{n\to\infty}
+  F\!\left(\cC_{n,m_n}^{\mathrm{PCT},r}((P/r)^{\ot n}),
+    (P/r)^{\ot m_n}\right)
+  \le\gamma^{-r(d-r)/2}
+  \left(\frac{\sqrt{2\gamma-1}}{\gamma}\right)^{(r-1)/2}
+  &lt;\gamma^{-r(d-r)/2}.
+\end{equation}
+For \(r=1\), PCT and our cloner both reduce to Werner&#x27;s pure-state
+cloner.
+\end{theorem}</code></pre><a href="../reference/cloning.tex">Download the complete reference source</a> · <a href="https://github.com/JWang226/Cloning/blob/main/formalization/reference/cloning.tex#L449">GitHub, line 449 ↗</a></details><p><a href="index.html">← All named results</a></p></main>
+<footer class="footer">English guides explain the argument. Lean source and its hypotheses determine the formal claims.
+<a href="../verification.html">Audit evidence</a> · <a href="../scope.html">Scope</a></footer>
+</div></div></body></html>

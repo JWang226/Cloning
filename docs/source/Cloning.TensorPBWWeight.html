@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="An offline guide to the Lean formalization of asymptotic mixed-state quantum cloning. Exact source, proof routes, and audited scope.">
+<title>TensorPBWWeight · Lean source · Cloning proof wiki</title>
+<link rel="stylesheet" href="../assets/site.css?v=1811c00ea983">
+<script>window.PROOF_ROOT="../";</script>
+<script defer src="../assets/vendor/katex/katex.min.js"></script>
+<script defer src="../assets/search-index.js?v=850aee981cdc"></script>
+<script defer src="../assets/site.js?v=4bfaac1f06b1"></script>
+</head><body><a class="skip-link" href="#main">Skip to content</a>
+<div class="site-shell"><aside class="sidebar" id="site-navigation">
+<a class="brand" href="../index.html"><span class="brand-mark">C</span><span>Cloning<span class="small muted">A Lean proof wiki</span></span></a>
+<nav aria-label="Main navigation"><div class="nav-section">Explore</div><a class="nav-link" href="../index.html">Overview</a><a class="nav-link" href="../guides/index.html">Proof guide</a><a class="nav-link" href="../results/index.html">27 named results</a><a class="nav-link active" href="../source/index.html" aria-current="page">Lean source</a><a class="nav-link" href="../verification.html">Verification</a><a class="nav-link" href="../scope.html">Scope &amp; conventions</a>
+<div class="nav-section">Read the proof</div><a class="nav-link" href="../guides/physical-problem.html"><span class="nav-number">01</span> The physical problem and its conventions</a><a class="nav-link" href="../guides/young-laws.html"><span class="nav-number">02</span> Young labels: concentration and the local Gaussian law</a><a class="nav-link" href="../guides/cartan-sectors.html"><span class="nav-number">03</span> From PBW frames to uniform Cartan-sector fidelity</a><a class="nav-link" href="../guides/lifted-kernels.html"><span class="nav-number">04</span> Lifted channels, randomized dilation, and factorization</a><a class="nav-link" href="../guides/gaussian-optimum.html"><span class="nav-number">05</span> Gaussian amplification against arbitrary competitors</a><a class="nav-link" href="../guides/physical-lan.html"><span class="nav-number">06</span> Constructed LAN and fidelity transfer</a><a class="nav-link" href="../guides/known-spectrum.html"><span class="nav-number">07</span> The known-spectrum optimum</a><a class="nav-link" href="../guides/unknown-spectrum.html"><span class="nav-number">08</span> One universal cloner and the compact-set optimum</a><a class="nav-link" href="../guides/grassmann.html"><span class="nav-number">09</span> Exact rank compression and projector-state optimality</a><a class="nav-link" href="../guides/purify-clone-trace.html"><span class="nav-number">10</span> Purify–clone–trace: exact channels, limits, and guarantees</a><a class="nav-link" href="../guides/small-errors.html"><span class="nav-number">11</span> Small errors, rank boundaries, and noncommuting limits</a><a class="nav-link" href="../guides/spectral-comparison.html"><span class="nav-number">12</span> Spectral order and what is known for all states</a></nav>
+<div class="sidebar-footer"><span class="badge">Lean 4</span><p>Manuscript → proof → source</p>
+<a href="https://github.com/JWang226/Cloning">Repository ↗</a></div></aside>
+<div class="main-shell"><header class="topbar">
+<button id="nav-toggle" class="button secondary" aria-controls="site-navigation" aria-expanded="false" aria-label="Toggle navigation">Menu</button>
+<div class="search-wrap"><label class="sr-only" for="site-search">Search the proof wiki</label>
+<input id="site-search" type="search" placeholder="Search results, concepts, or Lean names…" autocomplete="off" aria-controls="search-results" aria-expanded="false" role="combobox" aria-autocomplete="list">
+<div id="search-results" class="search-results" role="listbox" hidden></div></div>
+<span class="small muted topbar-label">Offline · exact source</span></header>
+<main id="main" class="content"><div class="eyebrow">Exact Lean source</div><h1 class="source-title">TensorPBWWeight</h1><p><code>formalization/Cloning/TensorPBWWeight.lean</code></p><p class="small muted">Source hash: <code>8c97a85a851464576f58ce59db38257185de870bab2aafee9574c310fb585e42</code></p><div class="actions"><a class="button secondary" href="raw/Cloning.TensorPBWWeight.lean">Download .lean</a><a class="button secondary" href="https://github.com/JWang226/Cloning/blob/main/formalization/Cloning/TensorPBWWeight.lean">View on GitHub ↗</a><a href="index.html">All modules</a></div><p class="small muted">Full source copied without mathematical changes from the snapshot whose input hash matches the passing audit. Select a line number for a stable source pointer.</p><details><summary>Declarations in this module</summary><div class="module-declarations"><a href="#L13"><span class="badge">definition</span> <code>Cloning.TensorLie.PositiveRoot.weight</code></a><a href="#L17"><span class="badge">definition</span> <code>Cloning.TensorLie.loweringWeight</code></a><a href="#L21"><span class="badge">theorem</span> <code>Cloning.TensorLie.loweringWeight_nil</code></a><a href="#L23"><span class="badge">theorem</span> <code>Cloning.TensorLie.loweringWeight_cons</code></a><a href="#L26"><span class="badge">theorem</span> <code>Cloning.TensorLie.loweringWeight_append</code></a><a href="#L32"><span class="badge">theorem</span> <code>Cloning.TensorLie.loweringWeight_eq_sum</code></a><a href="#L38"><span class="badge">theorem</span> <code>Cloning.TensorLie.loweringWeight_perm</code></a><a href="#L44"><span class="badge">theorem</span> <code>Cloning.TensorLie.PositiveRoot.weight_merge</code></a><a href="#L54"><span class="badge">definition</span> <code>Cloning.TensorLie.PositiveRoot.merge</code></a><a href="#L58"><span class="badge">theorem</span> <code>Cloning.TensorLie.PositiveRoot.merge_fst</code></a><a href="#L61"><span class="badge">theorem</span> <code>Cloning.TensorLie.PositiveRoot.merge_snd</code></a><a href="#L64"><span class="badge">theorem</span> <code>Cloning.TensorLie.PositiveRoot.merge_weight</code></a><a href="#L70"><span class="badge">theorem</span> <code>Cloning.TensorLie.PositiveRoot.merge_height</code></a><a href="#L78"><span class="badge">theorem</span> <code>Cloning.TensorLie.PositiveRoot.sum_mul_weight</code></a><a href="#L82"><span class="badge">theorem</span> <code>Cloning.TensorLie.PositiveRoot.sum_weight</code></a><a href="#L86"><span class="badge">theorem</span> <code>Cloning.TensorLie.PositiveRoot.sum_index_mul_weight</code></a><a href="#L91"><span class="badge">theorem</span> <code>Cloning.TensorLie.loweringWeight_sum</code></a><a href="#L98"><span class="badge">theorem</span> <code>Cloning.TensorLie.loweringWeight_index_sum</code></a><a href="#L107"><span class="badge">theorem</span> <code>Cloning.TensorLie.cartan_lowering_commutator</code></a><a href="#L121"><span class="badge">theorem</span> <code>Cloning.TensorLie.cartan_lowering_apply</code></a><a href="#L135"><span class="badge">theorem</span> <code>Cloning.TensorLie.cartan_loweringWord</code></a></div></details><div class="code-wrap source-wrap"><pre class="source-lines"><code><span class="source-line" id="L1"><a class="line-no" href="#L1" aria-label="Line 1">1</a><span class="line-code">import Cloning.TensorCyclicFiltration</span></span>
+<span class="source-line" id="L2"><a class="line-no" href="#L2" aria-label="Line 2">2</a><span class="line-code"> </span></span>
+<span class="source-line" id="L3"><a class="line-no" href="#L3" aria-label="Line 3">3</a><span class="line-code">/-! Exact Cartan weights of actual lowering words. The grading uses the</span></span>
+<span class="source-line" id="L4"><a class="line-no" href="#L4" aria-label="Line 4">4</a><span class="line-code">literal matrix-unit commutator and does not require independence of words. -/</span></span>
+<span class="source-line" id="L5"><a class="line-no" href="#L5" aria-label="Line 5">5</a><span class="line-code">noncomputable section</span></span>
+<span class="source-line" id="L6"><a class="line-no" href="#L6" aria-label="Line 6">6</a><span class="line-code">open scoped BigOperators InnerProductSpace</span></span>
+<span class="source-line" id="L7"><a class="line-no" href="#L7" aria-label="Line 7">7</a><span class="line-code">namespace Cloning.TensorLie</span></span>
+<span class="source-line" id="L8"><a class="line-no" href="#L8" aria-label="Line 8">8</a><span class="line-code">set_option maxHeartbeats 1000000</span></span>
+<span class="source-line" id="L9"><a class="line-no" href="#L9" aria-label="Line 9">9</a><span class="line-code">set_option backward.isDefEq.respectTransparency false</span></span>
+<span class="source-line" id="L10"><a class="line-no" href="#L10" aria-label="Line 10">10</a><span class="line-code">variable {n d : ℕ}</span></span>
+<span class="source-line" id="L11"><a class="line-no" href="#L11" aria-label="Line 11">11</a><span class="line-code"> </span></span>
+<span class="source-line" id="L12"><a class="line-no" href="#L12" aria-label="Line 12">12</a><span class="line-code">/-- The Cartan-weight change caused by the lowering matrix unit `E_{ji}`. -/</span></span>
+<span class="source-line" id="L13"><a class="line-no" href="#L13" aria-label="Line 13">13</a><span class="line-code">def PositiveRoot.weight (r : PositiveRoot d) (a : Fin d) : ℤ :=</span></span>
+<span class="source-line" id="L14"><a class="line-no" href="#L14" aria-label="Line 14">14</a><span class="line-code">  (if a = r.val.2 then 1 else 0) - (if a = r.val.1 then 1 else 0)</span></span>
+<span class="source-line" id="L15"><a class="line-no" href="#L15" aria-label="Line 15">15</a><span class="line-code"> </span></span>
+<span class="source-line" id="L16"><a class="line-no" href="#L16" aria-label="Line 16">16</a><span class="line-code">/-- The exact additive weight change of a lowering word. -/</span></span>
+<span class="source-line" id="L17"><a class="line-no" href="#L17" aria-label="Line 17">17</a><span class="line-code">noncomputable def loweringWeight : List (PositiveRoot d) → (Fin d → ℤ)</span></span>
+<span class="source-line" id="L18"><a class="line-no" href="#L18" aria-label="Line 18">18</a><span class="line-code">  | [] =&gt; 0</span></span>
+<span class="source-line" id="L19"><a class="line-no" href="#L19" aria-label="Line 19">19</a><span class="line-code">  | r :: w =&gt; r.weight + loweringWeight w</span></span>
+<span class="source-line" id="L20"><a class="line-no" href="#L20" aria-label="Line 20">20</a><span class="line-code"> </span></span>
+<span class="source-line" id="L21"><a class="line-no" href="#L21" aria-label="Line 21">21</a><span class="line-code">@[simp] theorem loweringWeight_nil : loweringWeight ([] : List (PositiveRoot d)) = 0 := rfl</span></span>
+<span class="source-line" id="L22"><a class="line-no" href="#L22" aria-label="Line 22">22</a><span class="line-code"> </span></span>
+<span class="source-line" id="L23"><a class="line-no" href="#L23" aria-label="Line 23">23</a><span class="line-code">@[simp] theorem loweringWeight_cons (r : PositiveRoot d) (w : List (PositiveRoot d)) :</span></span>
+<span class="source-line" id="L24"><a class="line-no" href="#L24" aria-label="Line 24">24</a><span class="line-code">    loweringWeight (r :: w) = r.weight + loweringWeight w := rfl</span></span>
+<span class="source-line" id="L25"><a class="line-no" href="#L25" aria-label="Line 25">25</a><span class="line-code"> </span></span>
+<span class="source-line" id="L26"><a class="line-no" href="#L26" aria-label="Line 26">26</a><span class="line-code">@[simp] theorem loweringWeight_append (u v : List (PositiveRoot d)) :</span></span>
+<span class="source-line" id="L27"><a class="line-no" href="#L27" aria-label="Line 27">27</a><span class="line-code">    loweringWeight (u ++ v) = loweringWeight u + loweringWeight v := by</span></span>
+<span class="source-line" id="L28"><a class="line-no" href="#L28" aria-label="Line 28">28</a><span class="line-code">  induction u with</span></span>
+<span class="source-line" id="L29"><a class="line-no" href="#L29" aria-label="Line 29">29</a><span class="line-code">  | nil =&gt; simp</span></span>
+<span class="source-line" id="L30"><a class="line-no" href="#L30" aria-label="Line 30">30</a><span class="line-code">  | cons r u ih =&gt; simp [ih, add_assoc]</span></span>
+<span class="source-line" id="L31"><a class="line-no" href="#L31" aria-label="Line 31">31</a><span class="line-code"> </span></span>
+<span class="source-line" id="L32"><a class="line-no" href="#L32" aria-label="Line 32">32</a><span class="line-code">theorem loweringWeight_eq_sum (w : List (PositiveRoot d)) :</span></span>
+<span class="source-line" id="L33"><a class="line-no" href="#L33" aria-label="Line 33">33</a><span class="line-code">    loweringWeight w = (w.map PositiveRoot.weight).sum := by</span></span>
+<span class="source-line" id="L34"><a class="line-no" href="#L34" aria-label="Line 34">34</a><span class="line-code">  induction w with</span></span>
+<span class="source-line" id="L35"><a class="line-no" href="#L35" aria-label="Line 35">35</a><span class="line-code">  | nil =&gt; rfl</span></span>
+<span class="source-line" id="L36"><a class="line-no" href="#L36" aria-label="Line 36">36</a><span class="line-code">  | cons r w ih =&gt; simp [ih]</span></span>
+<span class="source-line" id="L37"><a class="line-no" href="#L37" aria-label="Line 37">37</a><span class="line-code"> </span></span>
+<span class="source-line" id="L38"><a class="line-no" href="#L38" aria-label="Line 38">38</a><span class="line-code">theorem loweringWeight_perm {u v : List (PositiveRoot d)} (h : u.Perm v) :</span></span>
+<span class="source-line" id="L39"><a class="line-no" href="#L39" aria-label="Line 39">39</a><span class="line-code">    loweringWeight u = loweringWeight v := by</span></span>
+<span class="source-line" id="L40"><a class="line-no" href="#L40" aria-label="Line 40">40</a><span class="line-code">  rw [loweringWeight_eq_sum, loweringWeight_eq_sum]</span></span>
+<span class="source-line" id="L41"><a class="line-no" href="#L41" aria-label="Line 41">41</a><span class="line-code">  exact (h.map PositiveRoot.weight).sum_eq</span></span>
+<span class="source-line" id="L42"><a class="line-no" href="#L42" aria-label="Line 42">42</a><span class="line-code"> </span></span>
+<span class="source-line" id="L43"><a class="line-no" href="#L43" aria-label="Line 43">43</a><span class="line-code">/-- Merging two composable positive roots preserves their total Cartan weight. -/</span></span>
+<span class="source-line" id="L44"><a class="line-no" href="#L44" aria-label="Line 44">44</a><span class="line-code">theorem PositiveRoot.weight_merge (i j k : Fin d) (hij : i &lt; j) (hjk : j &lt; k) :</span></span>
+<span class="source-line" id="L45"><a class="line-no" href="#L45" aria-label="Line 45">45</a><span class="line-code">    PositiveRoot.weight (⟨(i, k), lt_trans hij hjk⟩ : PositiveRoot d) =</span></span>
+<span class="source-line" id="L46"><a class="line-no" href="#L46" aria-label="Line 46">46</a><span class="line-code">      PositiveRoot.weight (⟨(i, j), hij⟩ : PositiveRoot d) +</span></span>
+<span class="source-line" id="L47"><a class="line-no" href="#L47" aria-label="Line 47">47</a><span class="line-code">      PositiveRoot.weight (⟨(j, k), hjk⟩ : PositiveRoot d) := by</span></span>
+<span class="source-line" id="L48"><a class="line-no" href="#L48" aria-label="Line 48">48</a><span class="line-code">  funext a</span></span>
+<span class="source-line" id="L49"><a class="line-no" href="#L49" aria-label="Line 49">49</a><span class="line-code">  simp only [PositiveRoot.weight, Pi.add_apply]</span></span>
+<span class="source-line" id="L50"><a class="line-no" href="#L50" aria-label="Line 50">50</a><span class="line-code">  omega</span></span>
+<span class="source-line" id="L51"><a class="line-no" href="#L51" aria-label="Line 51">51</a><span class="line-code"> </span></span>
+<span class="source-line" id="L52"><a class="line-no" href="#L52" aria-label="Line 52">52</a><span class="line-code">/-- The positive root produced by the nonzero positive term of a lowering</span></span>
+<span class="source-line" id="L53"><a class="line-no" href="#L53" aria-label="Line 53">53</a><span class="line-code">commutator. The arguments occur in operator order. -/</span></span>
+<span class="source-line" id="L54"><a class="line-no" href="#L54" aria-label="Line 54">54</a><span class="line-code">def PositiveRoot.merge (a b : PositiveRoot d) (h : a.val.1 = b.val.2) :</span></span>
+<span class="source-line" id="L55"><a class="line-no" href="#L55" aria-label="Line 55">55</a><span class="line-code">    PositiveRoot d :=</span></span>
+<span class="source-line" id="L56"><a class="line-no" href="#L56" aria-label="Line 56">56</a><span class="line-code">  ⟨(b.val.1, a.val.2), lt_trans (by rw [h]; exact b.property) a.property⟩</span></span>
+<span class="source-line" id="L57"><a class="line-no" href="#L57" aria-label="Line 57">57</a><span class="line-code"> </span></span>
+<span class="source-line" id="L58"><a class="line-no" href="#L58" aria-label="Line 58">58</a><span class="line-code">@[simp] theorem PositiveRoot.merge_fst (a b : PositiveRoot d) (h : a.val.1 = b.val.2) :</span></span>
+<span class="source-line" id="L59"><a class="line-no" href="#L59" aria-label="Line 59">59</a><span class="line-code">    (a.merge b h).val.1 = b.val.1 := rfl</span></span>
+<span class="source-line" id="L60"><a class="line-no" href="#L60" aria-label="Line 60">60</a><span class="line-code"> </span></span>
+<span class="source-line" id="L61"><a class="line-no" href="#L61" aria-label="Line 61">61</a><span class="line-code">@[simp] theorem PositiveRoot.merge_snd (a b : PositiveRoot d) (h : a.val.1 = b.val.2) :</span></span>
+<span class="source-line" id="L62"><a class="line-no" href="#L62" aria-label="Line 62">62</a><span class="line-code">    (a.merge b h).val.2 = a.val.2 := rfl</span></span>
+<span class="source-line" id="L63"><a class="line-no" href="#L63" aria-label="Line 63">63</a><span class="line-code"> </span></span>
+<span class="source-line" id="L64"><a class="line-no" href="#L64" aria-label="Line 64">64</a><span class="line-code">theorem PositiveRoot.merge_weight (a b : PositiveRoot d) (h : a.val.1 = b.val.2) :</span></span>
+<span class="source-line" id="L65"><a class="line-no" href="#L65" aria-label="Line 65">65</a><span class="line-code">    (a.merge b h).weight = a.weight + b.weight := by</span></span>
+<span class="source-line" id="L66"><a class="line-no" href="#L66" aria-label="Line 66">66</a><span class="line-code">  funext k</span></span>
+<span class="source-line" id="L67"><a class="line-no" href="#L67" aria-label="Line 67">67</a><span class="line-code">  simp only [PositiveRoot.weight, merge_fst, merge_snd, Pi.add_apply, h]</span></span>
+<span class="source-line" id="L68"><a class="line-no" href="#L68" aria-label="Line 68">68</a><span class="line-code">  omega</span></span>
+<span class="source-line" id="L69"><a class="line-no" href="#L69" aria-label="Line 69">69</a><span class="line-code"> </span></span>
+<span class="source-line" id="L70"><a class="line-no" href="#L70" aria-label="Line 70">70</a><span class="line-code">theorem PositiveRoot.merge_height (a b : PositiveRoot d) (h : a.val.1 = b.val.2) :</span></span>
+<span class="source-line" id="L71"><a class="line-no" href="#L71" aria-label="Line 71">71</a><span class="line-code">    (a.merge b h).height = a.height + b.height := by</span></span>
+<span class="source-line" id="L72"><a class="line-no" href="#L72" aria-label="Line 72">72</a><span class="line-code">  have ha := a.property</span></span>
+<span class="source-line" id="L73"><a class="line-no" href="#L73" aria-label="Line 73">73</a><span class="line-code">  have hb := b.property</span></span>
+<span class="source-line" id="L74"><a class="line-no" href="#L74" aria-label="Line 74">74</a><span class="line-code">  have hv := congrArg Fin.val h</span></span>
+<span class="source-line" id="L75"><a class="line-no" href="#L75" aria-label="Line 75">75</a><span class="line-code">  simp only [PositiveRoot.height, merge_fst, merge_snd]</span></span>
+<span class="source-line" id="L76"><a class="line-no" href="#L76" aria-label="Line 76">76</a><span class="line-code">  omega</span></span>
+<span class="source-line" id="L77"><a class="line-no" href="#L77" aria-label="Line 77">77</a><span class="line-code"> </span></span>
+<span class="source-line" id="L78"><a class="line-no" href="#L78" aria-label="Line 78">78</a><span class="line-code">theorem PositiveRoot.sum_mul_weight (r : PositiveRoot d) (f : Fin d → ℤ) :</span></span>
+<span class="source-line" id="L79"><a class="line-no" href="#L79" aria-label="Line 79">79</a><span class="line-code">    ∑ a, f a * r.weight a = f r.val.2 - f r.val.1 := by</span></span>
+<span class="source-line" id="L80"><a class="line-no" href="#L80" aria-label="Line 80">80</a><span class="line-code">  simp [PositiveRoot.weight, mul_sub, Finset.sum_sub_distrib, mul_ite]</span></span>
+<span class="source-line" id="L81"><a class="line-no" href="#L81" aria-label="Line 81">81</a><span class="line-code"> </span></span>
+<span class="source-line" id="L82"><a class="line-no" href="#L82" aria-label="Line 82">82</a><span class="line-code">@[simp] theorem PositiveRoot.sum_weight (r : PositiveRoot d) :</span></span>
+<span class="source-line" id="L83"><a class="line-no" href="#L83" aria-label="Line 83">83</a><span class="line-code">    ∑ a, r.weight a = 0 := by</span></span>
+<span class="source-line" id="L84"><a class="line-no" href="#L84" aria-label="Line 84">84</a><span class="line-code">  simpa using r.sum_mul_weight (fun _ =&gt; 1)</span></span>
+<span class="source-line" id="L85"><a class="line-no" href="#L85" aria-label="Line 85">85</a><span class="line-code"> </span></span>
+<span class="source-line" id="L86"><a class="line-no" href="#L86" aria-label="Line 86">86</a><span class="line-code">theorem PositiveRoot.sum_index_mul_weight (r : PositiveRoot d) :</span></span>
+<span class="source-line" id="L87"><a class="line-no" href="#L87" aria-label="Line 87">87</a><span class="line-code">    ∑ a, (a.val : ℤ) * r.weight a = (r.height : ℤ) := by</span></span>
+<span class="source-line" id="L88"><a class="line-no" href="#L88" aria-label="Line 88">88</a><span class="line-code">  rw [r.sum_mul_weight]</span></span>
+<span class="source-line" id="L89"><a class="line-no" href="#L89" aria-label="Line 89">89</a><span class="line-code">  simp only [PositiveRoot.height, Int.natCast_sub (Nat.le_of_lt r.property)]</span></span>
+<span class="source-line" id="L90"><a class="line-no" href="#L90" aria-label="Line 90">90</a><span class="line-code"> </span></span>
+<span class="source-line" id="L91"><a class="line-no" href="#L91" aria-label="Line 91">91</a><span class="line-code">@[simp] theorem loweringWeight_sum (w : List (PositiveRoot d)) :</span></span>
+<span class="source-line" id="L92"><a class="line-no" href="#L92" aria-label="Line 92">92</a><span class="line-code">    ∑ a, loweringWeight w a = 0 := by</span></span>
+<span class="source-line" id="L93"><a class="line-no" href="#L93" aria-label="Line 93">93</a><span class="line-code">  induction w with</span></span>
+<span class="source-line" id="L94"><a class="line-no" href="#L94" aria-label="Line 94">94</a><span class="line-code">  | nil =&gt; simp</span></span>
+<span class="source-line" id="L95"><a class="line-no" href="#L95" aria-label="Line 95">95</a><span class="line-code">  | cons r w ih =&gt; simp [Finset.sum_add_distrib, ih]</span></span>
+<span class="source-line" id="L96"><a class="line-no" href="#L96" aria-label="Line 96">96</a><span class="line-code"> </span></span>
+<span class="source-line" id="L97"><a class="line-no" href="#L97" aria-label="Line 97">97</a><span class="line-code">/-- The total root height is exactly the index-weighted Cartan shift. -/</span></span>
+<span class="source-line" id="L98"><a class="line-no" href="#L98" aria-label="Line 98">98</a><span class="line-code">theorem loweringWeight_index_sum (w : List (PositiveRoot d)) :</span></span>
+<span class="source-line" id="L99"><a class="line-no" href="#L99" aria-label="Line 99">99</a><span class="line-code">    ∑ a, (a.val : ℤ) * loweringWeight w a = (loweringHeight w : ℤ) := by</span></span>
+<span class="source-line" id="L100"><a class="line-no" href="#L100" aria-label="Line 100">100</a><span class="line-code">  induction w with</span></span>
+<span class="source-line" id="L101"><a class="line-no" href="#L101" aria-label="Line 101">101</a><span class="line-code">  | nil =&gt; simp [loweringHeight]</span></span>
+<span class="source-line" id="L102"><a class="line-no" href="#L102" aria-label="Line 102">102</a><span class="line-code">  | cons r w ih =&gt;</span></span>
+<span class="source-line" id="L103"><a class="line-no" href="#L103" aria-label="Line 103">103</a><span class="line-code">      simp [Pi.add_apply, mul_add, Finset.sum_add_distrib,</span></span>
+<span class="source-line" id="L104"><a class="line-no" href="#L104" aria-label="Line 104">104</a><span class="line-code">        PositiveRoot.sum_index_mul_weight, ih, loweringHeight]</span></span>
+<span class="source-line" id="L105"><a class="line-no" href="#L105" aria-label="Line 105">105</a><span class="line-code"> </span></span>
+<span class="source-line" id="L106"><a class="line-no" href="#L106" aria-label="Line 106">106</a><span class="line-code">/-- The exact Cartan/lowering commutator as an identity of actual operators. -/</span></span>
+<span class="source-line" id="L107"><a class="line-no" href="#L107" aria-label="Line 107">107</a><span class="line-code">theorem cartan_lowering_commutator (a : Fin d) (r : PositiveRoot d) :</span></span>
+<span class="source-line" id="L108"><a class="line-no" href="#L108" aria-label="Line 108">108</a><span class="line-code">    collectiveGenerator n a a * collectiveGenerator n r.val.2 r.val.1 -</span></span>
+<span class="source-line" id="L109"><a class="line-no" href="#L109" aria-label="Line 109">109</a><span class="line-code">      collectiveGenerator n r.val.2 r.val.1 * collectiveGenerator n a a =</span></span>
+<span class="source-line" id="L110"><a class="line-no" href="#L110" aria-label="Line 110">110</a><span class="line-code">        (r.weight a : ℂ) • collectiveGenerator n r.val.2 r.val.1 := by</span></span>
+<span class="source-line" id="L111"><a class="line-no" href="#L111" aria-label="Line 111">111</a><span class="line-code">  rw [collectiveGenerator_commutator]</span></span>
+<span class="source-line" id="L112"><a class="line-no" href="#L112" aria-label="Line 112">112</a><span class="line-code">  by_cases haj : a = r.val.2</span></span>
+<span class="source-line" id="L113"><a class="line-no" href="#L113" aria-label="Line 113">113</a><span class="line-code">  · subst a</span></span>
+<span class="source-line" id="L114"><a class="line-no" href="#L114" aria-label="Line 114">114</a><span class="line-code">    have hji : r.val.2 ≠ r.val.1 := ne_of_gt r.property</span></span>
+<span class="source-line" id="L115"><a class="line-no" href="#L115" aria-label="Line 115">115</a><span class="line-code">    simp [PositiveRoot.weight, hji, Ne.symm hji]</span></span>
+<span class="source-line" id="L116"><a class="line-no" href="#L116" aria-label="Line 116">116</a><span class="line-code">  · by_cases hai : a = r.val.1</span></span>
+<span class="source-line" id="L117"><a class="line-no" href="#L117" aria-label="Line 117">117</a><span class="line-code">    · subst a</span></span>
+<span class="source-line" id="L118"><a class="line-no" href="#L118" aria-label="Line 118">118</a><span class="line-code">      simp [PositiveRoot.weight, haj]</span></span>
+<span class="source-line" id="L119"><a class="line-no" href="#L119" aria-label="Line 119">119</a><span class="line-code">    · simp [PositiveRoot.weight, haj, hai, Ne.symm hai]</span></span>
+<span class="source-line" id="L120"><a class="line-no" href="#L120" aria-label="Line 120">120</a><span class="line-code"> </span></span>
+<span class="source-line" id="L121"><a class="line-no" href="#L121" aria-label="Line 121">121</a><span class="line-code">theorem cartan_lowering_apply (a : Fin d) (r : PositiveRoot d)</span></span>
+<span class="source-line" id="L122"><a class="line-no" href="#L122" aria-label="Line 122">122</a><span class="line-code">    (x : TensorRegister n (Fin d)) :</span></span>
+<span class="source-line" id="L123"><a class="line-no" href="#L123" aria-label="Line 123">123</a><span class="line-code">    collectiveGenerator n a a (collectiveGenerator n r.val.2 r.val.1 x) =</span></span>
+<span class="source-line" id="L124"><a class="line-no" href="#L124" aria-label="Line 124">124</a><span class="line-code">      collectiveGenerator n r.val.2 r.val.1 (collectiveGenerator n a a x) +</span></span>
+<span class="source-line" id="L125"><a class="line-no" href="#L125" aria-label="Line 125">125</a><span class="line-code">        (r.weight a : ℂ) • collectiveGenerator n r.val.2 r.val.1 x := by</span></span>
+<span class="source-line" id="L126"><a class="line-no" href="#L126" aria-label="Line 126">126</a><span class="line-code">  have he := congrArg</span></span>
+<span class="source-line" id="L127"><a class="line-no" href="#L127" aria-label="Line 127">127</a><span class="line-code">    (fun T : TensorRegister n (Fin d) →L[ℂ] TensorRegister n (Fin d) =&gt; T x)</span></span>
+<span class="source-line" id="L128"><a class="line-no" href="#L128" aria-label="Line 128">128</a><span class="line-code">    (cartan_lowering_commutator (n := n) a r)</span></span>
+<span class="source-line" id="L129"><a class="line-no" href="#L129" aria-label="Line 129">129</a><span class="line-code">  simp only [ContinuousLinearMap.sub_apply, ContinuousLinearMap.mul_apply,</span></span>
+<span class="source-line" id="L130"><a class="line-no" href="#L130" aria-label="Line 130">130</a><span class="line-code">    ContinuousLinearMap.smul_apply] at he</span></span>
+<span class="source-line" id="L131"><a class="line-no" href="#L131" aria-label="Line 131">131</a><span class="line-code">  exact (sub_eq_iff_eq_add.mp he).trans (add_comm _ _)</span></span>
+<span class="source-line" id="L132"><a class="line-no" href="#L132" aria-label="Line 132">132</a><span class="line-code"> </span></span>
+<span class="source-line" id="L133"><a class="line-no" href="#L133" aria-label="Line 133">133</a><span class="line-code">/-- Each actual lowering word is a simultaneous Cartan eigenvector with its</span></span>
+<span class="source-line" id="L134"><a class="line-no" href="#L134" aria-label="Line 134">134</a><span class="line-code">exact additive weight. No raising, normalization, or nonvanishing premise is needed. -/</span></span>
+<span class="source-line" id="L135"><a class="line-no" href="#L135" aria-label="Line 135">135</a><span class="line-code">theorem cartan_loweringWord</span></span>
+<span class="source-line" id="L136"><a class="line-no" href="#L136" aria-label="Line 136">136</a><span class="line-code">    (Ω : TensorRegister n (Fin d)) (mu : Fin d → ℂ)</span></span>
+<span class="source-line" id="L137"><a class="line-no" href="#L137" aria-label="Line 137">137</a><span class="line-code">    (hweight : ∀ a, collectiveGenerator n a a Ω = mu a • Ω)</span></span>
+<span class="source-line" id="L138"><a class="line-no" href="#L138" aria-label="Line 138">138</a><span class="line-code">    (w : List (PositiveRoot d)) (a : Fin d) :</span></span>
+<span class="source-line" id="L139"><a class="line-no" href="#L139" aria-label="Line 139">139</a><span class="line-code">    collectiveGenerator n a a (loweringWord Ω w) =</span></span>
+<span class="source-line" id="L140"><a class="line-no" href="#L140" aria-label="Line 140">140</a><span class="line-code">      (mu a + (loweringWeight w a : ℂ)) • loweringWord Ω w := by</span></span>
+<span class="source-line" id="L141"><a class="line-no" href="#L141" aria-label="Line 141">141</a><span class="line-code">  induction w with</span></span>
+<span class="source-line" id="L142"><a class="line-no" href="#L142" aria-label="Line 142">142</a><span class="line-code">  | nil =&gt; simpa [loweringWord] using hweight a</span></span>
+<span class="source-line" id="L143"><a class="line-no" href="#L143" aria-label="Line 143">143</a><span class="line-code">  | cons r w ih =&gt;</span></span>
+<span class="source-line" id="L144"><a class="line-no" href="#L144" aria-label="Line 144">144</a><span class="line-code">      rw [loweringWord, cartan_lowering_apply, ih, map_smul]</span></span>
+<span class="source-line" id="L145"><a class="line-no" href="#L145" aria-label="Line 145">145</a><span class="line-code">      rw [← add_smul]</span></span>
+<span class="source-line" id="L146"><a class="line-no" href="#L146" aria-label="Line 146">146</a><span class="line-code">      congr 1</span></span>
+<span class="source-line" id="L147"><a class="line-no" href="#L147" aria-label="Line 147">147</a><span class="line-code">      simp only [loweringWeight_cons, Pi.add_apply, Int.cast_add]</span></span>
+<span class="source-line" id="L148"><a class="line-no" href="#L148" aria-label="Line 148">148</a><span class="line-code">      ring</span></span>
+<span class="source-line" id="L149"><a class="line-no" href="#L149" aria-label="Line 149">149</a><span class="line-code"> </span></span>
+<span class="source-line" id="L150"><a class="line-no" href="#L150" aria-label="Line 150">150</a><span class="line-code">end Cloning.TensorLie</span></span>
+</code></pre></div></main>
+<footer class="footer">English guides explain the argument. Lean source and its hypotheses determine the formal claims.
+<a href="../verification.html">Audit evidence</a> · <a href="../scope.html">Scope</a></footer>
+</div></div></body></html>

@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "lean_toolchain": "leanprover/lean4:v4.29.0-rc6",
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "audit": {
+    "run_file": "verification/completion-pass/run.json",
+    "run_sha256": "00b03eb5cfff71467000058132c3953d8508a394b22b2a8092a464fb42593dae",
+    "modules": 982,
+    "constants": 14375
+  },
+  "tools": {
+    "comparator": {
+      "repository": "https://github.com/leanprover/comparator.git",
+      "commit": "a4f696825c583ed8a5b4060d9a0faa5b882d365b",
+      "tag": "v4.29.0-rc6"
+    },
+    "lean4export": {
+      "repository": "https://github.com/leanprover/lean4export.git",
+      "commit": "71f41350675895dda791b8ff9c1dfb77d18b3585",
+      "tag": "v4.29.0-rc6"
+    },
+    "lean4checker": {
+      "repository": "https://github.com/leanprover/lean4checker.git",
+      "commit": "b7398199245524275543dec6113229c9bb4902e5",
+      "note": "Comparator rc6 upstream dependency; built under the comparator root toolchain without editing Lean source."
+    },
+    "landrun": {
+      "repository": "https://github.com/Zouuup/landrun.git",
+      "commit": "811cfff51ceaf3d9843708aa6d22e9b84ccac8b4",
+      "go_toolchain": "go1.25.0"
+    },
+    "nanoda": {
+      "repository": "https://github.com/ammkrn/nanoda_lib.git",
+      "commit": "418320295890faed83a96fd97907b12a3b6728c2",
+      "rust_toolchain": "1.93.1",
+      "patches": []
+    }
+  },
+  "export_format": "3.1.0",
+  "comparator_inputs": {
+    "Challenge.lean": "6bdd7bfcf245364ff117328b16c445f600dce4ae10e79d24bde973a0bab2c360",
+    "Solution.lean": "ee6c61a56f665ea0fadbe0256201c81936cc9a37c77615508b8cd7fe781d4767",
+    "CheckTypes.lean": "3e36453cc800983799cf171f5231b6df8d350f93e34ada9889eba54092567ded",
+    "claims.json": "dc4c085c8ae577a94bea7d7aaf15ef1a25d5f0f7ecdd60ee215dfc323f13348e",
+    "config.json": "f7ce200c2b7dd9e30d72205dc770ae089bf038fbab2c3458ba1eab27b844ac85",
+    "lakefile.toml": "7a3a538cf5cb198c53c8027e4848c01dc2e969ddc765333f8c9e91499a216c95",
+    "reproduce.py": "747cdd6cace2a03be5e3278b4a4a5161e91190062737be89977892599a5f2f3c",
+    "run.sh": "3f9334970dab09de48b21d9261140303f36f388e6b8a019d506414d31c1fcaac",
+    "trusted-landrun.py": "513b87a18a7799454d31e0ea735877307eaa14678f6b1153a4b378c5170ba54d"
+  },
+  "provenance": [
+    "https://github.com/anthropics/fermats-last-theorem/blob/main/verification/comparator/run.sh",
+    "https://github.com/anthropics/fermats-last-theorem/blob/main/verification/nanoda/run.sh",
+    "https://github.com/leanprover/comparator/tree/a4f696825c583ed8a5b4060d9a0faa5b882d365b",
+    "https://github.com/leanprover/lean4export/tree/71f41350675895dda791b8ff9c1dfb77d18b3585"
+  ]
+}

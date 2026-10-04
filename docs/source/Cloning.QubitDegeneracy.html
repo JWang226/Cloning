@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="An offline guide to the Lean formalization of asymptotic mixed-state quantum cloning. Exact source, proof routes, and audited scope.">
+<title>QubitDegeneracy · Lean source · Cloning proof wiki</title>
+<link rel="stylesheet" href="../assets/site.css?v=1811c00ea983">
+<script>window.PROOF_ROOT="../";</script>
+<script defer src="../assets/vendor/katex/katex.min.js"></script>
+<script defer src="../assets/search-index.js?v=850aee981cdc"></script>
+<script defer src="../assets/site.js?v=4bfaac1f06b1"></script>
+</head><body><a class="skip-link" href="#main">Skip to content</a>
+<div class="site-shell"><aside class="sidebar" id="site-navigation">
+<a class="brand" href="../index.html"><span class="brand-mark">C</span><span>Cloning<span class="small muted">A Lean proof wiki</span></span></a>
+<nav aria-label="Main navigation"><div class="nav-section">Explore</div><a class="nav-link" href="../index.html">Overview</a><a class="nav-link" href="../guides/index.html">Proof guide</a><a class="nav-link" href="../results/index.html">27 named results</a><a class="nav-link active" href="../source/index.html" aria-current="page">Lean source</a><a class="nav-link" href="../verification.html">Verification</a><a class="nav-link" href="../scope.html">Scope &amp; conventions</a>
+<div class="nav-section">Read the proof</div><a class="nav-link" href="../guides/physical-problem.html"><span class="nav-number">01</span> The physical problem and its conventions</a><a class="nav-link" href="../guides/young-laws.html"><span class="nav-number">02</span> Young labels: concentration and the local Gaussian law</a><a class="nav-link" href="../guides/cartan-sectors.html"><span class="nav-number">03</span> From PBW frames to uniform Cartan-sector fidelity</a><a class="nav-link" href="../guides/lifted-kernels.html"><span class="nav-number">04</span> Lifted channels, randomized dilation, and factorization</a><a class="nav-link" href="../guides/gaussian-optimum.html"><span class="nav-number">05</span> Gaussian amplification against arbitrary competitors</a><a class="nav-link" href="../guides/physical-lan.html"><span class="nav-number">06</span> Constructed LAN and fidelity transfer</a><a class="nav-link" href="../guides/known-spectrum.html"><span class="nav-number">07</span> The known-spectrum optimum</a><a class="nav-link" href="../guides/unknown-spectrum.html"><span class="nav-number">08</span> One universal cloner and the compact-set optimum</a><a class="nav-link" href="../guides/grassmann.html"><span class="nav-number">09</span> Exact rank compression and projector-state optimality</a><a class="nav-link" href="../guides/purify-clone-trace.html"><span class="nav-number">10</span> Purify–clone–trace: exact channels, limits, and guarantees</a><a class="nav-link" href="../guides/small-errors.html"><span class="nav-number">11</span> Small errors, rank boundaries, and noncommuting limits</a><a class="nav-link" href="../guides/spectral-comparison.html"><span class="nav-number">12</span> Spectral order and what is known for all states</a></nav>
+<div class="sidebar-footer"><span class="badge">Lean 4</span><p>Manuscript → proof → source</p>
+<a href="https://github.com/JWang226/Cloning">Repository ↗</a></div></aside>
+<div class="main-shell"><header class="topbar">
+<button id="nav-toggle" class="button secondary" aria-controls="site-navigation" aria-expanded="false" aria-label="Toggle navigation">Menu</button>
+<div class="search-wrap"><label class="sr-only" for="site-search">Search the proof wiki</label>
+<input id="site-search" type="search" placeholder="Search results, concepts, or Lean names…" autocomplete="off" aria-controls="search-results" aria-expanded="false" role="combobox" aria-autocomplete="list">
+<div id="search-results" class="search-results" role="listbox" hidden></div></div>
+<span class="small muted topbar-label">Offline · exact source</span></header>
+<main id="main" class="content"><div class="eyebrow">Exact Lean source</div><h1 class="source-title">QubitDegeneracy</h1><p><code>formalization/Cloning/QubitDegeneracy.lean</code></p><p class="small muted">Source hash: <code>2cf3bdb4a60cb48bb6239ab96f628fe7a840b7393a9f0e7f42c8b753f9b24761</code></p><div class="actions"><a class="button secondary" href="raw/Cloning.QubitDegeneracy.lean">Download .lean</a><a class="button secondary" href="https://github.com/JWang226/Cloning/blob/main/formalization/Cloning/QubitDegeneracy.lean">View on GitHub ↗</a><a href="index.html">All modules</a></div><p class="small muted">Full source copied without mathematical changes from the snapshot whose input hash matches the passing audit. Select a line number for a stable source pointer.</p><details><summary>Declarations in this module</summary><div class="module-declarations"><a href="#L25"><span class="badge">definition</span> <code>Cloning.QubitDegeneracy.centralState</code></a><a href="#L28"><span class="badge">theorem</span> <code>Cloning.QubitDegeneracy.centralState_matrix</code></a><a href="#L32"><span class="badge">theorem</span> <code>Cloning.QubitDegeneracy.centralState_conjugated</code></a><a href="#L42"><span class="badge">definition</span> <code>Cloning.QubitDegeneracy.constantChannel</code></a><a href="#L59"><span class="badge">theorem</span> <code>Cloning.QubitDegeneracy.constantChannel_output</code></a><a href="#L70"><span class="badge">theorem</span> <code>Cloning.QubitDegeneracy.constantChannel_central_payoff</code></a><a href="#L75"><span class="badge">theorem</span> <code>Cloning.QubitDegeneracy.constantChannel_payoff</code></a><a href="#L100"><span class="badge">theorem</span> <code>Cloning.QubitDegeneracy.tensor_diagonal_fidelity</code></a><a href="#L125"><span class="badge">theorem</span> <code>Cloning.QubitDegeneracy.diagonal_tensor_fidelity_tendsto</code></a><a href="#L146"><span class="badge">theorem</span> <code>Cloning.QubitDegeneracy.constantChannel_uniform</code></a><a href="#L160"><span class="badge">theorem</span> <code>Cloning.QubitDegeneracy.fixed_samples_value_tendsto</code></a><a href="#L180"><span class="badge">theorem</span> <code>Cloning.QubitDegeneracy.qubit_orbitalValue</code></a><a href="#L185"><span class="badge">theorem</span> <code>Cloning.QubitDegeneracy.orbitalValue_degeneracy</code></a><a href="#L202"><span class="badge">theorem</span> <code>Cloning.QubitDegeneracy.noncommuting_limits</code></a><a href="#L219"><span class="badge">definition</span> <code>Cloning.QubitDegeneracy.approachingSpectrum</code></a><a href="#L241"><span class="badge">theorem</span> <code>Cloning.QubitDegeneracy.approachingSpectrum_tendsto</code></a><a href="#L251"><span class="badge">theorem</span> <code>Cloning.QubitDegeneracy.concrete_noncommuting_limits</code></a></div></details><div class="code-wrap source-wrap"><pre class="source-lines"><code><span class="source-line" id="L1"><a class="line-no" href="#L1" aria-label="Line 1">1</a><span class="line-code">import Cloning.PhysicalCloningKnownTheorem</span></span>
+<span class="source-line" id="L2"><a class="line-no" href="#L2" aria-label="Line 2">2</a><span class="line-code">import Cloning.TensorCloningUniformCovariance</span></span>
+<span class="source-line" id="L3"><a class="line-no" href="#L3" aria-label="Line 3">3</a><span class="line-code">import Cloning.InfiniteFidelityHilbertSum</span></span>
+<span class="source-line" id="L4"><a class="line-no" href="#L4" aria-label="Line 4">4</a><span class="line-code"> </span></span>
+<span class="source-line" id="L5"><a class="line-no" href="#L5" aria-label="Line 5">5</a><span class="line-code">/-! Degeneracy and sample-size limits for the actual qubit cloning problem.</span></span>
+<span class="source-line" id="L6"><a class="line-no" href="#L6" aria-label="Line 6">6</a><span class="line-code">The constant channel is constructed as a completely positive, trace-preserving</span></span>
+<span class="source-line" id="L7"><a class="line-no" href="#L7" aria-label="Line 7">7</a><span class="line-code">map, and its convergence is uniform over the entire unitary orbit. -/</span></span>
+<span class="source-line" id="L8"><a class="line-no" href="#L8" aria-label="Line 8">8</a><span class="line-code">noncomputable section</span></span>
+<span class="source-line" id="L9"><a class="line-no" href="#L9" aria-label="Line 9">9</a><span class="line-code">open scoped BigOperators Topology Matrix ComplexOrder</span></span>
+<span class="source-line" id="L10"><a class="line-no" href="#L10" aria-label="Line 10">10</a><span class="line-code">open Filter</span></span>
+<span class="source-line" id="L11"><a class="line-no" href="#L11" aria-label="Line 11">11</a><span class="line-code">namespace Cloning.QubitDegeneracy</span></span>
+<span class="source-line" id="L12"><a class="line-no" href="#L12" aria-label="Line 12">12</a><span class="line-code">open Cloning.PCT Cloning.PCTPhysicalState Cloning.PCTUnitaryTransport</span></span>
+<span class="source-line" id="L13"><a class="line-no" href="#L13" aria-label="Line 13">13</a><span class="line-code">open Cloning.TensorCloning Cloning.InfiniteTraceClass Cloning.Hybrid</span></span>
+<span class="source-line" id="L14"><a class="line-no" href="#L14" aria-label="Line 14">14</a><span class="line-code">open Cloning.InfiniteFiniteCorner Cloning.PCTPurificationChannel</span></span>
+<span class="source-line" id="L15"><a class="line-no" href="#L15" aria-label="Line 15">15</a><span class="line-code">set_option backward.isDefEq.respectTransparency false</span></span>
+<span class="source-line" id="L16"><a class="line-no" href="#L16" aria-label="Line 16">16</a><span class="line-code">set_option maxHeartbeats 1000000</span></span>
+<span class="source-line" id="L17"><a class="line-no" href="#L17" aria-label="Line 17">17</a><span class="line-code"> </span></span>
+<span class="source-line" id="L18"><a class="line-no" href="#L18" aria-label="Line 18">18</a><span class="line-code">private theorem state_eq_of_matrix_eq (ρ σ : MatrixFidelity.State (Fin 2))</span></span>
+<span class="source-line" id="L19"><a class="line-no" href="#L19" aria-label="Line 19">19</a><span class="line-code">    (h : ρ.matrix = σ.matrix) : ρ = σ := by</span></span>
+<span class="source-line" id="L20"><a class="line-no" href="#L20" aria-label="Line 20">20</a><span class="line-code">  cases ρ</span></span>
+<span class="source-line" id="L21"><a class="line-no" href="#L21" aria-label="Line 21">21</a><span class="line-code">  cases σ</span></span>
+<span class="source-line" id="L22"><a class="line-no" href="#L22" aria-label="Line 22">22</a><span class="line-code">  cases h</span></span>
+<span class="source-line" id="L23"><a class="line-no" href="#L23" aria-label="Line 23">23</a><span class="line-code">  rfl</span></span>
+<span class="source-line" id="L24"><a class="line-no" href="#L24" aria-label="Line 24">24</a><span class="line-code"> </span></span>
+<span class="source-line" id="L25"><a class="line-no" href="#L25" aria-label="Line 25">25</a><span class="line-code">def centralState : MatrixFidelity.State (Fin 2) :=</span></span>
+<span class="source-line" id="L26"><a class="line-no" href="#L26" aria-label="Line 26">26</a><span class="line-code">  diagonalState (fun _ =&gt; (1/2:ℝ)) (by intro i; norm_num) (by norm_num [Fin.sum_univ_two])</span></span>
+<span class="source-line" id="L27"><a class="line-no" href="#L27" aria-label="Line 27">27</a><span class="line-code"> </span></span>
+<span class="source-line" id="L28"><a class="line-no" href="#L28" aria-label="Line 28">28</a><span class="line-code">theorem centralState_matrix : centralState.matrix = (1/2:ℂ) • (1 : Matrix (Fin 2) (Fin 2) ℂ) := by</span></span>
+<span class="source-line" id="L29"><a class="line-no" href="#L29" aria-label="Line 29">29</a><span class="line-code">  ext i j</span></span>
+<span class="source-line" id="L30"><a class="line-no" href="#L30" aria-label="Line 30">30</a><span class="line-code">  simp [centralState, diagonalState, Matrix.diagonal_apply, Matrix.one_apply]</span></span>
+<span class="source-line" id="L31"><a class="line-no" href="#L31" aria-label="Line 31">31</a><span class="line-code"> </span></span>
+<span class="source-line" id="L32"><a class="line-no" href="#L32" aria-label="Line 32">32</a><span class="line-code">theorem centralState_conjugated (U : unitary (Matrix (Fin 2) (Fin 2) ℂ)) :</span></span>
+<span class="source-line" id="L33"><a class="line-no" href="#L33" aria-label="Line 33">33</a><span class="line-code">    conjugatedState centralState U = centralState := by</span></span>
+<span class="source-line" id="L34"><a class="line-no" href="#L34" aria-label="Line 34">34</a><span class="line-code">  apply state_eq_of_matrix_eq</span></span>
+<span class="source-line" id="L35"><a class="line-no" href="#L35" aria-label="Line 35">35</a><span class="line-code">  change (U : Matrix (Fin 2) (Fin 2) ℂ) * centralState.matrix *</span></span>
+<span class="source-line" id="L36"><a class="line-no" href="#L36" aria-label="Line 36">36</a><span class="line-code">    (U : Matrix (Fin 2) (Fin 2) ℂ)ᴴ = centralState.matrix</span></span>
+<span class="source-line" id="L37"><a class="line-no" href="#L37" aria-label="Line 37">37</a><span class="line-code">  rw [centralState_matrix]</span></span>
+<span class="source-line" id="L38"><a class="line-no" href="#L38" aria-label="Line 38">38</a><span class="line-code">  have hU : (U : Matrix (Fin 2) (Fin 2) ℂ) * (U : Matrix (Fin 2) (Fin 2) ℂ)ᴴ = 1 :=</span></span>
+<span class="source-line" id="L39"><a class="line-no" href="#L39" aria-label="Line 39">39</a><span class="line-code">    Unitary.mul_star_self_of_mem U.property</span></span>
+<span class="source-line" id="L40"><a class="line-no" href="#L40" aria-label="Line 40">40</a><span class="line-code">  simp only [Matrix.mul_smul, Matrix.smul_mul, Matrix.mul_one, hU]</span></span>
+<span class="source-line" id="L41"><a class="line-no" href="#L41" aria-label="Line 41">41</a><span class="line-code"> </span></span>
+<span class="source-line" id="L42"><a class="line-no" href="#L42" aria-label="Line 42">42</a><span class="line-code">def constantChannel (n m : ℕ) :</span></span>
+<span class="source-line" id="L43"><a class="line-no" href="#L43" aria-label="Line 43">43</a><span class="line-code">    QuantumChannel (Register (Fin n → Fin 2)) (Register (Fin m → Fin 2)) where</span></span>
+<span class="source-line" id="L44"><a class="line-no" href="#L44" aria-label="Line 44">44</a><span class="line-code">  toLinearMap := traceCLM.toLinearMap.smulRight (tensorState centralState m).1</span></span>
+<span class="source-line" id="L45"><a class="line-no" href="#L45" aria-label="Line 45">45</a><span class="line-code">  completelyPositive := fun _ _ hA =&gt; hA.replace _ (tensorState centralState m).2</span></span>
+<span class="source-line" id="L46"><a class="line-no" href="#L46" aria-label="Line 46">46</a><span class="line-code">  map_nonneg := by</span></span>
+<span class="source-line" id="L47"><a class="line-no" href="#L47" aria-label="Line 47">47</a><span class="line-code">    intro A hA</span></span>
+<span class="source-line" id="L48"><a class="line-no" href="#L48" aria-label="Line 48">48</a><span class="line-code">    change 0 ≤ traceCLM A • (tensorState centralState m).1.1</span></span>
+<span class="source-line" id="L49"><a class="line-no" href="#L49" aria-label="Line 49">49</a><span class="line-code">    rw [show traceCLM A = (‖A‖ : ℂ) from trace_eq_traceNorm_of_nonneg hA A.2]</span></span>
+<span class="source-line" id="L50"><a class="line-no" href="#L50" aria-label="Line 50">50</a><span class="line-code">    exact smul_nonneg (by exact_mod_cast norm_nonneg A) (tensorState centralState m).2</span></span>
+<span class="source-line" id="L51"><a class="line-no" href="#L51" aria-label="Line 51">51</a><span class="line-code">  trace_preserving := by</span></span>
+<span class="source-line" id="L52"><a class="line-no" href="#L52" aria-label="Line 52">52</a><span class="line-code">    intro A</span></span>
+<span class="source-line" id="L53"><a class="line-no" href="#L53" aria-label="Line 53">53</a><span class="line-code">    change traceCLM (traceCLM A • (tensorState centralState m).1) = traceCLM A</span></span>
+<span class="source-line" id="L54"><a class="line-no" href="#L54" aria-label="Line 54">54</a><span class="line-code">    rw [map_smul]</span></span>
+<span class="source-line" id="L55"><a class="line-no" href="#L55" aria-label="Line 55">55</a><span class="line-code">    have ht : traceCLM (tensorState centralState m).1 = 1 :=</span></span>
+<span class="source-line" id="L56"><a class="line-no" href="#L56" aria-label="Line 56">56</a><span class="line-code">      (Cloning.PhysicalCloningConverse.tensorDensity centralState m).trace_one</span></span>
+<span class="source-line" id="L57"><a class="line-no" href="#L57" aria-label="Line 57">57</a><span class="line-code">    rw [ht, smul_eq_mul, mul_one]</span></span>
+<span class="source-line" id="L58"><a class="line-no" href="#L58" aria-label="Line 58">58</a><span class="line-code"> </span></span>
+<span class="source-line" id="L59"><a class="line-no" href="#L59" aria-label="Line 59">59</a><span class="line-code">theorem constantChannel_output (n m : ℕ) (ρ : MatrixFidelity.State (Fin 2)) :</span></span>
+<span class="source-line" id="L60"><a class="line-no" href="#L60" aria-label="Line 60">60</a><span class="line-code">    (tensorState ρ n).map (constantChannel n m).toPositiveTracePreservingMap =</span></span>
+<span class="source-line" id="L61"><a class="line-no" href="#L61" aria-label="Line 61">61</a><span class="line-code">      tensorState centralState m := by</span></span>
+<span class="source-line" id="L62"><a class="line-no" href="#L62" aria-label="Line 62">62</a><span class="line-code">  apply Subtype.ext</span></span>
+<span class="source-line" id="L63"><a class="line-no" href="#L63" aria-label="Line 63">63</a><span class="line-code">  change traceCLM (tensorState ρ n).1 • (tensorState centralState m).1 = _</span></span>
+<span class="source-line" id="L64"><a class="line-no" href="#L64" aria-label="Line 64">64</a><span class="line-code">  have ht : traceCLM (tensorState ρ n).1 = 1 :=</span></span>
+<span class="source-line" id="L65"><a class="line-no" href="#L65" aria-label="Line 65">65</a><span class="line-code">    (Cloning.PhysicalCloningConverse.tensorDensity ρ n).trace_one</span></span>
+<span class="source-line" id="L66"><a class="line-no" href="#L66" aria-label="Line 66">66</a><span class="line-code">  rw [ht, one_smul]</span></span>
+<span class="source-line" id="L67"><a class="line-no" href="#L67" aria-label="Line 67">67</a><span class="line-code"> </span></span>
+<span class="source-line" id="L68"><a class="line-no" href="#L68" aria-label="Line 68">68</a><span class="line-code">/-- At the degeneracy itself the physical constant channel clones exactly,</span></span>
+<span class="source-line" id="L69"><a class="line-no" href="#L69" aria-label="Line 69">69</a><span class="line-code">at every finite pair of input and output sample sizes. -/</span></span>
+<span class="source-line" id="L70"><a class="line-no" href="#L70" aria-label="Line 70">70</a><span class="line-code">theorem constantChannel_central_payoff (n m : ℕ) :</span></span>
+<span class="source-line" id="L71"><a class="line-no" href="#L71" aria-label="Line 71">71</a><span class="line-code">    statePayoff n m (constantChannel n m) centralState = 1 := by</span></span>
+<span class="source-line" id="L72"><a class="line-no" href="#L72" aria-label="Line 72">72</a><span class="line-code">  rw [statePayoff, constantChannel_output, PositiveTraceClass.rootFidelity_self,</span></span>
+<span class="source-line" id="L73"><a class="line-no" href="#L73" aria-label="Line 73">73</a><span class="line-code">    norm_tensorState]</span></span>
+<span class="source-line" id="L74"><a class="line-no" href="#L74" aria-label="Line 74">74</a><span class="line-code"> </span></span>
+<span class="source-line" id="L75"><a class="line-no" href="#L75" aria-label="Line 75">75</a><span class="line-code">theorem constantChannel_payoff (n m : ℕ) (p : SimpleSpectrum 2)</span></span>
+<span class="source-line" id="L76"><a class="line-no" href="#L76" aria-label="Line 76">76</a><span class="line-code">    (U : unitary (Matrix (Fin 2) (Fin 2) ℂ)) :</span></span>
+<span class="source-line" id="L77"><a class="line-no" href="#L77" aria-label="Line 77">77</a><span class="line-code">    spectrumPayoff n m (constantChannel n m) p U =</span></span>
+<span class="source-line" id="L78"><a class="line-no" href="#L78" aria-label="Line 78">78</a><span class="line-code">      (tensorState centralState m).rootFidelity</span></span>
+<span class="source-line" id="L79"><a class="line-no" href="#L79" aria-label="Line 79">79</a><span class="line-code">        (tensorState (diagonalState p.eigenvalue (fun i =&gt; (p.positive i).le) p.normalized) m) := by</span></span>
+<span class="source-line" id="L80"><a class="line-no" href="#L80" aria-label="Line 80">80</a><span class="line-code">  let ρ := diagonalState p.eigenvalue (fun i =&gt; (p.positive i).le) p.normalized</span></span>
+<span class="source-line" id="L81"><a class="line-no" href="#L81" aria-label="Line 81">81</a><span class="line-code">  have hc : (tensorState centralState m).map</span></span>
+<span class="source-line" id="L82"><a class="line-no" href="#L82" aria-label="Line 82">82</a><span class="line-code">      (unitaryChannel (tensorUnitary U m)).toPositiveTracePreservingMap =</span></span>
+<span class="source-line" id="L83"><a class="line-no" href="#L83" aria-label="Line 83">83</a><span class="line-code">      tensorState centralState m := by</span></span>
+<span class="source-line" id="L84"><a class="line-no" href="#L84" aria-label="Line 84">84</a><span class="line-code">    apply Subtype.ext</span></span>
+<span class="source-line" id="L85"><a class="line-no" href="#L85" aria-label="Line 85">85</a><span class="line-code">    change (unitaryChannel (tensorUnitary U m)).toLinearMap (tensorState centralState m).1 = _</span></span>
+<span class="source-line" id="L86"><a class="line-no" href="#L86" aria-label="Line 86">86</a><span class="line-code">    rw [tensorState_conjugated, centralState_conjugated]</span></span>
+<span class="source-line" id="L87"><a class="line-no" href="#L87" aria-label="Line 87">87</a><span class="line-code">  have hp : (tensorState ρ m).map</span></span>
+<span class="source-line" id="L88"><a class="line-no" href="#L88" aria-label="Line 88">88</a><span class="line-code">      (unitaryChannel (tensorUnitary U m)).toPositiveTracePreservingMap =</span></span>
+<span class="source-line" id="L89"><a class="line-no" href="#L89" aria-label="Line 89">89</a><span class="line-code">      tensorState (conjugatedState ρ U) m := Subtype.ext (tensorState_conjugated ρ U m)</span></span>
+<span class="source-line" id="L90"><a class="line-no" href="#L90" aria-label="Line 90">90</a><span class="line-code">  change ((tensorState (orbitState p U) n).map _).rootFidelity _ = _</span></span>
+<span class="source-line" id="L91"><a class="line-no" href="#L91" aria-label="Line 91">91</a><span class="line-code">  rw [constantChannel_output]</span></span>
+<span class="source-line" id="L92"><a class="line-no" href="#L92" aria-label="Line 92">92</a><span class="line-code">  change (tensorState centralState m).rootFidelity (tensorState (conjugatedState ρ U) m) = _</span></span>
+<span class="source-line" id="L93"><a class="line-no" href="#L93" aria-label="Line 93">93</a><span class="line-code">  calc</span></span>
+<span class="source-line" id="L94"><a class="line-no" href="#L94" aria-label="Line 94">94</a><span class="line-code">    _ = ((tensorState centralState m).map</span></span>
+<span class="source-line" id="L95"><a class="line-no" href="#L95" aria-label="Line 95">95</a><span class="line-code">        (unitaryChannel (tensorUnitary U m)).toPositiveTracePreservingMap).rootFidelity</span></span>
+<span class="source-line" id="L96"><a class="line-no" href="#L96" aria-label="Line 96">96</a><span class="line-code">        ((tensorState ρ m).map</span></span>
+<span class="source-line" id="L97"><a class="line-no" href="#L97" aria-label="Line 97">97</a><span class="line-code">          (unitaryChannel (tensorUnitary U m)).toPositiveTracePreservingMap) := by rw [hc, hp]</span></span>
+<span class="source-line" id="L98"><a class="line-no" href="#L98" aria-label="Line 98">98</a><span class="line-code">    _ = _ := rootFidelity_unitaryChannel _ _ _</span></span>
+<span class="source-line" id="L99"><a class="line-no" href="#L99" aria-label="Line 99">99</a><span class="line-code"> </span></span>
+<span class="source-line" id="L100"><a class="line-no" href="#L100" aria-label="Line 100">100</a><span class="line-code">theorem tensor_diagonal_fidelity (m : ℕ) (p : SimpleSpectrum 2) :</span></span>
+<span class="source-line" id="L101"><a class="line-no" href="#L101" aria-label="Line 101">101</a><span class="line-code">    (tensorState centralState m).rootFidelity</span></span>
+<span class="source-line" id="L102"><a class="line-no" href="#L102" aria-label="Line 102">102</a><span class="line-code">      (tensorState (diagonalState p.eigenvalue (fun i =&gt; (p.positive i).le) p.normalized) m) =</span></span>
+<span class="source-line" id="L103"><a class="line-no" href="#L103" aria-label="Line 103">103</a><span class="line-code">    ∑ w : Fin m → Fin 2, Real.sqrt ((1/2:ℝ)^m * ∏ i, p.eigenvalue (w i)) := by</span></span>
+<span class="source-line" id="L104"><a class="line-no" href="#L104" aria-label="Line 104">104</a><span class="line-code">  rw [← Cloning.InfiniteFidelityHilbertSum.rootFidelity_matrixOf_basis</span></span>
+<span class="source-line" id="L105"><a class="line-no" href="#L105" aria-label="Line 105">105</a><span class="line-code">    (registerBasis (Fin m → Fin 2)).toOrthonormalBasis]</span></span>
+<span class="source-line" id="L106"><a class="line-no" href="#L106" aria-label="Line 106">106</a><span class="line-code">  simp only [HilbertBasis.coe_toOrthonormalBasis]</span></span>
+<span class="source-line" id="L107"><a class="line-no" href="#L107" aria-label="Line 107">107</a><span class="line-code">  change MatrixFidelity.fidelity</span></span>
+<span class="source-line" id="L108"><a class="line-no" href="#L108" aria-label="Line 108">108</a><span class="line-code">    (matrixOf (registerBasis _) (ofMatrix (registerBasis _) (tensorPower m centralState.matrix)))</span></span>
+<span class="source-line" id="L109"><a class="line-no" href="#L109" aria-label="Line 109">109</a><span class="line-code">    (matrixOf (registerBasis _) (ofMatrix (registerBasis _)</span></span>
+<span class="source-line" id="L110"><a class="line-no" href="#L110" aria-label="Line 110">110</a><span class="line-code">      (tensorPower m (Matrix.diagonal (fun i =&gt; (p.eigenvalue i : ℂ)))))) = _</span></span>
+<span class="source-line" id="L111"><a class="line-no" href="#L111" aria-label="Line 111">111</a><span class="line-code">  rw [matrixOf_ofMatrix (registerBasis _).orthonormal,</span></span>
+<span class="source-line" id="L112"><a class="line-no" href="#L112" aria-label="Line 112">112</a><span class="line-code">    matrixOf_ofMatrix (registerBasis _).orthonormal]</span></span>
+<span class="source-line" id="L113"><a class="line-no" href="#L113" aria-label="Line 113">113</a><span class="line-code">  change MatrixFidelity.fidelity</span></span>
+<span class="source-line" id="L114"><a class="line-no" href="#L114" aria-label="Line 114">114</a><span class="line-code">    (tensorPower m (Matrix.diagonal (fun _ =&gt; ((1/2:ℝ):ℂ))))</span></span>
+<span class="source-line" id="L115"><a class="line-no" href="#L115" aria-label="Line 115">115</a><span class="line-code">    (tensorPower m (Matrix.diagonal (fun i =&gt; (p.eigenvalue i : ℂ)))) = _</span></span>
+<span class="source-line" id="L116"><a class="line-no" href="#L116" aria-label="Line 116">116</a><span class="line-code">  rw [tensorPower_diagonal, tensorPower_diagonal]</span></span>
+<span class="source-line" id="L117"><a class="line-no" href="#L117" aria-label="Line 117">117</a><span class="line-code">  simp only [Finset.prod_const, Finset.card_univ, Fintype.card_fin, ← Complex.ofReal_pow,</span></span>
+<span class="source-line" id="L118"><a class="line-no" href="#L118" aria-label="Line 118">118</a><span class="line-code">    ← Complex.ofReal_prod]</span></span>
+<span class="source-line" id="L119"><a class="line-no" href="#L119" aria-label="Line 119">119</a><span class="line-code">  simpa only [BlockFidelity.classicalAffinity,</span></span>
+<span class="source-line" id="L120"><a class="line-no" href="#L120" aria-label="Line 120">120</a><span class="line-code">    Real.sqrt_mul (show 0 ≤ (1/2:ℝ)^m by positivity)] using</span></span>
+<span class="source-line" id="L121"><a class="line-no" href="#L121" aria-label="Line 121">121</a><span class="line-code">    MatrixFidelity.fidelity_diagonal_real (fun _ : Fin m → Fin 2 =&gt; (1/2:ℝ)^m)</span></span>
+<span class="source-line" id="L122"><a class="line-no" href="#L122" aria-label="Line 122">122</a><span class="line-code">    (fun w =&gt; ∏ i, p.eigenvalue (w i))</span></span>
+<span class="source-line" id="L123"><a class="line-no" href="#L123" aria-label="Line 123">123</a><span class="line-code">    (fun _ =&gt; pow_nonneg (by norm_num) _) (fun _ =&gt; Finset.prod_nonneg (fun _ _ =&gt; (p.positive _).le))</span></span>
+<span class="source-line" id="L124"><a class="line-no" href="#L124" aria-label="Line 124">124</a><span class="line-code"> </span></span>
+<span class="source-line" id="L125"><a class="line-no" href="#L125" aria-label="Line 125">125</a><span class="line-code">theorem diagonal_tensor_fidelity_tendsto {ι : Type*} {l : Filter ι}</span></span>
+<span class="source-line" id="L126"><a class="line-no" href="#L126" aria-label="Line 126">126</a><span class="line-code">    (p : ι → SimpleSpectrum 2)</span></span>
+<span class="source-line" id="L127"><a class="line-no" href="#L127" aria-label="Line 127">127</a><span class="line-code">    (hp : ∀ i, Tendsto (fun j =&gt; (p j).eigenvalue i) l (𝓝 (1/2:ℝ))) (m : ℕ) :</span></span>
+<span class="source-line" id="L128"><a class="line-no" href="#L128" aria-label="Line 128">128</a><span class="line-code">    Tendsto (fun j =&gt; (tensorState centralState m).rootFidelity</span></span>
+<span class="source-line" id="L129"><a class="line-no" href="#L129" aria-label="Line 129">129</a><span class="line-code">      (tensorState (diagonalState (p j).eigenvalue (fun i =&gt; ((p j).positive i).le)</span></span>
+<span class="source-line" id="L130"><a class="line-no" href="#L130" aria-label="Line 130">130</a><span class="line-code">        (p j).normalized) m)) l (𝓝 1) := by</span></span>
+<span class="source-line" id="L131"><a class="line-no" href="#L131" aria-label="Line 131">131</a><span class="line-code">  have h := tendsto_finset_sum Finset.univ (fun w (_ : w ∈ (Finset.univ : Finset (Fin m → Fin 2))) =&gt;</span></span>
+<span class="source-line" id="L132"><a class="line-no" href="#L132" aria-label="Line 132">132</a><span class="line-code">    ((tendsto_finset_prod Finset.univ (fun i _ =&gt; hp (w i))).const_mul ((1/2:ℝ)^m)).sqrt)</span></span>
+<span class="source-line" id="L133"><a class="line-no" href="#L133" aria-label="Line 133">133</a><span class="line-code">  have hv : (∑ w : Fin m → Fin 2,</span></span>
+<span class="source-line" id="L134"><a class="line-no" href="#L134" aria-label="Line 134">134</a><span class="line-code">      Real.sqrt ((1/2:ℝ)^m * ∏ _i : Fin m, (1/2:ℝ))) = 1 := by</span></span>
+<span class="source-line" id="L135"><a class="line-no" href="#L135" aria-label="Line 135">135</a><span class="line-code">    simp only [Finset.prod_const, Finset.card_univ, Fintype.card_fin, ← pow_two]</span></span>
+<span class="source-line" id="L136"><a class="line-no" href="#L136" aria-label="Line 136">136</a><span class="line-code">    rw [Real.sqrt_sq (by positivity : 0 ≤ (1/2:ℝ)^m)]</span></span>
+<span class="source-line" id="L137"><a class="line-no" href="#L137" aria-label="Line 137">137</a><span class="line-code">    simp only [Finset.sum_const, Finset.card_univ, Fintype.card_fun,</span></span>
+<span class="source-line" id="L138"><a class="line-no" href="#L138" aria-label="Line 138">138</a><span class="line-code">      Fintype.card_fin, nsmul_eq_mul, Nat.cast_pow, Nat.cast_ofNat]</span></span>
+<span class="source-line" id="L139"><a class="line-no" href="#L139" aria-label="Line 139">139</a><span class="line-code">    rw [← mul_pow]</span></span>
+<span class="source-line" id="L140"><a class="line-no" href="#L140" aria-label="Line 140">140</a><span class="line-code">    norm_num</span></span>
+<span class="source-line" id="L141"><a class="line-no" href="#L141" aria-label="Line 141">141</a><span class="line-code">  rw [hv] at h</span></span>
+<span class="source-line" id="L142"><a class="line-no" href="#L142" aria-label="Line 142">142</a><span class="line-code">  simpa only [tensor_diagonal_fidelity] using h</span></span>
+<span class="source-line" id="L143"><a class="line-no" href="#L143" aria-label="Line 143">143</a><span class="line-code"> </span></span>
+<span class="source-line" id="L144"><a class="line-no" href="#L144" aria-label="Line 144">144</a><span class="line-code">/-- A single physical constant channel approaches perfect fidelity uniformly</span></span>
+<span class="source-line" id="L145"><a class="line-no" href="#L145" aria-label="Line 145">145</a><span class="line-code">over all eigenbases when the qubit spectrum approaches degeneracy. -/</span></span>
+<span class="source-line" id="L146"><a class="line-no" href="#L146" aria-label="Line 146">146</a><span class="line-code">theorem constantChannel_uniform {ι : Type*} {l : Filter ι}</span></span>
+<span class="source-line" id="L147"><a class="line-no" href="#L147" aria-label="Line 147">147</a><span class="line-code">    (p : ι → SimpleSpectrum 2)</span></span>
+<span class="source-line" id="L148"><a class="line-no" href="#L148" aria-label="Line 148">148</a><span class="line-code">    (hp : ∀ i, Tendsto (fun j =&gt; (p j).eigenvalue i) l (𝓝 (1/2:ℝ)))</span></span>
+<span class="source-line" id="L149"><a class="line-no" href="#L149" aria-label="Line 149">149</a><span class="line-code">    (n m : ℕ) {ε : ℝ} (hε : 0 &lt; ε) :</span></span>
+<span class="source-line" id="L150"><a class="line-no" href="#L150" aria-label="Line 150">150</a><span class="line-code">    ∀ᶠ j in l, ∀ U : unitary (Matrix (Fin 2) (Fin 2) ℂ),</span></span>
+<span class="source-line" id="L151"><a class="line-no" href="#L151" aria-label="Line 151">151</a><span class="line-code">      1-ε &lt; spectrumPayoff n m (constantChannel n m) (p j) U := by</span></span>
+<span class="source-line" id="L152"><a class="line-no" href="#L152" aria-label="Line 152">152</a><span class="line-code">  have h := (diagonal_tensor_fidelity_tendsto p hp m).eventually_const_lt</span></span>
+<span class="source-line" id="L153"><a class="line-no" href="#L153" aria-label="Line 153">153</a><span class="line-code">    (show 1-ε &lt; 1 by linarith)</span></span>
+<span class="source-line" id="L154"><a class="line-no" href="#L154" aria-label="Line 154">154</a><span class="line-code">  filter_upwards [h] with j hj U</span></span>
+<span class="source-line" id="L155"><a class="line-no" href="#L155" aria-label="Line 155">155</a><span class="line-code">  rw [constantChannel_payoff]</span></span>
+<span class="source-line" id="L156"><a class="line-no" href="#L156" aria-label="Line 156">156</a><span class="line-code">  exact hj</span></span>
+<span class="source-line" id="L157"><a class="line-no" href="#L157" aria-label="Line 157">157</a><span class="line-code"> </span></span>
+<span class="source-line" id="L158"><a class="line-no" href="#L158" aria-label="Line 158">158</a><span class="line-code">/-- The physical all-channel optimum has the same fixed-sample degeneracy</span></span>
+<span class="source-line" id="L159"><a class="line-no" href="#L159" aria-label="Line 159">159</a><span class="line-code">limit, without restricting the channel optimization. -/</span></span>
+<span class="source-line" id="L160"><a class="line-no" href="#L160" aria-label="Line 160">160</a><span class="line-code">theorem fixed_samples_value_tendsto {ι : Type*} {l : Filter ι}</span></span>
+<span class="source-line" id="L161"><a class="line-no" href="#L161" aria-label="Line 161">161</a><span class="line-code">    (p : ι → SimpleSpectrum 2)</span></span>
+<span class="source-line" id="L162"><a class="line-no" href="#L162" aria-label="Line 162">162</a><span class="line-code">    (hp : ∀ i, Tendsto (fun j =&gt; (p j).eigenvalue i) l (𝓝 (1/2:ℝ))) (n m : ℕ) :</span></span>
+<span class="source-line" id="L163"><a class="line-no" href="#L163" aria-label="Line 163">163</a><span class="line-code">    Tendsto (fun j =&gt; knownSpectrumValue n m (p j)) l (𝓝 1) := by</span></span>
+<span class="source-line" id="L164"><a class="line-no" href="#L164" aria-label="Line 164">164</a><span class="line-code">  apply tendsto_order.mpr</span></span>
+<span class="source-line" id="L165"><a class="line-no" href="#L165" aria-label="Line 165">165</a><span class="line-code">  constructor</span></span>
+<span class="source-line" id="L166"><a class="line-no" href="#L166" aria-label="Line 166">166</a><span class="line-code">  · intro a ha</span></span>
+<span class="source-line" id="L167"><a class="line-no" href="#L167" aria-label="Line 167">167</a><span class="line-code">    have h := constantChannel_uniform p hp n m (show 0 &lt; 1-a by linarith)</span></span>
+<span class="source-line" id="L168"><a class="line-no" href="#L168" aria-label="Line 168">168</a><span class="line-code">    filter_upwards [h] with j hj</span></span>
+<span class="source-line" id="L169"><a class="line-no" href="#L169" aria-label="Line 169">169</a><span class="line-code">    have hb := LAN.candidate_le_minimaxValue (spectrumPayoff n m · (p j))</span></span>
+<span class="source-line" id="L170"><a class="line-no" href="#L170" aria-label="Line 170">170</a><span class="line-code">      (constantChannel n m) (spectrumPayoff n m (constantChannel n m) (p j) 1)</span></span>
+<span class="source-line" id="L171"><a class="line-no" href="#L171" aria-label="Line 171">171</a><span class="line-code">      (fun Φ U =&gt; spectrumPayoff_le_one n m Φ (p j) U)</span></span>
+<span class="source-line" id="L172"><a class="line-no" href="#L172" aria-label="Line 172">172</a><span class="line-code">      (fun U =&gt; by dsimp only; simp only [constantChannel_payoff, le_refl])</span></span>
+<span class="source-line" id="L173"><a class="line-no" href="#L173" aria-label="Line 173">173</a><span class="line-code">      (fun Φ U =&gt; spectrumPayoff_nonneg n m Φ (p j) U)</span></span>
+<span class="source-line" id="L174"><a class="line-no" href="#L174" aria-label="Line 174">174</a><span class="line-code">    change spectrumPayoff n m (constantChannel n m) (p j) 1 ≤ knownSpectrumValue n m (p j) at hb</span></span>
+<span class="source-line" id="L175"><a class="line-no" href="#L175" aria-label="Line 175">175</a><span class="line-code">    have hh := hj 1</span></span>
+<span class="source-line" id="L176"><a class="line-no" href="#L176" aria-label="Line 176">176</a><span class="line-code">    linarith</span></span>
+<span class="source-line" id="L177"><a class="line-no" href="#L177" aria-label="Line 177">177</a><span class="line-code">  · intro a ha</span></span>
+<span class="source-line" id="L178"><a class="line-no" href="#L178" aria-label="Line 178">178</a><span class="line-code">    exact Eventually.of_forall (fun j =&gt; (knownSpectrumValue_le_one n m (p j)).trans_lt ha)</span></span>
+<span class="source-line" id="L179"><a class="line-no" href="#L179" aria-label="Line 179">179</a><span class="line-code"> </span></span>
+<span class="source-line" id="L180"><a class="line-no" href="#L180" aria-label="Line 180">180</a><span class="line-code">theorem qubit_orbitalValue (p : SimpleSpectrum 2) (g : ℝ) :</span></span>
+<span class="source-line" id="L181"><a class="line-no" href="#L181" aria-label="Line 181">181</a><span class="line-code">    orbitalValue g p = Thermal.modeFactor g (p.eigenvalue 1/p.eigenvalue 0) := by</span></span>
+<span class="source-line" id="L182"><a class="line-no" href="#L182" aria-label="Line 182">182</a><span class="line-code">  have hi : (Finset.univ : Finset (PairIndex 2)) = {⟨(0,1),by decide⟩} := by decide</span></span>
+<span class="source-line" id="L183"><a class="line-no" href="#L183" aria-label="Line 183">183</a><span class="line-code">  simp only [orbitalValue, hi, Finset.prod_singleton, SimpleSpectrum.ratio]</span></span>
+<span class="source-line" id="L184"><a class="line-no" href="#L184" aria-label="Line 184">184</a><span class="line-code"> </span></span>
+<span class="source-line" id="L185"><a class="line-no" href="#L185" aria-label="Line 185">185</a><span class="line-code">theorem orbitalValue_degeneracy {ι : Type*} {l : Filter ι}</span></span>
+<span class="source-line" id="L186"><a class="line-no" href="#L186" aria-label="Line 186">186</a><span class="line-code">    (p : ι → SimpleSpectrum 2)</span></span>
+<span class="source-line" id="L187"><a class="line-no" href="#L187" aria-label="Line 187">187</a><span class="line-code">    (hp : ∀ i, Tendsto (fun j =&gt; (p j).eigenvalue i) l (𝓝 (1/2:ℝ)))</span></span>
+<span class="source-line" id="L188"><a class="line-no" href="#L188" aria-label="Line 188">188</a><span class="line-code">    {g : ℝ} (hg : 1 &lt; g) :</span></span>
+<span class="source-line" id="L189"><a class="line-no" href="#L189" aria-label="Line 189">189</a><span class="line-code">    Tendsto (fun j =&gt; orbitalValue g (p j)) l (𝓝 (Thermal.classicalBase g)) := by</span></span>
+<span class="source-line" id="L190"><a class="line-no" href="#L190" aria-label="Line 190">190</a><span class="line-code">  have hr : Tendsto (fun j =&gt; (p j).eigenvalue 1/(p j).eigenvalue 0) l (𝓝 1) := by</span></span>
+<span class="source-line" id="L191"><a class="line-no" href="#L191" aria-label="Line 191">191</a><span class="line-code">    simpa using (hp 1).div (hp 0) (by norm_num : (1/2:ℝ) ≠ 0)</span></span>
+<span class="source-line" id="L192"><a class="line-no" href="#L192" aria-label="Line 192">192</a><span class="line-code">  have h := (Thermal.modeFactor_continuousAt (g := g) (q := 1) (by linarith)).tendsto.comp</span></span>
+<span class="source-line" id="L193"><a class="line-no" href="#L193" aria-label="Line 193">193</a><span class="line-code">    (tendsto_const_nhds.prodMk_nhds hr)</span></span>
+<span class="source-line" id="L194"><a class="line-no" href="#L194" aria-label="Line 194">194</a><span class="line-code">  have he : Thermal.modeFactor g 1 = Thermal.classicalBase g := by</span></span>
+<span class="source-line" id="L195"><a class="line-no" href="#L195" aria-label="Line 195">195</a><span class="line-code">    simp only [Thermal.modeFactor, Thermal.classicalBase, one_mul, sub_add_cancel]</span></span>
+<span class="source-line" id="L196"><a class="line-no" href="#L196" aria-label="Line 196">196</a><span class="line-code">    ring</span></span>
+<span class="source-line" id="L197"><a class="line-no" href="#L197" aria-label="Line 197">197</a><span class="line-code">  simpa only [qubit_orbitalValue, Function.comp_apply, he] using h</span></span>
+<span class="source-line" id="L198"><a class="line-no" href="#L198" aria-label="Line 198">198</a><span class="line-code"> </span></span>
+<span class="source-line" id="L199"><a class="line-no" href="#L199" aria-label="Line 199">199</a><span class="line-code">/-- The two iterated limits are different for the genuine physical optimum:</span></span>
+<span class="source-line" id="L200"><a class="line-no" href="#L200" aria-label="Line 200">200</a><span class="line-code">taking the large-sample limit first gives a strict loss, while taking the</span></span>
+<span class="source-line" id="L201"><a class="line-no" href="#L201" aria-label="Line 201">201</a><span class="line-code">degeneracy limit first gives one at every sample size. -/</span></span>
+<span class="source-line" id="L202"><a class="line-no" href="#L202" aria-label="Line 202">202</a><span class="line-code">theorem noncommuting_limits (p : ℕ → SimpleSpectrum 2)</span></span>
+<span class="source-line" id="L203"><a class="line-no" href="#L203" aria-label="Line 203">203</a><span class="line-code">    (hp : ∀ i, Tendsto (fun j =&gt; (p j).eigenvalue i) atTop (𝓝 (1/2:ℝ)))</span></span>
+<span class="source-line" id="L204"><a class="line-no" href="#L204" aria-label="Line 204">204</a><span class="line-code">    (m : ℕ → ℕ) {g : ℝ} (hg : 1 &lt; g)</span></span>
+<span class="source-line" id="L205"><a class="line-no" href="#L205" aria-label="Line 205">205</a><span class="line-code">    (hgain : Tendsto (fun n =&gt; (m n : ℝ)/n) atTop (𝓝 g)) :</span></span>
+<span class="source-line" id="L206"><a class="line-no" href="#L206" aria-label="Line 206">206</a><span class="line-code">    Tendsto (fun j =&gt; limsup (fun n =&gt; knownSpectrumValue n (m n) (p j)) atTop)</span></span>
+<span class="source-line" id="L207"><a class="line-no" href="#L207" aria-label="Line 207">207</a><span class="line-code">      atTop (𝓝 (Thermal.classicalBase g)) ∧</span></span>
+<span class="source-line" id="L208"><a class="line-no" href="#L208" aria-label="Line 208">208</a><span class="line-code">    Tendsto (fun n =&gt; limsup (fun j =&gt; knownSpectrumValue n (m n) (p j)) atTop)</span></span>
+<span class="source-line" id="L209"><a class="line-no" href="#L209" aria-label="Line 209">209</a><span class="line-code">      atTop (𝓝 1) ∧ Thermal.classicalBase g &lt; 1 := by</span></span>
+<span class="source-line" id="L210"><a class="line-no" href="#L210" aria-label="Line 210">210</a><span class="line-code">  constructor</span></span>
+<span class="source-line" id="L211"><a class="line-no" href="#L211" aria-label="Line 211">211</a><span class="line-code">  · have he (j : ℕ) := (knownSpectrumValue_tendsto (p j) m g hg hgain).limsup_eq</span></span>
+<span class="source-line" id="L212"><a class="line-no" href="#L212" aria-label="Line 212">212</a><span class="line-code">    simpa only [he] using orbitalValue_degeneracy p hp hg</span></span>
+<span class="source-line" id="L213"><a class="line-no" href="#L213" aria-label="Line 213">213</a><span class="line-code">  constructor</span></span>
+<span class="source-line" id="L214"><a class="line-no" href="#L214" aria-label="Line 214">214</a><span class="line-code">  · have he (n : ℕ) := (fixed_samples_value_tendsto p hp n (m n)).limsup_eq</span></span>
+<span class="source-line" id="L215"><a class="line-no" href="#L215" aria-label="Line 215">215</a><span class="line-code">    simpa only [he] using (tendsto_const_nhds : Tendsto (fun _ : ℕ =&gt; (1:ℝ)) atTop (𝓝 1))</span></span>
+<span class="source-line" id="L216"><a class="line-no" href="#L216" aria-label="Line 216">216</a><span class="line-code">  · exact Thermal.classicalBase_lt_one hg</span></span>
+<span class="source-line" id="L217"><a class="line-no" href="#L217" aria-label="Line 217">217</a><span class="line-code"> </span></span>
+<span class="source-line" id="L218"><a class="line-no" href="#L218" aria-label="Line 218">218</a><span class="line-code">/-- An explicit full-rank simple qubit spectrum with a vanishing gap. -/</span></span>
+<span class="source-line" id="L219"><a class="line-no" href="#L219" aria-label="Line 219">219</a><span class="line-code">def approachingSpectrum (j : ℕ) : SimpleSpectrum 2 where</span></span>
+<span class="source-line" id="L220"><a class="line-no" href="#L220" aria-label="Line 220">220</a><span class="line-code">  eigenvalue := ![(1+((j:ℝ)+3)⁻¹)/2, (1-((j:ℝ)+3)⁻¹)/2]</span></span>
+<span class="source-line" id="L221"><a class="line-no" href="#L221" aria-label="Line 221">221</a><span class="line-code">  positive := by</span></span>
+<span class="source-line" id="L222"><a class="line-no" href="#L222" aria-label="Line 222">222</a><span class="line-code">    have hj : 0 &lt; (j:ℝ)+3 := by positivity</span></span>
+<span class="source-line" id="L223"><a class="line-no" href="#L223" aria-label="Line 223">223</a><span class="line-code">    have hi : ((j:ℝ)+3)⁻¹ &lt; 1 := (inv_lt_one₀ hj).mpr (by linarith [Nat.cast_nonneg (α := ℝ) j])</span></span>
+<span class="source-line" id="L224"><a class="line-no" href="#L224" aria-label="Line 224">224</a><span class="line-code">    intro i</span></span>
+<span class="source-line" id="L225"><a class="line-no" href="#L225" aria-label="Line 225">225</a><span class="line-code">    fin_cases i</span></span>
+<span class="source-line" id="L226"><a class="line-no" href="#L226" aria-label="Line 226">226</a><span class="line-code">    · change 0 &lt; (1+((j:ℝ)+3)⁻¹)/2</span></span>
+<span class="source-line" id="L227"><a class="line-no" href="#L227" aria-label="Line 227">227</a><span class="line-code">      positivity</span></span>
+<span class="source-line" id="L228"><a class="line-no" href="#L228" aria-label="Line 228">228</a><span class="line-code">    · change 0 &lt; (1-((j:ℝ)+3)⁻¹)/2</span></span>
+<span class="source-line" id="L229"><a class="line-no" href="#L229" aria-label="Line 229">229</a><span class="line-code">      linarith</span></span>
+<span class="source-line" id="L230"><a class="line-no" href="#L230" aria-label="Line 230">230</a><span class="line-code">  strictAnti := by</span></span>
+<span class="source-line" id="L231"><a class="line-no" href="#L231" aria-label="Line 231">231</a><span class="line-code">    have hi : 0 &lt; ((j:ℝ)+3)⁻¹ := by positivity</span></span>
+<span class="source-line" id="L232"><a class="line-no" href="#L232" aria-label="Line 232">232</a><span class="line-code">    intro i k hik</span></span>
+<span class="source-line" id="L233"><a class="line-no" href="#L233" aria-label="Line 233">233</a><span class="line-code">    have hi0 : i = 0 := by apply Fin.ext; have := k.isLt; change i.val &lt; k.val at hik; omega</span></span>
+<span class="source-line" id="L234"><a class="line-no" href="#L234" aria-label="Line 234">234</a><span class="line-code">    have hk1 : k = 1 := by apply Fin.ext; have := k.isLt; change i.val &lt; k.val at hik; omega</span></span>
+<span class="source-line" id="L235"><a class="line-no" href="#L235" aria-label="Line 235">235</a><span class="line-code">    subst i</span></span>
+<span class="source-line" id="L236"><a class="line-no" href="#L236" aria-label="Line 236">236</a><span class="line-code">    subst k</span></span>
+<span class="source-line" id="L237"><a class="line-no" href="#L237" aria-label="Line 237">237</a><span class="line-code">    change (1-((j:ℝ)+3)⁻¹)/2 &lt; (1+((j:ℝ)+3)⁻¹)/2</span></span>
+<span class="source-line" id="L238"><a class="line-no" href="#L238" aria-label="Line 238">238</a><span class="line-code">    linarith</span></span>
+<span class="source-line" id="L239"><a class="line-no" href="#L239" aria-label="Line 239">239</a><span class="line-code">  normalized := by simp [Fin.sum_univ_two]; ring</span></span>
+<span class="source-line" id="L240"><a class="line-no" href="#L240" aria-label="Line 240">240</a><span class="line-code"> </span></span>
+<span class="source-line" id="L241"><a class="line-no" href="#L241" aria-label="Line 241">241</a><span class="line-code">theorem approachingSpectrum_tendsto (i : Fin 2) :</span></span>
+<span class="source-line" id="L242"><a class="line-no" href="#L242" aria-label="Line 242">242</a><span class="line-code">    Tendsto (fun j =&gt; (approachingSpectrum j).eigenvalue i) atTop (𝓝 (1/2:ℝ)) := by</span></span>
+<span class="source-line" id="L243"><a class="line-no" href="#L243" aria-label="Line 243">243</a><span class="line-code">  have h : Tendsto (fun j : ℕ =&gt; ((j:ℝ)+3)⁻¹) atTop (𝓝 0) :=</span></span>
+<span class="source-line" id="L244"><a class="line-no" href="#L244" aria-label="Line 244">244</a><span class="line-code">    tendsto_inv_atTop_zero.comp</span></span>
+<span class="source-line" id="L245"><a class="line-no" href="#L245" aria-label="Line 245">245</a><span class="line-code">      (tendsto_atTop_add_const_right atTop 3 tendsto_natCast_atTop_atTop)</span></span>
+<span class="source-line" id="L246"><a class="line-no" href="#L246" aria-label="Line 246">246</a><span class="line-code">  fin_cases i</span></span>
+<span class="source-line" id="L247"><a class="line-no" href="#L247" aria-label="Line 247">247</a><span class="line-code">  · simpa [approachingSpectrum] using (h.const_add 1).div_const 2</span></span>
+<span class="source-line" id="L248"><a class="line-no" href="#L248" aria-label="Line 248">248</a><span class="line-code">  · simpa [approachingSpectrum] using (h.const_sub 1).div_const 2</span></span>
+<span class="source-line" id="L249"><a class="line-no" href="#L249" aria-label="Line 249">249</a><span class="line-code"> </span></span>
+<span class="source-line" id="L250"><a class="line-no" href="#L250" aria-label="Line 250">250</a><span class="line-code">/-- Concrete noncommutation: the spectrum path is constructed internally. -/</span></span>
+<span class="source-line" id="L251"><a class="line-no" href="#L251" aria-label="Line 251">251</a><span class="line-code">theorem concrete_noncommuting_limits (m : ℕ → ℕ) {g : ℝ} (hg : 1 &lt; g)</span></span>
+<span class="source-line" id="L252"><a class="line-no" href="#L252" aria-label="Line 252">252</a><span class="line-code">    (hgain : Tendsto (fun n =&gt; (m n : ℝ)/n) atTop (𝓝 g)) :</span></span>
+<span class="source-line" id="L253"><a class="line-no" href="#L253" aria-label="Line 253">253</a><span class="line-code">    Tendsto (fun j =&gt; limsup (fun n =&gt; knownSpectrumValue n (m n) (approachingSpectrum j)) atTop)</span></span>
+<span class="source-line" id="L254"><a class="line-no" href="#L254" aria-label="Line 254">254</a><span class="line-code">      atTop (𝓝 (Thermal.classicalBase g)) ∧</span></span>
+<span class="source-line" id="L255"><a class="line-no" href="#L255" aria-label="Line 255">255</a><span class="line-code">    Tendsto (fun n =&gt; limsup (fun j =&gt; knownSpectrumValue n (m n) (approachingSpectrum j)) atTop)</span></span>
+<span class="source-line" id="L256"><a class="line-no" href="#L256" aria-label="Line 256">256</a><span class="line-code">      atTop (𝓝 1) ∧ Thermal.classicalBase g &lt; 1 :=</span></span>
+<span class="source-line" id="L257"><a class="line-no" href="#L257" aria-label="Line 257">257</a><span class="line-code">  noncommuting_limits approachingSpectrum approachingSpectrum_tendsto m hg hgain</span></span>
+<span class="source-line" id="L258"><a class="line-no" href="#L258" aria-label="Line 258">258</a><span class="line-code"> </span></span>
+<span class="source-line" id="L259"><a class="line-no" href="#L259" aria-label="Line 259">259</a><span class="line-code">end Cloning.QubitDegeneracy</span></span>
+</code></pre></div></main>
+<footer class="footer">English guides explain the argument. Lean source and its hypotheses determine the formal claims.
+<a href="../verification.html">Audit evidence</a> · <a href="../scope.html">Scope</a></footer>
+</div></div></body></html>

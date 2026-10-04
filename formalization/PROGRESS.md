@@ -1,56 +1,49 @@
-# Progress on the remaining cloning proof obligations
+# Mixed-state cloning formalization: completion record
 
-This checkpoint adds concrete physical occupation constructions, a compact-uniform two-way pure-state approximation, actual classical–quantum integration, and substantial parts of the Weyl-covariance argument. **The complete mixed-state cloning theorem remains conditional.** The results below describe what the Lean statements establish and which manuscript obligations still require proofs.
+The remaining proof obligations are closed. The current library contains **982 implementation modules**; the complete `lake build All` passed (**4,563 jobs**) and the all-declaration axiom audit passed for **14,345 unique compiled project constants**. Source/artifact stability passed. Comparator and the unmodified independent Nanoda kernel passed against this same audited source.
 
-The full `lake build All` and compiled-declaration axiom audit passed: 195 implementation modules, 1,832 source lemmas/theorems, and 3,776 unique compiled project constants. This pass adds 59 modules and 484 source lemmas/theorems. The completion record is linked in [verification/latest.json](verification/latest.json). The Lean sources are authoritative for the hypotheses of each theorem. A successful axiom audit certifies the proved implications; it does not prove mathematical premises that remain arguments to those implications. Earlier checkpoint reports under [verification/seventh-pass/](verification/seventh-pass/) preserve the history and should not be read as the current gap list.
+The [manuscript-to-Lean map](PROOF_MAP.md) reconciles **all 27 named theorem, proposition, lemma and corollary statements** of the frozen [working manuscript](reference/cloning.tex). It records concrete declarations, dimension offsets, root-versus-squared fidelity, uniformity and order of limits. The [completion semantic review](verification/completion-semantic-review.md) records the statement differences found and resolved.
 
-## Results established in this pass
+## Completed scope
 
-| Component | Proved endpoint | Remaining scope |
-|---|---|---|
-| Physical coherent-product approximation | [`GeneralCoherent.exists_twoWay_coherent_product_channels`](Cloning/GeneralCoherentChannels.lean) constructs actual CPTP maps in both directions between the finite computational tensor space and multimode Fock space. Their trace-norm errors vanish uniformly on every compact complex-amplitude window, in every finite one-particle dimension. | These are the explicit **pure-product** experiments. Mixed-state LAN, its classical spectrum register, and its Schur-sector maps are not obtained from this result. |
-| Physical symmetric-tensor Werner channel | [`GeneralSymmetricOccupation.isometry_range`](Cloning/GeneralSymmetricOccupation.lean) identifies the occupation-isometry range with the permutation-invariant subspace. The [literal splitting isometry](Cloning/GeneralSymmetricSplitting.lean) and [partial-trace balance](Cloning/GeneralSymmetricBalance.lean) give an actual CPTP `wernerChannel`. [`wernerChannel_physical_sandwich`](Cloning/WernerPhysicalChannel.lean) identifies its physical symmetric-projection formula for **every symmetric input matrix**, including mixed inputs and off-diagonal coherences. | This constructs the one-row symmetric-sector channel in arbitrary local dimension. General Young sectors and the mixed-state purification/PCT identification remain further obligations. |
-| Physical Werner pure-output asymptotics | Exact counting identifies the physical symmetric-sandwich pure-input output and its Fock pullback. [`wernerChannel_pure_output`](Cloning/WernerPhysicalAgreement.lean) identifies the constructed CPTP channel output with that actual trace-class output, and [`wernerChannel_thermal_limit`](Cloning/WernerPhysicalAgreement.lean) proves the resulting end-to-end thermal trace-norm limit for at least one excitation mode, with $n\le m_n$ and $m_n/n\to\gamma>1$. | The channel-to-pure-output identification is proved. The full purification/PCT protocol, integration against its Gaussian mixture, and required partial traces still need further connections. |
-| Continuous classical–quantum states | [`Hybrid.PositiveField`](Cloning/HybridStates.lean) models integrable positive trace-class-valued densities, with actual mass, quantum marginal, and integrated trace distance. [Hybrid fidelity](Cloning/HybridFidelity.lean), the [weighted product-target bound](Cloning/HybridWeightedFidelity.lean), and [joint concavity under sigma-finite Bochner integration](Cloning/HybridJensenSigmaFinite.lean) are proved. | The weighted theorem retains explicit inverse-moment and integrability hypotheses. General residual instruments, the concrete mixed-state LAN channels, and the final hybrid Gaussian minimax bound still need construction and application proofs. |
-| Actual Weyl representation and irreducibility | The [one-mode](Cloning/WeylDisplacement.lean) and [multimode](Cloning/WeylMultimodeDisplacement.lean) displacement operators have proved coherent-vector action, Weyl relations, inverse/adjoint laws, and strong continuity. Their induced [trace-class channels](Cloning/WeylMultimodeChannel.lean) are constructed. A Gaussian strong integral gives the vacuum projector and proves the [scalar commutant](Cloning/WeylIrreducibleMultimode.lean). | Irreducibility is now proved for this representation. Identification of every relevant covariant quantum channel with a seeded amplifier still requires further channel-representation arguments. |
-| Weyl eigenoperators and multiplier form | [`eigenoperator_eq_scalar_displacement`](Cloning/WeylEigenoperators.lean) classifies bounded operators with a prescribed Weyl-conjugation character. [`covariant_linearMap_weyl_multiplier`](Cloning/WeylCovariantMultiplier.lean) derives the scalar multiplier form for a complex-linear map on bounded Fock operators satisfying the stated covariance. The same module proves normalization at zero under unitality and modulus at most one under an explicit operator-norm contraction premise. | The conclusion is the **algebraic multiplier form**. It does not supply a normal Heisenberg dual for every trace-class competitor, establish the multiplier's quantum positive-definiteness, or reconstruct a joint idler density operator. |
-| Averaging and covariant limits | [`QuantumChannel.average`](Cloning/ChannelAveraging.lean) proves that the Bochner probability average of channels is CPTP when its action on each trace-class input is a.e. strongly measurable. [Explicit expanding Gaussian averages](Cloning/WeylFoelner.lean) have a proved translation-error bound and vanishing covariance defect. [`exists_gaussianFoelner_covariant_limit`](Cloning/WeylFoelnerLimit.lean) extracts one subsequence and one covariant CP, trace-nonincreasing limit, with convergence for every trace-class input and compact observable. | This is a construction of Gaussian Følner averages and their covariant limit. It does not yet prove the manuscript's **flat-prior fidelity payoff bound**, or that the extracted limit retains the fidelity performance needed for the universal converse. Trace loss is allowed. |
-| Young-label geometry and compatibility fallback | The root-hyperplane [coordinates](Cloning/YoungHyperplane.lean), [Euclidean cell volumes](Cloning/YoungHyperplaneVolume.lean), [covariance](Cloning/YoungHyperplaneCovariance.lean), and [sample-dependent interpolation](Cloning/YoungHyperplaneSampling.lean) are explicit. The actual [fallback PMF](Cloning/YoungCompatibilityFallback.lean) agrees with raw rounding on typical rows, with proved ℓ¹ and affinity error bounds, eventually uniformly over compact strictly ordered positive spectra. | The error bound is in terms of the atypical input mass. Its decay must still be proved for the actual general Young law. General-rank uniform local limits and the remaining dimension-moment estimates are not supplied by the geometry or fallback construction. |
+- Actual all-CPTP known-spectrum and regular compact-set unknown-spectrum minimax limits, prescribed-channel compact-uniform attainment, and exact covariance.
+- Literal Grassmann projector minimax, uniform attainment, finite converse, and general-rank dimension-moment bounds with explicit upper rates.
+- Physical full-environment PCT fidelity and strict comparison; fixed rank-bound PCT support factorization, projector bounds and strict comparison.
+- The same prescribed rank-bound PCT channel has finite guarantees for every state of rank at most r, with exact exponent rD−1 and uniform adversarial-state-sequence bounds.
+- Physical Schur decomposition, multiplicities, characters, dimensions, Cartan maps and two-way compact-window LAN.
+- Literal symmetric inverse-Gram PBW bases of complete weight spaces, uniform fixed-height O(N^(-1/2)) estimates, and Cartan splitting with exact product-binomial coefficients.
+- General rank compression for arbitrary supported positive spectra, the channel identity for every complex input operator, and the physical Gibbs fidelity factorization.
+- Arbitrary shrinking-window sector mixtures and character normalization; arbitrary-kernel lifted-fidelity factorization with the exact uniform bad-mass hypothesis.
+- The exact uniform exponential Young-tail bound and compact-uniform raw randomized-dilation L1 convergence with moving covariance.
+- Genuine Weyl/idler reconstruction and squeezing dilation, arbitrary covariant CP/TNI least-noise bounds, finite-inverse-limit weighted fidelity, and arbitrary positive hybrid targets.
+- Gaussian optimum and converse for every real radius on the actual score polytope, with intrinsic measure normalization proved by Haar uniqueness.
+- All-density minimax bounds, exact scalar infimum, ratio monotonicity and majorization counterexample, large-gain comparisons, physical small-error target brackets, boundary divergence, and actual qubit noncommuting limits.
 
-## The pure-product result and its physical meaning
+## Verification
 
-For $d=s+1$, the one-particle vector is literally
+- Pinned Lean: `leanprover/lean4:v4.29.0-rc6`.
+- Pinned Mathlib: `f156f7abd91ac67adb22bf999e5a71ba22e22e41`.
+- Fresh integrated build: passed, 4,563 jobs.
+- Complete compiled-declaration axiom audit: passed in [kernel-compatible-pass](verification/kernel-compatible-pass/run.json), covering 14,345 unique constants and 6,350 source theorems/lemmas.
+- Allowed axioms: only `propext`, `Classical.choice`, `Quot.sound`; no placeholders or added project axioms.
+- Source and compiled-artifact stability checks: passed.
+- [Saved-evidence validation](verification/kernel-compatible-checkpoint.json): passed against the current source/configuration inventory.
+- Audit completed (UTC): `2026-10-04T05:54:37.522297+00:00`.
+- [Comparator run](verification/comparator/records/20261004T055545.209379Z/run.json): passed for 27 named-result statements and proof dependencies; trusted local execution, no sandbox.
+- [Nanoda run](verification/nanoda/records/20261004T055629.624926Z/run.json): passed for every audited project root and its dependencies; 83,433 declarations checked.
 
-$$
- |\psi_{z,L}\rangle=
- \frac{|0\rangle+L^{-1/2}\sum_{i=1}^{s}z_i|i\rangle}
- {\sqrt{1+L^{-1}\sum_{i=1}^{s}|z_i|^2}}.
-$$
+Reproduce the audit using [scripts/README.md](scripts/README.md) and the [concise reproducer commands](../README.md#reproduce). Comparator's [statement comparison and Lean replay](verification/comparator/README.md) and Nanoda's [independent Rust kernel check](verification/nanoda/README.md) remain distinct from the Lean build, axiom audit, and saved-evidence validation. Cached compiled-input provenance remains trusted.
 
-[`GeneralCoherentModel`](Cloning/GeneralCoherentModel.lean) defines its tensor power in the computational word basis and proves normalization. The occupation coordinates come from the adjoint of the physical symmetric-subspace isometry. Their multiplicities are derived by an actual finite bijection, giving
+The [compiler compatibility repair](verification/kernel-compatibility.md) adds 30 `noncomputable` prefixes across 15 files, retaining every old safe project declaration. The historical [completion audit](verification/completion-pass/run.json) covered 14,375 constants; the current full inventory has 14,345 after the 30 generated partial runtime helpers ceased to be generated. No root filtering or checker patch is used.
 
-$$
- \operatorname{multiplicity}(q)\prod_a q_a!=L!.
-$$
+The initial [Comparator failure](verification/comparator/records/20261004T035736.789819Z/run.json) and [Nanoda export-safety failure](verification/nanoda/records/20261004T040757.497668Z/run.json) remain preserved as historical attempts.
 
-The [coefficient proof](Cloning/GeneralCoherentLimits.lean) permits both $L_n\to\infty$ and varying amplitudes $z_n\to z$. It proves convergence to the actual multimode coherent vector. Exact unit norms and a finite-cutoff argument upgrade complex coefficient convergence to Hilbert-norm convergence; compactness then yields uniformity. No equicontinuity or uniform-approximation hypothesis is assumed.
+The [offline proof wiki](../docs/index.html) provides twelve informal guides with verified Lean pointers, named-result statements, searchable source, and explicit scope notes.
 
-The resulting forward map is the occupation embedding with vacuum replacement for discarded mass. The reverse map is defined on the entire computational tensor space, including nonsymmetric inputs. Both maps are independent of the unknown amplitude and are chosen before the compact window or requested error. This closes the manuscript's `eq:coherent-product-limit` in its explicit finite-dimensional computational realization and strengthens it to compact-uniform convergence with a reverse channel. Zero amplitudes and the zero-mode case are included.
+## Scope boundary
 
-This does not establish the two-way LAN theorem for full-rank mixed states. That theorem has a different statistical model, including fluctuating Young labels and displaced thermal quantum components.
+The manuscript's degenerate-spectrum and fixed-rank formulas remain explicitly marked as conjectures. The exact all-density asymptotic optimum is not claimed: the proved lower and upper bounds remain distinct. External literature attributions and speculative discussion are not additional proved theorems.
 
-## What remains to make the main theorem unconditional
+The older conditional assembly in `Cloning/Main.lean` remains unchanged under its original hypotheses. The final physical main theorems are separate unconditional constructions. “Unconditional” here means no unproved mathematical input beyond the stated model assumptions and the three standard Lean axioms.
 
-1. **General Schur–Weyl and Cartan/PRV physical identification.** Construct the manuscript's highest-weight representation spaces, Schur decomposition, thermal sector states, and actual intertwiners. The existing normalization-from-irreducibility theorem can then be instantiated with these objects. The symmetric one-row constructions above do not provide every Young sector.
-
-2. **Uniform sector asymptotics.** Prove the fixed-height PBW Gram estimates, Cartan coefficient limits, mixture/tail control, and the retained-sector fidelity estimates required by the achievability reduction. The one-sided reduction needs individual retained-channel lower bounds, rather than an additional two-sided approximation for every mixture.
-
-3. **Actual general Young-law estimates.** Establish the appropriate concentration, uniform local central limit, and dimension-ratio moment bounds for the Schur–Weyl Young distributions. The newly proved fallback bounds remove a kernel-identification obligation, but `fallback_errors_tendsto_zero` still explicitly takes the vanishing atypical-mass limit as a premise. The earlier two-row moment results remain special cases.
-
-4. **Universal Gaussian-channel representation and performance reduction.** Connect actual trace-class channels to their normal Heisenberg actions, derive the required quantum-positive multiplier condition, and reconstruct the joint idler in the applicable gain regime. Then connect all covariant competitors to the already proved optimum over the constructed seeded-amplifier family. The new scalar commutant and multiplier theorem close the algebraic part of this route. The expanding-Gaussian construction still needs the manuscript-specific prior/payoff and weighted-limit argument; a fixed-state trace repair cannot simply be assumed to preserve covariance.
-
-5. **Mixed-state LAN and hybrid assembly.** Construct the forward and reverse channels for the orbital and full classical–quantum mixed-state experiments, with the required uniform errors and order of limits. Instantiate the proved fidelity/trace-norm transfer laws and hybrid weighted inequalities with those channels, densities, and moments. The final known-spectrum and unknown-spectrum minimax conclusions still depend on these model-specific inputs.
-
-6. **Physical purification/PCT comparison.** Connect the physical Werner channel and its thermal output limit to the purification protocol, integrate the coherent-product approximation against the Gaussian measure, and carry the identities through the required partial traces. The proved coherent-state mixture identities and scalar fidelity comparisons supply ingredients; their assembly for the actual mixed-state PCT output remains separate.
-
-The new results narrow these boundaries through concrete constructions and proofs. They do not replace the remaining representation-theoretic, asymptotic-probability, or universal Gaussian statements by new axioms.
+The source is the frozen working manuscript identified in [SOURCE.json](SOURCE.json); its hash is unchanged. Equality to other manuscript versions is not asserted. The [previous progress document](verification/pre-completion-progress.md), [twelfth-pass audit](verification/twelfth-pass/run.json), and earlier records remain preserved as historical evidence.

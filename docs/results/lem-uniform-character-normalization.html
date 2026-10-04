@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="An offline guide to the Lean formalization of asymptotic mixed-state quantum cloning. Exact source, proof routes, and audited scope.">
+<title>Uniform character normalization · Cloning proof wiki</title>
+<link rel="stylesheet" href="../assets/site.css?v=1811c00ea983">
+<script>window.PROOF_ROOT="../";</script>
+<script defer src="../assets/vendor/katex/katex.min.js"></script>
+<script defer src="../assets/search-index.js?v=850aee981cdc"></script>
+<script defer src="../assets/site.js?v=4bfaac1f06b1"></script>
+</head><body><a class="skip-link" href="#main">Skip to content</a>
+<div class="site-shell"><aside class="sidebar" id="site-navigation">
+<a class="brand" href="../index.html"><span class="brand-mark">C</span><span>Cloning<span class="small muted">A Lean proof wiki</span></span></a>
+<nav aria-label="Main navigation"><div class="nav-section">Explore</div><a class="nav-link" href="../index.html">Overview</a><a class="nav-link" href="../guides/index.html">Proof guide</a><a class="nav-link active" href="../results/index.html" aria-current="page">27 named results</a><a class="nav-link" href="../source/index.html">Lean source</a><a class="nav-link" href="../verification.html">Verification</a><a class="nav-link" href="../scope.html">Scope &amp; conventions</a>
+<div class="nav-section">Read the proof</div><a class="nav-link" href="../guides/physical-problem.html"><span class="nav-number">01</span> The physical problem and its conventions</a><a class="nav-link" href="../guides/young-laws.html"><span class="nav-number">02</span> Young labels: concentration and the local Gaussian law</a><a class="nav-link" href="../guides/cartan-sectors.html"><span class="nav-number">03</span> From PBW frames to uniform Cartan-sector fidelity</a><a class="nav-link" href="../guides/lifted-kernels.html"><span class="nav-number">04</span> Lifted channels, randomized dilation, and factorization</a><a class="nav-link" href="../guides/gaussian-optimum.html"><span class="nav-number">05</span> Gaussian amplification against arbitrary competitors</a><a class="nav-link" href="../guides/physical-lan.html"><span class="nav-number">06</span> Constructed LAN and fidelity transfer</a><a class="nav-link" href="../guides/known-spectrum.html"><span class="nav-number">07</span> The known-spectrum optimum</a><a class="nav-link" href="../guides/unknown-spectrum.html"><span class="nav-number">08</span> One universal cloner and the compact-set optimum</a><a class="nav-link" href="../guides/grassmann.html"><span class="nav-number">09</span> Exact rank compression and projector-state optimality</a><a class="nav-link" href="../guides/purify-clone-trace.html"><span class="nav-number">10</span> Purify–clone–trace: exact channels, limits, and guarantees</a><a class="nav-link" href="../guides/small-errors.html"><span class="nav-number">11</span> Small errors, rank boundaries, and noncommuting limits</a><a class="nav-link" href="../guides/spectral-comparison.html"><span class="nav-number">12</span> Spectral order and what is known for all states</a></nav>
+<div class="sidebar-footer"><span class="badge">Lean 4</span><p>Manuscript → proof → source</p>
+<a href="https://github.com/JWang226/Cloning">Repository ↗</a></div></aside>
+<div class="main-shell"><header class="topbar">
+<button id="nav-toggle" class="button secondary" aria-controls="site-navigation" aria-expanded="false" aria-label="Toggle navigation">Menu</button>
+<div class="search-wrap"><label class="sr-only" for="site-search">Search the proof wiki</label>
+<input id="site-search" type="search" placeholder="Search results, concepts, or Lean names…" autocomplete="off" aria-controls="search-results" aria-expanded="false" role="combobox" aria-autocomplete="list">
+<div id="search-results" class="search-results" role="listbox" hidden></div></div>
+<span class="small muted topbar-label">Offline · exact source</span></header>
+<main id="main" class="content"><div class="eyebrow">lemma · manuscript result</div><h1>Uniform character normalization</h1><p><code>lem:uniform-character-normalization</code> <span class="badge">Mapped to compiled Lean</span></p><div class="notice">Scope notes below come from the manuscript-to-Lean map. Exact source excerpts are the formal reference.</div><section class="callout info"><h2>Hypotheses and correspondence</h2><p>The exact numerator orientation <code>p^μ / s_μ(p)</code>, one eventual threshold before every spectrum and partition, and arbitrary shrinking windows <code>δ_N→0</code>. The limit is the displayed product over all positive roots.</p></section><h2>Concrete Lean endpoints</h2><p class="small muted">These are exact statement excerpts, with proof bodies omitted. Section variables, instances, namespaces, imports, and proof bodies are visible in the linked full module.</p><article class="declaration"><div class="declaration-header"><a href="../source/Cloning.YoungUniformCharacterWindows.html#L29"><code>Cloning.YoungMultinomial.eventually_uniform_character_normalization</code></a><span class="badge">theorem</span></div><p class="small muted">YoungUniformCharacterWindows.lean · line 29 · <a href="../source/Cloning.YoungUniformCharacterWindows.html#L29">Full source and context</a> · <a href="https://github.com/JWang226/Cloning/blob/main/formalization/Cloning/YoungUniformCharacterWindows.lean#L29">GitHub ↗</a> · <button class="copy-button" data-copy-target="lean-cloning-youngmultinomial-eventually-uniform-character-normalization-180" aria-label="Copy Lean excerpt">Copy</button></p><div class="code-wrap"><pre class="code-block" id="lean-cloning-youngmultinomial-eventually-uniform-character-normalization-180"><code>theorem eventually_uniform_character_normalization
+    (K : Set (SimpleSpectrum d)) (hK : IsCompact K)
+    (δ : ℕ→ℝ) (hδ : Tendsto δ atTop (𝓝 0))
+    (ε : ℝ) (hε : 0&lt;ε) :
+    ∀ᶠ (N : ℕ) in atTop, ∀ p∈K, ∀ μ : Fin d→ℕ, Antitone μ →
+      (∀ i, |(μ i:ℝ)/(N:ℝ)-p.eigenvalue i|≤δ N) →
+      |(∏ i, p.eigenvalue i ^ μ i)/physicalSectorCharacter μ p.eigenvalue -
+        spectralCorrection p.eigenvalue|&lt;ε</code></pre></div></article><section class="callout"><h2>Read this part of the proof</h2><p><a href="../guides/young-laws.html">Young labels: concentration and the local Gaussian law →</a></p></section><details class="manuscript-excerpt"><summary>Exact manuscript TeX statement</summary><p class="small muted">Copied from the reference manuscript. Macro definitions and surrounding notation are in the complete TeX source.</p><pre class="code-block"><code>\begin{lemma}[Uniform character normalization]
+\label{lem:uniform-character-normalization}
+Let \(K\Subset\Delta_d^\circ\), let \(\delta_N\to0\), and suppose
+\(p\in K\), \(\lambda\in\mathsf Y_N\), and
+\(\|\lambda/N-p\|_\infty\le\delta_N\).  Then, uniformly over this family,
+\begin{equation}\label{eq:uniform-character-normalization}
+  \frac{p^\lambda}{s_\lambda(p)}
+  =\prod_{i&lt;j}\left(1-\frac{p_j}{p_i}\right)+o(1).
+\end{equation}
+\end{lemma}</code></pre><a href="../reference/cloning.tex">Download the complete reference source</a> · <a href="https://github.com/JWang226/Cloning/blob/main/formalization/reference/cloning.tex#L2751">GitHub, line 2751 ↗</a></details><p><a href="index.html">← All named results</a></p></main>
+<footer class="footer">English guides explain the argument. Lean source and its hypotheses determine the formal claims.
+<a href="../verification.html">Audit evidence</a> · <a href="../scope.html">Scope</a></footer>
+</div></div></body></html>

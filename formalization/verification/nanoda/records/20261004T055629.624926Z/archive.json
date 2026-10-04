@@ -1,0 +1,122 @@
+{
+  "archived_from": "formalization/verification/nanoda/.work/run-20261004T055629.624926Z",
+  "exported_declarations": 83433,
+  "files": {
+    "binding.json": {
+      "bytes": 112912,
+      "sha256": "e2bcde0dcdc6e9ae39ccb4191d84b96490323eedcca1db2dc6836d82a60f7488"
+    },
+    "compiled-before.json": {
+      "bytes": 110303,
+      "sha256": "d42abfbcf91aaca7ade092578141f1449808f2d5886bd120aa1faa74486c35fe"
+    },
+    "console.stderr": {
+      "bytes": 777,
+      "sha256": "abec9c7cd8de76622c279755ca7242ce394da3ed5566a8f3c147da46281cb1e1"
+    },
+    "console.stdout": {
+      "bytes": 2279,
+      "sha256": "f3a29b39d64646d24e9342e41d5a90b8febb3735c293e94a092151e0933ad089"
+    },
+    "export.json": {
+      "bytes": 685,
+      "sha256": "e0a4c00f8d028dbec5b0b4480ba3114d6fc136d4665776f4556c7e469915f85d"
+    },
+    "export.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "exporter-build.log": {
+      "bytes": 39,
+      "sha256": "39054a3ab28cbb1f303071e8251278ec44f84e5f2288361596fe592873c6114c"
+    },
+    "harness/ExportCloning.lean": {
+      "bytes": 1177,
+      "sha256": "4187326f3133ba7c4ae9c6845dc779b03a5eaba363c4bb1affda0eb5042149b9"
+    },
+    "harness/nanoda-config.json": {
+      "bytes": 385,
+      "sha256": "83baa2035f2bd5c5d53e461f220a3f8d777cc0d11bdfd8c92257a1851acd23d2"
+    },
+    "harness/reproduce.py": {
+      "bytes": 20129,
+      "sha256": "f8b408e765f39406c449ee9ed224a557c3ff5147f03f139d7d2cef985cf62be4"
+    },
+    "harness/run.sh": {
+      "bytes": 134,
+      "sha256": "2ad7b7e6c788ba8e57b06d3f0e106cfe5ac6ff614801f74d600c635e46d35e95"
+    },
+    "harness/test_reproduce.py": {
+      "bytes": 3082,
+      "sha256": "aa1b1ff3676e117a9be15742370aaf47667c7d5c50c94be12d4e2e99c92fff42"
+    },
+    "harness/tools-lock.json": {
+      "bytes": 2677,
+      "sha256": "8aa8601c9f7aa6cca546c687e67e730e3be416c3a3169130af9cc50fee04581e"
+    },
+    "invocation.json": {
+      "bytes": 2231,
+      "sha256": "69210dd9d022b78f651ceb1f2fd3d6bf636ec392576989820823284ad5658750"
+    },
+    "lean-version.log": {
+      "bytes": 110,
+      "sha256": "c70f7ec7c5c5e8c4a86e9c6c3e9c7372f29814001c7efe3c38d7058e3bc93a69"
+    },
+    "nanoda-build.log": {
+      "bytes": 62,
+      "sha256": "a70da5408e7a6da7efe97b23011504833b16a7875bda14543f2504b5b8c7d97a"
+    },
+    "nanoda-config.json": {
+      "bytes": 556,
+      "sha256": "3e3ad2877162cbf26c5a99ad99357bfbaa40f259872be4a92a4b4ceba58f84e1"
+    },
+    "nanoda.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "nanoda.stdout": {
+      "bytes": 269,
+      "sha256": "7ce5f595bbc41f6ccfff350710a6b24a9ce3d9894b419d5d2262d756cea9480c"
+    },
+    "previous-status.json": {
+      "bytes": 1187,
+      "sha256": "e4a59dc5e4e0b86aaba7469b76a090fa26a99bd98f9dcd462038d95530672ef7"
+    },
+    "project-build.log": {
+      "bytes": 417764,
+      "sha256": "6a8562896cc93bd4d5d3d847d3cc9385910d3c620b98a5a5c27323d4293445fd"
+    },
+    "resource-observations.jsonl": {
+      "bytes": 8784,
+      "sha256": "0646f88e8d4318dbdb4c197e5b36c003b139c56d3ffcfc4d526f26586944015e"
+    },
+    "resources.json": {
+      "bytes": 978,
+      "sha256": "674177a0d32b666f83205ac9bcab1d3b22226116198cc9133120089d2bf641de"
+    },
+    "roots.txt": {
+      "bytes": 738679,
+      "sha256": "20fcb2f7953a1ad8f46dbee7ea388d1e4f24d2fc45927ac7db9ea83bf8a2ea14"
+    },
+    "run.json": {
+      "bytes": 4546,
+      "sha256": "1920e73469cdd1f953b3b15e46d927b159d6ab8de585630162e95dd14f0c2050"
+    },
+    "rust-version.log": {
+      "bytes": 192,
+      "sha256": "a09c3fc26c9b56a9da361644dc642164492d8ac440d6330c74c7c989bd0d2099"
+    }
+  },
+  "independent_kernel_check": "passed",
+  "project_declarations": 14345,
+  "recorded_utc": "2026-10-04T06:07:43.908051+00:00",
+  "retained_ignored_export": {
+    "absolute_path": "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/formalization/verification/nanoda/.work/run-20261004T055629.624926Z/cloning.ndjson",
+    "bytes": 777716026,
+    "path": "formalization/verification/nanoda/.work/run-20261004T055629.624926Z/cloning.ndjson",
+    "sha256": "303071fc64f122beb54de50384e30bc41291edb2d7dd8b9190a6500fe7c3ce52"
+  },
+  "scope": "official_bound_full_runner",
+  "source_audit_sha256": "6b2c09f61388362d9ff3ae3f63285b9dd09e0cd95254150273bacba6cd9c799a",
+  "status": "passed"
+}

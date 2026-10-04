@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="An offline guide to the Lean formalization of asymptotic mixed-state quantum cloning. Exact source, proof routes, and audited scope.">
+<title>PCTPurificationChannelAction · Lean source · Cloning proof wiki</title>
+<link rel="stylesheet" href="../assets/site.css?v=1811c00ea983">
+<script>window.PROOF_ROOT="../";</script>
+<script defer src="../assets/vendor/katex/katex.min.js"></script>
+<script defer src="../assets/search-index.js?v=850aee981cdc"></script>
+<script defer src="../assets/site.js?v=4bfaac1f06b1"></script>
+</head><body><a class="skip-link" href="#main">Skip to content</a>
+<div class="site-shell"><aside class="sidebar" id="site-navigation">
+<a class="brand" href="../index.html"><span class="brand-mark">C</span><span>Cloning<span class="small muted">A Lean proof wiki</span></span></a>
+<nav aria-label="Main navigation"><div class="nav-section">Explore</div><a class="nav-link" href="../index.html">Overview</a><a class="nav-link" href="../guides/index.html">Proof guide</a><a class="nav-link" href="../results/index.html">27 named results</a><a class="nav-link active" href="../source/index.html" aria-current="page">Lean source</a><a class="nav-link" href="../verification.html">Verification</a><a class="nav-link" href="../scope.html">Scope &amp; conventions</a>
+<div class="nav-section">Read the proof</div><a class="nav-link" href="../guides/physical-problem.html"><span class="nav-number">01</span> The physical problem and its conventions</a><a class="nav-link" href="../guides/young-laws.html"><span class="nav-number">02</span> Young labels: concentration and the local Gaussian law</a><a class="nav-link" href="../guides/cartan-sectors.html"><span class="nav-number">03</span> From PBW frames to uniform Cartan-sector fidelity</a><a class="nav-link" href="../guides/lifted-kernels.html"><span class="nav-number">04</span> Lifted channels, randomized dilation, and factorization</a><a class="nav-link" href="../guides/gaussian-optimum.html"><span class="nav-number">05</span> Gaussian amplification against arbitrary competitors</a><a class="nav-link" href="../guides/physical-lan.html"><span class="nav-number">06</span> Constructed LAN and fidelity transfer</a><a class="nav-link" href="../guides/known-spectrum.html"><span class="nav-number">07</span> The known-spectrum optimum</a><a class="nav-link" href="../guides/unknown-spectrum.html"><span class="nav-number">08</span> One universal cloner and the compact-set optimum</a><a class="nav-link" href="../guides/grassmann.html"><span class="nav-number">09</span> Exact rank compression and projector-state optimality</a><a class="nav-link" href="../guides/purify-clone-trace.html"><span class="nav-number">10</span> Purify–clone–trace: exact channels, limits, and guarantees</a><a class="nav-link" href="../guides/small-errors.html"><span class="nav-number">11</span> Small errors, rank boundaries, and noncommuting limits</a><a class="nav-link" href="../guides/spectral-comparison.html"><span class="nav-number">12</span> Spectral order and what is known for all states</a></nav>
+<div class="sidebar-footer"><span class="badge">Lean 4</span><p>Manuscript → proof → source</p>
+<a href="https://github.com/JWang226/Cloning">Repository ↗</a></div></aside>
+<div class="main-shell"><header class="topbar">
+<button id="nav-toggle" class="button secondary" aria-controls="site-navigation" aria-expanded="false" aria-label="Toggle navigation">Menu</button>
+<div class="search-wrap"><label class="sr-only" for="site-search">Search the proof wiki</label>
+<input id="site-search" type="search" placeholder="Search results, concepts, or Lean names…" autocomplete="off" aria-controls="search-results" aria-expanded="false" role="combobox" aria-autocomplete="list">
+<div id="search-results" class="search-results" role="listbox" hidden></div></div>
+<span class="small muted topbar-label">Offline · exact source</span></header>
+<main id="main" class="content"><div class="eyebrow">Exact Lean source</div><h1 class="source-title">PCTPurificationChannelAction</h1><p><code>formalization/Cloning/PCTPurificationChannelAction.lean</code></p><p class="small muted">Source hash: <code>e7d292fbbc96e43c30def621deffcbdb3dec22b742d8fa733507812f5d583ea6</code></p><div class="actions"><a class="button secondary" href="raw/Cloning.PCTPurificationChannelAction.lean">Download .lean</a><a class="button secondary" href="https://github.com/JWang226/Cloning/blob/main/formalization/Cloning/PCTPurificationChannelAction.lean">View on GitHub ↗</a><a href="index.html">All modules</a></div><p class="small muted">Full source copied without mathematical changes from the snapshot whose input hash matches the passing audit. Select a line number for a stable source pointer.</p><details><summary>Declarations in this module</summary><div class="module-declarations"><a href="#L28"><span class="badge">theorem</span> <code>Cloning.PCTPurificationChannel.infinite_complex_unit_circle</code></a><a href="#L44"><span class="badge">theorem</span> <code>Cloning.PCTPurificationChannel.tensorPower_diagonal</code></a><a href="#L55"><span class="badge">theorem</span> <code>Cloning.PCTPurificationChannel.leftTensor_diagonal</code></a><a href="#L62"><span class="badge">definition</span> <code>Cloning.PCTPurificationChannel.diagonalUnitary</code></a><a href="#L76"><span class="badge">theorem</span> <code>Cloning.PCTPurificationChannel.commute_diagonal_of_commute_unitary</code></a><a href="#L101"><span class="badge">theorem</span> <code>Cloning.PCTPurificationChannel.haarMoment_commute_diagonal</code></a><a href="#L106"><span class="badge">theorem</span> <code>Cloning.PCTPurificationChannel.commute_hermitian_of_commute_unitary</code></a><a href="#L117"><span class="badge">theorem</span> <code>Cloning.PCTPurificationChannel.haarMoment_commute_hermitian</code></a><a href="#L123"><span class="badge">definition</span> <code>Cloning.PCTPurificationChannel.purificationCoefficients</code></a><a href="#L126"><span class="badge">theorem</span> <code>Cloning.PCTPurificationChannel.purificationCoefficients_reduces</code></a><a href="#L136"><span class="badge">theorem</span> <code>Cloning.PCTPurificationChannel.partialTrace_entangledMoment_eq</code></a><a href="#L141"><span class="badge">theorem</span> <code>Cloning.PCTPurificationChannel.partialTrace_purification_tensor</code></a><a href="#L147"><span class="badge">theorem</span> <code>Cloning.PCTPurificationChannel.integrable_purification_tensor</code></a><a href="#L157"><span class="badge">theorem</span> <code>Cloning.PCTPurificationChannel.trace_tensorPower</code></a><a href="#L163"><span class="badge">theorem</span> <code>Cloning.PCTPurificationChannel.trace_entangledMoment</code></a><a href="#L170"><span class="badge">theorem</span> <code>Cloning.PCTPurificationChannel.trace_purification_tensor</code></a><a href="#L177"><span class="badge">definition</span> <code>Cloning.PCTPurificationChannel.purificationTensorState</code></a><a href="#L186"><span class="badge">theorem</span> <code>Cloning.PCTPurificationChannel.purificationTensorState_coefficient</code></a><a href="#L196"><span class="badge">theorem</span> <code>Cloning.PCTPurificationChannel.haarPurificationChannel_tensorPower</code></a></div></details><div class="code-wrap source-wrap"><pre class="source-lines"><code><span class="source-line" id="L1"><a class="line-no" href="#L1" aria-label="Line 1">1</a><span class="line-code">import Cloning.PCTPurificationChannelHaar</span></span>
+<span class="source-line" id="L2"><a class="line-no" href="#L2" aria-label="Line 2">2</a><span class="line-code">import Mathlib.Algebra.MvPolynomial.Funext</span></span>
+<span class="source-line" id="L3"><a class="line-no" href="#L3" aria-label="Line 3">3</a><span class="line-code">import Mathlib.Order.Interval.Set.Infinite</span></span>
+<span class="source-line" id="L4"><a class="line-no" href="#L4" aria-label="Line 4">4</a><span class="line-code">import Mathlib.Tactic.Positivity</span></span>
+<span class="source-line" id="L5"><a class="line-no" href="#L5" aria-label="Line 5">5</a><span class="line-code">import Mathlib.Tactic.Linarith</span></span>
+<span class="source-line" id="L6"><a class="line-no" href="#L6" aria-label="Line 6">6</a><span class="line-code"> </span></span>
+<span class="source-line" id="L7"><a class="line-no" href="#L7" aria-label="Line 7">7</a><span class="line-code">/-!</span></span>
+<span class="source-line" id="L8"><a class="line-no" href="#L8" aria-label="Line 8">8</a><span class="line-code"># The Haar channel acts as random purification on tensor-power inputs</span></span>
+<span class="source-line" id="L9"><a class="line-no" href="#L9" aria-label="Line 9">9</a><span class="line-code"> </span></span>
+<span class="source-line" id="L10"><a class="line-no" href="#L10" aria-label="Line 10">10</a><span class="line-code">The commutation argument is finite dimensional and uses no Schur--Weyl</span></span>
+<span class="source-line" id="L11"><a class="line-no" href="#L11" aria-label="Line 11">11</a><span class="line-code">decomposition: polynomial uniqueness on the unit circle extends commutation</span></span>
+<span class="source-line" id="L12"><a class="line-no" href="#L12" aria-label="Line 12">12</a><span class="line-code">with diagonal unitaries to all diagonal matrices, then the Hermitian spectral</span></span>
+<span class="source-line" id="L13"><a class="line-no" href="#L13" aria-label="Line 13">13</a><span class="line-code">theorem handles square roots of arbitrary positive inputs.</span></span>
+<span class="source-line" id="L14"><a class="line-no" href="#L14" aria-label="Line 14">14</a><span class="line-code">-/</span></span>
+<span class="source-line" id="L15"><a class="line-no" href="#L15" aria-label="Line 15">15</a><span class="line-code"> </span></span>
+<span class="source-line" id="L16"><a class="line-no" href="#L16" aria-label="Line 16">16</a><span class="line-code">noncomputable section</span></span>
+<span class="source-line" id="L17"><a class="line-no" href="#L17" aria-label="Line 17">17</a><span class="line-code">open scoped BigOperators Matrix Kronecker MatrixOrder ComplexOrder Matrix.Norms.L2Operator</span></span>
+<span class="source-line" id="L18"><a class="line-no" href="#L18" aria-label="Line 18">18</a><span class="line-code">open Matrix MeasureTheory</span></span>
+<span class="source-line" id="L19"><a class="line-no" href="#L19" aria-label="Line 19">19</a><span class="line-code"> </span></span>
+<span class="source-line" id="L20"><a class="line-no" href="#L20" aria-label="Line 20">20</a><span class="line-code">namespace Cloning.PCTPurificationChannel</span></span>
+<span class="source-line" id="L21"><a class="line-no" href="#L21" aria-label="Line 21">21</a><span class="line-code"> </span></span>
+<span class="source-line" id="L22"><a class="line-no" href="#L22" aria-label="Line 22">22</a><span class="line-code">set_option maxHeartbeats 1000000</span></span>
+<span class="source-line" id="L23"><a class="line-no" href="#L23" aria-label="Line 23">23</a><span class="line-code">set_option backward.isDefEq.respectTransparency false</span></span>
+<span class="source-line" id="L24"><a class="line-no" href="#L24" aria-label="Line 24">24</a><span class="line-code">set_option linter.unusedSectionVars false</span></span>
+<span class="source-line" id="L25"><a class="line-no" href="#L25" aria-label="Line 25">25</a><span class="line-code"> </span></span>
+<span class="source-line" id="L26"><a class="line-no" href="#L26" aria-label="Line 26">26</a><span class="line-code">variable {A : Type*} [Fintype A] [DecidableEq A] [Nonempty A]</span></span>
+<span class="source-line" id="L27"><a class="line-no" href="#L27" aria-label="Line 27">27</a><span class="line-code"> </span></span>
+<span class="source-line" id="L28"><a class="line-no" href="#L28" aria-label="Line 28">28</a><span class="line-code">theorem infinite_complex_unit_circle : Set.Infinite {z : ℂ | ‖z‖ = 1} := by</span></span>
+<span class="source-line" id="L29"><a class="line-no" href="#L29" aria-label="Line 29">29</a><span class="line-code">  let f : ℝ → ℂ := fun t =&gt; ⟨t, Real.sqrt (1 - t ^ 2)⟩</span></span>
+<span class="source-line" id="L30"><a class="line-no" href="#L30" aria-label="Line 30">30</a><span class="line-code">  have hi : Set.InjOn f (Set.Ioo (-1 : ℝ) 1) := by</span></span>
+<span class="source-line" id="L31"><a class="line-no" href="#L31" aria-label="Line 31">31</a><span class="line-code">    intro x _ y _ h</span></span>
+<span class="source-line" id="L32"><a class="line-no" href="#L32" aria-label="Line 32">32</a><span class="line-code">    exact congrArg Complex.re h</span></span>
+<span class="source-line" id="L33"><a class="line-no" href="#L33" aria-label="Line 33">33</a><span class="line-code">  apply ((Set.Ioo_infinite (by norm_num : (-1 : ℝ) &lt; 1)).image hi).mono</span></span>
+<span class="source-line" id="L34"><a class="line-no" href="#L34" aria-label="Line 34">34</a><span class="line-code">  rintro z ⟨t, ht, rfl⟩</span></span>
+<span class="source-line" id="L35"><a class="line-no" href="#L35" aria-label="Line 35">35</a><span class="line-code">  change ‖f t‖ = 1</span></span>
+<span class="source-line" id="L36"><a class="line-no" href="#L36" aria-label="Line 36">36</a><span class="line-code">  have ht2 : 0 ≤ 1 - t ^ 2 := by nlinarith [ht.1, ht.2]</span></span>
+<span class="source-line" id="L37"><a class="line-no" href="#L37" aria-label="Line 37">37</a><span class="line-code">  have hn : ‖f t‖ ^ 2 = 1 := by</span></span>
+<span class="source-line" id="L38"><a class="line-no" href="#L38" aria-label="Line 38">38</a><span class="line-code">    rw [← Complex.normSq_eq_norm_sq]</span></span>
+<span class="source-line" id="L39"><a class="line-no" href="#L39" aria-label="Line 39">39</a><span class="line-code">    change t * t + Real.sqrt (1 - t ^ 2) * Real.sqrt (1 - t ^ 2) = 1</span></span>
+<span class="source-line" id="L40"><a class="line-no" href="#L40" aria-label="Line 40">40</a><span class="line-code">    rw [Real.mul_self_sqrt ht2]</span></span>
+<span class="source-line" id="L41"><a class="line-no" href="#L41" aria-label="Line 41">41</a><span class="line-code">    ring</span></span>
+<span class="source-line" id="L42"><a class="line-no" href="#L42" aria-label="Line 42">42</a><span class="line-code">  nlinarith [norm_nonneg (f t)]</span></span>
+<span class="source-line" id="L43"><a class="line-no" href="#L43" aria-label="Line 43">43</a><span class="line-code"> </span></span>
+<span class="source-line" id="L44"><a class="line-no" href="#L44" aria-label="Line 44">44</a><span class="line-code">theorem tensorPower_diagonal (n : ℕ) (z : A → ℂ) :</span></span>
+<span class="source-line" id="L45"><a class="line-no" href="#L45" aria-label="Line 45">45</a><span class="line-code">    tensorPower n (Matrix.diagonal z) = Matrix.diagonal (fun a =&gt; ∏ i, z (a i)) := by</span></span>
+<span class="source-line" id="L46"><a class="line-no" href="#L46" aria-label="Line 46">46</a><span class="line-code">  ext a c</span></span>
+<span class="source-line" id="L47"><a class="line-no" href="#L47" aria-label="Line 47">47</a><span class="line-code">  by_cases h : a = c</span></span>
+<span class="source-line" id="L48"><a class="line-no" href="#L48" aria-label="Line 48">48</a><span class="line-code">  · subst c</span></span>
+<span class="source-line" id="L49"><a class="line-no" href="#L49" aria-label="Line 49">49</a><span class="line-code">    simp [tensorPower]</span></span>
+<span class="source-line" id="L50"><a class="line-no" href="#L50" aria-label="Line 50">50</a><span class="line-code">  · obtain ⟨i, hi⟩ := Function.ne_iff.mp h</span></span>
+<span class="source-line" id="L51"><a class="line-no" href="#L51" aria-label="Line 51">51</a><span class="line-code">    rw [Matrix.diagonal_apply_ne _ h]</span></span>
+<span class="source-line" id="L52"><a class="line-no" href="#L52" aria-label="Line 52">52</a><span class="line-code">    apply Finset.prod_eq_zero (Finset.mem_univ i)</span></span>
+<span class="source-line" id="L53"><a class="line-no" href="#L53" aria-label="Line 53">53</a><span class="line-code">    exact Matrix.diagonal_apply_ne _ hi</span></span>
+<span class="source-line" id="L54"><a class="line-no" href="#L54" aria-label="Line 54">54</a><span class="line-code"> </span></span>
+<span class="source-line" id="L55"><a class="line-no" href="#L55" aria-label="Line 55">55</a><span class="line-code">theorem leftTensor_diagonal (n : ℕ) (z : A → ℂ) :</span></span>
+<span class="source-line" id="L56"><a class="line-no" href="#L56" aria-label="Line 56">56</a><span class="line-code">    leftTensor n (Matrix.diagonal z) =</span></span>
+<span class="source-line" id="L57"><a class="line-no" href="#L57" aria-label="Line 57">57</a><span class="line-code">      Matrix.diagonal (fun ab : (Fin n → A) × (Fin n → A) =&gt; ∏ i, z (ab.1 i)) := by</span></span>
+<span class="source-line" id="L58"><a class="line-no" href="#L58" aria-label="Line 58">58</a><span class="line-code">  rw [leftTensor, tensorPower_diagonal, ← Matrix.diagonal_one,</span></span>
+<span class="source-line" id="L59"><a class="line-no" href="#L59" aria-label="Line 59">59</a><span class="line-code">    Matrix.diagonal_kronecker_diagonal]</span></span>
+<span class="source-line" id="L60"><a class="line-no" href="#L60" aria-label="Line 60">60</a><span class="line-code">  simp</span></span>
+<span class="source-line" id="L61"><a class="line-no" href="#L61" aria-label="Line 61">61</a><span class="line-code"> </span></span>
+<span class="source-line" id="L62"><a class="line-no" href="#L62" aria-label="Line 62">62</a><span class="line-code">def diagonalUnitary (z : A → ℂ) (hz : ∀ a, ‖z a‖ = 1) : unitary (Matrix A A ℂ) :=</span></span>
+<span class="source-line" id="L63"><a class="line-no" href="#L63" aria-label="Line 63">63</a><span class="line-code">  ⟨Matrix.diagonal z, by</span></span>
+<span class="source-line" id="L64"><a class="line-no" href="#L64" aria-label="Line 64">64</a><span class="line-code">    apply Matrix.mem_unitaryGroup_iff&#x27;.mpr</span></span>
+<span class="source-line" id="L65"><a class="line-no" href="#L65" aria-label="Line 65">65</a><span class="line-code">    change (Matrix.diagonal z)ᴴ * Matrix.diagonal z = 1</span></span>
+<span class="source-line" id="L66"><a class="line-no" href="#L66" aria-label="Line 66">66</a><span class="line-code">    rw [Matrix.diagonal_conjTranspose, Matrix.diagonal_mul_diagonal]</span></span>
+<span class="source-line" id="L67"><a class="line-no" href="#L67" aria-label="Line 67">67</a><span class="line-code">    ext a c</span></span>
+<span class="source-line" id="L68"><a class="line-no" href="#L68" aria-label="Line 68">68</a><span class="line-code">    by_cases h : a = c</span></span>
+<span class="source-line" id="L69"><a class="line-no" href="#L69" aria-label="Line 69">69</a><span class="line-code">    · subst c</span></span>
+<span class="source-line" id="L70"><a class="line-no" href="#L70" aria-label="Line 70">70</a><span class="line-code">      simp only [Matrix.diagonal_apply_eq, Pi.star_apply, Matrix.one_apply_eq]</span></span>
+<span class="source-line" id="L71"><a class="line-no" href="#L71" aria-label="Line 71">71</a><span class="line-code">      rw [Complex.star_def, mul_comm, Complex.mul_conj, Complex.normSq_eq_norm_sq, hz, one_pow,</span></span>
+<span class="source-line" id="L72"><a class="line-no" href="#L72" aria-label="Line 72">72</a><span class="line-code">        Complex.ofReal_one]</span></span>
+<span class="source-line" id="L73"><a class="line-no" href="#L73" aria-label="Line 73">73</a><span class="line-code">    · simp [Matrix.diagonal_apply_ne _ h, Matrix.one_apply, h]⟩</span></span>
+<span class="source-line" id="L74"><a class="line-no" href="#L74" aria-label="Line 74">74</a><span class="line-code"> </span></span>
+<span class="source-line" id="L75"><a class="line-no" href="#L75" aria-label="Line 75">75</a><span class="line-code">/-- Polynomial extension of the diagonal unitary commutation identities. -/</span></span>
+<span class="source-line" id="L76"><a class="line-no" href="#L76" aria-label="Line 76">76</a><span class="line-code">theorem commute_diagonal_of_commute_unitary (n : ℕ)</span></span>
+<span class="source-line" id="L77"><a class="line-no" href="#L77" aria-label="Line 77">77</a><span class="line-code">    (R : Matrix ((Fin n → A) × (Fin n → A)) ((Fin n → A) × (Fin n → A)) ℂ)</span></span>
+<span class="source-line" id="L78"><a class="line-no" href="#L78" aria-label="Line 78">78</a><span class="line-code">    (hR : ∀ V : unitary (Matrix A A ℂ), Commute R (leftTensor n (V : Matrix A A ℂ)))</span></span>
+<span class="source-line" id="L79"><a class="line-no" href="#L79" aria-label="Line 79">79</a><span class="line-code">    (z : A → ℂ) : Commute R (leftTensor n (Matrix.diagonal z)) := by</span></span>
+<span class="source-line" id="L80"><a class="line-no" href="#L80" aria-label="Line 80">80</a><span class="line-code">  rw [leftTensor_diagonal]</span></span>
+<span class="source-line" id="L81"><a class="line-no" href="#L81" aria-label="Line 81">81</a><span class="line-code">  show R * Matrix.diagonal _ = Matrix.diagonal _ * R</span></span>
+<span class="source-line" id="L82"><a class="line-no" href="#L82" aria-label="Line 82">82</a><span class="line-code">  ext ab cd</span></span>
+<span class="source-line" id="L83"><a class="line-no" href="#L83" aria-label="Line 83">83</a><span class="line-code">  rw [Matrix.mul_diagonal, Matrix.diagonal_mul]</span></span>
+<span class="source-line" id="L84"><a class="line-no" href="#L84" aria-label="Line 84">84</a><span class="line-code">  let p : MvPolynomial A ℂ := MvPolynomial.C (R ab cd) *</span></span>
+<span class="source-line" id="L85"><a class="line-no" href="#L85" aria-label="Line 85">85</a><span class="line-code">    ∏ i : Fin n, MvPolynomial.X (cd.1 i)</span></span>
+<span class="source-line" id="L86"><a class="line-no" href="#L86" aria-label="Line 86">86</a><span class="line-code">  let q : MvPolynomial A ℂ := (∏ i : Fin n, MvPolynomial.X (ab.1 i)) *</span></span>
+<span class="source-line" id="L87"><a class="line-no" href="#L87" aria-label="Line 87">87</a><span class="line-code">    MvPolynomial.C (R ab cd)</span></span>
+<span class="source-line" id="L88"><a class="line-no" href="#L88" aria-label="Line 88">88</a><span class="line-code">  have hpq : p = q := by</span></span>
+<span class="source-line" id="L89"><a class="line-no" href="#L89" aria-label="Line 89">89</a><span class="line-code">    apply MvPolynomial.funext_set (fun _ =&gt; {w : ℂ | ‖w‖ = 1})</span></span>
+<span class="source-line" id="L90"><a class="line-no" href="#L90" aria-label="Line 90">90</a><span class="line-code">      (fun _ =&gt; infinite_complex_unit_circle)</span></span>
+<span class="source-line" id="L91"><a class="line-no" href="#L91" aria-label="Line 91">91</a><span class="line-code">    intro w hw</span></span>
+<span class="source-line" id="L92"><a class="line-no" href="#L92" aria-label="Line 92">92</a><span class="line-code">    have hw&#x27; : ∀ a, ‖w a‖ = 1 := fun a =&gt; hw a (Set.mem_univ a)</span></span>
+<span class="source-line" id="L93"><a class="line-no" href="#L93" aria-label="Line 93">93</a><span class="line-code">    have hc := (hR (diagonalUnitary w hw&#x27;)).eq</span></span>
+<span class="source-line" id="L94"><a class="line-no" href="#L94" aria-label="Line 94">94</a><span class="line-code">    change R * leftTensor n (Matrix.diagonal w) = leftTensor n (Matrix.diagonal w) * R at hc</span></span>
+<span class="source-line" id="L95"><a class="line-no" href="#L95" aria-label="Line 95">95</a><span class="line-code">    rw [leftTensor_diagonal] at hc</span></span>
+<span class="source-line" id="L96"><a class="line-no" href="#L96" aria-label="Line 96">96</a><span class="line-code">    have he := congrArg (fun M =&gt; M ab cd) hc</span></span>
+<span class="source-line" id="L97"><a class="line-no" href="#L97" aria-label="Line 97">97</a><span class="line-code">    simpa [p, q, MvPolynomial.eval_prod, Matrix.mul_diagonal, Matrix.diagonal_mul] using he</span></span>
+<span class="source-line" id="L98"><a class="line-no" href="#L98" aria-label="Line 98">98</a><span class="line-code">  have he := congrArg (MvPolynomial.eval z) hpq</span></span>
+<span class="source-line" id="L99"><a class="line-no" href="#L99" aria-label="Line 99">99</a><span class="line-code">  simpa [p, q, MvPolynomial.eval_prod] using he</span></span>
+<span class="source-line" id="L100"><a class="line-no" href="#L100" aria-label="Line 100">100</a><span class="line-code"> </span></span>
+<span class="source-line" id="L101"><a class="line-no" href="#L101" aria-label="Line 101">101</a><span class="line-code">theorem haarMoment_commute_diagonal (n : ℕ) (z : A → ℂ) :</span></span>
+<span class="source-line" id="L102"><a class="line-no" href="#L102" aria-label="Line 102">102</a><span class="line-code">    Commute (haarMoment (A := A) n) (leftTensor n (Matrix.diagonal z)) :=</span></span>
+<span class="source-line" id="L103"><a class="line-no" href="#L103" aria-label="Line 103">103</a><span class="line-code">  commute_diagonal_of_commute_unitary n _ (haarMoment_commute_unitary n) z</span></span>
+<span class="source-line" id="L104"><a class="line-no" href="#L104" aria-label="Line 104">104</a><span class="line-code"> </span></span>
+<span class="source-line" id="L105"><a class="line-no" href="#L105" aria-label="Line 105">105</a><span class="line-code">/-- Unitary commutation extends to every Hermitian tensor-power input. -/</span></span>
+<span class="source-line" id="L106"><a class="line-no" href="#L106" aria-label="Line 106">106</a><span class="line-code">theorem commute_hermitian_of_commute_unitary (n : ℕ)</span></span>
+<span class="source-line" id="L107"><a class="line-no" href="#L107" aria-label="Line 107">107</a><span class="line-code">    (R : Matrix ((Fin n → A) × (Fin n → A)) ((Fin n → A) × (Fin n → A)) ℂ)</span></span>
+<span class="source-line" id="L108"><a class="line-no" href="#L108" aria-label="Line 108">108</a><span class="line-code">    (hR : ∀ V : unitary (Matrix A A ℂ), Commute R (leftTensor n (V : Matrix A A ℂ)))</span></span>
+<span class="source-line" id="L109"><a class="line-no" href="#L109" aria-label="Line 109">109</a><span class="line-code">    (X : Matrix A A ℂ) (hX : X.IsHermitian) : Commute R (leftTensor n X) := by</span></span>
+<span class="source-line" id="L110"><a class="line-no" href="#L110" aria-label="Line 110">110</a><span class="line-code">  have hx : X = (hX.eigenvectorUnitary : Matrix A A ℂ) *</span></span>
+<span class="source-line" id="L111"><a class="line-no" href="#L111" aria-label="Line 111">111</a><span class="line-code">      Matrix.diagonal (fun a =&gt; (hX.eigenvalues a : ℂ)) *</span></span>
+<span class="source-line" id="L112"><a class="line-no" href="#L112" aria-label="Line 112">112</a><span class="line-code">      (hX.eigenvectorUnitary : Matrix A A ℂ)ᴴ := hX.spectral_theorem</span></span>
+<span class="source-line" id="L113"><a class="line-no" href="#L113" aria-label="Line 113">113</a><span class="line-code">  rw [hx, leftTensor_mul, leftTensor_mul]</span></span>
+<span class="source-line" id="L114"><a class="line-no" href="#L114" aria-label="Line 114">114</a><span class="line-code">  exact ((hR hX.eigenvectorUnitary).mul_right</span></span>
+<span class="source-line" id="L115"><a class="line-no" href="#L115" aria-label="Line 115">115</a><span class="line-code">    (commute_diagonal_of_commute_unitary n R hR _)).mul_right (hR (star hX.eigenvectorUnitary))</span></span>
+<span class="source-line" id="L116"><a class="line-no" href="#L116" aria-label="Line 116">116</a><span class="line-code"> </span></span>
+<span class="source-line" id="L117"><a class="line-no" href="#L117" aria-label="Line 117">117</a><span class="line-code">theorem haarMoment_commute_hermitian (n : ℕ) (X : Matrix A A ℂ)</span></span>
+<span class="source-line" id="L118"><a class="line-no" href="#L118" aria-label="Line 118">118</a><span class="line-code">    (hX : X.IsHermitian) : Commute (haarMoment (A := A) n) (leftTensor n X) :=</span></span>
+<span class="source-line" id="L119"><a class="line-no" href="#L119" aria-label="Line 119">119</a><span class="line-code">  commute_hermitian_of_commute_unitary n _ (haarMoment_commute_unitary n) X hX</span></span>
+<span class="source-line" id="L120"><a class="line-no" href="#L120" aria-label="Line 120">120</a><span class="line-code"> </span></span>
+<span class="source-line" id="L121"><a class="line-no" href="#L121" aria-label="Line 121">121</a><span class="line-code">/-- The pointwise purification coefficient matrix. Vectorizing this matrix</span></span>
+<span class="source-line" id="L122"><a class="line-no" href="#L122" aria-label="Line 122">122</a><span class="line-code">produces a purification of `ρ`, rotated only on its environment. -/</span></span>
+<span class="source-line" id="L123"><a class="line-no" href="#L123" aria-label="Line 123">123</a><span class="line-code">def purificationCoefficients (ρ : Matrix A A ℂ) (U : unitary (Matrix A A ℂ)) :</span></span>
+<span class="source-line" id="L124"><a class="line-no" href="#L124" aria-label="Line 124">124</a><span class="line-code">    Matrix A A ℂ := CFC.sqrt ρ * (U : Matrix A A ℂ)</span></span>
+<span class="source-line" id="L125"><a class="line-no" href="#L125" aria-label="Line 125">125</a><span class="line-code"> </span></span>
+<span class="source-line" id="L126"><a class="line-no" href="#L126" aria-label="Line 126">126</a><span class="line-code">theorem purificationCoefficients_reduces (ρ : Matrix A A ℂ) (hρ : ρ.PosSemidef)</span></span>
+<span class="source-line" id="L127"><a class="line-no" href="#L127" aria-label="Line 127">127</a><span class="line-code">    (U : unitary (Matrix A A ℂ)) :</span></span>
+<span class="source-line" id="L128"><a class="line-no" href="#L128" aria-label="Line 128">128</a><span class="line-code">    purificationCoefficients ρ U * (purificationCoefficients ρ U)ᴴ = ρ := by</span></span>
+<span class="source-line" id="L129"><a class="line-no" href="#L129" aria-label="Line 129">129</a><span class="line-code">  have hU : (U : Matrix A A ℂ) * (U : Matrix A A ℂ)ᴴ = 1 :=</span></span>
+<span class="source-line" id="L130"><a class="line-no" href="#L130" aria-label="Line 130">130</a><span class="line-code">    Unitary.mul_star_self_of_mem U.property</span></span>
+<span class="source-line" id="L131"><a class="line-no" href="#L131" aria-label="Line 131">131</a><span class="line-code">  simp only [purificationCoefficients, Matrix.conjTranspose_mul,</span></span>
+<span class="source-line" id="L132"><a class="line-no" href="#L132" aria-label="Line 132">132</a><span class="line-code">    Cloning.MatrixFidelity.sqrt_conjTranspose]</span></span>
+<span class="source-line" id="L133"><a class="line-no" href="#L133" aria-label="Line 133">133</a><span class="line-code">  rw [Matrix.mul_assoc, ← Matrix.mul_assoc (U : Matrix A A ℂ), hU, Matrix.one_mul,</span></span>
+<span class="source-line" id="L134"><a class="line-no" href="#L134" aria-label="Line 134">134</a><span class="line-code">    Cloning.MatrixFidelity.sqrt_mul_self hρ]</span></span>
+<span class="source-line" id="L135"><a class="line-no" href="#L135" aria-label="Line 135">135</a><span class="line-code"> </span></span>
+<span class="source-line" id="L136"><a class="line-no" href="#L136" aria-label="Line 136">136</a><span class="line-code">theorem partialTrace_entangledMoment_eq (n : ℕ) (X : Matrix A A ℂ) :</span></span>
+<span class="source-line" id="L137"><a class="line-no" href="#L137" aria-label="Line 137">137</a><span class="line-code">    Cloning.Compression.partialTrace (entangledMoment n X) = tensorPower n (X * Xᴴ) := by</span></span>
+<span class="source-line" id="L138"><a class="line-no" href="#L138" aria-label="Line 138">138</a><span class="line-code">  rw [tensorPower_mul, tensorPower_star]</span></span>
+<span class="source-line" id="L139"><a class="line-no" href="#L139" aria-label="Line 139">139</a><span class="line-code">  rfl</span></span>
+<span class="source-line" id="L140"><a class="line-no" href="#L140" aria-label="Line 140">140</a><span class="line-code"> </span></span>
+<span class="source-line" id="L141"><a class="line-no" href="#L141" aria-label="Line 141">141</a><span class="line-code">theorem partialTrace_purification_tensor (n : ℕ) (ρ : Matrix A A ℂ)</span></span>
+<span class="source-line" id="L142"><a class="line-no" href="#L142" aria-label="Line 142">142</a><span class="line-code">    (hρ : ρ.PosSemidef) (U : unitary (Matrix A A ℂ)) :</span></span>
+<span class="source-line" id="L143"><a class="line-no" href="#L143" aria-label="Line 143">143</a><span class="line-code">    Cloning.Compression.partialTrace (entangledMoment n (purificationCoefficients ρ U)) =</span></span>
+<span class="source-line" id="L144"><a class="line-no" href="#L144" aria-label="Line 144">144</a><span class="line-code">      tensorPower n ρ := by</span></span>
+<span class="source-line" id="L145"><a class="line-no" href="#L145" aria-label="Line 145">145</a><span class="line-code">  rw [partialTrace_entangledMoment_eq, purificationCoefficients_reduces ρ hρ]</span></span>
+<span class="source-line" id="L146"><a class="line-no" href="#L146" aria-label="Line 146">146</a><span class="line-code"> </span></span>
+<span class="source-line" id="L147"><a class="line-no" href="#L147" aria-label="Line 147">147</a><span class="line-code">theorem integrable_purification_tensor (n : ℕ) (ρ : Matrix A A ℂ) :</span></span>
+<span class="source-line" id="L148"><a class="line-no" href="#L148" aria-label="Line 148">148</a><span class="line-code">    Integrable (fun U : unitary (Matrix A A ℂ) =&gt;</span></span>
+<span class="source-line" id="L149"><a class="line-no" href="#L149" aria-label="Line 149">149</a><span class="line-code">      entangledMoment n (purificationCoefficients ρ U)) unitaryHaar := by</span></span>
+<span class="source-line" id="L150"><a class="line-no" href="#L150" aria-label="Line 150">150</a><span class="line-code">  have hi := (matrixSandwichCLM (leftTensor n (CFC.sqrt ρ))).integrable_comp</span></span>
+<span class="source-line" id="L151"><a class="line-no" href="#L151" aria-label="Line 151">151</a><span class="line-code">    (integrable_haar_entangledMoment (A := A) n)</span></span>
+<span class="source-line" id="L152"><a class="line-no" href="#L152" aria-label="Line 152">152</a><span class="line-code">  apply hi.congr</span></span>
+<span class="source-line" id="L153"><a class="line-no" href="#L153" aria-label="Line 153">153</a><span class="line-code">  apply Filter.Eventually.of_forall</span></span>
+<span class="source-line" id="L154"><a class="line-no" href="#L154" aria-label="Line 154">154</a><span class="line-code">  intro U</span></span>
+<span class="source-line" id="L155"><a class="line-no" href="#L155" aria-label="Line 155">155</a><span class="line-code">  exact (entangledMoment_mul n (CFC.sqrt ρ) (U : Matrix A A ℂ)).symm</span></span>
+<span class="source-line" id="L156"><a class="line-no" href="#L156" aria-label="Line 156">156</a><span class="line-code"> </span></span>
+<span class="source-line" id="L157"><a class="line-no" href="#L157" aria-label="Line 157">157</a><span class="line-code">theorem trace_tensorPower (n : ℕ) (X : Matrix A A ℂ) :</span></span>
+<span class="source-line" id="L158"><a class="line-no" href="#L158" aria-label="Line 158">158</a><span class="line-code">    Matrix.trace (tensorPower n X) = (Matrix.trace X) ^ n := by</span></span>
+<span class="source-line" id="L159"><a class="line-no" href="#L159" aria-label="Line 159">159</a><span class="line-code">  simp only [Matrix.trace, Matrix.diag, tensorPower]</span></span>
+<span class="source-line" id="L160"><a class="line-no" href="#L160" aria-label="Line 160">160</a><span class="line-code">  rw [← Fintype.prod_sum (fun (_ : Fin n) a =&gt; X a a)]</span></span>
+<span class="source-line" id="L161"><a class="line-no" href="#L161" aria-label="Line 161">161</a><span class="line-code">  simp</span></span>
+<span class="source-line" id="L162"><a class="line-no" href="#L162" aria-label="Line 162">162</a><span class="line-code"> </span></span>
+<span class="source-line" id="L163"><a class="line-no" href="#L163" aria-label="Line 163">163</a><span class="line-code">theorem trace_entangledMoment (n : ℕ) (X : Matrix A A ℂ) :</span></span>
+<span class="source-line" id="L164"><a class="line-no" href="#L164" aria-label="Line 164">164</a><span class="line-code">    Matrix.trace (entangledMoment n X) = (Matrix.trace (X * Xᴴ)) ^ n := by</span></span>
+<span class="source-line" id="L165"><a class="line-no" href="#L165" aria-label="Line 165">165</a><span class="line-code">  have ht : Matrix.trace (entangledMoment n X) =</span></span>
+<span class="source-line" id="L166"><a class="line-no" href="#L166" aria-label="Line 166">166</a><span class="line-code">      Matrix.trace (Cloning.Compression.partialTrace (entangledMoment n X)) := by</span></span>
+<span class="source-line" id="L167"><a class="line-no" href="#L167" aria-label="Line 167">167</a><span class="line-code">    simp [Matrix.trace, Matrix.diag, Cloning.Compression.partialTrace, Fintype.sum_prod_type]</span></span>
+<span class="source-line" id="L168"><a class="line-no" href="#L168" aria-label="Line 168">168</a><span class="line-code">  rw [ht, partialTrace_entangledMoment_eq, trace_tensorPower]</span></span>
+<span class="source-line" id="L169"><a class="line-no" href="#L169" aria-label="Line 169">169</a><span class="line-code"> </span></span>
+<span class="source-line" id="L170"><a class="line-no" href="#L170" aria-label="Line 170">170</a><span class="line-code">theorem trace_purification_tensor (n : ℕ) (ρ : Cloning.MatrixFidelity.State A)</span></span>
+<span class="source-line" id="L171"><a class="line-no" href="#L171" aria-label="Line 171">171</a><span class="line-code">    (U : unitary (Matrix A A ℂ)) :</span></span>
+<span class="source-line" id="L172"><a class="line-no" href="#L172" aria-label="Line 172">172</a><span class="line-code">    Matrix.trace (entangledMoment n (purificationCoefficients ρ.matrix U)) = 1 := by</span></span>
+<span class="source-line" id="L173"><a class="line-no" href="#L173" aria-label="Line 173">173</a><span class="line-code">  rw [trace_entangledMoment, purificationCoefficients_reduces _ ρ.positive, ρ.trace_one,</span></span>
+<span class="source-line" id="L174"><a class="line-no" href="#L174" aria-label="Line 174">174</a><span class="line-code">    one_pow]</span></span>
+<span class="source-line" id="L175"><a class="line-no" href="#L175" aria-label="Line 175">175</a><span class="line-code"> </span></span>
+<span class="source-line" id="L176"><a class="line-no" href="#L176" aria-label="Line 176">176</a><span class="line-code">/-- Each integrand is a normalized pure tensor density matrix. -/</span></span>
+<span class="source-line" id="L177"><a class="line-no" href="#L177" aria-label="Line 177">177</a><span class="line-code">def purificationTensorState (n : ℕ) (ρ : Cloning.MatrixFidelity.State A)</span></span>
+<span class="source-line" id="L178"><a class="line-no" href="#L178" aria-label="Line 178">178</a><span class="line-code">    (U : unitary (Matrix A A ℂ)) :</span></span>
+<span class="source-line" id="L179"><a class="line-no" href="#L179" aria-label="Line 179">179</a><span class="line-code">    Cloning.MatrixFidelity.State ((Fin n → A) × (Fin n → A)) where</span></span>
+<span class="source-line" id="L180"><a class="line-no" href="#L180" aria-label="Line 180">180</a><span class="line-code">  matrix := entangledMoment n (purificationCoefficients ρ.matrix U)</span></span>
+<span class="source-line" id="L181"><a class="line-no" href="#L181" aria-label="Line 181">181</a><span class="line-code">  positive := entangledMoment_posSemidef n _</span></span>
+<span class="source-line" id="L182"><a class="line-no" href="#L182" aria-label="Line 182">182</a><span class="line-code">  trace_one := trace_purification_tensor n ρ U</span></span>
+<span class="source-line" id="L183"><a class="line-no" href="#L183" aria-label="Line 183">183</a><span class="line-code"> </span></span>
+<span class="source-line" id="L184"><a class="line-no" href="#L184" aria-label="Line 184">184</a><span class="line-code">/-- Literal tensor-product coefficients of the rank-one purification</span></span>
+<span class="source-line" id="L185"><a class="line-no" href="#L185" aria-label="Line 185">185</a><span class="line-code">integrands, with the system and environment words grouped separately. -/</span></span>
+<span class="source-line" id="L186"><a class="line-no" href="#L186" aria-label="Line 186">186</a><span class="line-code">theorem purificationTensorState_coefficient (n : ℕ) (ρ : Cloning.MatrixFidelity.State A)</span></span>
+<span class="source-line" id="L187"><a class="line-no" href="#L187" aria-label="Line 187">187</a><span class="line-code">    (U : unitary (Matrix A A ℂ)) (a b c d : Fin n → A) :</span></span>
+<span class="source-line" id="L188"><a class="line-no" href="#L188" aria-label="Line 188">188</a><span class="line-code">    (purificationTensorState n ρ U).matrix (a, b) (c, d) =</span></span>
+<span class="source-line" id="L189"><a class="line-no" href="#L189" aria-label="Line 189">189</a><span class="line-code">      ∏ i, purificationCoefficients ρ.matrix U (a i) (b i) *</span></span>
+<span class="source-line" id="L190"><a class="line-no" href="#L190" aria-label="Line 190">190</a><span class="line-code">        star (purificationCoefficients ρ.matrix U (c i) (d i)) := by</span></span>
+<span class="source-line" id="L191"><a class="line-no" href="#L191" aria-label="Line 191">191</a><span class="line-code">  simp only [purificationTensorState, entangledMoment, entangledTensor, tensorPower,</span></span>
+<span class="source-line" id="L192"><a class="line-no" href="#L192" aria-label="Line 192">192</a><span class="line-code">    star_prod, Finset.prod_mul_distrib]</span></span>
+<span class="source-line" id="L193"><a class="line-no" href="#L193" aria-label="Line 193">193</a><span class="line-code"> </span></span>
+<span class="source-line" id="L194"><a class="line-no" href="#L194" aria-label="Line 194">194</a><span class="line-code">/-- Exact finite-sample random-purification identity for all positive input</span></span>
+<span class="source-line" id="L195"><a class="line-no" href="#L195" aria-label="Line 195">195</a><span class="line-code">matrices. Both the CPTP map and its Haar moment are explicit constructions. -/</span></span>
+<span class="source-line" id="L196"><a class="line-no" href="#L196" aria-label="Line 196">196</a><span class="line-code">theorem haarPurificationChannel_tensorPower (n : ℕ) (ρ : Matrix A A ℂ)</span></span>
+<span class="source-line" id="L197"><a class="line-no" href="#L197" aria-label="Line 197">197</a><span class="line-code">    (hρ : ρ.PosSemidef) :</span></span>
+<span class="source-line" id="L198"><a class="line-no" href="#L198" aria-label="Line 198">198</a><span class="line-code">    (haarPurificationChannel (A := A) n).toFun (tensorPower n ρ) =</span></span>
+<span class="source-line" id="L199"><a class="line-no" href="#L199" aria-label="Line 199">199</a><span class="line-code">      ∫ U : unitary (Matrix A A ℂ),</span></span>
+<span class="source-line" id="L200"><a class="line-no" href="#L200" aria-label="Line 200">200</a><span class="line-code">        entangledMoment n (purificationCoefficients ρ U) ∂unitaryHaar := by</span></span>
+<span class="source-line" id="L201"><a class="line-no" href="#L201" aria-label="Line 201">201</a><span class="line-code">  rw [haarPurificationChannel_apply]</span></span>
+<span class="source-line" id="L202"><a class="line-no" href="#L202" aria-label="Line 202">202</a><span class="line-code">  have hsquare : tensorPower n ρ = tensorPower n (CFC.sqrt ρ) * tensorPower n (CFC.sqrt ρ) := by</span></span>
+<span class="source-line" id="L203"><a class="line-no" href="#L203" aria-label="Line 203">203</a><span class="line-code">    rw [← tensorPower_mul, Cloning.MatrixFidelity.sqrt_mul_self hρ]</span></span>
+<span class="source-line" id="L204"><a class="line-no" href="#L204" aria-label="Line 204">204</a><span class="line-code">  rw [hsquare, purificationMap_square (haarMoment_posSemidef n) _</span></span>
+<span class="source-line" id="L205"><a class="line-no" href="#L205" aria-label="Line 205">205</a><span class="line-code">    (haarMoment_commute_hermitian n _ (Cloning.MatrixFidelity.sqrt_posSemidef ρ).isHermitian)]</span></span>
+<span class="source-line" id="L206"><a class="line-no" href="#L206" aria-label="Line 206">206</a><span class="line-code">  have hs : (leftTensor n (CFC.sqrt ρ))ᴴ = leftTensor n (CFC.sqrt ρ) := by</span></span>
+<span class="source-line" id="L207"><a class="line-no" href="#L207" aria-label="Line 207">207</a><span class="line-code">    rw [← leftTensor_star, Cloning.MatrixFidelity.sqrt_conjTranspose]</span></span>
+<span class="source-line" id="L208"><a class="line-no" href="#L208" aria-label="Line 208">208</a><span class="line-code">  have h := (matrixSandwichCLM (leftTensor n (CFC.sqrt ρ))).integral_comp_comm</span></span>
+<span class="source-line" id="L209"><a class="line-no" href="#L209" aria-label="Line 209">209</a><span class="line-code">    (integrable_haar_entangledMoment (A := A) n)</span></span>
+<span class="source-line" id="L210"><a class="line-no" href="#L210" aria-label="Line 210">210</a><span class="line-code">  change (∫ U : unitary (Matrix A A ℂ), leftTensor n (CFC.sqrt ρ) *</span></span>
+<span class="source-line" id="L211"><a class="line-no" href="#L211" aria-label="Line 211">211</a><span class="line-code">      entangledMoment n (U : Matrix A A ℂ) * (leftTensor n (CFC.sqrt ρ))ᴴ ∂unitaryHaar) =</span></span>
+<span class="source-line" id="L212"><a class="line-no" href="#L212" aria-label="Line 212">212</a><span class="line-code">    leftTensor n (CFC.sqrt ρ) * haarMoment n * (leftTensor n (CFC.sqrt ρ))ᴴ at h</span></span>
+<span class="source-line" id="L213"><a class="line-no" href="#L213" aria-label="Line 213">213</a><span class="line-code">  change leftTensor n (CFC.sqrt ρ) * haarMoment n * leftTensor n (CFC.sqrt ρ) = _</span></span>
+<span class="source-line" id="L214"><a class="line-no" href="#L214" aria-label="Line 214">214</a><span class="line-code">  rw [hs] at h</span></span>
+<span class="source-line" id="L215"><a class="line-no" href="#L215" aria-label="Line 215">215</a><span class="line-code">  rw [← h]</span></span>
+<span class="source-line" id="L216"><a class="line-no" href="#L216" aria-label="Line 216">216</a><span class="line-code">  apply integral_congr_ae</span></span>
+<span class="source-line" id="L217"><a class="line-no" href="#L217" aria-label="Line 217">217</a><span class="line-code">  apply Filter.Eventually.of_forall</span></span>
+<span class="source-line" id="L218"><a class="line-no" href="#L218" aria-label="Line 218">218</a><span class="line-code">  intro U</span></span>
+<span class="source-line" id="L219"><a class="line-no" href="#L219" aria-label="Line 219">219</a><span class="line-code">  simpa only [hs] using (entangledMoment_mul n (CFC.sqrt ρ) (U : Matrix A A ℂ)).symm</span></span>
+<span class="source-line" id="L220"><a class="line-no" href="#L220" aria-label="Line 220">220</a><span class="line-code"> </span></span>
+<span class="source-line" id="L221"><a class="line-no" href="#L221" aria-label="Line 221">221</a><span class="line-code">end Cloning.PCTPurificationChannel</span></span>
+</code></pre></div></main>
+<footer class="footer">English guides explain the argument. Lean source and its hypotheses determine the formal claims.
+<a href="../verification.html">Audit evidence</a> · <a href="../scope.html">Scope</a></footer>
+</div></div></body></html>

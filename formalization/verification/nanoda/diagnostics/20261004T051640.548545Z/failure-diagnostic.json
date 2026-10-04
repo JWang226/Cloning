@@ -1,0 +1,33 @@
+{
+  "actual_output_config": {
+    "pp_output_path": null,
+    "pp_to_stdout": false,
+    "print_axioms": true
+  },
+  "checker_config_sha256_unchanged": true,
+  "compiled_hashes_unchanged": true,
+  "dependency_sources_unchanged": true,
+  "export_sha256_unchanged": true,
+  "failure_cause": "print_axioms=true with no pretty-printer destination",
+  "nanoda_binary_returncode": 0,
+  "nanoda_reported_checked_declarations": 83433,
+  "nanoda_reported_pretty_printer_errors": 1,
+  "nanoda_reported_typechecker_errors": 0,
+  "official_source_bound_verification": "not_run",
+  "recorded_utc": "2026-10-04T05:30:20.068708+00:00",
+  "roots_sha256_unchanged": true,
+  "source_hashes_unchanged": true,
+  "status": "failed_preliminary_unbound",
+  "tracked_provenance_matches": {
+    "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/formalization/verification/kernel-compatibility/project-safety-inventory.json": true,
+    "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/formalization/verification/nanoda/.work/preliminary-diagnostic.py": true,
+    "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/formalization/verification/nanoda/.work/src/lean4export/Export.lean": true,
+    "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/formalization/verification/nanoda/.work/src/lean4export/lean-toolchain": true,
+    "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/formalization/verification/nanoda/.work/src/nanoda/target/release/nanoda_bin": true,
+    "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/formalization/verification/nanoda/ExportCloning.lean": true,
+    "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/formalization/verification/nanoda/nanoda-config.json": true,
+    "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/formalization/verification/nanoda/reproduce.py": true,
+    "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/formalization/verification/tools-lock.json": true
+  },
+  "unqualified_success_present": false
+}

@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="An offline guide to the Lean formalization of asymptotic mixed-state quantum cloning. Exact source, proof routes, and audited scope.">
+<title>MultimodeCoherent · Lean source · Cloning proof wiki</title>
+<link rel="stylesheet" href="../assets/site.css?v=1811c00ea983">
+<script>window.PROOF_ROOT="../";</script>
+<script defer src="../assets/vendor/katex/katex.min.js"></script>
+<script defer src="../assets/search-index.js?v=850aee981cdc"></script>
+<script defer src="../assets/site.js?v=4bfaac1f06b1"></script>
+</head><body><a class="skip-link" href="#main">Skip to content</a>
+<div class="site-shell"><aside class="sidebar" id="site-navigation">
+<a class="brand" href="../index.html"><span class="brand-mark">C</span><span>Cloning<span class="small muted">A Lean proof wiki</span></span></a>
+<nav aria-label="Main navigation"><div class="nav-section">Explore</div><a class="nav-link" href="../index.html">Overview</a><a class="nav-link" href="../guides/index.html">Proof guide</a><a class="nav-link" href="../results/index.html">27 named results</a><a class="nav-link active" href="../source/index.html" aria-current="page">Lean source</a><a class="nav-link" href="../verification.html">Verification</a><a class="nav-link" href="../scope.html">Scope &amp; conventions</a>
+<div class="nav-section">Read the proof</div><a class="nav-link" href="../guides/physical-problem.html"><span class="nav-number">01</span> The physical problem and its conventions</a><a class="nav-link" href="../guides/young-laws.html"><span class="nav-number">02</span> Young labels: concentration and the local Gaussian law</a><a class="nav-link" href="../guides/cartan-sectors.html"><span class="nav-number">03</span> From PBW frames to uniform Cartan-sector fidelity</a><a class="nav-link" href="../guides/lifted-kernels.html"><span class="nav-number">04</span> Lifted channels, randomized dilation, and factorization</a><a class="nav-link" href="../guides/gaussian-optimum.html"><span class="nav-number">05</span> Gaussian amplification against arbitrary competitors</a><a class="nav-link" href="../guides/physical-lan.html"><span class="nav-number">06</span> Constructed LAN and fidelity transfer</a><a class="nav-link" href="../guides/known-spectrum.html"><span class="nav-number">07</span> The known-spectrum optimum</a><a class="nav-link" href="../guides/unknown-spectrum.html"><span class="nav-number">08</span> One universal cloner and the compact-set optimum</a><a class="nav-link" href="../guides/grassmann.html"><span class="nav-number">09</span> Exact rank compression and projector-state optimality</a><a class="nav-link" href="../guides/purify-clone-trace.html"><span class="nav-number">10</span> Purify–clone–trace: exact channels, limits, and guarantees</a><a class="nav-link" href="../guides/small-errors.html"><span class="nav-number">11</span> Small errors, rank boundaries, and noncommuting limits</a><a class="nav-link" href="../guides/spectral-comparison.html"><span class="nav-number">12</span> Spectral order and what is known for all states</a></nav>
+<div class="sidebar-footer"><span class="badge">Lean 4</span><p>Manuscript → proof → source</p>
+<a href="https://github.com/JWang226/Cloning">Repository ↗</a></div></aside>
+<div class="main-shell"><header class="topbar">
+<button id="nav-toggle" class="button secondary" aria-controls="site-navigation" aria-expanded="false" aria-label="Toggle navigation">Menu</button>
+<div class="search-wrap"><label class="sr-only" for="site-search">Search the proof wiki</label>
+<input id="site-search" type="search" placeholder="Search results, concepts, or Lean names…" autocomplete="off" aria-controls="search-results" aria-expanded="false" role="combobox" aria-autocomplete="list">
+<div id="search-results" class="search-results" role="listbox" hidden></div></div>
+<span class="small muted topbar-label">Offline · exact source</span></header>
+<main id="main" class="content"><div class="eyebrow">Exact Lean source</div><h1 class="source-title">MultimodeCoherent</h1><p><code>formalization/Cloning/MultimodeCoherent.lean</code></p><p class="small muted">Source hash: <code>a7073e46cdc701954d0336210ba18058cedceaae7a4044b76383560c7a022d2a</code></p><div class="actions"><a class="button secondary" href="raw/Cloning.MultimodeCoherent.lean">Download .lean</a><a class="button secondary" href="https://github.com/JWang226/Cloning/blob/main/formalization/Cloning/MultimodeCoherent.lean">View on GitHub ↗</a><a href="index.html">All modules</a></div><p class="small muted">Full source copied without mathematical changes from the snapshot whose input hash matches the passing audit. Select a line number for a stable source pointer.</p><details><summary>Declarations in this module</summary><div class="module-declarations"><a href="#L23"><span class="badge">definition</span> <code>Cloning.MultimodeCoherent.Fock</code></a><a href="#L27"><span class="badge">theorem</span> <code>Cloning.MultimodeCoherent.hasSum_fin_product_complex</code></a><a href="#L48"><span class="badge">theorem</span> <code>Cloning.MultimodeCoherent.product_norm_sq_hasSum</code></a><a href="#L59"><span class="badge">definition</span> <code>Cloning.MultimodeCoherent.tensorVector</code></a><a href="#L63"><span class="badge">theorem</span> <code>Cloning.MultimodeCoherent.tensorVector_apply</code></a><a href="#L66"><span class="badge">theorem</span> <code>Cloning.MultimodeCoherent.tensorVector_norm</code></a><a href="#L79"><span class="badge">theorem</span> <code>Cloning.MultimodeCoherent.inner_tensorVector</code></a><a href="#L90"><span class="badge">definition</span> <code>Cloning.MultimodeCoherent.coherentVector</code></a><a href="#L93"><span class="badge">theorem</span> <code>Cloning.MultimodeCoherent.coherentVector_apply</code></a><a href="#L96"><span class="badge">theorem</span> <code>Cloning.MultimodeCoherent.coherentVector_coefficients</code></a><a href="#L101"><span class="badge">theorem</span> <code>Cloning.MultimodeCoherent.coherentVector_norm</code></a><a href="#L106"><span class="badge">theorem</span> <code>Cloning.MultimodeCoherent.inner_coherentVector</code></a><a href="#L114"><span class="badge">theorem</span> <code>Cloning.MultimodeCoherent.continuous_coherentVector</code></a><a href="#L135"><span class="badge">definition</span> <code>Cloning.MultimodeCoherent.coherentProjector</code></a><a href="#L138"><span class="badge">theorem</span> <code>Cloning.MultimodeCoherent.continuous_coherentProjector</code></a><a href="#L143"><span class="badge">theorem</span> <code>Cloning.MultimodeCoherent.coherentProjector_norm</code></a><a href="#L146"><span class="badge">theorem</span> <code>Cloning.MultimodeCoherent.coherentProjector_trace</code></a><a href="#L150"><span class="badge">theorem</span> <code>Cloning.MultimodeCoherent.coherentProjector_nonneg</code></a><a href="#L155"><span class="badge">definition</span> <code>Cloning.MultimodeCoherent.coherentState</code></a><a href="#L159"><span class="badge">theorem</span> <code>Cloning.MultimodeCoherent.integrable_coherentVector</code></a><a href="#L165"><span class="badge">theorem</span> <code>Cloning.MultimodeCoherent.integrable_coherentProjector</code></a></div></details><div class="code-wrap source-wrap"><pre class="source-lines"><code><span class="source-line" id="L1"><a class="line-no" href="#L1" aria-label="Line 1">1</a><span class="line-code">import Cloning.CoherentContinuity</span></span>
+<span class="source-line" id="L2"><a class="line-no" href="#L2" aria-label="Line 2">2</a><span class="line-code">import Mathlib.Analysis.Normed.Ring.InfiniteSum</span></span>
+<span class="source-line" id="L3"><a class="line-no" href="#L3" aria-label="Line 3">3</a><span class="line-code"> </span></span>
+<span class="source-line" id="L4"><a class="line-no" href="#L4" aria-label="Line 4">4</a><span class="line-code">/-!</span></span>
+<span class="source-line" id="L5"><a class="line-no" href="#L5" aria-label="Line 5">5</a><span class="line-code"># Actual multimode complex coherent vectors</span></span>
+<span class="source-line" id="L6"><a class="line-no" href="#L6" aria-label="Line 6">6</a><span class="line-code"> </span></span>
+<span class="source-line" id="L7"><a class="line-no" href="#L7" aria-label="Line 7">7</a><span class="line-code">Finite products of one-mode coefficient vectors define actual vectors in the</span></span>
+<span class="source-line" id="L8"><a class="line-no" href="#L8" aria-label="Line 8">8</a><span class="line-code">multimode occupation Hilbert space. Norms and inner products are proved by</span></span>
+<span class="source-line" id="L9"><a class="line-no" href="#L9" aria-label="Line 9">9</a><span class="line-code">absolutely convergent finite product sums. This includes zero modes, where the</span></span>
+<span class="source-line" id="L10"><a class="line-no" href="#L10" aria-label="Line 10">10</a><span class="line-code">occupation index type is a singleton and the coherent vector has coefficient one.</span></span>
+<span class="source-line" id="L11"><a class="line-no" href="#L11" aria-label="Line 11">11</a><span class="line-code">-/</span></span>
+<span class="source-line" id="L12"><a class="line-no" href="#L12" aria-label="Line 12">12</a><span class="line-code"> </span></span>
+<span class="source-line" id="L13"><a class="line-no" href="#L13" aria-label="Line 13">13</a><span class="line-code">noncomputable section</span></span>
+<span class="source-line" id="L14"><a class="line-no" href="#L14" aria-label="Line 14">14</a><span class="line-code">open scoped BigOperators InnerProductSpace ComplexOrder Topology ENNReal</span></span>
+<span class="source-line" id="L15"><a class="line-no" href="#L15" aria-label="Line 15">15</a><span class="line-code">open Filter MeasureTheory</span></span>
+<span class="source-line" id="L16"><a class="line-no" href="#L16" aria-label="Line 16">16</a><span class="line-code"> </span></span>
+<span class="source-line" id="L17"><a class="line-no" href="#L17" aria-label="Line 17">17</a><span class="line-code">namespace Cloning.MultimodeCoherent</span></span>
+<span class="source-line" id="L18"><a class="line-no" href="#L18" aria-label="Line 18">18</a><span class="line-code"> </span></span>
+<span class="source-line" id="L19"><a class="line-no" href="#L19" aria-label="Line 19">19</a><span class="line-code">open Cloning Cloning.InfiniteTraceClass</span></span>
+<span class="source-line" id="L20"><a class="line-no" href="#L20" aria-label="Line 20">20</a><span class="line-code">set_option backward.isDefEq.respectTransparency false</span></span>
+<span class="source-line" id="L21"><a class="line-no" href="#L21" aria-label="Line 21">21</a><span class="line-code">set_option maxHeartbeats 800000</span></span>
+<span class="source-line" id="L22"><a class="line-no" href="#L22" aria-label="Line 22">22</a><span class="line-code"> </span></span>
+<span class="source-line" id="L23"><a class="line-no" href="#L23" aria-label="Line 23">23</a><span class="line-code">abbrev Fock (s : ℕ) := lp (fun _ : Fin s → ℕ ↦ ℂ) 2</span></span>
+<span class="source-line" id="L24"><a class="line-no" href="#L24" aria-label="Line 24">24</a><span class="line-code"> </span></span>
+<span class="source-line" id="L25"><a class="line-no" href="#L25" aria-label="Line 25">25</a><span class="line-code">/-- Finite tensor products of convergent complex series, with absolute</span></span>
+<span class="source-line" id="L26"><a class="line-no" href="#L26" aria-label="Line 26">26</a><span class="line-code">summability supplied by finite-dimensionality of the scalar field. -/</span></span>
+<span class="source-line" id="L27"><a class="line-no" href="#L27" aria-label="Line 27">27</a><span class="line-code">theorem hasSum_fin_product_complex (s : ℕ) (f : Fin s → ℕ → ℂ) (a : Fin s → ℂ)</span></span>
+<span class="source-line" id="L28"><a class="line-no" href="#L28" aria-label="Line 28">28</a><span class="line-code">    (hs : ∀ i, HasSum (f i) (a i)) :</span></span>
+<span class="source-line" id="L29"><a class="line-no" href="#L29" aria-label="Line 29">29</a><span class="line-code">    HasSum (fun k : Fin s → ℕ ↦ ∏ i, f i (k i)) (∏ i, a i) := by</span></span>
+<span class="source-line" id="L30"><a class="line-no" href="#L30" aria-label="Line 30">30</a><span class="line-code">  induction s with</span></span>
+<span class="source-line" id="L31"><a class="line-no" href="#L31" aria-label="Line 31">31</a><span class="line-code">  | zero =&gt; simp</span></span>
+<span class="source-line" id="L32"><a class="line-no" href="#L32" aria-label="Line 32">32</a><span class="line-code">  | succ s ih =&gt;</span></span>
+<span class="source-line" id="L33"><a class="line-no" href="#L33" aria-label="Line 33">33</a><span class="line-code">    have ht : HasSum (fun k : Fin s → ℕ ↦ ∏ i : Fin s, f i.succ (k i))</span></span>
+<span class="source-line" id="L34"><a class="line-no" href="#L34" aria-label="Line 34">34</a><span class="line-code">        (∏ i : Fin s, a i.succ) := ih (fun i ↦ f i.succ) (fun i ↦ a i.succ)</span></span>
+<span class="source-line" id="L35"><a class="line-no" href="#L35" aria-label="Line 35">35</a><span class="line-code">          (fun i ↦ hs i.succ)</span></span>
+<span class="source-line" id="L36"><a class="line-no" href="#L36" aria-label="Line 36">36</a><span class="line-code">    have hsum : Summable (fun k : ℕ × (Fin s → ℕ) ↦</span></span>
+<span class="source-line" id="L37"><a class="line-no" href="#L37" aria-label="Line 37">37</a><span class="line-code">        f 0 k.1 * ∏ i : Fin s, f i.succ (k.2 i)) :=</span></span>
+<span class="source-line" id="L38"><a class="line-no" href="#L38" aria-label="Line 38">38</a><span class="line-code">      summable_mul_of_summable_norm (f := f 0)</span></span>
+<span class="source-line" id="L39"><a class="line-no" href="#L39" aria-label="Line 39">39</a><span class="line-code">        (g := fun k : Fin s → ℕ ↦ ∏ i : Fin s, f i.succ (k i))</span></span>
+<span class="source-line" id="L40"><a class="line-no" href="#L40" aria-label="Line 40">40</a><span class="line-code">        (hs 0).summable.norm ht.summable.norm</span></span>
+<span class="source-line" id="L41"><a class="line-no" href="#L41" aria-label="Line 41">41</a><span class="line-code">    have hm : HasSum (fun k : ℕ × (Fin s → ℕ) ↦</span></span>
+<span class="source-line" id="L42"><a class="line-no" href="#L42" aria-label="Line 42">42</a><span class="line-code">        f 0 k.1 * ∏ i : Fin s, f i.succ (k.2 i)) (a 0 * ∏ i : Fin s, a i.succ) :=</span></span>
+<span class="source-line" id="L43"><a class="line-no" href="#L43" aria-label="Line 43">43</a><span class="line-code">      HasSum.mul (f := f 0) (g := fun k : Fin s → ℕ ↦ ∏ i : Fin s, f i.succ (k i))</span></span>
+<span class="source-line" id="L44"><a class="line-no" href="#L44" aria-label="Line 44">44</a><span class="line-code">        (s := a 0) (t := ∏ i : Fin s, a i.succ) (hs 0) ht hsum</span></span>
+<span class="source-line" id="L45"><a class="line-no" href="#L45" aria-label="Line 45">45</a><span class="line-code">    rw [← (Fin.consEquiv (fun _ : Fin (s + 1) ↦ ℕ)).hasSum_iff]</span></span>
+<span class="source-line" id="L46"><a class="line-no" href="#L46" aria-label="Line 46">46</a><span class="line-code">    simpa [Fin.prod_univ_succ, Fin.consEquiv, Function.comp_def] using hm</span></span>
+<span class="source-line" id="L47"><a class="line-no" href="#L47" aria-label="Line 47">47</a><span class="line-code"> </span></span>
+<span class="source-line" id="L48"><a class="line-no" href="#L48" aria-label="Line 48">48</a><span class="line-code">theorem product_norm_sq_hasSum {s : ℕ} (x : Fin s → ComplexCoherent.Fock) :</span></span>
+<span class="source-line" id="L49"><a class="line-no" href="#L49" aria-label="Line 49">49</a><span class="line-code">    HasSum (fun k : Fin s → ℕ ↦ ‖∏ i, x i (k i)‖ ^ (2 : ℕ))</span></span>
+<span class="source-line" id="L50"><a class="line-no" href="#L50" aria-label="Line 50">50</a><span class="line-code">      (∏ i, ‖x i‖ ^ (2 : ℕ)) := by</span></span>
+<span class="source-line" id="L51"><a class="line-no" href="#L51" aria-label="Line 51">51</a><span class="line-code">  have hs (i : Fin s) : HasSum (fun n ↦ ‖x i n‖ ^ (2 : ℕ)) (‖x i‖ ^ (2 : ℕ)) := by</span></span>
+<span class="source-line" id="L52"><a class="line-no" href="#L52" aria-label="Line 52">52</a><span class="line-code">    simpa only [ENNReal.toReal_ofNat, Real.rpow_two] using</span></span>
+<span class="source-line" id="L53"><a class="line-no" href="#L53" aria-label="Line 53">53</a><span class="line-code">      lp.hasSum_norm (by norm_num : 0 &lt; (2 : ℝ≥0∞).toReal) (x i)</span></span>
+<span class="source-line" id="L54"><a class="line-no" href="#L54" aria-label="Line 54">54</a><span class="line-code">  simpa only [norm_prod, Finset.prod_pow] using</span></span>
+<span class="source-line" id="L55"><a class="line-no" href="#L55" aria-label="Line 55">55</a><span class="line-code">    Thermal.hasSum_fin_product s (fun i n ↦ ‖x i n‖ ^ (2 : ℕ))</span></span>
+<span class="source-line" id="L56"><a class="line-no" href="#L56" aria-label="Line 56">56</a><span class="line-code">      (fun i ↦ ‖x i‖ ^ (2 : ℕ)) (fun i n ↦ sq_nonneg _) hs</span></span>
+<span class="source-line" id="L57"><a class="line-no" href="#L57" aria-label="Line 57">57</a><span class="line-code"> </span></span>
+<span class="source-line" id="L58"><a class="line-no" href="#L58" aria-label="Line 58">58</a><span class="line-code">/-- The literal finite tensor product of arbitrary one-mode occupation vectors. -/</span></span>
+<span class="source-line" id="L59"><a class="line-no" href="#L59" aria-label="Line 59">59</a><span class="line-code">def tensorVector {s : ℕ} (x : Fin s → ComplexCoherent.Fock) : Fock s := by</span></span>
+<span class="source-line" id="L60"><a class="line-no" href="#L60" aria-label="Line 60">60</a><span class="line-code">  refine ⟨fun k ↦ ∏ i, x i (k i), memℓp_gen ?_⟩</span></span>
+<span class="source-line" id="L61"><a class="line-no" href="#L61" aria-label="Line 61">61</a><span class="line-code">  simpa only [ENNReal.toReal_ofNat, Real.rpow_two] using (product_norm_sq_hasSum x).summable</span></span>
+<span class="source-line" id="L62"><a class="line-no" href="#L62" aria-label="Line 62">62</a><span class="line-code"> </span></span>
+<span class="source-line" id="L63"><a class="line-no" href="#L63" aria-label="Line 63">63</a><span class="line-code">@[simp] theorem tensorVector_apply {s : ℕ} (x : Fin s → ComplexCoherent.Fock)</span></span>
+<span class="source-line" id="L64"><a class="line-no" href="#L64" aria-label="Line 64">64</a><span class="line-code">    (k : Fin s → ℕ) : tensorVector x k = ∏ i, x i (k i) := rfl</span></span>
+<span class="source-line" id="L65"><a class="line-no" href="#L65" aria-label="Line 65">65</a><span class="line-code"> </span></span>
+<span class="source-line" id="L66"><a class="line-no" href="#L66" aria-label="Line 66">66</a><span class="line-code">theorem tensorVector_norm {s : ℕ} (x : Fin s → ComplexCoherent.Fock) :</span></span>
+<span class="source-line" id="L67"><a class="line-no" href="#L67" aria-label="Line 67">67</a><span class="line-code">    ‖tensorVector x‖ = ∏ i, ‖x i‖ := by</span></span>
+<span class="source-line" id="L68"><a class="line-no" href="#L68" aria-label="Line 68">68</a><span class="line-code">  have hsq : ‖tensorVector x‖ ^ (2 : ℕ) = (∏ i, ‖x i‖) ^ (2 : ℕ) := by</span></span>
+<span class="source-line" id="L69"><a class="line-no" href="#L69" aria-label="Line 69">69</a><span class="line-code">    calc</span></span>
+<span class="source-line" id="L70"><a class="line-no" href="#L70" aria-label="Line 70">70</a><span class="line-code">      _ = ∑&#x27; k : Fin s → ℕ, ‖∏ i, x i (k i)‖ ^ (2 : ℕ) := by</span></span>
+<span class="source-line" id="L71"><a class="line-no" href="#L71" aria-label="Line 71">71</a><span class="line-code">        simpa only [ENNReal.toReal_ofNat, Real.rpow_two, tensorVector_apply] using</span></span>
+<span class="source-line" id="L72"><a class="line-no" href="#L72" aria-label="Line 72">72</a><span class="line-code">          lp.norm_rpow_eq_tsum (by norm_num : 0 &lt; (2 : ℝ≥0∞).toReal) (tensorVector x)</span></span>
+<span class="source-line" id="L73"><a class="line-no" href="#L73" aria-label="Line 73">73</a><span class="line-code">      _ = ∏ i, ‖x i‖ ^ (2 : ℕ) := (product_norm_sq_hasSum x).tsum_eq</span></span>
+<span class="source-line" id="L74"><a class="line-no" href="#L74" aria-label="Line 74">74</a><span class="line-code">      _ = _ := Finset.prod_pow _ _ _</span></span>
+<span class="source-line" id="L75"><a class="line-no" href="#L75" aria-label="Line 75">75</a><span class="line-code">  have hprod : 0 ≤ ∏ i, ‖x i‖ := Finset.prod_nonneg (fun i _ ↦ norm_nonneg _)</span></span>
+<span class="source-line" id="L76"><a class="line-no" href="#L76" aria-label="Line 76">76</a><span class="line-code">  nlinarith [norm_nonneg (tensorVector x)]</span></span>
+<span class="source-line" id="L77"><a class="line-no" href="#L77" aria-label="Line 77">77</a><span class="line-code"> </span></span>
+<span class="source-line" id="L78"><a class="line-no" href="#L78" aria-label="Line 78">78</a><span class="line-code">/-- Exact inner-product factorization, derived from actual ℓ² coefficients. -/</span></span>
+<span class="source-line" id="L79"><a class="line-no" href="#L79" aria-label="Line 79">79</a><span class="line-code">theorem inner_tensorVector {s : ℕ} (x y : Fin s → ComplexCoherent.Fock) :</span></span>
+<span class="source-line" id="L80"><a class="line-no" href="#L80" aria-label="Line 80">80</a><span class="line-code">    ⟪tensorVector x, tensorVector y⟫_ℂ = ∏ i, ⟪x i, y i⟫_ℂ := by</span></span>
+<span class="source-line" id="L81"><a class="line-no" href="#L81" aria-label="Line 81">81</a><span class="line-code">  rw [lp.inner_eq_tsum]</span></span>
+<span class="source-line" id="L82"><a class="line-no" href="#L82" aria-label="Line 82">82</a><span class="line-code">  have he (k : Fin s → ℕ) :</span></span>
+<span class="source-line" id="L83"><a class="line-no" href="#L83" aria-label="Line 83">83</a><span class="line-code">      ⟪tensorVector x k, tensorVector y k⟫_ℂ = ∏ i, ⟪x i (k i), y i (k i)⟫_ℂ := by</span></span>
+<span class="source-line" id="L84"><a class="line-no" href="#L84" aria-label="Line 84">84</a><span class="line-code">    simp only [tensorVector_apply, RCLike.inner_apply, map_prod, Finset.prod_mul_distrib]</span></span>
+<span class="source-line" id="L85"><a class="line-no" href="#L85" aria-label="Line 85">85</a><span class="line-code">  simp_rw [he]</span></span>
+<span class="source-line" id="L86"><a class="line-no" href="#L86" aria-label="Line 86">86</a><span class="line-code">  exact (hasSum_fin_product_complex s (fun i n ↦ ⟪x i n, y i n⟫_ℂ)</span></span>
+<span class="source-line" id="L87"><a class="line-no" href="#L87" aria-label="Line 87">87</a><span class="line-code">    (fun i ↦ ⟪x i, y i⟫_ℂ) (fun i ↦ lp.hasSum_inner (x i) (y i))).tsum_eq</span></span>
+<span class="source-line" id="L88"><a class="line-no" href="#L88" aria-label="Line 88">88</a><span class="line-code"> </span></span>
+<span class="source-line" id="L89"><a class="line-no" href="#L89" aria-label="Line 89">89</a><span class="line-code">/-- The genuine multimode coherent vector, with arbitrary complex amplitudes. -/</span></span>
+<span class="source-line" id="L90"><a class="line-no" href="#L90" aria-label="Line 90">90</a><span class="line-code">def coherentVector {s : ℕ} (z : Fin s → ℂ) : Fock s :=</span></span>
+<span class="source-line" id="L91"><a class="line-no" href="#L91" aria-label="Line 91">91</a><span class="line-code">  tensorVector (fun i ↦ ComplexCoherent.coherentVector (z i))</span></span>
+<span class="source-line" id="L92"><a class="line-no" href="#L92" aria-label="Line 92">92</a><span class="line-code"> </span></span>
+<span class="source-line" id="L93"><a class="line-no" href="#L93" aria-label="Line 93">93</a><span class="line-code">@[simp] theorem coherentVector_apply {s : ℕ} (z : Fin s → ℂ) (k : Fin s → ℕ) :</span></span>
+<span class="source-line" id="L94"><a class="line-no" href="#L94" aria-label="Line 94">94</a><span class="line-code">    coherentVector z k = ∏ i, ComplexCoherent.coherentVector (z i) (k i) := rfl</span></span>
+<span class="source-line" id="L95"><a class="line-no" href="#L95" aria-label="Line 95">95</a><span class="line-code"> </span></span>
+<span class="source-line" id="L96"><a class="line-no" href="#L96" aria-label="Line 96">96</a><span class="line-code">theorem coherentVector_coefficients {s : ℕ} (z : Fin s → ℂ) (k : Fin s → ℕ) :</span></span>
+<span class="source-line" id="L97"><a class="line-no" href="#L97" aria-label="Line 97">97</a><span class="line-code">    coherentVector z k = ∏ i, (Real.exp (-‖z i‖ ^ 2 / 2) : ℂ) * z i ^ k i /</span></span>
+<span class="source-line" id="L98"><a class="line-no" href="#L98" aria-label="Line 98">98</a><span class="line-code">      (Real.sqrt ((k i).factorial : ℝ) : ℂ) := by</span></span>
+<span class="source-line" id="L99"><a class="line-no" href="#L99" aria-label="Line 99">99</a><span class="line-code">  simp only [coherentVector_apply, ComplexCoherent.coherentVector_apply]</span></span>
+<span class="source-line" id="L100"><a class="line-no" href="#L100" aria-label="Line 100">100</a><span class="line-code"> </span></span>
+<span class="source-line" id="L101"><a class="line-no" href="#L101" aria-label="Line 101">101</a><span class="line-code">theorem coherentVector_norm {s : ℕ} (z : Fin s → ℂ) : ‖coherentVector z‖ = 1 := by</span></span>
+<span class="source-line" id="L102"><a class="line-no" href="#L102" aria-label="Line 102">102</a><span class="line-code">  simp only [coherentVector, tensorVector_norm, ComplexCoherent.coherentVector_norm,</span></span>
+<span class="source-line" id="L103"><a class="line-no" href="#L103" aria-label="Line 103">103</a><span class="line-code">    Finset.prod_const_one]</span></span>
+<span class="source-line" id="L104"><a class="line-no" href="#L104" aria-label="Line 104">104</a><span class="line-code"> </span></span>
+<span class="source-line" id="L105"><a class="line-no" href="#L105" aria-label="Line 105">105</a><span class="line-code">/-- The multimode coherent kernel is the product of the one-mode kernels. -/</span></span>
+<span class="source-line" id="L106"><a class="line-no" href="#L106" aria-label="Line 106">106</a><span class="line-code">theorem inner_coherentVector {s : ℕ} (z w : Fin s → ℂ) :</span></span>
+<span class="source-line" id="L107"><a class="line-no" href="#L107" aria-label="Line 107">107</a><span class="line-code">    ⟪coherentVector z, coherentVector w⟫_ℂ = ∏ i,</span></span>
+<span class="source-line" id="L108"><a class="line-no" href="#L108" aria-label="Line 108">108</a><span class="line-code">      Complex.exp (((-(‖z i‖ ^ 2 + ‖w i‖ ^ 2) / 2 : ℝ) : ℂ) +</span></span>
+<span class="source-line" id="L109"><a class="line-no" href="#L109" aria-label="Line 109">109</a><span class="line-code">        starRingEnd ℂ (z i) * w i) := by</span></span>
+<span class="source-line" id="L110"><a class="line-no" href="#L110" aria-label="Line 110">110</a><span class="line-code">  simp only [coherentVector, inner_tensorVector, ComplexCoherent.inner_coherentVector]</span></span>
+<span class="source-line" id="L111"><a class="line-no" href="#L111" aria-label="Line 111">111</a><span class="line-code"> </span></span>
+<span class="source-line" id="L112"><a class="line-no" href="#L112" aria-label="Line 112">112</a><span class="line-code">/-- Norm continuity holds jointly in all amplitudes, including zero amplitudes</span></span>
+<span class="source-line" id="L113"><a class="line-no" href="#L113" aria-label="Line 113">113</a><span class="line-code">and the empty tuple of modes. -/</span></span>
+<span class="source-line" id="L114"><a class="line-no" href="#L114" aria-label="Line 114">114</a><span class="line-code">theorem continuous_coherentVector (s : ℕ) : Continuous (@coherentVector s) := by</span></span>
+<span class="source-line" id="L115"><a class="line-no" href="#L115" aria-label="Line 115">115</a><span class="line-code">  apply continuous_iff_continuousAt.mpr</span></span>
+<span class="source-line" id="L116"><a class="line-no" href="#L116" aria-label="Line 116">116</a><span class="line-code">  intro z</span></span>
+<span class="source-line" id="L117"><a class="line-no" href="#L117" aria-label="Line 117">117</a><span class="line-code">  have hn (w : Fin s → ℂ) : ‖coherentVector w - coherentVector z‖ ^ 2 =</span></span>
+<span class="source-line" id="L118"><a class="line-no" href="#L118" aria-label="Line 118">118</a><span class="line-code">      2 - 2 * (⟪coherentVector w, coherentVector z⟫_ℂ).re := by</span></span>
+<span class="source-line" id="L119"><a class="line-no" href="#L119" aria-label="Line 119">119</a><span class="line-code">    have h := norm_sub_sq (𝕜 := ℂ) (coherentVector w) (coherentVector z)</span></span>
+<span class="source-line" id="L120"><a class="line-no" href="#L120" aria-label="Line 120">120</a><span class="line-code">    simp only [coherentVector_norm, one_pow] at h</span></span>
+<span class="source-line" id="L121"><a class="line-no" href="#L121" aria-label="Line 121">121</a><span class="line-code">    change ‖coherentVector w - coherentVector z‖ ^ 2 =</span></span>
+<span class="source-line" id="L122"><a class="line-no" href="#L122" aria-label="Line 122">122</a><span class="line-code">      1 - 2 * (⟪coherentVector w, coherentVector z⟫_ℂ).re + 1 at h</span></span>
+<span class="source-line" id="L123"><a class="line-no" href="#L123" aria-label="Line 123">123</a><span class="line-code">    linarith</span></span>
+<span class="source-line" id="L124"><a class="line-no" href="#L124" aria-label="Line 124">124</a><span class="line-code">  have hs : Continuous (fun w : Fin s → ℂ ↦ ‖coherentVector w - coherentVector z‖ ^ 2) := by</span></span>
+<span class="source-line" id="L125"><a class="line-no" href="#L125" aria-label="Line 125">125</a><span class="line-code">    simp_rw [hn, inner_coherentVector]</span></span>
+<span class="source-line" id="L126"><a class="line-no" href="#L126" aria-label="Line 126">126</a><span class="line-code">    fun_prop</span></span>
+<span class="source-line" id="L127"><a class="line-no" href="#L127" aria-label="Line 127">127</a><span class="line-code">  have ht : Tendsto (fun w : Fin s → ℂ ↦ ‖coherentVector w - coherentVector z‖ ^ 2)</span></span>
+<span class="source-line" id="L128"><a class="line-no" href="#L128" aria-label="Line 128">128</a><span class="line-code">      (𝓝 z) (𝓝 (0 : ℝ)) := by</span></span>
+<span class="source-line" id="L129"><a class="line-no" href="#L129" aria-label="Line 129">129</a><span class="line-code">    simpa only [sub_self, norm_zero, zero_pow (by norm_num : (2 : ℕ) ≠ 0)] using hs.tendsto z</span></span>
+<span class="source-line" id="L130"><a class="line-no" href="#L130" aria-label="Line 130">130</a><span class="line-code">  apply tendsto_iff_norm_sub_tendsto_zero.mpr</span></span>
+<span class="source-line" id="L131"><a class="line-no" href="#L131" aria-label="Line 131">131</a><span class="line-code">  have hroot := (Real.continuous_sqrt.tendsto 0).comp ht</span></span>
+<span class="source-line" id="L132"><a class="line-no" href="#L132" aria-label="Line 132">132</a><span class="line-code">  simpa only [Function.comp_def, Real.sqrt_sq (norm_nonneg _), Real.sqrt_zero] using hroot</span></span>
+<span class="source-line" id="L133"><a class="line-no" href="#L133" aria-label="Line 133">133</a><span class="line-code"> </span></span>
+<span class="source-line" id="L134"><a class="line-no" href="#L134" aria-label="Line 134">134</a><span class="line-code">/-- The rank-one coherent operator as an element of the trace-class Banach space. -/</span></span>
+<span class="source-line" id="L135"><a class="line-no" href="#L135" aria-label="Line 135">135</a><span class="line-code">def coherentProjector {s : ℕ} (z : Fin s → ℂ) : TraceClass (Fock s) :=</span></span>
+<span class="source-line" id="L136"><a class="line-no" href="#L136" aria-label="Line 136">136</a><span class="line-code">  vectorProjector (coherentVector z)</span></span>
+<span class="source-line" id="L137"><a class="line-no" href="#L137" aria-label="Line 137">137</a><span class="line-code"> </span></span>
+<span class="source-line" id="L138"><a class="line-no" href="#L138" aria-label="Line 138">138</a><span class="line-code">theorem continuous_coherentProjector (s : ℕ) : Continuous (@coherentProjector s) := by</span></span>
+<span class="source-line" id="L139"><a class="line-no" href="#L139" aria-label="Line 139">139</a><span class="line-code">  apply continuous_iff_continuousAt.mpr</span></span>
+<span class="source-line" id="L140"><a class="line-no" href="#L140" aria-label="Line 140">140</a><span class="line-code">  intro z</span></span>
+<span class="source-line" id="L141"><a class="line-no" href="#L141" aria-label="Line 141">141</a><span class="line-code">  exact vectorProjector_tendsto ((continuous_coherentVector s).tendsto z)</span></span>
+<span class="source-line" id="L142"><a class="line-no" href="#L142" aria-label="Line 142">142</a><span class="line-code"> </span></span>
+<span class="source-line" id="L143"><a class="line-no" href="#L143" aria-label="Line 143">143</a><span class="line-code">theorem coherentProjector_norm {s : ℕ} (z : Fin s → ℂ) : ‖coherentProjector z‖ = 1 := by</span></span>
+<span class="source-line" id="L144"><a class="line-no" href="#L144" aria-label="Line 144">144</a><span class="line-code">  rw [coherentProjector, norm_vectorProjector, coherentVector_norm, one_pow]</span></span>
+<span class="source-line" id="L145"><a class="line-no" href="#L145" aria-label="Line 145">145</a><span class="line-code"> </span></span>
+<span class="source-line" id="L146"><a class="line-no" href="#L146" aria-label="Line 146">146</a><span class="line-code">theorem coherentProjector_trace {s : ℕ} (z : Fin s → ℂ) : traceCLM (coherentProjector z) = 1 := by</span></span>
+<span class="source-line" id="L147"><a class="line-no" href="#L147" aria-label="Line 147">147</a><span class="line-code">  rw [coherentProjector, traceCLM_vectorProjector, coherentVector_norm, one_pow]</span></span>
+<span class="source-line" id="L148"><a class="line-no" href="#L148" aria-label="Line 148">148</a><span class="line-code">  rfl</span></span>
+<span class="source-line" id="L149"><a class="line-no" href="#L149" aria-label="Line 149">149</a><span class="line-code"> </span></span>
+<span class="source-line" id="L150"><a class="line-no" href="#L150" aria-label="Line 150">150</a><span class="line-code">theorem coherentProjector_nonneg {s : ℕ} (z : Fin s → ℂ) : 0 ≤ (coherentProjector z).1 := by</span></span>
+<span class="source-line" id="L151"><a class="line-no" href="#L151" aria-label="Line 151">151</a><span class="line-code">  change 0 ≤ InnerProductSpace.rankOne ℂ (coherentVector z) (coherentVector z)</span></span>
+<span class="source-line" id="L152"><a class="line-no" href="#L152" aria-label="Line 152">152</a><span class="line-code">  exact (InnerProductSpace.rankOne ℂ _ _).nonneg_iff_isPositive.mpr</span></span>
+<span class="source-line" id="L153"><a class="line-no" href="#L153" aria-label="Line 153">153</a><span class="line-code">    (InnerProductSpace.isPositive_rankOne_self _)</span></span>
+<span class="source-line" id="L154"><a class="line-no" href="#L154" aria-label="Line 154">154</a><span class="line-code"> </span></span>
+<span class="source-line" id="L155"><a class="line-no" href="#L155" aria-label="Line 155">155</a><span class="line-code">def coherentState {s : ℕ} (z : Fin s → ℂ) : DensityState (Fock s) :=</span></span>
+<span class="source-line" id="L156"><a class="line-no" href="#L156" aria-label="Line 156">156</a><span class="line-code">  DensityState.pure (coherentVector z) (coherentVector_norm z)</span></span>
+<span class="source-line" id="L157"><a class="line-no" href="#L157" aria-label="Line 157">157</a><span class="line-code"> </span></span>
+<span class="source-line" id="L158"><a class="line-no" href="#L158" aria-label="Line 158">158</a><span class="line-code">/-- Bochner integrability in the genuine Hilbert norm under any finite measure. -/</span></span>
+<span class="source-line" id="L159"><a class="line-no" href="#L159" aria-label="Line 159">159</a><span class="line-code">theorem integrable_coherentVector {s : ℕ} (μ : Measure (Fin s → ℂ)) [IsFiniteMeasure μ] :</span></span>
+<span class="source-line" id="L160"><a class="line-no" href="#L160" aria-label="Line 160">160</a><span class="line-code">    Integrable coherentVector μ := by</span></span>
+<span class="source-line" id="L161"><a class="line-no" href="#L161" aria-label="Line 161">161</a><span class="line-code">  apply (integrable_const (1 : ℝ)).mono&#x27; (continuous_coherentVector s).aestronglyMeasurable</span></span>
+<span class="source-line" id="L162"><a class="line-no" href="#L162" aria-label="Line 162">162</a><span class="line-code">  exact Eventually.of_forall (fun z ↦ le_of_eq (coherentVector_norm z))</span></span>
+<span class="source-line" id="L163"><a class="line-no" href="#L163" aria-label="Line 163">163</a><span class="line-code"> </span></span>
+<span class="source-line" id="L164"><a class="line-no" href="#L164" aria-label="Line 164">164</a><span class="line-code">/-- The actual coherent density operators are Bochner integrable in trace norm. -/</span></span>
+<span class="source-line" id="L165"><a class="line-no" href="#L165" aria-label="Line 165">165</a><span class="line-code">theorem integrable_coherentProjector {s : ℕ} (μ : Measure (Fin s → ℂ)) [IsFiniteMeasure μ] :</span></span>
+<span class="source-line" id="L166"><a class="line-no" href="#L166" aria-label="Line 166">166</a><span class="line-code">    Integrable coherentProjector μ := by</span></span>
+<span class="source-line" id="L167"><a class="line-no" href="#L167" aria-label="Line 167">167</a><span class="line-code">  apply (integrable_const (1 : ℝ)).mono&#x27; (continuous_coherentProjector s).aestronglyMeasurable</span></span>
+<span class="source-line" id="L168"><a class="line-no" href="#L168" aria-label="Line 168">168</a><span class="line-code">  exact Eventually.of_forall (fun z ↦ le_of_eq (coherentProjector_norm z))</span></span>
+<span class="source-line" id="L169"><a class="line-no" href="#L169" aria-label="Line 169">169</a><span class="line-code"> </span></span>
+<span class="source-line" id="L170"><a class="line-no" href="#L170" aria-label="Line 170">170</a><span class="line-code">end Cloning.MultimodeCoherent</span></span>
+</code></pre></div></main>
+<footer class="footer">English guides explain the argument. Lean source and its hypotheses determine the formal claims.
+<a href="../verification.html">Audit evidence</a> · <a href="../scope.html">Scope</a></footer>
+</div></div></body></html>

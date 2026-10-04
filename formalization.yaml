@@ -1,4 +1,4 @@
-version: v0.3
+version: v1.0
 project:
   name: Mixed-state quantum cloning
   proof_assistant: Lean 4
@@ -7,12 +7,16 @@ project:
 sources:
 - file: formalization/reference/cloning.tex
   role: audited_manuscript_snapshot
-  explicit_scope: This is the source snapshot used by the checked formalization. The existing repository manuscript
-    Cloning/paper_v2/cloningv2.tex has not been checked for equivalence to this snapshot.
+  explicit_scope: This is the frozen working source used by the checked formalization. SOURCE.json records its provenance
+    and the limits of attachment identification. Equivalence to other manuscript versions is not asserted.
 status:
-  overall: partial
-  explicit_scope: Checked physical symmetric-tensor and coherent constructions, continuous classical-quantum analysis,
-    and actual Weyl covariant limits, with conditional assembly of the full mixed-state cloning theorems.
+  overall: verified_complete_for_frozen_manuscript
+  explicit_scope: All 27 named results in the unchanged frozen manuscript are reconciled to concrete Lean endpoints.
+    The current 982-module full build passed with 4563 jobs; the complete all-declaration axiom audit
+    passed for 14345 project constants with the standard three-axiom policy and unchanged run inputs/artifacts.
+    Comparator passed explicit statement/dependency comparison and Lean kernel replay; unmodified Nanoda passed
+    all 14345 audited project roots and their dependencies (83433 exported declarations checked).
+    Compiler compatibility annotations suppress 30 unused generated partial runtime helpers without filtering roots.
   sorry_count: 0
   sorry_in_definitions: 0
   allowed_axioms:
@@ -21,64 +25,138 @@ status:
   - Quot.sound
   additional_project_axioms: []
   verified_library:
-    modules: 195
-    lemmas_and_theorems: 1832
-    unique_compiled_project_constants: 3776
-    explicit_scope: Counts describe the audited Cloning implementation library; the ten navigation files and All.lean
-      introduce no declarations and are not counted as implementation modules.
+    modules: 982
+    lemmas_and_theorems: 6350
+    unique_compiled_project_constants: 14345
+    explicit_scope: Complete current kernel-compatible library, including every imported implementation export, private declaration
+      and generated helper.
   main_results:
-  - name: Lifted-sector fidelity and achievability
-    declaration: Cloning.MatrixFidelity.lifted_matrix_factorization_bound
+  - name: Lifted-sector fidelity, PBW bounds, and achievability
+    declaration: Cloning.TensorCloning.eventually_uniform_lifted_fidelity_factorization
     sorry_count: 0
     axioms:
     - Classical.choice
     - Quot.sound
     - propext
     file: formalization/LiftedSectorFidelity.lean
-    status: proved_reduction
-    explicit_scope: Concrete matrix channel construction, lifted fidelity factorization, deletion control, and achievability
-      propagation are proved. Physical Schur/Cartan identification, retained-sector approximation, discarded-mass
-      estimates, and label limits remain inputs.
+    status: proved_physical_schur_cartan_and_uniform_state_limits
+    explicit_scope: Completed physical Schur/Cartan construction, exact arbitrary-spectrum rank compression, literal
+      inverse-Gram PBW and Cartan rates, arbitrary shrinking-window mixtures, and arbitrary-kernel compact-uniform
+      lifted factorization.
     supporting_declarations:
     - Cloning.MatrixCovariantBalance.cartanChannel_of_irreducible_intertwiner
     - Cloning.MatrixFidelity.lifted_matrix_fidelity_converges
     - Cloning.MatrixTransitionAchievability.transition_achievability_bound
+    - Cloning.PBW.normalized_gram_error_le_of_root_filtration
+    - Cloning.PBW.normalized_gram_tendsto_of_cutoff
+    - Cloning.TensorLie.collectiveGenerator_commutator
+    - Cloning.TensorLie.highestTensor_raising_zero
+    - Cloning.TensorLie.collectiveGenerator_lowers_cutoff
+    - Cloning.TensorLie.exists_partitionHighestTensor
+    - Cloning.TensorLie.normalized_CCR_norm_le
+    - Cloning.TensorLie.partition_normalized_gram_error_le
+    - Cloning.TensorLie.partition_normalized_gram_tendsto
+    - Cloning.TensorLie.partition_normalizedWord_eventually_linearIndependent
+    - Cloning.TensorLie.partition_cyclicSector_irreducible
+    - Cloning.TensorLie.highest_loweringWord_gram_eq
+    - Cloning.TensorLie.highestCyclicIsometry
+    - Cloning.TensorLie.highestCyclicIsometry_tensorOperator
+    - Cloning.TensorLie.cyclicUnitary
+    - Cloning.TensorLie.cartanInclusion_intertwines
+    - Cloning.TensorLie.physicalCartanBalance
+    - Cloning.TensorLie.physicalCartanChannel
+    - Cloning.TensorLie.physicalCartanChannel_partitionMatrixOperator
+    - Cloning.MatrixLiftedCPTP.channel
+    - Cloning.MatrixLiftedCPTP.registerChannel
+    - Cloning.MatrixLiftedCPTP.physicalChannel
     source_files:
     - formalization/Cloning/MatrixCovariantBalance.lean
     - formalization/Cloning/MatrixFidelityAsymptotics.lean
     - formalization/Cloning/MatrixTransitionAchievability.lean
+    - formalization/Cloning/PBWRootGram.lean
+    - formalization/Cloning/PBWGramLimit.lean
+    - formalization/Cloning/TensorLieGenerators.lean
+    - formalization/Cloning/TensorLieRelations.lean
+    - formalization/Cloning/TensorLieHighestWeight.lean
+    - formalization/Cloning/TensorLieFiltration.lean
+    - formalization/Cloning/TensorLieLeibniz.lean
+    - formalization/Cloning/TensorWedge.lean
+    - formalization/Cloning/TensorWedgeHighest.lean
+    - formalization/Cloning/TensorLieProduct.lean
+    - formalization/Cloning/TensorPartitionHighest.lean
+    - formalization/Cloning/TensorCyclicFiltration.lean
+    - formalization/Cloning/TensorCyclicOccupancy.lean
+    - formalization/Cloning/TensorRootBounds.lean
+    - formalization/Cloning/TensorCyclicPartition.lean
+    - formalization/Cloning/TensorCyclicError.lean
+    - formalization/Cloning/TensorCCR.lean
+    - formalization/Cloning/TensorCCRScalar.lean
+    - formalization/Cloning/TensorCCRBounds.lean
+    - formalization/Cloning/TensorCyclicPBW.lean
+    - formalization/Cloning/TensorCyclicGramLimit.lean
+    - formalization/Cloning/TensorCyclicIndependence.lean
+    - formalization/Cloning/MatrixLiftedCPTP.lean
+    - formalization/Cloning/MatrixLiftedCPTPAction.lean
+    - formalization/Cloning/MatrixLiftedCPTPKraus.lean
+    - formalization/Cloning/MatrixLiftedCPTPPhysical.lean
+    - formalization/Cloning/TensorCartanChannel.lean
+    - formalization/Cloning/TensorCartanCoordinates.lean
+    - formalization/Cloning/TensorCartanFrame.lean
+    - formalization/Cloning/TensorCartanInclusion.lean
+    - formalization/Cloning/TensorCartanIntertwiner.lean
+    - formalization/Cloning/TensorCartanLieBalance.lean
+    - formalization/Cloning/TensorCartanProduct.lean
+    - formalization/Cloning/TensorCartanScalarity.lean
+    - formalization/Cloning/TensorCyclicSector.lean
+    - formalization/Cloning/TensorCyclicSectorCovariance.lean
+    - formalization/Cloning/TensorCyclicSectorDiagonal.lean
+    - formalization/Cloning/TensorCyclicSectorIrreducible.lean
+    - formalization/Cloning/TensorCyclicSectorOperators.lean
+    - formalization/Cloning/TensorCyclicSectorTensorPower.lean
+    - formalization/Cloning/TensorCyclicSectorTransvection.lean
+    - formalization/Cloning/TensorCyclicSectorWeightTrace.lean
+    - formalization/Cloning/TensorHighestGram.lean
+    - formalization/Cloning/TensorHighestGramAction.lean
+    - formalization/Cloning/TensorHighestGramCovariance.lean
+    - formalization/Cloning/TensorHighestGramIntertwiner.lean
+    - formalization/Cloning/TensorHighestGramIsometry.lean
+    proof_map: formalization/PROOF_MAP.md
   - name: Projector converse and dimension factors
-    declaration: Cloning.MatrixFidelity.finite_kraus_projector_converse
+    declaration: Cloning.PhysicalFlatGrassmann.minimaxValue_tendsto
     sorry_count: 0
     axioms:
     - Classical.choice
     - Quot.sound
     - propext
     file: formalization/ProjectorBounds.lean
-    status: proved_reduction
-    explicit_scope: The actual finite Kraus-channel projector converse and explicit crossing-root dimension-product
-      asymptotics are proved. The invariant physical block decomposition, representation-dimension identification,
-      and arbitrary-rank Young-law input remain separate.
+    status: proved_literal_grassmann_minimax_and_uniform_attainment
+    explicit_scope: The exact minimax limit over all physical CPTP channels and all literal Hermitian idempotent
+      rank-r projectors is gamma^(-r*k/2) in dimension r+k. Actual spectral orbit exhaustion, finite converse, physical
+      dimension moments and compact-uniform attainment by rankFlatChannel are proved, including k=0.
     supporting_declarations:
     - Cloning.YoungDimensionRatio.projector_sector_factor_tendsto
+    - Cloning.YoungGeneral.dimension_moments_tendsto_one
+    - Cloning.YoungGeneral.flatTableauPMF_dimension_moments
     source_files:
     - formalization/Cloning/MatrixFidelityProjector.lean
     - formalization/Cloning/YoungDimensionRatio.lean
     - formalization/Cloning/YoungDimensionSecondOrder.lean
-  - name: Classical rounding, compatibility, and root-hyperplane geometry
-    declaration: Cloning.YoungRounding.roundedDensity_l1_of_local_limit
+    - formalization/Cloning/YoungGeneralMoments.lean
+    - formalization/Cloning/YoungNormalizationLimits.lean
+    proof_map: formalization/PROOF_MAP.md
+  - name: Normalized Young law, classical rounding and dimension moments
+    declaration: Cloning.TensorLie.exists_tensorYoungPMF_uniform_exp_threshold
     sorry_count: 0
     axioms:
     - Classical.choice
     - Quot.sound
     - propext
     file: formalization/ClassicalRounding.lean
-    status: proved_geometry_and_fallback_with_local_limit_input
-    explicit_scope: Coordinate rounding, the actual Young-label fallback PMF, and its error controlled by atypical
-      mass are proved. The sum-zero Euclidean hyperplane is identified with the coordinate lattice, with exact cell
-      volumes, fidelity/L1 identities, and covariance determinant and inverse formulas. Both concrete two-row dimension
-      moments are proved. General-rank Young-law concentration and uniform local limits remain separate inputs.
+    status: proved_physical_young_local_limits_and_exact_couplings
+    explicit_scope: Physical Young law, exact uniform exponential concentration, compact-uniform local/L1 limits,
+      raw rounded-density L1 with moving covariance, fallback affinity and moment rates.
     supporting_declarations:
+    - Cloning.YoungRounding.roundedDensity_l1_of_local_limit
     - Cloning.YoungCompatibility.eventually_fallback_error_bounds
     - Cloning.YoungCompatibility.fallback_errors_tendsto_zero
     - Cloning.YoungHyperplane.volume_eq_sqrt_smul_coordinateMeasure
@@ -87,6 +165,12 @@ status:
     - Cloning.YoungHyperplane.rootCovarianceEquiv_inverse_quadratic
     - Cloning.YoungTwoRow.meanDimensionRatio_relative_isBigO
     - Cloning.YoungTwoRow.meanInverseDimensionRatio_relative_isBigO
+    - Cloning.YoungGeneral.tableau_fallback_errors_tendsto_zero
+    - Cloning.YoungGeneral.dimension_moments_tendsto_one
+    - Cloning.YoungGeneral.tableauPMF
+    - Cloning.YoungGeneral.tableauPMF_tailProbability_tendsto_zero
+    - Cloning.YoungGeneral.tableauPMF_fallback_errors
+    - Cloning.YoungGeneral.flatTableauPMF_dimension_moments
     source_files:
     - formalization/Cloning/YoungRounding.lean
     - formalization/Cloning/GaussianAffinity.lean
@@ -95,7 +179,13 @@ status:
     - formalization/Cloning/YoungCompatibilityFallback.lean
     - formalization/Cloning/YoungHyperplaneSampling.lean
     - formalization/Cloning/YoungHyperplaneCovariance.lean
-  - name: Physical Werner channel and uniform coherent-product limits
+    - formalization/Cloning/YoungGeneralFallback.lean
+    - formalization/Cloning/YoungGeneralMoments.lean
+    - formalization/Cloning/YoungRSKPieri.lean
+    - formalization/Cloning/YoungNormalization.lean
+    - formalization/Cloning/YoungNormalizationLimits.lean
+    proof_map: formalization/PROOF_MAP.md
+  - name: Physical Werner output, coherent limits, and PCT mixtures
     declaration: Cloning.GeneralSymmetricOccupation.wernerChannel_thermal_limit
     sorry_count: 0
     axioms:
@@ -103,89 +193,186 @@ status:
     - Quot.sound
     - propext
     file: formalization/OccupationLimits.lean
-    status: proved_physical_pure_product_limits
-    explicit_scope: Werner’s full CPTP channel is constructed on arbitrary symmetric input matrices and proved equal
-      to the physical dimension-ratio sandwich. Its pure-product output is identified with its occupation law through
-      a constructed CPTP recovery, and converges in trace norm to the thermal Fock operator. Literal normalized
-      complex product tensors admit actual two-way CPTP comparison channels with multimode coherent states, uniformly
-      on compact amplitude sets in every finite dimension. These pure-state comparison results do not supply mixed-state
-      Schur-block LAN or the remaining finite-sample PCT identification.
+    status: proved_global_full_and_rectangular_pct_channels
+    explicit_scope: Actual all-input full-environment and rectangular purification-clone-trace channels are constructed.
+      Their literal physical Werner and Haar-action identities are proved; the rectangular purifier is fixed independently
+      of the input projector. Physical occupation thermal/coherent limits and product-mixture approximation are
+      proved.
     supporting_declarations:
-    - Cloning.GeneralSymmetricOccupation.wernerChannel_physical_sandwich
-    - Cloning.GeneralSymmetricOccupation.wernerChannel_pure_output
+    - Cloning.GeneralSymmetricOccupation.wernerOutput_op
+    - Cloning.GeneralSymmetricOccupation.occupationRecovery_wernerOutput
     - Cloning.GeneralSymmetricOccupation.physical_werner_traceNorm_limit
     - Cloning.GeneralCoherent.exists_twoWay_coherent_product_channels
+    - Cloning.GeneralCoherent.twoWay_coherent_product_uniform_on_compact
+    - Cloning.GeneralSymmetricOccupation.wernerChannel_physical_sandwich
+    - Cloning.GeneralSymmetricOccupation.wernerChannel_completelyPositive
+    - Cloning.GeneralSymmetricOccupation.wernerChannel_pure_traceClass_agrees
+    - Cloning.GeneralSymmetricOccupation.wernerChannel_pure_output
+    - Cloning.PCT.exists_pct_product_mixture
+    - Cloning.PCTPurificationChannel.haarPurificationChannel
+    - Cloning.PCTPurificationChannel.haarPurificationChannel_tensorPower
+    - Cloning.PCTGlobal.channel
+    - Cloning.PCTGlobal.channel_matrix_apply
+    - Cloning.PCTGlobal.channel_apply
+    - Cloning.PCTGlobal.channel_tensorPower
+    - Cloning.PCTGlobal.channel_gaussian_product_mixture
     source_files:
     - formalization/Cloning/InfiniteOccupationStates.lean
     - formalization/Cloning/WernerPhysicalPullback.lean
     - formalization/Cloning/WernerPhysicalAgreement.lean
     - formalization/Cloning/GeneralCoherentChannels.lean
     - formalization/Cloning/UniformCoherentChannels.lean
-  - name: Coherent Gaussian mixtures are thermal operators
-    declaration: Cloning.MultimodeCoherentGaussianMixture.integral_coherentProjector_gaussian_eq_productThermal
+    - formalization/Cloning/PCTGaussianAssembly.lean
+    - formalization/Cloning/PCTPurificationChannelHaar.lean
+    - formalization/Cloning/PCTPurificationChannelAction.lean
+    - formalization/Cloning/FiniteKrausLift.lean
+    - formalization/Cloning/PurificationSupport.lean
+    - formalization/Cloning/PCTGlobalChannels.lean
+    - formalization/Cloning/PCTGlobalRecovery.lean
+    - formalization/Cloning/PCTGlobalMatrixBridge.lean
+    - formalization/Cloning/PCTCoordinateFrame.lean
+    - formalization/Cloning/PCTGlobalWerner.lean
+    - formalization/Cloning/PCTGlobalPhysical.lean
+  - name: Actual joint PCT comparison, fidelity and physical local chart
+    declaration: Cloning.PCTPrescribed.rankChannel_uniform_sample_guarantee
     sorry_count: 0
     axioms:
     - Classical.choice
     - Quot.sound
     - propext
     file: formalization/CoherentGaussianMixtures.lean
-    status: proved_in_canonical_fock_model
-    explicit_scope: The literal finite product circular Gaussian mixture of normalized coherent projectors equals
-      the product geometric operator as a trace-class Bochner integral. Every coordinate variance is positive; zero
-      modes are covered; actual thermal state fidelity is computed. General-dimensional physical occupation embeddings
-      are now constructed separately. The remaining physical PCT partial-trace/rotation and Gaussian-mixture connection
-      is not established by this identity.
+    status: proved_actual_physical_pct_fidelities_and_projector_comparison
+    explicit_scope: Full physical PCT mixture/fidelity, arbitrary rank-bound prescribed-channel finite guarantee,
+      exact projector support factorization, physical purity envelopes and small-error target brackets.
     supporting_declarations:
     - Cloning.InfiniteDiagonalFidelity.stateFidelity_productGeometric
+    - Cloning.PCT.exists_pct_product_mixture
+    - Cloning.PCT.randomizedPurificationOutput_eq
+    - Cloning.PCT.wernerOutput_physical_purification
+    - Cloning.PCTPurificationChannel.haarPurificationChannel_tensorPower
+    - Cloning.PCTPurificationChannel.physical_pct_eq_reducedWerner
+    - Cloning.PCTPurificationChannel.physical_pct_gaussian_product_mixture
+    - Cloning.PCTGlobal.channel_gaussian_product_mixture
+    - Cloning.PCTGaussianCovariance.jointCoordinate_characteristic
+    - Cloning.PCTGaussianOutput.tangent_displacement_productThermal_pct
+    - Cloning.PCTReducedGaussian.normalizedTangentVector_norm
+    - Cloning.PCTReducedGaussian.normalizedTangent_remainder
+    - Cloning.PCTJointGaussianLaw.jointTangent_map_eq_prod
+    - Cloning.PCTJointGaussianWhitening.whitenedJointTangent_map_eq_prod
+    - Cloning.PCTJointGaussianWhitening.whiteningEquiv
+    - Cloning.PCTHybridMixture.tangent_hybrid_average_eq_pctGaussianThermalPositive
+    - Cloning.PCTHybridMixture.tangentMixtureChannel
+    - Cloning.PCTHybridMixture.tangentMixtureChannel_fidelity_eq_pctValue
+    - Cloning.PCTLocalChart.eventually_frameParticle_exact_chart
+    - Cloning.PCTLocalChart.frameParticle_spectral_parameters
+    - Cloning.PCTLocalChart.frameParticle_orbital_parameters
+    - Cloning.PCTLocalChart.eventually_sample_chart_admissible
     source_files:
     - formalization/Cloning/MultimodeCoherentGaussianMixture.lean
     - formalization/Cloning/InfiniteDiagonalFidelity.lean
-  - name: Bosonic seeded optimum and Weyl representation
-    declaration: Cloning.OrbitalSeededOptimum.isGreatest_payoff
+    - formalization/Cloning/PCTGaussianAssembly.lean
+    - formalization/Cloning/PCTPurificationChannelHaar.lean
+    - formalization/Cloning/PCTPurificationChannelAction.lean
+    - formalization/Cloning/PCTPurificationChannelPhysical.lean
+    - formalization/Cloning/PCTReducedGaussian.lean
+    - formalization/Cloning/PCTGlobalPhysical.lean
+    - formalization/Cloning/PCTGaussianCovariance.lean
+    - formalization/Cloning/PCTGaussianCovarianceClassical.lean
+    - formalization/Cloning/PCTGaussianCovarianceOrbital.lean
+    - formalization/Cloning/PCTGaussianCovarianceJoint.lean
+    - formalization/Cloning/PCTGaussianOutput.lean
+    - formalization/Cloning/PCTGaussianOutputTangent.lean
+    - formalization/Cloning/PCTTangentNormalization.lean
+    - formalization/Cloning/PCTHybridFidelity.lean
+    - formalization/Cloning/PCTHybridMixtureChannel.lean
+    - formalization/Cloning/PCTHybridMixtureClassical.lean
+    - formalization/Cloning/PCTHybridMixtureFactor.lean
+    - formalization/Cloning/PCTHybridMixtureGaussian.lean
+    - formalization/Cloning/PCTJointGaussianChart.lean
+    - formalization/Cloning/PCTJointGaussianConvolution.lean
+    - formalization/Cloning/PCTJointGaussianLaw.lean
+    - formalization/Cloning/PCTJointGaussianReal.lean
+    - formalization/Cloning/PCTJointGaussianWhitenedLaw.lean
+    - formalization/Cloning/PCTJointGaussianWhitening.lean
+    - formalization/Cloning/PCTLocalChartAlgebra.lean
+    - formalization/Cloning/PCTLocalChartCoordinates.lean
+    - formalization/Cloning/PCTLocalChartInverse.lean
+    - formalization/Cloning/PCTTangentChart.lean
+    - formalization/Cloning/PCTTangentChartAdmissible.lean
+    - formalization/Cloning/PCTTangentChartFrame.lean
+    - formalization/Cloning/PCTTangentChartSamples.lean
+    proof_map: formalization/PROOF_MAP.md
+  - name: Universal orbital Gaussian optimality and physical attainment
+    declaration: Cloning.MultimodeCoherent.realFlatBoxOptimalPayoff_tendsto_modeFactor_nonneg
     sorry_count: 0
     axioms:
     - Classical.choice
     - Quot.sound
     - propext
     file: formalization/BosonicSeededOptimum.lean
-    status: proved_seeded_optimum_and_algebraic_weyl_classification
-    explicit_scope: The exact fidelity optimum over arbitrary joint idler density states is proved for the constructed
-      amplifier family. Actual one- and finite-multimode Weyl unitaries and CPTP displacement channels have proved
-      continuity, irreducibility, and fixed-character eigenoperator classification. Covariant linear maps on bounded
-      operators have scalar Weyl multipliers. The CP/normality-to-idler representation, amplifier intertwining,
-      and composite-gain reduction remain separate from this algebraic multiplier theorem.
+    status: proved_universal_orbital_gaussian_optimal_limit
+    explicit_scope: The actual optimal root-fidelity limit over quantum CPTP competitors equals the mode-factor
+      product, with the channel supremum at each radius before the limit over arbitrary real expanding boxes. A
+      physical quantum-limited amplifier attains that value at every displacement and under every probability prior.
+      Gain is greater than one; all thermal parameters lie in [0,1), including vacuum and zero-dimensional mode
+      spaces. No covariance, Gaussianity, moment or idler-existence premise is imposed on competitors. Mixed-state
+      LAN is constructed. Unique joint-idler reconstruction and arbitrary diagonal-gain classification are now proved;
+      the actual arbitrary-input squeezing dilation and arbitrary antitone product bounds for covariant CP/TNI maps
+      are also proved, with exact retained trace.
     supporting_declarations:
+    - Cloning.OrbitalSeededOptimum.isGreatest_payoff
     - Cloning.MultimodeLeastNoise.productObservable_moment_le
     - Cloning.BosonicAmplifier.stateFidelity_channel_gain
     - Cloning.MultimodeCoherent.displacement_commutant_scalar
     - Cloning.MultimodeCoherent.eigenoperator_eq_scalar_displacement
     - Cloning.MultimodeCoherent.covariant_linearMap_weyl_multiplier
+    - Cloning.MultimodeCoherent.quantumChannel_regular_quantumPositive_multiplier
+    - Cloning.MultimodeCoherent.quantumChannel_weyl_gaussian_bound
+    - Cloning.MultimodeCoherent.covariant_thermal_witness_moment_le
+    - Cloning.MultimodeAmplifier.gainChannel_covariant
+    - Cloning.MultimodeAmplifier.gainChannel_productThermal_nonneg
+    - Cloning.MultimodeCoherent.gainChannel_orbitPayoff_nonneg
     source_files:
     - formalization/Cloning/OrbitalSeededOptimum.lean
     - formalization/Cloning/MultimodeLeastNoise.lean
     - formalization/Cloning/BosonicAmplifierThermal.lean
     - formalization/Cloning/WeylCovariantMultiplier.lean
     - formalization/Cloning/WeylMultimodeChannel.lean
-  - name: Quantum and continuous classical-quantum fidelity
-    declaration: Cloning.InfiniteFidelity.fidelity_data_processing
+    - formalization/Cloning/UniversalGaussianConverse.lean
+    - formalization/Cloning/UniversalGaussianRealBox.lean
+    - formalization/Cloning/WeylIdlerUniqueness.lean
+    - formalization/Cloning/AmplifierWeylMultimodeCovariance.lean
+    - formalization/Cloning/ThermalParameterContinuity.lean
+    - formalization/Cloning/OrbitalGaussianAttainmentBoundary.lean
+  - name: Quantum fidelity and hybrid Gaussian optimality
+    declaration: Cloning.PCTJointGaussianWhitening.scoreGaussianOptimal_tendsto
     sorry_count: 0
     axioms:
     - Classical.choice
     - Quot.sound
     - propext
     file: formalization/QuantumFidelity.lean
-    status: proved_for_trace_class_operators_and_integrable_fields
-    explicit_scope: Actual positive trace-class operators satisfy data processing, continuity, deletion, weighted
-      bounds, and joint concavity. Integrable positive operator fields provide a continuous classical-quantum model
-      with L1 norm, fidelity continuity, fibrewise CPTP data processing, and sigma-finite Bochner Jensen. The weighted
-      product-target bound uses explicit finite RHS integrals and a uniform regularized inverse-moment bound; application-specific
-      witness moments still need to be established.
+    status: proved_fidelity_and_universal_hybrid_gaussian_optimal_limit
+    explicit_scope: Gaussian optimum on real dilates of the literal trace-zero score polytope, actual all-CPTP competitors,
+      exact intrinsic volume normalization, and weighted fidelity from the finite inverse-moment limit for arbitrary
+      positive targets.
     supporting_declarations:
     - Cloning.InfiniteFidelity.stateFidelity_continuity
     - Cloning.InfiniteFidelity.fidelity_weighted_joint_concavity
     - Cloning.Hybrid.PositiveField.rootFidelity_continuity
     - Cloning.Hybrid.PositiveField.integral_fidelity_le_fidelity_integral
     - Cloning.Hybrid.PositiveField.rootFidelity_sq_le_weighted_product
+    - Cloning.Hybrid.PositiveField.rootFidelity_sq_le_gaussian_thermal
+    - Cloning.Hybrid.weightedQuantumMap_completelyPositive
+    - Cloning.Hybrid.weightedQuantumMap_trace_le
+    - Cloning.Hybrid.gaussian_shift_weighted_mass_le
+    - Cloning.Hybrid.Channel.average
+    - Cloning.Hybrid.PositiveL1.continuous_rootFidelity
+    - Cloning.Hybrid.weightedQuantumMap_gaussian_trace_le
+    - Cloning.Hybrid.exists_gaussian_weighted_covariant_residual
+    - Cloning.Hybrid.PhaseDensity.gaussianOptimalPayoff_tendsto_modeFactor_nonneg
+    - Cloning.Hybrid.QuantumToHybrid.fidelity_data_processing
+    - Cloning.Hybrid.HybridToQuantum.fidelity_data_processing
     source_files:
     - formalization/Cloning/InfiniteChannelFidelity.lean
     - formalization/Cloning/InfiniteFidelityContinuity.lean
@@ -193,82 +380,240 @@ status:
     - formalization/Cloning/InfiniteFidelityConcavity.lean
     - formalization/Cloning/HybridWeightedFidelity.lean
     - formalization/Cloning/HybridJensenSigmaFinite.lean
-  - name: Common-subsequence CP limits and concrete Gaussian averaging
-    declaration: Cloning.MultimodeCoherent.exists_gaussianFoelner_covariant_limit
+    - formalization/Cloning/HybridThermalWitness.lean
+    - formalization/Cloning/HybridWeightedTrace.lean
+    - formalization/Cloning/HybridGaussianMass.lean
+    - formalization/Cloning/HybridChannel.lean
+    - formalization/Cloning/HybridChannelAveraging.lean
+    - formalization/Cloning/HybridL1Fidelity.lean
+    - formalization/Cloning/HybridL1Jensen.lean
+    - formalization/Cloning/HybridClassicalAverageBound.lean
+    - formalization/Cloning/HybridFoelnerResidual.lean
+    - formalization/Cloning/HybridGaussianAttainmentBoundary.lean
+    - formalization/Cloning/MixedChannels.lean
+    - formalization/Cloning/MixedChannelsFidelity.lean
+    - formalization/Cloning/MixedChannelsPreparation.lean
+    - formalization/Cloning/MixedChannelsBounded.lean
+    - formalization/Cloning/MixedChannelsPositiveApprox.lean
+    - formalization/Cloning/MixedChannelsReverseFidelity.lean
+    proof_map: formalization/PROOF_MAP.md
+  - name: Common-subsequence CP limits and flat-prior payoff transfer
+    declaration: Cloning.MultimodeCoherent.exists_flatBox_thermal_payoff_limit
     sorry_count: 0
     axioms:
     - Classical.choice
     - Quot.sound
     - propext
     file: formalization/CompactCPLimits.lean
-    status: proved_covariant_cp_limit_with_explicit_trace_loss
-    explicit_scope: Uniformly bounded CP maps on separable Hilbert spaces admit one common subsequence converging
-      on every input and compact observable, with the stated limsup trace bound. Actual CPTP Bochner averages and
-      explicit expanding Gaussian priors now supply trace-norm approximate covariance for every trace-class input
-      and construct an exactly covariant common-subsequence CP limit. Trace loss in that limit is allowed. Payoff
-      preservation and the manuscript-specific weighted trace bound are separate from this Gaussian averaging construction.
+    status: proved_orbital_and_hybrid_flat_prior_payoff_transfer
+    explicit_scope: Actual quantum and hybrid CPTP averages have competitor-uniform vanishing covariance defect.
+      A common subsequence preserves every required compact pairing; trace loss is retained. Quantum covariance
+      normalizes nonzero residuals by an explicitly bounded scalar. The sharp hybrid classical mass factor survives
+      residual extraction, giving universal orbital/hybrid converses with the channel supremum inside the prior
+      limit. Arbitrary real expanding boxes and vacuum modes are covered; matching physical attainments are proved
+      separately.
     supporting_declarations:
     - Cloning.InfiniteTraceClass.exists_subsequence_covariant_cp_limit_of_limsup_trace_bound
     - Cloning.InfiniteTraceClass.QuantumChannel.finiteBasisCutoff_tendstoUniformlyOn
+    - Cloning.InfiniteTraceClass.QuantumChannel.average
     - Cloning.MultimodeCoherent.gaussianFoelnerChannel_covariance_tendsto_all
+    - Cloning.MultimodeCoherent.exists_gaussianFoelner_covariant_limit
+    - Cloning.MultimodeCoherent.covariant_cpTNI_zero_or_scaled_channel
+    - Cloning.MultimodeCoherent.limsup_realFlatBox_thermal_le_modeFactor
+    - Cloning.Hybrid.PhaseDensity.foelnerMap_covariance_tendsto_varying
+    - Cloning.Hybrid.exists_gaussian_weighted_covariant_residual
+    - Cloning.Hybrid.limsup_realFlatBox_gaussian_le_modeFactor_nonneg
     source_files:
     - formalization/Cloning/InfiniteAsymptoticCPCompactness.lean
     - formalization/Cloning/InfiniteCutoffChannels.lean
     - formalization/Cloning/ChannelAveraging.lean
     - formalization/Cloning/WeylFoelnerLimit.lean
-  - name: Quantum-channel LAN transfer and pure-state comparison
-    declaration: Cloning.InfiniteLANTransfer.fidelity_transfer
+    - formalization/Cloning/WeylFlatPriorThermal.lean
+    - formalization/Cloning/HeisenbergDualResidual.lean
+    - formalization/Cloning/UniversalGaussianConverse.lean
+    - formalization/Cloning/UniversalGaussianRealBox.lean
+    - formalization/Cloning/HybridFoelner.lean
+    - formalization/Cloning/HybridFoelnerResidual.lean
+    - formalization/Cloning/HybridGaussianBoundary.lean
+  - name: Mixed-channel LAN, coordinate and mixture fidelity transfer
+    declaration: Cloning.MixedLANTransfer.fidelity_transfer
     sorry_count: 0
     axioms:
     - Classical.choice
     - Quot.sound
     - propext
     file: formalization/LANTransfer.lean
-    status: proved_transfer_and_pure_state_comparison
-    explicit_scope: The channel-composition fidelity estimate and minimax-to-Bayes bound use actual quantum channel
-      laws. Pure product states now have constructed two-way coherent comparison channels in arbitrary finite dimension,
-      uniformly on compact windows. The continuous classical-quantum register model is constructed. Mixed-state
-      forward and reverse LAN channels, uniform Schur-sector approximation, and the universal Gaussian optimization
-      theorem remain necessary for the physical cloning application.
+    status: proved_actual_two_way_physical_lan_and_transfer
+    explicit_scope: Actual forward/reverse physical LAN channels work uniformly on every compact parameter window,
+      with no supplied LAN approximation. Physical local-unitary to Weyl convergence, Young whitening and mixture
+      integration connect the physical and Gaussian models. The generic conditional transfer lemmas remain available
+      separately.
     supporting_declarations:
     - Cloning.InfiniteLANTransfer.minimax_le_bayesValue
     - Cloning.GeneralCoherent.exists_twoWay_coherent_product_channels
     - Cloning.Hybrid.PositiveField.integral_fidelity_le_fidelity_integral
+    - Cloning.MultimodeCoherent.limsup_realFlatBox_thermal_le_modeFactor
+    - Cloning.MultimodeCoherent.realFlatBoxOptimalPayoff_tendsto_modeFactor_nonneg
+    - Cloning.Hybrid.realFlatBoxOptimalPayoff_tendsto_modeFactor_nonneg
+    - Cloning.MixedLANTransfer.fidelity_transfer
+    - Cloning.MixedLANTransfer.minimax_le_bayesValue_ae
+    - Cloning.MixedLANTransfer.limsup_minimax_le_modeFactor_of_mixed_approximation
+    - Cloning.Hybrid.Channel.coordinateEquiv
+    - Cloning.Hybrid.Channel.transportCoordinates_rootFidelity
+    - Cloning.PCTJointGaussianWhitening.scoreChannelEquiv
+    - Cloning.MixedLANTransfer.fidelity_sandwich_of_twoWay_mixed
+    - Cloning.MixedLANTransfer.fidelity_tendsto_of_twoWay_mixed_approximation
+    - Cloning.MixedLANTransfer.forward_mixture_tendsto
+    - Cloning.MixedLANTransfer.reverse_mixture_tendsto
+    - Cloning.MixedLANTransfer.fidelity_tendsto_of_mixed_mixture
     source_files:
     - formalization/Cloning/InfiniteLANTransfer.lean
     - formalization/Cloning/GeneralCoherentChannels.lean
     - formalization/Cloning/HybridJensenSigmaFinite.lean
-  - name: Conditional main cloning assembly and scalar PCT comparison
-    declaration: Cloning.known_spectrum_optimum_of_bounds
+    - formalization/Cloning/UniversalGaussianConverse.lean
+    - formalization/Cloning/UniversalGaussianRealBox.lean
+    - formalization/Cloning/OrbitalGaussianAttainmentBoundary.lean
+    - formalization/Cloning/HybridGaussianAttainmentBoundary.lean
+    - formalization/Cloning/MixedLANTransfer.lean
+    - formalization/Cloning/MixedGaussianConverse.lean
+    - formalization/Cloning/HybridCoordinateTransport.lean
+    - formalization/Cloning/PCTJointGaussianChart.lean
+    - formalization/Cloning/PCTHybridFidelityTransfer.lean
+    - formalization/Cloning/PCTMixedMixtureTransfer.lean
+  - name: Unconditional physical cloning main theorems
+    declaration: Cloning.TensorCloning.knownSpectrumValue_tendsto
     sorry_count: 0
     axioms:
     - Classical.choice
     - Quot.sound
     - propext
     file: formalization/ConditionalCloningTheorems.lean
-    status: conditional_main_theorem_assembly
-    explicit_scope: Known- and unknown-spectrum minimax convergence follows from explicit supplied achievability
-      and converse bounds. These are not end-to-end proofs of the physical cloning theorems. The strict PCT-versus-universal
-      comparison of the explicit scalar limiting formulas is proved; convergence of the actual finite-sample PCT
-      output to that formula remains separate.
+    status: proved_unconditional_physical_main_theorems
+    explicit_scope: Actual all-CPTP known/unknown minimax, prescribed compact-uniform fidelity and covariance, literal
+      projector minimax/attainment, full and rank PCT comparisons, all-density bounds and supplementary physical
+      small-error/noncommuting-limit statements. Conjectures remain explicitly excluded.
     supporting_declarations:
     - Cloning.unknown_spectrum_optimum_of_bounds
     - Cloning.pctValue_lt_universalValue
+    - Cloning.PCT.exists_pct_product_mixture
+    - Cloning.MultimodeCoherent.limsup_realFlatBox_thermal_le_modeFactor
+    - Cloning.MultimodeCoherent.realFlatBoxOptimalPayoff_tendsto_modeFactor_nonneg
+    - Cloning.Hybrid.realFlatBoxOptimalPayoff_tendsto_modeFactor_nonneg
+    - Cloning.PCTPurificationChannel.physical_pct_gaussian_product_mixture
+    - Cloning.PCTGlobal.channel_matrix_apply
+    - Cloning.PCTGaussianCovariance.jointCoordinate_characteristic
+    - Cloning.TensorLie.physicalCartanChannel
+    - Cloning.PCTHybridMixture.tangentMixtureChannel_fidelity_eq_pctValue
+    - Cloning.MixedLANTransfer.fidelity_tendsto_of_mixed_mixture
+    - Cloning.TensorCloning.knownSpectrumValue_tendsto
+    - Cloning.TensorCloning.unknownSpectrumValue_tendsto
+    - Cloning.TensorCloning.eventually_uniform_knownSpectrumChannel_payoff
+    - Cloning.TensorCloning.eventually_uniform_universalChannel_payoff
+    - Cloning.PhysicalFlatGrassmann.minimaxValue_tendsto
+    - Cloning.PhysicalFlatGrassmann.rankFlatChannel_uniform
+    - Cloning.PCTPhysicalState.physical_pct_fidelity
+    - Cloning.PhysicalFlatPCT.fidelity_limsup_le
+    - Cloning.PhysicalFlatPCT.fidelity_limsup_lt_optimal
     source_files:
     - formalization/Cloning/Main.lean
-  remaining_gaps:
-  - Physical Schur/Cartan/PBW constructions and uniform mixed-state sector approximation.
-  - General-rank Young-law identification, concentration and compact-spectrum uniform local limits. Root-hyperplane
-    geometry, covariance normalization and fallback error bounds are proved.
-  - Universal arbitrary-idler representation from CP/normality, amplifier Weyl intertwining and composite-gain reduction.
-    The actual Weyl representation, irreducibility and algebraic multiplier theorem are proved.
-  - Manuscript-specific flat-prior payoff preservation and weighted trace bounds. Continuous classical-quantum fidelity
-    and explicit Gaussian averaging to a covariant CP limit are proved.
-  - Physical mixed-state two-way LAN maps and uniform errors. Pure-product comparison channels are proved in arbitrary
-    finite dimension.
-  - Remaining finite-sample PCT partial-trace, rotation and Gaussian-mixture identification. The physical Werner
-    pure-product output and thermal limit are proved.
+    - formalization/Cloning/PCTGaussianAssembly.lean
+    - formalization/Cloning/UniversalGaussianConverse.lean
+    - formalization/Cloning/UniversalGaussianRealBox.lean
+    - formalization/Cloning/OrbitalGaussianAttainmentBoundary.lean
+    - formalization/Cloning/HybridGaussianAttainmentBoundary.lean
+    - formalization/Cloning/PCTPurificationChannelPhysical.lean
+    - formalization/Cloning/PCTGlobalPhysical.lean
+    - formalization/Cloning/PCTGaussianCovarianceJoint.lean
+    - formalization/Cloning/TensorCartanChannel.lean
+    - formalization/Cloning/PCTHybridMixtureChannel.lean
+    - formalization/Cloning/PCTMixedMixtureTransfer.lean
+    - formalization/Cloning/PhysicalCloningKnownTheorem.lean
+    - formalization/Cloning/PhysicalCloningUniversalTheorem.lean
+    - formalization/Cloning/TensorCloningUniformKnown.lean
+    - formalization/Cloning/TensorCloningUniformUniversal.lean
+    - formalization/Cloning/PhysicalFlatGrassmannTheorem.lean
+    - formalization/Cloning/PhysicalFlatGrassmannUniform.lean
+    - formalization/Cloning/PhysicalCloningPCTTheorem.lean
+    - formalization/Cloning/PhysicalFlatPCTTheorem.lean
+    proof_map: formalization/PROOF_MAP.md
+  remaining_gaps: []
   verification:
     latest_record: formalization/verification/latest.json
-    full_audit: formalization/verification/eighth-pass/run.json
+    full_audit: formalization/verification/kernel-compatible-pass/run.json
     progress_report: formalization/PROGRESS.md
+    semantic_review: formalization/verification/completion-semantic-review.md
+    compatibility_report: formalization/verification/kernel-compatibility.md
+    completed_utc: "2026-10-04T05:54:37.522297+00:00"
+    explicit_scope: Fresh complete build, exhaustive axiom audit, source/artifact stability,
+      explicit Comparator statement comparison and Lean replay, and all-root unmodified Nanoda checking passed.
+    saved_evidence_check: formalization/verification/kernel-compatible-checkpoint.json
+    saved_evidence_sha256: 5fa5d6986f875e59e30b7a622178ca4171aa39b366f05de0d8a745b7f7e5bffe
+    independent_reproducers:
+      tool_pins: formalization/verification/tools-lock.json
+      comparator:
+        status: passed
+        scope: "27 independently written named-result targets and their proof dependencies; statement comparison and Lean replay"
+        command_from_formalization: bash verification/comparator/run.sh
+        instructions: formalization/verification/comparator/README.md
+        status_record: formalization/verification/comparator/status.json
+        run_record: formalization/verification/comparator/records/20261004T055545.209379Z/run.json
+        run_record_sha256: 10cd07049fa3607797765114c4d970a9e0aa51b408e795641b7f342e50983b7a
+        source_audit_sha256: 6b2c09f61388362d9ff3ae3f63285b9dd09e0cd95254150273bacba6cd9c799a
+        mode: trusted-local-no-sandbox
+        claims: 27
+        resource_record: formalization/verification/comparator/records/20261004T055545.209379Z/resources.json
+        resource_record_sha256: 5f778f904484a09852d193fb556ed63d11bf11783b6f909b481822d9f018155a
+        timed_command_maximum_resident_set_bytes: 3614605312
+        resource_measurement_scope: "macOS /usr/bin/time -l report for the runner command; not simultaneous aggregate memory across all processes"
+      nanoda:
+        status: passed
+        scope: "All 14345 audited project constants and their transitive dependencies"
+        command_from_formalization: bash verification/nanoda/run.sh --run --threads 1
+        instructions: formalization/verification/nanoda/README.md
+        status_record: formalization/verification/nanoda/status.json
+        run_record: formalization/verification/nanoda/records/20261004T055629.624926Z/run.json
+        run_record_sha256: 1920e73469cdd1f953b3b15e46d927b159d6ab8de585630162e95dd14f0c2050
+        source_audit_sha256: 6b2c09f61388362d9ff3ae3f63285b9dd09e0cd95254150273bacba6cd9c799a
+        independent_kernel_check: passed
+        project_declarations: 14345
+        exported_declarations: 83433
+        checked_declarations: 83433
+        resource_record: formalization/verification/nanoda/records/20261004T055629.624926Z/resources.json
+        resource_record_sha256: 674177a0d32b666f83205ac9bcab1d3b22226116198cc9133120089d2bf641de
+        timed_command_maximum_resident_set_bytes: 3268395008
+        resource_measurement_scope: "macOS /usr/bin/time -l measured the official runner command (bash verification/nanoda/run.sh --run --threads 1), including its child processes. Maximum resident set is the timed command measurement, not aggregate simultaneous memory with Comparator or the desktop. The run elapsed time comes from runner timestamps; sampled process memory is retained separately in resource-observations.jsonl."
+    historical_completion_audit:
+      run_record: formalization/verification/completion-pass/run.json
+      run_record_sha256: 00b03eb5cfff71467000058132c3953d8508a394b22b2a8092a464fb42593dae
+      audited_constants: 14375
+      status: passed
+      saved_evidence_record: formalization/verification/completion-checkpoint.json
+    historical_failed_attempts:
+    - checker: comparator
+      run_record: formalization/verification/comparator/records/20261004T035736.789819Z/run.json
+      run_record_sha256: f0f9b2fc7619f518d0e008ce7981b5087669468429a228c7f578d47ab0f5793c
+      status: failed
+    - checker: nanoda
+      run_record: formalization/verification/nanoda/records/20261004T040757.497668Z/run.json
+      run_record_sha256: ea55c9f4cbbefa78dbfee72a4041445d5c031bc38d210437973638b1efebe7ab
+      status: failed
+    proof_wiki:
+      entrypoint: docs/index.html
+      guides: 12
+      named_results: 27
+      generator: tools/docs-site/build.py
+      command_from_repository_root: python3 tools/docs-site/build.py --check
+      hosting_status: not_verified
+      hosting_scope: Public publication has not been verified.
+  main_theorems: proved_and_audited
+  working_build:
+    implementation_imports: 982
+    build_jobs: 4563
+    status: passed
+    full_current_axiom_audit: passed
+  named_manuscript_statements: 27
+  proof_map: formalization/PROOF_MAP.md
+  excluded_scope:
+  - The manuscript explicitly labels degenerate-spectrum and fixed-rank formulas as conjectures.
+  - The exact all-density asymptotic optimum is not claimed; the established bounds remain distinct.
+  - External literature attributions and speculative discussion are not additional proved theorems.

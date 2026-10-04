@@ -1,0 +1,39 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "CloningVerification.known_optimum",
+    "CloningVerification.unknown_optimum",
+    "CloningVerification.grassmann",
+    "CloningVerification.pct_comparison",
+    "CloningVerification.young_concentration",
+    "CloningVerification.lifted_kernel_bound",
+    "CloningVerification.sector_fidelity",
+    "CloningVerification.young_rounding",
+    "CloningVerification.lifted_fidelity_factorization",
+    "CloningVerification.gaussian_amplification",
+    "CloningVerification.lan_full",
+    "CloningVerification.lan_orbital",
+    "CloningVerification.lan_fidelity_transfer",
+    "CloningVerification.exact_compression",
+    "CloningVerification.grassmann_finite_converse",
+    "CloningVerification.pbw_fixed_height",
+    "CloningVerification.character_normalization",
+    "CloningVerification.young_local_limit",
+    "CloningVerification.randomized_dilation",
+    "CloningVerification.weighted_fidelity",
+    "CloningVerification.compact_cp_limit",
+    "CloningVerification.covariant_amplifier_representation",
+    "CloningVerification.least_noise_moment",
+    "CloningVerification.flat_prior_converse",
+    "CloningVerification.werner_fock",
+    "CloningVerification.grassmann_pct_factorization",
+    "CloningVerification.pct_projector_small_error"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": false
+}

@@ -1,0 +1,35 @@
+{
+  "axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "bytes": 777716026,
+  "declaration_kinds": {
+    "axiom": 3,
+    "ctors": 1158,
+    "def": 14100,
+    "opaque": 55,
+    "quot": 4,
+    "recs": 1057,
+    "thm": 66001,
+    "types": 1055
+  },
+  "declarations": 83433,
+  "metadata": {
+    "exporter": {
+      "name": "lean4export",
+      "version": "3.1.0"
+    },
+    "format": {
+      "version": "3.1.0"
+    },
+    "lean": {
+      "githash": "00659f8e6071d7e46131ed643bf8003b99b044e9",
+      "version": "4.29.0-rc6"
+    }
+  },
+  "missing_roots": [],
+  "requested_roots": 14373,
+  "sha256": "303071fc64f122beb54de50384e30bc41291edb2d7dd8b9190a6500fe7c3ce52"
+}

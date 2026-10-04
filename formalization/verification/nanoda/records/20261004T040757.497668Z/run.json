@@ -1,0 +1,96 @@
+{
+  "axiom_policy": "strict_standard_three",
+  "completed_utc": "2026-10-04T04:10:08.958336+00:00",
+  "dependency_sources": {
+    "Cli": {
+      "commit": "3de531c1135f5e3a01f3ac04830996fda476b28e",
+      "tracked_source_clean": true
+    },
+    "LeanSearchClient": {
+      "commit": "c5d5b8fe6e5158def25cd28eb94e4141ad97c843",
+      "tracked_source_clean": true
+    },
+    "Qq": {
+      "commit": "221e8088e3a066b8676dc471ff10638cf1c10835",
+      "tracked_source_clean": true
+    },
+    "aesop": {
+      "commit": "c3361708f266893de5d1769192b60d4b1831f2bb",
+      "tracked_source_clean": true
+    },
+    "batteries": {
+      "commit": "77a5160a74772214ef37caba2847cfe9ab600285",
+      "tracked_source_clean": true
+    },
+    "importGraph": {
+      "commit": "f207d9fcf0cef00ba79962a33ef156061914d9c7",
+      "tracked_source_clean": true
+    },
+    "mathlib": {
+      "commit": "f156f7abd91ac67adb22bf999e5a71ba22e22e41",
+      "tracked_source_clean": true
+    },
+    "plausible": {
+      "commit": "e84e3e16aea6b72cc5d311ca1bb25caad417e162",
+      "tracked_source_clean": true
+    },
+    "proofwidgets": {
+      "commit": "2e58165a9dcdca9837b666528f974299ee1a51cc",
+      "tracked_source_clean": true
+    }
+  },
+  "error": "unsafe/partial def: Cloning.MultimodeCoherent.numberIterate._unsafe_rec",
+  "executables": {
+    "cargo": "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/formalization/verification/nanoda/.work/rust-local/cargo/bin/cargo",
+    "git": "/usr/bin/git",
+    "lake": "/Users/jw/.elan/bin/lake",
+    "rustup": "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/formalization/verification/nanoda/.work/rust-local/cargo/bin/rustup"
+  },
+  "harness_sha256": {
+    "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/formalization/verification/nanoda/ExportCloning.lean": "4187326f3133ba7c4ae9c6845dc779b03a5eaba363c4bb1affda0eb5042149b9",
+    "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/formalization/verification/nanoda/nanoda-config.json": "859a0c101dfebebe63820b6251e1532863a9e050ba855d9c0763c193cf5eb2c1",
+    "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/formalization/verification/nanoda/reproduce.py": "2425aa1a5b873ed8106eab1fa9d3b19f506a4866911da9160230789f4604cddd",
+    "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/formalization/verification/tools-lock.json": "c3b480a49d1702585ab04197ea9ecf25b43d33b8bccb71a9be926e7f5ea3842c"
+  },
+  "independent_kernel_check": "not_run",
+  "missing_prerequisites": [],
+  "mode": "run",
+  "modules": 982,
+  "network_access": "not_tested",
+  "output": "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/formalization/verification/nanoda/.work/run-20261004T040757.497668Z",
+  "phase": "export",
+  "project_declarations": 14375,
+  "roots_sha256": "17953e9db30a8f21f347dcf3df4aa60e3d4da602f7efe0eddb9875d31c956cb4",
+  "source_binding": "matched",
+  "started_utc": "2026-10-04T04:07:57.497947+00:00",
+  "status": "failed",
+  "tools": {
+    "comparator": {
+      "commit": "a4f696825c583ed8a5b4060d9a0faa5b882d365b",
+      "repository": "https://github.com/leanprover/comparator.git",
+      "tag": "v4.29.0-rc6"
+    },
+    "landrun": {
+      "commit": "811cfff51ceaf3d9843708aa6d22e9b84ccac8b4",
+      "go_toolchain": "go1.25.0",
+      "repository": "https://github.com/Zouuup/landrun.git"
+    },
+    "lean4checker": {
+      "commit": "b7398199245524275543dec6113229c9bb4902e5",
+      "note": "Comparator rc6 upstream dependency; built under the comparator root toolchain without editing Lean source.",
+      "repository": "https://github.com/leanprover/lean4checker.git"
+    },
+    "lean4export": {
+      "commit": "71f41350675895dda791b8ff9c1dfb77d18b3585",
+      "repository": "https://github.com/leanprover/lean4export.git",
+      "tag": "v4.29.0-rc6"
+    },
+    "nanoda": {
+      "commit": "418320295890faed83a96fd97907b12a3b6728c2",
+      "patches": [],
+      "repository": "https://github.com/ammkrn/nanoda_lib.git",
+      "rust_toolchain": "1.93.1"
+    }
+  },
+  "tools_lock_sha256": "c3b480a49d1702585ab04197ea9ecf25b43d33b8bccb71a9be926e7f5ea3842c"
+}

@@ -1,0 +1,181 @@
+{
+  "recorded_utc": "2026-10-04T06:14:33.213199+00:00",
+  "scope": "Observed continuation checks, preserving the pre-annotation baseline and recording fresh post-annotation verification separately.",
+  "independent_checker_summaries": [
+    "verification/comparator/status.json",
+    "verification/nanoda/status.json"
+  ],
+  "proof_sources_changed": true,
+  "existing_staged_paths_preserved": 5229,
+  "initial_checks": [
+    {
+      "command": [
+        "/Users/jw/.elan/bin/lake",
+        "build",
+        "All"
+      ],
+      "working_directory": "formalization",
+      "exit_code": 0,
+      "stdout_tail": "Build completed successfully (4563 jobs).",
+      "full_log_retained": false,
+      "build_jobs": 4563
+    },
+    {
+      "command": [
+        "python3",
+        "scripts/check_checkpoint.py"
+      ],
+      "working_directory": "formalization",
+      "exit_code": 0,
+      "status": "passed",
+      "modules": 982,
+      "source_theorems_and_lemmas": 6350,
+      "audited_constants": 14375,
+      "manifest_files_checked": 995,
+      "lean_invoked": false
+    },
+    {
+      "command": [
+        "python3",
+        "tools/docs-site/build.py",
+        "--check"
+      ],
+      "working_directory": "repository root",
+      "exit_code": 0,
+      "status": "passed_before_wiki_repairs",
+      "named_results": 27,
+      "chapters": 12,
+      "source_modules": 982,
+      "verified_proof_pointers": 111,
+      "files": 2023
+    }
+  ],
+  "change_scope": "Exactly 30 explicit noncomputable prefixes across 15 source files; mathematical bodies, theorem statements, and proof bodies are unchanged.",
+  "post_annotation_build": {
+    "status": "passed",
+    "build_jobs": 4563,
+    "pipeline_command": [
+      "python3",
+      "scripts/audit.py",
+      "--jobs",
+      "3",
+      "--output",
+      "verification/kernel-compatible-pass"
+    ],
+    "working_directory": "formalization",
+    "build_log": "verification/kernel-compatible-pass/build.log",
+    "cache": "Unchanged modules reused; all affected modules and their dependents rebuilt."
+  },
+  "post_annotation_audit": {
+    "status": "passed",
+    "record": "verification/kernel-compatible-pass/run.json",
+    "run_sha256": "6b2c09f61388362d9ff3ae3f63285b9dd09e0cd95254150273bacba6cd9c799a",
+    "modules": 982,
+    "source_theorems_and_lemmas": 6350,
+    "audited_constants": 14345,
+    "integrity_gates": "passed"
+  },
+  "compiled_definition_identity": {
+    "status": "passed",
+    "declarations": 30,
+    "comparison": "verification/kernel-compatibility/comparison.json"
+  },
+  "project_safety_inventory": {
+    "project_declarations": 14345,
+    "modules": 982,
+    "unsafe_declarations": 0,
+    "partial_declarations": 0,
+    "only_removed_declarations": 30,
+    "every_old_safe_declaration_retained": true,
+    "comparison": "verification/kernel-compatibility/project-safety-comparison.json",
+    "fresh_audit_name_set_matches_exactly": true
+  },
+  "preliminary_kernel_diagnostic": {
+    "status": "failed_preliminary_unbound",
+    "official_bound_runner": "not_run",
+    "project_declarations": 14345,
+    "exported_declarations": 83433,
+    "typechecker_errors": 0,
+    "pretty_printer_errors": 1,
+    "record": "verification/nanoda/diagnostics/20261004T051640.548545Z/diagnostic.json",
+    "reason": "Axiom report requested without an output destination; qualified result rejected."
+  },
+  "axiom_report_routing_repair": {
+    "scope": "stdout routing and configuration preflight only; kernel, roots, safety and axiom policy unchanged",
+    "guard_tests_passed": 8
+  },
+  "current_saved_evidence_check": {
+    "status": "passed",
+    "record": "verification/kernel-compatible-checkpoint.json",
+    "manifest_files_checked": 995,
+    "lean_invoked": false
+  },
+  "initial_source_audit": {
+    "run_file": "verification/completion-pass/run.json",
+    "run_sha256": "00b03eb5cfff71467000058132c3953d8508a394b22b2a8092a464fb42593dae"
+  },
+  "current_source_audit": {
+    "directory": "verification/kernel-compatible-pass",
+    "run_sha256": "6b2c09f61388362d9ff3ae3f63285b9dd09e0cd95254150273bacba6cd9c799a"
+  },
+  "current_checker_results": {
+    "comparator": {
+      "status": "passed",
+      "source_audit_sha256": "6b2c09f61388362d9ff3ae3f63285b9dd09e0cd95254150273bacba6cd9c799a",
+      "run_record": "formalization/verification/comparator/records/20261004T055545.209379Z/run.json",
+      "run_record_sha256": "10cd07049fa3607797765114c4d970a9e0aa51b408e795641b7f342e50983b7a",
+      "status_record_sha256": "07fed75dc13182bbe7e9081391c05e19a391694203e05f6873788987c028487e"
+    },
+    "nanoda": {
+      "status": "passed",
+      "source_audit_sha256": "6b2c09f61388362d9ff3ae3f63285b9dd09e0cd95254150273bacba6cd9c799a",
+      "run_record": "formalization/verification/nanoda/records/20261004T055629.624926Z/run.json",
+      "run_record_sha256": "1920e73469cdd1f953b3b15e46d927b159d6ab8de585630162e95dd14f0c2050",
+      "status_record_sha256": "a4802b91f3fa153a8763d9c919030d9b47ebd2f70364045bea6ab8fcafa0e695"
+    }
+  },
+  "final_proof_wiki": {
+    "status": "passed",
+    "command": [
+      "python3",
+      "tools/docs-site/build.py",
+      "--check"
+    ],
+    "named_results": 27,
+    "chapters": 12,
+    "source_modules": 982,
+    "verified_proof_pointers": 113,
+    "files": 2028,
+    "offline_markdown_links_repaired": 74,
+    "checker_verdicts_bound_to_current_audit": true,
+    "manifest_sha256": "260681887d5518ad30b4a6a56e39dfd083dab2271b0c3581e88054891f0b36e6"
+  },
+  "git_index_preservation": {
+    "index_file_sha256": "7c98a3ab2aafbea0cea458f6c8de33ba2ab29d815237f75de482c5e48626fa10",
+    "index_entries_sha256": "92a4f33ee192a9f387e0d97e8f032811e6d73396b344f73211a3a2064c51e286",
+    "changed": false,
+    "staged_paths_preserved": 5229,
+    "scope": "Recorded before the user authorized publication; final staging includes the reviewed source repairs, evidence and documentation."
+  },
+  "final_review": {
+    "status": "passed",
+    "scope": "current YAML structure, checker/audit and archive hashes, current/offline links, preserved historical evidence and open/conjectural scope"
+  },
+  "publication_review": {
+    "reviewed_utc": "2026-10-04T06:34:04.991882+00:00",
+    "repository": "https://github.com/JWang226/Cloning",
+    "branch": "main",
+    "proof_wiki_tests_passed": 19,
+    "named_results_with_reciprocal_guide_links": 27,
+    "local_browser_checks": [
+      "declaration search opens the exact Lean line",
+      "desktop chapter navigation and readable equations",
+      "mobile menu and formula scrolling at 390px",
+      "project subpath /Cloning/"
+    ],
+    "git_object_integrity": "passed after normal refetch",
+    "large_exports_and_caches": "ignored; excluded from publication",
+    "local_handoff": "CODEX_HANDOFF.md remains local",
+    "whitespace_scope": "Authored documentation and generator changes pass; byte-exact manuscript, proof snapshots, upstream licenses and raw verification logs are preserved."
+  }
+}

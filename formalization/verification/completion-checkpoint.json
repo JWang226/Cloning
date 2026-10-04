@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "checkpoint": "verification/completion-pass",
+  "modules": 982,
+  "source_theorems_and_lemmas": 6350,
+  "audited_constants": 14375,
+  "manifest_files_checked": 995,
+  "lean_invoked": false,
+  "scope": "saved full-project certificate integrity and exact current source/config match"
+}

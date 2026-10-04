@@ -1,0 +1,29 @@
+{
+  "all_partial_roots_are_generated_unsafe_rec": true,
+  "diagnostic_scope": "Safety and declaration coverage inspection only; no Nanoda parser or kernel execution.",
+  "error": "unsafe/partial def: Cloning.MultimodeCoherent.numberIterate._unsafe_rec",
+  "export": {
+    "bytes": 777746681,
+    "declarations": 83463,
+    "missing_roots": 0,
+    "requested_roots": 14403,
+    "sha256": "bc8802d1d0a28c4baef57a93575a4896dd9c5c04e1b848fba5e35be35929d954"
+  },
+  "independent_kernel_check": "not_run",
+  "partial_root_count": 30,
+  "safe_dependency_scan": {
+    "exit_code": 0,
+    "log": "partial-dependencies.log",
+    "safe_constants_referencing_target_partials": 0,
+    "safe_constants_scanned": 492016,
+    "source": "CheckPartialDependencies.lean"
+  },
+  "source_and_parser_findings": {
+    "exporter_safety_filter": "https://github.com/leanprover/lean4export/blob/71f41350675895dda791b8ff9c1dfb77d18b3585/Export.lean#L233-L260",
+    "lean_addAndCompilePartialRec": "https://github.com/leanprover/lean4/blob/00659f8e6071d7e46131ed643bf8003b99b044e9/src/Lean/Elab/PreDefinition/Basic.lean#L282-L298",
+    "lean_safe_dependency_rejection": "https://github.com/leanprover/lean4/blob/00659f8e6071d7e46131ed643bf8003b99b044e9/src/kernel/type_checker.cpp#L83-L104",
+    "lean_safety_flags": "https://github.com/leanprover/lean4/blob/00659f8e6071d7e46131ed643bf8003b99b044e9/src/Lean/Declaration.lean#L446-L458",
+    "nanoda_partial_rejection": "https://github.com/ammkrn/nanoda_lib/blob/418320295890faed83a96fd97907b12a3b6728c2/src/parser.rs#L759-L760"
+  },
+  "status": "failed"
+}

@@ -14,6 +14,9 @@ import ConditionalCloningTheorems
 # Public result index
 
 Imports the complete implementation library and all ten result-oriented entry
-points. The project remains a partial formalization; the physical main cloning
-theorems are conditional, as documented in `ConditionalCloningTheorems`.
+points. Actual known- and unknown-spectrum minimax limits, exact prescribed-channel
+uniformity, literal Grassmann minimax/attainment, and both physical PCT
+comparisons are proved. The auxiliary named results, quantitative estimates,
+and discussion identities are mapped in `PROOF_MAP.md`. See `PROGRESS.md`
+for the exact completion scope and fresh full-library verification record.
 -/

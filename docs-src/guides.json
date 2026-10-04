@@ -1,0 +1,1200 @@
+{
+  "title": "Mixed-state cloning: an informal guide to the Lean proofs",
+  "intro": "These twelve guides explain the main proof routes in the unchanged reference manuscript and connect each step to an existing Lean declaration. Read them alongside formalization/PROOF_MAP.md for the complete map of 27 named statements. The explanations are informal navigation aids: the linked statements supply the exact hypotheses, while the repository’s verification records supply recorded build and axiom-audit evidence; separate checker run status is explicit. The final physical endpoints construct their channels and approximation witnesses; legacy conditional assembly interfaces remain available but are not used as substitutes for those endpoints.",
+  "chapters": [
+    {
+      "id": "physical-problem",
+      "title": "The physical problem and its conventions",
+      "summary": "The formal problem starts with density matrices and actual quantum channels. The payoff compares the whole output state with the full product target. Orbit and spectral uncertainty then enter through explicit infima, before the supremum over channels.",
+      "assumptions": [
+        "D denotes physical Hilbert-space dimension. Many files write D=d+1 to make positivity of the dimension automatic.",
+        "A simple spectrum has strictly positive, strictly decreasing entries whose sum is one.",
+        "The asymptotic cloning regime is a prescribed natural-valued sequence m(n) with m(n)/n → γ>1."
+      ],
+      "steps": [
+        {
+          "title": "Keep the fidelity convention visible",
+          "explanation": "The central quantity is root fidelity F(A,B)=Tr sqrt(sqrt(A) B sqrt(A)), extended to positive trace-class operators. For normalized states it lies between zero and one. The small-error chapters explicitly use 1−F²; squaring an asymptotic root fidelity changes exponents and expansion coefficients.",
+          "lean": [
+            {
+              "name": "Cloning.Hybrid.PositiveTraceClass.rootFidelity",
+              "file": "formalization/Cloning/HybridStates.lean"
+            },
+            {
+              "name": "Cloning.TensorCloning.statePayoff_le_one",
+              "file": "formalization/Cloning/TensorCloningPayoff.lean"
+            }
+          ]
+        },
+        {
+          "title": "Quantify over genuine channels",
+          "explanation": "QuantumChannel packages an actual linear map on trace-class operators with positivity, trace preservation, and complete positivity. Consequently the physical minimax values quantify over CPTP competitors, rather than a class of symbolic strategies or channels assumed to obey a Gaussian limit.",
+          "lean": [
+            {
+              "name": "Cloning.InfiniteTraceClass.QuantumChannel",
+              "file": "formalization/Cloning/InfiniteCompletelyPositive.lean"
+            }
+          ]
+        },
+        {
+          "title": "Express the decision problem literally",
+          "explanation": "statePayoff applies a competing channel to ρ tensor n and takes fidelity with ρ tensor m. spectrumPayoff substitutes the unitary orbit of a diagonal spectrum. knownSpectrumValue optimizes against the eigenbasis; unknownSpectrumValue additionally optimizes against the unknown spectrum in a specified set K. The competitor in the latter may depend on K, but cannot depend on the actual spectrum selected by the adversary.",
+          "lean": [
+            {
+              "name": "Cloning.TensorCloning.statePayoff",
+              "file": "formalization/Cloning/TensorCloningPayoff.lean"
+            },
+            {
+              "name": "Cloning.TensorCloning.spectrumPayoff",
+              "file": "formalization/Cloning/TensorCloningPayoff.lean"
+            },
+            {
+              "name": "Cloning.TensorCloning.knownSpectrumValue",
+              "file": "formalization/Cloning/TensorCloningPayoff.lean"
+            },
+            {
+              "name": "Cloning.TensorCloning.unknownSpectrumValue",
+              "file": "formalization/Cloning/TensorCloningPayoff.lean"
+            }
+          ]
+        },
+        {
+          "title": "Name the limiting factors",
+          "explanation": "Each ordered eigenvalue pair i<j contributes the one-mode factor fγ(q) shown above, with q=p_j/p_i. Their product is orbitalValue. universalValue multiplies this by the classical affinity factor (2√γ/(1+γ))^((D−1)/2) for the D−1 spectral coordinates. These are explicit scalar definitions; identifying them with physical channel limits is the work of the later chapters.",
+          "lean": [
+            {
+              "name": "Cloning.SimpleSpectrum",
+              "file": "formalization/Cloning/Main.lean"
+            },
+            {
+              "name": "Cloning.orbitalValue",
+              "file": "formalization/Cloning/Main.lean"
+            },
+            {
+              "name": "Cloning.classicalValue",
+              "file": "formalization/Cloning/Main.lean"
+            },
+            {
+              "name": "Cloning.universalValue",
+              "file": "formalization/Cloning/Main.lean"
+            },
+            {
+              "name": "Cloning.Thermal.modeFactor",
+              "file": "formalization/Cloning/Thermal.lean"
+            },
+            {
+              "name": "Cloning.Thermal.classicalBase",
+              "file": "formalization/Cloning/Thermal.lean"
+            }
+          ]
+        }
+      ],
+      "results": [
+        {
+          "label": "Physical payoff",
+          "name": "Cloning.TensorCloning.statePayoff",
+          "file": "formalization/Cloning/TensorCloningPayoff.lean"
+        },
+        {
+          "label": "Known-spectrum minimax",
+          "name": "Cloning.TensorCloning.knownSpectrumValue",
+          "file": "formalization/Cloning/TensorCloningPayoff.lean"
+        },
+        {
+          "label": "Unknown-spectrum minimax",
+          "name": "Cloning.TensorCloning.unknownSpectrumValue",
+          "file": "formalization/Cloning/TensorCloningPayoff.lean"
+        }
+      ],
+      "limitations": [
+        "A scalar formula alone does not prove a physical cloning theorem.",
+        "The positive simple-spectrum family excludes repeated eigenvalues and rank loss; the flat-projector family is treated separately."
+      ],
+      "statement": "\\begin{gathered}F(\\rho,\\sigma)=\\operatorname{Tr}\\sqrt{\\sqrt\\rho\\,\\sigma\\sqrt\\rho},\\\\f_\\gamma(q)=\\frac{\\sqrt\\gamma+\\sqrt{q(\\gamma-1+q)}}{\\gamma+q},\\qquad 0\\le q<1,\\\\F_{\\mathrm{orb}}(\\gamma,p)=\\prod_{i<j}f_\\gamma(p_j/p_i),\\\\F_{\\mathrm{cl}}(\\gamma,D)=\\left(\\frac{2\\sqrt\\gamma}{1+\\gamma}\\right)^{(D-1)/2},\\\\F_{\\mathrm{univ}}(\\gamma,p)=F_{\\mathrm{cl}}(\\gamma,D)F_{\\mathrm{orb}}(\\gamma,p).\\end{gathered}",
+      "manuscript_labels": []
+    },
+    {
+      "id": "young-laws",
+      "title": "Young labels: concentration and the local Gaussian law",
+      "summary": "Schur decomposition separates spectral information in a Young label from the conditional representation state. The formal development identifies the resulting law for actual tensor powers, proves a dimension-uniform tail bound, and resolves its lattice-scale Gaussian behavior.",
+      "assumptions": [
+        "The concentration estimate allows every normalized nonnegative ordered spectrum, including zeros and repetitions.",
+        "The local L1 and character limits use compact subsets of the positive simple chamber.",
+        "Lattice densities use their declared interpolation cells and coordinate Jacobian; they are not an unnormalized pointwise approximation."
+      ],
+      "steps": [
+        {
+          "title": "Control the true Young-law tails",
+          "explanation": "An elementary moment-generating-function bound is combined with the finite representation-theoretic prefactor. A sharper finite exponential estimate leaves enough decay to absorb that prefactor after a threshold depending only on dimension. This yields the displayed exp(−N^(1/3)/4) tail estimate, uniformly in the spectrum.",
+          "lean": [
+            {
+              "name": "Cloning.TensorLie.tensorYoungPMF_tail_half_le",
+              "file": "formalization/Cloning/TensorSchurDecompositionSharpConcentration.lean"
+            },
+            {
+              "name": "Cloning.TensorLie.exists_tensorYoungPMF_uniform_exp_threshold",
+              "file": "formalization/Cloning/TensorSchurDecompositionSharpConcentration.lean"
+            }
+          ]
+        },
+        {
+          "title": "Normalize the conditional representation state",
+          "explanation": "The ratio of the highest-weight monomial p^μ to the sector character tends to the product over positive roots of (1−p_j/p_i). The exact orientation of the ratio matters because it is the normalizing constant of the thermal sector limit. A compactness argument upgrades moving-sequence convergence to one threshold for all spectra and all partitions in an arbitrary shrinking window.",
+          "lean": [
+            {
+              "name": "Cloning.YoungMultinomial.eventually_uniform_character_normalization",
+              "file": "formalization/Cloning/YoungUniformCharacterWindows.lean"
+            }
+          ]
+        },
+        {
+          "title": "Pass from lattice mass to density",
+          "explanation": "The interpolated physical Young law converges in L1 to the Gaussian on the trace-zero spectral hyperplane. Local estimates control the central cells, while concentration controls the tails. Compactness makes the error uniform over the allowed spectra, with covariance evaluated at the current spectrum.",
+          "lean": [
+            {
+              "name": "Cloning.YoungHyperplane.uniform_tensorYoungDensity_l1",
+              "file": "formalization/Cloning/YoungUniformLocalPhysicalL1.lean"
+            }
+          ]
+        }
+      ],
+      "results": [
+        {
+          "label": "Uniform Young concentration",
+          "name": "Cloning.TensorLie.exists_tensorYoungPMF_uniform_exp_threshold",
+          "file": "formalization/Cloning/TensorSchurDecompositionSharpConcentration.lean"
+        },
+        {
+          "label": "Uniform character normalization",
+          "name": "Cloning.YoungMultinomial.eventually_uniform_character_normalization",
+          "file": "formalization/Cloning/YoungUniformCharacterWindows.lean"
+        },
+        {
+          "label": "Physical Young local limit",
+          "name": "Cloning.YoungHyperplane.uniform_tensorYoungDensity_l1",
+          "file": "formalization/Cloning/YoungUniformLocalPhysicalL1.lean"
+        }
+      ],
+      "limitations": [
+        "Uniform local Gaussian limits here do not cover a family approaching eigenvalue collisions or zero eigenvalues.",
+        "Concentration is substantially more general than the simple-spectrum local limit; their hypotheses should not be conflated."
+      ],
+      "manuscript_labels": [
+        "lem:young-concentration",
+        "lem:uniform-character-normalization",
+        "lem:young-local-limit"
+      ]
+    },
+    {
+      "id": "cartan-sectors",
+      "title": "From PBW frames to uniform Cartan-sector fidelity",
+      "summary": "The representation-theoretic core compares actual normalized lowering words with a Fock basis. Fixed-height matrix estimates identify a particular orthonormal frame and its rate; thermal tail control then gives the sector fidelity used by the physical cloners.",
+      "assumptions": [
+        "The PBW height cutoff R is fixed, and positive-root gaps have a linear lower bound cN with c>0.",
+        "For sector limits, γ>1, m(n)/n→γ, and spectra range over a compact positive simple set.",
+        "The coordinate windows may shrink at any rate δ_n→0. Mixtures share a common target sector and output frame."
+      ],
+      "steps": [
+        {
+          "title": "Prove quantitative independence of lowering words",
+          "explanation": "Normalize each lowering word by the relevant root-gap scale and compute its exact-weight Gram matrix. At every fixed height the Gram matrix is O(N^(−1/2)) from identity, uniformly under the root-gap bound. This proves invertibility, rather than assuming that the chosen words already form an orthonormal family.",
+          "lean": [
+            {
+              "name": "Cloning.TensorLie.eventually_weightGram_rate",
+              "file": "formalization/Cloning/PBWSymmetricFrameRateGram.lean"
+            }
+          ]
+        },
+        {
+          "title": "Choose and identify the frame",
+          "explanation": "Apply the symmetric inverse square root of the Gram matrix. The resulting vectors are an orthonormal basis of the complete exact-weight space and stay O(N^(−1/2)) from the normalized raw words. Specifying this construction makes coefficient comparisons meaningful across the different input and output representations.",
+          "lean": [
+            {
+              "name": "Cloning.TensorLie.eventually_weightSymmetricBasis_rate",
+              "file": "formalization/Cloning/PBWSymmetricFrameRateBlocks.lean"
+            }
+          ]
+        },
+        {
+          "title": "Compute the physical Cartan coefficients",
+          "explanation": "The Cartan inclusion sends a highest-weight vector to the tensor product of highest-weight vectors. Expanding lowering operators across the tensor product gives product-binomial coefficients. The proof compares these coefficients in the constructed symmetric frames at the actual finite root-gap fractions, with the same fixed-height rate.",
+          "lean": [
+            {
+              "name": "Cloning.TensorLie.eventually_cartan_symmetricFrame_product_rate",
+              "file": "formalization/Cloning/PBWSymmetricFrameRateCartan.lean"
+            }
+          ]
+        },
+        {
+          "title": "Remove the cutoff and allow mixtures",
+          "explanation": "Character normalization supplies the thermal normalization, and tail estimates allow the fixed-height cutoff to grow after taking the large-sample limit. Compactness upgrades the sequential conclusion to arbitrary shrinking windows. The mixture theorem quantifies over every finite cardinality and every probability law, which is essential when many source sectors contribute to one output sector.",
+          "lean": [
+            {
+              "name": "Cloning.TensorCloning.eventually_uniform_shrinkingWindow_sector_fidelity",
+              "file": "formalization/Cloning/TensorCloningShrinkingWindows.lean"
+            },
+            {
+              "name": "Cloning.TensorCloning.eventually_uniform_shrinkingWindow_mixture_fidelity_fintype",
+              "file": "formalization/Cloning/TensorCloningShrinkingMixture.lean"
+            }
+          ]
+        },
+        {
+          "title": "Derive admissibility rather than assuming it",
+          "explanation": "Strict spectral gaps and γ>1 imply that the target and the target-minus-source are eventually dominant and nonnegative. The compatibility theorem starts with signed target lattice coordinates, so the later channel argument does not silently assume that rounding has already produced a valid Young label.",
+          "lean": [
+            {
+              "name": "Cloning.TensorCloning.eventually_uniform_shrinkingWindow_compatible",
+              "file": "formalization/Cloning/TensorCloningShrinkingWindows.lean"
+            }
+          ]
+        }
+      ],
+      "results": [
+        {
+          "label": "Fixed-height PBW rate",
+          "name": "Cloning.TensorLie.eventually_weightSymmetricBasis_rate",
+          "file": "formalization/Cloning/PBWSymmetricFrameRateBlocks.lean"
+        },
+        {
+          "label": "Cartan product coefficient rate",
+          "name": "Cloning.TensorLie.eventually_cartan_symmetricFrame_product_rate",
+          "file": "formalization/Cloning/PBWSymmetricFrameRateCartan.lean"
+        },
+        {
+          "label": "Uniform sector-mixture fidelity",
+          "name": "Cloning.TensorCloning.eventually_uniform_shrinkingWindow_mixture_fidelity",
+          "file": "formalization/Cloning/TensorCloningShrinkingWindows.lean"
+        }
+      ],
+      "limitations": [
+        "The C/√N estimates concern fixed heights; they do not assert a uniform estimate over the entire unbounded Fock basis.",
+        "The arbitrary-mixture theorem uses one common target sector. It is not a fidelity-linearity assertion for unrelated target states."
+      ],
+      "manuscript_labels": [
+        "lem:PBW-fixed-height",
+        "prop:sector-fidelity"
+      ]
+    },
+    {
+      "id": "lifted-kernels",
+      "title": "Lifted channels, randomized dilation, and factorization",
+      "summary": "A stochastic rule on Schur labels becomes a genuine covariant channel by applying the corresponding sector transition. An exact block-fidelity identity and a discarded-mass estimate turn the sector theorem into a uniform statement for arbitrary lifted kernels.",
+      "assumptions": [
+        "A transition table has nonnegative entries and each source row sums to one.",
+        "For asymptotic factorization, its joint input-output label law has uniformly vanishing mass outside a common shrinking spectral window.",
+        "Simple spectra range over a compact set and m(n)/n→γ>1. The kernel may depend on the spectrum in the general factorization theorem."
+      ],
+      "steps": [
+        {
+          "title": "Build the channel before evaluating it",
+          "explanation": "The physical Schur instrument measures a source copy, samples a target copy from the stochastic table, applies the Cartan transition when compatible, and uses a defined fallback otherwise. The construction is CPTP on every input operator. Physical code indexes irreducible copies; ordinary Young-label rules are represented by distributing their multiplicity copies.",
+          "lean": [
+            {
+              "name": "Cloning.TensorCloning.channel",
+              "file": "formalization/Cloning/TensorCloningChannel.lean"
+            },
+            {
+              "name": "Cloning.TensorCloning.channel_apply",
+              "file": "formalization/Cloning/TensorCloningChannel.lean"
+            }
+          ]
+        },
+        {
+          "title": "Use the exact direct-sum formula",
+          "explanation": "After Schur decomposition, each output block is a weighted sum of sector outputs. The exact identity expresses the global physical fidelity through those blocks. This retains the conditional mixtures that would be lost by simply averaging individual sector fidelities.",
+          "lean": [
+            {
+              "name": "Cloning.TensorCloning.spectrumPayoff_eq_copyBlocks",
+              "file": "formalization/Cloning/TensorCloningBlockFidelity.lean"
+            }
+          ]
+        },
+        {
+          "title": "Trim only small joint-label mass",
+          "explanation": "Retain close source-target pairs, normalize every nonzero retained output block, and apply the common-target mixture theorem. Fidelity continuity controls the omitted quantum output and the omitted classical law. The resulting error is at most η+2√b, where b is the actual discarded joint-label mass. Sending η and b to zero proves factorization for arbitrary stochastic kernels satisfying the stated concentration condition.",
+          "lean": [
+            {
+              "name": "Cloning.TensorCloning.eventually_uniform_kernel_factorization_bound",
+              "file": "formalization/Cloning/TensorCloningLiftedFactorization.lean"
+            },
+            {
+              "name": "Cloning.TensorCloning.eventually_uniform_lifted_fidelity_factorization",
+              "file": "formalization/Cloning/TensorCloningLiftedFactorization.lean"
+            }
+          ]
+        },
+        {
+          "title": "Generate unknown labels by randomized dilation",
+          "explanation": "The universal rule dilates the observed input label by m/n and rounds on the trace-one lattice with bounded error. On the central window the rounded output is eventually compatible; elsewhere a fallback keeps the channel defined. L1 continuity under dilation compares the raw law with a Gaussian of covariance γΣ_p, and Gaussian affinity supplies the classical factor.",
+          "lean": [
+            {
+              "name": "Cloning.YoungCompatibility.eventually_rounding_support_compatible",
+              "file": "formalization/Cloning/YoungCompatibility.lean"
+            },
+            {
+              "name": "Cloning.YoungHyperplane.uniform_rounded_tensorYoungDensity_l1",
+              "file": "formalization/Cloning/YoungPhysicalRoundingUniformDensity.lean"
+            },
+            {
+              "name": "Cloning.YoungHyperplane.uniform_tensorYoungFallbackOutput_affinity",
+              "file": "formalization/Cloning/YoungPhysicalRounding.lean"
+            }
+          ]
+        }
+      ],
+      "results": [
+        {
+          "label": "Lifted fidelity factorization",
+          "name": "Cloning.TensorCloning.eventually_uniform_lifted_fidelity_factorization",
+          "file": "formalization/Cloning/TensorCloningLiftedFactorization.lean"
+        },
+        {
+          "label": "Raw randomized-dilation density",
+          "name": "Cloning.YoungHyperplane.uniform_rounded_tensorYoungDensity_l1",
+          "file": "formalization/Cloning/YoungPhysicalRoundingUniformDensity.lean"
+        },
+        {
+          "label": "Fallback output affinity",
+          "name": "Cloning.YoungHyperplane.uniform_tensorYoungFallbackOutput_affinity",
+          "file": "formalization/Cloning/YoungPhysicalRounding.lean"
+        }
+      ],
+      "limitations": [
+        "An arbitrary stochastic kernel need not concentrate. Vanishing discarded mass is a genuine hypothesis of the general factorization theorem.",
+        "The raw rounded law and the fallback law are distinct objects; their comparison uses control of the fallback probability."
+      ],
+      "manuscript_labels": [
+        "prop:lifted-kernel-bound",
+        "prop:young-rounding",
+        "lem:lifted-fidelity-factorization",
+        "lem:randomized-dilation"
+      ]
+    },
+    {
+      "id": "gaussian-optimum",
+      "title": "Gaussian amplification against arbitrary competitors",
+      "summary": "The Gaussian converse optimizes over all channels before taking the large-prior limit. Translation averaging and weighted fidelity reduce the problem to a covariant oscillator moment, where a representation theorem and least-noise inequality identify the optimal value.",
+      "assumptions": [
+        "Gain γ is greater than one; thermal parameters satisfy 0≤q_i<1, so vacuum modes are included.",
+        "Flat prior bodies are compact and convex with zero in their interior, and dilate through real radii L→∞.",
+        "The full model includes D−1 classical coordinates; the orbital model is the zero-classical-coordinate case."
+      ],
+      "steps": [
+        {
+          "title": "Obtain a weighted fidelity witness",
+          "explanation": "A regularized inverse-moment inequality bounds squared fidelity by a weighted output moment. The limit theorem passes from positive regularization to a finite right limit, so the witness is justified even when an inverse is not bounded on the whole space. The hybrid version allows a nonnormalized nonnegative integrable classical weight multiplying an arbitrary positive trace-class target.",
+          "lean": [
+            {
+              "name": "Cloning.InfiniteFidelity.fidelity_sq_le_of_regularized_inverse_limit",
+              "file": "formalization/Cloning/InfiniteFidelityRegularizedLimit.lean"
+            },
+            {
+              "name": "Cloning.Hybrid.PositiveField.rootFidelity_sq_le_weighted_productPositive_of_inverse_limit",
+              "file": "formalization/Cloning/HybridWeightedFidelityLimit.lean"
+            }
+          ]
+        },
+        {
+          "title": "Average and extract a covariant limit",
+          "explanation": "Translate near-optimal competitors over expanding prior bodies and apply the weighted witness. Compact-observable convergence gives a subsequence and a completely positive limit. The trace bound survives as an upper bound, which is enough for the converse even if probability escapes to infinity. This step does not incorrectly promote the limiting map to trace preserving.",
+          "lean": [
+            {
+              "name": "Cloning.InfiniteTraceClass.exists_subsequence_covariant_cp_limit_of_limsup_trace_bound",
+              "file": "formalization/Cloning/InfiniteAsymptoticCPCompactness.lean"
+            }
+          ]
+        },
+        {
+          "title": "Represent every covariant amplifier",
+          "explanation": "Weyl covariance forces a squeezing dilation with an auxiliary idler state. The formal result establishes a unique joint idler without assuming Gaussianity, diagonality, or independence between modes. This is why the subsequent bound applies to arbitrary covariant competitors, including correlated ones.",
+          "lean": [
+            {
+              "name": "Cloning.WeylSqueezer.covariantChannel_exists_dilation",
+              "file": "formalization/Cloning/WeylSqueezerRepresentation.lean"
+            },
+            {
+              "name": "Cloning.MultimodeCoherent.quantumChannel_diagonal_existsUnique_idler",
+              "file": "formalization/Cloning/WeylDiagonalRepresentation.lean"
+            }
+          ]
+        },
+        {
+          "title": "Bound the oscillator moment",
+          "explanation": "For nonnegative antitone product observables, the least-noise moment is maximal for the least-noise construction. The CP trace-nonincreasing version keeps the exact output-trace multiplier. The classical translation estimate supplies the classical affinity factor; the oscillator estimate supplies the product of thermal mode factors.",
+          "lean": [
+            {
+              "name": "Cloning.CovariantAmplifier.covariant_cpTNI_product_moment_le",
+              "file": "formalization/Cloning/CovariantAmplifierLeastNoise.lean"
+            },
+            {
+              "name": "Cloning.Hybrid.PhaseBody.eventually_forall_gaussian_payoff_le",
+              "file": "formalization/Cloning/HybridGaussianFlatBody.lean"
+            }
+          ]
+        },
+        {
+          "title": "Match the bound and recover the manuscript window",
+          "explanation": "The product physical amplifier and classical dilation achieve the calculated value. Whitening transports the trace-zero sup-norm box to the exact score polytope, rather than substituting a rectangular window. Its positive finite measure scale cancels in normalized averages, so the endpoint concerns the manuscript’s actual prior and the supremum over all CPTP maps.",
+          "lean": [
+            {
+              "name": "Cloning.Hybrid.PhaseBody.gaussian_optimalPayoff_tendsto",
+              "file": "formalization/Cloning/HybridGaussianFlatBody.lean"
+            },
+            {
+              "name": "Cloning.PCTJointGaussianWhitening.scoreGaussianOptimal_tendsto",
+              "file": "formalization/Cloning/HybridGaussianScoreOptimum.lean"
+            },
+            {
+              "name": "Cloning.PCTJointGaussianWhitening.normalized_score_integral_eq_intrinsic",
+              "file": "formalization/Cloning/ScoreReferenceMeasure.lean"
+            }
+          ]
+        }
+      ],
+      "results": [
+        {
+          "label": "Gaussian optimum on the score window",
+          "name": "Cloning.PCTJointGaussianWhitening.scoreGaussianOptimal_tendsto",
+          "file": "formalization/Cloning/HybridGaussianScoreOptimum.lean"
+        },
+        {
+          "label": "Flat-prior converse",
+          "name": "Cloning.PCTJointGaussianWhitening.scoreGaussianOptimal_limsup_le",
+          "file": "formalization/Cloning/HybridGaussianScoreOptimum.lean"
+        }
+      ],
+      "limitations": [
+        "The extracted compact-observable CP limit may lose trace. Only the stated trace bound is used.",
+        "The result concerns expanding-prior average performance, which must still be connected to the finite-dimensional physical problem by LAN."
+      ],
+      "manuscript_labels": [
+        "thm:gaussian-amplification",
+        "lem:weighted-fidelity",
+        "lem:compact-cp-limit",
+        "lem:covariant-amplifier-representation",
+        "prop:least-noise-moment",
+        "prop:flat-prior-converse"
+      ]
+    },
+    {
+      "id": "physical-lan",
+      "title": "Constructed LAN and fidelity transfer",
+      "summary": "Local asymptotic normality is implemented by channels in both directions between tensor-power states and a classical Gaussian field of thermal oscillator states. The target sample size changes the local displacement by √γ while leaving the reference covariance and thermal parameters fixed.",
+      "assumptions": [
+        "The reference spectrum is positive and simple.",
+        "Local spectral directions lie in the full trace-zero hyperplane, and local parameters range over a fixed compact window.",
+        "Whitening frames and positive-root enumerations are coordinate choices whose existence is proved upstream."
+      ],
+      "steps": [
+        {
+          "title": "Construct both directions of the experiment",
+          "explanation": "The forward channel combines the physical Schur decomposition, the classical label interpolation, and sector embeddings into oscillator coordinates. The reverse channel reconstructs physical blocks and supplies a channel completion away from controlled subspaces. The compact-window theorem constructs a witness containing actual all-input channels and uniform approximation statements.",
+          "lean": [
+            {
+              "name": "Cloning.TensorLAN.nonempty_physicalCompactWindowLAN",
+              "file": "formalization/Cloning/TensorLANEmbeddingCompactLAN.lean"
+            },
+            {
+              "name": "Cloning.TensorLAN.physicalCompactWindowLAN",
+              "file": "formalization/Cloning/TensorLANEmbeddingCompactLAN.lean"
+            }
+          ]
+        },
+        {
+          "title": "Account for the target sample size",
+          "explanation": "A perturbation of order n^(−1/2) is seen at output size m as a local shift multiplied by √(m/n). Model continuity and m/n→γ replace this finite scale by √γ uniformly on each fixed window. This rescales the mean and displacement, not the reference spectral covariance or thermal state.",
+          "lean": [
+            {
+              "name": "Cloning.PhysicalCloningConverse.scaled_window_approximations",
+              "file": "formalization/Cloning/PhysicalCloningConverseWindows.lean"
+            }
+          ]
+        },
+        {
+          "title": "Transfer every competing channel",
+          "explanation": "Compose a reverse LAN channel, an arbitrary physical competitor, and a forward LAN channel. Trace-norm contraction controls the input error uniformly in the competitor, while fidelity continuity gives an additive √δ+√η error. The comparison therefore survives optimization over all physical channels.",
+          "lean": [
+            {
+              "name": "Cloning.MixedLANTransfer.fidelity_transfer",
+              "file": "formalization/Cloning/MixedLANTransfer.lean"
+            }
+          ]
+        },
+        {
+          "title": "Restrict to a fixed-spectrum orbit",
+          "explanation": "For known-spectrum cloning, the spectral Gaussian carries no unknown local parameter. Preparing or removing that classical register gives quantum-only comparison channels. The orbital window error theorem provides the reverse-input and forward-target estimates used by the known-spectrum converse.",
+          "lean": [
+            {
+              "name": "Cloning.PhysicalCloningConverse.removeClassicalForward",
+              "file": "formalization/Cloning/PhysicalCloningConverseQuantumReduction.lean"
+            },
+            {
+              "name": "Cloning.PhysicalCloningConverse.removeClassicalReverse",
+              "file": "formalization/Cloning/PhysicalCloningConverseQuantumReduction.lean"
+            },
+            {
+              "name": "Cloning.PhysicalCloningConverse.known_fixedWindow_errors",
+              "file": "formalization/Cloning/PhysicalCloningConverseKnown.lean"
+            }
+          ]
+        }
+      ],
+      "results": [
+        {
+          "label": "Constructed compact-window LAN",
+          "name": "Cloning.TensorLAN.nonempty_physicalCompactWindowLAN",
+          "file": "formalization/Cloning/TensorLANEmbeddingCompactLAN.lean"
+        },
+        {
+          "label": "Target-sample scaling",
+          "name": "Cloning.PhysicalCloningConverse.scaled_window_approximations",
+          "file": "formalization/Cloning/PhysicalCloningConverseWindows.lean"
+        },
+        {
+          "label": "Uniform fidelity transfer",
+          "name": "Cloning.MixedLANTransfer.fidelity_transfer",
+          "file": "formalization/Cloning/MixedLANTransfer.lean"
+        }
+      ],
+      "limitations": [
+        "LAN is local on fixed compact windows. It does not assert one approximation uniform over all unbounded local parameters.",
+        "Some reusable lemmas accept a LAN witness as an argument; the final physical theorems instantiate that argument with the constructed witness."
+      ],
+      "manuscript_labels": [
+        "thm:LAN-full",
+        "cor:LAN-orb",
+        "lem:LAN-fidelity-transfer"
+      ]
+    },
+    {
+      "id": "known-spectrum",
+      "title": "The known-spectrum optimum",
+      "summary": "When the spectrum is known, the correct output Young-label law can be sampled directly. The only asymptotic fidelity cost comes from cloning the unknown eigenbasis, and the orbital Gaussian converse proves that no other channel improves its limiting value.",
+      "assumptions": [
+        "p is a positive simple spectrum in physical dimension D.",
+        "m(n) is natural-valued and m(n)/n→γ>1.",
+        "Compact uniformity concerns compact subsets of the simple positive chamber and every unitary eigenbasis."
+      ],
+      "steps": [
+        {
+          "title": "Sample the target label law exactly",
+          "explanation": "knownSpectrumChannel uses the known spectrum to select target Schur copies with their exact m-copy probabilities. The rule does not need to infer p from the measured label. After summing source probabilities, the output classical marginal is the target law, whose affinity with itself is one.",
+          "lean": [
+            {
+              "name": "Cloning.TensorCloning.knownSpectrumChannel",
+              "file": "formalization/Cloning/TensorCloningChannel.lean"
+            },
+            {
+              "name": "Cloning.TensorCloning.knownCopyWeight_sum",
+              "file": "formalization/Cloning/TensorCloningChannel.lean"
+            }
+          ]
+        },
+        {
+          "title": "Evaluate the constructed physical cloner",
+          "explanation": "Concentration discards bad pairs with vanishing mass, and the uniform sector-mixture theorem supplies the orbital factor on the retained blocks. Exact covariance removes eigenbasis dependence. The prescribed-channel wrapper also handles early output sizes m≤n by exact restriction, while agreeing eventually with the cloning construction.",
+          "lean": [
+            {
+              "name": "Cloning.TensorCloning.eventually_uniform_prescribedKnownSpectrumChannel_payoff",
+              "file": "formalization/Cloning/TensorCloningPrescribedLimits.lean"
+            }
+          ]
+        },
+        {
+          "title": "Bound every competitor locally",
+          "explanation": "Choose a bounded orbital displacement window around the fixed reference spectrum. Constructed quantum LAN transfers any physical competitor into a Gaussian competitor with vanishing error. The worst-case orbit payoff is bounded by its average on this local family, and the expanding-prior Gaussian optimum gives the orbital upper bound.",
+          "lean": [
+            {
+              "name": "Cloning.PhysicalCloningConverse.limsup_knownSpectrumValue_le",
+              "file": "formalization/Cloning/PhysicalCloningConverseUnconditional.lean"
+            }
+          ]
+        },
+        {
+          "title": "Close the minimax limit",
+          "explanation": "The explicit cloner provides the asymptotic lower bound, while the all-channel converse supplies the limsup bound. Payoffs stay in [0,1], so the matching bounds yield actual convergence of the finite-copy supremum-infimum to orbitalValue.",
+          "lean": [
+            {
+              "name": "Cloning.TensorCloning.knownSpectrumValue_tendsto",
+              "file": "formalization/Cloning/PhysicalCloningKnownTheorem.lean"
+            }
+          ]
+        }
+      ],
+      "results": [
+        {
+          "label": "Known-spectrum minimax theorem",
+          "name": "Cloning.TensorCloning.knownSpectrumValue_tendsto",
+          "file": "formalization/Cloning/PhysicalCloningKnownTheorem.lean"
+        },
+        {
+          "label": "Compact-uniform attainment",
+          "name": "Cloning.TensorCloning.eventually_uniform_prescribedKnownSpectrumChannel_payoff",
+          "file": "formalization/Cloning/TensorCloningPrescribedLimits.lean"
+        }
+      ],
+      "limitations": [
+        "The attaining channel is allowed to depend on p; its eigenbasis remains unknown.",
+        "This theorem alone does not apply to a repeated-eigenvalue spectrum by continuity in p. The degeneracy chapter explains a concrete obstruction to exchanging limits."
+      ],
+      "statement": "\\lim_{n\\to\\infty}\\sup_{\\mathcal M_n}\\inf_{U\\in\\mathrm U(D)}F\\!\\left(\\mathcal M_n(\\rho_{p,U}^{\\otimes n}),\\rho_{p,U}^{\\otimes m_n}\\right)=F_{\\mathrm{orb}}(\\gamma,p).",
+      "manuscript_labels": [
+        "thm:known-optimum"
+      ]
+    },
+    {
+      "id": "unknown-spectrum",
+      "title": "One universal cloner and the compact-set optimum",
+      "summary": "Without the spectrum, the classical Young-label fluctuations must be amplified along with the eigenbasis information. A single spectrum-independent channel achieves the product of the classical and orbital factors. Its minimax optimality needs spectral neighborhoods inside the allowed set.",
+      "assumptions": [
+        "Physical dimension is D=d+1≥2 for the displayed compact-set converse.",
+        "Achievability holds on every compact K of positive simple spectra, including singletons.",
+        "The minimax theorem additionally assumes K is nonempty and closure(interior(toAffine(K)))=toAffine(K) in the full trace-one affine hyperplane.",
+        "As throughout, m(n)/n→γ>1."
+      ],
+      "steps": [
+        {
+          "title": "Use only the measured label",
+          "explanation": "The universal cloner applies the randomized dilation rule to the measured Young label and then the same physical sector transition as the known-spectrum cloner. The rule is independent of p. Its prescribed version is covariant as a channel identity on all inputs, rather than merely having an invariant payoff on the states being tested.",
+          "lean": [
+            {
+              "name": "Cloning.TensorCloning.prescribedUniversalChannel_covariant",
+              "file": "formalization/Cloning/TensorCloningPrescribed.lean"
+            }
+          ]
+        },
+        {
+          "title": "Multiply the two asymptotic costs",
+          "explanation": "The rounded output label law has affinity approaching classicalValue. Uniform lifted factorization multiplies this classical quantity by the orbital sector factor. This proves two-sided convergence of the actual universal cloner’s payoff, uniformly over every p in a compact K and every eigenbasis.",
+          "lean": [
+            {
+              "name": "Cloning.TensorCloning.eventually_uniform_prescribedUniversalChannel_payoff",
+              "file": "formalization/Cloning/TensorCloningPrescribedLimits.lean"
+            }
+          ]
+        },
+        {
+          "title": "Use full local spectral neighborhoods for the converse",
+          "explanation": "At an interior point of K, all sufficiently small trace-zero spectral perturbations stay in K. The full hybrid LAN experiment is therefore available to test every competitor. The Gaussian optimum gives an upper bound by universalValue at that point; the physical theorem constructs the required LAN witness internally.",
+          "lean": [
+            {
+              "name": "Cloning.PhysicalCloningConverse.limsup_unknownSpectrumValue_le",
+              "file": "formalization/Cloning/PhysicalCloningConverseUnconditional.lean"
+            }
+          ]
+        },
+        {
+          "title": "Extend to the boundary and take the worst spectrum",
+          "explanation": "Regular closure makes interior points dense in K. Continuity extends the converse to the infimum of universalValue over all of K. Compact-uniform achievability then supplies the matching minimax lower bound, giving convergence of the actual all-CPTP supremum-infimum.",
+          "lean": [
+            {
+              "name": "Cloning.PhysicalCloningConverse.limsup_unknownSpectrumValue_infimum",
+              "file": "formalization/Cloning/PhysicalCloningConverseUnconditional.lean"
+            },
+            {
+              "name": "Cloning.TensorCloning.unknownSpectrumValue_tendsto_affine",
+              "file": "formalization/Cloning/SpectralAffineTheorem.lean"
+            }
+          ]
+        },
+        {
+          "title": "Check a concrete class of admissible sets",
+          "explanation": "The gap-constrained set has smallest eigenvalue and adjacent gaps at least κ. Below κ=2/[D(D+1)] it has an explicit strict interior point and satisfies the theorem’s affine regular-closure condition. At the threshold it is a singleton; above it the constraints are infeasible.",
+          "lean": [
+            {
+              "name": "Cloning.SpectralGap.gapSet_minimax_tendsto",
+              "file": "formalization/Cloning/SpectralGapThreshold.lean"
+            },
+            {
+              "name": "Cloning.SpectralGap.gapSet_threshold_singleton",
+              "file": "formalization/Cloning/SpectralGapThreshold.lean"
+            },
+            {
+              "name": "Cloning.SpectralGap.gapSet_empty_above_threshold",
+              "file": "formalization/Cloning/SpectralGapThreshold.lean"
+            }
+          ]
+        }
+      ],
+      "results": [
+        {
+          "label": "Universal cloner convergence",
+          "name": "Cloning.TensorCloning.eventually_uniform_prescribedUniversalChannel_payoff",
+          "file": "formalization/Cloning/TensorCloningPrescribedLimits.lean"
+        },
+        {
+          "label": "Compact-set physical minimax",
+          "name": "Cloning.TensorCloning.unknownSpectrumValue_tendsto_affine",
+          "file": "formalization/Cloning/SpectralAffineTheorem.lean"
+        },
+        {
+          "label": "Gap-constrained example",
+          "name": "Cloning.SpectralGap.gapSet_minimax_tendsto",
+          "file": "formalization/Cloning/SpectralGapThreshold.lean"
+        }
+      ],
+      "limitations": [
+        "Relative interior in a lower-dimensional spectral subset is insufficient. The interior must be taken in the full D−1 dimensional trace-one hyperplane.",
+        "For a singleton K, the universal cloner still has its stated fidelity, but a competitor may use the known spectrum and achieve the larger orbital value."
+      ],
+      "statement": "\\lim_{n\\to\\infty}\\sup_{\\mathcal M_n}\\inf_{p\\in K,\\,U\\in\\mathrm U(D)}F\\!\\left(\\mathcal M_n(\\rho_{p,U}^{\\otimes n}),\\rho_{p,U}^{\\otimes m_n}\\right)=\\inf_{p\\in K}F_{\\mathrm{univ}}(\\gamma,p).",
+      "manuscript_labels": [
+        "thm:unknown-optimum"
+      ]
+    },
+    {
+      "id": "grassmann",
+      "title": "Exact rank compression and projector-state optimality",
+      "summary": "Flat projector states are treated by exact representation identities rather than by taking a singular limit of the simple-spectrum theorem. Rank embeddings compress the physical Cartan channels, identify their fidelity loss, and support an independent finite-dimensional converse.",
+      "assumptions": [
+        "P is a literal Hermitian idempotent of rank r>0 in dimension D=r+k.",
+        "The nontrivial Grassmann family has 1≤r<D; the formal result also includes the trivial k=0 case.",
+        "The compression identities allow arbitrary positive supported spectra, and the channel identity applies to every complex input operator."
+      ],
+      "steps": [
+        {
+          "title": "Transport supported states through actual embeddings",
+          "explanation": "Embed the r-dimensional representation into the D-dimensional representation with zero-padded highest weight. The physical Gibbs operator, its trace, and its normalized density commute with zero-padding of the spectrum. This proves conditional support for arbitrary positive rank-r spectra, not only the flat state.",
+          "lean": [
+            {
+              "name": "Cloning.TensorLie.sectorGibbsDensity_padSpectrum",
+              "file": "formalization/Cloning/TensorPositiveSpectrumCompression.lean"
+            }
+          ]
+        },
+        {
+          "title": "Compress the Cartan channel exactly",
+          "explanation": "The constructed Cartan inclusion intertwines the rank embeddings. Inserting this commuting square into the channel formula gives the compression identity for every complex matrix X. Fidelity with a supported target ignores the complementary output block; isometric invariance and homogeneity then give the exact factor sqrt(R_μ/R_ν). In the Lean endpoint the second partition denotes the added weight ω, so the target is μ+ω.",
+          "lean": [
+            {
+              "name": "Cloning.TensorLie.physicalCartanMatrixChannel_rank_supported_compression",
+              "file": "formalization/Cloning/TensorRankCartanCompression.lean"
+            },
+            {
+              "name": "Cloning.TensorLie.nonnegativeCartanGibbsFidelity_padSpectrum",
+              "file": "formalization/Cloning/TensorPositiveSpectrumCompressionFidelity.lean"
+            }
+          ]
+        },
+        {
+          "title": "Specialize to flat sectors and attain the limit",
+          "explanation": "For the flat rank-r spectrum the internal r-dimensional sector state is maximally mixed. Covariance makes the internal transition exact on that state. The crossing dimension ratios therefore account for the entire sector fidelity; their asymptotics and Young concentration yield γ^(−r(D−r)/2), uniformly over the projector family.",
+          "lean": [
+            {
+              "name": "Cloning.TensorCloning.prescribedRankFlatChannel_uniform",
+              "file": "formalization/Cloning/TensorCloningPrescribedLimits.lean"
+            }
+          ]
+        },
+        {
+          "title": "Prove a finite converse for all channels",
+          "explanation": "Pinch the output into Schur blocks and average over the unitary orbit. Representation-theoretic projection moments and the weighted fidelity estimate bound every channel by two explicit dimension-ratio moments. This is a finite-sample inequality; no assumed singular LAN model is needed. Surjectivity of the unitary orbit identifies optimization over orbit parameters with optimization over all literal projectors.",
+          "lean": [
+            {
+              "name": "Cloning.PhysicalFlatConverse.minimaxValue_le_flatConverseBound",
+              "file": "formalization/Cloning/PhysicalFlatConverseFinite.lean"
+            },
+            {
+              "name": "Cloning.PhysicalFlatGrassmann.minimaxValue_eq_orbit",
+              "file": "formalization/Cloning/PhysicalFlatGrassmannTheorem.lean"
+            }
+          ]
+        },
+        {
+          "title": "Match the limit and record the available rate",
+          "explanation": "The finite bound tends to the same value as the constructed channel, proving the Grassmann minimax limit. The upper excess has an O(1/n) bound relative to the finite gain m/n. Replacing m/n by fixed γ at that rate additionally requires m=γn+O(1).",
+          "lean": [
+            {
+              "name": "Cloning.PhysicalFlatGrassmann.minimaxValue_tendsto",
+              "file": "formalization/Cloning/PhysicalFlatGrassmannTheorem.lean"
+            },
+            {
+              "name": "Cloning.PhysicalFlatConverse.minimaxValue_upper_excess_isBigO",
+              "file": "formalization/Cloning/PhysicalFlatRateBounded.lean"
+            }
+          ]
+        }
+      ],
+      "results": [
+        {
+          "label": "Exact rank-compression fidelity",
+          "name": "Cloning.TensorLie.nonnegativeCartanGibbsFidelity_padSpectrum",
+          "file": "formalization/Cloning/TensorPositiveSpectrumCompressionFidelity.lean"
+        },
+        {
+          "label": "Finite projector converse",
+          "name": "Cloning.PhysicalFlatConverse.minimaxValue_le_flatConverseBound",
+          "file": "formalization/Cloning/PhysicalFlatConverseFinite.lean"
+        },
+        {
+          "label": "Grassmann minimax theorem",
+          "name": "Cloning.PhysicalFlatGrassmann.minimaxValue_tendsto",
+          "file": "formalization/Cloning/PhysicalFlatGrassmannTheorem.lean"
+        }
+      ],
+      "limitations": [
+        "This theorem treats spectra flat on their support, not arbitrary nonflat rank-deficient spectra.",
+        "The proved O(1/n) statement is an upper-bound rate, not a rate of convergence of the attaining channel."
+      ],
+      "statement": "\\lim_{n\\to\\infty}\\sup_{\\mathcal M_n}\\inf_{P\\in\\mathrm{Gr}(r,D)}F\\!\\left(\\mathcal M_n((P/r)^{\\otimes n}),(P/r)^{\\otimes m_n}\\right)=\\gamma^{-r(D-r)/2}.",
+      "manuscript_labels": [
+        "lem:exact-compression",
+        "prop:grassmann-finite-converse",
+        "thm:grassmann"
+      ]
+    },
+    {
+      "id": "purify-clone-trace",
+      "title": "Purify–clone–trace: exact channels, limits, and guarantees",
+      "summary": "PCT is a fixed composition: random purification with a chosen rank bound, Werner cloning in the enlarged space, and partial trace of the purifying register. The proofs evaluate that physical construction and compare it with the sharp cloners, while also giving uniform lower guarantees beyond simple spectra.",
+      "assumptions": [
+        "The rank-bound channel uses a fixed purifying space of dimension r, so the pure-state cloning dimension is rD.",
+        "The full-rank limit assumes a positive definite density matrix with distinct eigenvalues in D≥2.",
+        "The projector comparison uses rank r and dimension D=r+k; strict loss requires r>1.",
+        "The data-processing lower guarantee applies to every density matrix of actual rank at most r, including singular and repeated spectra."
+      ],
+      "steps": [
+        {
+          "title": "Analyze the actual Werner output",
+          "explanation": "The physical Werner channel has an exact occupation-number expansion. Recovering it in Fock coordinates identifies its coefficients and proves trace-norm convergence to a product thermal law. This supplies a state-level limit, not only convergence of finitely many probabilities.",
+          "lean": [
+            {
+              "name": "Cloning.GeneralSymmetricOccupation.occupationRecovery_wernerOutput",
+              "file": "formalization/Cloning/WernerPhysicalPullback.lean"
+            },
+            {
+              "name": "Cloning.GeneralSymmetricOccupation.physical_werner_traceNorm_limit",
+              "file": "formalization/Cloning/WernerPhysicalPullback.lean"
+            },
+            {
+              "name": "Cloning.WernerAsymptotics.coefficient_eq_wernerWeight",
+              "file": "formalization/Cloning/WernerAsymptotics.lean"
+            }
+          ]
+        },
+        {
+          "title": "Evaluate full-environment PCT",
+          "explanation": "Transport the purification output through the physical construction and trace out the environment. Its limiting spectral and oscillator noise give pctValue, whose radical closed form is proved separately. The prescribed channel handles any initial m≤n by restriction and has the stated physical fidelity limit for every allowed density matrix.",
+          "lean": [
+            {
+              "name": "Cloning.PCTPrescribed.fullChannel_fidelity_tendsto",
+              "file": "formalization/Cloning/PCTPrescribedFull.lean"
+            },
+            {
+              "name": "Cloning.pctValue_closedForm",
+              "file": "formalization/Cloning/PCTClosedForm.lean"
+            }
+          ]
+        },
+        {
+          "title": "Establish strict asymptotic loss",
+          "explanation": "A scalar comparison shows pctValue<universalValue for γ>1 in dimension at least two. Together with the physical PCT limit and the evaluated universal cloner, this is a comparison between actual channel sequences. On projector states a finite support-factor identity instead yields an upper envelope with an additional classical loss, strictly below the sharp projector value for r>1.",
+          "lean": [
+            {
+              "name": "Cloning.pctValue_lt_universalValue",
+              "file": "formalization/Cloning/Main.lean"
+            },
+            {
+              "name": "Cloning.PhysicalFlatPCT.fidelity_eq_supportFactor",
+              "file": "formalization/Cloning/PhysicalFlatPCTTheorem.lean"
+            },
+            {
+              "name": "Cloning.PCTPrescribed.rankFidelity_limsup_lt_optimal",
+              "file": "formalization/Cloning/PCTPrescribedRankTheorem.lean"
+            }
+          ]
+        },
+        {
+          "title": "Retain a uniform guarantee on all rank-bounded inputs",
+          "explanation": "A purification in dimension rD and monotonicity under partial trace transfer Werner’s finite fidelity lower bound to the same fixed rank-bound PCT channel. The formal endpoint supplies the support and purification facts from the literal matrix-rank condition. The bound gives a certified finite sample ratio and an asymptotic lower bound uniform even for sample-dependent adversarial states.",
+          "lean": [
+            {
+              "name": "Cloning.PCTPrescribed.rankChannel_statePayoff_lower",
+              "file": "formalization/Cloning/PCTPrescribedRankGuarantee.lean"
+            },
+            {
+              "name": "Cloning.PCTPrescribed.rankChannel_uniform_sample_guarantee",
+              "file": "formalization/Cloning/PCTPrescribedRankGuarantee.lean"
+            },
+            {
+              "name": "Cloning.PCTPrescribed.rankChannel_uniform_asymptotic_lower",
+              "file": "formalization/Cloning/PCTPrescribedRankGuarantee.lean"
+            }
+          ]
+        }
+      ],
+      "results": [
+        {
+          "label": "Full PCT physical limit",
+          "name": "Cloning.PCTPrescribed.fullChannel_fidelity_tendsto",
+          "file": "formalization/Cloning/PCTPrescribedFull.lean"
+        },
+        {
+          "label": "Projector PCT upper bound",
+          "name": "Cloning.PCTPrescribed.rankFidelity_limsup_le",
+          "file": "formalization/Cloning/PCTPrescribedRankTheorem.lean"
+        },
+        {
+          "label": "Uniform rank-bound sample guarantee",
+          "name": "Cloning.PCTPrescribed.rankChannel_uniform_sample_guarantee",
+          "file": "formalization/Cloning/PCTPrescribedRankGuarantee.lean"
+        }
+      ],
+      "limitations": [
+        "The projector PCT comparison gives a limsup bound and strict inequality, not existence of a fixed-gain limiting fidelity.",
+        "A lower guarantee valid on every rank-bounded state does not prove PCT is minimax optimal on that entire class."
+      ],
+      "manuscript_labels": [
+        "lem:Werner-Fock",
+        "thm:pct-comparison",
+        "prop:grassmann-pct-comparison"
+      ]
+    },
+    {
+      "id": "small-errors",
+      "title": "Small errors, rank boundaries, and noncommuting limits",
+      "summary": "The small-error results begin with explicit scalar expansions and then transfer them to actual channel fidelities. They also identify where fixed-spectrum asymptotics fail to remain uniform: near rank loss, near purity, and near a repeated eigenvalue.",
+      "assumptions": [
+        "The full-rank quadratic expansions fix a positive simple spectrum before taking gain γ=1+δ down to one.",
+        "The physical target brackets use a fixed slack 0<η<1 and prescribed output sequences with the required gain.",
+        "The projector envelope uses 0<δ<1/(2r); physical target brackets require a nontrivial complement D−r>0."
+      ],
+      "steps": [
+        {
+          "title": "Expand squared infidelity",
+          "explanation": "Explicit thermal formulas give limits of (1−F(1+δ,p)²)/δ² for known-spectrum, universal, and PCT values. Their positive coefficients determine the √ε scale of the allowable additional-copy ratio at squared-infidelity target ε. Slack factors 1−η and 1+η produce strict scalar brackets.",
+          "lean": [
+            {
+              "name": "Cloning.ValueExpansion.known_infidelity_div_sq_tendsto",
+              "file": "formalization/Cloning/CloningValueExpansionThreshold.lean"
+            },
+            {
+              "name": "Cloning.ValueExpansion.universal_infidelity_div_sq_tendsto",
+              "file": "formalization/Cloning/CloningValueExpansionThreshold.lean"
+            },
+            {
+              "name": "Cloning.ValueExpansion.pct_infidelity_div_sq_tendsto",
+              "file": "formalization/Cloning/CloningValueExpansionThreshold.lean"
+            },
+            {
+              "name": "Cloning.ValueExpansion.known_target_brackets",
+              "file": "formalization/Cloning/CloningValueExpansionTarget.lean"
+            }
+          ]
+        },
+        {
+          "title": "Transfer strict margins to finite samples",
+          "explanation": "At each fixed small error, the channel or minimax fidelity converges to its explicit fixed-gain limit. A strict scalar margin therefore persists for all sufficiently large n. This gives two-sided physical brackets for the known-spectrum optimum, full PCT, and prescribed universal cloner; the universal brackets hold uniformly over eigenbases.",
+          "lean": [
+            {
+              "name": "Cloning.ValueExpansion.known_physical_target_brackets",
+              "file": "formalization/Cloning/PhysicalCloningSmallError.lean"
+            },
+            {
+              "name": "Cloning.ValueExpansion.pct_physical_target_brackets",
+              "file": "formalization/Cloning/PhysicalCloningSmallError.lean"
+            },
+            {
+              "name": "Cloning.ValueExpansion.universal_physical_target_brackets",
+              "file": "formalization/Cloning/PhysicalCloningSmallError.lean"
+            }
+          ]
+        },
+        {
+          "title": "Use envelopes for projector PCT",
+          "explanation": "The finite support factor isolates an internal error. Purity estimates control that internal term and yield liminf/limsup envelopes for the physical squared infidelity. Both envelopes have first-order coefficient r(D−r), matching optimal projector cloning, without requiring a fixed-gain PCT fidelity limit.",
+          "lean": [
+            {
+              "name": "Cloning.PCTProjectorPurity.physical_error_liminf_limsup",
+              "file": "formalization/Cloning/PCTProjectorPurityEnvelopeLimits.lean"
+            },
+            {
+              "name": "Cloning.PCTProjectorPurity.physical_small_gain_coefficient",
+              "file": "formalization/Cloning/PCTProjectorPurityEnvelopeTheorem.lean"
+            },
+            {
+              "name": "Cloning.PCTProjectorPurity.physical_target_brackets",
+              "file": "formalization/Cloning/PCTProjectorPurityTargets.lean"
+            }
+          ]
+        },
+        {
+          "title": "Identify the loss of uniformity at boundaries",
+          "explanation": "If the smallest eigenvalue tends to zero, the extreme eigenvalue ratio tends to zero and a single positive term forces the quadratic coefficients to diverge. A separate near-pure theorem treats the joint scaling q=o(δ). These are different regimes from a fixed-spectrum quadratic expansion.",
+          "lean": [
+            {
+              "name": "Cloning.ValueExpansion.knownCoefficient_tendsto_atTop_of_smallest",
+              "file": "formalization/Cloning/CloningValueBoundaryCoefficients.lean"
+            },
+            {
+              "name": "Cloning.ValueExpansion.universalCoefficient_tendsto_atTop_of_smallest",
+              "file": "formalization/Cloning/CloningValueBoundaryCoefficients.lean"
+            },
+            {
+              "name": "Cloning.ValueExpansion.pctCoefficient_tendsto_atTop_of_smallest",
+              "file": "formalization/Cloning/CloningValueBoundaryCoefficients.lean"
+            },
+            {
+              "name": "Cloning.Thermal.modeFactor_near_pure_infidelity",
+              "file": "formalization/Cloning/ThermalNearPure.lean"
+            }
+          ]
+        },
+        {
+          "title": "Exhibit noncommuting physical limits",
+          "explanation": "An explicit simple qubit spectrum approaches the maximally mixed state. At fixed sample sizes, a constant preparation channel has orbit-uniform fidelity tending to one and the all-channel optimum follows. Taking the large-sample cloning limit first instead gives the limiting orbital formula. The theorem proves these two iterated limits disagree for the actual physical minimax.",
+          "lean": [
+            {
+              "name": "Cloning.QubitDegeneracy.concrete_noncommuting_limits",
+              "file": "formalization/Cloning/QubitDegeneracy.lean"
+            }
+          ]
+        }
+      ],
+      "results": [
+        {
+          "label": "Physical universal target brackets",
+          "name": "Cloning.ValueExpansion.universal_physical_target_brackets",
+          "file": "formalization/Cloning/PhysicalCloningSmallError.lean"
+        },
+        {
+          "label": "Projector PCT leading coefficient",
+          "name": "Cloning.PCTProjectorPurity.physical_small_gain_coefficient",
+          "file": "formalization/Cloning/PCTProjectorPurityEnvelopeTheorem.lean"
+        },
+        {
+          "label": "Physical qubit noncommuting limits",
+          "name": "Cloning.QubitDegeneracy.concrete_noncommuting_limits",
+          "file": "formalization/Cloning/QubitDegeneracy.lean"
+        }
+      ],
+      "limitations": [
+        "The iterated asymptotics take n→∞ at fixed positive additional-copy ratio, then send that ratio to zero. Equivalently, target brackets hold for each sufficiently small ε and then for n above an ε-dependent cutoff.",
+        "No uniform joint finite-sample/small-error rate is inferred.",
+        "The universal physical brackets describe the specified universal cloner; they do not assert pointwise optimality when p is supplied to a competitor."
+      ],
+      "manuscript_labels": [
+        "prop:pct-projector-small-error"
+      ]
+    },
+    {
+      "id": "spectral-comparison",
+      "title": "Spectral order and what is known for all states",
+      "summary": "The explicit formulas support comparison theorems and rigorous bounds on the harder all-density problem. Ratio-wise monotonicity gives useful spectral order, but neither majorization nor the existing all-state bounds determines the exact global optimum.",
+      "assumptions": [
+        "Ratio comparisons use normalized decreasing simple spectra of the same dimension and γ>1.",
+        "The all-density minimax ranges over every physical density matrix, including rank-deficient and repeated-eigenvalue states.",
+        "Large-gain statements concern the explicit upper and lower bounds as γ→∞, not a proved exact all-state value."
+      ],
+      "steps": [
+        {
+          "title": "Differentiate the mode factor",
+          "explanation": "The one-mode derivative determines how fidelity changes as each ratio p_j/p_i changes. Multiplying positive factors gives nonstrict and strict comparison results for orbitalValue and universalValue. Ratio-wise order implies every required prefix-sum inequality for majorization, but this implication cannot be reversed for the fidelity comparison.",
+          "lean": [
+            {
+              "name": "Cloning.ValueComparison.modeFactor_hasDerivAt",
+              "file": "formalization/Cloning/CloningValueComparisonMonotone.lean"
+            },
+            {
+              "name": "Cloning.ValueComparison.orbitalValue_mono_ratios",
+              "file": "formalization/Cloning/CloningValueComparisonMonotone.lean"
+            },
+            {
+              "name": "Cloning.ValueComparison.universalValue_strict_mono_ratios",
+              "file": "formalization/Cloning/CloningValueComparisonMonotone.lean"
+            },
+            {
+              "name": "Cloning.ValueComparison.spectrumMajorizedBy_of_ratios",
+              "file": "formalization/Cloning/SpectralRatioMajorization.lean"
+            }
+          ]
+        },
+        {
+          "title": "Give an exact majorization counterexample",
+          "explanation": "At gain ten, the spectra (0.8,0.16,0.04) and (0.9,0.06,0.04) have the required majorization relation but violate the proposed fidelity ordering. Rational square-root inequalities certify separation of the scalar values. The proof does not rely on floating-point numerical evaluation.",
+          "lean": [
+            {
+              "name": "Cloning.ValueComparison.majorization_does_not_order_orbital",
+              "file": "formalization/Cloning/SpectralRatioMajorizationCounterexample.lean"
+            },
+            {
+              "name": "Cloning.ValueComparison.majorization_does_not_order_universal",
+              "file": "formalization/Cloning/SpectralRatioMajorizationCounterexample.lean"
+            }
+          ]
+        },
+        {
+          "title": "Evaluate the infimum over simple spectra",
+          "explanation": "A normalized geometric family makes every smaller-to-larger eigenvalue ratio tend to zero. The corresponding mode factors approach their boundary values and attain the infimum in the limiting sense. This explicitly evaluates the scalar upper bound used in the all-density converse; existence of such spectra is part of the proof.",
+          "lean": [
+            {
+              "name": "Cloning.ValueComparison.geometricSequence_ratio_tendsto",
+              "file": "formalization/Cloning/CloningValueComparisonGeometric.lean"
+            },
+            {
+              "name": "Cloning.ValueComparison.universalValue_iInf",
+              "file": "formalization/Cloning/CloningValueComparisonInfimum.lean"
+            }
+          ]
+        },
+        {
+          "title": "Combine independent all-density bounds",
+          "explanation": "Restricting the adversarial family to suitable compact spectral sets gives an upper bound for the all-state optimum. The full-rank-bound PCT guarantee supplies a lower bound valid on every density matrix. These give a liminf/limsup sandwich with explicit but generally different quantities, rather than an equality.",
+          "lean": [
+            {
+              "name": "Cloning.PhysicalAllStateMinimax.all_density_minimax_bounds",
+              "file": "formalization/Cloning/PhysicalAllStateMinimaxBounds.lean"
+            }
+          ]
+        },
+        {
+          "title": "Compare their large-gain scales",
+          "explanation": "Algebraic factorization identifies the upper bound’s leading constant 2^((D−1)/2) and decay exponent (D²−1)/4. The available lower bound has exponent (D²−1)/2. This quantified gap records what is still unknown about the all-density minimax problem.",
+          "lean": [
+            {
+              "name": "Cloning.ValueComparison.allStateUpperBound_largeGain_tendsto",
+              "file": "formalization/Cloning/CloningValueComparisonLargeGain.lean"
+            },
+            {
+              "name": "Cloning.ValueComparison.allStateLowerBound_largeGain_ratio",
+              "file": "formalization/Cloning/CloningValueComparisonLargeGain.lean"
+            }
+          ]
+        }
+      ],
+      "results": [
+        {
+          "label": "Exact scalar spectral infimum",
+          "name": "Cloning.ValueComparison.universalValue_iInf",
+          "file": "formalization/Cloning/CloningValueComparisonInfimum.lean"
+        },
+        {
+          "label": "All-density minimax bounds",
+          "name": "Cloning.PhysicalAllStateMinimax.all_density_minimax_bounds",
+          "file": "formalization/Cloning/PhysicalAllStateMinimaxBounds.lean"
+        },
+        {
+          "label": "Majorization counterexample",
+          "name": "Cloning.ValueComparison.majorization_does_not_order_universal",
+          "file": "formalization/Cloning/SpectralRatioMajorizationCounterexample.lean"
+        }
+      ],
+      "limitations": [
+        "The exact all-density asymptotic minimax value remains open, including whether PCT attains it.",
+        "The conjectured general degenerate-orbit and nonflat fixed-rank local formulas are not promoted to proved theorems."
+      ],
+      "statement": "\\gamma^{-(D^2-1)/2}\\le\\liminf_n V_n^{\\mathrm{all}}\\le\\limsup_n V_n^{\\mathrm{all}}\\le F_{\\mathrm{cl}}(\\gamma,D)\\,\\gamma^{-D(D-1)/4}.",
+      "manuscript_labels": []
+    }
+  ],
+  "scope": {
+    "proved": "The physical known-spectrum optimum; one spectrum-independent cloner with compact-uniform fidelity and the regular compact-set unknown-spectrum minimax theorem; the literal projector-state minimax theorem; full-environment PCT limits and rank-bound comparisons and guarantees; the named representation, probabilistic, Gaussian, LAN, compression, and asymptotic statements linked throughout these guides. The full statement correspondence is recorded in formalization/PROOF_MAP.md.",
+    "open": [
+      "The conjectured formula for general degenerate-spectrum unitary orbits.",
+      "The conjectured local formula for general nonflat fixed-rank spectra.",
+      "The exact all-density asymptotic minimax value and whether PCT attains it."
+    ],
+    "fidelity": "F always means root fidelity, Tr sqrt(sqrt(ρ) σ sqrt(ρ)). Squared fidelity and squared infidelity are written explicitly as F² and 1−F². Physical dimension is denoted D here; many Lean statements use D=d+1, while projector statements use D=r+k. Compact-set optimality requires regular closure in the full trace-one affine hyperplane. Small-error statements use sample-size limits at fixed gain before gain tends to one; no joint rate is asserted."
+  }
+}

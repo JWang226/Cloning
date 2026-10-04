@@ -1,0 +1,811 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="An offline guide to the Lean formalization of asymptotic mixed-state quantum cloning. Exact source, proof routes, and audited scope.">
+<title>YoungRounding · Lean source · Cloning proof wiki</title>
+<link rel="stylesheet" href="../assets/site.css?v=1811c00ea983">
+<script>window.PROOF_ROOT="../";</script>
+<script defer src="../assets/vendor/katex/katex.min.js"></script>
+<script defer src="../assets/search-index.js?v=850aee981cdc"></script>
+<script defer src="../assets/site.js?v=4bfaac1f06b1"></script>
+</head><body><a class="skip-link" href="#main">Skip to content</a>
+<div class="site-shell"><aside class="sidebar" id="site-navigation">
+<a class="brand" href="../index.html"><span class="brand-mark">C</span><span>Cloning<span class="small muted">A Lean proof wiki</span></span></a>
+<nav aria-label="Main navigation"><div class="nav-section">Explore</div><a class="nav-link" href="../index.html">Overview</a><a class="nav-link" href="../guides/index.html">Proof guide</a><a class="nav-link" href="../results/index.html">27 named results</a><a class="nav-link active" href="../source/index.html" aria-current="page">Lean source</a><a class="nav-link" href="../verification.html">Verification</a><a class="nav-link" href="../scope.html">Scope &amp; conventions</a>
+<div class="nav-section">Read the proof</div><a class="nav-link" href="../guides/physical-problem.html"><span class="nav-number">01</span> The physical problem and its conventions</a><a class="nav-link" href="../guides/young-laws.html"><span class="nav-number">02</span> Young labels: concentration and the local Gaussian law</a><a class="nav-link" href="../guides/cartan-sectors.html"><span class="nav-number">03</span> From PBW frames to uniform Cartan-sector fidelity</a><a class="nav-link" href="../guides/lifted-kernels.html"><span class="nav-number">04</span> Lifted channels, randomized dilation, and factorization</a><a class="nav-link" href="../guides/gaussian-optimum.html"><span class="nav-number">05</span> Gaussian amplification against arbitrary competitors</a><a class="nav-link" href="../guides/physical-lan.html"><span class="nav-number">06</span> Constructed LAN and fidelity transfer</a><a class="nav-link" href="../guides/known-spectrum.html"><span class="nav-number">07</span> The known-spectrum optimum</a><a class="nav-link" href="../guides/unknown-spectrum.html"><span class="nav-number">08</span> One universal cloner and the compact-set optimum</a><a class="nav-link" href="../guides/grassmann.html"><span class="nav-number">09</span> Exact rank compression and projector-state optimality</a><a class="nav-link" href="../guides/purify-clone-trace.html"><span class="nav-number">10</span> Purify–clone–trace: exact channels, limits, and guarantees</a><a class="nav-link" href="../guides/small-errors.html"><span class="nav-number">11</span> Small errors, rank boundaries, and noncommuting limits</a><a class="nav-link" href="../guides/spectral-comparison.html"><span class="nav-number">12</span> Spectral order and what is known for all states</a></nav>
+<div class="sidebar-footer"><span class="badge">Lean 4</span><p>Manuscript → proof → source</p>
+<a href="https://github.com/JWang226/Cloning">Repository ↗</a></div></aside>
+<div class="main-shell"><header class="topbar">
+<button id="nav-toggle" class="button secondary" aria-controls="site-navigation" aria-expanded="false" aria-label="Toggle navigation">Menu</button>
+<div class="search-wrap"><label class="sr-only" for="site-search">Search the proof wiki</label>
+<input id="site-search" type="search" placeholder="Search results, concepts, or Lean names…" autocomplete="off" aria-controls="search-results" aria-expanded="false" role="combobox" aria-autocomplete="list">
+<div id="search-results" class="search-results" role="listbox" hidden></div></div>
+<span class="small muted topbar-label">Offline · exact source</span></header>
+<main id="main" class="content"><div class="eyebrow">Exact Lean source</div><h1 class="source-title">YoungRounding</h1><p><code>formalization/Cloning/YoungRounding.lean</code></p><p class="small muted">Source hash: <code>80672c98d9780b762aa2d119cc109731d3193df847dbc467bfd2a9ad194dedd2</code></p><div class="actions"><a class="button secondary" href="raw/Cloning.YoungRounding.lean">Download .lean</a><a class="button secondary" href="https://github.com/JWang226/Cloning/blob/main/formalization/Cloning/YoungRounding.lean">View on GitHub ↗</a><a href="index.html">All modules</a></div><p class="small muted">Full source copied without mathematical changes from the snapshot whose input hash matches the passing audit. Select a line number for a stable source pointer.</p><details><summary>Declarations in this module</summary><div class="module-declarations"><a href="#L32"><span class="badge">definition</span> <code>Cloning.YoungRounding.cell</code></a><a href="#L35"><span class="badge">definition</span> <code>Cloning.YoungRounding.round</code></a><a href="#L38"><span class="badge">theorem</span> <code>Cloning.YoungRounding.measurable_round</code></a><a href="#L44"><span class="badge">theorem</span> <code>Cloning.YoungRounding.round_eq_iff</code></a><a href="#L49"><span class="badge">theorem</span> <code>Cloning.YoungRounding.cell_eq_fiber</code></a><a href="#L53"><span class="badge">theorem</span> <code>Cloning.YoungRounding.measurableSet_cell</code></a><a href="#L58"><span class="badge">theorem</span> <code>Cloning.YoungRounding.cells_disjoint</code></a><a href="#L65"><span class="badge">theorem</span> <code>Cloning.YoungRounding.cells_cover</code></a><a href="#L70"><span class="badge">theorem</span> <code>Cloning.YoungRounding.volume_cell</code></a><a href="#L75"><span class="badge">definition</span> <code>Cloning.YoungRounding.ditherMeasure</code></a><a href="#L82"><span class="badge">definition</span> <code>Cloning.YoungRounding.dilatedRound</code></a><a href="#L86"><span class="badge">theorem</span> <code>Cloning.YoungRounding.measurable_dilatedRound</code></a><a href="#L93"><span class="badge">definition</span> <code>Cloning.YoungRounding.roundingPMF</code></a><a href="#L100"><span class="badge">theorem</span> <code>Cloning.YoungRounding.roundingPMF_sum</code></a><a href="#L107"><span class="badge">theorem</span> <code>Cloning.YoungRounding.roundingPMF_eq_overlap</code></a><a href="#L122"><span class="badge">theorem</span> <code>Cloning.YoungRounding.roundingPMF_support</code></a><a href="#L138"><span class="badge">definition</span> <code>Cloning.YoungRounding.transport</code></a><a href="#L141"><span class="badge">theorem</span> <code>Cloning.YoungRounding.transport_apply</code></a><a href="#L150"><span class="badge">definition</span> <code>Cloning.YoungRounding.binMass</code></a><a href="#L153"><span class="badge">theorem</span> <code>Cloning.YoungRounding.hasSum_binMass</code></a><a href="#L168"><span class="badge">theorem</span> <code>Cloning.YoungRounding.binMass_nonneg</code></a><a href="#L174"><span class="badge">theorem</span> <code>Cloning.YoungRounding.binMass_l1_contraction</code></a><a href="#L190"><span class="badge">theorem</span> <code>Cloning.YoungRounding.density_l1_local_tail</code></a><a href="#L218"><span class="badge">theorem</span> <code>Cloning.YoungRounding.density_l1_local_uniform_tail</code></a><a href="#L237"><span class="badge">theorem</span> <code>Cloning.YoungRounding.binMass_l1_local_uniform_tail</code></a><a href="#L252"><span class="badge">theorem</span> <code>Cloning.YoungRounding.density_l1_uniform_of_local_and_tails</code></a><a href="#L282"><span class="badge">theorem</span> <code>Cloning.YoungRounding.binMass_l1_uniform_of_local_and_tails</code></a><a href="#L302"><span class="badge">definition</span> <code>Cloning.YoungRounding.interpolate</code></a><a href="#L305"><span class="badge">theorem</span> <code>Cloning.YoungRounding.interpolate_eq_on_cell</code></a><a href="#L309"><span class="badge">theorem</span> <code>Cloning.YoungRounding.integrableOn_interpolate</code></a><a href="#L317"><span class="badge">theorem</span> <code>Cloning.YoungRounding.integral_interpolate_cell</code></a><a href="#L323"><span class="badge">theorem</span> <code>Cloning.YoungRounding.integral_norm_interpolate_cell</code></a><a href="#L330"><span class="badge">theorem</span> <code>Cloning.YoungRounding.integrable_interpolate</code></a><a href="#L338"><span class="badge">theorem</span> <code>Cloning.YoungRounding.integral_interpolate</code></a><a href="#L346"><span class="badge">theorem</span> <code>Cloning.YoungRounding.interpolate_l1_isometry</code></a><a href="#L352"><span class="badge">theorem</span> <code>Cloning.YoungRounding.interpolate_affinity</code></a><a href="#L360"><span class="badge">definition</span> <code>Cloning.YoungRounding.cellAverage</code></a><a href="#L363"><span class="badge">theorem</span> <code>Cloning.YoungRounding.integrable_cellAverage</code></a><a href="#L367"><span class="badge">theorem</span> <code>Cloning.YoungRounding.integral_cellAverage</code></a><a href="#L372"><span class="badge">theorem</span> <code>Cloning.YoungRounding.cellAverage_l1_contraction</code></a><a href="#L380"><span class="badge">theorem</span> <code>Cloning.YoungRounding.cellAverage_interpolate</code></a><a href="#L390"><span class="badge">definition</span> <code>Cloning.YoungRounding.affineDensity</code></a><a href="#L393"><span class="badge">theorem</span> <code>Cloning.YoungRounding.integral_affineDensity</code></a><a href="#L404"><span class="badge">theorem</span> <code>Cloning.YoungRounding.integrable_affineDensity</code></a><a href="#L411"><span class="badge">theorem</span> <code>Cloning.YoungRounding.affineDensity_l1_isometry</code></a><a href="#L423"><span class="badge">definition</span> <code>Cloning.YoungRounding.affinePull</code></a><a href="#L426"><span class="badge">theorem</span> <code>Cloning.YoungRounding.affinePull_eq_affineDensity</code></a><a href="#L433"><span class="badge">theorem</span> <code>Cloning.YoungRounding.integral_affinePull</code></a><a href="#L438"><span class="badge">theorem</span> <code>Cloning.YoungRounding.integrable_affinePull</code></a><a href="#L443"><span class="badge">theorem</span> <code>Cloning.YoungRounding.affineDensity_affinePull</code></a><a href="#L451"><span class="badge">definition</span> <code>Cloning.YoungRounding.scaledCellAverage</code></a><a href="#L454"><span class="badge">theorem</span> <code>Cloning.YoungRounding.integrable_scaledCellAverage</code></a><a href="#L458"><span class="badge">theorem</span> <code>Cloning.YoungRounding.integral_scaledCellAverage</code></a><a href="#L464"><span class="badge">theorem</span> <code>Cloning.YoungRounding.scaledCellAverage_l1_contraction</code></a><a href="#L477"><span class="badge">theorem</span> <code>Cloning.YoungRounding.scaledCellAverage_eq_integral</code></a><a href="#L485"><span class="badge">theorem</span> <code>Cloning.YoungRounding.scaledCellAverage_nonneg</code></a><a href="#L491"><span class="badge">theorem</span> <code>Cloning.YoungRounding.same_scaled_cell_dist_le</code></a><a href="#L514"><span class="badge">theorem</span> <code>Cloning.YoungRounding.scaledCellAverage_error_le</code></a><a href="#L537"><span class="badge">theorem</span> <code>Cloning.YoungRounding.integral_compl_closedBall_tendsto_zero</code></a><a href="#L552"><span class="badge">theorem</span> <code>Cloning.YoungRounding.scaledCellAverage_l1_tendsto_uniform_translation</code></a><a href="#L585"><span class="badge">theorem</span> <code>Cloning.YoungRounding.cast_add_mem_cell_iff</code></a><a href="#L598"><span class="badge">theorem</span> <code>Cloning.YoungRounding.roundingPMF_eq_cell_overlap</code></a><a href="#L612"><span class="badge">theorem</span> <code>Cloning.YoungRounding.binMass_affineDensity_zero</code></a><a href="#L635"><span class="badge">theorem</span> <code>Cloning.YoungRounding.binMass_dilated_interpolate</code></a><a href="#L656"><span class="badge">theorem</span> <code>Cloning.YoungRounding.transport_toReal</code></a><a href="#L666"><span class="badge">theorem</span> <code>Cloning.YoungRounding.rounding_intertwining</code></a><a href="#L676"><span class="badge">theorem</span> <code>Cloning.YoungRounding.affinePull_affineDensity</code></a><a href="#L683"><span class="badge">definition</span> <code>Cloning.YoungRounding.preRoundedDensity</code></a><a href="#L688"><span class="badge">definition</span> <code>Cloning.YoungRounding.roundedDensity</code></a><a href="#L692"><span class="badge">theorem</span> <code>Cloning.YoungRounding.rounding_intertwining_scaled</code></a><a href="#L698"><span class="badge">theorem</span> <code>Cloning.YoungRounding.integrable_preRoundedDensity</code></a><a href="#L704"><span class="badge">theorem</span> <code>Cloning.YoungRounding.preRoundedDensity_nonneg</code></a><a href="#L711"><span class="badge">theorem</span> <code>Cloning.YoungRounding.integral_preRoundedDensity</code></a><a href="#L719"><span class="badge">theorem</span> <code>Cloning.YoungRounding.roundedDensity_l1_comparison</code></a><a href="#L749"><span class="badge">theorem</span> <code>Cloning.YoungRounding.roundedDensity_l1_of_local_limit</code></a></div></details><div class="code-wrap source-wrap"><pre class="source-lines"><code><span class="source-line" id="L1"><a class="line-no" href="#L1" aria-label="Line 1">1</a><span class="line-code">import Cloning.Rounding</span></span>
+<span class="source-line" id="L2"><a class="line-no" href="#L2" aria-label="Line 2">2</a><span class="line-code">import Cloning.CountableScheffe</span></span>
+<span class="source-line" id="L3"><a class="line-no" href="#L3" aria-label="Line 3">3</a><span class="line-code">import Mathlib.MeasureTheory.Function.Floor</span></span>
+<span class="source-line" id="L4"><a class="line-no" href="#L4" aria-label="Line 4">4</a><span class="line-code">import Mathlib.MeasureTheory.Measure.Lebesgue.Basic</span></span>
+<span class="source-line" id="L5"><a class="line-no" href="#L5" aria-label="Line 5">5</a><span class="line-code">import Mathlib.MeasureTheory.Measure.Haar.NormedSpace</span></span>
+<span class="source-line" id="L6"><a class="line-no" href="#L6" aria-label="Line 6">6</a><span class="line-code">import Mathlib.MeasureTheory.Group.Integral</span></span>
+<span class="source-line" id="L7"><a class="line-no" href="#L7" aria-label="Line 7">7</a><span class="line-code">import Mathlib.Topology.UniformSpace.HeineCantor</span></span>
+<span class="source-line" id="L8"><a class="line-no" href="#L8" aria-label="Line 8">8</a><span class="line-code">import Mathlib.MeasureTheory.Integral.Bochner.Set</span></span>
+<span class="source-line" id="L9"><a class="line-no" href="#L9" aria-label="Line 9">9</a><span class="line-code">import Mathlib.Probability.ProbabilityMassFunction.Monad</span></span>
+<span class="source-line" id="L10"><a class="line-no" href="#L10" aria-label="Line 10">10</a><span class="line-code"> </span></span>
+<span class="source-line" id="L11"><a class="line-no" href="#L11" aria-label="Line 11">11</a><span class="line-code">/-!</span></span>
+<span class="source-line" id="L12"><a class="line-no" href="#L12" aria-label="Line 12">12</a><span class="line-code"># Actual lattice cells and randomized rounding</span></span>
+<span class="source-line" id="L13"><a class="line-no" href="#L13" aria-label="Line 13">13</a><span class="line-code"> </span></span>
+<span class="source-line" id="L14"><a class="line-no" href="#L14" aria-label="Line 14">14</a><span class="line-code">The coordinate space here is `ι → ℝ`, where `ι` indexes the first `d-1`</span></span>
+<span class="source-line" id="L15"><a class="line-no" href="#L15" aria-label="Line 15">15</a><span class="line-code">coordinates of the manuscript&#x27;s affine lattice.  The last coordinate is</span></span>
+<span class="source-line" id="L16"><a class="line-no" href="#L16" aria-label="Line 16">16</a><span class="line-code">recovered by `Cloning.Rounding.completeLast`.  Lebesgue measure in these</span></span>
+<span class="source-line" id="L17"><a class="line-no" href="#L17" aria-label="Line 17">17</a><span class="line-code">coordinates gives the unit cell volume one; the common Jacobian `√d` for</span></span>
+<span class="source-line" id="L18"><a class="line-no" href="#L18" aria-label="Line 18">18</a><span class="line-code">the induced hyperplane volume cancels from all probabilities.</span></span>
+<span class="source-line" id="L19"><a class="line-no" href="#L19" aria-label="Line 19">19</a><span class="line-code"> </span></span>
+<span class="source-line" id="L20"><a class="line-no" href="#L20" aria-label="Line 20">20</a><span class="line-code">The rounding distribution is constructed by pushing forward restricted</span></span>
+<span class="source-line" id="L21"><a class="line-no" href="#L21" aria-label="Line 21">21</a><span class="line-code">Lebesgue measure, rather than by supplying a row-sum assumption.</span></span>
+<span class="source-line" id="L22"><a class="line-no" href="#L22" aria-label="Line 22">22</a><span class="line-code">-/</span></span>
+<span class="source-line" id="L23"><a class="line-no" href="#L23" aria-label="Line 23">23</a><span class="line-code"> </span></span>
+<span class="source-line" id="L24"><a class="line-no" href="#L24" aria-label="Line 24">24</a><span class="line-code">noncomputable section</span></span>
+<span class="source-line" id="L25"><a class="line-no" href="#L25" aria-label="Line 25">25</a><span class="line-code">open MeasureTheory Set Filter</span></span>
+<span class="source-line" id="L26"><a class="line-no" href="#L26" aria-label="Line 26">26</a><span class="line-code">open scoped BigOperators ENNReal Topology</span></span>
+<span class="source-line" id="L27"><a class="line-no" href="#L27" aria-label="Line 27">27</a><span class="line-code"> </span></span>
+<span class="source-line" id="L28"><a class="line-no" href="#L28" aria-label="Line 28">28</a><span class="line-code">namespace Cloning.YoungRounding</span></span>
+<span class="source-line" id="L29"><a class="line-no" href="#L29" aria-label="Line 29">29</a><span class="line-code"> </span></span>
+<span class="source-line" id="L30"><a class="line-no" href="#L30" aria-label="Line 30">30</a><span class="line-code">variable {ι : Type*} [Fintype ι]</span></span>
+<span class="source-line" id="L31"><a class="line-no" href="#L31" aria-label="Line 31">31</a><span class="line-code"> </span></span>
+<span class="source-line" id="L32"><a class="line-no" href="#L32" aria-label="Line 32">32</a><span class="line-code">def cell (z : ι → ℤ) : Set (ι → ℝ) :=</span></span>
+<span class="source-line" id="L33"><a class="line-no" href="#L33" aria-label="Line 33">33</a><span class="line-code">  Set.pi Set.univ fun i ↦ Set.Ico ((z i : ℝ) - 1 / 2) ((z i : ℝ) + 1 / 2)</span></span>
+<span class="source-line" id="L34"><a class="line-no" href="#L34" aria-label="Line 34">34</a><span class="line-code"> </span></span>
+<span class="source-line" id="L35"><a class="line-no" href="#L35" aria-label="Line 35">35</a><span class="line-code">def round (x : ι → ℝ) : ι → ℤ := fun i ↦ Rounding.nearest (x i)</span></span>
+<span class="source-line" id="L36"><a class="line-no" href="#L36" aria-label="Line 36">36</a><span class="line-code"> </span></span>
+<span class="source-line" id="L37"><a class="line-no" href="#L37" aria-label="Line 37">37</a><span class="line-code">omit [Fintype ι] in</span></span>
+<span class="source-line" id="L38"><a class="line-no" href="#L38" aria-label="Line 38">38</a><span class="line-code">theorem measurable_round : Measurable (round (ι := ι)) := by</span></span>
+<span class="source-line" id="L39"><a class="line-no" href="#L39" aria-label="Line 39">39</a><span class="line-code">  apply measurable_pi_lambda</span></span>
+<span class="source-line" id="L40"><a class="line-no" href="#L40" aria-label="Line 40">40</a><span class="line-code">  intro i</span></span>
+<span class="source-line" id="L41"><a class="line-no" href="#L41" aria-label="Line 41">41</a><span class="line-code">  exact Int.measurable_floor.comp ((measurable_pi_apply i).add_const (1 / 2))</span></span>
+<span class="source-line" id="L42"><a class="line-no" href="#L42" aria-label="Line 42">42</a><span class="line-code"> </span></span>
+<span class="source-line" id="L43"><a class="line-no" href="#L43" aria-label="Line 43">43</a><span class="line-code">omit [Fintype ι] in</span></span>
+<span class="source-line" id="L44"><a class="line-no" href="#L44" aria-label="Line 44">44</a><span class="line-code">theorem round_eq_iff (x : ι → ℝ) (z : ι → ℤ) : round x = z ↔ x ∈ cell z := by</span></span>
+<span class="source-line" id="L45"><a class="line-no" href="#L45" aria-label="Line 45">45</a><span class="line-code">  simp only [funext_iff, round, cell, Set.mem_pi, Set.mem_univ, true_implies,</span></span>
+<span class="source-line" id="L46"><a class="line-no" href="#L46" aria-label="Line 46">46</a><span class="line-code">    Set.mem_Ico, Rounding.nearest_eq_iff]</span></span>
+<span class="source-line" id="L47"><a class="line-no" href="#L47" aria-label="Line 47">47</a><span class="line-code"> </span></span>
+<span class="source-line" id="L48"><a class="line-no" href="#L48" aria-label="Line 48">48</a><span class="line-code">omit [Fintype ι] in</span></span>
+<span class="source-line" id="L49"><a class="line-no" href="#L49" aria-label="Line 49">49</a><span class="line-code">theorem cell_eq_fiber (z : ι → ℤ) : cell z = round ⁻¹&#x27; {z} := by</span></span>
+<span class="source-line" id="L50"><a class="line-no" href="#L50" aria-label="Line 50">50</a><span class="line-code">  ext x</span></span>
+<span class="source-line" id="L51"><a class="line-no" href="#L51" aria-label="Line 51">51</a><span class="line-code">  exact (round_eq_iff x z).symm</span></span>
+<span class="source-line" id="L52"><a class="line-no" href="#L52" aria-label="Line 52">52</a><span class="line-code"> </span></span>
+<span class="source-line" id="L53"><a class="line-no" href="#L53" aria-label="Line 53">53</a><span class="line-code">theorem measurableSet_cell (z : ι → ℤ) : MeasurableSet (cell z) := by</span></span>
+<span class="source-line" id="L54"><a class="line-no" href="#L54" aria-label="Line 54">54</a><span class="line-code">  rw [cell_eq_fiber]</span></span>
+<span class="source-line" id="L55"><a class="line-no" href="#L55" aria-label="Line 55">55</a><span class="line-code">  exact measurable_round (measurableSet_singleton z)</span></span>
+<span class="source-line" id="L56"><a class="line-no" href="#L56" aria-label="Line 56">56</a><span class="line-code"> </span></span>
+<span class="source-line" id="L57"><a class="line-no" href="#L57" aria-label="Line 57">57</a><span class="line-code">omit [Fintype ι] in</span></span>
+<span class="source-line" id="L58"><a class="line-no" href="#L58" aria-label="Line 58">58</a><span class="line-code">theorem cells_disjoint : Pairwise fun z w : ι → ℤ ↦ Disjoint (cell z) (cell w) := by</span></span>
+<span class="source-line" id="L59"><a class="line-no" href="#L59" aria-label="Line 59">59</a><span class="line-code">  intro z w hzw</span></span>
+<span class="source-line" id="L60"><a class="line-no" href="#L60" aria-label="Line 60">60</a><span class="line-code">  rw [Set.disjoint_left]</span></span>
+<span class="source-line" id="L61"><a class="line-no" href="#L61" aria-label="Line 61">61</a><span class="line-code">  intro x hx hw</span></span>
+<span class="source-line" id="L62"><a class="line-no" href="#L62" aria-label="Line 62">62</a><span class="line-code">  exact hzw ((round_eq_iff x z).mpr hx |&gt;.symm.trans ((round_eq_iff x w).mpr hw))</span></span>
+<span class="source-line" id="L63"><a class="line-no" href="#L63" aria-label="Line 63">63</a><span class="line-code"> </span></span>
+<span class="source-line" id="L64"><a class="line-no" href="#L64" aria-label="Line 64">64</a><span class="line-code">omit [Fintype ι] in</span></span>
+<span class="source-line" id="L65"><a class="line-no" href="#L65" aria-label="Line 65">65</a><span class="line-code">theorem cells_cover : (⋃ z : ι → ℤ, cell z) = Set.univ := by</span></span>
+<span class="source-line" id="L66"><a class="line-no" href="#L66" aria-label="Line 66">66</a><span class="line-code">  apply Set.eq_univ_of_forall</span></span>
+<span class="source-line" id="L67"><a class="line-no" href="#L67" aria-label="Line 67">67</a><span class="line-code">  intro x</span></span>
+<span class="source-line" id="L68"><a class="line-no" href="#L68" aria-label="Line 68">68</a><span class="line-code">  exact Set.mem_iUnion.mpr ⟨round x, (round_eq_iff x (round x)).mp rfl⟩</span></span>
+<span class="source-line" id="L69"><a class="line-no" href="#L69" aria-label="Line 69">69</a><span class="line-code"> </span></span>
+<span class="source-line" id="L70"><a class="line-no" href="#L70" aria-label="Line 70">70</a><span class="line-code">theorem volume_cell (z : ι → ℤ) : volume (cell z) = 1 := by</span></span>
+<span class="source-line" id="L71"><a class="line-no" href="#L71" aria-label="Line 71">71</a><span class="line-code">  rw [cell, Real.volume_pi_Ico]</span></span>
+<span class="source-line" id="L72"><a class="line-no" href="#L72" aria-label="Line 72">72</a><span class="line-code">  simp only [show ∀ i, (z i : ℝ) + 1 / 2 - ((z i : ℝ) - 1 / 2) = 1 by</span></span>
+<span class="source-line" id="L73"><a class="line-no" href="#L73" aria-label="Line 73">73</a><span class="line-code">    intro i; ring, ENNReal.ofReal_one, Finset.prod_const_one]</span></span>
+<span class="source-line" id="L74"><a class="line-no" href="#L74" aria-label="Line 74">74</a><span class="line-code"> </span></span>
+<span class="source-line" id="L75"><a class="line-no" href="#L75" aria-label="Line 75">75</a><span class="line-code">def ditherMeasure : Measure (ι → ℝ) := volume.restrict (cell 0)</span></span>
+<span class="source-line" id="L76"><a class="line-no" href="#L76" aria-label="Line 76">76</a><span class="line-code"> </span></span>
+<span class="source-line" id="L77"><a class="line-no" href="#L77" aria-label="Line 77">77</a><span class="line-code">instance ditherMeasure_isProbabilityMeasure :</span></span>
+<span class="source-line" id="L78"><a class="line-no" href="#L78" aria-label="Line 78">78</a><span class="line-code">    IsProbabilityMeasure (ditherMeasure (ι := ι)) := by</span></span>
+<span class="source-line" id="L79"><a class="line-no" href="#L79" aria-label="Line 79">79</a><span class="line-code">  constructor</span></span>
+<span class="source-line" id="L80"><a class="line-no" href="#L80" aria-label="Line 80">80</a><span class="line-code">  simp [ditherMeasure, volume_cell]</span></span>
+<span class="source-line" id="L81"><a class="line-no" href="#L81" aria-label="Line 81">81</a><span class="line-code"> </span></span>
+<span class="source-line" id="L82"><a class="line-no" href="#L82" aria-label="Line 82">82</a><span class="line-code">def dilatedRound (γ : ℝ) (μ : ι → ℝ) (y : ι → ℝ) : ι → ℤ :=</span></span>
+<span class="source-line" id="L83"><a class="line-no" href="#L83" aria-label="Line 83">83</a><span class="line-code">  round (fun i ↦ γ * (μ i + y i))</span></span>
+<span class="source-line" id="L84"><a class="line-no" href="#L84" aria-label="Line 84">84</a><span class="line-code"> </span></span>
+<span class="source-line" id="L85"><a class="line-no" href="#L85" aria-label="Line 85">85</a><span class="line-code">omit [Fintype ι] in</span></span>
+<span class="source-line" id="L86"><a class="line-no" href="#L86" aria-label="Line 86">86</a><span class="line-code">theorem measurable_dilatedRound (γ : ℝ) (μ : ι → ℝ) :</span></span>
+<span class="source-line" id="L87"><a class="line-no" href="#L87" aria-label="Line 87">87</a><span class="line-code">    Measurable (dilatedRound γ μ) := by</span></span>
+<span class="source-line" id="L88"><a class="line-no" href="#L88" aria-label="Line 88">88</a><span class="line-code">  apply measurable_round.comp</span></span>
+<span class="source-line" id="L89"><a class="line-no" href="#L89" aria-label="Line 89">89</a><span class="line-code">  exact measurable_pi_lambda _ fun i ↦</span></span>
+<span class="source-line" id="L90"><a class="line-no" href="#L90" aria-label="Line 90">90</a><span class="line-code">    measurable_const.mul (measurable_const.add (measurable_pi_apply i))</span></span>
+<span class="source-line" id="L91"><a class="line-no" href="#L91" aria-label="Line 91">91</a><span class="line-code"> </span></span>
+<span class="source-line" id="L92"><a class="line-no" href="#L92" aria-label="Line 92">92</a><span class="line-code">/-- The actual uniform-dither rounding law, including all lattice labels. -/</span></span>
+<span class="source-line" id="L93"><a class="line-no" href="#L93" aria-label="Line 93">93</a><span class="line-code">def roundingPMF (γ : ℝ) (μ : ι → ℝ) : PMF (ι → ℤ) := by</span></span>
+<span class="source-line" id="L94"><a class="line-no" href="#L94" aria-label="Line 94">94</a><span class="line-code">  let ν := (ditherMeasure (ι := ι)).map (dilatedRound γ μ)</span></span>
+<span class="source-line" id="L95"><a class="line-no" href="#L95" aria-label="Line 95">95</a><span class="line-code">  haveI : IsProbabilityMeasure ν :=</span></span>
+<span class="source-line" id="L96"><a class="line-no" href="#L96" aria-label="Line 96">96</a><span class="line-code">    Measure.isProbabilityMeasure_map (measurable_dilatedRound γ μ).aemeasurable</span></span>
+<span class="source-line" id="L97"><a class="line-no" href="#L97" aria-label="Line 97">97</a><span class="line-code">  exact ν.toPMF</span></span>
+<span class="source-line" id="L98"><a class="line-no" href="#L98" aria-label="Line 98">98</a><span class="line-code"> </span></span>
+<span class="source-line" id="L99"><a class="line-no" href="#L99" aria-label="Line 99">99</a><span class="line-code">/-- Normalization follows from the pushforward probability measure. -/</span></span>
+<span class="source-line" id="L100"><a class="line-no" href="#L100" aria-label="Line 100">100</a><span class="line-code">theorem roundingPMF_sum (γ : ℝ) (μ : ι → ℝ) :</span></span>
+<span class="source-line" id="L101"><a class="line-no" href="#L101" aria-label="Line 101">101</a><span class="line-code">    ∑&#x27; z, roundingPMF γ μ z = 1 := (roundingPMF γ μ).tsum_coe</span></span>
+<span class="source-line" id="L102"><a class="line-no" href="#L102" aria-label="Line 102">102</a><span class="line-code"> </span></span>
+<span class="source-line" id="L103"><a class="line-no" href="#L103" aria-label="Line 103">103</a><span class="line-code">/-- The source-coordinate overlap formula; it is valid even when `γ = 0`.</span></span>
+<span class="source-line" id="L104"><a class="line-no" href="#L104" aria-label="Line 104">104</a><span class="line-code">For positive `γ`, change of variables gives the manuscript&#x27;s ratio of the</span></span>
+<span class="source-line" id="L105"><a class="line-no" href="#L105" aria-label="Line 105">105</a><span class="line-code">dilated overlap volume to `γ ^ card ι`.</span></span>
+<span class="source-line" id="L106"><a class="line-no" href="#L106" aria-label="Line 106">106</a><span class="line-code">-/</span></span>
+<span class="source-line" id="L107"><a class="line-no" href="#L107" aria-label="Line 107">107</a><span class="line-code">theorem roundingPMF_eq_overlap (γ : ℝ) (μ : ι → ℝ) (z : ι → ℤ) :</span></span>
+<span class="source-line" id="L108"><a class="line-no" href="#L108" aria-label="Line 108">108</a><span class="line-code">    roundingPMF γ μ z =</span></span>
+<span class="source-line" id="L109"><a class="line-no" href="#L109" aria-label="Line 109">109</a><span class="line-code">      volume ((fun y : ι → ℝ ↦ fun i ↦ γ * (μ i + y i)) ⁻¹&#x27; cell z ∩ cell 0) := by</span></span>
+<span class="source-line" id="L110"><a class="line-no" href="#L110" aria-label="Line 110">110</a><span class="line-code">  rw [roundingPMF, Measure.toPMF_apply,</span></span>
+<span class="source-line" id="L111"><a class="line-no" href="#L111" aria-label="Line 111">111</a><span class="line-code">    Measure.map_apply (measurable_dilatedRound γ μ) (measurableSet_singleton z),</span></span>
+<span class="source-line" id="L112"><a class="line-no" href="#L112" aria-label="Line 112">112</a><span class="line-code">    ditherMeasure, Measure.restrict_apply</span></span>
+<span class="source-line" id="L113"><a class="line-no" href="#L113" aria-label="Line 113">113</a><span class="line-code">      ((measurable_dilatedRound γ μ) (measurableSet_singleton z))]</span></span>
+<span class="source-line" id="L114"><a class="line-no" href="#L114" aria-label="Line 114">114</a><span class="line-code">  congr 1</span></span>
+<span class="source-line" id="L115"><a class="line-no" href="#L115" aria-label="Line 115">115</a><span class="line-code">  ext y</span></span>
+<span class="source-line" id="L116"><a class="line-no" href="#L116" aria-label="Line 116">116</a><span class="line-code">  simp only [Set.mem_inter_iff, Set.mem_preimage, Set.mem_singleton_iff,</span></span>
+<span class="source-line" id="L117"><a class="line-no" href="#L117" aria-label="Line 117">117</a><span class="line-code">    dilatedRound, round_eq_iff]</span></span>
+<span class="source-line" id="L118"><a class="line-no" href="#L118" aria-label="Line 118">118</a><span class="line-code"> </span></span>
+<span class="source-line" id="L119"><a class="line-no" href="#L119" aria-label="Line 119">119</a><span class="line-code">/-- A positive-mass output satisfies each of the manuscript&#x27;s coordinate</span></span>
+<span class="source-line" id="L120"><a class="line-no" href="#L120" aria-label="Line 120">120</a><span class="line-code">rounding bounds.  No support or partition hypothesis is supplied.</span></span>
+<span class="source-line" id="L121"><a class="line-no" href="#L121" aria-label="Line 121">121</a><span class="line-code">-/</span></span>
+<span class="source-line" id="L122"><a class="line-no" href="#L122" aria-label="Line 122">122</a><span class="line-code">theorem roundingPMF_support (γ : ℝ) (hγ : 0 ≤ γ) (μ : ι → ℝ) (z : ι → ℤ)</span></span>
+<span class="source-line" id="L123"><a class="line-no" href="#L123" aria-label="Line 123">123</a><span class="line-code">    (hz : roundingPMF γ μ z ≠ 0) (i : ι) :</span></span>
+<span class="source-line" id="L124"><a class="line-no" href="#L124" aria-label="Line 124">124</a><span class="line-code">    |(z i : ℝ) - γ * μ i| ≤ (γ + 1) / 2 := by</span></span>
+<span class="source-line" id="L125"><a class="line-no" href="#L125" aria-label="Line 125">125</a><span class="line-code">  rw [roundingPMF_eq_overlap] at hz</span></span>
+<span class="source-line" id="L126"><a class="line-no" href="#L126" aria-label="Line 126">126</a><span class="line-code">  have hne : ((fun y : ι → ℝ ↦ fun j ↦ γ * (μ j + y j)) ⁻¹&#x27; cell z ∩ cell 0) ≠ ∅ :=</span></span>
+<span class="source-line" id="L127"><a class="line-no" href="#L127" aria-label="Line 127">127</a><span class="line-code">    fun hempty ↦ hz (by rw [hempty, measure_empty])</span></span>
+<span class="source-line" id="L128"><a class="line-no" href="#L128" aria-label="Line 128">128</a><span class="line-code">  obtain ⟨y, hy, hy0⟩ := Set.nonempty_iff_ne_empty.mpr hne</span></span>
+<span class="source-line" id="L129"><a class="line-no" href="#L129" aria-label="Line 129">129</a><span class="line-code">  have hround := (round_eq_iff (fun j ↦ γ * (μ j + y j)) z).mpr hy</span></span>
+<span class="source-line" id="L130"><a class="line-no" href="#L130" aria-label="Line 130">130</a><span class="line-code">  have hyi : -(1 / 2 : ℝ) ≤ y i ∧ y i &lt; 1 / 2 := by</span></span>
+<span class="source-line" id="L131"><a class="line-no" href="#L131" aria-label="Line 131">131</a><span class="line-code">    simpa [cell] using hy0 i (Set.mem_univ i)</span></span>
+<span class="source-line" id="L132"><a class="line-no" href="#L132" aria-label="Line 132">132</a><span class="line-code">  have hi : Rounding.nearest (γ * (μ i + y i)) = z i := congrFun hround i</span></span>
+<span class="source-line" id="L133"><a class="line-no" href="#L133" aria-label="Line 133">133</a><span class="line-code">  rw [← hi]</span></span>
+<span class="source-line" id="L134"><a class="line-no" href="#L134" aria-label="Line 134">134</a><span class="line-code">  exact Rounding.dither_error γ (μ i) (y i) hγ hyi</span></span>
+<span class="source-line" id="L135"><a class="line-no" href="#L135" aria-label="Line 135">135</a><span class="line-code"> </span></span>
+<span class="source-line" id="L136"><a class="line-no" href="#L136" aria-label="Line 136">136</a><span class="line-code">/-- A random input label followed by the concrete cell kernel is an actual</span></span>
+<span class="source-line" id="L137"><a class="line-no" href="#L137" aria-label="Line 137">137</a><span class="line-code">normalized countable law, with the usual sum-of-transition-probabilities formula. -/</span></span>
+<span class="source-line" id="L138"><a class="line-no" href="#L138" aria-label="Line 138">138</a><span class="line-code">def transport (γ : ℝ) (p : PMF (ι → ℤ)) : PMF (ι → ℤ) :=</span></span>
+<span class="source-line" id="L139"><a class="line-no" href="#L139" aria-label="Line 139">139</a><span class="line-code">  p.bind fun z ↦ roundingPMF γ (fun i ↦ (z i : ℝ))</span></span>
+<span class="source-line" id="L140"><a class="line-no" href="#L140" aria-label="Line 140">140</a><span class="line-code"> </span></span>
+<span class="source-line" id="L141"><a class="line-no" href="#L141" aria-label="Line 141">141</a><span class="line-code">theorem transport_apply (γ : ℝ) (p : PMF (ι → ℤ)) (w : ι → ℤ) :</span></span>
+<span class="source-line" id="L142"><a class="line-no" href="#L142" aria-label="Line 142">142</a><span class="line-code">    transport γ p w = ∑&#x27; z, p z * roundingPMF γ (fun i ↦ (z i : ℝ)) w := rfl</span></span>
+<span class="source-line" id="L143"><a class="line-no" href="#L143" aria-label="Line 143">143</a><span class="line-code"> </span></span>
+<span class="source-line" id="L144"><a class="line-no" href="#L144" aria-label="Line 144">144</a><span class="line-code">section MeasurableDiscretization</span></span>
+<span class="source-line" id="L145"><a class="line-no" href="#L145" aria-label="Line 145">145</a><span class="line-code"> </span></span>
+<span class="source-line" id="L146"><a class="line-no" href="#L146" aria-label="Line 146">146</a><span class="line-code">variable {X Z : Type*} [MeasurableSpace X] [MeasurableSpace Z]</span></span>
+<span class="source-line" id="L147"><a class="line-no" href="#L147" aria-label="Line 147">147</a><span class="line-code">  [MeasurableSingletonClass Z] [Countable Z]</span></span>
+<span class="source-line" id="L148"><a class="line-no" href="#L148" aria-label="Line 148">148</a><span class="line-code"> </span></span>
+<span class="source-line" id="L149"><a class="line-no" href="#L149" aria-label="Line 149">149</a><span class="line-code">/-- Actual density mass in each fiber of a measurable rounding map. -/</span></span>
+<span class="source-line" id="L150"><a class="line-no" href="#L150" aria-label="Line 150">150</a><span class="line-code">def binMass (μ : Measure X) (r : X → Z) (f : X → ℝ) (z : Z) : ℝ :=</span></span>
+<span class="source-line" id="L151"><a class="line-no" href="#L151" aria-label="Line 151">151</a><span class="line-code">  ∫ x in r ⁻¹&#x27; {z}, f x ∂μ</span></span>
+<span class="source-line" id="L152"><a class="line-no" href="#L152" aria-label="Line 152">152</a><span class="line-code"> </span></span>
+<span class="source-line" id="L153"><a class="line-no" href="#L153" aria-label="Line 153">153</a><span class="line-code">theorem hasSum_binMass (μ : Measure X) {r : X → Z} (hr : Measurable r)</span></span>
+<span class="source-line" id="L154"><a class="line-no" href="#L154" aria-label="Line 154">154</a><span class="line-code">    {f : X → ℝ} (hf : Integrable f μ) :</span></span>
+<span class="source-line" id="L155"><a class="line-no" href="#L155" aria-label="Line 155">155</a><span class="line-code">    HasSum (binMass μ r f) (∫ x, f x ∂μ) := by</span></span>
+<span class="source-line" id="L156"><a class="line-no" href="#L156" aria-label="Line 156">156</a><span class="line-code">  have hcover : (⋃ z : Z, r ⁻¹&#x27; {z}) = Set.univ := by</span></span>
+<span class="source-line" id="L157"><a class="line-no" href="#L157" aria-label="Line 157">157</a><span class="line-code">    ext x</span></span>
+<span class="source-line" id="L158"><a class="line-no" href="#L158" aria-label="Line 158">158</a><span class="line-code">    simp</span></span>
+<span class="source-line" id="L159"><a class="line-no" href="#L159" aria-label="Line 159">159</a><span class="line-code">  have hd : Pairwise fun z w : Z ↦ Disjoint (r ⁻¹&#x27; {z}) (r ⁻¹&#x27; {w}) := by</span></span>
+<span class="source-line" id="L160"><a class="line-no" href="#L160" aria-label="Line 160">160</a><span class="line-code">    intro z w hzw</span></span>
+<span class="source-line" id="L161"><a class="line-no" href="#L161" aria-label="Line 161">161</a><span class="line-code">    exact Set.disjoint_left.mpr fun x hx hw ↦ hzw (hx.symm.trans hw)</span></span>
+<span class="source-line" id="L162"><a class="line-no" href="#L162" aria-label="Line 162">162</a><span class="line-code">  have h := hasSum_integral_iUnion</span></span>
+<span class="source-line" id="L163"><a class="line-no" href="#L163" aria-label="Line 163">163</a><span class="line-code">    (fun z ↦ hr (measurableSet_singleton z)) hd</span></span>
+<span class="source-line" id="L164"><a class="line-no" href="#L164" aria-label="Line 164">164</a><span class="line-code">    (show IntegrableOn f (⋃ z : Z, r ⁻¹&#x27; {z}) μ by simpa [hcover] using hf)</span></span>
+<span class="source-line" id="L165"><a class="line-no" href="#L165" aria-label="Line 165">165</a><span class="line-code">  simpa only [binMass, hcover, setIntegral_univ] using h</span></span>
+<span class="source-line" id="L166"><a class="line-no" href="#L166" aria-label="Line 166">166</a><span class="line-code"> </span></span>
+<span class="source-line" id="L167"><a class="line-no" href="#L167" aria-label="Line 167">167</a><span class="line-code">omit [MeasurableSpace Z] [MeasurableSingletonClass Z] [Countable Z] in</span></span>
+<span class="source-line" id="L168"><a class="line-no" href="#L168" aria-label="Line 168">168</a><span class="line-code">theorem binMass_nonneg (μ : Measure X) (r : X → Z) {f : X → ℝ}</span></span>
+<span class="source-line" id="L169"><a class="line-no" href="#L169" aria-label="Line 169">169</a><span class="line-code">    (hf : ∀ x, 0 ≤ f x) (z : Z) : 0 ≤ binMass μ r f z :=</span></span>
+<span class="source-line" id="L170"><a class="line-no" href="#L170" aria-label="Line 170">170</a><span class="line-code">  integral_nonneg hf</span></span>
+<span class="source-line" id="L171"><a class="line-no" href="#L171" aria-label="Line 171">171</a><span class="line-code"> </span></span>
+<span class="source-line" id="L172"><a class="line-no" href="#L172" aria-label="Line 172">172</a><span class="line-code">/-- Discretization by any measurable countable partition contracts the actual</span></span>
+<span class="source-line" id="L173"><a class="line-no" href="#L173" aria-label="Line 173">173</a><span class="line-code">`L¹` distance.  The proof uses the fiber partition, not an assumed kernel law. -/</span></span>
+<span class="source-line" id="L174"><a class="line-no" href="#L174" aria-label="Line 174">174</a><span class="line-code">theorem binMass_l1_contraction (μ : Measure X) {r : X → Z} (hr : Measurable r)</span></span>
+<span class="source-line" id="L175"><a class="line-no" href="#L175" aria-label="Line 175">175</a><span class="line-code">    {f g : X → ℝ} (hf : Integrable f μ) (hg : Integrable g μ) :</span></span>
+<span class="source-line" id="L176"><a class="line-no" href="#L176" aria-label="Line 176">176</a><span class="line-code">    (∑&#x27; z, |binMass μ r f z - binMass μ r g z|) ≤ ∫ x, |f x - g x| ∂μ := by</span></span>
+<span class="source-line" id="L177"><a class="line-no" href="#L177" aria-label="Line 177">177</a><span class="line-code">  have hsum := hasSum_binMass μ hr (hf.sub hg).abs</span></span>
+<span class="source-line" id="L178"><a class="line-no" href="#L178" aria-label="Line 178">178</a><span class="line-code">  have hbound (z : Z) :</span></span>
+<span class="source-line" id="L179"><a class="line-no" href="#L179" aria-label="Line 179">179</a><span class="line-code">      |binMass μ r f z - binMass μ r g z| ≤ binMass μ r (fun x ↦ |f x - g x|) z := by</span></span>
+<span class="source-line" id="L180"><a class="line-no" href="#L180" aria-label="Line 180">180</a><span class="line-code">    unfold binMass</span></span>
+<span class="source-line" id="L181"><a class="line-no" href="#L181" aria-label="Line 181">181</a><span class="line-code">    rw [← integral_sub hf.integrableOn hg.integrableOn]</span></span>
+<span class="source-line" id="L182"><a class="line-no" href="#L182" aria-label="Line 182">182</a><span class="line-code">    simpa only [Real.norm_eq_abs] using</span></span>
+<span class="source-line" id="L183"><a class="line-no" href="#L183" aria-label="Line 183">183</a><span class="line-code">      norm_integral_le_integral_norm (f := fun x ↦ f x - g x) (μ := μ.restrict (r ⁻¹&#x27; {z}))</span></span>
+<span class="source-line" id="L184"><a class="line-no" href="#L184" aria-label="Line 184">184</a><span class="line-code">  have hs : Summable (fun z ↦ |binMass μ r f z - binMass μ r g z|) :=</span></span>
+<span class="source-line" id="L185"><a class="line-no" href="#L185" aria-label="Line 185">185</a><span class="line-code">    hsum.summable.of_nonneg_of_le (fun _ ↦ abs_nonneg _) hbound</span></span>
+<span class="source-line" id="L186"><a class="line-no" href="#L186" aria-label="Line 186">186</a><span class="line-code">  exact (hs.tsum_le_tsum hbound hsum.summable).trans_eq hsum.tsum_eq</span></span>
+<span class="source-line" id="L187"><a class="line-no" href="#L187" aria-label="Line 187">187</a><span class="line-code"> </span></span>
+<span class="source-line" id="L188"><a class="line-no" href="#L188" aria-label="Line 188">188</a><span class="line-code">/-- The normalized-density estimate used in the manuscript&#x27;s local-limit</span></span>
+<span class="source-line" id="L189"><a class="line-no" href="#L189" aria-label="Line 189">189</a><span class="line-code">argument.  Only the reference density&#x27;s tail is needed. -/</span></span>
+<span class="source-line" id="L190"><a class="line-no" href="#L190" aria-label="Line 190">190</a><span class="line-code">theorem density_l1_local_tail (μ : Measure X) {f g : X → ℝ}</span></span>
+<span class="source-line" id="L191"><a class="line-no" href="#L191" aria-label="Line 191">191</a><span class="line-code">    (hf : Integrable f μ) (hg : Integrable g μ)</span></span>
+<span class="source-line" id="L192"><a class="line-no" href="#L192" aria-label="Line 192">192</a><span class="line-code">    (hf0 : ∀ x, 0 ≤ f x) (hg0 : ∀ x, 0 ≤ g x)</span></span>
+<span class="source-line" id="L193"><a class="line-no" href="#L193" aria-label="Line 193">193</a><span class="line-code">    (hmass : (∫ x, f x ∂μ) = ∫ x, g x ∂μ)</span></span>
+<span class="source-line" id="L194"><a class="line-no" href="#L194" aria-label="Line 194">194</a><span class="line-code">    {s : Set X} (hs : MeasurableSet s) :</span></span>
+<span class="source-line" id="L195"><a class="line-no" href="#L195" aria-label="Line 195">195</a><span class="line-code">    (∫ x, |f x - g x| ∂μ) ≤</span></span>
+<span class="source-line" id="L196"><a class="line-no" href="#L196" aria-label="Line 196">196</a><span class="line-code">      2 * (∫ x in s, |f x - g x| ∂μ) + 2 * (∫ x in sᶜ, g x ∂μ) := by</span></span>
+<span class="source-line" id="L197"><a class="line-no" href="#L197" aria-label="Line 197">197</a><span class="line-code">  have hsplit : (∫ x in s, |f x - g x| ∂μ) + (∫ x in sᶜ, |f x - g x| ∂μ) =</span></span>
+<span class="source-line" id="L198"><a class="line-no" href="#L198" aria-label="Line 198">198</a><span class="line-code">      ∫ x, |f x - g x| ∂μ := integral_add_compl hs (hf.sub hg).abs</span></span>
+<span class="source-line" id="L199"><a class="line-no" href="#L199" aria-label="Line 199">199</a><span class="line-code">  have hsplitf := integral_add_compl hs hf</span></span>
+<span class="source-line" id="L200"><a class="line-no" href="#L200" aria-label="Line 200">200</a><span class="line-code">  have hsplitg := integral_add_compl hs hg</span></span>
+<span class="source-line" id="L201"><a class="line-no" href="#L201" aria-label="Line 201">201</a><span class="line-code">  have hlocal : (∫ x in s, g x ∂μ) - (∫ x in s, f x ∂μ) ≤</span></span>
+<span class="source-line" id="L202"><a class="line-no" href="#L202" aria-label="Line 202">202</a><span class="line-code">      ∫ x in s, |f x - g x| ∂μ := by</span></span>
+<span class="source-line" id="L203"><a class="line-no" href="#L203" aria-label="Line 203">203</a><span class="line-code">    rw [← integral_sub hg.integrableOn hf.integrableOn]</span></span>
+<span class="source-line" id="L204"><a class="line-no" href="#L204" aria-label="Line 204">204</a><span class="line-code">    apply integral_mono (hg.sub hf).integrableOn (hf.sub hg).abs.integrableOn</span></span>
+<span class="source-line" id="L205"><a class="line-no" href="#L205" aria-label="Line 205">205</a><span class="line-code">    intro x</span></span>
+<span class="source-line" id="L206"><a class="line-no" href="#L206" aria-label="Line 206">206</a><span class="line-code">    simpa only [neg_sub] using neg_le_abs (f x - g x)</span></span>
+<span class="source-line" id="L207"><a class="line-no" href="#L207" aria-label="Line 207">207</a><span class="line-code">  have htail : (∫ x in sᶜ, |f x - g x| ∂μ) ≤</span></span>
+<span class="source-line" id="L208"><a class="line-no" href="#L208" aria-label="Line 208">208</a><span class="line-code">      (∫ x in sᶜ, f x ∂μ) + ∫ x in sᶜ, g x ∂μ := by</span></span>
+<span class="source-line" id="L209"><a class="line-no" href="#L209" aria-label="Line 209">209</a><span class="line-code">    rw [← integral_add hf.integrableOn hg.integrableOn]</span></span>
+<span class="source-line" id="L210"><a class="line-no" href="#L210" aria-label="Line 210">210</a><span class="line-code">    apply integral_mono (hf.sub hg).abs.integrableOn (hf.add hg).integrableOn</span></span>
+<span class="source-line" id="L211"><a class="line-no" href="#L211" aria-label="Line 211">211</a><span class="line-code">    intro x</span></span>
+<span class="source-line" id="L212"><a class="line-no" href="#L212" aria-label="Line 212">212</a><span class="line-code">    simpa only [abs_of_nonneg (hf0 x), abs_of_nonneg (hg0 x), Pi.add_apply] using</span></span>
+<span class="source-line" id="L213"><a class="line-no" href="#L213" aria-label="Line 213">213</a><span class="line-code">      abs_sub (f x) (g x)</span></span>
+<span class="source-line" id="L214"><a class="line-no" href="#L214" aria-label="Line 214">214</a><span class="line-code">  linarith</span></span>
+<span class="source-line" id="L215"><a class="line-no" href="#L215" aria-label="Line 215">215</a><span class="line-code"> </span></span>
+<span class="source-line" id="L216"><a class="line-no" href="#L216" aria-label="Line 216">216</a><span class="line-code">/-- A uniform density error on a finite-volume set gives an explicit global</span></span>
+<span class="source-line" id="L217"><a class="line-no" href="#L217" aria-label="Line 217">217</a><span class="line-code">`L¹` bound, without a separate concentration assumption for `f`. -/</span></span>
+<span class="source-line" id="L218"><a class="line-no" href="#L218" aria-label="Line 218">218</a><span class="line-code">theorem density_l1_local_uniform_tail (μ : Measure X) {f g : X → ℝ}</span></span>
+<span class="source-line" id="L219"><a class="line-no" href="#L219" aria-label="Line 219">219</a><span class="line-code">    (hf : Integrable f μ) (hg : Integrable g μ)</span></span>
+<span class="source-line" id="L220"><a class="line-no" href="#L220" aria-label="Line 220">220</a><span class="line-code">    (hf0 : ∀ x, 0 ≤ f x) (hg0 : ∀ x, 0 ≤ g x)</span></span>
+<span class="source-line" id="L221"><a class="line-no" href="#L221" aria-label="Line 221">221</a><span class="line-code">    (hmass : (∫ x, f x ∂μ) = ∫ x, g x ∂μ)</span></span>
+<span class="source-line" id="L222"><a class="line-no" href="#L222" aria-label="Line 222">222</a><span class="line-code">    {s : Set X} (hs : MeasurableSet s) (hsfin : μ s ≠ ∞)</span></span>
+<span class="source-line" id="L223"><a class="line-no" href="#L223" aria-label="Line 223">223</a><span class="line-code">    {ε : ℝ} (hlocal : ∀ x ∈ s, |f x - g x| ≤ ε) :</span></span>
+<span class="source-line" id="L224"><a class="line-no" href="#L224" aria-label="Line 224">224</a><span class="line-code">    (∫ x, |f x - g x| ∂μ) ≤</span></span>
+<span class="source-line" id="L225"><a class="line-no" href="#L225" aria-label="Line 225">225</a><span class="line-code">      2 * (μ s).toReal * ε + 2 * (∫ x in sᶜ, g x ∂μ) := by</span></span>
+<span class="source-line" id="L226"><a class="line-no" href="#L226" aria-label="Line 226">226</a><span class="line-code">  have hbound : (∫ x in s, |f x - g x| ∂μ) ≤ (μ s).toReal * ε := by</span></span>
+<span class="source-line" id="L227"><a class="line-no" href="#L227" aria-label="Line 227">227</a><span class="line-code">    have hn := norm_setIntegral_le_of_norm_le_const (lt_top_iff_ne_top.mpr hsfin)</span></span>
+<span class="source-line" id="L228"><a class="line-no" href="#L228" aria-label="Line 228">228</a><span class="line-code">      (f := fun x ↦ |f x - g x|)</span></span>
+<span class="source-line" id="L229"><a class="line-no" href="#L229" aria-label="Line 229">229</a><span class="line-code">      (fun x hx ↦ by simpa only [Real.norm_eq_abs, abs_abs] using hlocal x hx)</span></span>
+<span class="source-line" id="L230"><a class="line-no" href="#L230" aria-label="Line 230">230</a><span class="line-code">    exact (le_abs_self _).trans</span></span>
+<span class="source-line" id="L231"><a class="line-no" href="#L231" aria-label="Line 231">231</a><span class="line-code">      (by simpa only [Real.norm_eq_abs, Measure.real, mul_comm] using hn)</span></span>
+<span class="source-line" id="L232"><a class="line-no" href="#L232" aria-label="Line 232">232</a><span class="line-code">  have h := density_l1_local_tail μ hf hg hf0 hg0 hmass hs</span></span>
+<span class="source-line" id="L233"><a class="line-no" href="#L233" aria-label="Line 233">233</a><span class="line-code">  nlinarith</span></span>
+<span class="source-line" id="L234"><a class="line-no" href="#L234" aria-label="Line 234">234</a><span class="line-code"> </span></span>
+<span class="source-line" id="L235"><a class="line-no" href="#L235" aria-label="Line 235">235</a><span class="line-code">/-- The same explicit local-error/tail bound holds after rounding the two</span></span>
+<span class="source-line" id="L236"><a class="line-no" href="#L236" aria-label="Line 236">236</a><span class="line-code">densities to the lattice, for any measurable choice of scaled cells. -/</span></span>
+<span class="source-line" id="L237"><a class="line-no" href="#L237" aria-label="Line 237">237</a><span class="line-code">theorem binMass_l1_local_uniform_tail (μ : Measure X) {r : X → Z} (hr : Measurable r)</span></span>
+<span class="source-line" id="L238"><a class="line-no" href="#L238" aria-label="Line 238">238</a><span class="line-code">    {f g : X → ℝ} (hf : Integrable f μ) (hg : Integrable g μ)</span></span>
+<span class="source-line" id="L239"><a class="line-no" href="#L239" aria-label="Line 239">239</a><span class="line-code">    (hf0 : ∀ x, 0 ≤ f x) (hg0 : ∀ x, 0 ≤ g x)</span></span>
+<span class="source-line" id="L240"><a class="line-no" href="#L240" aria-label="Line 240">240</a><span class="line-code">    (hmass : (∫ x, f x ∂μ) = ∫ x, g x ∂μ)</span></span>
+<span class="source-line" id="L241"><a class="line-no" href="#L241" aria-label="Line 241">241</a><span class="line-code">    {s : Set X} (hs : MeasurableSet s) (hsfin : μ s ≠ ∞)</span></span>
+<span class="source-line" id="L242"><a class="line-no" href="#L242" aria-label="Line 242">242</a><span class="line-code">    {ε : ℝ} (hlocal : ∀ x ∈ s, |f x - g x| ≤ ε) :</span></span>
+<span class="source-line" id="L243"><a class="line-no" href="#L243" aria-label="Line 243">243</a><span class="line-code">    (∑&#x27; z, |binMass μ r f z - binMass μ r g z|) ≤</span></span>
+<span class="source-line" id="L244"><a class="line-no" href="#L244" aria-label="Line 244">244</a><span class="line-code">      2 * (μ s).toReal * ε + 2 * (∫ x in sᶜ, g x ∂μ) :=</span></span>
+<span class="source-line" id="L245"><a class="line-no" href="#L245" aria-label="Line 245">245</a><span class="line-code">  (binMass_l1_contraction μ hr hf hg).trans</span></span>
+<span class="source-line" id="L246"><a class="line-no" href="#L246" aria-label="Line 246">246</a><span class="line-code">    (density_l1_local_uniform_tail μ hf hg hf0 hg0 hmass hs hsfin hlocal)</span></span>
+<span class="source-line" id="L247"><a class="line-no" href="#L247" aria-label="Line 247">247</a><span class="line-code"> </span></span>
+<span class="source-line" id="L248"><a class="line-no" href="#L248" aria-label="Line 248">248</a><span class="line-code">/-- Uniform local density convergence plus uniform tails of the normalized</span></span>
+<span class="source-line" id="L249"><a class="line-no" href="#L249" aria-label="Line 249">249</a><span class="line-code">reference family implies uniform global `L¹` convergence.  The parameter type</span></span>
+<span class="source-line" id="L250"><a class="line-no" href="#L250" aria-label="Line 250">250</a><span class="line-code">can be a compact set of spectra; no compactness or local limit is assumed</span></span>
+<span class="source-line" id="L251"><a class="line-no" href="#L251" aria-label="Line 251">251</a><span class="line-code">implicitly in this statement. -/</span></span>
+<span class="source-line" id="L252"><a class="line-no" href="#L252" aria-label="Line 252">252</a><span class="line-code">theorem density_l1_uniform_of_local_and_tails {P : Type*}</span></span>
+<span class="source-line" id="L253"><a class="line-no" href="#L253" aria-label="Line 253">253</a><span class="line-code">    (μ : Measure X) (f : ℕ → P → X → ℝ) (g : P → X → ℝ)</span></span>
+<span class="source-line" id="L254"><a class="line-no" href="#L254" aria-label="Line 254">254</a><span class="line-code">    (hf : ∀ n p, Integrable (f n p) μ) (hg : ∀ p, Integrable (g p) μ)</span></span>
+<span class="source-line" id="L255"><a class="line-no" href="#L255" aria-label="Line 255">255</a><span class="line-code">    (hf0 : ∀ n p x, 0 ≤ f n p x) (hg0 : ∀ p x, 0 ≤ g p x)</span></span>
+<span class="source-line" id="L256"><a class="line-no" href="#L256" aria-label="Line 256">256</a><span class="line-code">    (hmass : ∀ n p, (∫ x, f n p x ∂μ) = ∫ x, g p x ∂μ)</span></span>
+<span class="source-line" id="L257"><a class="line-no" href="#L257" aria-label="Line 257">257</a><span class="line-code">    (s : ℕ → Set X) (hs : ∀ k, MeasurableSet (s k)) (hsfin : ∀ k, μ (s k) ≠ ∞)</span></span>
+<span class="source-line" id="L258"><a class="line-no" href="#L258" aria-label="Line 258">258</a><span class="line-code">    (hlocal : ∀ k δ, 0 &lt; δ → ∀ᶠ n in atTop, ∀ p x, x ∈ s k →</span></span>
+<span class="source-line" id="L259"><a class="line-no" href="#L259" aria-label="Line 259">259</a><span class="line-code">      |f n p x - g p x| ≤ δ)</span></span>
+<span class="source-line" id="L260"><a class="line-no" href="#L260" aria-label="Line 260">260</a><span class="line-code">    (htail : ∀ δ, 0 &lt; δ → ∃ k, ∀ p, (∫ x in (s k)ᶜ, g p x ∂μ) ≤ δ) :</span></span>
+<span class="source-line" id="L261"><a class="line-no" href="#L261" aria-label="Line 261">261</a><span class="line-code">    ∀ ε, 0 &lt; ε → ∀ᶠ n in atTop, ∀ p, (∫ x, |f n p x - g p x| ∂μ) &lt; ε := by</span></span>
+<span class="source-line" id="L262"><a class="line-no" href="#L262" aria-label="Line 262">262</a><span class="line-code">  intro ε hε</span></span>
+<span class="source-line" id="L263"><a class="line-no" href="#L263" aria-label="Line 263">263</a><span class="line-code">  obtain ⟨k, hk⟩ := htail (ε / 4) (by positivity)</span></span>
+<span class="source-line" id="L264"><a class="line-no" href="#L264" aria-label="Line 264">264</a><span class="line-code">  let V := (μ (s k)).toReal</span></span>
+<span class="source-line" id="L265"><a class="line-no" href="#L265" aria-label="Line 265">265</a><span class="line-code">  have hV : 0 ≤ V := ENNReal.toReal_nonneg</span></span>
+<span class="source-line" id="L266"><a class="line-no" href="#L266" aria-label="Line 266">266</a><span class="line-code">  let δ := ε / (4 * (V + 1))</span></span>
+<span class="source-line" id="L267"><a class="line-no" href="#L267" aria-label="Line 267">267</a><span class="line-code">  have hδ : 0 &lt; δ := div_pos hε (by positivity)</span></span>
+<span class="source-line" id="L268"><a class="line-no" href="#L268" aria-label="Line 268">268</a><span class="line-code">  have hδeq : 4 * (V + 1) * δ = ε := by</span></span>
+<span class="source-line" id="L269"><a class="line-no" href="#L269" aria-label="Line 269">269</a><span class="line-code">    dsimp [δ]</span></span>
+<span class="source-line" id="L270"><a class="line-no" href="#L270" aria-label="Line 270">270</a><span class="line-code">    field_simp</span></span>
+<span class="source-line" id="L271"><a class="line-no" href="#L271" aria-label="Line 271">271</a><span class="line-code">  filter_upwards [hlocal k δ hδ] with n hn</span></span>
+<span class="source-line" id="L272"><a class="line-no" href="#L272" aria-label="Line 272">272</a><span class="line-code">  intro p</span></span>
+<span class="source-line" id="L273"><a class="line-no" href="#L273" aria-label="Line 273">273</a><span class="line-code">  have hb := density_l1_local_uniform_tail μ (hf n p) (hg p) (hf0 n p) (hg0 p)</span></span>
+<span class="source-line" id="L274"><a class="line-no" href="#L274" aria-label="Line 274">274</a><span class="line-code">    (hmass n p) (hs k) (hsfin k) (hn p)</span></span>
+<span class="source-line" id="L275"><a class="line-no" href="#L275" aria-label="Line 275">275</a><span class="line-code">  change (∫ x, |f n p x - g p x| ∂μ) ≤</span></span>
+<span class="source-line" id="L276"><a class="line-no" href="#L276" aria-label="Line 276">276</a><span class="line-code">    2 * V * δ + 2 * (∫ x in (s k)ᶜ, g p x ∂μ) at hb</span></span>
+<span class="source-line" id="L277"><a class="line-no" href="#L277" aria-label="Line 277">277</a><span class="line-code">  have hkp := hk p</span></span>
+<span class="source-line" id="L278"><a class="line-no" href="#L278" aria-label="Line 278">278</a><span class="line-code">  nlinarith</span></span>
+<span class="source-line" id="L279"><a class="line-no" href="#L279" aria-label="Line 279">279</a><span class="line-code"> </span></span>
+<span class="source-line" id="L280"><a class="line-no" href="#L280" aria-label="Line 280">280</a><span class="line-code">/-- The uniform comparison survives arbitrary varying measurable lattice</span></span>
+<span class="source-line" id="L281"><a class="line-no" href="#L281" aria-label="Line 281">281</a><span class="line-code">rounding maps, including changing sample sizes and translated cells. -/</span></span>
+<span class="source-line" id="L282"><a class="line-no" href="#L282" aria-label="Line 282">282</a><span class="line-code">theorem binMass_l1_uniform_of_local_and_tails {P : Type*}</span></span>
+<span class="source-line" id="L283"><a class="line-no" href="#L283" aria-label="Line 283">283</a><span class="line-code">    (μ : Measure X) (r : ℕ → P → X → Z) (hr : ∀ n p, Measurable (r n p))</span></span>
+<span class="source-line" id="L284"><a class="line-no" href="#L284" aria-label="Line 284">284</a><span class="line-code">    (f : ℕ → P → X → ℝ) (g : P → X → ℝ)</span></span>
+<span class="source-line" id="L285"><a class="line-no" href="#L285" aria-label="Line 285">285</a><span class="line-code">    (hf : ∀ n p, Integrable (f n p) μ) (hg : ∀ p, Integrable (g p) μ)</span></span>
+<span class="source-line" id="L286"><a class="line-no" href="#L286" aria-label="Line 286">286</a><span class="line-code">    (hf0 : ∀ n p x, 0 ≤ f n p x) (hg0 : ∀ p x, 0 ≤ g p x)</span></span>
+<span class="source-line" id="L287"><a class="line-no" href="#L287" aria-label="Line 287">287</a><span class="line-code">    (hmass : ∀ n p, (∫ x, f n p x ∂μ) = ∫ x, g p x ∂μ)</span></span>
+<span class="source-line" id="L288"><a class="line-no" href="#L288" aria-label="Line 288">288</a><span class="line-code">    (s : ℕ → Set X) (hs : ∀ k, MeasurableSet (s k)) (hsfin : ∀ k, μ (s k) ≠ ∞)</span></span>
+<span class="source-line" id="L289"><a class="line-no" href="#L289" aria-label="Line 289">289</a><span class="line-code">    (hlocal : ∀ k δ, 0 &lt; δ → ∀ᶠ n in atTop, ∀ p x, x ∈ s k →</span></span>
+<span class="source-line" id="L290"><a class="line-no" href="#L290" aria-label="Line 290">290</a><span class="line-code">      |f n p x - g p x| ≤ δ)</span></span>
+<span class="source-line" id="L291"><a class="line-no" href="#L291" aria-label="Line 291">291</a><span class="line-code">    (htail : ∀ δ, 0 &lt; δ → ∃ k, ∀ p, (∫ x in (s k)ᶜ, g p x ∂μ) ≤ δ) :</span></span>
+<span class="source-line" id="L292"><a class="line-no" href="#L292" aria-label="Line 292">292</a><span class="line-code">    ∀ ε, 0 &lt; ε → ∀ᶠ n in atTop, ∀ p,</span></span>
+<span class="source-line" id="L293"><a class="line-no" href="#L293" aria-label="Line 293">293</a><span class="line-code">      (∑&#x27; z, |binMass μ (r n p) (f n p) z - binMass μ (r n p) (g p) z|) &lt; ε := by</span></span>
+<span class="source-line" id="L294"><a class="line-no" href="#L294" aria-label="Line 294">294</a><span class="line-code">  intro ε hε</span></span>
+<span class="source-line" id="L295"><a class="line-no" href="#L295" aria-label="Line 295">295</a><span class="line-code">  filter_upwards [density_l1_uniform_of_local_and_tails μ f g hf hg hf0 hg0 hmass</span></span>
+<span class="source-line" id="L296"><a class="line-no" href="#L296" aria-label="Line 296">296</a><span class="line-code">    s hs hsfin hlocal htail ε hε] with n hn</span></span>
+<span class="source-line" id="L297"><a class="line-no" href="#L297" aria-label="Line 297">297</a><span class="line-code">  exact fun p ↦ (binMass_l1_contraction μ (hr n p) (hf n p) (hg p)).trans_lt (hn p)</span></span>
+<span class="source-line" id="L298"><a class="line-no" href="#L298" aria-label="Line 298">298</a><span class="line-code"> </span></span>
+<span class="source-line" id="L299"><a class="line-no" href="#L299" aria-label="Line 299">299</a><span class="line-code">end MeasurableDiscretization</span></span>
+<span class="source-line" id="L300"><a class="line-no" href="#L300" aria-label="Line 300">300</a><span class="line-code"> </span></span>
+<span class="source-line" id="L301"><a class="line-no" href="#L301" aria-label="Line 301">301</a><span class="line-code">/-- Piecewise-constant interpolation on the exact unit lattice cells. -/</span></span>
+<span class="source-line" id="L302"><a class="line-no" href="#L302" aria-label="Line 302">302</a><span class="line-code">def interpolate (p : (ι → ℤ) → ℝ) (x : ι → ℝ) : ℝ := p (round x)</span></span>
+<span class="source-line" id="L303"><a class="line-no" href="#L303" aria-label="Line 303">303</a><span class="line-code"> </span></span>
+<span class="source-line" id="L304"><a class="line-no" href="#L304" aria-label="Line 304">304</a><span class="line-code">omit [Fintype ι] in</span></span>
+<span class="source-line" id="L305"><a class="line-no" href="#L305" aria-label="Line 305">305</a><span class="line-code">theorem interpolate_eq_on_cell (p : (ι → ℤ) → ℝ) (z : ι → ℤ)</span></span>
+<span class="source-line" id="L306"><a class="line-no" href="#L306" aria-label="Line 306">306</a><span class="line-code">    {x : ι → ℝ} (hx : x ∈ cell z) : interpolate p x = p z := by</span></span>
+<span class="source-line" id="L307"><a class="line-no" href="#L307" aria-label="Line 307">307</a><span class="line-code">  rw [interpolate, (round_eq_iff x z).mpr hx]</span></span>
+<span class="source-line" id="L308"><a class="line-no" href="#L308" aria-label="Line 308">308</a><span class="line-code"> </span></span>
+<span class="source-line" id="L309"><a class="line-no" href="#L309" aria-label="Line 309">309</a><span class="line-code">theorem integrableOn_interpolate (p : (ι → ℤ) → ℝ) (z : ι → ℤ) :</span></span>
+<span class="source-line" id="L310"><a class="line-no" href="#L310" aria-label="Line 310">310</a><span class="line-code">    IntegrableOn (interpolate p) (cell z) := by</span></span>
+<span class="source-line" id="L311"><a class="line-no" href="#L311" aria-label="Line 311">311</a><span class="line-code">  have hc : IntegrableOn (fun _ : ι → ℝ ↦ p z) (cell z) :=</span></span>
+<span class="source-line" id="L312"><a class="line-no" href="#L312" aria-label="Line 312">312</a><span class="line-code">    integrableOn_const (by rw [volume_cell]; exact ENNReal.one_ne_top)</span></span>
+<span class="source-line" id="L313"><a class="line-no" href="#L313" aria-label="Line 313">313</a><span class="line-code">  apply hc.congr</span></span>
+<span class="source-line" id="L314"><a class="line-no" href="#L314" aria-label="Line 314">314</a><span class="line-code">  exact (ae_restrict_iff&#x27; (measurableSet_cell z)).mpr (Filter.Eventually.of_forall</span></span>
+<span class="source-line" id="L315"><a class="line-no" href="#L315" aria-label="Line 315">315</a><span class="line-code">    fun x hx ↦ (interpolate_eq_on_cell p z hx).symm)</span></span>
+<span class="source-line" id="L316"><a class="line-no" href="#L316" aria-label="Line 316">316</a><span class="line-code"> </span></span>
+<span class="source-line" id="L317"><a class="line-no" href="#L317" aria-label="Line 317">317</a><span class="line-code">theorem integral_interpolate_cell (p : (ι → ℤ) → ℝ) (z : ι → ℤ) :</span></span>
+<span class="source-line" id="L318"><a class="line-no" href="#L318" aria-label="Line 318">318</a><span class="line-code">    (∫ x in cell z, interpolate p x) = p z := by</span></span>
+<span class="source-line" id="L319"><a class="line-no" href="#L319" aria-label="Line 319">319</a><span class="line-code">  rw [setIntegral_congr_fun (measurableSet_cell z)</span></span>
+<span class="source-line" id="L320"><a class="line-no" href="#L320" aria-label="Line 320">320</a><span class="line-code">    (fun x hx ↦ interpolate_eq_on_cell p z hx), setIntegral_const]</span></span>
+<span class="source-line" id="L321"><a class="line-no" href="#L321" aria-label="Line 321">321</a><span class="line-code">  simp [Measure.real, volume_cell]</span></span>
+<span class="source-line" id="L322"><a class="line-no" href="#L322" aria-label="Line 322">322</a><span class="line-code"> </span></span>
+<span class="source-line" id="L323"><a class="line-no" href="#L323" aria-label="Line 323">323</a><span class="line-code">theorem integral_norm_interpolate_cell (p : (ι → ℤ) → ℝ) (z : ι → ℤ) :</span></span>
+<span class="source-line" id="L324"><a class="line-no" href="#L324" aria-label="Line 324">324</a><span class="line-code">    (∫ x in cell z, ‖interpolate p x‖) = |p z| := by</span></span>
+<span class="source-line" id="L325"><a class="line-no" href="#L325" aria-label="Line 325">325</a><span class="line-code">  have heq : (fun x ↦ ‖interpolate p x‖) = interpolate (fun w ↦ |p w|) := by</span></span>
+<span class="source-line" id="L326"><a class="line-no" href="#L326" aria-label="Line 326">326</a><span class="line-code">    funext x</span></span>
+<span class="source-line" id="L327"><a class="line-no" href="#L327" aria-label="Line 327">327</a><span class="line-code">    simp only [interpolate, Real.norm_eq_abs]</span></span>
+<span class="source-line" id="L328"><a class="line-no" href="#L328" aria-label="Line 328">328</a><span class="line-code">  rw [heq, integral_interpolate_cell]</span></span>
+<span class="source-line" id="L329"><a class="line-no" href="#L329" aria-label="Line 329">329</a><span class="line-code"> </span></span>
+<span class="source-line" id="L330"><a class="line-no" href="#L330" aria-label="Line 330">330</a><span class="line-code">theorem integrable_interpolate {p : (ι → ℤ) → ℝ} (hp : Summable p) :</span></span>
+<span class="source-line" id="L331"><a class="line-no" href="#L331" aria-label="Line 331">331</a><span class="line-code">    Integrable (interpolate p) := by</span></span>
+<span class="source-line" id="L332"><a class="line-no" href="#L332" aria-label="Line 332">332</a><span class="line-code">  have h := integrableOn_iUnion_of_summable_integral_norm</span></span>
+<span class="source-line" id="L333"><a class="line-no" href="#L333" aria-label="Line 333">333</a><span class="line-code">    (integrableOn_interpolate p)</span></span>
+<span class="source-line" id="L334"><a class="line-no" href="#L334" aria-label="Line 334">334</a><span class="line-code">    (show Summable (fun z ↦ ∫ x in cell z, ‖interpolate p x‖) by</span></span>
+<span class="source-line" id="L335"><a class="line-no" href="#L335" aria-label="Line 335">335</a><span class="line-code">      simpa only [integral_norm_interpolate_cell] using hp.abs)</span></span>
+<span class="source-line" id="L336"><a class="line-no" href="#L336" aria-label="Line 336">336</a><span class="line-code">  simpa only [cells_cover, integrableOn_univ] using h</span></span>
+<span class="source-line" id="L337"><a class="line-no" href="#L337" aria-label="Line 337">337</a><span class="line-code"> </span></span>
+<span class="source-line" id="L338"><a class="line-no" href="#L338" aria-label="Line 338">338</a><span class="line-code">theorem integral_interpolate {p : (ι → ℤ) → ℝ} (hp : Summable p) :</span></span>
+<span class="source-line" id="L339"><a class="line-no" href="#L339" aria-label="Line 339">339</a><span class="line-code">    (∫ x, interpolate p x) = ∑&#x27; z, p z := by</span></span>
+<span class="source-line" id="L340"><a class="line-no" href="#L340" aria-label="Line 340">340</a><span class="line-code">  have h := hasSum_integral_iUnion measurableSet_cell cells_disjoint</span></span>
+<span class="source-line" id="L341"><a class="line-no" href="#L341" aria-label="Line 341">341</a><span class="line-code">    (show IntegrableOn (interpolate p) (⋃ z, cell z) by</span></span>
+<span class="source-line" id="L342"><a class="line-no" href="#L342" aria-label="Line 342">342</a><span class="line-code">      simpa only [cells_cover, integrableOn_univ] using integrable_interpolate hp)</span></span>
+<span class="source-line" id="L343"><a class="line-no" href="#L343" aria-label="Line 343">343</a><span class="line-code">  simpa only [cells_cover, setIntegral_univ, integral_interpolate_cell] using h.tsum_eq.symm</span></span>
+<span class="source-line" id="L344"><a class="line-no" href="#L344" aria-label="Line 344">344</a><span class="line-code"> </span></span>
+<span class="source-line" id="L345"><a class="line-no" href="#L345" aria-label="Line 345">345</a><span class="line-code">/-- The actual Lebesgue interpolation preserves the countable `ℓ¹` distance. -/</span></span>
+<span class="source-line" id="L346"><a class="line-no" href="#L346" aria-label="Line 346">346</a><span class="line-code">theorem interpolate_l1_isometry {p q : (ι → ℤ) → ℝ}</span></span>
+<span class="source-line" id="L347"><a class="line-no" href="#L347" aria-label="Line 347">347</a><span class="line-code">    (hp : Summable p) (hq : Summable q) :</span></span>
+<span class="source-line" id="L348"><a class="line-no" href="#L348" aria-label="Line 348">348</a><span class="line-code">    (∫ x, |interpolate p x - interpolate q x|) = ∑&#x27; z, |p z - q z| :=</span></span>
+<span class="source-line" id="L349"><a class="line-no" href="#L349" aria-label="Line 349">349</a><span class="line-code">  integral_interpolate (hp.sub hq).abs</span></span>
+<span class="source-line" id="L350"><a class="line-no" href="#L350" aria-label="Line 350">350</a><span class="line-code"> </span></span>
+<span class="source-line" id="L351"><a class="line-no" href="#L351" aria-label="Line 351">351</a><span class="line-code">/-- Hellinger affinity is also preserved, with countably many cells. -/</span></span>
+<span class="source-line" id="L352"><a class="line-no" href="#L352" aria-label="Line 352">352</a><span class="line-code">theorem interpolate_affinity {p q : (ι → ℤ) → ℝ}</span></span>
+<span class="source-line" id="L353"><a class="line-no" href="#L353" aria-label="Line 353">353</a><span class="line-code">    (hp0 : ∀ z, 0 ≤ p z) (hq0 : ∀ z, 0 ≤ q z)</span></span>
+<span class="source-line" id="L354"><a class="line-no" href="#L354" aria-label="Line 354">354</a><span class="line-code">    (hp : Summable p) (hq : Summable q) :</span></span>
+<span class="source-line" id="L355"><a class="line-no" href="#L355" aria-label="Line 355">355</a><span class="line-code">    (∫ x, Real.sqrt (interpolate p x) * Real.sqrt (interpolate q x)) =</span></span>
+<span class="source-line" id="L356"><a class="line-no" href="#L356" aria-label="Line 356">356</a><span class="line-code">      ∑&#x27; z, Real.sqrt (p z) * Real.sqrt (q z) :=</span></span>
+<span class="source-line" id="L357"><a class="line-no" href="#L357" aria-label="Line 357">357</a><span class="line-code">  integral_interpolate (CountableScheffe.affinity_summable p q hp0 hq0 hp hq)</span></span>
+<span class="source-line" id="L358"><a class="line-no" href="#L358" aria-label="Line 358">358</a><span class="line-code"> </span></span>
+<span class="source-line" id="L359"><a class="line-no" href="#L359" aria-label="Line 359">359</a><span class="line-code">/-- Lebesgue cell averaging, constructed from the actual fiber integrals. -/</span></span>
+<span class="source-line" id="L360"><a class="line-no" href="#L360" aria-label="Line 360">360</a><span class="line-code">def cellAverage (f : (ι → ℝ) → ℝ) : (ι → ℝ) → ℝ :=</span></span>
+<span class="source-line" id="L361"><a class="line-no" href="#L361" aria-label="Line 361">361</a><span class="line-code">  interpolate (binMass volume round f)</span></span>
+<span class="source-line" id="L362"><a class="line-no" href="#L362" aria-label="Line 362">362</a><span class="line-code"> </span></span>
+<span class="source-line" id="L363"><a class="line-no" href="#L363" aria-label="Line 363">363</a><span class="line-code">theorem integrable_cellAverage {f : (ι → ℝ) → ℝ} (hf : Integrable f) :</span></span>
+<span class="source-line" id="L364"><a class="line-no" href="#L364" aria-label="Line 364">364</a><span class="line-code">    Integrable (cellAverage f) :=</span></span>
+<span class="source-line" id="L365"><a class="line-no" href="#L365" aria-label="Line 365">365</a><span class="line-code">  integrable_interpolate (hasSum_binMass volume measurable_round hf).summable</span></span>
+<span class="source-line" id="L366"><a class="line-no" href="#L366" aria-label="Line 366">366</a><span class="line-code"> </span></span>
+<span class="source-line" id="L367"><a class="line-no" href="#L367" aria-label="Line 367">367</a><span class="line-code">theorem integral_cellAverage {f : (ι → ℝ) → ℝ} (hf : Integrable f) :</span></span>
+<span class="source-line" id="L368"><a class="line-no" href="#L368" aria-label="Line 368">368</a><span class="line-code">    (∫ x, cellAverage f x) = ∫ x, f x := by</span></span>
+<span class="source-line" id="L369"><a class="line-no" href="#L369" aria-label="Line 369">369</a><span class="line-code">  rw [cellAverage, integral_interpolate (hasSum_binMass volume measurable_round hf).summable]</span></span>
+<span class="source-line" id="L370"><a class="line-no" href="#L370" aria-label="Line 370">370</a><span class="line-code">  exact (hasSum_binMass volume measurable_round hf).tsum_eq</span></span>
+<span class="source-line" id="L371"><a class="line-no" href="#L371" aria-label="Line 371">371</a><span class="line-code"> </span></span>
+<span class="source-line" id="L372"><a class="line-no" href="#L372" aria-label="Line 372">372</a><span class="line-code">theorem cellAverage_l1_contraction {f g : (ι → ℝ) → ℝ}</span></span>
+<span class="source-line" id="L373"><a class="line-no" href="#L373" aria-label="Line 373">373</a><span class="line-code">    (hf : Integrable f) (hg : Integrable g) :</span></span>
+<span class="source-line" id="L374"><a class="line-no" href="#L374" aria-label="Line 374">374</a><span class="line-code">    (∫ x, |cellAverage f x - cellAverage g x|) ≤ ∫ x, |f x - g x| := by</span></span>
+<span class="source-line" id="L375"><a class="line-no" href="#L375" aria-label="Line 375">375</a><span class="line-code">  rw [cellAverage, cellAverage, interpolate_l1_isometry</span></span>
+<span class="source-line" id="L376"><a class="line-no" href="#L376" aria-label="Line 376">376</a><span class="line-code">    (hasSum_binMass volume measurable_round hf).summable</span></span>
+<span class="source-line" id="L377"><a class="line-no" href="#L377" aria-label="Line 377">377</a><span class="line-code">    (hasSum_binMass volume measurable_round hg).summable]</span></span>
+<span class="source-line" id="L378"><a class="line-no" href="#L378" aria-label="Line 378">378</a><span class="line-code">  exact binMass_l1_contraction volume measurable_round hf hg</span></span>
+<span class="source-line" id="L379"><a class="line-no" href="#L379" aria-label="Line 379">379</a><span class="line-code"> </span></span>
+<span class="source-line" id="L380"><a class="line-no" href="#L380" aria-label="Line 380">380</a><span class="line-code">theorem cellAverage_interpolate (p : (ι → ℤ) → ℝ) :</span></span>
+<span class="source-line" id="L381"><a class="line-no" href="#L381" aria-label="Line 381">381</a><span class="line-code">    cellAverage (interpolate p) = interpolate p := by</span></span>
+<span class="source-line" id="L382"><a class="line-no" href="#L382" aria-label="Line 382">382</a><span class="line-code">  have heq : binMass volume round (interpolate p) = p := by</span></span>
+<span class="source-line" id="L383"><a class="line-no" href="#L383" aria-label="Line 383">383</a><span class="line-code">    funext z</span></span>
+<span class="source-line" id="L384"><a class="line-no" href="#L384" aria-label="Line 384">384</a><span class="line-code">    rw [binMass, ← cell_eq_fiber, integral_interpolate_cell]</span></span>
+<span class="source-line" id="L385"><a class="line-no" href="#L385" aria-label="Line 385">385</a><span class="line-code">  rw [cellAverage, heq]</span></span>
+<span class="source-line" id="L386"><a class="line-no" href="#L386" aria-label="Line 386">386</a><span class="line-code"> </span></span>
+<span class="source-line" id="L387"><a class="line-no" href="#L387" aria-label="Line 387">387</a><span class="line-code">/-- Translation and positive scalar dilation of a density, including its</span></span>
+<span class="source-line" id="L388"><a class="line-no" href="#L388" aria-label="Line 388">388</a><span class="line-code">Jacobian.  The manuscript uses `h = 1 / sqrt N` for interpolation and</span></span>
+<span class="source-line" id="L389"><a class="line-no" href="#L389" aria-label="Line 389">389</a><span class="line-code">`h = sqrt γ` for dilation of a recentered density. -/</span></span>
+<span class="source-line" id="L390"><a class="line-no" href="#L390" aria-label="Line 390">390</a><span class="line-code">def affineDensity (h : ℝ) (a : ι → ℝ) (f : (ι → ℝ) → ℝ) (x : ι → ℝ) : ℝ :=</span></span>
+<span class="source-line" id="L391"><a class="line-no" href="#L391" aria-label="Line 391">391</a><span class="line-code">  (h ^ Fintype.card ι)⁻¹ * f (h⁻¹ • (x - a))</span></span>
+<span class="source-line" id="L392"><a class="line-no" href="#L392" aria-label="Line 392">392</a><span class="line-code"> </span></span>
+<span class="source-line" id="L393"><a class="line-no" href="#L393" aria-label="Line 393">393</a><span class="line-code">theorem integral_affineDensity (h : ℝ) (hh : 0 &lt; h) (a : ι → ℝ)</span></span>
+<span class="source-line" id="L394"><a class="line-no" href="#L394" aria-label="Line 394">394</a><span class="line-code">    (f : (ι → ℝ) → ℝ) : (∫ x, affineDensity h a f x) = ∫ x, f x := by</span></span>
+<span class="source-line" id="L395"><a class="line-no" href="#L395" aria-label="Line 395">395</a><span class="line-code">  unfold affineDensity</span></span>
+<span class="source-line" id="L396"><a class="line-no" href="#L396" aria-label="Line 396">396</a><span class="line-code">  rw [integral_const_mul]</span></span>
+<span class="source-line" id="L397"><a class="line-no" href="#L397" aria-label="Line 397">397</a><span class="line-code">  have ht : (∫ x : ι → ℝ, f (h⁻¹ • (x - a))) = ∫ x : ι → ℝ, f (h⁻¹ • x) := by</span></span>
+<span class="source-line" id="L398"><a class="line-no" href="#L398" aria-label="Line 398">398</a><span class="line-code">    simpa only [sub_eq_add_neg] using</span></span>
+<span class="source-line" id="L399"><a class="line-no" href="#L399" aria-label="Line 399">399</a><span class="line-code">      integral_add_right_eq_self (fun x : ι → ℝ ↦ f (h⁻¹ • x)) (-a)</span></span>
+<span class="source-line" id="L400"><a class="line-no" href="#L400" aria-label="Line 400">400</a><span class="line-code">  rw [ht, Measure.integral_comp_inv_smul_of_nonneg volume f hh.le]</span></span>
+<span class="source-line" id="L401"><a class="line-no" href="#L401" aria-label="Line 401">401</a><span class="line-code">  simp only [Module.finrank_pi, smul_eq_mul]</span></span>
+<span class="source-line" id="L402"><a class="line-no" href="#L402" aria-label="Line 402">402</a><span class="line-code">  rw [← mul_assoc, inv_mul_cancel₀ (pow_ne_zero _ hh.ne&#x27;), one_mul]</span></span>
+<span class="source-line" id="L403"><a class="line-no" href="#L403" aria-label="Line 403">403</a><span class="line-code"> </span></span>
+<span class="source-line" id="L404"><a class="line-no" href="#L404" aria-label="Line 404">404</a><span class="line-code">theorem integrable_affineDensity (h : ℝ) (hh : 0 &lt; h) (a : ι → ℝ)</span></span>
+<span class="source-line" id="L405"><a class="line-no" href="#L405" aria-label="Line 405">405</a><span class="line-code">    {f : (ι → ℝ) → ℝ} (hf : Integrable f) : Integrable (affineDensity h a f) := by</span></span>
+<span class="source-line" id="L406"><a class="line-no" href="#L406" aria-label="Line 406">406</a><span class="line-code">  have hd := hf.comp_smul (inv_ne_zero hh.ne&#x27;)</span></span>
+<span class="source-line" id="L407"><a class="line-no" href="#L407" aria-label="Line 407">407</a><span class="line-code">  have ht := (measurePreserving_add_right (volume : Measure (ι → ℝ)) (-a)).integrable_comp_of_integrable hd</span></span>
+<span class="source-line" id="L408"><a class="line-no" href="#L408" aria-label="Line 408">408</a><span class="line-code">  simpa only [Function.comp_def, sub_eq_add_neg, affineDensity] using</span></span>
+<span class="source-line" id="L409"><a class="line-no" href="#L409" aria-label="Line 409">409</a><span class="line-code">    ht.const_mul ((h ^ Fintype.card ι)⁻¹)</span></span>
+<span class="source-line" id="L410"><a class="line-no" href="#L410" aria-label="Line 410">410</a><span class="line-code"> </span></span>
+<span class="source-line" id="L411"><a class="line-no" href="#L411" aria-label="Line 411">411</a><span class="line-code">theorem affineDensity_l1_isometry (h : ℝ) (hh : 0 &lt; h) (a : ι → ℝ)</span></span>
+<span class="source-line" id="L412"><a class="line-no" href="#L412" aria-label="Line 412">412</a><span class="line-code">    (f g : (ι → ℝ) → ℝ) :</span></span>
+<span class="source-line" id="L413"><a class="line-no" href="#L413" aria-label="Line 413">413</a><span class="line-code">    (∫ x, |affineDensity h a f x - affineDensity h a g x|) = ∫ x, |f x - g x| := by</span></span>
+<span class="source-line" id="L414"><a class="line-no" href="#L414" aria-label="Line 414">414</a><span class="line-code">  have heq : (fun x ↦ |affineDensity h a f x - affineDensity h a g x|) =</span></span>
+<span class="source-line" id="L415"><a class="line-no" href="#L415" aria-label="Line 415">415</a><span class="line-code">      affineDensity h a (fun x ↦ |f x - g x|) := by</span></span>
+<span class="source-line" id="L416"><a class="line-no" href="#L416" aria-label="Line 416">416</a><span class="line-code">    funext x</span></span>
+<span class="source-line" id="L417"><a class="line-no" href="#L417" aria-label="Line 417">417</a><span class="line-code">    simp only [affineDensity, ← mul_sub, abs_mul,</span></span>
+<span class="source-line" id="L418"><a class="line-no" href="#L418" aria-label="Line 418">418</a><span class="line-code">      abs_of_nonneg (inv_nonneg.mpr (pow_nonneg hh.le _))]</span></span>
+<span class="source-line" id="L419"><a class="line-no" href="#L419" aria-label="Line 419">419</a><span class="line-code">  rw [heq, integral_affineDensity h hh a]</span></span>
+<span class="source-line" id="L420"><a class="line-no" href="#L420" aria-label="Line 420">420</a><span class="line-code"> </span></span>
+<span class="source-line" id="L421"><a class="line-no" href="#L421" aria-label="Line 421">421</a><span class="line-code">/-- Pulling a density back to unit-cell coordinates is the inverse density</span></span>
+<span class="source-line" id="L422"><a class="line-no" href="#L422" aria-label="Line 422">422</a><span class="line-code">transformation, with the inverse Jacobian. -/</span></span>
+<span class="source-line" id="L423"><a class="line-no" href="#L423" aria-label="Line 423">423</a><span class="line-code">def affinePull (h : ℝ) (a : ι → ℝ) (f : (ι → ℝ) → ℝ) (x : ι → ℝ) : ℝ :=</span></span>
+<span class="source-line" id="L424"><a class="line-no" href="#L424" aria-label="Line 424">424</a><span class="line-code">  h ^ Fintype.card ι * f (a + h • x)</span></span>
+<span class="source-line" id="L425"><a class="line-no" href="#L425" aria-label="Line 425">425</a><span class="line-code"> </span></span>
+<span class="source-line" id="L426"><a class="line-no" href="#L426" aria-label="Line 426">426</a><span class="line-code">theorem affinePull_eq_affineDensity (h : ℝ) (hh : h ≠ 0) (a : ι → ℝ)</span></span>
+<span class="source-line" id="L427"><a class="line-no" href="#L427" aria-label="Line 427">427</a><span class="line-code">    (f : (ι → ℝ) → ℝ) :</span></span>
+<span class="source-line" id="L428"><a class="line-no" href="#L428" aria-label="Line 428">428</a><span class="line-code">    affinePull h a f = affineDensity h⁻¹ (-(h⁻¹ • a)) f := by</span></span>
+<span class="source-line" id="L429"><a class="line-no" href="#L429" aria-label="Line 429">429</a><span class="line-code">  funext x</span></span>
+<span class="source-line" id="L430"><a class="line-no" href="#L430" aria-label="Line 430">430</a><span class="line-code">  simp only [affinePull, affineDensity, inv_pow, inv_inv, sub_neg_eq_add,</span></span>
+<span class="source-line" id="L431"><a class="line-no" href="#L431" aria-label="Line 431">431</a><span class="line-code">    smul_add, smul_smul, mul_inv_cancel₀ hh, one_smul, add_comm]</span></span>
+<span class="source-line" id="L432"><a class="line-no" href="#L432" aria-label="Line 432">432</a><span class="line-code"> </span></span>
+<span class="source-line" id="L433"><a class="line-no" href="#L433" aria-label="Line 433">433</a><span class="line-code">theorem integral_affinePull (h : ℝ) (hh : 0 &lt; h) (a : ι → ℝ)</span></span>
+<span class="source-line" id="L434"><a class="line-no" href="#L434" aria-label="Line 434">434</a><span class="line-code">    (f : (ι → ℝ) → ℝ) : (∫ x, affinePull h a f x) = ∫ x, f x := by</span></span>
+<span class="source-line" id="L435"><a class="line-no" href="#L435" aria-label="Line 435">435</a><span class="line-code">  rw [affinePull_eq_affineDensity h hh.ne&#x27; a f]</span></span>
+<span class="source-line" id="L436"><a class="line-no" href="#L436" aria-label="Line 436">436</a><span class="line-code">  exact integral_affineDensity h⁻¹ (inv_pos.mpr hh) _ f</span></span>
+<span class="source-line" id="L437"><a class="line-no" href="#L437" aria-label="Line 437">437</a><span class="line-code"> </span></span>
+<span class="source-line" id="L438"><a class="line-no" href="#L438" aria-label="Line 438">438</a><span class="line-code">theorem integrable_affinePull (h : ℝ) (hh : 0 &lt; h) (a : ι → ℝ)</span></span>
+<span class="source-line" id="L439"><a class="line-no" href="#L439" aria-label="Line 439">439</a><span class="line-code">    {f : (ι → ℝ) → ℝ} (hf : Integrable f) : Integrable (affinePull h a f) := by</span></span>
+<span class="source-line" id="L440"><a class="line-no" href="#L440" aria-label="Line 440">440</a><span class="line-code">  rw [affinePull_eq_affineDensity h hh.ne&#x27; a f]</span></span>
+<span class="source-line" id="L441"><a class="line-no" href="#L441" aria-label="Line 441">441</a><span class="line-code">  exact integrable_affineDensity h⁻¹ (inv_pos.mpr hh) _ hf</span></span>
+<span class="source-line" id="L442"><a class="line-no" href="#L442" aria-label="Line 442">442</a><span class="line-code"> </span></span>
+<span class="source-line" id="L443"><a class="line-no" href="#L443" aria-label="Line 443">443</a><span class="line-code">theorem affineDensity_affinePull (h : ℝ) (hh : h ≠ 0) (a : ι → ℝ)</span></span>
+<span class="source-line" id="L444"><a class="line-no" href="#L444" aria-label="Line 444">444</a><span class="line-code">    (f : (ι → ℝ) → ℝ) : affineDensity h a (affinePull h a f) = f := by</span></span>
+<span class="source-line" id="L445"><a class="line-no" href="#L445" aria-label="Line 445">445</a><span class="line-code">  funext x</span></span>
+<span class="source-line" id="L446"><a class="line-no" href="#L446" aria-label="Line 446">446</a><span class="line-code">  simp only [affineDensity, affinePull, smul_smul, mul_inv_cancel₀ hh, one_smul,</span></span>
+<span class="source-line" id="L447"><a class="line-no" href="#L447" aria-label="Line 447">447</a><span class="line-code">    add_sub_cancel, ← mul_assoc, inv_mul_cancel₀ (pow_ne_zero _ hh), one_mul]</span></span>
+<span class="source-line" id="L448"><a class="line-no" href="#L448" aria-label="Line 448">448</a><span class="line-code"> </span></span>
+<span class="source-line" id="L449"><a class="line-no" href="#L449" aria-label="Line 449">449</a><span class="line-code">/-- Averaging over translated cells of side length `h`, defined concretely</span></span>
+<span class="source-line" id="L450"><a class="line-no" href="#L450" aria-label="Line 450">450</a><span class="line-code">by integration in unit-cell coordinates. -/</span></span>
+<span class="source-line" id="L451"><a class="line-no" href="#L451" aria-label="Line 451">451</a><span class="line-code">def scaledCellAverage (h : ℝ) (a : ι → ℝ) (f : (ι → ℝ) → ℝ) : (ι → ℝ) → ℝ :=</span></span>
+<span class="source-line" id="L452"><a class="line-no" href="#L452" aria-label="Line 452">452</a><span class="line-code">  affineDensity h a (cellAverage (affinePull h a f))</span></span>
+<span class="source-line" id="L453"><a class="line-no" href="#L453" aria-label="Line 453">453</a><span class="line-code"> </span></span>
+<span class="source-line" id="L454"><a class="line-no" href="#L454" aria-label="Line 454">454</a><span class="line-code">theorem integrable_scaledCellAverage (h : ℝ) (hh : 0 &lt; h) (a : ι → ℝ)</span></span>
+<span class="source-line" id="L455"><a class="line-no" href="#L455" aria-label="Line 455">455</a><span class="line-code">    {f : (ι → ℝ) → ℝ} (hf : Integrable f) : Integrable (scaledCellAverage h a f) :=</span></span>
+<span class="source-line" id="L456"><a class="line-no" href="#L456" aria-label="Line 456">456</a><span class="line-code">  integrable_affineDensity h hh a (integrable_cellAverage (integrable_affinePull h hh a hf))</span></span>
+<span class="source-line" id="L457"><a class="line-no" href="#L457" aria-label="Line 457">457</a><span class="line-code"> </span></span>
+<span class="source-line" id="L458"><a class="line-no" href="#L458" aria-label="Line 458">458</a><span class="line-code">theorem integral_scaledCellAverage (h : ℝ) (hh : 0 &lt; h) (a : ι → ℝ)</span></span>
+<span class="source-line" id="L459"><a class="line-no" href="#L459" aria-label="Line 459">459</a><span class="line-code">    {f : (ι → ℝ) → ℝ} (hf : Integrable f) :</span></span>
+<span class="source-line" id="L460"><a class="line-no" href="#L460" aria-label="Line 460">460</a><span class="line-code">    (∫ x, scaledCellAverage h a f x) = ∫ x, f x := by</span></span>
+<span class="source-line" id="L461"><a class="line-no" href="#L461" aria-label="Line 461">461</a><span class="line-code">  rw [scaledCellAverage, integral_affineDensity h hh a,</span></span>
+<span class="source-line" id="L462"><a class="line-no" href="#L462" aria-label="Line 462">462</a><span class="line-code">    integral_cellAverage (integrable_affinePull h hh a hf), integral_affinePull h hh a]</span></span>
+<span class="source-line" id="L463"><a class="line-no" href="#L463" aria-label="Line 463">463</a><span class="line-code"> </span></span>
+<span class="source-line" id="L464"><a class="line-no" href="#L464" aria-label="Line 464">464</a><span class="line-code">theorem scaledCellAverage_l1_contraction (h : ℝ) (hh : 0 &lt; h) (a : ι → ℝ)</span></span>
+<span class="source-line" id="L465"><a class="line-no" href="#L465" aria-label="Line 465">465</a><span class="line-code">    {f g : (ι → ℝ) → ℝ} (hf : Integrable f) (hg : Integrable g) :</span></span>
+<span class="source-line" id="L466"><a class="line-no" href="#L466" aria-label="Line 466">466</a><span class="line-code">    (∫ x, |scaledCellAverage h a f x - scaledCellAverage h a g x|) ≤</span></span>
+<span class="source-line" id="L467"><a class="line-no" href="#L467" aria-label="Line 467">467</a><span class="line-code">      ∫ x, |f x - g x| := by</span></span>
+<span class="source-line" id="L468"><a class="line-no" href="#L468" aria-label="Line 468">468</a><span class="line-code">  rw [scaledCellAverage, scaledCellAverage, affineDensity_l1_isometry h hh a]</span></span>
+<span class="source-line" id="L469"><a class="line-no" href="#L469" aria-label="Line 469">469</a><span class="line-code">  have hb := cellAverage_l1_contraction (integrable_affinePull h hh a hf)</span></span>
+<span class="source-line" id="L470"><a class="line-no" href="#L470" aria-label="Line 470">470</a><span class="line-code">    (integrable_affinePull h hh a hg)</span></span>
+<span class="source-line" id="L471"><a class="line-no" href="#L471" aria-label="Line 471">471</a><span class="line-code">  rw [affinePull_eq_affineDensity h hh.ne&#x27; a f,</span></span>
+<span class="source-line" id="L472"><a class="line-no" href="#L472" aria-label="Line 472">472</a><span class="line-code">    affinePull_eq_affineDensity h hh.ne&#x27; a g,</span></span>
+<span class="source-line" id="L473"><a class="line-no" href="#L473" aria-label="Line 473">473</a><span class="line-code">    affineDensity_l1_isometry h⁻¹ (inv_pos.mpr hh)] at hb</span></span>
+<span class="source-line" id="L474"><a class="line-no" href="#L474" aria-label="Line 474">474</a><span class="line-code">  simpa only [affinePull_eq_affineDensity h hh.ne&#x27; a f,</span></span>
+<span class="source-line" id="L475"><a class="line-no" href="#L475" aria-label="Line 475">475</a><span class="line-code">    affinePull_eq_affineDensity h hh.ne&#x27; a g] using hb</span></span>
+<span class="source-line" id="L476"><a class="line-no" href="#L476" aria-label="Line 476">476</a><span class="line-code"> </span></span>
+<span class="source-line" id="L477"><a class="line-no" href="#L477" aria-label="Line 477">477</a><span class="line-code">theorem scaledCellAverage_eq_integral (h : ℝ) (hh : h ≠ 0) (a : ι → ℝ)</span></span>
+<span class="source-line" id="L478"><a class="line-no" href="#L478" aria-label="Line 478">478</a><span class="line-code">    (f : (ι → ℝ) → ℝ) (x : ι → ℝ) :</span></span>
+<span class="source-line" id="L479"><a class="line-no" href="#L479" aria-label="Line 479">479</a><span class="line-code">    scaledCellAverage h a f x =</span></span>
+<span class="source-line" id="L480"><a class="line-no" href="#L480" aria-label="Line 480">480</a><span class="line-code">      ∫ y in cell (round (h⁻¹ • (x - a))), f (a + h • y) := by</span></span>
+<span class="source-line" id="L481"><a class="line-no" href="#L481" aria-label="Line 481">481</a><span class="line-code">  simp only [scaledCellAverage, affineDensity, cellAverage, interpolate, binMass,</span></span>
+<span class="source-line" id="L482"><a class="line-no" href="#L482" aria-label="Line 482">482</a><span class="line-code">    ← cell_eq_fiber, affinePull, integral_const_mul]</span></span>
+<span class="source-line" id="L483"><a class="line-no" href="#L483" aria-label="Line 483">483</a><span class="line-code">  rw [← mul_assoc, inv_mul_cancel₀ (pow_ne_zero _ hh), one_mul]</span></span>
+<span class="source-line" id="L484"><a class="line-no" href="#L484" aria-label="Line 484">484</a><span class="line-code"> </span></span>
+<span class="source-line" id="L485"><a class="line-no" href="#L485" aria-label="Line 485">485</a><span class="line-code">theorem scaledCellAverage_nonneg (h : ℝ) (hh : 0 &lt; h) (a : ι → ℝ)</span></span>
+<span class="source-line" id="L486"><a class="line-no" href="#L486" aria-label="Line 486">486</a><span class="line-code">    {f : (ι → ℝ) → ℝ} (hf0 : ∀ x, 0 ≤ f x) (x : ι → ℝ) :</span></span>
+<span class="source-line" id="L487"><a class="line-no" href="#L487" aria-label="Line 487">487</a><span class="line-code">    0 ≤ scaledCellAverage h a f x := by</span></span>
+<span class="source-line" id="L488"><a class="line-no" href="#L488" aria-label="Line 488">488</a><span class="line-code">  rw [scaledCellAverage_eq_integral h hh.ne&#x27;]</span></span>
+<span class="source-line" id="L489"><a class="line-no" href="#L489" aria-label="Line 489">489</a><span class="line-code">  exact integral_nonneg fun y ↦ hf0 (a + h • y)</span></span>
+<span class="source-line" id="L490"><a class="line-no" href="#L490" aria-label="Line 490">490</a><span class="line-code"> </span></span>
+<span class="source-line" id="L491"><a class="line-no" href="#L491" aria-label="Line 491">491</a><span class="line-code">theorem same_scaled_cell_dist_le (h : ℝ) (hh : 0 &lt; h) (a x y : ι → ℝ)</span></span>
+<span class="source-line" id="L492"><a class="line-no" href="#L492" aria-label="Line 492">492</a><span class="line-code">    (hy : y ∈ cell (round (h⁻¹ • (x - a)))) : dist (a + h • y) x ≤ h := by</span></span>
+<span class="source-line" id="L493"><a class="line-no" href="#L493" aria-label="Line 493">493</a><span class="line-code">  let u := h⁻¹ • (x - a)</span></span>
+<span class="source-line" id="L494"><a class="line-no" href="#L494" aria-label="Line 494">494</a><span class="line-code">  have hu : u ∈ cell (round u) := (round_eq_iff u (round u)).mp rfl</span></span>
+<span class="source-line" id="L495"><a class="line-no" href="#L495" aria-label="Line 495">495</a><span class="line-code">  have hnorm : ‖y - u‖ ≤ 1 := by</span></span>
+<span class="source-line" id="L496"><a class="line-no" href="#L496" aria-label="Line 496">496</a><span class="line-code">    apply (pi_norm_le_iff_of_nonneg zero_le_one).mpr</span></span>
+<span class="source-line" id="L497"><a class="line-no" href="#L497" aria-label="Line 497">497</a><span class="line-code">    intro i</span></span>
+<span class="source-line" id="L498"><a class="line-no" href="#L498" aria-label="Line 498">498</a><span class="line-code">    have hyi := hy i (Set.mem_univ i)</span></span>
+<span class="source-line" id="L499"><a class="line-no" href="#L499" aria-label="Line 499">499</a><span class="line-code">    have hui := hu i (Set.mem_univ i)</span></span>
+<span class="source-line" id="L500"><a class="line-no" href="#L500" aria-label="Line 500">500</a><span class="line-code">    change (round u i : ℝ) - 1 / 2 ≤ y i ∧ y i &lt; (round u i : ℝ) + 1 / 2 at hyi</span></span>
+<span class="source-line" id="L501"><a class="line-no" href="#L501" aria-label="Line 501">501</a><span class="line-code">    change (round u i : ℝ) - 1 / 2 ≤ u i ∧ u i &lt; (round u i : ℝ) + 1 / 2 at hui</span></span>
+<span class="source-line" id="L502"><a class="line-no" href="#L502" aria-label="Line 502">502</a><span class="line-code">    rw [Real.norm_eq_abs, abs_le]</span></span>
+<span class="source-line" id="L503"><a class="line-no" href="#L503" aria-label="Line 503">503</a><span class="line-code">    change -1 ≤ y i - u i ∧ y i - u i ≤ 1</span></span>
+<span class="source-line" id="L504"><a class="line-no" href="#L504" aria-label="Line 504">504</a><span class="line-code">    constructor &lt;;&gt; linarith</span></span>
+<span class="source-line" id="L505"><a class="line-no" href="#L505" aria-label="Line 505">505</a><span class="line-code">  have heq : a + h • y - x = h • (y - u) := by</span></span>
+<span class="source-line" id="L506"><a class="line-no" href="#L506" aria-label="Line 506">506</a><span class="line-code">    dsimp [u]</span></span>
+<span class="source-line" id="L507"><a class="line-no" href="#L507" aria-label="Line 507">507</a><span class="line-code">    rw [smul_sub, smul_smul, mul_inv_cancel₀ hh.ne&#x27;, one_smul]</span></span>
+<span class="source-line" id="L508"><a class="line-no" href="#L508" aria-label="Line 508">508</a><span class="line-code">    abel</span></span>
+<span class="source-line" id="L509"><a class="line-no" href="#L509" aria-label="Line 509">509</a><span class="line-code">  rw [dist_eq_norm, heq, norm_smul, Real.norm_eq_abs, abs_of_pos hh]</span></span>
+<span class="source-line" id="L510"><a class="line-no" href="#L510" aria-label="Line 510">510</a><span class="line-code">  nlinarith</span></span>
+<span class="source-line" id="L511"><a class="line-no" href="#L511" aria-label="Line 511">511</a><span class="line-code"> </span></span>
+<span class="source-line" id="L512"><a class="line-no" href="#L512" aria-label="Line 512">512</a><span class="line-code">/-- The cell-averaging error is controlled by the actual oscillation on one</span></span>
+<span class="source-line" id="L513"><a class="line-no" href="#L513" aria-label="Line 513">513</a><span class="line-code">cell.  Cells have diameter at most `h` in the coordinate supremum norm. -/</span></span>
+<span class="source-line" id="L514"><a class="line-no" href="#L514" aria-label="Line 514">514</a><span class="line-code">theorem scaledCellAverage_error_le (h : ℝ) (hh : 0 &lt; h) (a : ι → ℝ)</span></span>
+<span class="source-line" id="L515"><a class="line-no" href="#L515" aria-label="Line 515">515</a><span class="line-code">    {f : (ι → ℝ) → ℝ} (hf : Integrable f) (x : ι → ℝ) (ε : ℝ)</span></span>
+<span class="source-line" id="L516"><a class="line-no" href="#L516" aria-label="Line 516">516</a><span class="line-code">    (hosc : ∀ y, dist y x ≤ h → |f y - f x| ≤ ε) :</span></span>
+<span class="source-line" id="L517"><a class="line-no" href="#L517" aria-label="Line 517">517</a><span class="line-code">    |scaledCellAverage h a f x - f x| ≤ ε := by</span></span>
+<span class="source-line" id="L518"><a class="line-no" href="#L518" aria-label="Line 518">518</a><span class="line-code">  let z := round (h⁻¹ • (x - a))</span></span>
+<span class="source-line" id="L519"><a class="line-no" href="#L519" aria-label="Line 519">519</a><span class="line-code">  have hi : Integrable (fun y : ι → ℝ ↦ f (a + h • y)) := by</span></span>
+<span class="source-line" id="L520"><a class="line-no" href="#L520" aria-label="Line 520">520</a><span class="line-code">    exact ((measurePreserving_add_left (volume : Measure (ι → ℝ)) a).integrable_comp_of_integrable hf).comp_smul hh.ne&#x27;</span></span>
+<span class="source-line" id="L521"><a class="line-no" href="#L521" aria-label="Line 521">521</a><span class="line-code">  have hc : IntegrableOn (fun _ : ι → ℝ ↦ f x) (cell z) :=</span></span>
+<span class="source-line" id="L522"><a class="line-no" href="#L522" aria-label="Line 522">522</a><span class="line-code">    integrableOn_const (by rw [volume_cell]; exact ENNReal.one_ne_top)</span></span>
+<span class="source-line" id="L523"><a class="line-no" href="#L523" aria-label="Line 523">523</a><span class="line-code">  have hconst : (∫ _y in cell z, f x) = f x := by</span></span>
+<span class="source-line" id="L524"><a class="line-no" href="#L524" aria-label="Line 524">524</a><span class="line-code">    simp [Measure.real, volume_cell]</span></span>
+<span class="source-line" id="L525"><a class="line-no" href="#L525" aria-label="Line 525">525</a><span class="line-code">  rw [scaledCellAverage_eq_integral h hh.ne&#x27;]</span></span>
+<span class="source-line" id="L526"><a class="line-no" href="#L526" aria-label="Line 526">526</a><span class="line-code">  change |(∫ y in cell z, f (a + h • y)) - f x| ≤ ε</span></span>
+<span class="source-line" id="L527"><a class="line-no" href="#L527" aria-label="Line 527">527</a><span class="line-code">  rw [← hconst, ← integral_sub hi.integrableOn hc]</span></span>
+<span class="source-line" id="L528"><a class="line-no" href="#L528" aria-label="Line 528">528</a><span class="line-code">  have hb := norm_setIntegral_le_of_norm_le_const</span></span>
+<span class="source-line" id="L529"><a class="line-no" href="#L529" aria-label="Line 529">529</a><span class="line-code">    (show volume (cell z) &lt; ∞ by rw [volume_cell]; exact ENNReal.one_lt_top)</span></span>
+<span class="source-line" id="L530"><a class="line-no" href="#L530" aria-label="Line 530">530</a><span class="line-code">    (f := fun y : ι → ℝ ↦ f (a + h • y) - f x)</span></span>
+<span class="source-line" id="L531"><a class="line-no" href="#L531" aria-label="Line 531">531</a><span class="line-code">    (fun y hy ↦ by</span></span>
+<span class="source-line" id="L532"><a class="line-no" href="#L532" aria-label="Line 532">532</a><span class="line-code">      simpa only [Real.norm_eq_abs] using hosc (a + h • y)</span></span>
+<span class="source-line" id="L533"><a class="line-no" href="#L533" aria-label="Line 533">533</a><span class="line-code">        (same_scaled_cell_dist_le h hh a x y hy))</span></span>
+<span class="source-line" id="L534"><a class="line-no" href="#L534" aria-label="Line 534">534</a><span class="line-code">  simpa only [Real.norm_eq_abs, Measure.real, volume_cell, ENNReal.toReal_one, mul_one] using hb</span></span>
+<span class="source-line" id="L535"><a class="line-no" href="#L535" aria-label="Line 535">535</a><span class="line-code"> </span></span>
+<span class="source-line" id="L536"><a class="line-no" href="#L536" aria-label="Line 536">536</a><span class="line-code">/-- Ordinary integrability supplies the reference tails used above. -/</span></span>
+<span class="source-line" id="L537"><a class="line-no" href="#L537" aria-label="Line 537">537</a><span class="line-code">theorem integral_compl_closedBall_tendsto_zero {f : (ι → ℝ) → ℝ} (hf : Integrable f) :</span></span>
+<span class="source-line" id="L538"><a class="line-no" href="#L538" aria-label="Line 538">538</a><span class="line-code">    Tendsto (fun n : ℕ ↦ ∫ x in (Metric.closedBall 0 (n : ℝ))ᶜ, f x) atTop (𝓝 0) := by</span></span>
+<span class="source-line" id="L539"><a class="line-no" href="#L539" aria-label="Line 539">539</a><span class="line-code">  have ht := tendsto_setIntegral_of_antitone</span></span>
+<span class="source-line" id="L540"><a class="line-no" href="#L540" aria-label="Line 540">540</a><span class="line-code">    (fun n : ℕ ↦ (Metric.isClosed_closedBall (x := (0 : ι → ℝ)) (ε := (n : ℝ))).measurableSet.compl)</span></span>
+<span class="source-line" id="L541"><a class="line-no" href="#L541" aria-label="Line 541">541</a><span class="line-code">    (show Antitone (fun n : ℕ ↦ (Metric.closedBall (0 : ι → ℝ) (n : ℝ))ᶜ) by</span></span>
+<span class="source-line" id="L542"><a class="line-no" href="#L542" aria-label="Line 542">542</a><span class="line-code">      intro m n hmn</span></span>
+<span class="source-line" id="L543"><a class="line-no" href="#L543" aria-label="Line 543">543</a><span class="line-code">      exact Set.compl_subset_compl.mpr (Metric.closedBall_subset_closedBall (by exact_mod_cast hmn)))</span></span>
+<span class="source-line" id="L544"><a class="line-no" href="#L544" aria-label="Line 544">544</a><span class="line-code">    ⟨0, hf.integrableOn⟩</span></span>
+<span class="source-line" id="L545"><a class="line-no" href="#L545" aria-label="Line 545">545</a><span class="line-code">  have hempty : (⋂ n : ℕ, (Metric.closedBall (0 : ι → ℝ) (n : ℝ))ᶜ) = ∅ := by</span></span>
+<span class="source-line" id="L546"><a class="line-no" href="#L546" aria-label="Line 546">546</a><span class="line-code">    rw [← Set.compl_iUnion, Metric.iUnion_closedBall_nat, Set.compl_univ]</span></span>
+<span class="source-line" id="L547"><a class="line-no" href="#L547" aria-label="Line 547">547</a><span class="line-code">  simpa only [hempty, setIntegral_empty] using ht</span></span>
+<span class="source-line" id="L548"><a class="line-no" href="#L548" aria-label="Line 548">548</a><span class="line-code"> </span></span>
+<span class="source-line" id="L549"><a class="line-no" href="#L549" aria-label="Line 549">549</a><span class="line-code">/-- Shrinking-cell averaging converges in `L¹` for every continuous,</span></span>
+<span class="source-line" id="L550"><a class="line-no" href="#L550" aria-label="Line 550">550</a><span class="line-code">nonnegative integrable density, uniformly over every translation of the</span></span>
+<span class="source-line" id="L551"><a class="line-no" href="#L551" aria-label="Line 551">551</a><span class="line-code">lattice.  No Poincaré estimate or averaging-limit premise is required. -/</span></span>
+<span class="source-line" id="L552"><a class="line-no" href="#L552" aria-label="Line 552">552</a><span class="line-code">theorem scaledCellAverage_l1_tendsto_uniform_translation</span></span>
+<span class="source-line" id="L553"><a class="line-no" href="#L553" aria-label="Line 553">553</a><span class="line-code">    {f : (ι → ℝ) → ℝ} (hf : Integrable f) (hf0 : ∀ x, 0 ≤ f x) (hfc : Continuous f)</span></span>
+<span class="source-line" id="L554"><a class="line-no" href="#L554" aria-label="Line 554">554</a><span class="line-code">    (h : ℕ → ℝ) (hh : ∀ n, 0 &lt; h n) (hlim : Tendsto h atTop (𝓝 0)) :</span></span>
+<span class="source-line" id="L555"><a class="line-no" href="#L555" aria-label="Line 555">555</a><span class="line-code">    ∀ ε, 0 &lt; ε → ∀ᶠ n in atTop, ∀ a : ι → ℝ,</span></span>
+<span class="source-line" id="L556"><a class="line-no" href="#L556" aria-label="Line 556">556</a><span class="line-code">      (∫ x, |scaledCellAverage (h n) a f x - f x|) &lt; ε := by</span></span>
+<span class="source-line" id="L557"><a class="line-no" href="#L557" aria-label="Line 557">557</a><span class="line-code">  apply density_l1_uniform_of_local_and_tails volume</span></span>
+<span class="source-line" id="L558"><a class="line-no" href="#L558" aria-label="Line 558">558</a><span class="line-code">    (fun n a ↦ scaledCellAverage (h n) a f) (fun _ : ι → ℝ ↦ f)</span></span>
+<span class="source-line" id="L559"><a class="line-no" href="#L559" aria-label="Line 559">559</a><span class="line-code">    (fun n a ↦ integrable_scaledCellAverage (h n) (hh n) a hf) (fun _ ↦ hf)</span></span>
+<span class="source-line" id="L560"><a class="line-no" href="#L560" aria-label="Line 560">560</a><span class="line-code">    (fun n a ↦ scaledCellAverage_nonneg (h n) (hh n) a hf0) (fun _ ↦ hf0)</span></span>
+<span class="source-line" id="L561"><a class="line-no" href="#L561" aria-label="Line 561">561</a><span class="line-code">    (fun n a ↦ integral_scaledCellAverage (h n) (hh n) a hf)</span></span>
+<span class="source-line" id="L562"><a class="line-no" href="#L562" aria-label="Line 562">562</a><span class="line-code">    (fun k : ℕ ↦ Metric.closedBall 0 (k : ℝ))</span></span>
+<span class="source-line" id="L563"><a class="line-no" href="#L563" aria-label="Line 563">563</a><span class="line-code">    (fun _ ↦ Metric.isClosed_closedBall.measurableSet)</span></span>
+<span class="source-line" id="L564"><a class="line-no" href="#L564" aria-label="Line 564">564</a><span class="line-code">    (fun k ↦ (isCompact_closedBall (0 : ι → ℝ) (k : ℝ)).measure_ne_top)</span></span>
+<span class="source-line" id="L565"><a class="line-no" href="#L565" aria-label="Line 565">565</a><span class="line-code">  · intro k ε hε</span></span>
+<span class="source-line" id="L566"><a class="line-no" href="#L566" aria-label="Line 566">566</a><span class="line-code">    obtain ⟨δ, hδ, hosc⟩ := Metric.uniformContinuousOn_iff.mp</span></span>
+<span class="source-line" id="L567"><a class="line-no" href="#L567" aria-label="Line 567">567</a><span class="line-code">      ((isCompact_closedBall (0 : ι → ℝ) ((k : ℝ) + 1)).uniformContinuousOn_of_continuous hfc.continuousOn) ε hε</span></span>
+<span class="source-line" id="L568"><a class="line-no" href="#L568" aria-label="Line 568">568</a><span class="line-code">    filter_upwards [hlim.eventually (gt_mem_nhds hδ), hlim.eventually (gt_mem_nhds zero_lt_one)] with n hn hn1</span></span>
+<span class="source-line" id="L569"><a class="line-no" href="#L569" aria-label="Line 569">569</a><span class="line-code">    intro a x hx</span></span>
+<span class="source-line" id="L570"><a class="line-no" href="#L570" aria-label="Line 570">570</a><span class="line-code">    apply scaledCellAverage_error_le (h n) (hh n) a hf x ε</span></span>
+<span class="source-line" id="L571"><a class="line-no" href="#L571" aria-label="Line 571">571</a><span class="line-code">    intro y hy</span></span>
+<span class="source-line" id="L572"><a class="line-no" href="#L572" aria-label="Line 572">572</a><span class="line-code">    have hx&#x27; : x ∈ Metric.closedBall (0 : ι → ℝ) ((k : ℝ) + 1) :=</span></span>
+<span class="source-line" id="L573"><a class="line-no" href="#L573" aria-label="Line 573">573</a><span class="line-code">      Metric.closedBall_subset_closedBall (by linarith) hx</span></span>
+<span class="source-line" id="L574"><a class="line-no" href="#L574" aria-label="Line 574">574</a><span class="line-code">    have hy&#x27; : y ∈ Metric.closedBall (0 : ι → ℝ) ((k : ℝ) + 1) := by</span></span>
+<span class="source-line" id="L575"><a class="line-no" href="#L575" aria-label="Line 575">575</a><span class="line-code">      have hb := dist_triangle y x (0 : ι → ℝ)</span></span>
+<span class="source-line" id="L576"><a class="line-no" href="#L576" aria-label="Line 576">576</a><span class="line-code">      rw [Metric.mem_closedBall] at hx ⊢</span></span>
+<span class="source-line" id="L577"><a class="line-no" href="#L577" aria-label="Line 577">577</a><span class="line-code">      linarith</span></span>
+<span class="source-line" id="L578"><a class="line-no" href="#L578" aria-label="Line 578">578</a><span class="line-code">    simpa only [Real.dist_eq] using (hosc y hy&#x27; x hx&#x27; (hy.trans_lt hn)).le</span></span>
+<span class="source-line" id="L579"><a class="line-no" href="#L579" aria-label="Line 579">579</a><span class="line-code">  · intro ε hε</span></span>
+<span class="source-line" id="L580"><a class="line-no" href="#L580" aria-label="Line 580">580</a><span class="line-code">    have he := (integral_compl_closedBall_tendsto_zero hf).eventually (gt_mem_nhds hε)</span></span>
+<span class="source-line" id="L581"><a class="line-no" href="#L581" aria-label="Line 581">581</a><span class="line-code">    obtain ⟨k, hk⟩ := he.exists</span></span>
+<span class="source-line" id="L582"><a class="line-no" href="#L582" aria-label="Line 582">582</a><span class="line-code">    exact ⟨k, fun _ ↦ hk.le⟩</span></span>
+<span class="source-line" id="L583"><a class="line-no" href="#L583" aria-label="Line 583">583</a><span class="line-code"> </span></span>
+<span class="source-line" id="L584"><a class="line-no" href="#L584" aria-label="Line 584">584</a><span class="line-code">omit [Fintype ι] in</span></span>
+<span class="source-line" id="L585"><a class="line-no" href="#L585" aria-label="Line 585">585</a><span class="line-code">theorem cast_add_mem_cell_iff (z : ι → ℤ) (y : ι → ℝ) :</span></span>
+<span class="source-line" id="L586"><a class="line-no" href="#L586" aria-label="Line 586">586</a><span class="line-code">    (fun i ↦ (z i : ℝ) + y i) ∈ cell z ↔ y ∈ cell 0 := by</span></span>
+<span class="source-line" id="L587"><a class="line-no" href="#L587" aria-label="Line 587">587</a><span class="line-code">  simp only [cell, Set.mem_pi, Set.mem_univ, true_implies, Set.mem_Ico,</span></span>
+<span class="source-line" id="L588"><a class="line-no" href="#L588" aria-label="Line 588">588</a><span class="line-code">    Pi.zero_apply, Int.cast_zero, zero_sub, zero_add]</span></span>
+<span class="source-line" id="L589"><a class="line-no" href="#L589" aria-label="Line 589">589</a><span class="line-code">  constructor</span></span>
+<span class="source-line" id="L590"><a class="line-no" href="#L590" aria-label="Line 590">590</a><span class="line-code">  · intro h i</span></span>
+<span class="source-line" id="L591"><a class="line-no" href="#L591" aria-label="Line 591">591</a><span class="line-code">    have hi := h i</span></span>
+<span class="source-line" id="L592"><a class="line-no" href="#L592" aria-label="Line 592">592</a><span class="line-code">    constructor &lt;;&gt; linarith</span></span>
+<span class="source-line" id="L593"><a class="line-no" href="#L593" aria-label="Line 593">593</a><span class="line-code">  · intro h i</span></span>
+<span class="source-line" id="L594"><a class="line-no" href="#L594" aria-label="Line 594">594</a><span class="line-code">    have hi := h i</span></span>
+<span class="source-line" id="L595"><a class="line-no" href="#L595" aria-label="Line 595">595</a><span class="line-code">    constructor &lt;;&gt; linarith</span></span>
+<span class="source-line" id="L596"><a class="line-no" href="#L596" aria-label="Line 596">596</a><span class="line-code"> </span></span>
+<span class="source-line" id="L597"><a class="line-no" href="#L597" aria-label="Line 597">597</a><span class="line-code">/-- The same cell kernel in the original, undithered lattice coordinates. -/</span></span>
+<span class="source-line" id="L598"><a class="line-no" href="#L598" aria-label="Line 598">598</a><span class="line-code">theorem roundingPMF_eq_cell_overlap (γ : ℝ) (z w : ι → ℤ) :</span></span>
+<span class="source-line" id="L599"><a class="line-no" href="#L599" aria-label="Line 599">599</a><span class="line-code">    roundingPMF γ (fun i ↦ (z i : ℝ)) w =</span></span>
+<span class="source-line" id="L600"><a class="line-no" href="#L600" aria-label="Line 600">600</a><span class="line-code">      volume (((fun x : ι → ℝ ↦ γ • x) ⁻¹&#x27; cell w) ∩ cell z) := by</span></span>
+<span class="source-line" id="L601"><a class="line-no" href="#L601" aria-label="Line 601">601</a><span class="line-code">  rw [roundingPMF_eq_overlap]</span></span>
+<span class="source-line" id="L602"><a class="line-no" href="#L602" aria-label="Line 602">602</a><span class="line-code">  let a : ι → ℝ := fun i ↦ (z i : ℝ)</span></span>
+<span class="source-line" id="L603"><a class="line-no" href="#L603" aria-label="Line 603">603</a><span class="line-code">  have heq : ((fun y : ι → ℝ ↦ fun i ↦ γ * ((z i : ℝ) + y i)) ⁻¹&#x27; cell w ∩ cell 0) =</span></span>
+<span class="source-line" id="L604"><a class="line-no" href="#L604" aria-label="Line 604">604</a><span class="line-code">      (fun y : ι → ℝ ↦ a + y) ⁻¹&#x27; (((fun x : ι → ℝ ↦ γ • x) ⁻¹&#x27; cell w) ∩ cell z) := by</span></span>
+<span class="source-line" id="L605"><a class="line-no" href="#L605" aria-label="Line 605">605</a><span class="line-code">    ext y</span></span>
+<span class="source-line" id="L606"><a class="line-no" href="#L606" aria-label="Line 606">606</a><span class="line-code">    change (_ ∧ y ∈ cell 0) ↔ (_ ∧ (fun i ↦ (z i : ℝ) + y i) ∈ cell z)</span></span>
+<span class="source-line" id="L607"><a class="line-no" href="#L607" aria-label="Line 607">607</a><span class="line-code">    rw [cast_add_mem_cell_iff]</span></span>
+<span class="source-line" id="L608"><a class="line-no" href="#L608" aria-label="Line 608">608</a><span class="line-code">    rfl</span></span>
+<span class="source-line" id="L609"><a class="line-no" href="#L609" aria-label="Line 609">609</a><span class="line-code">  rw [heq, measure_preimage_add]</span></span>
+<span class="source-line" id="L610"><a class="line-no" href="#L610" aria-label="Line 610">610</a><span class="line-code"> </span></span>
+<span class="source-line" id="L611"><a class="line-no" href="#L611" aria-label="Line 611">611</a><span class="line-code">/-- Change of variables for a density restricted to one rounded output cell. -/</span></span>
+<span class="source-line" id="L612"><a class="line-no" href="#L612" aria-label="Line 612">612</a><span class="line-code">theorem binMass_affineDensity_zero (γ : ℝ) (hγ : 0 &lt; γ)</span></span>
+<span class="source-line" id="L613"><a class="line-no" href="#L613" aria-label="Line 613">613</a><span class="line-code">    (f : (ι → ℝ) → ℝ) (w : ι → ℤ) :</span></span>
+<span class="source-line" id="L614"><a class="line-no" href="#L614" aria-label="Line 614">614</a><span class="line-code">    binMass volume round (affineDensity γ 0 f) w =</span></span>
+<span class="source-line" id="L615"><a class="line-no" href="#L615" aria-label="Line 615">615</a><span class="line-code">      ∫ y in (fun x : ι → ℝ ↦ γ • x) ⁻¹&#x27; cell w, f y := by</span></span>
+<span class="source-line" id="L616"><a class="line-no" href="#L616" aria-label="Line 616">616</a><span class="line-code">  classical</span></span>
+<span class="source-line" id="L617"><a class="line-no" href="#L617" aria-label="Line 617">617</a><span class="line-code">  let S := (fun x : ι → ℝ ↦ γ • x) ⁻¹&#x27; cell w</span></span>
+<span class="source-line" id="L618"><a class="line-no" href="#L618" aria-label="Line 618">618</a><span class="line-code">  have hS : MeasurableSet S := (measurable_const_smul γ) (measurableSet_cell w)</span></span>
+<span class="source-line" id="L619"><a class="line-no" href="#L619" aria-label="Line 619">619</a><span class="line-code">  have heq : (cell w).indicator (affineDensity γ 0 f) =</span></span>
+<span class="source-line" id="L620"><a class="line-no" href="#L620" aria-label="Line 620">620</a><span class="line-code">      affineDensity γ 0 (S.indicator f) := by</span></span>
+<span class="source-line" id="L621"><a class="line-no" href="#L621" aria-label="Line 621">621</a><span class="line-code">    funext x</span></span>
+<span class="source-line" id="L622"><a class="line-no" href="#L622" aria-label="Line 622">622</a><span class="line-code">    have hm : γ⁻¹ • x ∈ S ↔ x ∈ cell w := by</span></span>
+<span class="source-line" id="L623"><a class="line-no" href="#L623" aria-label="Line 623">623</a><span class="line-code">      simp only [S, Set.mem_preimage, smul_smul, mul_inv_cancel₀ hγ.ne&#x27;, one_smul]</span></span>
+<span class="source-line" id="L624"><a class="line-no" href="#L624" aria-label="Line 624">624</a><span class="line-code">    by_cases hx : x ∈ cell w</span></span>
+<span class="source-line" id="L625"><a class="line-no" href="#L625" aria-label="Line 625">625</a><span class="line-code">    · simp only [Set.indicator_of_mem hx, affineDensity, sub_zero,</span></span>
+<span class="source-line" id="L626"><a class="line-no" href="#L626" aria-label="Line 626">626</a><span class="line-code">        Set.indicator_of_mem (hm.mpr hx)]</span></span>
+<span class="source-line" id="L627"><a class="line-no" href="#L627" aria-label="Line 627">627</a><span class="line-code">    · simp only [Set.indicator_of_notMem hx, affineDensity, sub_zero,</span></span>
+<span class="source-line" id="L628"><a class="line-no" href="#L628" aria-label="Line 628">628</a><span class="line-code">        Set.indicator_of_notMem (mt hm.mp hx), mul_zero]</span></span>
+<span class="source-line" id="L629"><a class="line-no" href="#L629" aria-label="Line 629">629</a><span class="line-code">  rw [binMass, ← cell_eq_fiber, ← integral_indicator (measurableSet_cell w), heq,</span></span>
+<span class="source-line" id="L630"><a class="line-no" href="#L630" aria-label="Line 630">630</a><span class="line-code">    integral_affineDensity γ hγ 0, integral_indicator hS]</span></span>
+<span class="source-line" id="L631"><a class="line-no" href="#L631" aria-label="Line 631">631</a><span class="line-code"> </span></span>
+<span class="source-line" id="L632"><a class="line-no" href="#L632" aria-label="Line 632">632</a><span class="line-code">/-- Exact intertwining for arbitrary absolutely summable real label weights:</span></span>
+<span class="source-line" id="L633"><a class="line-no" href="#L633" aria-label="Line 633">633</a><span class="line-code">the mass of the dilated interpolation in an output cell is the sum of the</span></span>
+<span class="source-line" id="L634"><a class="line-no" href="#L634" aria-label="Line 634">634</a><span class="line-code">actual randomized transition masses. -/</span></span>
+<span class="source-line" id="L635"><a class="line-no" href="#L635" aria-label="Line 635">635</a><span class="line-code">theorem binMass_dilated_interpolate (γ : ℝ) (hγ : 0 &lt; γ)</span></span>
+<span class="source-line" id="L636"><a class="line-no" href="#L636" aria-label="Line 636">636</a><span class="line-code">    {p : (ι → ℤ) → ℝ} (hp : Summable p) (w : ι → ℤ) :</span></span>
+<span class="source-line" id="L637"><a class="line-no" href="#L637" aria-label="Line 637">637</a><span class="line-code">    binMass volume round (affineDensity γ 0 (interpolate p)) w =</span></span>
+<span class="source-line" id="L638"><a class="line-no" href="#L638" aria-label="Line 638">638</a><span class="line-code">      ∑&#x27; z, p z * (roundingPMF γ (fun i ↦ (z i : ℝ)) w).toReal := by</span></span>
+<span class="source-line" id="L639"><a class="line-no" href="#L639" aria-label="Line 639">639</a><span class="line-code">  rw [binMass_affineDensity_zero γ hγ]</span></span>
+<span class="source-line" id="L640"><a class="line-no" href="#L640" aria-label="Line 640">640</a><span class="line-code">  let S := (fun x : ι → ℝ ↦ γ • x) ⁻¹&#x27; cell w</span></span>
+<span class="source-line" id="L641"><a class="line-no" href="#L641" aria-label="Line 641">641</a><span class="line-code">  have hi : Integrable (interpolate p) (volume.restrict S) :=</span></span>
+<span class="source-line" id="L642"><a class="line-no" href="#L642" aria-label="Line 642">642</a><span class="line-code">    (integrable_interpolate hp).integrableOn</span></span>
+<span class="source-line" id="L643"><a class="line-no" href="#L643" aria-label="Line 643">643</a><span class="line-code">  have hs := hasSum_integral_iUnion (μ := volume.restrict S) measurableSet_cell cells_disjoint</span></span>
+<span class="source-line" id="L644"><a class="line-no" href="#L644" aria-label="Line 644">644</a><span class="line-code">    (show IntegrableOn (interpolate p) (⋃ z, cell z) (volume.restrict S) by</span></span>
+<span class="source-line" id="L645"><a class="line-no" href="#L645" aria-label="Line 645">645</a><span class="line-code">      simpa only [cells_cover, integrableOn_univ] using hi)</span></span>
+<span class="source-line" id="L646"><a class="line-no" href="#L646" aria-label="Line 646">646</a><span class="line-code">  have heach (z : ι → ℤ) :</span></span>
+<span class="source-line" id="L647"><a class="line-no" href="#L647" aria-label="Line 647">647</a><span class="line-code">      (∫ x in cell z, interpolate p x ∂volume.restrict S) =</span></span>
+<span class="source-line" id="L648"><a class="line-no" href="#L648" aria-label="Line 648">648</a><span class="line-code">        p z * (roundingPMF γ (fun i ↦ (z i : ℝ)) w).toReal := by</span></span>
+<span class="source-line" id="L649"><a class="line-no" href="#L649" aria-label="Line 649">649</a><span class="line-code">    rw [setIntegral_congr_fun (measurableSet_cell z)</span></span>
+<span class="source-line" id="L650"><a class="line-no" href="#L650" aria-label="Line 650">650</a><span class="line-code">      (fun x hx ↦ interpolate_eq_on_cell p z hx), setIntegral_const,</span></span>
+<span class="source-line" id="L651"><a class="line-no" href="#L651" aria-label="Line 651">651</a><span class="line-code">      roundingPMF_eq_cell_overlap]</span></span>
+<span class="source-line" id="L652"><a class="line-no" href="#L652" aria-label="Line 652">652</a><span class="line-code">    simp only [Measure.real, Measure.restrict_apply (measurableSet_cell z), smul_eq_mul,</span></span>
+<span class="source-line" id="L653"><a class="line-no" href="#L653" aria-label="Line 653">653</a><span class="line-code">      Set.inter_comm, mul_comm, S]</span></span>
+<span class="source-line" id="L654"><a class="line-no" href="#L654" aria-label="Line 654">654</a><span class="line-code">  simpa only [cells_cover, setIntegral_univ, heach] using hs.tsum_eq.symm</span></span>
+<span class="source-line" id="L655"><a class="line-no" href="#L655" aria-label="Line 655">655</a><span class="line-code"> </span></span>
+<span class="source-line" id="L656"><a class="line-no" href="#L656" aria-label="Line 656">656</a><span class="line-code">theorem transport_toReal (γ : ℝ) (p : PMF (ι → ℤ)) (w : ι → ℤ) :</span></span>
+<span class="source-line" id="L657"><a class="line-no" href="#L657" aria-label="Line 657">657</a><span class="line-code">    (transport γ p w).toReal =</span></span>
+<span class="source-line" id="L658"><a class="line-no" href="#L658" aria-label="Line 658">658</a><span class="line-code">      ∑&#x27; z, (p z).toReal * (roundingPMF γ (fun i ↦ (z i : ℝ)) w).toReal := by</span></span>
+<span class="source-line" id="L659"><a class="line-no" href="#L659" aria-label="Line 659">659</a><span class="line-code">  rw [transport_apply, ENNReal.tsum_toReal_eq</span></span>
+<span class="source-line" id="L660"><a class="line-no" href="#L660" aria-label="Line 660">660</a><span class="line-code">    (fun z ↦ ENNReal.mul_ne_top (p.apply_ne_top z)</span></span>
+<span class="source-line" id="L661"><a class="line-no" href="#L661" aria-label="Line 661">661</a><span class="line-code">      ((roundingPMF γ (fun i ↦ (z i : ℝ))).apply_ne_top w))]</span></span>
+<span class="source-line" id="L662"><a class="line-no" href="#L662" aria-label="Line 662">662</a><span class="line-code">  simp only [ENNReal.toReal_mul]</span></span>
+<span class="source-line" id="L663"><a class="line-no" href="#L663" aria-label="Line 663">663</a><span class="line-code"> </span></span>
+<span class="source-line" id="L664"><a class="line-no" href="#L664" aria-label="Line 664">664</a><span class="line-code">/-- The manuscript&#x27;s dilation/averaging identity for the actual randomized</span></span>
+<span class="source-line" id="L665"><a class="line-no" href="#L665" aria-label="Line 665">665</a><span class="line-code">kernel, before fallback: no supplied Markov law or intertwining premise. -/</span></span>
+<span class="source-line" id="L666"><a class="line-no" href="#L666" aria-label="Line 666">666</a><span class="line-code">theorem rounding_intertwining (γ : ℝ) (hγ : 0 &lt; γ) (p : PMF (ι → ℤ)) :</span></span>
+<span class="source-line" id="L667"><a class="line-no" href="#L667" aria-label="Line 667">667</a><span class="line-code">    cellAverage (affineDensity γ 0 (interpolate (fun z ↦ (p z).toReal))) =</span></span>
+<span class="source-line" id="L668"><a class="line-no" href="#L668" aria-label="Line 668">668</a><span class="line-code">      interpolate (fun w ↦ (transport γ p w).toReal) := by</span></span>
+<span class="source-line" id="L669"><a class="line-no" href="#L669" aria-label="Line 669">669</a><span class="line-code">  have hp : Summable (fun z ↦ (p z).toReal) := ENNReal.summable_toReal p.tsum_coe_ne_top</span></span>
+<span class="source-line" id="L670"><a class="line-no" href="#L670" aria-label="Line 670">670</a><span class="line-code">  have heq : binMass volume round (affineDensity γ 0 (interpolate (fun z ↦ (p z).toReal))) =</span></span>
+<span class="source-line" id="L671"><a class="line-no" href="#L671" aria-label="Line 671">671</a><span class="line-code">      fun w ↦ (transport γ p w).toReal := by</span></span>
+<span class="source-line" id="L672"><a class="line-no" href="#L672" aria-label="Line 672">672</a><span class="line-code">    funext w</span></span>
+<span class="source-line" id="L673"><a class="line-no" href="#L673" aria-label="Line 673">673</a><span class="line-code">    rw [binMass_dilated_interpolate γ hγ hp, transport_toReal]</span></span>
+<span class="source-line" id="L674"><a class="line-no" href="#L674" aria-label="Line 674">674</a><span class="line-code">  rw [cellAverage, heq]</span></span>
+<span class="source-line" id="L675"><a class="line-no" href="#L675" aria-label="Line 675">675</a><span class="line-code"> </span></span>
+<span class="source-line" id="L676"><a class="line-no" href="#L676" aria-label="Line 676">676</a><span class="line-code">theorem affinePull_affineDensity (h : ℝ) (hh : h ≠ 0) (a : ι → ℝ)</span></span>
+<span class="source-line" id="L677"><a class="line-no" href="#L677" aria-label="Line 677">677</a><span class="line-code">    (f : (ι → ℝ) → ℝ) : affinePull h a (affineDensity h a f) = f := by</span></span>
+<span class="source-line" id="L678"><a class="line-no" href="#L678" aria-label="Line 678">678</a><span class="line-code">  funext x</span></span>
+<span class="source-line" id="L679"><a class="line-no" href="#L679" aria-label="Line 679">679</a><span class="line-code">  simp only [affinePull, affineDensity, add_sub_cancel_left, smul_smul,</span></span>
+<span class="source-line" id="L680"><a class="line-no" href="#L680" aria-label="Line 680">680</a><span class="line-code">    inv_mul_cancel₀ hh, one_smul, ← mul_assoc, mul_inv_cancel₀ (pow_ne_zero _ hh), one_mul]</span></span>
+<span class="source-line" id="L681"><a class="line-no" href="#L681" aria-label="Line 681">681</a><span class="line-code"> </span></span>
+<span class="source-line" id="L682"><a class="line-no" href="#L682" aria-label="Line 682">682</a><span class="line-code">/-- The dilated continuous law, put into the chosen output coordinates. -/</span></span>
+<span class="source-line" id="L683"><a class="line-no" href="#L683" aria-label="Line 683">683</a><span class="line-code">def preRoundedDensity (h : ℝ) (a : ι → ℝ) (γ : ℝ) (p : PMF (ι → ℤ)) :</span></span>
+<span class="source-line" id="L684"><a class="line-no" href="#L684" aria-label="Line 684">684</a><span class="line-code">    (ι → ℝ) → ℝ :=</span></span>
+<span class="source-line" id="L685"><a class="line-no" href="#L685" aria-label="Line 685">685</a><span class="line-code">  affineDensity h a (affineDensity γ 0 (interpolate (fun z ↦ (p z).toReal)))</span></span>
+<span class="source-line" id="L686"><a class="line-no" href="#L686" aria-label="Line 686">686</a><span class="line-code"> </span></span>
+<span class="source-line" id="L687"><a class="line-no" href="#L687" aria-label="Line 687">687</a><span class="line-code">/-- The actual randomized output law interpolated in the chosen coordinates. -/</span></span>
+<span class="source-line" id="L688"><a class="line-no" href="#L688" aria-label="Line 688">688</a><span class="line-code">def roundedDensity (h : ℝ) (a : ι → ℝ) (γ : ℝ) (p : PMF (ι → ℤ)) :</span></span>
+<span class="source-line" id="L689"><a class="line-no" href="#L689" aria-label="Line 689">689</a><span class="line-code">    (ι → ℝ) → ℝ :=</span></span>
+<span class="source-line" id="L690"><a class="line-no" href="#L690" aria-label="Line 690">690</a><span class="line-code">  affineDensity h a (interpolate (fun z ↦ (transport γ p z).toReal))</span></span>
+<span class="source-line" id="L691"><a class="line-no" href="#L691" aria-label="Line 691">691</a><span class="line-code"> </span></span>
+<span class="source-line" id="L692"><a class="line-no" href="#L692" aria-label="Line 692">692</a><span class="line-code">theorem rounding_intertwining_scaled (h : ℝ) (hh : 0 &lt; h) (a : ι → ℝ)</span></span>
+<span class="source-line" id="L693"><a class="line-no" href="#L693" aria-label="Line 693">693</a><span class="line-code">    (γ : ℝ) (hγ : 0 &lt; γ) (p : PMF (ι → ℤ)) :</span></span>
+<span class="source-line" id="L694"><a class="line-no" href="#L694" aria-label="Line 694">694</a><span class="line-code">    roundedDensity h a γ p = scaledCellAverage h a (preRoundedDensity h a γ p) := by</span></span>
+<span class="source-line" id="L695"><a class="line-no" href="#L695" aria-label="Line 695">695</a><span class="line-code">  rw [roundedDensity, ← rounding_intertwining γ hγ, scaledCellAverage,</span></span>
+<span class="source-line" id="L696"><a class="line-no" href="#L696" aria-label="Line 696">696</a><span class="line-code">    preRoundedDensity, affinePull_affineDensity h hh.ne&#x27;]</span></span>
+<span class="source-line" id="L697"><a class="line-no" href="#L697" aria-label="Line 697">697</a><span class="line-code"> </span></span>
+<span class="source-line" id="L698"><a class="line-no" href="#L698" aria-label="Line 698">698</a><span class="line-code">theorem integrable_preRoundedDensity (h : ℝ) (hh : 0 &lt; h) (a : ι → ℝ)</span></span>
+<span class="source-line" id="L699"><a class="line-no" href="#L699" aria-label="Line 699">699</a><span class="line-code">    (γ : ℝ) (hγ : 0 &lt; γ) (p : PMF (ι → ℤ)) :</span></span>
+<span class="source-line" id="L700"><a class="line-no" href="#L700" aria-label="Line 700">700</a><span class="line-code">    Integrable (preRoundedDensity h a γ p) :=</span></span>
+<span class="source-line" id="L701"><a class="line-no" href="#L701" aria-label="Line 701">701</a><span class="line-code">  integrable_affineDensity h hh a (integrable_affineDensity γ hγ 0</span></span>
+<span class="source-line" id="L702"><a class="line-no" href="#L702" aria-label="Line 702">702</a><span class="line-code">    (integrable_interpolate (ENNReal.summable_toReal p.tsum_coe_ne_top)))</span></span>
+<span class="source-line" id="L703"><a class="line-no" href="#L703" aria-label="Line 703">703</a><span class="line-code"> </span></span>
+<span class="source-line" id="L704"><a class="line-no" href="#L704" aria-label="Line 704">704</a><span class="line-code">theorem preRoundedDensity_nonneg (h : ℝ) (hh : 0 &lt; h) (a : ι → ℝ)</span></span>
+<span class="source-line" id="L705"><a class="line-no" href="#L705" aria-label="Line 705">705</a><span class="line-code">    (γ : ℝ) (hγ : 0 &lt; γ) (p : PMF (ι → ℤ)) (x : ι → ℝ) :</span></span>
+<span class="source-line" id="L706"><a class="line-no" href="#L706" aria-label="Line 706">706</a><span class="line-code">    0 ≤ preRoundedDensity h a γ p x := by</span></span>
+<span class="source-line" id="L707"><a class="line-no" href="#L707" aria-label="Line 707">707</a><span class="line-code">  unfold preRoundedDensity affineDensity interpolate</span></span>
+<span class="source-line" id="L708"><a class="line-no" href="#L708" aria-label="Line 708">708</a><span class="line-code">  exact mul_nonneg (inv_nonneg.mpr (pow_nonneg hh.le _))</span></span>
+<span class="source-line" id="L709"><a class="line-no" href="#L709" aria-label="Line 709">709</a><span class="line-code">    (mul_nonneg (inv_nonneg.mpr (pow_nonneg hγ.le _)) ENNReal.toReal_nonneg)</span></span>
+<span class="source-line" id="L710"><a class="line-no" href="#L710" aria-label="Line 710">710</a><span class="line-code"> </span></span>
+<span class="source-line" id="L711"><a class="line-no" href="#L711" aria-label="Line 711">711</a><span class="line-code">theorem integral_preRoundedDensity (h : ℝ) (hh : 0 &lt; h) (a : ι → ℝ)</span></span>
+<span class="source-line" id="L712"><a class="line-no" href="#L712" aria-label="Line 712">712</a><span class="line-code">    (γ : ℝ) (hγ : 0 &lt; γ) (p : PMF (ι → ℤ)) :</span></span>
+<span class="source-line" id="L713"><a class="line-no" href="#L713" aria-label="Line 713">713</a><span class="line-code">    (∫ x, preRoundedDensity h a γ p x) = 1 := by</span></span>
+<span class="source-line" id="L714"><a class="line-no" href="#L714" aria-label="Line 714">714</a><span class="line-code">  rw [preRoundedDensity, integral_affineDensity h hh a, integral_affineDensity γ hγ 0,</span></span>
+<span class="source-line" id="L715"><a class="line-no" href="#L715" aria-label="Line 715">715</a><span class="line-code">    integral_interpolate (ENNReal.summable_toReal p.tsum_coe_ne_top),</span></span>
+<span class="source-line" id="L716"><a class="line-no" href="#L716" aria-label="Line 716">716</a><span class="line-code">    ← ENNReal.tsum_toReal_eq p.apply_ne_top, p.tsum_coe, ENNReal.toReal_one]</span></span>
+<span class="source-line" id="L717"><a class="line-no" href="#L717" aria-label="Line 717">717</a><span class="line-code"> </span></span>
+<span class="source-line" id="L718"><a class="line-no" href="#L718" aria-label="Line 718">718</a><span class="line-code">/-- Concrete two-error bound for the actual rounded output. -/</span></span>
+<span class="source-line" id="L719"><a class="line-no" href="#L719" aria-label="Line 719">719</a><span class="line-code">theorem roundedDensity_l1_comparison (h : ℝ) (hh : 0 &lt; h) (a : ι → ℝ)</span></span>
+<span class="source-line" id="L720"><a class="line-no" href="#L720" aria-label="Line 720">720</a><span class="line-code">    (γ : ℝ) (hγ : 0 &lt; γ) (p : PMF (ι → ℤ))</span></span>
+<span class="source-line" id="L721"><a class="line-no" href="#L721" aria-label="Line 721">721</a><span class="line-code">    {g : (ι → ℝ) → ℝ} (hg : Integrable g) :</span></span>
+<span class="source-line" id="L722"><a class="line-no" href="#L722" aria-label="Line 722">722</a><span class="line-code">    (∫ x, |roundedDensity h a γ p x - g x|) ≤</span></span>
+<span class="source-line" id="L723"><a class="line-no" href="#L723" aria-label="Line 723">723</a><span class="line-code">      (∫ x, |preRoundedDensity h a γ p x - g x|) +</span></span>
+<span class="source-line" id="L724"><a class="line-no" href="#L724" aria-label="Line 724">724</a><span class="line-code">      ∫ x, |scaledCellAverage h a g x - g x| := by</span></span>
+<span class="source-line" id="L725"><a class="line-no" href="#L725" aria-label="Line 725">725</a><span class="line-code">  rw [rounding_intertwining_scaled h hh a γ hγ]</span></span>
+<span class="source-line" id="L726"><a class="line-no" href="#L726" aria-label="Line 726">726</a><span class="line-code">  have hi := integrable_preRoundedDensity h hh a γ hγ p</span></span>
+<span class="source-line" id="L727"><a class="line-no" href="#L727" aria-label="Line 727">727</a><span class="line-code">  have hAi := integrable_scaledCellAverage h hh a hi</span></span>
+<span class="source-line" id="L728"><a class="line-no" href="#L728" aria-label="Line 728">728</a><span class="line-code">  have hAg := integrable_scaledCellAverage h hh a hg</span></span>
+<span class="source-line" id="L729"><a class="line-no" href="#L729" aria-label="Line 729">729</a><span class="line-code">  have htri : (∫ x, |scaledCellAverage h a (preRoundedDensity h a γ p) x - g x|) ≤</span></span>
+<span class="source-line" id="L730"><a class="line-no" href="#L730" aria-label="Line 730">730</a><span class="line-code">      (∫ x, |scaledCellAverage h a (preRoundedDensity h a γ p) x - scaledCellAverage h a g x|) +</span></span>
+<span class="source-line" id="L731"><a class="line-no" href="#L731" aria-label="Line 731">731</a><span class="line-code">      ∫ x, |scaledCellAverage h a g x - g x| := by</span></span>
+<span class="source-line" id="L732"><a class="line-no" href="#L732" aria-label="Line 732">732</a><span class="line-code">    have hadd := integral_add (hAi.sub hAg).abs (hAg.sub hg).abs</span></span>
+<span class="source-line" id="L733"><a class="line-no" href="#L733" aria-label="Line 733">733</a><span class="line-code">    simp only [Pi.sub_apply] at hadd</span></span>
+<span class="source-line" id="L734"><a class="line-no" href="#L734" aria-label="Line 734">734</a><span class="line-code">    rw [← hadd]</span></span>
+<span class="source-line" id="L735"><a class="line-no" href="#L735" aria-label="Line 735">735</a><span class="line-code">    apply integral_mono (hAi.sub hg).abs ((hAi.sub hAg).abs.add (hAg.sub hg).abs)</span></span>
+<span class="source-line" id="L736"><a class="line-no" href="#L736" aria-label="Line 736">736</a><span class="line-code">    intro x</span></span>
+<span class="source-line" id="L737"><a class="line-no" href="#L737" aria-label="Line 737">737</a><span class="line-code">    exact abs_sub_le _ _ _</span></span>
+<span class="source-line" id="L738"><a class="line-no" href="#L738" aria-label="Line 738">738</a><span class="line-code">  have hc := scaledCellAverage_l1_contraction h hh a hi hg</span></span>
+<span class="source-line" id="L739"><a class="line-no" href="#L739" aria-label="Line 739">739</a><span class="line-code">  linarith</span></span>
+<span class="source-line" id="L740"><a class="line-no" href="#L740" aria-label="Line 740">740</a><span class="line-code"> </span></span>
+<span class="source-line" id="L741"><a class="line-no" href="#L741" aria-label="Line 741">741</a><span class="line-code">/-- Gaussian comparison from a continuous normalized reference density and</span></span>
+<span class="source-line" id="L742"><a class="line-no" href="#L742" aria-label="Line 742">742</a><span class="line-code">an explicit local limit for the dilated input interpolation.  In particular,</span></span>
+<span class="source-line" id="L743"><a class="line-no" href="#L743" aria-label="Line 743">743</a><span class="line-code">there is no Markov-kernel bridge, cell-averaging limit, or output tightness</span></span>
+<span class="source-line" id="L744"><a class="line-no" href="#L744" aria-label="Line 744">744</a><span class="line-code">hypothesis.  The genuinely paper-specific local estimate is `hlocal`.</span></span>
+<span class="source-line" id="L745"><a class="line-no" href="#L745" aria-label="Line 745">745</a><span class="line-code"> </span></span>
+<span class="source-line" id="L746"><a class="line-no" href="#L746" aria-label="Line 746">746</a><span class="line-code">For the manuscript one takes output mesh `1 / sqrt m`, output translation</span></span>
+<span class="source-line" id="L747"><a class="line-no" href="#L747" aria-label="Line 747">747</a><span class="line-code">`-sqrt m * p`, raw label dilation `γ = m/n`, and the corresponding dilated</span></span>
+<span class="source-line" id="L748"><a class="line-no" href="#L748" aria-label="Line 748">748</a><span class="line-code">Gaussian reference density. -/</span></span>
+<span class="source-line" id="L749"><a class="line-no" href="#L749" aria-label="Line 749">749</a><span class="line-code">theorem roundedDensity_l1_of_local_limit</span></span>
+<span class="source-line" id="L750"><a class="line-no" href="#L750" aria-label="Line 750">750</a><span class="line-code">    (h γ : ℕ → ℝ) (a : ℕ → ι → ℝ) (p : ℕ → PMF (ι → ℤ))</span></span>
+<span class="source-line" id="L751"><a class="line-no" href="#L751" aria-label="Line 751">751</a><span class="line-code">    (hh : ∀ n, 0 &lt; h n) (hγ : ∀ n, 0 &lt; γ n) (hlim : Tendsto h atTop (𝓝 0))</span></span>
+<span class="source-line" id="L752"><a class="line-no" href="#L752" aria-label="Line 752">752</a><span class="line-code">    {g : (ι → ℝ) → ℝ} (hg : Integrable g) (hg0 : ∀ x, 0 ≤ g x)</span></span>
+<span class="source-line" id="L753"><a class="line-no" href="#L753" aria-label="Line 753">753</a><span class="line-code">    (hgc : Continuous g) (hgmass : (∫ x, g x) = 1)</span></span>
+<span class="source-line" id="L754"><a class="line-no" href="#L754" aria-label="Line 754">754</a><span class="line-code">    (hlocal : ∀ k δ, 0 &lt; δ → ∀ᶠ n in atTop, ∀ x ∈ Metric.closedBall 0 (k : ℝ),</span></span>
+<span class="source-line" id="L755"><a class="line-no" href="#L755" aria-label="Line 755">755</a><span class="line-code">      |preRoundedDensity (h n) (a n) (γ n) (p n) x - g x| ≤ δ) :</span></span>
+<span class="source-line" id="L756"><a class="line-no" href="#L756" aria-label="Line 756">756</a><span class="line-code">    ∀ ε, 0 &lt; ε → ∀ᶠ n in atTop,</span></span>
+<span class="source-line" id="L757"><a class="line-no" href="#L757" aria-label="Line 757">757</a><span class="line-code">      (∫ x, |roundedDensity (h n) (a n) (γ n) (p n) x - g x|) &lt; ε := by</span></span>
+<span class="source-line" id="L758"><a class="line-no" href="#L758" aria-label="Line 758">758</a><span class="line-code">  have hsource : ∀ ε, 0 &lt; ε → ∀ᶠ n in atTop,</span></span>
+<span class="source-line" id="L759"><a class="line-no" href="#L759" aria-label="Line 759">759</a><span class="line-code">      (∫ x, |preRoundedDensity (h n) (a n) (γ n) (p n) x - g x|) &lt; ε := by</span></span>
+<span class="source-line" id="L760"><a class="line-no" href="#L760" aria-label="Line 760">760</a><span class="line-code">    have hu := density_l1_uniform_of_local_and_tails volume</span></span>
+<span class="source-line" id="L761"><a class="line-no" href="#L761" aria-label="Line 761">761</a><span class="line-code">      (fun n (_ : Unit) ↦ preRoundedDensity (h n) (a n) (γ n) (p n)) (fun _ : Unit ↦ g)</span></span>
+<span class="source-line" id="L762"><a class="line-no" href="#L762" aria-label="Line 762">762</a><span class="line-code">      (fun n _ ↦ integrable_preRoundedDensity (h n) (hh n) (a n) (γ n) (hγ n) (p n))</span></span>
+<span class="source-line" id="L763"><a class="line-no" href="#L763" aria-label="Line 763">763</a><span class="line-code">      (fun _ ↦ hg)</span></span>
+<span class="source-line" id="L764"><a class="line-no" href="#L764" aria-label="Line 764">764</a><span class="line-code">      (fun n _ ↦ preRoundedDensity_nonneg (h n) (hh n) (a n) (γ n) (hγ n) (p n))</span></span>
+<span class="source-line" id="L765"><a class="line-no" href="#L765" aria-label="Line 765">765</a><span class="line-code">      (fun _ ↦ hg0)</span></span>
+<span class="source-line" id="L766"><a class="line-no" href="#L766" aria-label="Line 766">766</a><span class="line-code">      (fun n _ ↦ (integral_preRoundedDensity (h n) (hh n) (a n) (γ n) (hγ n) (p n)).trans hgmass.symm)</span></span>
+<span class="source-line" id="L767"><a class="line-no" href="#L767" aria-label="Line 767">767</a><span class="line-code">      (fun k : ℕ ↦ Metric.closedBall 0 (k : ℝ))</span></span>
+<span class="source-line" id="L768"><a class="line-no" href="#L768" aria-label="Line 768">768</a><span class="line-code">      (fun _ ↦ Metric.isClosed_closedBall.measurableSet)</span></span>
+<span class="source-line" id="L769"><a class="line-no" href="#L769" aria-label="Line 769">769</a><span class="line-code">      (fun k ↦ (isCompact_closedBall (0 : ι → ℝ) (k : ℝ)).measure_ne_top)</span></span>
+<span class="source-line" id="L770"><a class="line-no" href="#L770" aria-label="Line 770">770</a><span class="line-code">      (fun k δ hδ ↦ (hlocal k δ hδ).mono fun n hn _ ↦ hn)</span></span>
+<span class="source-line" id="L771"><a class="line-no" href="#L771" aria-label="Line 771">771</a><span class="line-code">      (by</span></span>
+<span class="source-line" id="L772"><a class="line-no" href="#L772" aria-label="Line 772">772</a><span class="line-code">        intro δ hδ</span></span>
+<span class="source-line" id="L773"><a class="line-no" href="#L773" aria-label="Line 773">773</a><span class="line-code">        obtain ⟨k, hk⟩ := ((integral_compl_closedBall_tendsto_zero hg).eventually (gt_mem_nhds hδ)).exists</span></span>
+<span class="source-line" id="L774"><a class="line-no" href="#L774" aria-label="Line 774">774</a><span class="line-code">        exact ⟨k, fun _ ↦ hk.le⟩)</span></span>
+<span class="source-line" id="L775"><a class="line-no" href="#L775" aria-label="Line 775">775</a><span class="line-code">    intro ε hε</span></span>
+<span class="source-line" id="L776"><a class="line-no" href="#L776" aria-label="Line 776">776</a><span class="line-code">    exact (hu ε hε).mono fun n hn ↦ hn ()</span></span>
+<span class="source-line" id="L777"><a class="line-no" href="#L777" aria-label="Line 777">777</a><span class="line-code">  intro ε hε</span></span>
+<span class="source-line" id="L778"><a class="line-no" href="#L778" aria-label="Line 778">778</a><span class="line-code">  filter_upwards [hsource (ε / 2) (by positivity),</span></span>
+<span class="source-line" id="L779"><a class="line-no" href="#L779" aria-label="Line 779">779</a><span class="line-code">    scaledCellAverage_l1_tendsto_uniform_translation hg hg0 hgc h hh hlim (ε / 2) (by positivity)] with n hn hnav</span></span>
+<span class="source-line" id="L780"><a class="line-no" href="#L780" aria-label="Line 780">780</a><span class="line-code">  have hb := roundedDensity_l1_comparison (h n) (hh n) (a n) (γ n) (hγ n) (p n) hg</span></span>
+<span class="source-line" id="L781"><a class="line-no" href="#L781" aria-label="Line 781">781</a><span class="line-code">  have ha := hnav (a n)</span></span>
+<span class="source-line" id="L782"><a class="line-no" href="#L782" aria-label="Line 782">782</a><span class="line-code">  linarith</span></span>
+<span class="source-line" id="L783"><a class="line-no" href="#L783" aria-label="Line 783">783</a><span class="line-code"> </span></span>
+<span class="source-line" id="L784"><a class="line-no" href="#L784" aria-label="Line 784">784</a><span class="line-code">end Cloning.YoungRounding</span></span>
+</code></pre></div></main>
+<footer class="footer">English guides explain the argument. Lean source and its hypotheses determine the formal claims.
+<a href="../verification.html">Audit evidence</a> · <a href="../scope.html">Scope</a></footer>
+</div></div></body></html>

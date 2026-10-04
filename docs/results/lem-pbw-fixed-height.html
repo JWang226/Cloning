@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="An offline guide to the Lean formalization of asymptotic mixed-state quantum cloning. Exact source, proof routes, and audited scope.">
+<title>PBW Gram matrices at fixed height · Cloning proof wiki</title>
+<link rel="stylesheet" href="../assets/site.css?v=1811c00ea983">
+<script>window.PROOF_ROOT="../";</script>
+<script defer src="../assets/vendor/katex/katex.min.js"></script>
+<script defer src="../assets/search-index.js?v=850aee981cdc"></script>
+<script defer src="../assets/site.js?v=4bfaac1f06b1"></script>
+</head><body><a class="skip-link" href="#main">Skip to content</a>
+<div class="site-shell"><aside class="sidebar" id="site-navigation">
+<a class="brand" href="../index.html"><span class="brand-mark">C</span><span>Cloning<span class="small muted">A Lean proof wiki</span></span></a>
+<nav aria-label="Main navigation"><div class="nav-section">Explore</div><a class="nav-link" href="../index.html">Overview</a><a class="nav-link" href="../guides/index.html">Proof guide</a><a class="nav-link active" href="../results/index.html" aria-current="page">27 named results</a><a class="nav-link" href="../source/index.html">Lean source</a><a class="nav-link" href="../verification.html">Verification</a><a class="nav-link" href="../scope.html">Scope &amp; conventions</a>
+<div class="nav-section">Read the proof</div><a class="nav-link" href="../guides/physical-problem.html"><span class="nav-number">01</span> The physical problem and its conventions</a><a class="nav-link" href="../guides/young-laws.html"><span class="nav-number">02</span> Young labels: concentration and the local Gaussian law</a><a class="nav-link" href="../guides/cartan-sectors.html"><span class="nav-number">03</span> From PBW frames to uniform Cartan-sector fidelity</a><a class="nav-link" href="../guides/lifted-kernels.html"><span class="nav-number">04</span> Lifted channels, randomized dilation, and factorization</a><a class="nav-link" href="../guides/gaussian-optimum.html"><span class="nav-number">05</span> Gaussian amplification against arbitrary competitors</a><a class="nav-link" href="../guides/physical-lan.html"><span class="nav-number">06</span> Constructed LAN and fidelity transfer</a><a class="nav-link" href="../guides/known-spectrum.html"><span class="nav-number">07</span> The known-spectrum optimum</a><a class="nav-link" href="../guides/unknown-spectrum.html"><span class="nav-number">08</span> One universal cloner and the compact-set optimum</a><a class="nav-link" href="../guides/grassmann.html"><span class="nav-number">09</span> Exact rank compression and projector-state optimality</a><a class="nav-link" href="../guides/purify-clone-trace.html"><span class="nav-number">10</span> Purify–clone–trace: exact channels, limits, and guarantees</a><a class="nav-link" href="../guides/small-errors.html"><span class="nav-number">11</span> Small errors, rank boundaries, and noncommuting limits</a><a class="nav-link" href="../guides/spectral-comparison.html"><span class="nav-number">12</span> Spectral order and what is known for all states</a></nav>
+<div class="sidebar-footer"><span class="badge">Lean 4</span><p>Manuscript → proof → source</p>
+<a href="https://github.com/JWang226/Cloning">Repository ↗</a></div></aside>
+<div class="main-shell"><header class="topbar">
+<button id="nav-toggle" class="button secondary" aria-controls="site-navigation" aria-expanded="false" aria-label="Toggle navigation">Menu</button>
+<div class="search-wrap"><label class="sr-only" for="site-search">Search the proof wiki</label>
+<input id="site-search" type="search" placeholder="Search results, concepts, or Lean names…" autocomplete="off" aria-controls="search-results" aria-expanded="false" role="combobox" aria-autocomplete="list">
+<div id="search-results" class="search-results" role="listbox" hidden></div></div>
+<span class="small muted topbar-label">Offline · exact source</span></header>
+<main id="main" class="content"><div class="eyebrow">lemma · manuscript result</div><h1>PBW Gram matrices at fixed height</h1><p><code>lem:PBW-fixed-height</code> <span class="badge">Mapped to compiled Lean</span></p><div class="notice">Scope notes below come from the manuscript-to-Lean map. Exact source excerpts are the formal reference.</div><section class="callout info"><h2>Hypotheses and correspondence</h2><p>Literal physical normalized lowering words, invertible exact-weight Gram matrices, symmetric inverse-Gram orthonormal bases of the complete weight spaces, and a uniform <code>C/√N</code> bound. Only root-gap lower bounds are needed; cutoff height stays fixed.</p></section><h2>Concrete Lean endpoints</h2><p class="small muted">These are exact statement excerpts, with proof bodies omitted. Section variables, instances, namespaces, imports, and proof bodies are visible in the linked full module.</p><article class="declaration"><div class="declaration-header"><a href="../source/Cloning.PBWSymmetricFrameRateGram.html#L15"><code>Cloning.TensorLie.eventually_weightGram_rate</code></a><span class="badge">theorem</span></div><p class="small muted">PBWSymmetricFrameRateGram.lean · line 15 · <a href="../source/Cloning.PBWSymmetricFrameRateGram.html#L15">Full source and context</a> · <a href="https://github.com/JWang226/Cloning/blob/main/formalization/Cloning/PBWSymmetricFrameRateGram.lean#L15">GitHub ↗</a> · <button class="copy-button" data-copy-target="lean-cloning-tensorlie-eventually-weightgram-rate-178" aria-label="Copy Lean excerpt">Copy</button></p><div class="code-wrap"><pre class="code-block" id="lean-cloning-tensorlie-eventually-weightgram-rate-178"><code>theorem eventually_weightGram_rate (R : ℕ) (c : ℝ) (hc : 0&lt;c) :
+    ∃ C : ℝ,0≤C ∧ ∀ᶠ (N : ℕ) in atTop,
+      ∀ (mu : Fin d→ℕ) (hmu : Antitone mu),
+      (∀ a : PositiveRoot d,c*(N:ℝ)≤rootGap mu a) →
+      ∀ (η : Fin d→ℤ),
+      IsUnit (Matrix.gram ℂ (weightRawFrame mu hmu R η)) ∧
+      ∀ i j : WeightOccupation d R η,
+        ‖⟪weightRawFrame mu hmu R η i,weightRawFrame mu hmu R η j⟫_ℂ-
+          (if i=j then 1 else 0 : ℂ)‖≤C/Real.sqrt (N:ℝ)</code></pre></div></article><article class="declaration"><div class="declaration-header"><a href="../source/Cloning.PBWSymmetricFrameRateBlocks.html#L52"><code>Cloning.TensorLie.eventually_weightSymmetricBasis_rate</code></a><span class="badge">theorem</span></div><p class="small muted">PBWSymmetricFrameRateBlocks.lean · line 52 · <a href="../source/Cloning.PBWSymmetricFrameRateBlocks.html#L52">Full source and context</a> · <a href="https://github.com/JWang226/Cloning/blob/main/formalization/Cloning/PBWSymmetricFrameRateBlocks.lean#L52">GitHub ↗</a> · <button class="copy-button" data-copy-target="lean-cloning-tensorlie-eventually-weightsymmetricbasis-rate-179" aria-label="Copy Lean excerpt">Copy</button></p><div class="code-wrap"><pre class="code-block" id="lean-cloning-tensorlie-eventually-weightsymmetricbasis-rate-179"><code>theorem eventually_weightSymmetricBasis_rate (R : ℕ) (c : ℝ) (hc : 0&lt;c) :
+    ∃ C : ℝ,0≤C ∧ ∀ᶠ (N : ℕ) in atTop,
+      ∀ (mu : Fin d→ℕ) (hmu : Antitone mu),
+      (∀ a : PositiveRoot d,c*(N:ℝ)≤rootGap mu a) →
+      ∀ (η : Fin d→ℤ), (∑a,(a.val:ℤ)*η a≤(R:ℤ)) →
+      ∃ b : OrthonormalBasis (WeightOccupation d R η) ℂ
+        ↥(cyclicSector (partitionHighestTensor mu hmu) ⊓ cartanWeightSpace (∑a,mu a) mu η),
+        (∀i,(b i : TensorRegister (∑a,mu a) (Fin d))=weightSymmetricFrame mu hmu R η i) ∧
+        ∀i,‖weightSymmetricFrame mu hmu R η i-weightRawFrame mu hmu R η i‖≤
+          C/Real.sqrt (N:ℝ)</code></pre></div></article><section class="callout"><h2>Read this part of the proof</h2><p><a href="../guides/cartan-sectors.html">From PBW frames to uniform Cartan-sector fidelity →</a></p></section><details class="manuscript-excerpt"><summary>Exact manuscript TeX statement</summary><p class="small muted">Copied from the reference manuscript. Macro definitions and surrounding notation are in the complete TeX source.</p><pre class="code-block"><code>\begin{lemma}[PBW Gram matrices at fixed height]
+\label{lem:PBW-fixed-height}
+Let \(\lambda=\lambda^{(N)}\) range over dominant weights satisfying
+\[
+  cN\le\Delta_\alpha^\lambda\le CN
+  \qquad(\alpha\in\mathsf R_+)
+\]
+for fixed \(0&lt;c&lt;C&lt;\infty\).  Define
+\begin{equation}\label{eq:normalized-PBW-vectors}
+  \widetilde e_{\mathbf r}^\lambda
+  =\prod_{\alpha\in\mathsf R_+}^{\prec}
+   \frac{F_\alpha^{r_\alpha}}
+        {\sqrt{r_\alpha!}(\Delta_\alpha^\lambda)^{r_\alpha/2}}
+   v_\lambda.
+\end{equation}
+For every fixed \(L\), uniformly over
+\(\operatorname{ht}(\eta)\le L\) and
+\(\mathbf r,\mathbf s\in\mathsf P(\eta)\),
+\begin{equation}\label{eq:PBW-Gram-fixed-height}
+  \langle\widetilde e_{\mathbf r}^\lambda,
+         \widetilde e_{\mathbf s}^\lambda\rangle
+  =\delta_{\mathbf r,\mathbf s}+O_L(N^{-1/2}).
+\end{equation}
+Consequently, for all sufficiently large \(N\), the full Gram matrix
+\(G_{\lambda,\eta}\) on every such exact-weight block is invertible.  If
+\begin{equation}\label{eq:exact-block-orthonormalization}
+  (e_{\mathbf r}^\lambda)_{\mathbf r\in\mathsf P(\eta)}
+  =
+  (\widetilde e_{\mathbf r}^\lambda)_{\mathbf r\in\mathsf P(\eta)}
+  G_{\lambda,\eta}^{-1/2},
+\end{equation}
+then these vectors form an orthonormal basis of
+\(\cH_\lambda[\lambda-\eta]\), and
+\begin{equation}\label{eq:PBW-orthonormal-close}
+  e_{\mathbf r}^\lambda
+  =\widetilde e_{\mathbf r}^\lambda+O_L(N^{-1/2})
+\end{equation}
+uniformly for \(\operatorname{ht}(\eta)\le L\) and
+\(\mathbf r\in\mathsf P(\eta)\).
+\end{lemma}</code></pre><a href="../reference/cloning.tex">Download the complete reference source</a> · <a href="https://github.com/JWang226/Cloning/blob/main/formalization/reference/cloning.tex#L2618">GitHub, line 2618 ↗</a></details><p><a href="index.html">← All named results</a></p></main>
+<footer class="footer">English guides explain the argument. Lean source and its hypotheses determine the formal claims.
+<a href="../verification.html">Audit evidence</a> · <a href="../scope.html">Scope</a></footer>
+</div></div></body></html>

@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="An offline guide to the Lean formalization of asymptotic mixed-state quantum cloning. Exact source, proof routes, and audited scope.">
+<title>InfiniteGentleCompression · Lean source · Cloning proof wiki</title>
+<link rel="stylesheet" href="../assets/site.css?v=1811c00ea983">
+<script>window.PROOF_ROOT="../";</script>
+<script defer src="../assets/vendor/katex/katex.min.js"></script>
+<script defer src="../assets/search-index.js?v=850aee981cdc"></script>
+<script defer src="../assets/site.js?v=4bfaac1f06b1"></script>
+</head><body><a class="skip-link" href="#main">Skip to content</a>
+<div class="site-shell"><aside class="sidebar" id="site-navigation">
+<a class="brand" href="../index.html"><span class="brand-mark">C</span><span>Cloning<span class="small muted">A Lean proof wiki</span></span></a>
+<nav aria-label="Main navigation"><div class="nav-section">Explore</div><a class="nav-link" href="../index.html">Overview</a><a class="nav-link" href="../guides/index.html">Proof guide</a><a class="nav-link" href="../results/index.html">27 named results</a><a class="nav-link active" href="../source/index.html" aria-current="page">Lean source</a><a class="nav-link" href="../verification.html">Verification</a><a class="nav-link" href="../scope.html">Scope &amp; conventions</a>
+<div class="nav-section">Read the proof</div><a class="nav-link" href="../guides/physical-problem.html"><span class="nav-number">01</span> The physical problem and its conventions</a><a class="nav-link" href="../guides/young-laws.html"><span class="nav-number">02</span> Young labels: concentration and the local Gaussian law</a><a class="nav-link" href="../guides/cartan-sectors.html"><span class="nav-number">03</span> From PBW frames to uniform Cartan-sector fidelity</a><a class="nav-link" href="../guides/lifted-kernels.html"><span class="nav-number">04</span> Lifted channels, randomized dilation, and factorization</a><a class="nav-link" href="../guides/gaussian-optimum.html"><span class="nav-number">05</span> Gaussian amplification against arbitrary competitors</a><a class="nav-link" href="../guides/physical-lan.html"><span class="nav-number">06</span> Constructed LAN and fidelity transfer</a><a class="nav-link" href="../guides/known-spectrum.html"><span class="nav-number">07</span> The known-spectrum optimum</a><a class="nav-link" href="../guides/unknown-spectrum.html"><span class="nav-number">08</span> One universal cloner and the compact-set optimum</a><a class="nav-link" href="../guides/grassmann.html"><span class="nav-number">09</span> Exact rank compression and projector-state optimality</a><a class="nav-link" href="../guides/purify-clone-trace.html"><span class="nav-number">10</span> Purify–clone–trace: exact channels, limits, and guarantees</a><a class="nav-link" href="../guides/small-errors.html"><span class="nav-number">11</span> Small errors, rank boundaries, and noncommuting limits</a><a class="nav-link" href="../guides/spectral-comparison.html"><span class="nav-number">12</span> Spectral order and what is known for all states</a></nav>
+<div class="sidebar-footer"><span class="badge">Lean 4</span><p>Manuscript → proof → source</p>
+<a href="https://github.com/JWang226/Cloning">Repository ↗</a></div></aside>
+<div class="main-shell"><header class="topbar">
+<button id="nav-toggle" class="button secondary" aria-controls="site-navigation" aria-expanded="false" aria-label="Toggle navigation">Menu</button>
+<div class="search-wrap"><label class="sr-only" for="site-search">Search the proof wiki</label>
+<input id="site-search" type="search" placeholder="Search results, concepts, or Lean names…" autocomplete="off" aria-controls="search-results" aria-expanded="false" role="combobox" aria-autocomplete="list">
+<div id="search-results" class="search-results" role="listbox" hidden></div></div>
+<span class="small muted topbar-label">Offline · exact source</span></header>
+<main id="main" class="content"><div class="eyebrow">Exact Lean source</div><h1 class="source-title">InfiniteGentleCompression</h1><p><code>formalization/Cloning/InfiniteGentleCompression.lean</code></p><p class="small muted">Source hash: <code>daca94244c71466650144bf1d0d6b3284a815b4e07269514fbc06ec07fcb7a0b</code></p><div class="actions"><a class="button secondary" href="raw/Cloning.InfiniteGentleCompression.lean">Download .lean</a><a class="button secondary" href="https://github.com/JWang226/Cloning/blob/main/formalization/Cloning/InfiniteGentleCompression.lean">View on GitHub ↗</a><a href="index.html">All modules</a></div><p class="small muted">Full source copied without mathematical changes from the snapshot whose input hash matches the passing audit. Select a line number for a stable source pointer.</p><details><summary>Declarations in this module</summary><div class="module-declarations"><a href="#L14"><span class="badge">theorem</span> <code>Cloning.InfiniteTraceClass.norm_projection_apply_le</code></a><a href="#L17"><span class="badge">theorem</span> <code>Cloning.InfiniteTraceClass.norm_vectorProjector_sub_projection_le</code></a><a href="#L28"><span class="badge">theorem</span> <code>Cloning.InfiniteTraceClass.norm_sub_sandwich_projection_le</code></a><a href="#L67"><span class="badge">theorem</span> <code>Cloning.InfiniteTraceClass.norm_sandwich_complement_eq</code></a><a href="#L79"><span class="badge">theorem</span> <code>Cloning.InfiniteTraceClass.gentle_compression</code></a><a href="#L88"><span class="badge">theorem</span> <code>Cloning.InfiniteTraceClass.gentle_compression_unit</code></a></div></details><div class="code-wrap source-wrap"><pre class="source-lines"><code><span class="source-line" id="L1"><a class="line-no" href="#L1" aria-label="Line 1">1</a><span class="line-code">import Cloning.InfiniteTraceClassCutoffConvergence</span></span>
+<span class="source-line" id="L2"><a class="line-no" href="#L2" aria-label="Line 2">2</a><span class="line-code">import Cloning.InfiniteHilbertSchmidt</span></span>
+<span class="source-line" id="L3"><a class="line-no" href="#L3" aria-label="Line 3">3</a><span class="line-code"> </span></span>
+<span class="source-line" id="L4"><a class="line-no" href="#L4" aria-label="Line 4">4</a><span class="line-code">/-! A quantitative gentle-compression estimate in the genuine trace norm.</span></span>
+<span class="source-line" id="L5"><a class="line-no" href="#L5" aria-label="Line 5">5</a><span class="line-code">It follows from the actual positive rank-one series and scalar Cauchy–Schwarz. -/</span></span>
+<span class="source-line" id="L6"><a class="line-no" href="#L6" aria-label="Line 6">6</a><span class="line-code">noncomputable section</span></span>
+<span class="source-line" id="L7"><a class="line-no" href="#L7" aria-label="Line 7">7</a><span class="line-code">open scoped BigOperators ComplexOrder InnerProductSpace Topology</span></span>
+<span class="source-line" id="L8"><a class="line-no" href="#L8" aria-label="Line 8">8</a><span class="line-code">namespace Cloning.InfiniteTraceClass</span></span>
+<span class="source-line" id="L9"><a class="line-no" href="#L9" aria-label="Line 9">9</a><span class="line-code">open HilbertSchmidt</span></span>
+<span class="source-line" id="L10"><a class="line-no" href="#L10" aria-label="Line 10">10</a><span class="line-code">set_option backward.isDefEq.respectTransparency false</span></span>
+<span class="source-line" id="L11"><a class="line-no" href="#L11" aria-label="Line 11">11</a><span class="line-code">set_option maxHeartbeats 800000</span></span>
+<span class="source-line" id="L12"><a class="line-no" href="#L12" aria-label="Line 12">12</a><span class="line-code">variable {H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]</span></span>
+<span class="source-line" id="L13"><a class="line-no" href="#L13" aria-label="Line 13">13</a><span class="line-code"> </span></span>
+<span class="source-line" id="L14"><a class="line-no" href="#L14" aria-label="Line 14">14</a><span class="line-code">theorem norm_projection_apply_le {P : H →L[ℂ] H} (hP : IsStarProjection P) (x : H) :</span></span>
+<span class="source-line" id="L15"><a class="line-no" href="#L15" aria-label="Line 15">15</a><span class="line-code">    ‖P x‖ ≤ ‖x‖ := (P.le_opNorm x).trans (by nlinarith [hP.norm_le, norm_nonneg x])</span></span>
+<span class="source-line" id="L16"><a class="line-no" href="#L16" aria-label="Line 16">16</a><span class="line-code"> </span></span>
+<span class="source-line" id="L17"><a class="line-no" href="#L17" aria-label="Line 17">17</a><span class="line-code">theorem norm_vectorProjector_sub_projection_le {P : H →L[ℂ] H}</span></span>
+<span class="source-line" id="L18"><a class="line-no" href="#L18" aria-label="Line 18">18</a><span class="line-code">    (hP : IsStarProjection P) (x : H) :</span></span>
+<span class="source-line" id="L19"><a class="line-no" href="#L19" aria-label="Line 19">19</a><span class="line-code">    ‖vectorProjector x - vectorProjector (P x)‖ ≤ 2 * (‖x‖ * ‖(1-P) x‖) := by</span></span>
+<span class="source-line" id="L20"><a class="line-no" href="#L20" aria-label="Line 20">20</a><span class="line-code">  have h := norm_vectorProjector_sub_le x (P x)</span></span>
+<span class="source-line" id="L21"><a class="line-no" href="#L21" aria-label="Line 21">21</a><span class="line-code">  have hPx := norm_projection_apply_le hP x</span></span>
+<span class="source-line" id="L22"><a class="line-no" href="#L22" aria-label="Line 22">22</a><span class="line-code">  have he : (1-P) x = x - P x := by simp</span></span>
+<span class="source-line" id="L23"><a class="line-no" href="#L23" aria-label="Line 23">23</a><span class="line-code">  rw [he]</span></span>
+<span class="source-line" id="L24"><a class="line-no" href="#L24" aria-label="Line 24">24</a><span class="line-code">  exact h.trans (by nlinarith [norm_nonneg (x-P x)])</span></span>
+<span class="source-line" id="L25"><a class="line-no" href="#L25" aria-label="Line 25">25</a><span class="line-code"> </span></span>
+<span class="source-line" id="L26"><a class="line-no" href="#L26" aria-label="Line 26">26</a><span class="line-code">/-- Compression costs at most twice the square root of total mass times</span></span>
+<span class="source-line" id="L27"><a class="line-no" href="#L27" aria-label="Line 27">27</a><span class="line-code">mass outside the projection, for arbitrary positive trace-class operators. -/</span></span>
+<span class="source-line" id="L28"><a class="line-no" href="#L28" aria-label="Line 28">28</a><span class="line-code">theorem norm_sub_sandwich_projection_le {P : H →L[ℂ] H} (hP : IsStarProjection P)</span></span>
+<span class="source-line" id="L29"><a class="line-no" href="#L29" aria-label="Line 29">29</a><span class="line-code">    (A : TraceClass H) (hA : 0 ≤ A.1) :</span></span>
+<span class="source-line" id="L30"><a class="line-no" href="#L30" aria-label="Line 30">30</a><span class="line-code">    ‖A - sandwichCLM P P A‖ ≤</span></span>
+<span class="source-line" id="L31"><a class="line-no" href="#L31" aria-label="Line 31">31</a><span class="line-code">      2 * Real.sqrt ‖A‖ * Real.sqrt ‖sandwichCLM (1-P) (1-P) A‖ := by</span></span>
+<span class="source-line" id="L32"><a class="line-no" href="#L32" aria-label="Line 32">32</a><span class="line-code">  obtain ⟨w, b, _⟩ := exists_hilbertBasis ℂ H</span></span>
+<span class="source-line" id="L33"><a class="line-no" href="#L33" aria-label="Line 33">33</a><span class="line-code">  let v : w → H := fun i ↦ CFC.sqrt A.1 (b i)</span></span>
+<span class="source-line" id="L34"><a class="line-no" href="#L34" aria-label="Line 34">34</a><span class="line-code">  have hs : HasSum (fun i ↦ vectorProjector (v i)) A := positive_rankOne_series hA A.2 b</span></span>
+<span class="source-line" id="L35"><a class="line-no" href="#L35" aria-label="Line 35">35</a><span class="line-code">  have hc : HasSum (fun i ↦ vectorProjector (P (v i))) (sandwichCLM P P A) := by</span></span>
+<span class="source-line" id="L36"><a class="line-no" href="#L36" aria-label="Line 36">36</a><span class="line-code">    simpa only [sandwichCLM_vectorProjector P hP.isSelfAdjoint] using</span></span>
+<span class="source-line" id="L37"><a class="line-no" href="#L37" aria-label="Line 37">37</a><span class="line-code">      hs.mapL (sandwichCLM P P)</span></span>
+<span class="source-line" id="L38"><a class="line-no" href="#L38" aria-label="Line 38">38</a><span class="line-code">  have hd : HasSum (fun i ↦ vectorProjector ((1-P) (v i))) (sandwichCLM (1-P) (1-P) A) := by</span></span>
+<span class="source-line" id="L39"><a class="line-no" href="#L39" aria-label="Line 39">39</a><span class="line-code">    have he : (fun i : w ↦ sandwichCLM (1-P) (1-P) (vectorProjector (v i))) =</span></span>
+<span class="source-line" id="L40"><a class="line-no" href="#L40" aria-label="Line 40">40</a><span class="line-code">        (fun i : w ↦ vectorProjector ((1-P) (v i))) :=</span></span>
+<span class="source-line" id="L41"><a class="line-no" href="#L41" aria-label="Line 41">41</a><span class="line-code">      funext fun i ↦ sandwichCLM_vectorProjector (1-P) hP.one_sub.isSelfAdjoint (v i)</span></span>
+<span class="source-line" id="L42"><a class="line-no" href="#L42" aria-label="Line 42">42</a><span class="line-code">    rw [← he]</span></span>
+<span class="source-line" id="L43"><a class="line-no" href="#L43" aria-label="Line 43">43</a><span class="line-code">    exact hs.mapL (sandwichCLM (1-P) (1-P))</span></span>
+<span class="source-line" id="L44"><a class="line-no" href="#L44" aria-label="Line 44">44</a><span class="line-code">  have hm : HasSum (fun i ↦ ‖v i‖^2) ‖A‖ := by</span></span>
+<span class="source-line" id="L45"><a class="line-no" href="#L45" aria-label="Line 45">45</a><span class="line-code">    simpa only [v, norm_vectorProjector, TraceClass.norm_eq_trace_re_of_nonneg A hA] using</span></span>
+<span class="source-line" id="L46"><a class="line-no" href="#L46" aria-label="Line 46">46</a><span class="line-code">      positive_rankOne_mass hA A.2 b</span></span>
+<span class="source-line" id="L47"><a class="line-no" href="#L47" aria-label="Line 47">47</a><span class="line-code">  have hmd : HasSum (fun i ↦ ‖(1-P) (v i)‖^2) ‖sandwichCLM (1-P) (1-P) A‖ := by</span></span>
+<span class="source-line" id="L48"><a class="line-no" href="#L48" aria-label="Line 48">48</a><span class="line-code">    have h := Complex.hasSum_re (hd.mapL traceCLM)</span></span>
+<span class="source-line" id="L49"><a class="line-no" href="#L49" aria-label="Line 49">49</a><span class="line-code">    simpa only [traceCLM_vectorProjector, Complex.ofReal_re,</span></span>
+<span class="source-line" id="L50"><a class="line-no" href="#L50" aria-label="Line 50">50</a><span class="line-code">      TraceClass.norm_eq_trace_re_of_nonneg _ (sandwichCLM_nonneg hP.one_sub.isSelfAdjoint A hA)] using h</span></span>
+<span class="source-line" id="L51"><a class="line-no" href="#L51" aria-label="Line 51">51</a><span class="line-code">  have hprod := summable_norm_mul_of_square_sums (fun i ↦ ‖v i‖) (fun i ↦ ‖(1-P) (v i)‖)</span></span>
+<span class="source-line" id="L52"><a class="line-no" href="#L52" aria-label="Line 52">52</a><span class="line-code">    hm.summable hmd.summable (fun _ ↦ norm_nonneg _) (fun _ ↦ norm_nonneg _)</span></span>
+<span class="source-line" id="L53"><a class="line-no" href="#L53" aria-label="Line 53">53</a><span class="line-code">  have hnorm : Summable (fun i ↦ ‖vectorProjector (v i) - vectorProjector (P (v i))‖) :=</span></span>
+<span class="source-line" id="L54"><a class="line-no" href="#L54" aria-label="Line 54">54</a><span class="line-code">    (hprod.mul_left 2).of_nonneg_of_le (fun _ ↦ norm_nonneg _)</span></span>
+<span class="source-line" id="L55"><a class="line-no" href="#L55" aria-label="Line 55">55</a><span class="line-code">      (fun i ↦ norm_vectorProjector_sub_projection_le hP (v i))</span></span>
+<span class="source-line" id="L56"><a class="line-no" href="#L56" aria-label="Line 56">56</a><span class="line-code">  have hcs := tsum_mul_le_sqrt_mul_sqrt hm.summable hmd.summable</span></span>
+<span class="source-line" id="L57"><a class="line-no" href="#L57" aria-label="Line 57">57</a><span class="line-code">    (fun _ ↦ norm_nonneg _) (fun _ ↦ norm_nonneg _)</span></span>
+<span class="source-line" id="L58"><a class="line-no" href="#L58" aria-label="Line 58">58</a><span class="line-code">  rw [hm.tsum_eq, hmd.tsum_eq] at hcs</span></span>
+<span class="source-line" id="L59"><a class="line-no" href="#L59" aria-label="Line 59">59</a><span class="line-code">  calc</span></span>
+<span class="source-line" id="L60"><a class="line-no" href="#L60" aria-label="Line 60">60</a><span class="line-code">    _ = ‖(∑&#x27; i, (vectorProjector (v i) - vectorProjector (P (v i))))‖ := by rw [(hs.sub hc).tsum_eq]</span></span>
+<span class="source-line" id="L61"><a class="line-no" href="#L61" aria-label="Line 61">61</a><span class="line-code">    _ ≤ ∑&#x27; i, ‖vectorProjector (v i) - vectorProjector (P (v i))‖ := norm_tsum_le_tsum_norm hnorm</span></span>
+<span class="source-line" id="L62"><a class="line-no" href="#L62" aria-label="Line 62">62</a><span class="line-code">    _ ≤ ∑&#x27; i, 2 * (‖v i‖ * ‖(1-P) (v i)‖) :=</span></span>
+<span class="source-line" id="L63"><a class="line-no" href="#L63" aria-label="Line 63">63</a><span class="line-code">      hnorm.tsum_le_tsum (fun i ↦ norm_vectorProjector_sub_projection_le hP (v i)) (hprod.mul_left 2)</span></span>
+<span class="source-line" id="L64"><a class="line-no" href="#L64" aria-label="Line 64">64</a><span class="line-code">    _ = 2 * ∑&#x27; i, ‖v i‖ * ‖(1-P) (v i)‖ := tsum_mul_left</span></span>
+<span class="source-line" id="L65"><a class="line-no" href="#L65" aria-label="Line 65">65</a><span class="line-code">    _ ≤ _ := by nlinarith</span></span>
+<span class="source-line" id="L66"><a class="line-no" href="#L66" aria-label="Line 66">66</a><span class="line-code"> </span></span>
+<span class="source-line" id="L67"><a class="line-no" href="#L67" aria-label="Line 67">67</a><span class="line-code">theorem norm_sandwich_complement_eq {P : H →L[ℂ] H} (hP : IsStarProjection P)</span></span>
+<span class="source-line" id="L68"><a class="line-no" href="#L68" aria-label="Line 68">68</a><span class="line-code">    (A : TraceClass H) (hA : 0 ≤ A.1) :</span></span>
+<span class="source-line" id="L69"><a class="line-no" href="#L69" aria-label="Line 69">69</a><span class="line-code">    ‖sandwichCLM (1-P) (1-P) A‖ = ‖A‖ - ‖sandwichCLM P P A‖ := by</span></span>
+<span class="source-line" id="L70"><a class="line-no" href="#L70" aria-label="Line 70">70</a><span class="line-code">  rw [TraceClass.norm_eq_trace_re_of_nonneg _ (sandwichCLM_nonneg hP.one_sub.isSelfAdjoint A hA),</span></span>
+<span class="source-line" id="L71"><a class="line-no" href="#L71" aria-label="Line 71">71</a><span class="line-code">    TraceClass.norm_eq_trace_re_of_nonneg _ hA,</span></span>
+<span class="source-line" id="L72"><a class="line-no" href="#L72" aria-label="Line 72">72</a><span class="line-code">    TraceClass.norm_eq_trace_re_of_nonneg _ (sandwichCLM_nonneg hP.isSelfAdjoint A hA)]</span></span>
+<span class="source-line" id="L73"><a class="line-no" href="#L73" aria-label="Line 73">73</a><span class="line-code">  have h := congrArg Complex.re (traceCLM_projection_split hP A)</span></span>
+<span class="source-line" id="L74"><a class="line-no" href="#L74" aria-label="Line 74">74</a><span class="line-code">  simp only [Complex.add_re, traceCLM_apply] at h</span></span>
+<span class="source-line" id="L75"><a class="line-no" href="#L75" aria-label="Line 75">75</a><span class="line-code">  linarith</span></span>
+<span class="source-line" id="L76"><a class="line-no" href="#L76" aria-label="Line 76">76</a><span class="line-code"> </span></span>
+<span class="source-line" id="L77"><a class="line-no" href="#L77" aria-label="Line 77">77</a><span class="line-code">/-- The standard quantitative gentle bound with discarded trace written as</span></span>
+<span class="source-line" id="L78"><a class="line-no" href="#L78" aria-label="Line 78">78</a><span class="line-code">the difference of positive trace norms. -/</span></span>
+<span class="source-line" id="L79"><a class="line-no" href="#L79" aria-label="Line 79">79</a><span class="line-code">theorem gentle_compression {P : H →L[ℂ] H} (hP : IsStarProjection P)</span></span>
+<span class="source-line" id="L80"><a class="line-no" href="#L80" aria-label="Line 80">80</a><span class="line-code">    (A : TraceClass H) (hA : 0 ≤ A.1) :</span></span>
+<span class="source-line" id="L81"><a class="line-no" href="#L81" aria-label="Line 81">81</a><span class="line-code">    ‖A - sandwichCLM P P A‖ ≤</span></span>
+<span class="source-line" id="L82"><a class="line-no" href="#L82" aria-label="Line 82">82</a><span class="line-code">      2 * Real.sqrt (‖A‖ * (‖A‖ - ‖sandwichCLM P P A‖)) := by</span></span>
+<span class="source-line" id="L83"><a class="line-no" href="#L83" aria-label="Line 83">83</a><span class="line-code">  have h := norm_sub_sandwich_projection_le hP A hA</span></span>
+<span class="source-line" id="L84"><a class="line-no" href="#L84" aria-label="Line 84">84</a><span class="line-code">  rw [norm_sandwich_complement_eq hP A hA] at h</span></span>
+<span class="source-line" id="L85"><a class="line-no" href="#L85" aria-label="Line 85">85</a><span class="line-code">  rw [Real.sqrt_mul (norm_nonneg A)]</span></span>
+<span class="source-line" id="L86"><a class="line-no" href="#L86" aria-label="Line 86">86</a><span class="line-code">  simpa only [mul_assoc] using h</span></span>
+<span class="source-line" id="L87"><a class="line-no" href="#L87" aria-label="Line 87">87</a><span class="line-code"> </span></span>
+<span class="source-line" id="L88"><a class="line-no" href="#L88" aria-label="Line 88">88</a><span class="line-code">theorem gentle_compression_unit {P : H →L[ℂ] H} (hP : IsStarProjection P)</span></span>
+<span class="source-line" id="L89"><a class="line-no" href="#L89" aria-label="Line 89">89</a><span class="line-code">    (A : TraceClass H) (hA : 0 ≤ A.1) (hunit : ‖A‖ = 1) :</span></span>
+<span class="source-line" id="L90"><a class="line-no" href="#L90" aria-label="Line 90">90</a><span class="line-code">    ‖A - sandwichCLM P P A‖ ≤ 2 * Real.sqrt (1 - ‖sandwichCLM P P A‖) := by</span></span>
+<span class="source-line" id="L91"><a class="line-no" href="#L91" aria-label="Line 91">91</a><span class="line-code">  simpa only [hunit, one_mul] using gentle_compression hP A hA</span></span>
+<span class="source-line" id="L92"><a class="line-no" href="#L92" aria-label="Line 92">92</a><span class="line-code"> </span></span>
+<span class="source-line" id="L93"><a class="line-no" href="#L93" aria-label="Line 93">93</a><span class="line-code">end Cloning.InfiniteTraceClass</span></span>
+</code></pre></div></main>
+<footer class="footer">English guides explain the argument. Lean source and its hypotheses determine the formal claims.
+<a href="../verification.html">Audit evidence</a> · <a href="../scope.html">Scope</a></footer>
+</div></div></body></html>

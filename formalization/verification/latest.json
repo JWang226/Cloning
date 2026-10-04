@@ -1,4 +1,4 @@
 {
-  "directory": "verification/eighth-pass",
-  "run_sha256": "dac20db8c5bf58b71f41b5b76cb1001cd42e60b3520769db98b9f895c450ea6b"
+  "directory": "verification/kernel-compatible-pass",
+  "run_sha256": "6b2c09f61388362d9ff3ae3f63285b9dd09e0cd95254150273bacba6cd9c799a"
 }

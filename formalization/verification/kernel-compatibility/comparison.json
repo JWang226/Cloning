@@ -1,0 +1,198 @@
+{
+  "status": "passed",
+  "declarations": 30,
+  "metadata_removed": true,
+  "exact_type_value_representations_identical": true,
+  "all_constant_hash_records_identical": true,
+  "snapshot_exit_code": 0,
+  "snapshot_maximum_resident_set_bytes": 4114071552,
+  "snapshot_elapsed_seconds": 16.85,
+  "input_sha256": {
+    "before-constants.ndjson": "10e297361006e391c1961bb5913c60003d2fca088f86207b5234125b6fdd1059",
+    "after-constants.ndjson": "10e297361006e391c1961bb5913c60003d2fca088f86207b5234125b6fdd1059",
+    "snapshot.lean": "e2bc41d44682aaee5bfac4143fc80ab2430fd0f822332891044981af6e7b6a41",
+    "originating-roots.txt": "838c63da84778a9d62b21fece96f1e2b0377e765cd0732fbaa8b86a3a06b07c4"
+  },
+  "comparison": {
+    "Cloning.MultimodeCoherent.numberIterate": {
+      "types_identical": true,
+      "values_identical": true,
+      "level_params_identical": true,
+      "safety_identical": true
+    },
+    "Cloning.PBW.errorTerms": {
+      "types_identical": true,
+      "values_identical": true,
+      "level_params_identical": true,
+      "safety_identical": true
+    },
+    "Cloning.PBW.gramConstant": {
+      "types_identical": true,
+      "values_identical": true,
+      "level_params_identical": true,
+      "safety_identical": true
+    },
+    "Cloning.PBW.occupationFactorial": {
+      "types_identical": true,
+      "values_identical": true,
+      "level_params_identical": true,
+      "safety_identical": true
+    },
+    "Cloning.PBW.removeOne": {
+      "types_identical": true,
+      "values_identical": true,
+      "level_params_identical": true,
+      "safety_identical": true
+    },
+    "Cloning.PBW.wick": {
+      "types_identical": true,
+      "values_identical": true,
+      "level_params_identical": true,
+      "safety_identical": true
+    },
+    "Cloning.PBW.word": {
+      "types_identical": true,
+      "values_identical": true,
+      "level_params_identical": true,
+      "safety_identical": true
+    },
+    "Cloning.TensorLie.highestAction": {
+      "types_identical": true,
+      "values_identical": true,
+      "level_params_identical": true,
+      "safety_identical": true
+    },
+    "Cloning.TensorLie.loweringHeight": {
+      "types_identical": true,
+      "values_identical": true,
+      "level_params_identical": true,
+      "safety_identical": true
+    },
+    "Cloning.TensorLie.loweringOperator": {
+      "types_identical": true,
+      "values_identical": true,
+      "level_params_identical": true,
+      "safety_identical": true
+    },
+    "Cloning.TensorLie.loweringScale": {
+      "types_identical": true,
+      "values_identical": true,
+      "level_params_identical": true,
+      "safety_identical": true
+    },
+    "Cloning.TensorLie.loweringSplits": {
+      "types_identical": true,
+      "values_identical": true,
+      "level_params_identical": true,
+      "safety_identical": true
+    },
+    "Cloning.TensorLie.loweringWeight": {
+      "types_identical": true,
+      "values_identical": true,
+      "level_params_identical": true,
+      "safety_identical": true
+    },
+    "Cloning.TensorLie.loweringWord": {
+      "types_identical": true,
+      "values_identical": true,
+      "level_params_identical": true,
+      "safety_identical": true
+    },
+    "Cloning.TensorLie.physicalSectorListSpan": {
+      "types_identical": true,
+      "values_identical": true,
+      "level_params_identical": true,
+      "safety_identical": true
+    },
+    "Cloning.TensorLie.recursivePhysicalDecomposition": {
+      "types_identical": true,
+      "values_identical": true,
+      "level_params_identical": true,
+      "safety_identical": true
+    },
+    "Cloning.TensorLie.rootInversions": {
+      "types_identical": true,
+      "values_identical": true,
+      "level_params_identical": true,
+      "safety_identical": true
+    },
+    "Cloning.TensorLie.rootOccupationSplits": {
+      "types_identical": true,
+      "values_identical": true,
+      "level_params_identical": true,
+      "safety_identical": true
+    },
+    "Cloning.YoungGeneral.shapeAdd": {
+      "types_identical": true,
+      "values_identical": true,
+      "level_params_identical": true,
+      "safety_identical": true
+    },
+    "Cloning.YoungGeneral.shapeRemovable": {
+      "types_identical": true,
+      "values_identical": true,
+      "level_params_identical": true,
+      "safety_identical": true
+    },
+    "Cloning.YoungGeneral.tableauInsert": {
+      "types_identical": true,
+      "values_identical": true,
+      "level_params_identical": true,
+      "safety_identical": true
+    },
+    "Cloning.YoungGeneral.tableauRemovable": {
+      "types_identical": true,
+      "values_identical": true,
+      "level_params_identical": true,
+      "safety_identical": true
+    },
+    "Cloning.YoungGeneral.tableauReverse": {
+      "types_identical": true,
+      "values_identical": true,
+      "level_params_identical": true,
+      "safety_identical": true
+    },
+    "Cloning.YoungTwoRow.Path": {
+      "types_identical": true,
+      "values_identical": true,
+      "level_params_identical": true,
+      "safety_identical": true
+    },
+    "Cloning.YoungTwoRow.legal": {
+      "types_identical": true,
+      "values_identical": true,
+      "level_params_identical": true,
+      "safety_identical": true
+    },
+    "Cloning.YoungTwoRow.lowerRow": {
+      "types_identical": true,
+      "values_identical": true,
+      "level_params_identical": true,
+      "safety_identical": true
+    },
+    "Cloning.YoungTwoRow.pathFintype": {
+      "types_identical": true,
+      "values_identical": true,
+      "level_params_identical": true,
+      "safety_identical": true
+    },
+    "Cloning.YoungTwoRow.spin": {
+      "types_identical": true,
+      "values_identical": true,
+      "level_params_identical": true,
+      "safety_identical": true
+    },
+    "Cloning.YoungTwoRow.upperRow": {
+      "types_identical": true,
+      "values_identical": true,
+      "level_params_identical": true,
+      "safety_identical": true
+    },
+    "Cloning.YoungTwoRow.weight": {
+      "types_identical": true,
+      "values_identical": true,
+      "level_params_identical": true,
+      "safety_identical": true
+    }
+  }
+}

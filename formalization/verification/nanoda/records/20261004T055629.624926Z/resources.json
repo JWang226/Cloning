@@ -1,0 +1,19 @@
+{
+  "process_observations": "resource-observations.jsonl",
+  "run_elapsed_seconds": 523.124325,
+  "scope": "macOS /usr/bin/time -l measured the official runner command (bash verification/nanoda/run.sh --run --threads 1), including its child processes. Maximum resident set is the timed command measurement, not aggregate simultaneous memory with Comparator or the desktop. The run elapsed time comes from runner timestamps; sampled process memory is retained separately in resource-observations.jsonl.",
+  "timed_command": [
+    "/usr/bin/time",
+    "-l",
+    "bash",
+    "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/formalization/verification/nanoda/run.sh",
+    "--run",
+    "--threads",
+    "1"
+  ],
+  "timed_command_elapsed_seconds": 523.31,
+  "timed_command_log": "console.stderr",
+  "timed_command_maximum_resident_set_bytes": 3268395008,
+  "timed_command_system_cpu_seconds": 19.91,
+  "timed_command_user_cpu_seconds": 471.69
+}

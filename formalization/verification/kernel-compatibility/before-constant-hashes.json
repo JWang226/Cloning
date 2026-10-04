@@ -1,0 +1,194 @@
+{
+  "Cloning.MultimodeCoherent.numberIterate": {
+    "safety": "Lean.DefinitionSafety.safe",
+    "levelParams": [],
+    "type_sha256": "40816cc12601cd4d42ec37176745014a23bf354a71d13d716cd8160dd728b87e",
+    "value_sha256": "4f93a6b10683af8e57c42f75a0ae173b652f480d8a7e123621febbd611d0dc59"
+  },
+  "Cloning.PBW.errorTerms": {
+    "safety": "Lean.DefinitionSafety.safe",
+    "levelParams": [
+      "u_1",
+      "u_2"
+    ],
+    "type_sha256": "21aed7b99e850f5cf6774e56e09bdc4f2e5b98f35596f218a0de7cd2bc50c2f4",
+    "value_sha256": "0c9c4eefbf8edf286c7dd22a0bcb398cff73429917735874c20582a613e94637"
+  },
+  "Cloning.PBW.gramConstant": {
+    "safety": "Lean.DefinitionSafety.safe",
+    "levelParams": [],
+    "type_sha256": "527b8d46350b6a5c6396f7275f93381896c97de2950a81c3b8cbe3b40af0ba0d",
+    "value_sha256": "9d4a994ee40a2fd2550e4e3a70bb54352c7ba932f07b00750fd7be860bac341d"
+  },
+  "Cloning.PBW.occupationFactorial": {
+    "safety": "Lean.DefinitionSafety.safe",
+    "levelParams": [
+      "u_1"
+    ],
+    "type_sha256": "bcff322c96672d2efc7c55b52477b86093bb5852f89ee2ab748676a6d7891abf",
+    "value_sha256": "46f0eb38d47620a61a8578f4dacc86e57e6158d8a71ee155b672b7a33991e6a3"
+  },
+  "Cloning.PBW.removeOne": {
+    "safety": "Lean.DefinitionSafety.safe",
+    "levelParams": [
+      "u_1"
+    ],
+    "type_sha256": "36fad23ae5be8c385abb2b8c3db43c59c015eea9ab5b8fa0f112b92f552f7a2d",
+    "value_sha256": "3b0a060e3432d1213f32aa5584bf3e2dde371f556c465764c00477cdcde30203"
+  },
+  "Cloning.PBW.wick": {
+    "safety": "Lean.DefinitionSafety.safe",
+    "levelParams": [
+      "u_1"
+    ],
+    "type_sha256": "85d0a1bd94bf63f53acbb25f77f75869b496373964a0ff463002a7c2eeac8a08",
+    "value_sha256": "a32a398f7aceb22452a916276ba5ab1c2f4f54567d5685acd04c5cb9be6b85fd"
+  },
+  "Cloning.PBW.word": {
+    "safety": "Lean.DefinitionSafety.safe",
+    "levelParams": [
+      "u_1",
+      "u_2"
+    ],
+    "type_sha256": "2879610b3f23fa838276dc04f9f9982c3b72868b2e9729ff0cc6ad6d8ebff89b",
+    "value_sha256": "f48cf4a8114854967898bd48b6452ea25ba6ac33693a516267c166facc849553"
+  },
+  "Cloning.TensorLie.highestAction": {
+    "safety": "Lean.DefinitionSafety.safe",
+    "levelParams": [],
+    "type_sha256": "97f31e1d8084385ee01b9e1404bc26314cc3e8231daeaf5795ee6cf62334be7f",
+    "value_sha256": "dcff71a85905dac96ff0fefde185e01687d10e6e118a8e41daf12a3d61ca4cef"
+  },
+  "Cloning.TensorLie.loweringHeight": {
+    "safety": "Lean.DefinitionSafety.safe",
+    "levelParams": [],
+    "type_sha256": "535c769561b7e42095615118321d05e3dc0af09af9f370b6544294521b601b6a",
+    "value_sha256": "9c6bf5020036ecc278e55cbd606e4726d5da3a64ae1375a61415b91b614830e9"
+  },
+  "Cloning.TensorLie.loweringOperator": {
+    "safety": "Lean.DefinitionSafety.safe",
+    "levelParams": [],
+    "type_sha256": "da4472701c2d0154db6347620e62ee2cce1c86dec8224fbd39fc5c2dd6949054",
+    "value_sha256": "a96bc4a8641c3e39460e807104032b70e9494234c2fc50958b80c94dbdeffea8"
+  },
+  "Cloning.TensorLie.loweringScale": {
+    "safety": "Lean.DefinitionSafety.safe",
+    "levelParams": [],
+    "type_sha256": "67d8bbfdea9f40a8e5964831bc958a06d4e140b065f593c0c0c10515072fc985",
+    "value_sha256": "a83a9c35ddac8bcfd629207e3f14c1dbb0cea00801453a41bed853ea2efb9e3d"
+  },
+  "Cloning.TensorLie.loweringSplits": {
+    "safety": "Lean.DefinitionSafety.safe",
+    "levelParams": [],
+    "type_sha256": "ed475ede5e549d2928d30df4d433d81fc300343dd1586c0c1b3930f28cd33860",
+    "value_sha256": "741a74533d7bcfdbc4b1aa1653b8556e0c169e0f63275c6aa87397deec2b8c1b"
+  },
+  "Cloning.TensorLie.loweringWeight": {
+    "safety": "Lean.DefinitionSafety.safe",
+    "levelParams": [],
+    "type_sha256": "d140b2a31174067ab258bf3949d39b22325cca612bf2b64dd472dcf9a2b0b238",
+    "value_sha256": "37943f6354ab33fdd1b1099ee57aea7b29983a733aa0a32f86b9e4a1c7ae1436"
+  },
+  "Cloning.TensorLie.loweringWord": {
+    "safety": "Lean.DefinitionSafety.safe",
+    "levelParams": [],
+    "type_sha256": "e0474263c23b7866a9f0cf367c1874431f5827ff69b2a09db597fe5c2afcabe5",
+    "value_sha256": "e7a67e63364dc5261c9b4aa7ebc468d0e408a5aaba27a5f48d794ad2d843ae73"
+  },
+  "Cloning.TensorLie.physicalSectorListSpan": {
+    "safety": "Lean.DefinitionSafety.safe",
+    "levelParams": [],
+    "type_sha256": "7a84e830002cbc9e829a2e5d606d5972ebcf0190526ee60556e8ae1853dd7d22",
+    "value_sha256": "604f8725f839b7a9b3b3af9c8d70560c624bb016e01a3de7282b9ac78a299252"
+  },
+  "Cloning.TensorLie.recursivePhysicalDecomposition": {
+    "safety": "Lean.DefinitionSafety.safe",
+    "levelParams": [],
+    "type_sha256": "752a40b608c2af458cbac51125b77e496c2aa439695310db7252957bc45c8ad2",
+    "value_sha256": "f647a886d47255c02de376ddf37d85f10863bbbefc413125633416a3e3f5ce7b"
+  },
+  "Cloning.TensorLie.rootInversions": {
+    "safety": "Lean.DefinitionSafety.safe",
+    "levelParams": [],
+    "type_sha256": "535c769561b7e42095615118321d05e3dc0af09af9f370b6544294521b601b6a",
+    "value_sha256": "52162ca44af7055aacbd510c4f7107b6fda1ee377d30a255c60020e35ab9e2a9"
+  },
+  "Cloning.TensorLie.rootOccupationSplits": {
+    "safety": "Lean.DefinitionSafety.safe",
+    "levelParams": [],
+    "type_sha256": "1585b5cb927532e6b43d4a8f0fb5553f8f3ac3cd8739a6aaac1700ecad725e88",
+    "value_sha256": "e278805528890b734f14f339e7ef14b8c1b49192000c149c889ddba8456ed637"
+  },
+  "Cloning.YoungGeneral.shapeAdd": {
+    "safety": "Lean.DefinitionSafety.safe",
+    "levelParams": [],
+    "type_sha256": "2cbf6b8ea5bd4a6602c97cfe5003018bb1e387b6b7256f0df77862c4802f606b",
+    "value_sha256": "2d49acc50178c7a16ad30429834ad781da3e5eb0616bfb3810b4e86678f553cf"
+  },
+  "Cloning.YoungGeneral.shapeRemovable": {
+    "safety": "Lean.DefinitionSafety.safe",
+    "levelParams": [],
+    "type_sha256": "f03c1e1f699449fec05b71f0f1ea8b7aa97748c5cfb128569ba86a0c867b1298",
+    "value_sha256": "b360dc095e0c26ecccab671b65ea9516a007c6379484e379f1dbe01b5102bacd"
+  },
+  "Cloning.YoungGeneral.tableauInsert": {
+    "safety": "Lean.DefinitionSafety.safe",
+    "levelParams": [],
+    "type_sha256": "e92e08fc58de1f79500fb887894877d2f322d96f9482b342a010557442f6efa9",
+    "value_sha256": "be7e002b6d4cf6f31a3c98ef7d36fd46634e5a9777e01b9f9d5e243565d2f583"
+  },
+  "Cloning.YoungGeneral.tableauRemovable": {
+    "safety": "Lean.DefinitionSafety.safe",
+    "levelParams": [],
+    "type_sha256": "8dc0b4f83bd991a91f52de744ecdad166b9aaaa2e52205db39dab6819daa9ca9",
+    "value_sha256": "db24018d380eb867fc357129957155342d39e24d4321203e5e047d77493e48a5"
+  },
+  "Cloning.YoungGeneral.tableauReverse": {
+    "safety": "Lean.DefinitionSafety.safe",
+    "levelParams": [],
+    "type_sha256": "c235cd8515677d588d5647ac58d3d3dbd1b454aa2f73c1db011c57a64c96ed52",
+    "value_sha256": "34b061987f2e2544df2021aa6a2dd4a3bd47c1e6ce731e7a6a70cba64d1be051"
+  },
+  "Cloning.YoungTwoRow.Path": {
+    "safety": "Lean.DefinitionSafety.safe",
+    "levelParams": [],
+    "type_sha256": "b498a83bffa811939db9bac842ed9cbfbf16318b6215d8cb89ef8de6e66b0605",
+    "value_sha256": "39c67f1912856586ea2ad1ffdf342a2aae9c6b161173ef0afe55cd83be31c1b8"
+  },
+  "Cloning.YoungTwoRow.legal": {
+    "safety": "Lean.DefinitionSafety.safe",
+    "levelParams": [],
+    "type_sha256": "bdf340bcbc6f6ca87509a56be3779fb439dacc2df56dddfcdfd94323279a77c8",
+    "value_sha256": "ec40dee4e711eb7f9d24053d9482d0816012246dfeae53f2946ce7f8af1ca721"
+  },
+  "Cloning.YoungTwoRow.lowerRow": {
+    "safety": "Lean.DefinitionSafety.safe",
+    "levelParams": [],
+    "type_sha256": "a4d32f770d3d272e592bb16080dc7e5d8c013f6c31351a0146e2f2e1afcaf460",
+    "value_sha256": "db557dc0f324b76efd01626a4a5a0e8b9b0ebcc8743e06eca428d545c91560b9"
+  },
+  "Cloning.YoungTwoRow.pathFintype": {
+    "safety": "Lean.DefinitionSafety.safe",
+    "levelParams": [],
+    "type_sha256": "000f87fb8ee84256c429636434a6bab541308b0517d5915ce05d7ef4277a5bee",
+    "value_sha256": "490bc98868dcdacefd06b695e398c56a051fe3615ca7ed706e297d56b3193896"
+  },
+  "Cloning.YoungTwoRow.spin": {
+    "safety": "Lean.DefinitionSafety.safe",
+    "levelParams": [],
+    "type_sha256": "a4d32f770d3d272e592bb16080dc7e5d8c013f6c31351a0146e2f2e1afcaf460",
+    "value_sha256": "56ffd440e3fe765a5d5dd23c9d909895df7d41861133147b992b46b9c3cc07ab"
+  },
+  "Cloning.YoungTwoRow.upperRow": {
+    "safety": "Lean.DefinitionSafety.safe",
+    "levelParams": [],
+    "type_sha256": "a4d32f770d3d272e592bb16080dc7e5d8c013f6c31351a0146e2f2e1afcaf460",
+    "value_sha256": "79c42709cd1c720a5a1f6cf696bd8cf688a0ff8a070c5a1bda25f93a20945bff"
+  },
+  "Cloning.YoungTwoRow.weight": {
+    "safety": "Lean.DefinitionSafety.safe",
+    "levelParams": [],
+    "type_sha256": "08ccb2f1af7992ea63c9d1af08f4033d90860ab628ae7efffd36a229bc12fb9f",
+    "value_sha256": "f9bada6311bb93b71b80037eed354dbf3fe3dd6e2ed46c7382af4fbc439c278c"
+  }
+}

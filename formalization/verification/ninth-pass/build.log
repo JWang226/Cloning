@@ -1,0 +1,1060 @@
+⚠ [1685/1765] Replayed Cloning.Thermal
+warning: Cloning/Thermal.lean:423:4: try 'simp' instead of 'simpa'
+
+Note: This linter can be disabled with `set_option linter.unnecessarySimpa false`
+⚠ [3045/3268] Replayed Cloning.OccupationCompression
+warning: Cloning/OccupationCompression.lean:73:25: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [3097/3268] Replayed Cloning.HybridStates
+warning: Cloning/HybridStates.lean:84:79: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [3102/3268] Replayed Cloning.HybridFidelity
+warning: Cloning/HybridFidelity.lean:36:23: unused variable `x`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+⚠ [3137/3268] Replayed Cloning.GaussianWitness
+warning: Cloning/GaussianWitness.lean:32:38: unused variable `ha`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Cloning/GaussianWitness.lean:100:4: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Cloning/GaussianWitness.lean:136:6: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: Cloning/GaussianWitness.lean:136:6: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: Cloning/GaussianWitness.lean:128:4: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Cloning/GaussianWitness.lean:164:6: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: Cloning/GaussianWitness.lean:164:6: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: Cloning/GaussianWitness.lean:161:4: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [3698/3751] Replayed Cloning.WeylQuantumPositiveBlocks
+warning: Cloning/WeylQuantumPositiveBlocks.lean:91:35: This simp argument is unused:
+  ContinuousLinearMap.add_apply
+
+Hint: Omit it from the simp argument list.
+  simp only [map_add, map_sub, hI, C̵o̵n̵t̵i̵n̵u̵o̵u̵s̵L̵i̵n̵e̵a̵r̵M̵a̵p̵.̵a̵d̵d̵_̵a̵p̵p̵l̵y̵,̵ContinuousLinearMap.sub_apply, ContinuousLinearMap.smul_apply,
+  ̲  ̲ ̲ ̲map_smul]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Cloning/WeylQuantumPositiveBlocks.lean:92:4: This simp argument is unused:
+  ContinuousLinearMap.sub_apply
+
+Hint: Omit it from the simp argument list.
+  simp only [map_add, map_sub, hI, ContinuousLinearMap.add_apply, C̵o̵n̵t̵i̵n̵u̵o̵u̵s̵L̵i̵n̵e̵a̵r̵M̵a̵p̵.̵s̵u̵b̵_̵a̵p̵p̵l̵y̵,̵ ̵ContinuousLinearMap.smul_apply,
+  ̲  ̲ ̲ ̲map_smul]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Cloning/WeylQuantumPositiveBlocks.lean:106:8: automatically included section variable(s) unused in theorem `Cloning.InfiniteTraceClass.blockInjection_apply`:
+  [CompleteSpace H]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [CompleteSpace H] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+⚠ [3700/3751] Replayed Cloning.WeylQuantumPositiveBounds
+warning: Cloning/WeylQuantumPositiveBounds.lean:30:38: This simp argument is unused:
+  Complex.mul_re
+
+Hint: Omit it from the simp argument list.
+  simp only [map_one, one_mul, mul_one, Complex.add_im, Complex.one_im,
+  ̵  ̵ ̵ ̵Complex.star_def,
+  ̲  ̲ ̲ ̲Complex.conj_I, Complex.mul_r̵e̵,̵ ̵C̵o̵m̵p̵l̵e̵x̵.̵m̵u̵l̵_̵im,
+  ̵  ̵ ̵ ̵Complex.neg_re, Complex.neg_im, Complex.I_re,
+  ̲  ̲ ̲ ̲Complex.I_im] at h1 hI
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [3705/3751] Replayed Cloning.WeylGaussianThermal
+warning: Cloning/WeylGaussianThermal.lean:44:4: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Cloning/WeylGaussianThermal.lean:120:6: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: Cloning/WeylGaussianThermal.lean:120:6: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: Cloning/WeylGaussianThermal.lean:168:4: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Cloning/WeylGaussianThermal.lean:174:4: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [3706/3751] Replayed Cloning.WeylGaussianTwistedConvolution
+warning: Cloning/WeylGaussianTwistedConvolution.lean:36:27: This simp argument is unused:
+  Complex.ofReal_mul
+
+Hint: Omit it from the simp argument list.
+  simp only [norm_sq_cast', map_add, map_neg, Complex.real_smul, map_mul, Complex.conj_ofReal,
+  ̲  ̲ ̲ ̲ ̲ ̲C̵o̵m̵p̵l̵e̵x̵.̵o̵f̵R̵e̵a̵l̵_̵m̵u̵l̵,̵ ̵Complex.ofReal_ofNat, u, v]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+warning: Cloning/WeylGaussianTwistedConvolution.lean:45:19: This simp argument is unused:
+  norm_sq_cast'
+
+Hint: Omit it from the simp argument list.
+  simp only [u, v, n̵o̵r̵m̵_̵s̵q̵_̵c̵a̵s̵t̵'̵,̵ ̵Complex.ofReal_mul, Complex.ofReal_add, Complex.ofReal_neg, Complex.ofReal_div,
+  ̲  ̲ ̲ ̲Complex.ofReal_pow, Complex.ofReal_sub, Complex.ofReal_one, Complex.ofReal_ofNat]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [3708/3751] Replayed Cloning.WeylIdlerUniqueness
+warning: Cloning/WeylIdlerUniqueness.lean:174:26: This simp argument is unused:
+  star_inv
+
+Hint: Omit it from the simp argument list.
+  simp only [star_smul, star_i̵n̵v̵,̵ ̵s̵ta̵r_̵t̵r̵ivial, star_star, smul_smul,
+  ̵  ̵ ̵ ̵ ̵ ̵mul_inv_cancel₀ hs, one_smul]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [3709/3751] Replayed Cloning.WeylThermalFourier
+warning: Cloning/WeylThermalFourier.lean:23:23: This simp argument is unused:
+  norm_div
+
+Hint: Omit it from the simp argument list.
+  simp [weylCharacter,̵ ̵n̵o̵r̵m̵_̵d̵i̵v̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [3710/3751] Replayed Cloning.WeylThermalFourierWitness
+warning: Cloning/WeylThermalFourierWitness.lean:102:4: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Cloning/WeylThermalFourierWitness.lean:106:4: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [3711/3751] Replayed Cloning.WeylThermalCharacteristic
+warning: Cloning/WeylThermalCharacteristic.lean:85:4: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Cloning/WeylThermalCharacteristic.lean:96:4: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [3715/3751] Replayed Cloning.WeylIdlerKernel
+warning: Cloning/WeylIdlerKernel.lean:43:24: This simp argument is unused:
+  star_inv
+
+Hint: Omit it from the simp argument list.
+  simp only [star_smul, star_i̵n̵v̵,̵ ̵s̵ta̵r_̵t̵r̵ivial, star_star, smul_smul,
+  ̵  ̵ ̵ ̵mul_inv_cancel₀ hs, one_smul]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [3726/3751] Replayed Cloning.YoungGeneralTableaux
+warning: Cloning/YoungGeneralTableaux.lean:88:26: unused variable `i`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Cloning/YoungGeneralTableaux.lean:130:36: This simp argument is unused:
+  Fintype.card_fun
+
+Hint: Omit it from the simp argument list.
+  simp [ContentArray, F̵i̵n̵t̵y̵p̵e̵.̵c̵a̵r̵d̵_̵f̵u̵n̵,̵ ̵← pow_mul]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+⚠ [3727/3751] Replayed Cloning.YoungGeneralLimit
+warning: Cloning/YoungGeneralLimit.lean:85:21: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+warning: Cloning/YoungGeneralLimit.lean:85:58: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+⚠ [3730/3751] Replayed Cloning.YoungGeneralMoments
+warning: Cloning/YoungGeneralMoments.lean:223:23: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+ℹ [3738/3751] Replayed LiftedSectorFidelity
+info: LiftedSectorFidelity.lean:19:0: Cloning.MatrixFidelity.lifted_matrix_factorization_bound.{u_1, u_2, u_3} {ι : Type u_1} [Fintype ι] [DecidableEq ι]
+  {d : ι → Type u_2} {s : ι → Type u_3} [(i : ι) → Fintype (d i)] [(i : ι) → DecidableEq (d i)]
+  [(i : ι) → Fintype (s i)] [(i : ι) → DecidableEq (s i)] (X G : (i : ι) → Matrix (d i) (d i) ℂ)
+  (ρ : (i : ι) → Cloning.MatrixFidelity.State (d i)) (τ : (i : ι) → Cloning.MatrixFidelity.State (s i)) (p : ι → ℝ)
+  (c η : ℝ) (hX : ∀ (i : ι), (X i).PosSemidef) (hG : ∀ (i : ι), (G i).PosSemidef)
+  (hdiff : ∀ (i : ι), (X i - G i).PosSemidef) (hp : ∀ (i : ι), 0 ≤ p i) (hpsum : ∑ i, p i = 1)
+  (hXmass : ∑ i, (X i).trace.re ≤ 1) (hc0 : 0 ≤ c) (hc1 : c ≤ 1) (hη : 0 ≤ η)
+  (hsector :
+    ∀ (i : ι),
+      0 < (G i).trace.re →
+        |Cloning.MatrixFidelity.fidelity (Cloning.MatrixFidelity.normalizedBlock (G i)) (ρ i).matrix - c| ≤ η) :
+  |Cloning.MatrixFidelity.fidelity
+          (Matrix.blockDiagonal' fun i => Matrix.kroneckerMap (fun x1 x2 => x1 * x2) (X i) (τ i).matrix)
+          (Matrix.blockDiagonal' fun i =>
+            Matrix.kroneckerMap (fun x1 x2 => x1 * x2) (p i • (ρ i).matrix) (τ i).matrix) -
+        c * Cloning.BlockFidelity.classicalAffinity (fun i => (X i).trace.re) p| ≤
+    η + 2 * √(∑ i, ((X i).trace.re - (G i).trace.re))
+info: LiftedSectorFidelity.lean:20:0: Cloning.MatrixCovariantBalance.cartanChannel_of_irreducible_intertwiner.{u_1, u_2, u_3, u_4} {G : Type u_1}
+  {A : Type u_2} [Monoid G] [Fintype A] [DecidableEq A] {B : Type u_3} {C : Type u_4} [Fintype B] [Fintype C]
+  [DecidableEq B] [DecidableEq C] (ρ : Representation ℂ G (A → ℂ)) (σ : Representation ℂ G (B → ℂ))
+  (τ : Representation ℂ G (C → ℂ)) [ρ.IsIrreducible] (V : Matrix (A × B) C ℂ) (hA : 0 < Fintype.card A)
+  (hC : 0 < Fintype.card C) (hV : V.conjTranspose * V = 1)
+  (hρ : ∀ (g : G), (LinearMap.toMatrix' (ρ g)).conjTranspose * LinearMap.toMatrix' (ρ g) = 1)
+  (hσ : ∀ (g : G), (LinearMap.toMatrix' (σ g)).conjTranspose * LinearMap.toMatrix' (σ g) = 1)
+  (hτ : ∀ (g : G), LinearMap.toMatrix' (τ g) * (LinearMap.toMatrix' (τ g)).conjTranspose = 1)
+  (hintertwine :
+    ∀ (g : G),
+      Matrix.kroneckerMap (fun x1 x2 => x1 * x2) (LinearMap.toMatrix' (ρ g)) (LinearMap.toMatrix' (σ g)) * V =
+        V * LinearMap.toMatrix' (τ g)) :
+  Cloning.Channels.MatrixChannel A C
+info: LiftedSectorFidelity.lean:21:0: Cloning.MatrixFidelity.lifted_matrix_fidelity_converges.{u_1, u_2, u_3} {I : ℕ → Type u_1} [(n : ℕ) → Fintype (I n)]
+  [(n : ℕ) → DecidableEq (I n)] {d : (n : ℕ) → I n → Type u_2} {s : (n : ℕ) → I n → Type u_3}
+  [(n : ℕ) → (i : I n) → Fintype (d n i)] [(n : ℕ) → (i : I n) → DecidableEq (d n i)]
+  [(n : ℕ) → (i : I n) → Fintype (s n i)] [(n : ℕ) → (i : I n) → DecidableEq (s n i)]
+  (X G : (n : ℕ) → (i : I n) → Matrix (d n i) (d n i) ℂ)
+  (ρ : (n : ℕ) → (i : I n) → Cloning.MatrixFidelity.State (d n i))
+  (τ : (n : ℕ) → (i : I n) → Cloning.MatrixFidelity.State (s n i)) (p : (n : ℕ) → I n → ℝ) (η : ℕ → ℝ) (c l : ℝ)
+  (hX : ∀ (n : ℕ) (i : I n), (X n i).PosSemidef) (hG : ∀ (n : ℕ) (i : I n), (G n i).PosSemidef)
+  (hdiff : ∀ (n : ℕ) (i : I n), (X n i - G n i).PosSemidef) (hp : ∀ (n : ℕ) (i : I n), 0 ≤ p n i)
+  (hpsum : ∀ (n : ℕ), ∑ i, p n i = 1) (hXmass : ∀ (n : ℕ), ∑ i, (X n i).trace.re ≤ 1) (hc0 : 0 ≤ c) (hc1 : c ≤ 1)
+  (hη : ∀ (n : ℕ), 0 ≤ η n)
+  (hsector :
+    ∀ (n : ℕ) (i : I n),
+      0 < (G n i).trace.re →
+        |Cloning.MatrixFidelity.fidelity (Cloning.MatrixFidelity.normalizedBlock (G n i)) (ρ n i).matrix - c| ≤ η n)
+  (hηlimit : Filter.Tendsto η Filter.atTop (nhds 0))
+  (hmass : Filter.Tendsto (fun n => ∑ i, ((X n i).trace.re - (G n i).trace.re)) Filter.atTop (nhds 0))
+  (hlabel :
+    Filter.Tendsto (fun n => Cloning.BlockFidelity.classicalAffinity (fun i => (X n i).trace.re) (p n)) Filter.atTop
+      (nhds l)) :
+  Filter.Tendsto
+    (fun n =>
+      Cloning.MatrixFidelity.fidelity
+        (Matrix.blockDiagonal' fun i => Matrix.kroneckerMap (fun x1 x2 => x1 * x2) (X n i) (τ n i).matrix)
+        (Matrix.blockDiagonal' fun i =>
+          Matrix.kroneckerMap (fun x1 x2 => x1 * x2) (p n i • (ρ n i).matrix) (τ n i).matrix))
+    Filter.atTop (nhds (c * l))
+info: LiftedSectorFidelity.lean:22:0: Cloning.MatrixTransitionAchievability.transition_achievability_bound.{u_1, u_2, u_3, u_4, u_5} {μ : Type u_1}
+  {ν : Type u_2} [Fintype μ] {α : μ → Type u_3} {β : ν → Type u_4} [(i : μ) → Fintype (α i)] [(j : ν) → Fintype (β j)]
+  [(j : ν) → DecidableEq (β j)] [Fintype ν] [DecidableEq ν] {κ : ν → Type u_5} [(j : ν) → Fintype (κ j)]
+  [(j : ν) → DecidableEq (κ j)] (Φ : (i : μ) → (j : ν) → Cloning.Channels.MatrixChannel (α i) (β j))
+  (ρ : (i : μ) → Cloning.MatrixFidelity.State (α i)) (σ : (j : ν) → Cloning.MatrixFidelity.State (β j))
+  (τ : (j : ν) → Cloning.MatrixFidelity.State (κ j)) {joint : μ → ν → ℝ} (hjoint : ∀ (i : μ) (j : ν), 0 ≤ joint i j)
+  (keep : μ → ν → Prop) (p : ν → ℝ) (c η : ℝ) (hp : ∀ (j : ν), 0 ≤ p j) (hpsum : ∑ j, p j = 1)
+  (hjointmass : ∑ j, ∑ i, joint i j ≤ 1) (hc0 : 0 ≤ c) (hc1 : c ≤ 1) (hη : 0 ≤ η)
+  (hindividual :
+    ∀ (i : μ) (j : ν),
+      keep i j → 0 < joint i j → c - η ≤ Cloning.MatrixFidelity.fidelity ((Φ i j).toFun (ρ i).matrix) (σ j).matrix) :
+  c * Cloning.BlockFidelity.classicalAffinity (fun j => ∑ i, joint i j) p - η -
+      √(∑ j, ∑ i, Cloning.MatrixLiftedTrimming.discardedJoint joint keep i j) ≤
+    Cloning.MatrixFidelity.fidelity (Cloning.MatrixLiftedChannel.liftedOutput Φ ρ τ joint)
+      (Matrix.blockDiagonal' fun j => Matrix.kroneckerMap (fun x1 x2 => x1 * x2) (p j • (σ j).matrix) (τ j).matrix)
+info: LiftedSectorFidelity.lean:23:0: Cloning.PBW.normalized_gram_error_le_of_root_filtration.{u_1, u_2} {ι : Type u_1} {H : Type u_2} [DecidableEq ι]
+  [Fintype ι] [NormedAddCommGroup H] [InnerProductSpace ℂ H] (F A : ι → H →L[ℂ] H) (K : ℕ → Submodule ℂ H)
+  (hK : Monotone K) (Ω : H) (hΩmem : Ω ∈ K 0) (hnorm : inner ℂ Ω Ω = 1)
+  (hadj : ∀ (i : ι) (x y : H), inner ℂ ((F i) x) y = inner ℂ x ((A i) y)) (hzero : ∀ (i : ι), ∀ x ∈ K 0, (A i) x = 0)
+  (hlower : ∀ (i : ι) (r : ℕ), ∀ x ∈ K (r + 1), (A i) x ∈ K r) (D L : ℕ)
+  (hraise : ∀ (i : ι) (r : ℕ), ∀ x ∈ K r, (F i) x ∈ K (r + D)) (ε : ℝ) (hε : 0 ≤ ε) (hεone : ε ≤ 1)
+  (hcomm : ∀ (i j : ι), ∀ r ≤ L * D, ∀ x ∈ K r, ‖Cloning.PBW.commutatorDefect F A i j x‖ ≤ ε * ‖x‖) (u v : List ι)
+  (hu : u.length ≤ L) (hv : v.length ≤ L) :
+  ‖inner ℂ (Cloning.PBW.normalizedWord F u Ω) (Cloning.PBW.normalizedWord F v Ω) - if u.Perm v then 1 else 0‖ ≤
+    ↑(Cloning.PBW.gramConstant L u.length) * (√(↑(L * D) + 1) * √2) ^ (2 * L) * ε
+info: LiftedSectorFidelity.lean:24:0: Cloning.PBW.normalized_gram_tendsto_of_cutoff.{u_1, u_3} {ι : Type u_1} [DecidableEq ι] [Fintype ι] (E : ℕ → Type u_3)
+  [(n : ℕ) → NormedAddCommGroup (E n)] [(n : ℕ) → InnerProductSpace ℂ (E n)] (F A : (n : ℕ) → ι → E n →L[ℂ] E n)
+  (K : (n : ℕ) → ℕ → Submodule ℂ (E n)) (Ω : (n : ℕ) → E n) (L : ℕ) (M : ℝ) (ε : ℕ → ℝ) (hM : 1 ≤ M)
+  (hε : ∀ (n : ℕ), 0 ≤ ε n) (hεlim : Filter.Tendsto ε Filter.atTop (nhds 0)) (hK : ∀ (n : ℕ), Monotone (K n))
+  (hΩmem : ∀ (n : ℕ), Ω n ∈ K n 0) (hnorm : ∀ (n : ℕ), inner ℂ (Ω n) (Ω n) = 1)
+  (hΩ : ∀ (n : ℕ) (i : ι), (A n i) (Ω n) = 0)
+  (hadj : ∀ (n : ℕ) (i : ι) (x y : E n), inner ℂ ((F n i) x) y = inner ℂ x ((A n i) y))
+  (hF : ∀ (n : ℕ) (i : ι) (r : ℕ), ∀ x ∈ K n r, (F n i) x ∈ K n (r + 1))
+  (hA : ∀ (n : ℕ) (i : ι) (r : ℕ), ∀ x ∈ K n r, (A n i) x ∈ K n (r + 1))
+  (hbound : ∀ (n : ℕ) (i : ι), ∀ r ≤ L, ∀ x ∈ K n r, ‖(F n i) x‖ ≤ M * ‖x‖)
+  (hcomm : ∀ (n : ℕ) (i j : ι), ∀ r ≤ L, ∀ x ∈ K n r, ‖Cloning.PBW.commutatorDefect (F n) (A n) i j x‖ ≤ ε n * ‖x‖)
+  (u v : List ι) (hu : u.length ≤ L) (hv : v.length ≤ L) :
+  Filter.Tendsto
+    (fun n => inner ℂ (Cloning.PBW.normalizedWord (F n) u (Ω n)) (Cloning.PBW.normalizedWord (F n) v (Ω n)))
+    Filter.atTop (nhds (if u.Perm v then 1 else 0))
+ℹ [3739/3751] Replayed ProjectorBounds
+info: ProjectorBounds.lean:17:0: Cloning.MatrixFidelity.finite_kraus_projector_converse.{u_2, u_3, u_5, u_6} {κ : Type u_2} {α : Type u_3} [Fintype κ]
+  [Fintype α] {ι : Type u_5} [Fintype ι] [DecidableEq ι] {d : ι → Type u_6} [(i : ι) → Fintype (d i)]
+  [(i : ι) → DecidableEq (d i)] [DecidableEq α] (K : κ → Matrix (Sigma d) α ℂ) (X B : Matrix α α ℂ)
+  (P : (i : ι) → Matrix (d i) (d i) ℂ) (z q D s : ι → ℝ) (hK : ∑ k, (K k).conjTranspose * K k = 1) (hXB : X ≤ B)
+  (hP : ∀ (i : ι), (P i).PosSemidef) (hPP : ∀ (i : ι), P i * P i = P i) (hz : ∀ (i : ι), 0 ≤ z i)
+  (hq : ∀ (i : ι), 0 ≤ q i) (hD : ∀ (i : ι), 0 < D i) (hs : ∀ (i : ι), 0 < s i)
+  (hdim : ∀ (i : ι), D i = ↑(Fintype.card (d i))) (htrace : ∀ (i : ι), (P i).trace.re = s i)
+  (hinvariant : Cloning.Channels.krausMap K B = Matrix.blockDiagonal' fun i => (z i / D i) • 1) :
+  Cloning.MatrixFidelity.fidelity (Cloning.Channels.krausMap K X) (Matrix.blockDiagonal' fun i => (q i / s i) • P i) ≤
+    √(B.trace.re * ∑ i, q i / (D i / s i))
+info: ProjectorBounds.lean:18:0: Cloning.YoungDimensionRatio.projector_sector_factor_tendsto (r k : ℕ) (hr : 0 < r) (rowIn rowOut : ℕ → Fin r → ℝ)
+  (N M δ ε : ℕ → ℝ) (γ : ℝ) (hNpos : ∀ (n : ℕ), 0 < N n) (hMpos : ∀ (n : ℕ), 0 < M n)
+  (hN : Filter.Tendsto N Filter.atTop Filter.atTop) (hγ : 0 < γ)
+  (hratio : Filter.Tendsto (fun n => M n / N n) Filter.atTop (nhds γ)) (hδ : Filter.Tendsto δ Filter.atTop (nhds 0))
+  (hε : Filter.Tendsto ε Filter.atTop (nhds 0)) (hcloseIn : ∀ (n : ℕ) (i : Fin r), |rowIn n i / N n - 1 / ↑r| ≤ δ n)
+  (hcloseOut : ∀ (n : ℕ) (i : Fin r), |rowOut n i / M n - 1 / ↑r| ≤ ε n)
+  (hout : ∀ (n : ℕ) (i : Fin r), 0 ≤ rowOut n i) :
+  Filter.Tendsto
+    (fun n =>
+      √(Cloning.YoungDimensionRatio.dimensionRatio r k (rowIn n) /
+          Cloning.YoungDimensionRatio.dimensionRatio r k (rowOut n)))
+    Filter.atTop (nhds (γ ^ (-↑(r * k) / 2)))
+info: ProjectorBounds.lean:19:0: Cloning.YoungGeneral.dimension_moments_tendsto_one (r k : ℕ) (hr : 0 < r)
+  (P : (N : ℕ) → PMF (Cloning.YoungGeneral.Shape r N))
+  (hformula :
+    ∀ (N : ℕ) (μ : Cloning.YoungGeneral.Shape r N),
+      ((P N) μ).toReal = Cloning.YoungGeneral.youngWeight N (Cloning.YoungGeneral.flatSpectrum r) fun i => ↑(μ i)) :
+  Filter.Tendsto (fun N => ∑ μ, ((P N) μ).toReal * Cloning.YoungGeneral.normalizedDimension r k N μ) Filter.atTop
+      (nhds 1) ∧
+    Filter.Tendsto (fun N => ∑ μ, ((P N) μ).toReal * Cloning.YoungGeneral.inverseNormalizedDimension r k N μ)
+      Filter.atTop (nhds 1)
+ℹ [3740/3751] Replayed ClassicalRounding
+info: ClassicalRounding.lean:25:0: Cloning.YoungRounding.roundedDensity_l1_of_local_limit.{u_1} {ι : Type u_1} [Fintype ι] (h γ : ℕ → ℝ) (a : ℕ → ι → ℝ)
+  (p : ℕ → PMF (ι → ℤ)) (hh : ∀ (n : ℕ), 0 < h n) (hγ : ∀ (n : ℕ), 0 < γ n)
+  (hlim : Filter.Tendsto h Filter.atTop (nhds 0)) {g : (ι → ℝ) → ℝ}
+  (hg : MeasureTheory.Integrable g MeasureTheory.volume) (hg0 : ∀ (x : ι → ℝ), 0 ≤ g x) (hgc : Continuous g)
+  (hgmass : ∫ (x : ι → ℝ), g x = 1)
+  (hlocal :
+    ∀ (k δ : ℝ),
+      0 < δ →
+        ∀ᶠ (n : ℕ) in Filter.atTop,
+          ∀ x ∈ Metric.closedBall 0 k, |Cloning.YoungRounding.preRoundedDensity (h n) (a n) (γ n) (p n) x - g x| ≤ δ)
+  (ε : ℝ) :
+  0 < ε →
+    ∀ᶠ (n : ℕ) in Filter.atTop,
+      ∫ (x : ι → ℝ), |Cloning.YoungRounding.roundedDensity (h n) (a n) (γ n) (p n) x - g x| < ε
+info: ClassicalRounding.lean:26:0: Cloning.YoungCompatibility.eventually_fallback_error_bounds {d : ℕ} (hd : 1 ≤ d) (K : Set (Fin (d + 1) → ℝ))
+  (hK : IsCompact K) (hpos : ∀ p ∈ K, ∀ (i : Fin (d + 1)), 0 < p i) (hanti : ∀ p ∈ K, StrictAnti p) (m : ℕ → ℤ)
+  (γn ε : ℕ → ℝ) (γ : ℝ) (hγ : 1 < γ) (hγn : Filter.Tendsto γn Filter.atTop (nhds γ))
+  (hε : Filter.Tendsto ε Filter.atTop (nhds 0)) (hm : ∀ (n : ℕ), ↑(m n) = γn n * ↑n) :
+  ∀ᶠ (n : ℕ) in Filter.atTop,
+    ∀ p ∈ K,
+      ∀ (P Q : PMF (Fin (d + 1) → ℤ)),
+        Cloning.CountableScheffe.l1Distance
+              (Cloning.YoungCompatibility.probability
+                (P.bind (Cloning.YoungCompatibility.fallbackKernel (γn n) (↑n) (m n))))
+              (Cloning.YoungCompatibility.probability (P.bind (Cloning.YoungCompatibility.rawKernel (γn n) (m n)))) ≤
+            2 * Cloning.YoungCompatibility.badMass P (Cloning.YoungCompatibility.Typical (↑n) p (ε n)) ∧
+          |Cloning.CountableScheffe.affinity
+                  (Cloning.YoungCompatibility.probability
+                    (P.bind (Cloning.YoungCompatibility.fallbackKernel (γn n) (↑n) (m n))))
+                  (Cloning.YoungCompatibility.probability Q) -
+                Cloning.CountableScheffe.affinity
+                  (Cloning.YoungCompatibility.probability (P.bind (Cloning.YoungCompatibility.rawKernel (γn n) (m n))))
+                  (Cloning.YoungCompatibility.probability Q)| ≤
+            √(2 * Cloning.YoungCompatibility.badMass P (Cloning.YoungCompatibility.Typical (↑n) p (ε n)))
+info: ClassicalRounding.lean:27:0: Cloning.YoungCompatibility.fallback_errors_tendsto_zero {d : ℕ} (hd : 1 ≤ d) (K : Set (Fin (d + 1) → ℝ))
+  (hK : IsCompact K) (hpos : ∀ p ∈ K, ∀ (i : Fin (d + 1)), 0 < p i) (hanti : ∀ p ∈ K, StrictAnti p) (m : ℕ → ℤ)
+  (γn ε : ℕ → ℝ) (γ : ℝ) (hγ : 1 < γ) (hγn : Filter.Tendsto γn Filter.atTop (nhds γ))
+  (hε : Filter.Tendsto ε Filter.atTop (nhds 0)) (hm : ∀ (n : ℕ), ↑(m n) = γn n * ↑n) (p : ℕ → Fin (d + 1) → ℝ)
+  (hp : ∀ (n : ℕ), p n ∈ K) (P Q : ℕ → PMF (Fin (d + 1) → ℤ))
+  (hbad :
+    Filter.Tendsto
+      (fun n => Cloning.YoungCompatibility.badMass (P n) (Cloning.YoungCompatibility.Typical (↑n) (p n) (ε n)))
+      Filter.atTop (nhds 0)) :
+  Filter.Tendsto
+      (fun n =>
+        Cloning.CountableScheffe.l1Distance
+          (Cloning.YoungCompatibility.probability
+            ((P n).bind (Cloning.YoungCompatibility.fallbackKernel (γn n) (↑n) (m n))))
+          (Cloning.YoungCompatibility.probability ((P n).bind (Cloning.YoungCompatibility.rawKernel (γn n) (m n)))))
+      Filter.atTop (nhds 0) ∧
+    Filter.Tendsto
+      (fun n =>
+        |Cloning.CountableScheffe.affinity
+              (Cloning.YoungCompatibility.probability
+                ((P n).bind (Cloning.YoungCompatibility.fallbackKernel (γn n) (↑n) (m n))))
+              (Cloning.YoungCompatibility.probability (Q n)) -
+            Cloning.CountableScheffe.affinity
+              (Cloning.YoungCompatibility.probability ((P n).bind (Cloning.YoungCompatibility.rawKernel (γn n) (m n))))
+              (Cloning.YoungCompatibility.probability (Q n))|)
+      Filter.atTop (nhds 0)
+info: ClassicalRounding.lean:28:0: Cloning.YoungHyperplane.volume_eq_sqrt_smul_coordinateMeasure (d : ℕ) :
+  MeasureTheory.volume = ENNReal.ofReal √(↑d + 1) • Cloning.YoungHyperplane.coordinateMeasure d
+info: ClassicalRounding.lean:29:0: Cloning.YoungHyperplane.sampleInterpolate_l1_isometry (d : ℕ) (N : ℤ) (hN : 0 < ↑N) (p : Fin (d + 1) → ℝ)
+  (P Q : Cloning.YoungHyperplane.Lattice d N → ℝ) (hP : Summable P) (hQ : Summable Q) :
+  ∫ (x : ↥(Cloning.YoungHyperplane.rootSpace d)),
+      |Cloning.YoungHyperplane.sampleInterpolate d N p P x - Cloning.YoungHyperplane.sampleInterpolate d N p Q x| =
+    ∑' (μ : Cloning.YoungHyperplane.Lattice d N), |P μ - Q μ|
+info: ClassicalRounding.lean:30:0: Cloning.YoungHyperplane.rootCovariance_det (d : ℕ) (p : Fin (d + 1) → ℝ) (hp : ∑ i, p i = 1) :
+  LinearMap.det (Cloning.YoungHyperplane.rootCovariance d p) = (↑d + 1) * ∏ i, p i
+info: ClassicalRounding.lean:31:0: Cloning.YoungHyperplane.rootCovarianceEquiv_inverse_quadratic (d : ℕ) (p : Fin (d + 1) → ℝ) (hp : ∑ i, p i = 1)
+  (hp0 : ∀ (i : Fin (d + 1)), p i ≠ 0) (x : ↥(Cloning.YoungHyperplane.rootSpace d)) :
+  inner ℝ x ((Cloning.YoungHyperplane.rootCovarianceEquiv d p hp hp0).symm x) = ∑ i, (↑x).ofLp i ^ 2 / p i
+info: ClassicalRounding.lean:32:0: Cloning.YoungTwoRow.meanDimensionRatio_relative_isBigO (k : ℕ) :
+  (fun N =>
+      Cloning.YoungTwoRow.meanDimensionRatio k N / (Cloning.YoungDimensionRatio.leadingConstant 2 k * ↑N ^ (2 * k)) -
+        1) =O[Filter.atTop]
+    fun N => 1 / ↑N
+info: ClassicalRounding.lean:33:0: Cloning.YoungTwoRow.meanInverseDimensionRatio_relative_isBigO (k : ℕ) :
+  (fun N =>
+      Cloning.YoungDimensionRatio.leadingConstant 2 k * ↑N ^ (2 * k) *
+          Cloning.YoungTwoRow.meanInverseDimensionRatio k N -
+        1) =O[Filter.atTop]
+    fun N => 1 / ↑N
+info: ClassicalRounding.lean:34:0: Cloning.YoungGeneral.atypicalMass_le {d : ℕ} (N : ℕ) (p : Fin d → ℝ) (hp : ∀ (i : Fin d), 0 ≤ p i) (hs : ∑ i, p i = 1)
+  (horder : Antitone p) (ε : ℝ) (hε : 0 ≤ ε) (hε2 : ε ≤ 2) :
+  Cloning.YoungGeneral.atypicalMass N p ε ≤ (↑N + 1) ^ (d * d) * (2 * ↑d * Real.exp (-↑N * ε ^ 2 / 4))
+info: ClassicalRounding.lean:35:0: Cloning.YoungGeneral.tableau_fallback_errors_tendsto_zero {d : ℕ} (hd : 1 ≤ d) (K : Set (Fin (d + 1) → ℝ))
+  (hK : IsCompact K) (hpos : ∀ p ∈ K, ∀ (i : Fin (d + 1)), 0 < p i) (hanti : ∀ p ∈ K, StrictAnti p) (m : ℕ → ℤ)
+  (γn : ℕ → ℝ) (γ : ℝ) (hγ : 1 < γ) (hγn : Filter.Tendsto γn Filter.atTop (nhds γ)) (hm : ∀ (n : ℕ), ↑(m n) = γn n * ↑n)
+  (p : ℕ → Fin (d + 1) → ℝ) (hp : ∀ (n : ℕ), p n ∈ K) (hs : ∀ (n : ℕ), ∑ i, p n i = 1)
+  (P : (N : ℕ) → PMF (Cloning.YoungGeneral.Shape (d + 1) N)) (Q : ℕ → PMF (Fin (d + 1) → ℤ))
+  (hformula :
+    ∀ (N : ℕ) (μ : Cloning.YoungGeneral.Shape (d + 1) N),
+      ((P N) μ).toReal = Cloning.YoungGeneral.youngWeight N (p N) fun i => ↑(μ i)) :
+  Filter.Tendsto
+      (fun n =>
+        Cloning.CountableScheffe.l1Distance
+          (Cloning.YoungCompatibility.probability
+            ((P n).bind fun μ =>
+              Cloning.YoungCompatibility.fallbackKernel (γn n) (↑n) (m n) (Cloning.YoungGeneral.integerShape μ)))
+          (Cloning.YoungCompatibility.probability
+            ((P n).bind fun μ =>
+              Cloning.YoungCompatibility.rawKernel (γn n) (m n) (Cloning.YoungGeneral.integerShape μ))))
+      Filter.atTop (nhds 0) ∧
+    Filter.Tendsto
+      (fun n =>
+        |Cloning.CountableScheffe.affinity
+              (Cloning.YoungCompatibility.probability
+                ((P n).bind fun μ =>
+                  Cloning.YoungCompatibility.fallbackKernel (γn n) (↑n) (m n) (Cloning.YoungGeneral.integerShape μ)))
+              (Cloning.YoungCompatibility.probability (Q n)) -
+            Cloning.CountableScheffe.affinity
+              (Cloning.YoungCompatibility.probability
+                ((P n).bind fun μ =>
+                  Cloning.YoungCompatibility.rawKernel (γn n) (m n) (Cloning.YoungGeneral.integerShape μ)))
+              (Cloning.YoungCompatibility.probability (Q n))|)
+      Filter.atTop (nhds 0)
+info: ClassicalRounding.lean:36:0: Cloning.YoungGeneral.dimension_moments_tendsto_one (r k : ℕ) (hr : 0 < r)
+  (P : (N : ℕ) → PMF (Cloning.YoungGeneral.Shape r N))
+  (hformula :
+    ∀ (N : ℕ) (μ : Cloning.YoungGeneral.Shape r N),
+      ((P N) μ).toReal = Cloning.YoungGeneral.youngWeight N (Cloning.YoungGeneral.flatSpectrum r) fun i => ↑(μ i)) :
+  Filter.Tendsto (fun N => ∑ μ, ((P N) μ).toReal * Cloning.YoungGeneral.normalizedDimension r k N μ) Filter.atTop
+      (nhds 1) ∧
+    Filter.Tendsto (fun N => ∑ μ, ((P N) μ).toReal * Cloning.YoungGeneral.inverseNormalizedDimension r k N μ)
+      Filter.atTop (nhds 1)
+ℹ [3741/3751] Replayed OccupationLimits
+info: OccupationLimits.lean:22:0: Cloning.GeneralSymmetricOccupation.wernerOutput_op {L s : ℕ} (S : Finset (Fin L)) :
+  ↑(Cloning.GeneralSymmetricOccupation.wernerOutput S) = Cloning.GeneralSymmetricOccupation.wernerOutputOperator 0 S
+info: OccupationLimits.lean:23:0: Cloning.GeneralSymmetricOccupation.occupationRecovery_wernerOutput {L s : ℕ} (S : Finset (Fin L)) :
+  (Cloning.GeneralSymmetricOccupation.occupationRecovery L s).toLinearMap
+      (Cloning.GeneralSymmetricOccupation.wernerOutput S) =
+    Cloning.InfiniteOccupationStates.occupationOperator Cloning.GeneralSymmetricOccupation.numberVector S.card L
+info: OccupationLimits.lean:24:0: Cloning.GeneralSymmetricOccupation.physical_werner_traceNorm_limit {s : ℕ} (hs : 1 ≤ s) (m : ℕ → ℕ)
+  (hm : ∀ (n : ℕ), n ≤ m n) {γ : ℝ} (hγ : 1 < γ) (h : Filter.Tendsto (fun n => ↑(m n) / ↑n) Filter.atTop (nhds γ)) :
+  Filter.Tendsto
+    (fun n =>
+      ‖(Cloning.GeneralSymmetricOccupation.occupationRecovery (m n) s).toLinearMap
+            (Cloning.GeneralSymmetricOccupation.wernerOutput
+              (Cloning.GeneralSymmetricOccupation.inputSlots n (m n) ⋯)) -
+          Cloning.InfiniteOccupationStates.thermalOperator Cloning.GeneralSymmetricOccupation.numberVector γ‖)
+    Filter.atTop (nhds 0)
+info: OccupationLimits.lean:25:0: Cloning.GeneralCoherent.exists_twoWay_coherent_product_channels (s : ℕ) :
+  ∃ forward reverse,
+    ∀ (K : Set (Fin s → ℂ)),
+      IsCompact K →
+        ∀ (ε : ℝ),
+          0 < ε →
+            ∀ᶠ (L : ℕ) in Filter.atTop,
+              ∀ z ∈ K,
+                ‖(forward L).toLinearMap
+                          (Cloning.InfiniteTraceClass.vectorProjector (Cloning.MultimodeCoherent.coherentVector z)) -
+                        Cloning.InfiniteTraceClass.vectorProjector (Cloning.GeneralCoherent.productTensor z L)‖ <
+                    ε ∧
+                  ‖(reverse L).toLinearMap
+                          (Cloning.InfiniteTraceClass.vectorProjector (Cloning.GeneralCoherent.productTensor z L)) -
+                        Cloning.InfiniteTraceClass.vectorProjector (Cloning.MultimodeCoherent.coherentVector z)‖ <
+                    ε
+info: OccupationLimits.lean:26:0: Cloning.GeneralCoherent.twoWay_coherent_product_uniform_on_compact {s : ℕ} {K : Set (Fin s → ℂ)} (hK : IsCompact K)
+  (ε : ℝ) (hε : 0 < ε) :
+  ∀ᶠ (L : ℕ) in Filter.atTop,
+    ∀ z ∈ K,
+      ‖(Cloning.GeneralCoherent.occupationChannel L s).toLinearMap
+                (Cloning.InfiniteTraceClass.vectorProjector (Cloning.MultimodeCoherent.coherentVector z)) -
+              Cloning.InfiniteTraceClass.vectorProjector (Cloning.GeneralCoherent.productTensor z L)‖ <
+          ε ∧
+        ‖(Cloning.GeneralSymmetricOccupation.occupationRecovery L s).toLinearMap
+                (Cloning.InfiniteTraceClass.vectorProjector (Cloning.GeneralCoherent.productTensor z L)) -
+              Cloning.InfiniteTraceClass.vectorProjector (Cloning.MultimodeCoherent.coherentVector z)‖ <
+          ε
+info: OccupationLimits.lean:27:0: Cloning.GeneralSymmetricOccupation.wernerChannel_physical_sandwich (n r s : ℕ)
+  (X :
+    Matrix ↑(Cloning.GeneralSymmetricOccupation.Occupation n (s + 1))
+      ↑(Cloning.GeneralSymmetricOccupation.Occupation n (s + 1)) ℂ) :
+  Cloning.GeneralSymmetricOccupation.splitColumnMatrix n r (s + 1) *
+        (Cloning.GeneralSymmetricOccupation.wernerChannel n r s).toFun X *
+      (Cloning.GeneralSymmetricOccupation.splitColumnMatrix n r (s + 1)).conjTranspose =
+    (↑((n + s).choose s) / ↑((n + r + s).choose s)) •
+      (Cloning.GeneralSymmetricOccupation.splitSymmetricProjector n r (s + 1) *
+          Matrix.kroneckerMap (fun x1 x2 => x1 * x2)
+            (Cloning.GeneralSymmetricOccupation.columnMatrix n (s + 1) * X *
+              (Cloning.GeneralSymmetricOccupation.columnMatrix n (s + 1)).conjTranspose)
+            1 *
+        Cloning.GeneralSymmetricOccupation.splitSymmetricProjector n r (s + 1))
+info: OccupationLimits.lean:28:0: Cloning.GeneralSymmetricOccupation.wernerChannel_completelyPositive (n r s k : ℕ)
+  (X :
+    Matrix (Fin k × ↑(Cloning.GeneralSymmetricOccupation.Occupation n (s + 1)))
+      (Fin k × ↑(Cloning.GeneralSymmetricOccupation.Occupation n (s + 1))) ℂ)
+  (hX : X.PosSemidef) :
+  (Cloning.Channels.amplify (Cloning.GeneralSymmetricOccupation.wernerChannel n r s).toFun X).PosSemidef
+info: OccupationLimits.lean:29:0: Cloning.GeneralSymmetricOccupation.wernerChannel_pure_traceClass_agrees (n r s : ℕ) :
+  Cloning.GeneralSymmetricOccupation.splitColumnMatrix n r (s + 1) *
+        (Cloning.GeneralSymmetricOccupation.wernerChannel n r s).toFun
+          (Cloning.GeneralSymmetricOccupation.pureInputMatrix n (s + 1) 0) *
+      (Cloning.GeneralSymmetricOccupation.splitColumnMatrix n r (s + 1)).conjTranspose =
+    Cloning.GeneralSymmetricOccupation.pairOperatorMatrix
+      ↑(Cloning.GeneralSymmetricOccupation.wernerOutput (Cloning.GeneralSymmetricOccupation.inputSlots n (n + r) ⋯))
+info: OccupationLimits.lean:30:0: Cloning.GeneralSymmetricOccupation.wernerChannel_pure_output (n r s : ℕ) :
+  Cloning.InfiniteFiniteCorner.matrixLift Cloning.GeneralSymmetricOccupation.column
+      ((Cloning.GeneralSymmetricOccupation.wernerChannel n r s).toFun
+        (Cloning.GeneralSymmetricOccupation.pureInputMatrix n (s + 1) 0)) =
+    Cloning.GeneralSymmetricOccupation.wernerOutput (Cloning.GeneralSymmetricOccupation.inputSlots n (n + r) ⋯)
+info: OccupationLimits.lean:31:0: Cloning.GeneralSymmetricOccupation.wernerChannel_thermal_limit {s : ℕ} (hs : 1 ≤ s) (r : ℕ → ℕ) {γ : ℝ} (hγ : 1 < γ)
+  (h : Filter.Tendsto (fun n => ↑(n + r n) / ↑n) Filter.atTop (nhds γ)) :
+  Filter.Tendsto
+    (fun n =>
+      (Cloning.GeneralSymmetricOccupation.occupationRecovery (n + r n) s).toLinearMap
+        (Cloning.InfiniteFiniteCorner.matrixLift Cloning.GeneralSymmetricOccupation.column
+          ((Cloning.GeneralSymmetricOccupation.wernerChannel n (r n) s).toFun
+            (Cloning.GeneralSymmetricOccupation.pureInputMatrix n (s + 1) 0))))
+    Filter.atTop
+    (nhds (Cloning.InfiniteOccupationStates.thermalOperator Cloning.GeneralSymmetricOccupation.numberVector γ))
+info: OccupationLimits.lean:32:0: Cloning.PCT.exists_pct_product_mixture.{u_2, u_3, u_4} {A : Type u_2} {B : Type u_3} [Fintype A] [Fintype B]
+  [DecidableEq A] [DecidableEq B] {s : ℕ} (hs : 1 ≤ s) (hcard : Fintype.card (A × B) = s + 1)
+  (ψ : ↥(Cloning.PCT.Register (A × B))) (hψ : ‖ψ‖ = 1) {Ω : Type u_4} [MeasurableSpace Ω] (μ : MeasureTheory.Measure Ω)
+  [MeasureTheory.IsProbabilityMeasure μ] (W : Ω → ↥(Cloning.PCT.Register B) →ₗᵢ[ℂ] ↥(Cloning.PCT.Register B))
+  (m : ℕ → ℕ) (hm : ∀ (n : ℕ), n ≤ m n) {γ : ℝ} (hγ : 1 < γ)
+  (h : Filter.Tendsto (fun n => ↑(m n) / ↑n) Filter.atTop (nhds γ)) :
+  ∃ u,
+    u 0 = ψ ∧
+      Filter.Tendsto
+        (fun n =>
+          ‖Cloning.PCT.randomizedPurificationOutput hcard ψ hψ μ W
+                (Cloning.GeneralSymmetricOccupation.inputSlots n (m n) ⋯) -
+              ∫ (z : Fin s → ℂ),
+                Cloning.PCT.matrixTensorPower
+                  (Cloning.PCT.reducedDensityMatrix (Cloning.PCT.frameParticle (⇑u) z (m n)))
+                  (m n) ∂Cloning.MultimodeCoherentGaussianMixture.gaussianProductMeasure fun x => γ - 1‖)
+        Filter.atTop (nhds 0)
+ℹ [3742/3751] Replayed CoherentGaussianMixtures
+info: CoherentGaussianMixtures.lean:18:0: Cloning.MultimodeCoherentGaussianMixture.integral_coherentProjector_gaussian_eq_productThermal {d : ℕ} {s : Fin d → ℝ}
+  (hs : ∀ (i : Fin d), 0 < s i) :
+  ∫ (z : Fin d → ℂ),
+      Cloning.MultimodeCoherent.coherentProjector z ∂Cloning.MultimodeCoherentGaussianMixture.gaussianProductMeasure s =
+    Cloning.InfiniteTraceClass.vectorMixture ⇑(Cloning.MultimodeCoherentGaussianMixture.numberBasis d) fun k =>
+      ∏ i, Cloning.Thermal.geometric (s i / (1 + s i)) (k i)
+info: CoherentGaussianMixtures.lean:19:0: Cloning.InfiniteDiagonalFidelity.stateFidelity_productGeometric.{u_1} {H : Type u_1} [NormedAddCommGroup H]
+  [InnerProductSpace ℂ H] [CompleteSpace H] {s : ℕ} (b : HilbertBasis (Fin s → ℕ) ℂ H) (q x : Fin s → ℝ)
+  (hq0 : ∀ (i : Fin s), 0 ≤ q i) (hq1 : ∀ (i : Fin s), q i < 1) (hx0 : ∀ (i : Fin s), 0 ≤ x i)
+  (hx1 : ∀ (i : Fin s), x i < 1) :
+  Cloning.InfiniteFidelity.stateFidelity (Cloning.InfiniteDiagonalFidelity.productGeometricState b q hq0 hq1)
+      (Cloning.InfiniteDiagonalFidelity.productGeometricState b x hx0 hx1) =
+    ∏ i, Cloning.Thermal.fidelity (q i) (x i)
+info: CoherentGaussianMixtures.lean:20:0: Cloning.PCT.exists_pct_product_mixture.{u_2, u_3, u_4} {A : Type u_2} {B : Type u_3} [Fintype A] [Fintype B]
+  [DecidableEq A] [DecidableEq B] {s : ℕ} (hs : 1 ≤ s) (hcard : Fintype.card (A × B) = s + 1)
+  (ψ : ↥(Cloning.PCT.Register (A × B))) (hψ : ‖ψ‖ = 1) {Ω : Type u_4} [MeasurableSpace Ω] (μ : MeasureTheory.Measure Ω)
+  [MeasureTheory.IsProbabilityMeasure μ] (W : Ω → ↥(Cloning.PCT.Register B) →ₗᵢ[ℂ] ↥(Cloning.PCT.Register B))
+  (m : ℕ → ℕ) (hm : ∀ (n : ℕ), n ≤ m n) {γ : ℝ} (hγ : 1 < γ)
+  (h : Filter.Tendsto (fun n => ↑(m n) / ↑n) Filter.atTop (nhds γ)) :
+  ∃ u,
+    u 0 = ψ ∧
+      Filter.Tendsto
+        (fun n =>
+          ‖Cloning.PCT.randomizedPurificationOutput hcard ψ hψ μ W
+                (Cloning.GeneralSymmetricOccupation.inputSlots n (m n) ⋯) -
+              ∫ (z : Fin s → ℂ),
+                Cloning.PCT.matrixTensorPower
+                  (Cloning.PCT.reducedDensityMatrix (Cloning.PCT.frameParticle (⇑u) z (m n)))
+                  (m n) ∂Cloning.MultimodeCoherentGaussianMixture.gaussianProductMeasure fun x => γ - 1‖)
+        Filter.atTop (nhds 0)
+info: CoherentGaussianMixtures.lean:21:0: Cloning.PCT.randomizedPurificationOutput_eq.{u_2, u_3, u_4} {A : Type u_2} {B : Type u_3} [Fintype A] [Fintype B]
+  [DecidableEq A] [DecidableEq B] {L s : ℕ} (hcard : Fintype.card (A × B) = s + 1) (ψ : ↥(Cloning.PCT.Register (A × B)))
+  (hψ : ‖ψ‖ = 1) {Ω : Type u_4} [MeasurableSpace Ω] (μ : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure μ]
+  (W : Ω → ↥(Cloning.PCT.Register B) →ₗᵢ[ℂ] ↥(Cloning.PCT.Register B)) (S : Finset (Fin L)) :
+  Cloning.PCT.randomizedPurificationOutput hcard ψ hψ μ W S = Cloning.PCT.reducedWernerOutput hcard ψ hψ S
+info: CoherentGaussianMixtures.lean:22:0: Cloning.PCT.wernerOutput_physical_purification.{u_1} {C : Type u_1} [Fintype C] [DecidableEq C] {L s : ℕ}
+  (u : OrthonormalBasis (Fin (s + 1)) ℂ ↥(Cloning.PCT.Register C)) (S : Finset (Fin L)) :
+  ↑((Cloning.InfiniteTraceClass.QuantumChannel.ofIsometry (Cloning.PCT.tensorFrame ⋯ L)).toLinearMap
+        (Cloning.GeneralSymmetricOccupation.wernerOutput S)) =
+    ↑(↑((S.card + s).choose s) / ↑((L + s).choose s)) •
+      (Cloning.PCT.physicalProjector L * Cloning.PCT.pureSlotsOperator (u 0) S * Cloning.PCT.physicalProjector L)
+ℹ [3743/3751] Replayed QuantumFidelity
+info: QuantumFidelity.lean:25:0: Cloning.InfiniteFidelity.fidelity_data_processing.{u_1, u_2} {H : Type u_1} {K : Type u_2} [NormedAddCommGroup H]
+  [InnerProductSpace ℂ H] [CompleteSpace H] [NormedAddCommGroup K] [InnerProductSpace ℂ K] [CompleteSpace K]
+  (Φ : Cloning.InfiniteTraceClass.QuantumChannel H K) (A B : Cloning.InfiniteTraceClass.TraceClass H) (hA : 0 ≤ ↑A)
+  (hB : 0 ≤ ↑B) :
+  Cloning.InfiniteFidelity.fidelity (↑A) (↑B) hA hB ⋯ ⋯ ≤
+    Cloning.InfiniteFidelity.fidelity ↑(Φ.toLinearMap A) ↑(Φ.toLinearMap B) ⋯ ⋯ ⋯ ⋯
+info: QuantumFidelity.lean:26:0: Cloning.InfiniteFidelity.stateFidelity_continuity.{u_1} {H : Type u_1} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
+  [CompleteSpace H] (ρ σ ρ' σ' : Cloning.InfiniteTraceClass.DensityState H) :
+  |Cloning.InfiniteFidelity.stateFidelity ρ σ - Cloning.InfiniteFidelity.stateFidelity ρ' σ'| ≤
+    √(Cloning.InfiniteFidelity.stateTraceDistance ρ ρ') + √(Cloning.InfiniteFidelity.stateTraceDistance σ σ')
+info: QuantumFidelity.lean:27:0: Cloning.InfiniteFidelity.fidelity_weighted_joint_concavity.{u_1} {H : Type u_1} [NormedAddCommGroup H]
+  [InnerProductSpace ℂ H] [CompleteSpace H] (A B C D : Cloning.InfiniteTraceClass.TraceClass H) (hA : 0 ≤ ↑A)
+  (hB : 0 ≤ ↑B) (hC : 0 ≤ ↑C) (hD : 0 ≤ ↑D) (a b : ℝ) (ha : 0 ≤ a) (hb : 0 ≤ b) :
+  a * Cloning.InfiniteFidelity.fidelity (↑A) (↑B) hA hB ⋯ ⋯ +
+      b * Cloning.InfiniteFidelity.fidelity (↑C) (↑D) hC hD ⋯ ⋯ ≤
+    Cloning.InfiniteFidelity.fidelity ↑(↑a • A + ↑b • C) ↑(↑a • B + ↑b • D) ⋯ ⋯ ⋯ ⋯
+info: QuantumFidelity.lean:28:0: Cloning.Hybrid.PositiveField.rootFidelity_continuity.{u_1, u_2} {Ω : Type u_1} {H : Type u_2} [MeasurableSpace Ω]
+  {μ : MeasureTheory.Measure Ω} [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
+  (R S T U : Cloning.Hybrid.PositiveField μ) :
+  |R.rootFidelity S - T.rootFidelity U| ≤ √(R.traceDistance T) * √S.mass + √(S.traceDistance U) * √T.mass
+info: QuantumFidelity.lean:29:0: Cloning.Hybrid.PositiveField.integral_fidelity_le_fidelity_integral.{u_1, u_2} {Ω : Type u_1} {H : Type u_2}
+  [MeasurableSpace Ω] {μ : MeasureTheory.Measure Ω} [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
+  [MeasureTheory.SigmaFinite μ] (A B : Ω → Cloning.InfiniteTraceClass.TraceClass H) (hA : MeasureTheory.Integrable A μ)
+  (hB : MeasureTheory.Integrable B μ) (hposA : ∀ (x : Ω), 0 ≤ ↑(A x)) (hposB : ∀ (x : Ω), 0 ≤ ↑(B x)) :
+  ∫ (x : Ω), Cloning.InfiniteFidelity.fidelity ↑(A x) ↑(B x) ⋯ ⋯ ⋯ ⋯ ∂μ ≤
+    Cloning.InfiniteFidelity.fidelity ↑(∫ (x : Ω), A x ∂μ) ↑(∫ (x : Ω), B x ∂μ) ⋯ ⋯ ⋯ ⋯
+info: QuantumFidelity.lean:30:0: Cloning.Hybrid.PositiveField.rootFidelity_sq_le_weighted_product.{u_1, u_2} {Ω : Type u_1} {H : Type u_2}
+  [MeasurableSpace Ω] {μ : MeasureTheory.Measure Ω} [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
+  (R : Cloning.Hybrid.PositiveField μ) (g : Ω → ℝ) (hg : MeasureTheory.Integrable g μ) (hgn : ∀ (x : Ω), 0 ≤ g x)
+  (T : Cloning.InfiniteTraceClass.DensityState H) {W : H →L[ℂ] H} (hW : 0 ≤ W) {M : ℝ} (hM : 0 ≤ M)
+  (hInv :
+    ∀ (ε : ℝ),
+      0 < ε →
+        Cloning.Hybrid.witnessMoment (Cloning.InfiniteTraceClass.TraceClass.ofOperator T.op ⋯)
+            (CFC.rpow (Cloning.InfiniteFidelity.regularizedWeight W ε) (-1)) ≤
+          M)
+  (χ : Ω → ℝ) (hχ : ∀ (x : Ω), 0 < χ x)
+  (hweighted : MeasureTheory.Integrable (fun x => χ x * Cloning.Hybrid.witnessMoment (↑(R.value x)) W) μ)
+  (hclassical : MeasureTheory.Integrable (fun x => g x / χ x) μ) :
+  R.rootFidelity (Cloning.Hybrid.PositiveField.product g hg hgn T) ^ 2 ≤
+    ((∫ (x : Ω), χ x * Cloning.Hybrid.witnessMoment (↑(R.value x)) W ∂μ) * ∫ (x : Ω), g x / χ x ∂μ) * M
+info: QuantumFidelity.lean:31:0: Cloning.Hybrid.PositiveField.rootFidelity_sq_le_gaussian_thermal.{u_2} {H : Type u_2} [NormedAddCommGroup H]
+  [InnerProductSpace ℂ H] [CompleteSpace H] {k s : ℕ} (R : Cloning.Hybrid.PositiveField MeasureTheory.volume)
+  (a : Fin k → ℝ) (ha : ∀ (i : Fin k), 0 < a i) {g : ℝ} (hg : 1 ≤ g) (b : HilbertBasis (Fin s → ℕ) ℂ H)
+  (q x : Fin s → ℝ) (hq0 : ∀ (i : Fin s), 0 < q i) (hqx : ∀ (i : Fin s), q i < x i) (hx1 : ∀ (i : Fin s), x i < 1) :
+  R.rootFidelity
+        (Cloning.Hybrid.PositiveField.product (Cloning.GaussianAffinity.productDensity a) ⋯ ⋯
+          (Cloning.InfiniteDiagonalFidelity.productGeometricState b q ⋯ ⋯)) ^
+      2 ≤
+    Cloning.Hybrid.witnessMoment (R.weightedMarginal (Cloning.GaussianAffinity.productWitness a fun i => a i / g))
+          (Cloning.ThermalWitness.productWitnessOperator b q x) *
+        Cloning.Thermal.classicalBase g ^ (↑k / 2) *
+      ∏ i, Cloning.Thermal.fidelity (q i) (x i)
+info: QuantumFidelity.lean:32:0: Cloning.Hybrid.weightedQuantumMap_completelyPositive.{u_1, u_2, u_3} {Ω : Type u_1} {H : Type u_2} {K : Type u_3}
+  [MeasurableSpace Ω] {μ : MeasureTheory.Measure Ω} [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
+  [NormedAddCommGroup K] [InnerProductSpace ℂ K] [CompleteSpace K]
+  (Λ :
+    ↥(MeasureTheory.Lp (Cloning.InfiniteTraceClass.TraceClass H) 1 μ) →ₗ[ℂ]
+      ↥(MeasureTheory.Lp (Cloning.InfiniteTraceClass.TraceClass K) 1 μ))
+  (hΛ : Cloning.Hybrid.L1CompletelyPositive Λ) (g : Ω → ℝ) (hg : MeasureTheory.Integrable g μ)
+  (hg0 : ∀ (y : Ω), 0 ≤ g y) (χ : Ω → ℝ) (hχ : MeasureTheory.AEStronglyMeasurable χ μ) (hχ0 : ∀ (y : Ω), 0 ≤ χ y)
+  {C : ℝ} (hbound : ∀ (y : Ω), ‖χ y‖ ≤ C) :
+  Cloning.InfiniteTraceClass.IsCompletelyPositive (Cloning.Hybrid.weightedQuantumMap Λ g hg χ hχ hbound)
+info: QuantumFidelity.lean:33:0: Cloning.Hybrid.weightedQuantumMap_trace_le.{u_1, u_2, u_3} {Ω : Type u_1} {H : Type u_2} {K : Type u_3}
+  [MeasurableSpace Ω] {μ : MeasureTheory.Measure Ω} [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
+  [NormedAddCommGroup K] [InnerProductSpace ℂ K] [CompleteSpace K]
+  (Λ :
+    ↥(MeasureTheory.Lp (Cloning.InfiniteTraceClass.TraceClass H) 1 μ) →ₗ[ℂ]
+      ↥(MeasureTheory.Lp (Cloning.InfiniteTraceClass.TraceClass K) 1 μ))
+  (hΛ : Cloning.Hybrid.L1CompletelyPositive Λ) (hTP : Cloning.Hybrid.L1TracePreserving Λ) (g : Ω → ℝ)
+  (hg : MeasureTheory.Integrable g μ) (hg0 : ∀ (y : Ω), 0 ≤ g y) (hprob : ∫ (y : Ω), g y ∂μ = 1) (χ : Ω → ℝ)
+  (hχ : MeasureTheory.AEStronglyMeasurable χ μ) {C : ℝ} (hbound : ∀ (y : Ω), ‖χ y‖ ≤ C)
+  (A : Cloning.InfiniteTraceClass.TraceClass H) (hA : 0 ≤ ↑A) :
+  (Cloning.InfiniteTraceClass.traceCLM ((Cloning.Hybrid.weightedQuantumMap Λ g hg χ hχ hbound) A)).re ≤
+    C * (Cloning.InfiniteTraceClass.traceCLM A).re
+info: QuantumFidelity.lean:34:0: Cloning.Hybrid.gaussian_shift_weighted_mass_le.{u_1} {H : Type u_1} [NormedAddCommGroup H] [InnerProductSpace ℂ H]
+  [CompleteSpace H] {k : ℕ} (R : Cloning.Hybrid.PositiveField MeasureTheory.volume) (a : Fin k → ℝ)
+  (ha : ∀ (i : Fin k), 0 < a i) {g : ℝ} (hg : 1 ≤ g) :
+  ∫ (h : Fin k → ℝ),
+      Cloning.GaussianAffinity.productDensity a h *
+        ∫ (v : Fin k → ℝ),
+          (Cloning.GaussianAffinity.productWitness a (fun i => a i / g) fun i => v i + √g * h i) * ‖↑(R.value v)‖ ≤
+    Cloning.Thermal.classicalBase g ^ (↑k / 2) * R.mass
+✔ [3744/3751] Built Cloning.UniversalGaussianRealBox (6.2s)
+ℹ [3745/3751] Built BosonicSeededOptimum (7.3s)
+info: BosonicSeededOptimum.lean:23:0: Cloning.OrbitalSeededOptimum.isGreatest_payoff {d : ℕ} (p : Cloning.SimpleSpectrum d) {g : ℝ} (hg : 1 < g) :
+  IsGreatest (Set.range (Cloning.OrbitalSeededOptimum.payoff p g hg)) (Cloning.orbitalValue g p)
+info: BosonicSeededOptimum.lean:24:0: Cloning.MultimodeLeastNoise.productObservable_moment_le {s : ℕ}
+  (σ : Cloning.InfiniteTraceClass.TraceClass ↥(Cloning.MultimodeIdler.Fock s)) (hσ : 0 ≤ ↑σ) (q : Fin s → ℝ)
+  (hq0 : ∀ (i : Fin s), 0 ≤ q i) (hq1 : ∀ (i : Fin s), q i < 1) (w : Fin s → ℕ → ℝ)
+  (hw0 : ∀ (i : Fin s) (k : ℕ), 0 ≤ w i k) (hw : ∀ (i : Fin s), Antitone (w i)) :
+  ((Cloning.InfiniteTraceClass.tracePairing ((Cloning.MultimodeIdler.channel q hq0 hq1).toLinearMap σ))
+        (Cloning.MultimodeLeastNoise.productObservable w hw0 hw)).re ≤
+    (Cloning.InfiniteTraceClass.trace ↑σ ⋯).re *
+      ((Cloning.InfiniteTraceClass.tracePairing
+            (Cloning.InfiniteTraceClass.vectorMixture (⇑(Cloning.MultimodeIdler.numberBasis s))
+              (Cloning.ThermalWitness.productGeometric q)))
+          (Cloning.MultimodeLeastNoise.productObservable w hw0 hw)).re
+info: BosonicSeededOptimum.lean:25:0: Cloning.BosonicAmplifier.stateFidelity_channel_gain (g q : ℝ) (hg : 1 < g) (hq0 : 0 ≤ q) (hq1 : q < 1) :
+  Cloning.InfiniteFidelity.stateFidelity
+      (Cloning.InfiniteDiagonalFidelity.geometricState Cloning.BosonicAmplifier.numberBasis q hq0 hq1)
+      ((Cloning.BosonicAmplifier.channel (1 - 1 / g) ⋯ ⋯).mapState
+        (Cloning.InfiniteDiagonalFidelity.geometricState Cloning.BosonicAmplifier.numberBasis q hq0 hq1)) =
+    Cloning.Thermal.modeFactor g q
+info: BosonicSeededOptimum.lean:26:0: Cloning.MultimodeCoherent.displacement_commutant_scalar {d : ℕ}
+  (T : ↥(Cloning.MultimodeCoherent.Fock d) →L[ℂ] ↥(Cloning.MultimodeCoherent.Fock d))
+  (hT :
+    ∀ (a : Fin d → ℂ),
+      T.comp (Cloning.MultimodeCoherent.displacement a) = (Cloning.MultimodeCoherent.displacement a).comp T) :
+  T =
+    inner ℂ (Cloning.MultimodeCoherent.coherentVector 0) (T (Cloning.MultimodeCoherent.coherentVector 0)) •
+      ContinuousLinearMap.id ℂ ↥(Cloning.MultimodeCoherent.Fock d)
+info: BosonicSeededOptimum.lean:27:0: Cloning.MultimodeCoherent.eigenoperator_eq_scalar_displacement {d : ℕ}
+  (T : ↥(Cloning.MultimodeCoherent.Fock d) →L[ℂ] ↥(Cloning.MultimodeCoherent.Fock d)) (b : Fin d → ℂ)
+  (hT :
+    ∀ (a : Fin d → ℂ),
+      (Cloning.MultimodeCoherent.displacement a).comp T =
+        Cloning.MultimodeCoherent.weylCharacter a b • T.comp (Cloning.MultimodeCoherent.displacement a)) :
+  T =
+    inner ℂ (Cloning.MultimodeCoherent.coherentVector 0)
+        (T ((Cloning.MultimodeCoherent.displacement (-b)) (Cloning.MultimodeCoherent.coherentVector 0))) •
+      Cloning.MultimodeCoherent.displacement b
+info: BosonicSeededOptimum.lean:28:0: Cloning.MultimodeCoherent.covariant_linearMap_weyl_multiplier {d : ℕ}
+  (Ψ :
+    (↥(Cloning.MultimodeCoherent.Fock d) →L[ℂ] ↥(Cloning.MultimodeCoherent.Fock d)) →ₗ[ℂ]
+      ↥(Cloning.MultimodeCoherent.Fock d) →L[ℂ] ↥(Cloning.MultimodeCoherent.Fock d))
+  (r : ℝ)
+  (hΨ :
+    ∀ (a : Fin d → ℂ) (A : ↥(Cloning.MultimodeCoherent.Fock d) →L[ℂ] ↥(Cloning.MultimodeCoherent.Fock d)),
+      ((Cloning.MultimodeCoherent.displacement a).comp (Ψ A)).comp (Cloning.MultimodeCoherent.displacement (-a)) =
+        Ψ
+          (((Cloning.MultimodeCoherent.displacement (r • a)).comp A).comp
+            (Cloning.MultimodeCoherent.displacement (-(r • a)))))
+  (b : Fin d → ℂ) :
+  Ψ (Cloning.MultimodeCoherent.displacement b) =
+    Cloning.MultimodeCoherent.weylMultiplier Ψ r b • Cloning.MultimodeCoherent.displacement (r • b)
+info: BosonicSeededOptimum.lean:29:0: Cloning.MultimodeCoherent.quantumChannel_regular_quantumPositive_multiplier {d : ℕ}
+  (Φ :
+    Cloning.InfiniteTraceClass.QuantumChannel ↥(Cloning.MultimodeCoherent.Fock d) ↥(Cloning.MultimodeCoherent.Fock d))
+  (r : ℝ)
+  (hΦ :
+    ∀ (a : Fin d → ℂ) (T : Cloning.InfiniteTraceClass.TraceClass ↥(Cloning.MultimodeCoherent.Fock d)),
+      Φ.toLinearMap ((Cloning.MultimodeCoherent.displacementTraceMap a) T) =
+        (Cloning.MultimodeCoherent.displacementTraceMap (r • a)) (Φ.toLinearMap T)) :
+  (∀ (b : Fin d → ℂ),
+      Φ.heisenberg (Cloning.MultimodeCoherent.displacement b) =
+        Cloning.MultimodeCoherent.weylMultiplier Φ.heisenberg r b • Cloning.MultimodeCoherent.displacement (r • b)) ∧
+    Cloning.MultimodeCoherent.weylMultiplier Φ.heisenberg r 0 = 1 ∧
+      Continuous (Cloning.MultimodeCoherent.weylMultiplier Φ.heisenberg r) ∧
+        Cloning.MultimodeCoherent.IsQuantumPositive (Cloning.MultimodeCoherent.weylMultiplier Φ.heisenberg r) r ∧
+          ∀ (b : Fin d → ℂ), ‖Cloning.MultimodeCoherent.weylMultiplier Φ.heisenberg r b‖ ≤ 1
+info: BosonicSeededOptimum.lean:30:0: Cloning.MultimodeCoherent.quantumChannel_weyl_gaussian_bound {d : ℕ}
+  (Φ :
+    Cloning.InfiniteTraceClass.QuantumChannel ↥(Cloning.MultimodeCoherent.Fock d) ↥(Cloning.MultimodeCoherent.Fock d))
+  (r : ℝ)
+  (hcov :
+    ∀ (a : Fin d → ℂ) (T : Cloning.InfiniteTraceClass.TraceClass ↥(Cloning.MultimodeCoherent.Fock d)),
+      Φ.toLinearMap ((Cloning.MultimodeCoherent.displacementTraceMap a) T) =
+        (Cloning.MultimodeCoherent.displacementTraceMap (r • a)) (Φ.toLinearMap T))
+  (hr : 1 < r ^ 2) {t : Fin d → ℝ} (ht : ∀ (i : Fin d), (r ^ 2 - 1) / 2 ≤ t i) :
+  ‖∫ (a : Fin d → ℂ),
+        ↑(Cloning.MultimodeCoherent.gaussianWeight t a) * Cloning.MultimodeCoherent.weylMultiplier Φ.heisenberg r a‖ ≤
+    ∏ i, Real.pi / (t i + (r ^ 2 - 1) / 2)
+info: BosonicSeededOptimum.lean:31:0: Cloning.MultimodeCoherent.covariant_thermal_witness_moment_le {d : ℕ}
+  (Φ :
+    Cloning.InfiniteTraceClass.QuantumChannel ↥(Cloning.MultimodeCoherent.Fock d) ↥(Cloning.MultimodeCoherent.Fock d))
+  (r : ℝ)
+  (hcov :
+    ∀ (a : Fin d → ℂ) (T : Cloning.InfiniteTraceClass.TraceClass ↥(Cloning.MultimodeCoherent.Fock d)),
+      Φ.toLinearMap ((Cloning.MultimodeCoherent.displacementTraceMap a) T) =
+        (Cloning.MultimodeCoherent.displacementTraceMap (r • a)) (Φ.toLinearMap T))
+  (hr : 1 < r ^ 2) {q : Fin d → ℝ} (hq0 : ∀ (i : Fin d), 0 < q i) (hq1 : ∀ (i : Fin d), q i < 1) :
+  ((Cloning.InfiniteTraceClass.tracePairing
+          (Φ.toLinearMap
+            (Cloning.InfiniteTraceClass.vectorMixture (⇑(Cloning.MultimodeCoherentGaussianMixture.numberBasis d))
+              (Cloning.ThermalWitness.productGeometric q))))
+        (Cloning.ThermalWitness.productWitnessOperator (Cloning.MultimodeCoherentGaussianMixture.numberBasis d) q
+          fun i => Cloning.Thermal.amplified (r ^ 2) (q i))).re ≤
+    ∏ i, Cloning.Thermal.fidelity (q i) (Cloning.Thermal.amplified (r ^ 2) (q i))
+info: BosonicSeededOptimum.lean:32:0: Cloning.MultimodeCoherent.limsup_flatBox_thermal_le_modeFactor {d : ℕ} (γ : ℝ) (hγ : 1 < γ) {q : Fin d → ℝ}
+  (hq0 : ∀ (i : Fin d), 0 < q i) (hq1 : ∀ (i : Fin d), q i < 1) :
+  Filter.limsup
+      (Cloning.MultimodeCoherent.flatBoxOptimalPayoff (√γ) (Cloning.MultimodeCoherent.thermalPositive q ⋯ hq1)
+        (Cloning.MultimodeCoherent.thermalPositive q ⋯ hq1))
+      Filter.atTop ≤
+    ∏ i, Cloning.Thermal.modeFactor γ (q i)
+info: BosonicSeededOptimum.lean:34:0: Cloning.MultimodeCoherent.limsup_realFlatBox_thermal_le_modeFactor {d : ℕ} (γ : ℝ) (hγ : 1 < γ) {q : Fin d → ℝ}
+  (hq0 : ∀ (i : Fin d), 0 < q i) (hq1 : ∀ (i : Fin d), q i < 1) :
+  Filter.limsup
+      (Cloning.MultimodeCoherent.realFlatBoxOptimalPayoff (√γ) (Cloning.MultimodeCoherent.thermalPositive q ⋯ hq1)
+        (Cloning.MultimodeCoherent.thermalPositive q ⋯ hq1))
+      Filter.atTop ≤
+    ∏ i, Cloning.Thermal.modeFactor γ (q i)
+ℹ [3746/3751] Built CompactCPLimits (7.3s)
+info: CompactCPLimits.lean:22:0: Cloning.InfiniteTraceClass.exists_subsequence_covariant_cp_limit_of_limsup_trace_bound.{u_1, u_2, u_3} {H : Type u_1}
+  {K : Type u_2} [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H] [TopologicalSpace.SeparableSpace H]
+  [NormedAddCommGroup K] [InnerProductSpace ℂ K] [CompleteSpace K] [TopologicalSpace.SeparableSpace K] {G : Type u_3}
+  (L : ℕ → Cloning.InfiniteTraceClass.TraceClass H →L[ℂ] Cloning.InfiniteTraceClass.TraceClass K) (M c : ℝ)
+  (hbound : ∀ (n : ℕ), ‖L n‖ ≤ M) (hcp : ∀ (n : ℕ), Cloning.InfiniteTraceClass.IsCompletelyPositive ↑(L n))
+  (htrace :
+    ∀ (A : Cloning.InfiniteTraceClass.TraceClass H),
+      0 ≤ ↑A →
+        Filter.limsup (fun n => (Cloning.InfiniteTraceClass.traceCLM ((L n) A)).re) Filter.atTop ≤
+          c * (Cloning.InfiniteTraceClass.traceCLM A).re)
+  (U : G → H →L[ℂ] H) (V : G → K →L[ℂ] K)
+  (hdefect :
+    ∀ (g : G) (A : Cloning.InfiniteTraceClass.TraceClass H),
+      Filter.Tendsto
+        (fun n =>
+          ‖(L n) ((Cloning.InfiniteTraceClass.sandwichCLM (U g) (star (U g))) A) -
+              (Cloning.InfiniteTraceClass.sandwichCLM (V g) (star (V g))) ((L n) A)‖)
+        Filter.atTop (nhds 0)) :
+  ∃ Ψ,
+    Cloning.InfiniteTraceClass.IsCompletelyPositive Ψ ∧
+      (∀ (A : Cloning.InfiniteTraceClass.TraceClass H),
+          0 ≤ ↑A → (Cloning.InfiniteTraceClass.traceCLM (Ψ A)).re ≤ c * (Cloning.InfiniteTraceClass.traceCLM A).re) ∧
+        (∀ (g : G) (A : Cloning.InfiniteTraceClass.TraceClass H),
+            Ψ ((Cloning.InfiniteTraceClass.sandwichCLM (U g) (star (U g))) A) =
+              (Cloning.InfiniteTraceClass.sandwichCLM (V g) (star (V g))) (Ψ A)) ∧
+          ∃ φ,
+            StrictMono φ ∧
+              (∀ (A : Cloning.InfiniteTraceClass.TraceClass H) (x y : K),
+                  Filter.Tendsto (fun n => inner ℂ x (↑((L (φ n)) A) y)) Filter.atTop (nhds (inner ℂ x (↑(Ψ A) y)))) ∧
+                ∀ (A : Cloning.InfiniteTraceClass.TraceClass H) (O : K →L[ℂ] K),
+                  IsCompactOperator ⇑O →
+                    Filter.Tendsto (fun n => (Cloning.InfiniteTraceClass.tracePairing ((L (φ n)) A)) O) Filter.atTop
+                      (nhds ((Cloning.InfiniteTraceClass.tracePairing (Ψ A)) O))
+info: CompactCPLimits.lean:23:0: Cloning.InfiniteTraceClass.QuantumChannel.finiteBasisCutoff_tendstoUniformlyOn.{u_1, u_2} {H : Type u_1}
+  [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H] {ι : Type u_2} [DecidableEq ι]
+  (b : HilbertBasis ι ℂ H) (i₀ : ι) {S : Set (Cloning.InfiniteTraceClass.TraceClass H)} (hS : IsCompact S)
+  (hpos : ∀ A ∈ S, 0 ≤ ↑A) :
+  TendstoUniformlyOn (fun s => ⇑(Cloning.InfiniteTraceClass.QuantumChannel.finiteBasisCutoff b i₀ s).toLinearMap)
+    (fun A => A) Filter.atTop S
+info: CompactCPLimits.lean:24:0: Cloning.InfiniteTraceClass.QuantumChannel.average.{u_1, u_2, u_3} {H : Type u_1} {K : Type u_2} {Ω : Type u_3}
+  [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H] [NormedAddCommGroup K] [InnerProductSpace ℂ K]
+  [CompleteSpace K] [MeasurableSpace Ω] (μ : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure μ]
+  (Φ : Ω → Cloning.InfiniteTraceClass.QuantumChannel H K)
+  (hmeas :
+    ∀ (A : Cloning.InfiniteTraceClass.TraceClass H),
+      MeasureTheory.AEStronglyMeasurable (fun x => (Φ x).toLinearMap A) μ) :
+  Cloning.InfiniteTraceClass.QuantumChannel H K
+info: CompactCPLimits.lean:25:0: Cloning.MultimodeCoherent.gaussianFoelnerChannel_covariance_tendsto_all {d : ℕ} (gain : ℝ)
+  (Φ :
+    Cloning.InfiniteTraceClass.QuantumChannel ↥(Cloning.MultimodeCoherent.Fock d) ↥(Cloning.MultimodeCoherent.Fock d))
+  (b : Fin d → ℂ) (A : Cloning.InfiniteTraceClass.TraceClass ↥(Cloning.MultimodeCoherent.Fock d)) :
+  Filter.Tendsto
+    (fun n =>
+      ‖(Cloning.MultimodeCoherent.gaussianFoelnerChannel gain Φ n).toLinearMap
+            ((Cloning.MultimodeCoherent.displacementTraceMap b) A) -
+          (Cloning.MultimodeCoherent.displacementTraceMap (gain • b))
+            ((Cloning.MultimodeCoherent.gaussianFoelnerChannel gain Φ n).toLinearMap A)‖)
+    Filter.atTop (nhds 0)
+info: CompactCPLimits.lean:26:0: Cloning.MultimodeCoherent.exists_gaussianFoelner_covariant_limit {d : ℕ} (gain : ℝ)
+  (Φ :
+    Cloning.InfiniteTraceClass.QuantumChannel ↥(Cloning.MultimodeCoherent.Fock d) ↥(Cloning.MultimodeCoherent.Fock d)) :
+  ∃ Ψ,
+    Cloning.InfiniteTraceClass.IsCompletelyPositive Ψ ∧
+      (∀ (A : Cloning.InfiniteTraceClass.TraceClass ↥(Cloning.MultimodeCoherent.Fock d)),
+          0 ≤ ↑A → (Cloning.InfiniteTraceClass.traceCLM (Ψ A)).re ≤ (Cloning.InfiniteTraceClass.traceCLM A).re) ∧
+        (∀ (b : Fin d → ℂ) (A : Cloning.InfiniteTraceClass.TraceClass ↥(Cloning.MultimodeCoherent.Fock d)),
+            Ψ ((Cloning.MultimodeCoherent.displacementTraceMap b) A) =
+              (Cloning.MultimodeCoherent.displacementTraceMap (gain • b)) (Ψ A)) ∧
+          ∃ φ,
+            StrictMono φ ∧
+              (∀ (A : Cloning.InfiniteTraceClass.TraceClass ↥(Cloning.MultimodeCoherent.Fock d))
+                  (x y : ↥(Cloning.MultimodeCoherent.Fock d)),
+                  Filter.Tendsto
+                    (fun n =>
+                      inner ℂ x (↑((Cloning.MultimodeCoherent.gaussianFoelnerChannel gain Φ (φ n)).toLinearMap A) y))
+                    Filter.atTop (nhds (inner ℂ x (↑(Ψ A) y)))) ∧
+                ∀ (A : Cloning.InfiniteTraceClass.TraceClass ↥(Cloning.MultimodeCoherent.Fock d))
+                  (O : ↥(Cloning.MultimodeCoherent.Fock d) →L[ℂ] ↥(Cloning.MultimodeCoherent.Fock d)),
+                  IsCompactOperator ⇑O →
+                    Filter.Tendsto
+                      (fun n =>
+                        (Cloning.InfiniteTraceClass.tracePairing
+                            ((Cloning.MultimodeCoherent.gaussianFoelnerChannel gain Φ (φ n)).toLinearMap A))
+                          O)
+                      Filter.atTop (nhds ((Cloning.InfiniteTraceClass.tracePairing (Ψ A)) O))
+info: CompactCPLimits.lean:27:0: Cloning.MultimodeCoherent.exists_flatBox_thermal_payoff_limit {d : ℕ} (gain : ℝ)
+  (Φ :
+    ℕ →
+      Cloning.InfiniteTraceClass.QuantumChannel ↥(Cloning.MultimodeCoherent.Fock d) ↥(Cloning.MultimodeCoherent.Fock d))
+  (A : Cloning.Hybrid.PositiveTraceClass ↥(Cloning.MultimodeCoherent.Fock d)) {q x : Fin d → ℝ}
+  (hq0 : ∀ (i : Fin d), 0 < q i) (hqx : ∀ (i : Fin d), q i < x i) (hx1 : ∀ (i : Fin d), x i < 1) :
+  ∃ Ψ,
+    Cloning.InfiniteTraceClass.IsCompletelyPositive Ψ ∧
+      (∀ (C : Cloning.InfiniteTraceClass.TraceClass ↥(Cloning.MultimodeCoherent.Fock d)),
+          0 ≤ ↑C → (Cloning.InfiniteTraceClass.traceCLM (Ψ C)).re ≤ (Cloning.InfiniteTraceClass.traceCLM C).re) ∧
+        (∀ (b : Fin d → ℂ) (C : Cloning.InfiniteTraceClass.TraceClass ↥(Cloning.MultimodeCoherent.Fock d)),
+            Ψ ((Cloning.MultimodeCoherent.displacementTraceMap b) C) =
+              (Cloning.MultimodeCoherent.displacementTraceMap (gain • b)) (Ψ C)) ∧
+          ∃ φ,
+            StrictMono φ ∧
+              (∀ (C : Cloning.InfiniteTraceClass.TraceClass ↥(Cloning.MultimodeCoherent.Fock d))
+                  (O : ↥(Cloning.MultimodeCoherent.Fock d) →L[ℂ] ↥(Cloning.MultimodeCoherent.Fock d)),
+                  IsCompactOperator ⇑O →
+                    Filter.Tendsto
+                      (fun n =>
+                        (Cloning.InfiniteTraceClass.tracePairing
+                            (((Cloning.MultimodeCoherent.flatBoxDensity d).foelnerChannel gain (Φ (φ n))
+                                  (φ n)).toLinearMap
+                              C))
+                          O)
+                      Filter.atTop (nhds ((Cloning.InfiniteTraceClass.tracePairing (Ψ C)) O))) ∧
+                ∀ ε > 0,
+                  ∀ᶠ (n : ℕ) in Filter.atTop,
+                    Cloning.MultimodeCoherent.flatBoxPayoff gain (Φ (φ n)) A
+                          (Cloning.MultimodeCoherent.thermalPositive q ⋯ ⋯) (φ n) ^
+                        2 ≤
+                      ((Cloning.InfiniteTraceClass.tracePairing (Ψ ↑A))
+                              (Cloning.ThermalWitness.productWitnessOperator
+                                (Cloning.MultimodeCoherentGaussianMixture.numberBasis d) q x)).re *
+                          ∏ i, Cloning.Thermal.fidelity (q i) (x i) +
+                        ε
+info: CompactCPLimits.lean:28:0: Cloning.MultimodeCoherent.covariant_cpTNI_zero_or_scaled_channel {d : ℕ}
+  (Γ :
+    Cloning.InfiniteTraceClass.TraceClass ↥(Cloning.MultimodeCoherent.Fock d) →ₗ[ℂ]
+      Cloning.InfiniteTraceClass.TraceClass ↥(Cloning.MultimodeCoherent.Fock d))
+  (hpos : ∀ (T : Cloning.InfiniteTraceClass.TraceClass ↥(Cloning.MultimodeCoherent.Fock d)), 0 ≤ ↑T → 0 ≤ ↑(Γ T))
+  (hCP : Cloning.InfiniteTraceClass.IsCompletelyPositive Γ)
+  (htrace :
+    ∀ (T : Cloning.InfiniteTraceClass.TraceClass ↥(Cloning.MultimodeCoherent.Fock d)),
+      0 ≤ ↑T → (Cloning.InfiniteTraceClass.traceCLM (Γ T)).re ≤ (Cloning.InfiniteTraceClass.traceCLM T).re)
+  (r : ℝ)
+  (hcov :
+    ∀ (a : Fin d → ℂ) (T : Cloning.InfiniteTraceClass.TraceClass ↥(Cloning.MultimodeCoherent.Fock d)),
+      Γ ((Cloning.MultimodeCoherent.displacementTraceMap a) T) =
+        (Cloning.MultimodeCoherent.displacementTraceMap (r • a)) (Γ T)) :
+  Γ = 0 ∨
+    ∃ c Φ,
+      0 < c ∧
+        c ≤ 1 ∧
+          Γ = ↑c • Φ.toLinearMap ∧
+            ∀ (a : Fin d → ℂ) (T : Cloning.InfiniteTraceClass.TraceClass ↥(Cloning.MultimodeCoherent.Fock d)),
+              Φ.toLinearMap ((Cloning.MultimodeCoherent.displacementTraceMap a) T) =
+                (Cloning.MultimodeCoherent.displacementTraceMap (r • a)) (Φ.toLinearMap T)
+info: CompactCPLimits.lean:29:0: Cloning.MultimodeCoherent.limsup_flatBox_thermal_le_modeFactor {d : ℕ} (γ : ℝ) (hγ : 1 < γ) {q : Fin d → ℝ}
+  (hq0 : ∀ (i : Fin d), 0 < q i) (hq1 : ∀ (i : Fin d), q i < 1) :
+  Filter.limsup
+      (Cloning.MultimodeCoherent.flatBoxOptimalPayoff (√γ) (Cloning.MultimodeCoherent.thermalPositive q ⋯ hq1)
+        (Cloning.MultimodeCoherent.thermalPositive q ⋯ hq1))
+      Filter.atTop ≤
+    ∏ i, Cloning.Thermal.modeFactor γ (q i)
+info: CompactCPLimits.lean:31:0: Cloning.MultimodeCoherent.limsup_realFlatBox_thermal_le_modeFactor {d : ℕ} (γ : ℝ) (hγ : 1 < γ) {q : Fin d → ℝ}
+  (hq0 : ∀ (i : Fin d), 0 < q i) (hq1 : ∀ (i : Fin d), q i < 1) :
+  Filter.limsup
+      (Cloning.MultimodeCoherent.realFlatBoxOptimalPayoff (√γ) (Cloning.MultimodeCoherent.thermalPositive q ⋯ hq1)
+        (Cloning.MultimodeCoherent.thermalPositive q ⋯ hq1))
+      Filter.atTop ≤
+    ∏ i, Cloning.Thermal.modeFactor γ (q i)
+ℹ [3747/3751] Built LANTransfer (7.2s)
+info: LANTransfer.lean:19:0: Cloning.InfiniteLANTransfer.fidelity_transfer.{u_1, u_2, u_3, u_4} {A : Type u_1} {B : Type u_2} {G : Type u_3}
+  {H : Type u_4} [NormedAddCommGroup A] [InnerProductSpace ℂ A] [CompleteSpace A] [NormedAddCommGroup B]
+  [InnerProductSpace ℂ B] [CompleteSpace B] [NormedAddCommGroup G] [InnerProductSpace ℂ G] [CompleteSpace G]
+  [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H] (S : Cloning.InfiniteTraceClass.QuantumChannel G A)
+  (M : Cloning.InfiniteTraceClass.QuantumChannel A B) (T : Cloning.InfiniteTraceClass.QuantumChannel B H)
+  (ρ : Cloning.InfiniteTraceClass.DensityState A) (σ : Cloning.InfiniteTraceClass.DensityState B)
+  (Φ : Cloning.InfiniteTraceClass.DensityState G) (Ψ : Cloning.InfiniteTraceClass.DensityState H) {δ η : ℝ}
+  (hδ : Cloning.InfiniteFidelity.stateTraceDistance (Cloning.InfiniteLANTransfer.mapState S Φ) ρ ≤ δ)
+  (hη : Cloning.InfiniteFidelity.stateTraceDistance (Cloning.InfiniteLANTransfer.mapState T σ) Ψ ≤ η) :
+  Cloning.InfiniteFidelity.stateFidelity (Cloning.InfiniteLANTransfer.mapState M ρ) σ ≤
+    Cloning.InfiniteFidelity.stateFidelity
+          (Cloning.InfiniteLANTransfer.mapState T
+            (Cloning.InfiniteLANTransfer.mapState M (Cloning.InfiniteLANTransfer.mapState S Φ)))
+          Ψ +
+        √δ +
+      √η
+info: LANTransfer.lean:20:0: Cloning.InfiniteLANTransfer.minimax_le_bayesValue.{u_1, u_2, u_3, u_4, u_5, u_6, u_7} {A : Type u_1} {B : Type u_2}
+  {G : Type u_3} {H : Type u_4} [NormedAddCommGroup A] [InnerProductSpace ℂ A] [CompleteSpace A] [NormedAddCommGroup B]
+  [InnerProductSpace ℂ B] [CompleteSpace B] [NormedAddCommGroup G] [InnerProductSpace ℂ G] [CompleteSpace G]
+  [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H] {I : Type u_5} {P : Type u_6} {Θ : Type u_7}
+  [Nonempty I] [MeasurableSpace Θ] (prior : MeasureTheory.Measure Θ) [MeasureTheory.IsProbabilityMeasure prior]
+  (S : Cloning.InfiniteTraceClass.QuantumChannel G A) (M : I → Cloning.InfiniteTraceClass.QuantumChannel A B)
+  (T : Cloning.InfiniteTraceClass.QuantumChannel B H) (ρ : P → Cloning.InfiniteTraceClass.DensityState A)
+  (σ : P → Cloning.InfiniteTraceClass.DensityState B) (Φ : Θ → Cloning.InfiniteTraceClass.DensityState G)
+  (Ψ : Θ → Cloning.InfiniteTraceClass.DensityState H) (localChart : Θ → P) (δ η : ℝ)
+  (hδ :
+    ∀ (θ : Θ),
+      Cloning.InfiniteFidelity.stateTraceDistance (Cloning.InfiniteLANTransfer.mapState S (Φ θ)) (ρ (localChart θ)) ≤ δ)
+  (hη :
+    ∀ (θ : Θ),
+      Cloning.InfiniteFidelity.stateTraceDistance (Cloning.InfiniteLANTransfer.mapState T (σ (localChart θ))) (Ψ θ) ≤ η)
+  (hintegrable :
+    ∀ (N : Cloning.InfiniteTraceClass.QuantumChannel G H),
+      MeasureTheory.Integrable
+        (fun θ => Cloning.InfiniteFidelity.stateFidelity (Cloning.InfiniteLANTransfer.mapState N (Φ θ)) (Ψ θ)) prior) :
+  (Cloning.LAN.minimaxValue fun i p =>
+      Cloning.InfiniteFidelity.stateFidelity (Cloning.InfiniteLANTransfer.mapState (M i) (ρ p)) (σ p)) ≤
+    (Cloning.LAN.bayesValue prior fun N θ =>
+        Cloning.InfiniteFidelity.stateFidelity (Cloning.InfiniteLANTransfer.mapState N (Φ θ)) (Ψ θ)) +
+      (√δ + √η)
+info: LANTransfer.lean:21:0: Cloning.GeneralCoherent.exists_twoWay_coherent_product_channels (s : ℕ) :
+  ∃ forward reverse,
+    ∀ (K : Set (Fin s → ℂ)),
+      IsCompact K →
+        ∀ (ε : ℝ),
+          0 < ε →
+            ∀ᶠ (L : ℕ) in Filter.atTop,
+              ∀ z ∈ K,
+                ‖(forward L).toLinearMap
+                          (Cloning.InfiniteTraceClass.vectorProjector (Cloning.MultimodeCoherent.coherentVector z)) -
+                        Cloning.InfiniteTraceClass.vectorProjector (Cloning.GeneralCoherent.productTensor z L)‖ <
+                    ε ∧
+                  ‖(reverse L).toLinearMap
+                          (Cloning.InfiniteTraceClass.vectorProjector (Cloning.GeneralCoherent.productTensor z L)) -
+                        Cloning.InfiniteTraceClass.vectorProjector (Cloning.MultimodeCoherent.coherentVector z)‖ <
+                    ε
+info: LANTransfer.lean:22:0: Cloning.Hybrid.PositiveField.integral_fidelity_le_fidelity_integral.{u_1, u_2} {Ω : Type u_1} {H : Type u_2}
+  [MeasurableSpace Ω] {μ : MeasureTheory.Measure Ω} [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
+  [MeasureTheory.SigmaFinite μ] (A B : Ω → Cloning.InfiniteTraceClass.TraceClass H) (hA : MeasureTheory.Integrable A μ)
+  (hB : MeasureTheory.Integrable B μ) (hposA : ∀ (x : Ω), 0 ≤ ↑(A x)) (hposB : ∀ (x : Ω), 0 ≤ ↑(B x)) :
+  ∫ (x : Ω), Cloning.InfiniteFidelity.fidelity ↑(A x) ↑(B x) ⋯ ⋯ ⋯ ⋯ ∂μ ≤
+    Cloning.InfiniteFidelity.fidelity ↑(∫ (x : Ω), A x ∂μ) ↑(∫ (x : Ω), B x ∂μ) ⋯ ⋯ ⋯ ⋯
+info: LANTransfer.lean:23:0: Cloning.MultimodeCoherent.limsup_flatBox_thermal_le_modeFactor {d : ℕ} (γ : ℝ) (hγ : 1 < γ) {q : Fin d → ℝ}
+  (hq0 : ∀ (i : Fin d), 0 < q i) (hq1 : ∀ (i : Fin d), q i < 1) :
+  Filter.limsup
+      (Cloning.MultimodeCoherent.flatBoxOptimalPayoff (√γ) (Cloning.MultimodeCoherent.thermalPositive q ⋯ hq1)
+        (Cloning.MultimodeCoherent.thermalPositive q ⋯ hq1))
+      Filter.atTop ≤
+    ∏ i, Cloning.Thermal.modeFactor γ (q i)
+info: LANTransfer.lean:25:0: Cloning.MultimodeCoherent.limsup_realFlatBox_thermal_le_modeFactor {d : ℕ} (γ : ℝ) (hγ : 1 < γ) {q : Fin d → ℝ}
+  (hq0 : ∀ (i : Fin d), 0 < q i) (hq1 : ∀ (i : Fin d), q i < 1) :
+  Filter.limsup
+      (Cloning.MultimodeCoherent.realFlatBoxOptimalPayoff (√γ) (Cloning.MultimodeCoherent.thermalPositive q ⋯ hq1)
+        (Cloning.MultimodeCoherent.thermalPositive q ⋯ hq1))
+      Filter.atTop ≤
+    ∏ i, Cloning.Thermal.modeFactor γ (q i)
+ℹ [3748/3751] Built ConditionalCloningTheorems (7.2s)
+info: ConditionalCloningTheorems.lean:18:0: Cloning.known_spectrum_optimum_of_bounds.{u_1, u_2} {d : ℕ} {g : ℝ} (p : Cloning.SimpleSpectrum d) {I : ℕ → Type u_1}
+  {Orbit : Type u_2} [Nonempty Orbit] (payoff : (n : ℕ) → I n → Orbit → ℝ) (candidate : (n : ℕ) → I n) (a b : ℕ → ℝ)
+  (error : ℕ → ℕ → ℝ) (hzero : ∀ (n : ℕ) (i : I n) (u : Orbit), 0 ≤ payoff n i u)
+  (hone : ∀ (n : ℕ) (i : I n) (u : Orbit), payoff n i u ≤ 1)
+  (hcandidate : ∀ (n : ℕ) (u : Orbit), a n ≤ payoff n (candidate n) u)
+  (ha : Filter.Tendsto a Filter.atTop (nhds (Cloning.orbitalValue g p)))
+  (hupper : ∀ (L : ℕ), ∀ᶠ (n : ℕ) in Filter.atTop, Cloning.LAN.minimaxValue (payoff n) ≤ b L + error L n)
+  (herror : ∀ (L : ℕ), Filter.Tendsto (error L) Filter.atTop (nhds 0))
+  (hb : Filter.Tendsto b Filter.atTop (nhds (Cloning.orbitalValue g p))) :
+  Filter.Tendsto (fun n => Cloning.LAN.minimaxValue (payoff n)) Filter.atTop (nhds (Cloning.orbitalValue g p))
+info: ConditionalCloningTheorems.lean:19:0: Cloning.unknown_spectrum_optimum_of_bounds.{u_1, u_2} {d : ℕ} {g : ℝ} (hg : 1 < g) {I : ℕ → Type u_1} {P : Type u_2}
+  [Nonempty P] (spectrum : P → Cloning.SimpleSpectrum d) (payoff : (n : ℕ) → I n → P → ℝ) (candidate : (n : ℕ) → I n)
+  (δ b : ℕ → ℝ) (error : ℕ → ℕ → ℝ) (hzero : ∀ (n : ℕ) (i : I n) (p : P), 0 ≤ payoff n i p)
+  (hone : ∀ (n : ℕ) (i : I n) (p : P), payoff n i p ≤ 1)
+  (hcandidate : ∀ (n : ℕ) (p : P), |payoff n (candidate n) p - Cloning.universalValue g (spectrum p)| ≤ δ n)
+  (hδ : Filter.Tendsto δ Filter.atTop (nhds 0))
+  (hupper : ∀ (L : ℕ), ∀ᶠ (n : ℕ) in Filter.atTop, Cloning.LAN.minimaxValue (payoff n) ≤ b L + error L n)
+  (herror : ∀ (L : ℕ), Filter.Tendsto (error L) Filter.atTop (nhds 0))
+  (hb : Filter.Tendsto b Filter.atTop (nhds (⨅ p, Cloning.universalValue g (spectrum p)))) :
+  Filter.Tendsto (fun n => Cloning.LAN.minimaxValue (payoff n)) Filter.atTop
+    (nhds (⨅ p, Cloning.universalValue g (spectrum p)))
+info: ConditionalCloningTheorems.lean:20:0: Cloning.pctValue_lt_universalValue {d : ℕ} (hd : 2 ≤ d) {g : ℝ} (hg : 1 < g) (p : Cloning.SimpleSpectrum d) :
+  Cloning.pctValue g p < Cloning.universalValue g p
+info: ConditionalCloningTheorems.lean:21:0: Cloning.PCT.exists_pct_product_mixture.{u_2, u_3, u_4} {A : Type u_2} {B : Type u_3} [Fintype A] [Fintype B]
+  [DecidableEq A] [DecidableEq B] {s : ℕ} (hs : 1 ≤ s) (hcard : Fintype.card (A × B) = s + 1)
+  (ψ : ↥(Cloning.PCT.Register (A × B))) (hψ : ‖ψ‖ = 1) {Ω : Type u_4} [MeasurableSpace Ω] (μ : MeasureTheory.Measure Ω)
+  [MeasureTheory.IsProbabilityMeasure μ] (W : Ω → ↥(Cloning.PCT.Register B) →ₗᵢ[ℂ] ↥(Cloning.PCT.Register B))
+  (m : ℕ → ℕ) (hm : ∀ (n : ℕ), n ≤ m n) {γ : ℝ} (hγ : 1 < γ)
+  (h : Filter.Tendsto (fun n => ↑(m n) / ↑n) Filter.atTop (nhds γ)) :
+  ∃ u,
+    u 0 = ψ ∧
+      Filter.Tendsto
+        (fun n =>
+          ‖Cloning.PCT.randomizedPurificationOutput hcard ψ hψ μ W
+                (Cloning.GeneralSymmetricOccupation.inputSlots n (m n) ⋯) -
+              ∫ (z : Fin s → ℂ),
+                Cloning.PCT.matrixTensorPower
+                  (Cloning.PCT.reducedDensityMatrix (Cloning.PCT.frameParticle (⇑u) z (m n)))
+                  (m n) ∂Cloning.MultimodeCoherentGaussianMixture.gaussianProductMeasure fun x => γ - 1‖)
+        Filter.atTop (nhds 0)
+info: ConditionalCloningTheorems.lean:22:0: Cloning.MultimodeCoherent.limsup_flatBox_thermal_le_modeFactor {d : ℕ} (γ : ℝ) (hγ : 1 < γ) {q : Fin d → ℝ}
+  (hq0 : ∀ (i : Fin d), 0 < q i) (hq1 : ∀ (i : Fin d), q i < 1) :
+  Filter.limsup
+      (Cloning.MultimodeCoherent.flatBoxOptimalPayoff (√γ) (Cloning.MultimodeCoherent.thermalPositive q ⋯ hq1)
+        (Cloning.MultimodeCoherent.thermalPositive q ⋯ hq1))
+      Filter.atTop ≤
+    ∏ i, Cloning.Thermal.modeFactor γ (q i)
+info: ConditionalCloningTheorems.lean:24:0: Cloning.MultimodeCoherent.limsup_realFlatBox_thermal_le_modeFactor {d : ℕ} (γ : ℝ) (hγ : 1 < γ) {q : Fin d → ℝ}
+  (hq0 : ∀ (i : Fin d), 0 < q i) (hq1 : ∀ (i : Fin d), q i < 1) :
+  Filter.limsup
+      (Cloning.MultimodeCoherent.realFlatBoxOptimalPayoff (√γ) (Cloning.MultimodeCoherent.thermalPositive q ⋯ hq1)
+        (Cloning.MultimodeCoherent.thermalPositive q ⋯ hq1))
+      Filter.atTop ≤
+    ∏ i, Cloning.Thermal.modeFactor γ (q i)
+✔ [3749/3751] Built Cloning (8.5s)
+✔ [3750/3751] Built All (3.2s)
+Build completed successfully (3751 jobs).

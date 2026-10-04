@@ -1,0 +1,562 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="An offline guide to the Lean formalization of asymptotic mixed-state quantum cloning. Exact source, proof routes, and audited scope.">
+<title>Thermal · Lean source · Cloning proof wiki</title>
+<link rel="stylesheet" href="../assets/site.css?v=1811c00ea983">
+<script>window.PROOF_ROOT="../";</script>
+<script defer src="../assets/vendor/katex/katex.min.js"></script>
+<script defer src="../assets/search-index.js?v=850aee981cdc"></script>
+<script defer src="../assets/site.js?v=4bfaac1f06b1"></script>
+</head><body><a class="skip-link" href="#main">Skip to content</a>
+<div class="site-shell"><aside class="sidebar" id="site-navigation">
+<a class="brand" href="../index.html"><span class="brand-mark">C</span><span>Cloning<span class="small muted">A Lean proof wiki</span></span></a>
+<nav aria-label="Main navigation"><div class="nav-section">Explore</div><a class="nav-link" href="../index.html">Overview</a><a class="nav-link" href="../guides/index.html">Proof guide</a><a class="nav-link" href="../results/index.html">27 named results</a><a class="nav-link active" href="../source/index.html" aria-current="page">Lean source</a><a class="nav-link" href="../verification.html">Verification</a><a class="nav-link" href="../scope.html">Scope &amp; conventions</a>
+<div class="nav-section">Read the proof</div><a class="nav-link" href="../guides/physical-problem.html"><span class="nav-number">01</span> The physical problem and its conventions</a><a class="nav-link" href="../guides/young-laws.html"><span class="nav-number">02</span> Young labels: concentration and the local Gaussian law</a><a class="nav-link" href="../guides/cartan-sectors.html"><span class="nav-number">03</span> From PBW frames to uniform Cartan-sector fidelity</a><a class="nav-link" href="../guides/lifted-kernels.html"><span class="nav-number">04</span> Lifted channels, randomized dilation, and factorization</a><a class="nav-link" href="../guides/gaussian-optimum.html"><span class="nav-number">05</span> Gaussian amplification against arbitrary competitors</a><a class="nav-link" href="../guides/physical-lan.html"><span class="nav-number">06</span> Constructed LAN and fidelity transfer</a><a class="nav-link" href="../guides/known-spectrum.html"><span class="nav-number">07</span> The known-spectrum optimum</a><a class="nav-link" href="../guides/unknown-spectrum.html"><span class="nav-number">08</span> One universal cloner and the compact-set optimum</a><a class="nav-link" href="../guides/grassmann.html"><span class="nav-number">09</span> Exact rank compression and projector-state optimality</a><a class="nav-link" href="../guides/purify-clone-trace.html"><span class="nav-number">10</span> Purify–clone–trace: exact channels, limits, and guarantees</a><a class="nav-link" href="../guides/small-errors.html"><span class="nav-number">11</span> Small errors, rank boundaries, and noncommuting limits</a><a class="nav-link" href="../guides/spectral-comparison.html"><span class="nav-number">12</span> Spectral order and what is known for all states</a></nav>
+<div class="sidebar-footer"><span class="badge">Lean 4</span><p>Manuscript → proof → source</p>
+<a href="https://github.com/JWang226/Cloning">Repository ↗</a></div></aside>
+<div class="main-shell"><header class="topbar">
+<button id="nav-toggle" class="button secondary" aria-controls="site-navigation" aria-expanded="false" aria-label="Toggle navigation">Menu</button>
+<div class="search-wrap"><label class="sr-only" for="site-search">Search the proof wiki</label>
+<input id="site-search" type="search" placeholder="Search results, concepts, or Lean names…" autocomplete="off" aria-controls="search-results" aria-expanded="false" role="combobox" aria-autocomplete="list">
+<div id="search-results" class="search-results" role="listbox" hidden></div></div>
+<span class="small muted topbar-label">Offline · exact source</span></header>
+<main id="main" class="content"><div class="eyebrow">Exact Lean source</div><h1 class="source-title">Thermal</h1><p><code>formalization/Cloning/Thermal.lean</code></p><p class="small muted">Source hash: <code>d3dc50c83b60b9e7a734b11aed79064d33bbdf3b44b9b210f093f1c94e0b9a91</code></p><div class="actions"><a class="button secondary" href="raw/Cloning.Thermal.lean">Download .lean</a><a class="button secondary" href="https://github.com/JWang226/Cloning/blob/main/formalization/Cloning/Thermal.lean">View on GitHub ↗</a><a href="index.html">All modules</a></div><p class="small muted">Full source copied without mathematical changes from the snapshot whose input hash matches the passing audit. Select a line number for a stable source pointer.</p><details><summary>Declarations in this module</summary><div class="module-declarations"><a href="#L22"><span class="badge">definition</span> <code>Cloning.Thermal.geometric</code></a><a href="#L25"><span class="badge">definition</span> <code>Cloning.Thermal.fidelity</code></a><a href="#L29"><span class="badge">definition</span> <code>Cloning.Thermal.amplified</code></a><a href="#L32"><span class="badge">definition</span> <code>Cloning.Thermal.pct</code></a><a href="#L35"><span class="badge">definition</span> <code>Cloning.Thermal.photonMean</code></a><a href="#L37"><span class="badge">theorem</span> <code>Cloning.Thermal.geometric_nonneg</code></a><a href="#L40"><span class="badge">theorem</span> <code>Cloning.Thermal.geometric_hasSum</code></a><a href="#L45"><span class="badge">theorem</span> <code>Cloning.Thermal.sqrt_nat_pow</code></a><a href="#L51"><span class="badge">theorem</span> <code>Cloning.Thermal.affinity_term</code></a><a href="#L60"><span class="badge">theorem</span> <code>Cloning.Thermal.affinity_hasSum</code></a><a href="#L72"><span class="badge">theorem</span> <code>Cloning.Thermal.affinity_tsum</code></a><a href="#L77"><span class="badge">theorem</span> <code>Cloning.Thermal.fidelity_pos</code></a><a href="#L87"><span class="badge">theorem</span> <code>Cloning.Thermal.fidelity_sq</code></a><a href="#L93"><span class="badge">theorem</span> <code>Cloning.Thermal.fidelity_le_one</code></a><a href="#L110"><span class="badge">theorem</span> <code>Cloning.Thermal.fidelity_sq_strict_aux</code></a><a href="#L134"><span class="badge">theorem</span> <code>Cloning.Thermal.fidelity_strictAnti_right</code></a><a href="#L150"><span class="badge">theorem</span> <code>Cloning.Thermal.amplified_eq</code></a><a href="#L156"><span class="badge">theorem</span> <code>Cloning.Thermal.lt_amplified</code></a><a href="#L162"><span class="badge">theorem</span> <code>Cloning.Thermal.amplified_lt_one</code></a><a href="#L168"><span class="badge">theorem</span> <code>Cloning.Thermal.amplified_nonneg</code></a><a href="#L171"><span class="badge">theorem</span> <code>Cloning.Thermal.pct_denominator_pos</code></a><a href="#L175"><span class="badge">theorem</span> <code>Cloning.Thermal.amplified_lt_pct</code></a><a href="#L183"><span class="badge">theorem</span> <code>Cloning.Thermal.pct_lt_one</code></a><a href="#L189"><span class="badge">theorem</span> <code>Cloning.Thermal.amplified_photonMean</code></a><a href="#L197"><span class="badge">theorem</span> <code>Cloning.Thermal.pct_photonMean</code></a><a href="#L207"><span class="badge">theorem</span> <code>Cloning.Thermal.pct_excess_photonMean</code></a><a href="#L214"><span class="badge">theorem</span> <code>Cloning.Thermal.pct_fidelity_lt_amplified</code></a><a href="#L220"><span class="badge">definition</span> <code>Cloning.Thermal.modeFactor</code></a><a href="#L223"><span class="badge">theorem</span> <code>Cloning.Thermal.fidelity_amplified_unrationalized</code></a><a href="#L243"><span class="badge">theorem</span> <code>Cloning.Thermal.fidelity_amplified_eq_modeFactor</code></a><a href="#L259"><span class="badge">theorem</span> <code>Cloning.Thermal.modeFactor_pos</code></a><a href="#L265"><span class="badge">theorem</span> <code>Cloning.Thermal.modeFactor_le_one</code></a><a href="#L271"><span class="badge">theorem</span> <code>Cloning.Thermal.modeFactor_continuousAt</code></a><a href="#L279"><span class="badge">theorem</span> <code>Cloning.Thermal.pct_fidelity_lt_modeFactor</code></a><a href="#L285"><span class="badge">definition</span> <code>Cloning.Thermal.classicalBase</code></a><a href="#L287"><span class="badge">theorem</span> <code>Cloning.Thermal.classicalBase_pos</code></a><a href="#L291"><span class="badge">theorem</span> <code>Cloning.Thermal.classicalBase_le_one</code></a><a href="#L296"><span class="badge">theorem</span> <code>Cloning.Thermal.classicalBase_lt_one</code></a><a href="#L304"><span class="badge">theorem</span> <code>Cloning.Thermal.classicalBase_strictAnti</code></a><a href="#L318"><span class="badge">theorem</span> <code>Cloning.Thermal.pct_classicalBase_lt</code></a><a href="#L323"><span class="badge">definition</span> <code>Cloning.Thermal.witness</code></a><a href="#L326"><span class="badge">theorem</span> <code>Cloning.Thermal.geometric_pos</code></a><a href="#L329"><span class="badge">theorem</span> <code>Cloning.Thermal.witness_pos</code></a><a href="#L334"><span class="badge">theorem</span> <code>Cloning.Thermal.witness_closed</code></a><a href="#L343"><span class="badge">theorem</span> <code>Cloning.Thermal.witness_strictAnti</code></a><a href="#L356"><span class="badge">theorem</span> <code>Cloning.Thermal.witness_bounded</code></a><a href="#L361"><span class="badge">theorem</span> <code>Cloning.Thermal.witness_tendsto_zero</code></a><a href="#L376"><span class="badge">theorem</span> <code>Cloning.Thermal.witness_weighted_term</code></a><a href="#L391"><span class="badge">theorem</span> <code>Cloning.Thermal.witness_inverse_term</code></a><a href="#L405"><span class="badge">theorem</span> <code>Cloning.Thermal.witness_moment_hasSum</code></a><a href="#L411"><span class="badge">theorem</span> <code>Cloning.Thermal.witness_inverse_moment_hasSum</code></a><a href="#L418"><span class="badge">theorem</span> <code>Cloning.Thermal.hasSum_fin_product</code></a><a href="#L450"><span class="badge">theorem</span> <code>Cloning.Thermal.multimode_geometric_hasSum</code></a><a href="#L458"><span class="badge">theorem</span> <code>Cloning.Thermal.multimode_affinity_hasSum</code></a><a href="#L469"><span class="badge">theorem</span> <code>Cloning.Thermal.multimode_affinity_of_product_laws</code></a><a href="#L487"><span class="badge">theorem</span> <code>Cloning.Thermal.multimode_witness_envelope</code></a><a href="#L508"><span class="badge">theorem</span> <code>Cloning.Thermal.multimode_witness_tendsto_zero</code></a><a href="#L526"><span class="badge">theorem</span> <code>Cloning.Thermal.multimode_witness_moment_hasSum</code></a></div></details><div class="code-wrap source-wrap"><pre class="source-lines"><code><span class="source-line" id="L1"><a class="line-no" href="#L1" aria-label="Line 1">1</a><span class="line-code">import Mathlib.Analysis.SpecificLimits.Basic</span></span>
+<span class="source-line" id="L2"><a class="line-no" href="#L2" aria-label="Line 2">2</a><span class="line-code">import Mathlib.Analysis.Normed.Ring.InfiniteSum</span></span>
+<span class="source-line" id="L3"><a class="line-no" href="#L3" aria-label="Line 3">3</a><span class="line-code">import Mathlib.Algebra.BigOperators.Fin</span></span>
+<span class="source-line" id="L4"><a class="line-no" href="#L4" aria-label="Line 4">4</a><span class="line-code">import Mathlib.Data.Real.Sqrt</span></span>
+<span class="source-line" id="L5"><a class="line-no" href="#L5" aria-label="Line 5">5</a><span class="line-code">import Mathlib.Tactic.FieldSimp</span></span>
+<span class="source-line" id="L6"><a class="line-no" href="#L6" aria-label="Line 6">6</a><span class="line-code">import Mathlib.Tactic.Linarith</span></span>
+<span class="source-line" id="L7"><a class="line-no" href="#L7" aria-label="Line 7">7</a><span class="line-code">import Mathlib.Tactic.Ring</span></span>
+<span class="source-line" id="L8"><a class="line-no" href="#L8" aria-label="Line 8">8</a><span class="line-code">import Mathlib.Tactic.Positivity</span></span>
+<span class="source-line" id="L9"><a class="line-no" href="#L9" aria-label="Line 9">9</a><span class="line-code"> </span></span>
+<span class="source-line" id="L10"><a class="line-no" href="#L10" aria-label="Line 10">10</a><span class="line-code">/-!</span></span>
+<span class="source-line" id="L11"><a class="line-no" href="#L11" aria-label="Line 11">11</a><span class="line-code"># Thermal scalar calculations from `cloning.tex`</span></span>
+<span class="source-line" id="L12"><a class="line-no" href="#L12" aria-label="Line 12">12</a><span class="line-code"> </span></span>
+<span class="source-line" id="L13"><a class="line-no" href="#L13" aria-label="Line 13">13</a><span class="line-code">These are statements about geometric probability distributions and real scalar</span></span>
+<span class="source-line" id="L14"><a class="line-no" href="#L14" aria-label="Line 14">14</a><span class="line-code">formulas.  Identification with diagonal quantum states is not claimed here.</span></span>
+<span class="source-line" id="L15"><a class="line-no" href="#L15" aria-label="Line 15">15</a><span class="line-code">-/</span></span>
+<span class="source-line" id="L16"><a class="line-no" href="#L16" aria-label="Line 16">16</a><span class="line-code"> </span></span>
+<span class="source-line" id="L17"><a class="line-no" href="#L17" aria-label="Line 17">17</a><span class="line-code">noncomputable section</span></span>
+<span class="source-line" id="L18"><a class="line-no" href="#L18" aria-label="Line 18">18</a><span class="line-code"> </span></span>
+<span class="source-line" id="L19"><a class="line-no" href="#L19" aria-label="Line 19">19</a><span class="line-code">namespace Cloning.Thermal</span></span>
+<span class="source-line" id="L20"><a class="line-no" href="#L20" aria-label="Line 20">20</a><span class="line-code"> </span></span>
+<span class="source-line" id="L21"><a class="line-no" href="#L21" aria-label="Line 21">21</a><span class="line-code">/-- Number probabilities of a one-mode thermal state. -/</span></span>
+<span class="source-line" id="L22"><a class="line-no" href="#L22" aria-label="Line 22">22</a><span class="line-code">def geometric (q : ℝ) (n : ℕ) : ℝ := (1 - q) * q ^ n</span></span>
+<span class="source-line" id="L23"><a class="line-no" href="#L23" aria-label="Line 23">23</a><span class="line-code"> </span></span>
+<span class="source-line" id="L24"><a class="line-no" href="#L24" aria-label="Line 24">24</a><span class="line-code">/-- Root fidelity of two geometric distributions in closed form. -/</span></span>
+<span class="source-line" id="L25"><a class="line-no" href="#L25" aria-label="Line 25">25</a><span class="line-code">def fidelity (q x : ℝ) : ℝ :=</span></span>
+<span class="source-line" id="L26"><a class="line-no" href="#L26" aria-label="Line 26">26</a><span class="line-code">  Real.sqrt ((1 - q) * (1 - x)) / (1 - Real.sqrt (q * x))</span></span>
+<span class="source-line" id="L27"><a class="line-no" href="#L27" aria-label="Line 27">27</a><span class="line-code"> </span></span>
+<span class="source-line" id="L28"><a class="line-no" href="#L28" aria-label="Line 28">28</a><span class="line-code">/-- Thermal parameter after quantum-limited amplification. -/</span></span>
+<span class="source-line" id="L29"><a class="line-no" href="#L29" aria-label="Line 29">29</a><span class="line-code">def amplified (g q : ℝ) : ℝ := 1 - (1 - q) / g</span></span>
+<span class="source-line" id="L30"><a class="line-no" href="#L30" aria-label="Line 30">30</a><span class="line-code"> </span></span>
+<span class="source-line" id="L31"><a class="line-no" href="#L31" aria-label="Line 31">31</a><span class="line-code">/-- Thermal parameter in the purify-clone-trace limit. -/</span></span>
+<span class="source-line" id="L32"><a class="line-no" href="#L32" aria-label="Line 32">32</a><span class="line-code">def pct (g q : ℝ) : ℝ := (g - 1 + g * q) / (g + (g - 1) * q)</span></span>
+<span class="source-line" id="L33"><a class="line-no" href="#L33" aria-label="Line 33">33</a><span class="line-code"> </span></span>
+<span class="source-line" id="L34"><a class="line-no" href="#L34" aria-label="Line 34">34</a><span class="line-code">/-- Mean photon number of a geometric distribution. -/</span></span>
+<span class="source-line" id="L35"><a class="line-no" href="#L35" aria-label="Line 35">35</a><span class="line-code">def photonMean (q : ℝ) : ℝ := q / (1 - q)</span></span>
+<span class="source-line" id="L36"><a class="line-no" href="#L36" aria-label="Line 36">36</a><span class="line-code"> </span></span>
+<span class="source-line" id="L37"><a class="line-no" href="#L37" aria-label="Line 37">37</a><span class="line-code">theorem geometric_nonneg {q : ℝ} (hq0 : 0 ≤ q) (hq1 : q ≤ 1) (n : ℕ) :</span></span>
+<span class="source-line" id="L38"><a class="line-no" href="#L38" aria-label="Line 38">38</a><span class="line-code">    0 ≤ geometric q n := mul_nonneg (sub_nonneg.mpr hq1) (pow_nonneg hq0 n)</span></span>
+<span class="source-line" id="L39"><a class="line-no" href="#L39" aria-label="Line 39">39</a><span class="line-code"> </span></span>
+<span class="source-line" id="L40"><a class="line-no" href="#L40" aria-label="Line 40">40</a><span class="line-code">theorem geometric_hasSum {q : ℝ} (hq0 : 0 ≤ q) (hq1 : q &lt; 1) :</span></span>
+<span class="source-line" id="L41"><a class="line-no" href="#L41" aria-label="Line 41">41</a><span class="line-code">    HasSum (geometric q) 1 := by</span></span>
+<span class="source-line" id="L42"><a class="line-no" href="#L42" aria-label="Line 42">42</a><span class="line-code">  simpa [geometric, ne_of_gt (sub_pos.mpr hq1)] using</span></span>
+<span class="source-line" id="L43"><a class="line-no" href="#L43" aria-label="Line 43">43</a><span class="line-code">    (hasSum_geometric_of_lt_one hq0 hq1).mul_left (1 - q)</span></span>
+<span class="source-line" id="L44"><a class="line-no" href="#L44" aria-label="Line 44">44</a><span class="line-code"> </span></span>
+<span class="source-line" id="L45"><a class="line-no" href="#L45" aria-label="Line 45">45</a><span class="line-code">theorem sqrt_nat_pow {q : ℝ} (hq : 0 ≤ q) (n : ℕ) :</span></span>
+<span class="source-line" id="L46"><a class="line-no" href="#L46" aria-label="Line 46">46</a><span class="line-code">    Real.sqrt (q ^ n) = Real.sqrt q ^ n := by</span></span>
+<span class="source-line" id="L47"><a class="line-no" href="#L47" aria-label="Line 47">47</a><span class="line-code">  induction n with</span></span>
+<span class="source-line" id="L48"><a class="line-no" href="#L48" aria-label="Line 48">48</a><span class="line-code">  | zero =&gt; simp</span></span>
+<span class="source-line" id="L49"><a class="line-no" href="#L49" aria-label="Line 49">49</a><span class="line-code">  | succ n ih =&gt; rw [pow_succ, Real.sqrt_mul (pow_nonneg hq n), ih, pow_succ]</span></span>
+<span class="source-line" id="L50"><a class="line-no" href="#L50" aria-label="Line 50">50</a><span class="line-code"> </span></span>
+<span class="source-line" id="L51"><a class="line-no" href="#L51" aria-label="Line 51">51</a><span class="line-code">theorem affinity_term {q x : ℝ} (hq0 : 0 ≤ q) (hq1 : q &lt; 1)</span></span>
+<span class="source-line" id="L52"><a class="line-no" href="#L52" aria-label="Line 52">52</a><span class="line-code">    (hx0 : 0 ≤ x) (hx1 : x &lt; 1) (n : ℕ) :</span></span>
+<span class="source-line" id="L53"><a class="line-no" href="#L53" aria-label="Line 53">53</a><span class="line-code">    Real.sqrt (geometric q n * geometric x n) =</span></span>
+<span class="source-line" id="L54"><a class="line-no" href="#L54" aria-label="Line 54">54</a><span class="line-code">      Real.sqrt ((1 - q) * (1 - x)) * Real.sqrt (q * x) ^ n := by</span></span>
+<span class="source-line" id="L55"><a class="line-no" href="#L55" aria-label="Line 55">55</a><span class="line-code">  have he : geometric q n * geometric x n = (1 - q) * (1 - x) * (q * x) ^ n := by</span></span>
+<span class="source-line" id="L56"><a class="line-no" href="#L56" aria-label="Line 56">56</a><span class="line-code">    simp only [geometric, mul_pow]</span></span>
+<span class="source-line" id="L57"><a class="line-no" href="#L57" aria-label="Line 57">57</a><span class="line-code">    ring</span></span>
+<span class="source-line" id="L58"><a class="line-no" href="#L58" aria-label="Line 58">58</a><span class="line-code">  rw [he, Real.sqrt_mul (mul_nonneg (sub_nonneg.mpr hq1.le) (sub_nonneg.mpr hx1.le)), sqrt_nat_pow (mul_nonneg hq0 hx0)]</span></span>
+<span class="source-line" id="L59"><a class="line-no" href="#L59" aria-label="Line 59">59</a><span class="line-code"> </span></span>
+<span class="source-line" id="L60"><a class="line-no" href="#L60" aria-label="Line 60">60</a><span class="line-code">theorem affinity_hasSum {q x : ℝ} (hq0 : 0 ≤ q) (hq1 : q &lt; 1)</span></span>
+<span class="source-line" id="L61"><a class="line-no" href="#L61" aria-label="Line 61">61</a><span class="line-code">    (hx0 : 0 ≤ x) (hx1 : x &lt; 1) :</span></span>
+<span class="source-line" id="L62"><a class="line-no" href="#L62" aria-label="Line 62">62</a><span class="line-code">    HasSum (fun n =&gt; Real.sqrt (geometric q n * geometric x n)) (fidelity q x) := by</span></span>
+<span class="source-line" id="L63"><a class="line-no" href="#L63" aria-label="Line 63">63</a><span class="line-code">  have hqx : q * x &lt; 1 := mul_lt_one_of_nonneg_of_lt_one_right hq1.le hx0 hx1</span></span>
+<span class="source-line" id="L64"><a class="line-no" href="#L64" aria-label="Line 64">64</a><span class="line-code">  have hs : Real.sqrt (q * x) &lt; 1 := by</span></span>
+<span class="source-line" id="L65"><a class="line-no" href="#L65" aria-label="Line 65">65</a><span class="line-code">    rw [Real.sqrt_lt&#x27; (by norm_num : (0 : ℝ) &lt; 1)]</span></span>
+<span class="source-line" id="L66"><a class="line-no" href="#L66" aria-label="Line 66">66</a><span class="line-code">    simpa using hqx</span></span>
+<span class="source-line" id="L67"><a class="line-no" href="#L67" aria-label="Line 67">67</a><span class="line-code">  simp_rw [affinity_term hq0 hq1 hx0 hx1]</span></span>
+<span class="source-line" id="L68"><a class="line-no" href="#L68" aria-label="Line 68">68</a><span class="line-code">  simpa [fidelity, div_eq_mul_inv] using</span></span>
+<span class="source-line" id="L69"><a class="line-no" href="#L69" aria-label="Line 69">69</a><span class="line-code">    (hasSum_geometric_of_lt_one (Real.sqrt_nonneg _) hs).mul_left</span></span>
+<span class="source-line" id="L70"><a class="line-no" href="#L70" aria-label="Line 70">70</a><span class="line-code">      (Real.sqrt ((1 - q) * (1 - x)))</span></span>
+<span class="source-line" id="L71"><a class="line-no" href="#L71" aria-label="Line 71">71</a><span class="line-code"> </span></span>
+<span class="source-line" id="L72"><a class="line-no" href="#L72" aria-label="Line 72">72</a><span class="line-code">theorem affinity_tsum {q x : ℝ} (hq0 : 0 ≤ q) (hq1 : q &lt; 1)</span></span>
+<span class="source-line" id="L73"><a class="line-no" href="#L73" aria-label="Line 73">73</a><span class="line-code">    (hx0 : 0 ≤ x) (hx1 : x &lt; 1) :</span></span>
+<span class="source-line" id="L74"><a class="line-no" href="#L74" aria-label="Line 74">74</a><span class="line-code">    (∑&#x27; n, Real.sqrt (geometric q n * geometric x n)) = fidelity q x :=</span></span>
+<span class="source-line" id="L75"><a class="line-no" href="#L75" aria-label="Line 75">75</a><span class="line-code">  (affinity_hasSum hq0 hq1 hx0 hx1).tsum_eq</span></span>
+<span class="source-line" id="L76"><a class="line-no" href="#L76" aria-label="Line 76">76</a><span class="line-code"> </span></span>
+<span class="source-line" id="L77"><a class="line-no" href="#L77" aria-label="Line 77">77</a><span class="line-code">theorem fidelity_pos {q x : ℝ} (_hq0 : 0 ≤ q) (hq1 : q &lt; 1)</span></span>
+<span class="source-line" id="L78"><a class="line-no" href="#L78" aria-label="Line 78">78</a><span class="line-code">    (hx0 : 0 ≤ x) (hx1 : x &lt; 1) : 0 &lt; fidelity q x := by</span></span>
+<span class="source-line" id="L79"><a class="line-no" href="#L79" aria-label="Line 79">79</a><span class="line-code">  have hqx : q * x &lt; 1 := mul_lt_one_of_nonneg_of_lt_one_right hq1.le hx0 hx1</span></span>
+<span class="source-line" id="L80"><a class="line-no" href="#L80" aria-label="Line 80">80</a><span class="line-code">  have hs : Real.sqrt (q * x) &lt; 1 := by</span></span>
+<span class="source-line" id="L81"><a class="line-no" href="#L81" aria-label="Line 81">81</a><span class="line-code">    rw [Real.sqrt_lt&#x27; (by norm_num : (0 : ℝ) &lt; 1)]</span></span>
+<span class="source-line" id="L82"><a class="line-no" href="#L82" aria-label="Line 82">82</a><span class="line-code">    simpa using hqx</span></span>
+<span class="source-line" id="L83"><a class="line-no" href="#L83" aria-label="Line 83">83</a><span class="line-code">  unfold fidelity</span></span>
+<span class="source-line" id="L84"><a class="line-no" href="#L84" aria-label="Line 84">84</a><span class="line-code">  exact div_pos (Real.sqrt_pos.2 (mul_pos (sub_pos.mpr hq1) (sub_pos.mpr hx1)))</span></span>
+<span class="source-line" id="L85"><a class="line-no" href="#L85" aria-label="Line 85">85</a><span class="line-code">    (sub_pos.mpr hs)</span></span>
+<span class="source-line" id="L86"><a class="line-no" href="#L86" aria-label="Line 86">86</a><span class="line-code"> </span></span>
+<span class="source-line" id="L87"><a class="line-no" href="#L87" aria-label="Line 87">87</a><span class="line-code">theorem fidelity_sq {q x : ℝ} (hq0 : 0 ≤ q) (hq1 : q &lt; 1)</span></span>
+<span class="source-line" id="L88"><a class="line-no" href="#L88" aria-label="Line 88">88</a><span class="line-code">    (_hx0 : 0 ≤ x) (hx1 : x &lt; 1) :</span></span>
+<span class="source-line" id="L89"><a class="line-no" href="#L89" aria-label="Line 89">89</a><span class="line-code">    fidelity q x ^ 2 = (1 - q) * (1 - x) / (1 - Real.sqrt q * Real.sqrt x) ^ 2 := by</span></span>
+<span class="source-line" id="L90"><a class="line-no" href="#L90" aria-label="Line 90">90</a><span class="line-code">  unfold fidelity</span></span>
+<span class="source-line" id="L91"><a class="line-no" href="#L91" aria-label="Line 91">91</a><span class="line-code">  rw [div_pow, Real.sq_sqrt (mul_nonneg (sub_nonneg.mpr hq1.le) (sub_nonneg.mpr hx1.le)), Real.sqrt_mul hq0]</span></span>
+<span class="source-line" id="L92"><a class="line-no" href="#L92" aria-label="Line 92">92</a><span class="line-code"> </span></span>
+<span class="source-line" id="L93"><a class="line-no" href="#L93" aria-label="Line 93">93</a><span class="line-code">theorem fidelity_le_one {q x : ℝ} (hq0 : 0 ≤ q) (hq1 : q &lt; 1)</span></span>
+<span class="source-line" id="L94"><a class="line-no" href="#L94" aria-label="Line 94">94</a><span class="line-code">    (hx0 : 0 ≤ x) (hx1 : x &lt; 1) : fidelity q x ≤ 1 := by</span></span>
+<span class="source-line" id="L95"><a class="line-no" href="#L95" aria-label="Line 95">95</a><span class="line-code">  have hprod : q * x &lt; 1 := mul_lt_one_of_nonneg_of_lt_one_right hq1.le hx0 hx1</span></span>
+<span class="source-line" id="L96"><a class="line-no" href="#L96" aria-label="Line 96">96</a><span class="line-code">  have hsqrt : Real.sqrt q * Real.sqrt x &lt; 1 := by</span></span>
+<span class="source-line" id="L97"><a class="line-no" href="#L97" aria-label="Line 97">97</a><span class="line-code">    rw [← Real.sqrt_mul hq0, Real.sqrt_lt&#x27; (by norm_num : (0 : ℝ) &lt; 1)]</span></span>
+<span class="source-line" id="L98"><a class="line-no" href="#L98" aria-label="Line 98">98</a><span class="line-code">    simpa using hprod</span></span>
+<span class="source-line" id="L99"><a class="line-no" href="#L99" aria-label="Line 99">99</a><span class="line-code">  have hsq : (Real.sqrt q * Real.sqrt x) ^ 2 = q * x := by</span></span>
+<span class="source-line" id="L100"><a class="line-no" href="#L100" aria-label="Line 100">100</a><span class="line-code">    rw [mul_pow, Real.sq_sqrt hq0, Real.sq_sqrt hx0]</span></span>
+<span class="source-line" id="L101"><a class="line-no" href="#L101" aria-label="Line 101">101</a><span class="line-code">  have hnum : (1 - q) * (1 - x) ≤ (1 - Real.sqrt q * Real.sqrt x) ^ 2 := by</span></span>
+<span class="source-line" id="L102"><a class="line-no" href="#L102" aria-label="Line 102">102</a><span class="line-code">    nlinarith [Real.sq_sqrt hq0, Real.sq_sqrt hx0,</span></span>
+<span class="source-line" id="L103"><a class="line-no" href="#L103" aria-label="Line 103">103</a><span class="line-code">      sq_nonneg (Real.sqrt q - Real.sqrt x)]</span></span>
+<span class="source-line" id="L104"><a class="line-no" href="#L104" aria-label="Line 104">104</a><span class="line-code">  have hf : fidelity q x ^ 2 ≤ 1 := by</span></span>
+<span class="source-line" id="L105"><a class="line-no" href="#L105" aria-label="Line 105">105</a><span class="line-code">    rw [fidelity_sq hq0 hq1 hx0 hx1]</span></span>
+<span class="source-line" id="L106"><a class="line-no" href="#L106" aria-label="Line 106">106</a><span class="line-code">    exact (div_le_one (sq_pos_of_pos (sub_pos.mpr hsqrt))).mpr hnum</span></span>
+<span class="source-line" id="L107"><a class="line-no" href="#L107" aria-label="Line 107">107</a><span class="line-code">  nlinarith</span></span>
+<span class="source-line" id="L108"><a class="line-no" href="#L108" aria-label="Line 108">108</a><span class="line-code"> </span></span>
+<span class="source-line" id="L109"><a class="line-no" href="#L109" aria-label="Line 109">109</a><span class="line-code">/-- Algebra behind strict decrease of thermal fidelity beyond its maximum. -/</span></span>
+<span class="source-line" id="L110"><a class="line-no" href="#L110" aria-label="Line 110">110</a><span class="line-code">theorem fidelity_sq_strict_aux {a b c : ℝ} (ha : 0 ≤ a) (hab : a &lt; b)</span></span>
+<span class="source-line" id="L111"><a class="line-no" href="#L111" aria-label="Line 111">111</a><span class="line-code">    (hbc : b &lt; c) (hc : c &lt; 1) :</span></span>
+<span class="source-line" id="L112"><a class="line-no" href="#L112" aria-label="Line 112">112</a><span class="line-code">    (1 - a ^ 2) * (1 - c ^ 2) / (1 - a * c) ^ 2 &lt;</span></span>
+<span class="source-line" id="L113"><a class="line-no" href="#L113" aria-label="Line 113">113</a><span class="line-code">      (1 - a ^ 2) * (1 - b ^ 2) / (1 - a * b) ^ 2 := by</span></span>
+<span class="source-line" id="L114"><a class="line-no" href="#L114" aria-label="Line 114">114</a><span class="line-code">  have hb : 0 ≤ b := le_trans ha hab.le</span></span>
+<span class="source-line" id="L115"><a class="line-no" href="#L115" aria-label="Line 115">115</a><span class="line-code">  have hc0 : 0 ≤ c := le_trans hb hbc.le</span></span>
+<span class="source-line" id="L116"><a class="line-no" href="#L116" aria-label="Line 116">116</a><span class="line-code">  have ha1 : a &lt; 1 := lt_trans hab (lt_trans hbc hc)</span></span>
+<span class="source-line" id="L117"><a class="line-no" href="#L117" aria-label="Line 117">117</a><span class="line-code">  have hab1 : a * b &lt; 1 := mul_lt_one_of_nonneg_of_lt_one_right ha1.le hb (lt_trans hbc hc)</span></span>
+<span class="source-line" id="L118"><a class="line-no" href="#L118" aria-label="Line 118">118</a><span class="line-code">  have hac1 : a * c &lt; 1 := mul_lt_one_of_nonneg_of_lt_one_right ha1.le hc0 hc</span></span>
+<span class="source-line" id="L119"><a class="line-no" href="#L119" aria-label="Line 119">119</a><span class="line-code">  have ha2 : 0 &lt; 1 - a ^ 2 := by nlinarith</span></span>
+<span class="source-line" id="L120"><a class="line-no" href="#L120" aria-label="Line 120">120</a><span class="line-code">  apply (div_lt_div_iff₀ (sq_pos_of_pos (sub_pos.mpr hac1))</span></span>
+<span class="source-line" id="L121"><a class="line-no" href="#L121" aria-label="Line 121">121</a><span class="line-code">    (sq_pos_of_pos (sub_pos.mpr hab1))).mpr</span></span>
+<span class="source-line" id="L122"><a class="line-no" href="#L122" aria-label="Line 122">122</a><span class="line-code">  have hid :</span></span>
+<span class="source-line" id="L123"><a class="line-no" href="#L123" aria-label="Line 123">123</a><span class="line-code">      (1 - a ^ 2) * (1 - b ^ 2) * (1 - a * c) ^ 2 -</span></span>
+<span class="source-line" id="L124"><a class="line-no" href="#L124" aria-label="Line 124">124</a><span class="line-code">        (1 - a ^ 2) * (1 - c ^ 2) * (1 - a * b) ^ 2 =</span></span>
+<span class="source-line" id="L125"><a class="line-no" href="#L125" aria-label="Line 125">125</a><span class="line-code">      (1 - a ^ 2) * (c - b) *</span></span>
+<span class="source-line" id="L126"><a class="line-no" href="#L126" aria-label="Line 126">126</a><span class="line-code">        ((b - a) * (1 - a * c) + (c - a) * (1 - a * b)) := by ring</span></span>
+<span class="source-line" id="L127"><a class="line-no" href="#L127" aria-label="Line 127">127</a><span class="line-code">  have hp : 0 &lt; (1 - a ^ 2) * (c - b) *</span></span>
+<span class="source-line" id="L128"><a class="line-no" href="#L128" aria-label="Line 128">128</a><span class="line-code">      ((b - a) * (1 - a * c) + (c - a) * (1 - a * b)) := by</span></span>
+<span class="source-line" id="L129"><a class="line-no" href="#L129" aria-label="Line 129">129</a><span class="line-code">    apply mul_pos (mul_pos ha2 (sub_pos.mpr hbc))</span></span>
+<span class="source-line" id="L130"><a class="line-no" href="#L130" aria-label="Line 130">130</a><span class="line-code">    exact add_pos (mul_pos (sub_pos.mpr hab) (sub_pos.mpr hac1))</span></span>
+<span class="source-line" id="L131"><a class="line-no" href="#L131" aria-label="Line 131">131</a><span class="line-code">      (mul_pos (sub_pos.mpr (lt_trans hab hbc)) (sub_pos.mpr hab1))</span></span>
+<span class="source-line" id="L132"><a class="line-no" href="#L132" aria-label="Line 132">132</a><span class="line-code">  linarith</span></span>
+<span class="source-line" id="L133"><a class="line-no" href="#L133" aria-label="Line 133">133</a><span class="line-code"> </span></span>
+<span class="source-line" id="L134"><a class="line-no" href="#L134" aria-label="Line 134">134</a><span class="line-code">theorem fidelity_strictAnti_right {q x y : ℝ} (hq0 : 0 ≤ q)</span></span>
+<span class="source-line" id="L135"><a class="line-no" href="#L135" aria-label="Line 135">135</a><span class="line-code">    (hqx : q &lt; x) (hxy : x &lt; y) (hy1 : y &lt; 1) :</span></span>
+<span class="source-line" id="L136"><a class="line-no" href="#L136" aria-label="Line 136">136</a><span class="line-code">    fidelity q y &lt; fidelity q x := by</span></span>
+<span class="source-line" id="L137"><a class="line-no" href="#L137" aria-label="Line 137">137</a><span class="line-code">  have hx0 : 0 ≤ x := le_trans hq0 hqx.le</span></span>
+<span class="source-line" id="L138"><a class="line-no" href="#L138" aria-label="Line 138">138</a><span class="line-code">  have hy0 : 0 ≤ y := le_trans hx0 hxy.le</span></span>
+<span class="source-line" id="L139"><a class="line-no" href="#L139" aria-label="Line 139">139</a><span class="line-code">  have hx1 : x &lt; 1 := lt_trans hxy hy1</span></span>
+<span class="source-line" id="L140"><a class="line-no" href="#L140" aria-label="Line 140">140</a><span class="line-code">  have hq1 : q &lt; 1 := lt_trans hqx hx1</span></span>
+<span class="source-line" id="L141"><a class="line-no" href="#L141" aria-label="Line 141">141</a><span class="line-code">  have hs := fidelity_sq_strict_aux (Real.sqrt_nonneg q)</span></span>
+<span class="source-line" id="L142"><a class="line-no" href="#L142" aria-label="Line 142">142</a><span class="line-code">    (Real.sqrt_lt_sqrt hq0 hqx) (Real.sqrt_lt_sqrt hx0 hxy)</span></span>
+<span class="source-line" id="L143"><a class="line-no" href="#L143" aria-label="Line 143">143</a><span class="line-code">    (show Real.sqrt y &lt; 1 by rw [Real.sqrt_lt&#x27; (by norm_num : (0 : ℝ) &lt; 1)]; simpa)</span></span>
+<span class="source-line" id="L144"><a class="line-no" href="#L144" aria-label="Line 144">144</a><span class="line-code">  rw [Real.sq_sqrt hq0, Real.sq_sqrt hx0, Real.sq_sqrt hy0] at hs</span></span>
+<span class="source-line" id="L145"><a class="line-no" href="#L145" aria-label="Line 145">145</a><span class="line-code">  rw [← fidelity_sq hq0 hq1 hy0 hy1, ← fidelity_sq hq0 hq1 hx0 hx1] at hs</span></span>
+<span class="source-line" id="L146"><a class="line-no" href="#L146" aria-label="Line 146">146</a><span class="line-code">  have hp := fidelity_pos hq0 hq1 hy0 hy1</span></span>
+<span class="source-line" id="L147"><a class="line-no" href="#L147" aria-label="Line 147">147</a><span class="line-code">  have hp&#x27; := fidelity_pos hq0 hq1 hx0 hx1</span></span>
+<span class="source-line" id="L148"><a class="line-no" href="#L148" aria-label="Line 148">148</a><span class="line-code">  nlinarith</span></span>
+<span class="source-line" id="L149"><a class="line-no" href="#L149" aria-label="Line 149">149</a><span class="line-code"> </span></span>
+<span class="source-line" id="L150"><a class="line-no" href="#L150" aria-label="Line 150">150</a><span class="line-code">theorem amplified_eq {g q : ℝ} (hg : g ≠ 0) :</span></span>
+<span class="source-line" id="L151"><a class="line-no" href="#L151" aria-label="Line 151">151</a><span class="line-code">    amplified g q = (g - 1 + q) / g := by</span></span>
+<span class="source-line" id="L152"><a class="line-no" href="#L152" aria-label="Line 152">152</a><span class="line-code">  unfold amplified</span></span>
+<span class="source-line" id="L153"><a class="line-no" href="#L153" aria-label="Line 153">153</a><span class="line-code">  field_simp</span></span>
+<span class="source-line" id="L154"><a class="line-no" href="#L154" aria-label="Line 154">154</a><span class="line-code">  ring</span></span>
+<span class="source-line" id="L155"><a class="line-no" href="#L155" aria-label="Line 155">155</a><span class="line-code"> </span></span>
+<span class="source-line" id="L156"><a class="line-no" href="#L156" aria-label="Line 156">156</a><span class="line-code">theorem lt_amplified {g q : ℝ} (hg : 1 &lt; g) (hq : q &lt; 1) :</span></span>
+<span class="source-line" id="L157"><a class="line-no" href="#L157" aria-label="Line 157">157</a><span class="line-code">    q &lt; amplified g q := by</span></span>
+<span class="source-line" id="L158"><a class="line-no" href="#L158" aria-label="Line 158">158</a><span class="line-code">  rw [amplified_eq (by linarith)]</span></span>
+<span class="source-line" id="L159"><a class="line-no" href="#L159" aria-label="Line 159">159</a><span class="line-code">  apply (lt_div_iff₀ (by linarith : 0 &lt; g)).mpr</span></span>
+<span class="source-line" id="L160"><a class="line-no" href="#L160" aria-label="Line 160">160</a><span class="line-code">  nlinarith [mul_pos (by linarith : 0 &lt; g - 1) (by linarith : 0 &lt; 1 - q)]</span></span>
+<span class="source-line" id="L161"><a class="line-no" href="#L161" aria-label="Line 161">161</a><span class="line-code"> </span></span>
+<span class="source-line" id="L162"><a class="line-no" href="#L162" aria-label="Line 162">162</a><span class="line-code">theorem amplified_lt_one {g q : ℝ} (hg : 0 &lt; g) (hq : q &lt; 1) :</span></span>
+<span class="source-line" id="L163"><a class="line-no" href="#L163" aria-label="Line 163">163</a><span class="line-code">    amplified g q &lt; 1 := by</span></span>
+<span class="source-line" id="L164"><a class="line-no" href="#L164" aria-label="Line 164">164</a><span class="line-code">  unfold amplified</span></span>
+<span class="source-line" id="L165"><a class="line-no" href="#L165" aria-label="Line 165">165</a><span class="line-code">  have := div_pos (sub_pos.mpr hq) hg</span></span>
+<span class="source-line" id="L166"><a class="line-no" href="#L166" aria-label="Line 166">166</a><span class="line-code">  linarith</span></span>
+<span class="source-line" id="L167"><a class="line-no" href="#L167" aria-label="Line 167">167</a><span class="line-code"> </span></span>
+<span class="source-line" id="L168"><a class="line-no" href="#L168" aria-label="Line 168">168</a><span class="line-code">theorem amplified_nonneg {g q : ℝ} (hg : 1 &lt; g) (hq0 : 0 ≤ q) (hq1 : q &lt; 1) :</span></span>
+<span class="source-line" id="L169"><a class="line-no" href="#L169" aria-label="Line 169">169</a><span class="line-code">    0 ≤ amplified g q := le_trans hq0 (lt_amplified hg hq1).le</span></span>
+<span class="source-line" id="L170"><a class="line-no" href="#L170" aria-label="Line 170">170</a><span class="line-code"> </span></span>
+<span class="source-line" id="L171"><a class="line-no" href="#L171" aria-label="Line 171">171</a><span class="line-code">theorem pct_denominator_pos {g q : ℝ} (hg : 1 &lt; g) (hq : 0 ≤ q) :</span></span>
+<span class="source-line" id="L172"><a class="line-no" href="#L172" aria-label="Line 172">172</a><span class="line-code">    0 &lt; g + (g - 1) * q :=</span></span>
+<span class="source-line" id="L173"><a class="line-no" href="#L173" aria-label="Line 173">173</a><span class="line-code">  add_pos_of_pos_of_nonneg (by linarith) (mul_nonneg (by linarith) hq)</span></span>
+<span class="source-line" id="L174"><a class="line-no" href="#L174" aria-label="Line 174">174</a><span class="line-code"> </span></span>
+<span class="source-line" id="L175"><a class="line-no" href="#L175" aria-label="Line 175">175</a><span class="line-code">theorem amplified_lt_pct {g q : ℝ} (hg : 1 &lt; g) (hq0 : 0 &lt; q) (hq1 : q &lt; 1) :</span></span>
+<span class="source-line" id="L176"><a class="line-no" href="#L176" aria-label="Line 176">176</a><span class="line-code">    amplified g q &lt; pct g q := by</span></span>
+<span class="source-line" id="L177"><a class="line-no" href="#L177" aria-label="Line 177">177</a><span class="line-code">  rw [amplified_eq (by linarith)]</span></span>
+<span class="source-line" id="L178"><a class="line-no" href="#L178" aria-label="Line 178">178</a><span class="line-code">  unfold pct</span></span>
+<span class="source-line" id="L179"><a class="line-no" href="#L179" aria-label="Line 179">179</a><span class="line-code">  apply (div_lt_div_iff₀ (by linarith : 0 &lt; g) (pct_denominator_pos hg hq0.le)).mpr</span></span>
+<span class="source-line" id="L180"><a class="line-no" href="#L180" aria-label="Line 180">180</a><span class="line-code">  have h := mul_pos (mul_pos (by linarith : 0 &lt; g - 1) hq0) (sub_pos.mpr hq1)</span></span>
+<span class="source-line" id="L181"><a class="line-no" href="#L181" aria-label="Line 181">181</a><span class="line-code">  nlinarith</span></span>
+<span class="source-line" id="L182"><a class="line-no" href="#L182" aria-label="Line 182">182</a><span class="line-code"> </span></span>
+<span class="source-line" id="L183"><a class="line-no" href="#L183" aria-label="Line 183">183</a><span class="line-code">theorem pct_lt_one {g q : ℝ} (hg : 1 &lt; g) (hq0 : 0 ≤ q) (hq1 : q &lt; 1) :</span></span>
+<span class="source-line" id="L184"><a class="line-no" href="#L184" aria-label="Line 184">184</a><span class="line-code">    pct g q &lt; 1 := by</span></span>
+<span class="source-line" id="L185"><a class="line-no" href="#L185" aria-label="Line 185">185</a><span class="line-code">  unfold pct</span></span>
+<span class="source-line" id="L186"><a class="line-no" href="#L186" aria-label="Line 186">186</a><span class="line-code">  rw [div_lt_one (pct_denominator_pos hg hq0)]</span></span>
+<span class="source-line" id="L187"><a class="line-no" href="#L187" aria-label="Line 187">187</a><span class="line-code">  nlinarith</span></span>
+<span class="source-line" id="L188"><a class="line-no" href="#L188" aria-label="Line 188">188</a><span class="line-code"> </span></span>
+<span class="source-line" id="L189"><a class="line-no" href="#L189" aria-label="Line 189">189</a><span class="line-code">theorem amplified_photonMean {g q : ℝ} (hg : 0 &lt; g) (hq : q &lt; 1) :</span></span>
+<span class="source-line" id="L190"><a class="line-no" href="#L190" aria-label="Line 190">190</a><span class="line-code">    photonMean (amplified g q) = g * q / (1 - q) + g - 1 := by</span></span>
+<span class="source-line" id="L191"><a class="line-no" href="#L191" aria-label="Line 191">191</a><span class="line-code">  have hg0 : g ≠ 0 := ne_of_gt hg</span></span>
+<span class="source-line" id="L192"><a class="line-no" href="#L192" aria-label="Line 192">192</a><span class="line-code">  have hq0 : 1 - q ≠ 0 := ne_of_gt (sub_pos.mpr hq)</span></span>
+<span class="source-line" id="L193"><a class="line-no" href="#L193" aria-label="Line 193">193</a><span class="line-code">  unfold photonMean amplified</span></span>
+<span class="source-line" id="L194"><a class="line-no" href="#L194" aria-label="Line 194">194</a><span class="line-code">  field_simp [hg0, hq0]</span></span>
+<span class="source-line" id="L195"><a class="line-no" href="#L195" aria-label="Line 195">195</a><span class="line-code">  ring</span></span>
+<span class="source-line" id="L196"><a class="line-no" href="#L196" aria-label="Line 196">196</a><span class="line-code"> </span></span>
+<span class="source-line" id="L197"><a class="line-no" href="#L197" aria-label="Line 197">197</a><span class="line-code">theorem pct_photonMean {g q : ℝ} (hg : 1 &lt; g) (hq0 : 0 ≤ q) (hq1 : q &lt; 1) :</span></span>
+<span class="source-line" id="L198"><a class="line-no" href="#L198" aria-label="Line 198">198</a><span class="line-code">    photonMean (pct g q) = (g - 1 + g * q) / (1 - q) := by</span></span>
+<span class="source-line" id="L199"><a class="line-no" href="#L199" aria-label="Line 199">199</a><span class="line-code">  have hd := ne_of_gt (pct_denominator_pos hg hq0)</span></span>
+<span class="source-line" id="L200"><a class="line-no" href="#L200" aria-label="Line 200">200</a><span class="line-code">  have hq := ne_of_gt (sub_pos.mpr hq1)</span></span>
+<span class="source-line" id="L201"><a class="line-no" href="#L201" aria-label="Line 201">201</a><span class="line-code">  unfold photonMean</span></span>
+<span class="source-line" id="L202"><a class="line-no" href="#L202" aria-label="Line 202">202</a><span class="line-code">  apply (div_eq_iff (ne_of_gt (sub_pos.mpr (pct_lt_one hg hq0 hq1)))).mpr</span></span>
+<span class="source-line" id="L203"><a class="line-no" href="#L203" aria-label="Line 203">203</a><span class="line-code">  unfold pct</span></span>
+<span class="source-line" id="L204"><a class="line-no" href="#L204" aria-label="Line 204">204</a><span class="line-code">  field_simp [hd, hq]</span></span>
+<span class="source-line" id="L205"><a class="line-no" href="#L205" aria-label="Line 205">205</a><span class="line-code">  ring</span></span>
+<span class="source-line" id="L206"><a class="line-no" href="#L206" aria-label="Line 206">206</a><span class="line-code"> </span></span>
+<span class="source-line" id="L207"><a class="line-no" href="#L207" aria-label="Line 207">207</a><span class="line-code">theorem pct_excess_photonMean {g q : ℝ} (hg : 1 &lt; g) (hq0 : 0 ≤ q) (hq1 : q &lt; 1) :</span></span>
+<span class="source-line" id="L208"><a class="line-no" href="#L208" aria-label="Line 208">208</a><span class="line-code">    photonMean (pct g q) - photonMean (amplified g q) =</span></span>
+<span class="source-line" id="L209"><a class="line-no" href="#L209" aria-label="Line 209">209</a><span class="line-code">      (g - 1) * q / (1 - q) := by</span></span>
+<span class="source-line" id="L210"><a class="line-no" href="#L210" aria-label="Line 210">210</a><span class="line-code">  rw [pct_photonMean hg hq0 hq1, amplified_photonMean (by linarith) hq1]</span></span>
+<span class="source-line" id="L211"><a class="line-no" href="#L211" aria-label="Line 211">211</a><span class="line-code">  field_simp [ne_of_gt (sub_pos.mpr hq1)]</span></span>
+<span class="source-line" id="L212"><a class="line-no" href="#L212" aria-label="Line 212">212</a><span class="line-code">  ring</span></span>
+<span class="source-line" id="L213"><a class="line-no" href="#L213" aria-label="Line 213">213</a><span class="line-code"> </span></span>
+<span class="source-line" id="L214"><a class="line-no" href="#L214" aria-label="Line 214">214</a><span class="line-code">theorem pct_fidelity_lt_amplified {g q : ℝ} (hg : 1 &lt; g) (hq0 : 0 &lt; q)</span></span>
+<span class="source-line" id="L215"><a class="line-no" href="#L215" aria-label="Line 215">215</a><span class="line-code">    (hq1 : q &lt; 1) : fidelity q (pct g q) &lt; fidelity q (amplified g q) :=</span></span>
+<span class="source-line" id="L216"><a class="line-no" href="#L216" aria-label="Line 216">216</a><span class="line-code">  fidelity_strictAnti_right hq0.le (lt_amplified hg hq1)</span></span>
+<span class="source-line" id="L217"><a class="line-no" href="#L217" aria-label="Line 217">217</a><span class="line-code">    (amplified_lt_pct hg hq0 hq1) (pct_lt_one hg hq0.le hq1)</span></span>
+<span class="source-line" id="L218"><a class="line-no" href="#L218" aria-label="Line 218">218</a><span class="line-code"> </span></span>
+<span class="source-line" id="L219"><a class="line-no" href="#L219" aria-label="Line 219">219</a><span class="line-code">/-- The manuscript&#x27;s rationalized one-mode factor `f_γ(q)`. -/</span></span>
+<span class="source-line" id="L220"><a class="line-no" href="#L220" aria-label="Line 220">220</a><span class="line-code">def modeFactor (g q : ℝ) : ℝ :=</span></span>
+<span class="source-line" id="L221"><a class="line-no" href="#L221" aria-label="Line 221">221</a><span class="line-code">  (Real.sqrt g + Real.sqrt (q * (g - 1 + q))) / (g + q)</span></span>
+<span class="source-line" id="L222"><a class="line-no" href="#L222" aria-label="Line 222">222</a><span class="line-code"> </span></span>
+<span class="source-line" id="L223"><a class="line-no" href="#L223" aria-label="Line 223">223</a><span class="line-code">theorem fidelity_amplified_unrationalized {g q : ℝ} (hg : 1 &lt; g)</span></span>
+<span class="source-line" id="L224"><a class="line-no" href="#L224" aria-label="Line 224">224</a><span class="line-code">    (hq0 : 0 ≤ q) (hq1 : q &lt; 1) :</span></span>
+<span class="source-line" id="L225"><a class="line-no" href="#L225" aria-label="Line 225">225</a><span class="line-code">    fidelity q (amplified g q) =</span></span>
+<span class="source-line" id="L226"><a class="line-no" href="#L226" aria-label="Line 226">226</a><span class="line-code">      (1 - q) / (Real.sqrt g - Real.sqrt (q * (g - 1 + q))) := by</span></span>
+<span class="source-line" id="L227"><a class="line-no" href="#L227" aria-label="Line 227">227</a><span class="line-code">  have hg0 : g ≠ 0 := by linarith</span></span>
+<span class="source-line" id="L228"><a class="line-no" href="#L228" aria-label="Line 228">228</a><span class="line-code">  have hs : Real.sqrt g ≠ 0 := ne_of_gt (Real.sqrt_pos.2 (by linarith))</span></span>
+<span class="source-line" id="L229"><a class="line-no" href="#L229" aria-label="Line 229">229</a><span class="line-code">  have ht : 0 ≤ 1 - q := sub_nonneg.mpr hq1.le</span></span>
+<span class="source-line" id="L230"><a class="line-no" href="#L230" aria-label="Line 230">230</a><span class="line-code">  have hn : Real.sqrt ((1 - q) * (1 - amplified g q)) = (1 - q) / Real.sqrt g := by</span></span>
+<span class="source-line" id="L231"><a class="line-no" href="#L231" aria-label="Line 231">231</a><span class="line-code">    have he : (1 - q) * (1 - amplified g q) = (1 - q) ^ 2 / g := by</span></span>
+<span class="source-line" id="L232"><a class="line-no" href="#L232" aria-label="Line 232">232</a><span class="line-code">      unfold amplified</span></span>
+<span class="source-line" id="L233"><a class="line-no" href="#L233" aria-label="Line 233">233</a><span class="line-code">      ring</span></span>
+<span class="source-line" id="L234"><a class="line-no" href="#L234" aria-label="Line 234">234</a><span class="line-code">    rw [he, Real.sqrt_div (sq_nonneg _), Real.sqrt_sq ht]</span></span>
+<span class="source-line" id="L235"><a class="line-no" href="#L235" aria-label="Line 235">235</a><span class="line-code">  have hr : Real.sqrt (q * amplified g q) =</span></span>
+<span class="source-line" id="L236"><a class="line-no" href="#L236" aria-label="Line 236">236</a><span class="line-code">      Real.sqrt (q * (g - 1 + q)) / Real.sqrt g := by</span></span>
+<span class="source-line" id="L237"><a class="line-no" href="#L237" aria-label="Line 237">237</a><span class="line-code">    rw [amplified_eq hg0, ← mul_div_assoc,</span></span>
+<span class="source-line" id="L238"><a class="line-no" href="#L238" aria-label="Line 238">238</a><span class="line-code">      Real.sqrt_div (mul_nonneg hq0 (by linarith))]</span></span>
+<span class="source-line" id="L239"><a class="line-no" href="#L239" aria-label="Line 239">239</a><span class="line-code">  unfold fidelity</span></span>
+<span class="source-line" id="L240"><a class="line-no" href="#L240" aria-label="Line 240">240</a><span class="line-code">  rw [hn, hr]</span></span>
+<span class="source-line" id="L241"><a class="line-no" href="#L241" aria-label="Line 241">241</a><span class="line-code">  field_simp [hs]</span></span>
+<span class="source-line" id="L242"><a class="line-no" href="#L242" aria-label="Line 242">242</a><span class="line-code"> </span></span>
+<span class="source-line" id="L243"><a class="line-no" href="#L243" aria-label="Line 243">243</a><span class="line-code">theorem fidelity_amplified_eq_modeFactor {g q : ℝ} (hg : 1 &lt; g)</span></span>
+<span class="source-line" id="L244"><a class="line-no" href="#L244" aria-label="Line 244">244</a><span class="line-code">    (hq0 : 0 ≤ q) (hq1 : q &lt; 1) :</span></span>
+<span class="source-line" id="L245"><a class="line-no" href="#L245" aria-label="Line 245">245</a><span class="line-code">    fidelity q (amplified g q) = modeFactor g q := by</span></span>
+<span class="source-line" id="L246"><a class="line-no" href="#L246" aria-label="Line 246">246</a><span class="line-code">  have hg0 : 0 &lt; g := by linarith</span></span>
+<span class="source-line" id="L247"><a class="line-no" href="#L247" aria-label="Line 247">247</a><span class="line-code">  have hsum : 0 &lt; g + q := by linarith</span></span>
+<span class="source-line" id="L248"><a class="line-no" href="#L248" aria-label="Line 248">248</a><span class="line-code">  have hrad : 0 ≤ q * (g - 1 + q) := mul_nonneg hq0 (by linarith)</span></span>
+<span class="source-line" id="L249"><a class="line-no" href="#L249" aria-label="Line 249">249</a><span class="line-code">  have hradlt : q * (g - 1 + q) &lt; g := by</span></span>
+<span class="source-line" id="L250"><a class="line-no" href="#L250" aria-label="Line 250">250</a><span class="line-code">    have hp := mul_pos (sub_pos.mpr hq1) hsum</span></span>
+<span class="source-line" id="L251"><a class="line-no" href="#L251" aria-label="Line 251">251</a><span class="line-code">    nlinarith</span></span>
+<span class="source-line" id="L252"><a class="line-no" href="#L252" aria-label="Line 252">252</a><span class="line-code">  have hd : 0 &lt; Real.sqrt g - Real.sqrt (q * (g - 1 + q)) :=</span></span>
+<span class="source-line" id="L253"><a class="line-no" href="#L253" aria-label="Line 253">253</a><span class="line-code">    sub_pos.mpr (Real.sqrt_lt_sqrt hrad hradlt)</span></span>
+<span class="source-line" id="L254"><a class="line-no" href="#L254" aria-label="Line 254">254</a><span class="line-code">  rw [fidelity_amplified_unrationalized hg hq0 hq1]</span></span>
+<span class="source-line" id="L255"><a class="line-no" href="#L255" aria-label="Line 255">255</a><span class="line-code">  unfold modeFactor</span></span>
+<span class="source-line" id="L256"><a class="line-no" href="#L256" aria-label="Line 256">256</a><span class="line-code">  apply (div_eq_div_iff (ne_of_gt hd) (ne_of_gt hsum)).mpr</span></span>
+<span class="source-line" id="L257"><a class="line-no" href="#L257" aria-label="Line 257">257</a><span class="line-code">  nlinarith [Real.sq_sqrt hg0.le, Real.sq_sqrt hrad]</span></span>
+<span class="source-line" id="L258"><a class="line-no" href="#L258" aria-label="Line 258">258</a><span class="line-code"> </span></span>
+<span class="source-line" id="L259"><a class="line-no" href="#L259" aria-label="Line 259">259</a><span class="line-code">theorem modeFactor_pos {g q : ℝ} (hg : 1 &lt; g) (hq0 : 0 ≤ q) (hq1 : q &lt; 1) :</span></span>
+<span class="source-line" id="L260"><a class="line-no" href="#L260" aria-label="Line 260">260</a><span class="line-code">    0 &lt; modeFactor g q := by</span></span>
+<span class="source-line" id="L261"><a class="line-no" href="#L261" aria-label="Line 261">261</a><span class="line-code">  rw [← fidelity_amplified_eq_modeFactor hg hq0 hq1]</span></span>
+<span class="source-line" id="L262"><a class="line-no" href="#L262" aria-label="Line 262">262</a><span class="line-code">  exact fidelity_pos hq0 hq1 (amplified_nonneg hg hq0 hq1)</span></span>
+<span class="source-line" id="L263"><a class="line-no" href="#L263" aria-label="Line 263">263</a><span class="line-code">    (amplified_lt_one (by linarith) hq1)</span></span>
+<span class="source-line" id="L264"><a class="line-no" href="#L264" aria-label="Line 264">264</a><span class="line-code"> </span></span>
+<span class="source-line" id="L265"><a class="line-no" href="#L265" aria-label="Line 265">265</a><span class="line-code">theorem modeFactor_le_one {g q : ℝ} (hg : 1 &lt; g) (hq0 : 0 ≤ q) (hq1 : q &lt; 1) :</span></span>
+<span class="source-line" id="L266"><a class="line-no" href="#L266" aria-label="Line 266">266</a><span class="line-code">    modeFactor g q ≤ 1 := by</span></span>
+<span class="source-line" id="L267"><a class="line-no" href="#L267" aria-label="Line 267">267</a><span class="line-code">  rw [← fidelity_amplified_eq_modeFactor hg hq0 hq1]</span></span>
+<span class="source-line" id="L268"><a class="line-no" href="#L268" aria-label="Line 268">268</a><span class="line-code">  exact fidelity_le_one hq0 hq1 (amplified_nonneg hg hq0 hq1)</span></span>
+<span class="source-line" id="L269"><a class="line-no" href="#L269" aria-label="Line 269">269</a><span class="line-code">    (amplified_lt_one (by linarith) hq1)</span></span>
+<span class="source-line" id="L270"><a class="line-no" href="#L270" aria-label="Line 270">270</a><span class="line-code"> </span></span>
+<span class="source-line" id="L271"><a class="line-no" href="#L271" aria-label="Line 271">271</a><span class="line-code">theorem modeFactor_continuousAt {g q : ℝ} (hden : g + q ≠ 0) :</span></span>
+<span class="source-line" id="L272"><a class="line-no" href="#L272" aria-label="Line 272">272</a><span class="line-code">    ContinuousAt (fun z : ℝ × ℝ =&gt; modeFactor z.1 z.2) (g, q) := by</span></span>
+<span class="source-line" id="L273"><a class="line-no" href="#L273" aria-label="Line 273">273</a><span class="line-code">  unfold modeFactor</span></span>
+<span class="source-line" id="L274"><a class="line-no" href="#L274" aria-label="Line 274">274</a><span class="line-code">  apply ContinuousAt.div</span></span>
+<span class="source-line" id="L275"><a class="line-no" href="#L275" aria-label="Line 275">275</a><span class="line-code">  · fun_prop</span></span>
+<span class="source-line" id="L276"><a class="line-no" href="#L276" aria-label="Line 276">276</a><span class="line-code">  · fun_prop</span></span>
+<span class="source-line" id="L277"><a class="line-no" href="#L277" aria-label="Line 277">277</a><span class="line-code">  · exact hden</span></span>
+<span class="source-line" id="L278"><a class="line-no" href="#L278" aria-label="Line 278">278</a><span class="line-code"> </span></span>
+<span class="source-line" id="L279"><a class="line-no" href="#L279" aria-label="Line 279">279</a><span class="line-code">theorem pct_fidelity_lt_modeFactor {g q : ℝ} (hg : 1 &lt; g) (hq0 : 0 &lt; q)</span></span>
+<span class="source-line" id="L280"><a class="line-no" href="#L280" aria-label="Line 280">280</a><span class="line-code">    (hq1 : q &lt; 1) : fidelity q (pct g q) &lt; modeFactor g q := by</span></span>
+<span class="source-line" id="L281"><a class="line-no" href="#L281" aria-label="Line 281">281</a><span class="line-code">  rw [← fidelity_amplified_eq_modeFactor hg hq0.le hq1]</span></span>
+<span class="source-line" id="L282"><a class="line-no" href="#L282" aria-label="Line 282">282</a><span class="line-code">  exact pct_fidelity_lt_amplified hg hq0 hq1</span></span>
+<span class="source-line" id="L283"><a class="line-no" href="#L283" aria-label="Line 283">283</a><span class="line-code"> </span></span>
+<span class="source-line" id="L284"><a class="line-no" href="#L284" aria-label="Line 284">284</a><span class="line-code">/-- Base of the equal-mean Gaussian Hellinger affinity. -/</span></span>
+<span class="source-line" id="L285"><a class="line-no" href="#L285" aria-label="Line 285">285</a><span class="line-code">def classicalBase (c : ℝ) : ℝ := 2 * Real.sqrt c / (1 + c)</span></span>
+<span class="source-line" id="L286"><a class="line-no" href="#L286" aria-label="Line 286">286</a><span class="line-code"> </span></span>
+<span class="source-line" id="L287"><a class="line-no" href="#L287" aria-label="Line 287">287</a><span class="line-code">theorem classicalBase_pos {c : ℝ} (hc : 0 &lt; c) : 0 &lt; classicalBase c := by</span></span>
+<span class="source-line" id="L288"><a class="line-no" href="#L288" aria-label="Line 288">288</a><span class="line-code">  unfold classicalBase</span></span>
+<span class="source-line" id="L289"><a class="line-no" href="#L289" aria-label="Line 289">289</a><span class="line-code">  positivity</span></span>
+<span class="source-line" id="L290"><a class="line-no" href="#L290" aria-label="Line 290">290</a><span class="line-code"> </span></span>
+<span class="source-line" id="L291"><a class="line-no" href="#L291" aria-label="Line 291">291</a><span class="line-code">theorem classicalBase_le_one {c : ℝ} (hc : 0 ≤ c) : classicalBase c ≤ 1 := by</span></span>
+<span class="source-line" id="L292"><a class="line-no" href="#L292" aria-label="Line 292">292</a><span class="line-code">  unfold classicalBase</span></span>
+<span class="source-line" id="L293"><a class="line-no" href="#L293" aria-label="Line 293">293</a><span class="line-code">  apply (div_le_one (by linarith : 0 &lt; 1 + c)).mpr</span></span>
+<span class="source-line" id="L294"><a class="line-no" href="#L294" aria-label="Line 294">294</a><span class="line-code">  nlinarith [Real.sq_sqrt hc, sq_nonneg (Real.sqrt c - 1)]</span></span>
+<span class="source-line" id="L295"><a class="line-no" href="#L295" aria-label="Line 295">295</a><span class="line-code"> </span></span>
+<span class="source-line" id="L296"><a class="line-no" href="#L296" aria-label="Line 296">296</a><span class="line-code">theorem classicalBase_lt_one {c : ℝ} (hc : 1 &lt; c) : classicalBase c &lt; 1 := by</span></span>
+<span class="source-line" id="L297"><a class="line-no" href="#L297" aria-label="Line 297">297</a><span class="line-code">  have hc0 : 0 ≤ c := by linarith</span></span>
+<span class="source-line" id="L298"><a class="line-no" href="#L298" aria-label="Line 298">298</a><span class="line-code">  have hs : 1 &lt; Real.sqrt c := by</span></span>
+<span class="source-line" id="L299"><a class="line-no" href="#L299" aria-label="Line 299">299</a><span class="line-code">    simpa using Real.sqrt_lt_sqrt (by norm_num : (0 : ℝ) ≤ 1) hc</span></span>
+<span class="source-line" id="L300"><a class="line-no" href="#L300" aria-label="Line 300">300</a><span class="line-code">  unfold classicalBase</span></span>
+<span class="source-line" id="L301"><a class="line-no" href="#L301" aria-label="Line 301">301</a><span class="line-code">  apply (div_lt_one (by linarith : 0 &lt; 1 + c)).mpr</span></span>
+<span class="source-line" id="L302"><a class="line-no" href="#L302" aria-label="Line 302">302</a><span class="line-code">  nlinarith [Real.sq_sqrt hc0, sq_pos_of_pos (sub_pos.mpr hs)]</span></span>
+<span class="source-line" id="L303"><a class="line-no" href="#L303" aria-label="Line 303">303</a><span class="line-code"> </span></span>
+<span class="source-line" id="L304"><a class="line-no" href="#L304" aria-label="Line 304">304</a><span class="line-code">theorem classicalBase_strictAnti {x y : ℝ} (hx : 1 &lt; x) (hxy : x &lt; y) :</span></span>
+<span class="source-line" id="L305"><a class="line-no" href="#L305" aria-label="Line 305">305</a><span class="line-code">    classicalBase y &lt; classicalBase x := by</span></span>
+<span class="source-line" id="L306"><a class="line-no" href="#L306" aria-label="Line 306">306</a><span class="line-code">  have hx0 : 0 ≤ x := by linarith</span></span>
+<span class="source-line" id="L307"><a class="line-no" href="#L307" aria-label="Line 307">307</a><span class="line-code">  have hy0 : 0 ≤ y := by linarith</span></span>
+<span class="source-line" id="L308"><a class="line-no" href="#L308" aria-label="Line 308">308</a><span class="line-code">  have ha : 1 &lt; Real.sqrt x := by</span></span>
+<span class="source-line" id="L309"><a class="line-no" href="#L309" aria-label="Line 309">309</a><span class="line-code">    simpa using Real.sqrt_lt_sqrt (by norm_num : (0 : ℝ) ≤ 1) hx</span></span>
+<span class="source-line" id="L310"><a class="line-no" href="#L310" aria-label="Line 310">310</a><span class="line-code">  have hab : Real.sqrt x &lt; Real.sqrt y := Real.sqrt_lt_sqrt hx0 hxy</span></span>
+<span class="source-line" id="L311"><a class="line-no" href="#L311" aria-label="Line 311">311</a><span class="line-code">  have hp : 0 &lt; (Real.sqrt y - Real.sqrt x) * (Real.sqrt x * Real.sqrt y - 1) := by</span></span>
+<span class="source-line" id="L312"><a class="line-no" href="#L312" aria-label="Line 312">312</a><span class="line-code">    apply mul_pos (sub_pos.mpr hab)</span></span>
+<span class="source-line" id="L313"><a class="line-no" href="#L313" aria-label="Line 313">313</a><span class="line-code">    nlinarith</span></span>
+<span class="source-line" id="L314"><a class="line-no" href="#L314" aria-label="Line 314">314</a><span class="line-code">  unfold classicalBase</span></span>
+<span class="source-line" id="L315"><a class="line-no" href="#L315" aria-label="Line 315">315</a><span class="line-code">  apply (div_lt_div_iff₀ (by linarith : 0 &lt; 1 + y) (by linarith : 0 &lt; 1 + x)).mpr</span></span>
+<span class="source-line" id="L316"><a class="line-no" href="#L316" aria-label="Line 316">316</a><span class="line-code">  nlinarith [Real.sq_sqrt hx0, Real.sq_sqrt hy0]</span></span>
+<span class="source-line" id="L317"><a class="line-no" href="#L317" aria-label="Line 317">317</a><span class="line-code"> </span></span>
+<span class="source-line" id="L318"><a class="line-no" href="#L318" aria-label="Line 318">318</a><span class="line-code">theorem pct_classicalBase_lt {g : ℝ} (hg : 1 &lt; g) :</span></span>
+<span class="source-line" id="L319"><a class="line-no" href="#L319" aria-label="Line 319">319</a><span class="line-code">    classicalBase (2 * g - 1) &lt; classicalBase g :=</span></span>
+<span class="source-line" id="L320"><a class="line-no" href="#L320" aria-label="Line 320">320</a><span class="line-code">  classicalBase_strictAnti hg (by linarith)</span></span>
+<span class="source-line" id="L321"><a class="line-no" href="#L321" aria-label="Line 321">321</a><span class="line-code"> </span></span>
+<span class="source-line" id="L322"><a class="line-no" href="#L322" aria-label="Line 322">322</a><span class="line-code">/-- Eigenvalues of the diagonal fidelity witness. -/</span></span>
+<span class="source-line" id="L323"><a class="line-no" href="#L323" aria-label="Line 323">323</a><span class="line-code">def witness (q x : ℝ) (n : ℕ) : ℝ :=</span></span>
+<span class="source-line" id="L324"><a class="line-no" href="#L324" aria-label="Line 324">324</a><span class="line-code">  Real.sqrt (geometric q n) / Real.sqrt (geometric x n)</span></span>
+<span class="source-line" id="L325"><a class="line-no" href="#L325" aria-label="Line 325">325</a><span class="line-code"> </span></span>
+<span class="source-line" id="L326"><a class="line-no" href="#L326" aria-label="Line 326">326</a><span class="line-code">theorem geometric_pos {q : ℝ} (hq0 : 0 &lt; q) (hq1 : q &lt; 1) (n : ℕ) :</span></span>
+<span class="source-line" id="L327"><a class="line-no" href="#L327" aria-label="Line 327">327</a><span class="line-code">    0 &lt; geometric q n := mul_pos (sub_pos.mpr hq1) (pow_pos hq0 n)</span></span>
+<span class="source-line" id="L328"><a class="line-no" href="#L328" aria-label="Line 328">328</a><span class="line-code"> </span></span>
+<span class="source-line" id="L329"><a class="line-no" href="#L329" aria-label="Line 329">329</a><span class="line-code">theorem witness_pos {q x : ℝ} (hq0 : 0 &lt; q) (hq1 : q &lt; 1)</span></span>
+<span class="source-line" id="L330"><a class="line-no" href="#L330" aria-label="Line 330">330</a><span class="line-code">    (hx0 : 0 &lt; x) (hx1 : x &lt; 1) (n : ℕ) : 0 &lt; witness q x n :=</span></span>
+<span class="source-line" id="L331"><a class="line-no" href="#L331" aria-label="Line 331">331</a><span class="line-code">  div_pos (Real.sqrt_pos.2 (geometric_pos hq0 hq1 n))</span></span>
+<span class="source-line" id="L332"><a class="line-no" href="#L332" aria-label="Line 332">332</a><span class="line-code">    (Real.sqrt_pos.2 (geometric_pos hx0 hx1 n))</span></span>
+<span class="source-line" id="L333"><a class="line-no" href="#L333" aria-label="Line 333">333</a><span class="line-code"> </span></span>
+<span class="source-line" id="L334"><a class="line-no" href="#L334" aria-label="Line 334">334</a><span class="line-code">theorem witness_closed {q x : ℝ} (hq0 : 0 ≤ q) (hq1 : q &lt; 1)</span></span>
+<span class="source-line" id="L335"><a class="line-no" href="#L335" aria-label="Line 335">335</a><span class="line-code">    (hx0 : 0 ≤ x) (hx1 : x &lt; 1) (n : ℕ) :</span></span>
+<span class="source-line" id="L336"><a class="line-no" href="#L336" aria-label="Line 336">336</a><span class="line-code">    witness q x n = Real.sqrt ((1 - q) / (1 - x)) * Real.sqrt (q / x) ^ n := by</span></span>
+<span class="source-line" id="L337"><a class="line-no" href="#L337" aria-label="Line 337">337</a><span class="line-code">  unfold witness geometric</span></span>
+<span class="source-line" id="L338"><a class="line-no" href="#L338" aria-label="Line 338">338</a><span class="line-code">  rw [Real.sqrt_mul (sub_nonneg.mpr hq1.le), Real.sqrt_mul (sub_nonneg.mpr hx1.le),</span></span>
+<span class="source-line" id="L339"><a class="line-no" href="#L339" aria-label="Line 339">339</a><span class="line-code">    sqrt_nat_pow hq0, sqrt_nat_pow hx0, Real.sqrt_div (sub_nonneg.mpr hq1.le),</span></span>
+<span class="source-line" id="L340"><a class="line-no" href="#L340" aria-label="Line 340">340</a><span class="line-code">    Real.sqrt_div hq0, div_pow]</span></span>
+<span class="source-line" id="L341"><a class="line-no" href="#L341" aria-label="Line 341">341</a><span class="line-code">  ring</span></span>
+<span class="source-line" id="L342"><a class="line-no" href="#L342" aria-label="Line 342">342</a><span class="line-code"> </span></span>
+<span class="source-line" id="L343"><a class="line-no" href="#L343" aria-label="Line 343">343</a><span class="line-code">theorem witness_strictAnti {q x : ℝ} (hq0 : 0 &lt; q) (hqx : q &lt; x) (hx1 : x &lt; 1) :</span></span>
+<span class="source-line" id="L344"><a class="line-no" href="#L344" aria-label="Line 344">344</a><span class="line-code">    StrictAnti (witness q x) := by</span></span>
+<span class="source-line" id="L345"><a class="line-no" href="#L345" aria-label="Line 345">345</a><span class="line-code">  have hx0 : 0 &lt; x := lt_trans hq0 hqx</span></span>
+<span class="source-line" id="L346"><a class="line-no" href="#L346" aria-label="Line 346">346</a><span class="line-code">  have hq1 : q &lt; 1 := lt_trans hqx hx1</span></span>
+<span class="source-line" id="L347"><a class="line-no" href="#L347" aria-label="Line 347">347</a><span class="line-code">  have hr0 : 0 &lt; Real.sqrt (q / x) := Real.sqrt_pos.2 (div_pos hq0 hx0)</span></span>
+<span class="source-line" id="L348"><a class="line-no" href="#L348" aria-label="Line 348">348</a><span class="line-code">  have hr1 : Real.sqrt (q / x) &lt; 1 := by</span></span>
+<span class="source-line" id="L349"><a class="line-no" href="#L349" aria-label="Line 349">349</a><span class="line-code">    rw [Real.sqrt_lt&#x27; (by norm_num : (0 : ℝ) &lt; 1)]</span></span>
+<span class="source-line" id="L350"><a class="line-no" href="#L350" aria-label="Line 350">350</a><span class="line-code">    simpa using (div_lt_one hx0).mpr hqx</span></span>
+<span class="source-line" id="L351"><a class="line-no" href="#L351" aria-label="Line 351">351</a><span class="line-code">  intro m n hmn</span></span>
+<span class="source-line" id="L352"><a class="line-no" href="#L352" aria-label="Line 352">352</a><span class="line-code">  rw [witness_closed hq0.le hq1 hx0.le hx1, witness_closed hq0.le hq1 hx0.le hx1]</span></span>
+<span class="source-line" id="L353"><a class="line-no" href="#L353" aria-label="Line 353">353</a><span class="line-code">  apply mul_lt_mul_of_pos_left (pow_right_strictAnti₀ hr0 hr1 hmn)</span></span>
+<span class="source-line" id="L354"><a class="line-no" href="#L354" aria-label="Line 354">354</a><span class="line-code">  exact Real.sqrt_pos.2 (div_pos (sub_pos.mpr hq1) (sub_pos.mpr hx1))</span></span>
+<span class="source-line" id="L355"><a class="line-no" href="#L355" aria-label="Line 355">355</a><span class="line-code"> </span></span>
+<span class="source-line" id="L356"><a class="line-no" href="#L356" aria-label="Line 356">356</a><span class="line-code">theorem witness_bounded {q x : ℝ} (hq0 : 0 &lt; q) (hqx : q &lt; x) (hx1 : x &lt; 1)</span></span>
+<span class="source-line" id="L357"><a class="line-no" href="#L357" aria-label="Line 357">357</a><span class="line-code">    (n : ℕ) : witness q x n ≤ Real.sqrt ((1 - q) / (1 - x)) := by</span></span>
+<span class="source-line" id="L358"><a class="line-no" href="#L358" aria-label="Line 358">358</a><span class="line-code">  have h := (witness_strictAnti hq0 hqx hx1).antitone (Nat.zero_le n)</span></span>
+<span class="source-line" id="L359"><a class="line-no" href="#L359" aria-label="Line 359">359</a><span class="line-code">  simpa [witness_closed hq0.le (lt_trans hqx hx1) (lt_trans hq0 hqx).le hx1] using h</span></span>
+<span class="source-line" id="L360"><a class="line-no" href="#L360" aria-label="Line 360">360</a><span class="line-code"> </span></span>
+<span class="source-line" id="L361"><a class="line-no" href="#L361" aria-label="Line 361">361</a><span class="line-code">theorem witness_tendsto_zero {q x : ℝ} (hq0 : 0 &lt; q) (hqx : q &lt; x) (hx1 : x &lt; 1) :</span></span>
+<span class="source-line" id="L362"><a class="line-no" href="#L362" aria-label="Line 362">362</a><span class="line-code">    Filter.Tendsto (witness q x) Filter.atTop (nhds 0) := by</span></span>
+<span class="source-line" id="L363"><a class="line-no" href="#L363" aria-label="Line 363">363</a><span class="line-code">  have hx0 : 0 &lt; x := lt_trans hq0 hqx</span></span>
+<span class="source-line" id="L364"><a class="line-no" href="#L364" aria-label="Line 364">364</a><span class="line-code">  have hq1 : q &lt; 1 := lt_trans hqx hx1</span></span>
+<span class="source-line" id="L365"><a class="line-no" href="#L365" aria-label="Line 365">365</a><span class="line-code">  have hr1 : Real.sqrt (q / x) &lt; 1 := by</span></span>
+<span class="source-line" id="L366"><a class="line-no" href="#L366" aria-label="Line 366">366</a><span class="line-code">    rw [Real.sqrt_lt&#x27; (by norm_num : (0 : ℝ) &lt; 1)]</span></span>
+<span class="source-line" id="L367"><a class="line-no" href="#L367" aria-label="Line 367">367</a><span class="line-code">    simpa using (div_lt_one hx0).mpr hqx</span></span>
+<span class="source-line" id="L368"><a class="line-no" href="#L368" aria-label="Line 368">368</a><span class="line-code">  have he : witness q x =</span></span>
+<span class="source-line" id="L369"><a class="line-no" href="#L369" aria-label="Line 369">369</a><span class="line-code">      fun n =&gt; Real.sqrt ((1 - q) / (1 - x)) * Real.sqrt (q / x) ^ n := by</span></span>
+<span class="source-line" id="L370"><a class="line-no" href="#L370" aria-label="Line 370">370</a><span class="line-code">    funext n</span></span>
+<span class="source-line" id="L371"><a class="line-no" href="#L371" aria-label="Line 371">371</a><span class="line-code">    exact witness_closed hq0.le hq1 hx0.le hx1 n</span></span>
+<span class="source-line" id="L372"><a class="line-no" href="#L372" aria-label="Line 372">372</a><span class="line-code">  rw [he]</span></span>
+<span class="source-line" id="L373"><a class="line-no" href="#L373" aria-label="Line 373">373</a><span class="line-code">  simpa using (tendsto_pow_atTop_nhds_zero_of_lt_one (Real.sqrt_nonneg (q / x)) hr1).const_mul</span></span>
+<span class="source-line" id="L374"><a class="line-no" href="#L374" aria-label="Line 374">374</a><span class="line-code">    (Real.sqrt ((1 - q) / (1 - x)))</span></span>
+<span class="source-line" id="L375"><a class="line-no" href="#L375" aria-label="Line 375">375</a><span class="line-code"> </span></span>
+<span class="source-line" id="L376"><a class="line-no" href="#L376" aria-label="Line 376">376</a><span class="line-code">theorem witness_weighted_term {q x : ℝ} (hq0 : 0 ≤ q) (hq1 : q &lt; 1)</span></span>
+<span class="source-line" id="L377"><a class="line-no" href="#L377" aria-label="Line 377">377</a><span class="line-code">    (hx0 : 0 &lt; x) (hx1 : x &lt; 1) (n : ℕ) :</span></span>
+<span class="source-line" id="L378"><a class="line-no" href="#L378" aria-label="Line 378">378</a><span class="line-code">    geometric x n * witness q x n = Real.sqrt (geometric q n * geometric x n) := by</span></span>
+<span class="source-line" id="L379"><a class="line-no" href="#L379" aria-label="Line 379">379</a><span class="line-code">  have hp := geometric_pos hx0 hx1 n</span></span>
+<span class="source-line" id="L380"><a class="line-no" href="#L380" aria-label="Line 380">380</a><span class="line-code">  have hs : Real.sqrt (geometric x n) ≠ 0 := ne_of_gt (Real.sqrt_pos.2 hp)</span></span>
+<span class="source-line" id="L381"><a class="line-no" href="#L381" aria-label="Line 381">381</a><span class="line-code">  unfold witness</span></span>
+<span class="source-line" id="L382"><a class="line-no" href="#L382" aria-label="Line 382">382</a><span class="line-code">  rw [Real.sqrt_mul (geometric_nonneg hq0 hq1.le n)]</span></span>
+<span class="source-line" id="L383"><a class="line-no" href="#L383" aria-label="Line 383">383</a><span class="line-code">  rw [← mul_div_assoc]</span></span>
+<span class="source-line" id="L384"><a class="line-no" href="#L384" aria-label="Line 384">384</a><span class="line-code">  apply (div_eq_iff hs).mpr</span></span>
+<span class="source-line" id="L385"><a class="line-no" href="#L385" aria-label="Line 385">385</a><span class="line-code">  calc</span></span>
+<span class="source-line" id="L386"><a class="line-no" href="#L386" aria-label="Line 386">386</a><span class="line-code">    geometric x n * Real.sqrt (geometric q n) =</span></span>
+<span class="source-line" id="L387"><a class="line-no" href="#L387" aria-label="Line 387">387</a><span class="line-code">        Real.sqrt (geometric x n) ^ 2 * Real.sqrt (geometric q n) := by</span></span>
+<span class="source-line" id="L388"><a class="line-no" href="#L388" aria-label="Line 388">388</a><span class="line-code">      rw [Real.sq_sqrt hp.le]</span></span>
+<span class="source-line" id="L389"><a class="line-no" href="#L389" aria-label="Line 389">389</a><span class="line-code">    _ = _ := by ring</span></span>
+<span class="source-line" id="L390"><a class="line-no" href="#L390" aria-label="Line 390">390</a><span class="line-code"> </span></span>
+<span class="source-line" id="L391"><a class="line-no" href="#L391" aria-label="Line 391">391</a><span class="line-code">theorem witness_inverse_term {q x : ℝ} (hq0 : 0 &lt; q) (hq1 : q &lt; 1)</span></span>
+<span class="source-line" id="L392"><a class="line-no" href="#L392" aria-label="Line 392">392</a><span class="line-code">    (_hx0 : 0 &lt; x) (_hx1 : x &lt; 1) (n : ℕ) :</span></span>
+<span class="source-line" id="L393"><a class="line-no" href="#L393" aria-label="Line 393">393</a><span class="line-code">    geometric q n / witness q x n = Real.sqrt (geometric q n * geometric x n) := by</span></span>
+<span class="source-line" id="L394"><a class="line-no" href="#L394" aria-label="Line 394">394</a><span class="line-code">  have hp := geometric_pos hq0 hq1 n</span></span>
+<span class="source-line" id="L395"><a class="line-no" href="#L395" aria-label="Line 395">395</a><span class="line-code">  have hs : Real.sqrt (geometric q n) ≠ 0 := ne_of_gt (Real.sqrt_pos.2 hp)</span></span>
+<span class="source-line" id="L396"><a class="line-no" href="#L396" aria-label="Line 396">396</a><span class="line-code">  unfold witness</span></span>
+<span class="source-line" id="L397"><a class="line-no" href="#L397" aria-label="Line 397">397</a><span class="line-code">  rw [Real.sqrt_mul hp.le, div_div_eq_mul_div]</span></span>
+<span class="source-line" id="L398"><a class="line-no" href="#L398" aria-label="Line 398">398</a><span class="line-code">  apply (div_eq_iff hs).mpr</span></span>
+<span class="source-line" id="L399"><a class="line-no" href="#L399" aria-label="Line 399">399</a><span class="line-code">  calc</span></span>
+<span class="source-line" id="L400"><a class="line-no" href="#L400" aria-label="Line 400">400</a><span class="line-code">    geometric q n * Real.sqrt (geometric x n) =</span></span>
+<span class="source-line" id="L401"><a class="line-no" href="#L401" aria-label="Line 401">401</a><span class="line-code">        Real.sqrt (geometric q n) ^ 2 * Real.sqrt (geometric x n) := by</span></span>
+<span class="source-line" id="L402"><a class="line-no" href="#L402" aria-label="Line 402">402</a><span class="line-code">      rw [Real.sq_sqrt hp.le]</span></span>
+<span class="source-line" id="L403"><a class="line-no" href="#L403" aria-label="Line 403">403</a><span class="line-code">    _ = _ := by ring</span></span>
+<span class="source-line" id="L404"><a class="line-no" href="#L404" aria-label="Line 404">404</a><span class="line-code"> </span></span>
+<span class="source-line" id="L405"><a class="line-no" href="#L405" aria-label="Line 405">405</a><span class="line-code">theorem witness_moment_hasSum {q x : ℝ} (hq0 : 0 &lt; q) (hq1 : q &lt; 1)</span></span>
+<span class="source-line" id="L406"><a class="line-no" href="#L406" aria-label="Line 406">406</a><span class="line-code">    (hx0 : 0 &lt; x) (hx1 : x &lt; 1) :</span></span>
+<span class="source-line" id="L407"><a class="line-no" href="#L407" aria-label="Line 407">407</a><span class="line-code">    HasSum (fun n =&gt; geometric x n * witness q x n) (fidelity q x) := by</span></span>
+<span class="source-line" id="L408"><a class="line-no" href="#L408" aria-label="Line 408">408</a><span class="line-code">  simp_rw [witness_weighted_term hq0.le hq1 hx0 hx1]</span></span>
+<span class="source-line" id="L409"><a class="line-no" href="#L409" aria-label="Line 409">409</a><span class="line-code">  exact affinity_hasSum hq0.le hq1 hx0.le hx1</span></span>
+<span class="source-line" id="L410"><a class="line-no" href="#L410" aria-label="Line 410">410</a><span class="line-code"> </span></span>
+<span class="source-line" id="L411"><a class="line-no" href="#L411" aria-label="Line 411">411</a><span class="line-code">theorem witness_inverse_moment_hasSum {q x : ℝ} (hq0 : 0 &lt; q) (hq1 : q &lt; 1)</span></span>
+<span class="source-line" id="L412"><a class="line-no" href="#L412" aria-label="Line 412">412</a><span class="line-code">    (hx0 : 0 &lt; x) (hx1 : x &lt; 1) :</span></span>
+<span class="source-line" id="L413"><a class="line-no" href="#L413" aria-label="Line 413">413</a><span class="line-code">    HasSum (fun n =&gt; geometric q n / witness q x n) (fidelity q x) := by</span></span>
+<span class="source-line" id="L414"><a class="line-no" href="#L414" aria-label="Line 414">414</a><span class="line-code">  simp_rw [witness_inverse_term hq0 hq1 hx0 hx1]</span></span>
+<span class="source-line" id="L415"><a class="line-no" href="#L415" aria-label="Line 415">415</a><span class="line-code">  exact affinity_hasSum hq0.le hq1 hx0.le hx1</span></span>
+<span class="source-line" id="L416"><a class="line-no" href="#L416" aria-label="Line 416">416</a><span class="line-code"> </span></span>
+<span class="source-line" id="L417"><a class="line-no" href="#L417" aria-label="Line 417">417</a><span class="line-code">/-- An absolutely convergent product-distribution identity, including zero modes. -/</span></span>
+<span class="source-line" id="L418"><a class="line-no" href="#L418" aria-label="Line 418">418</a><span class="line-code">theorem hasSum_fin_product (s : ℕ) (f : Fin s → ℕ → ℝ) (a : Fin s → ℝ)</span></span>
+<span class="source-line" id="L419"><a class="line-no" href="#L419" aria-label="Line 419">419</a><span class="line-code">    (hn : ∀ i n, 0 ≤ f i n) (hs : ∀ i, HasSum (f i) (a i)) :</span></span>
+<span class="source-line" id="L420"><a class="line-no" href="#L420" aria-label="Line 420">420</a><span class="line-code">    HasSum (fun k : Fin s → ℕ =&gt; ∏ i, f i (k i)) (∏ i, a i) := by</span></span>
+<span class="source-line" id="L421"><a class="line-no" href="#L421" aria-label="Line 421">421</a><span class="line-code">  induction s with</span></span>
+<span class="source-line" id="L422"><a class="line-no" href="#L422" aria-label="Line 422">422</a><span class="line-code">  | zero =&gt;</span></span>
+<span class="source-line" id="L423"><a class="line-no" href="#L423" aria-label="Line 423">423</a><span class="line-code">    simpa using hasSum_fintype (fun k : Fin 0 → ℕ =&gt; ∏ i, f i (k i))</span></span>
+<span class="source-line" id="L424"><a class="line-no" href="#L424" aria-label="Line 424">424</a><span class="line-code">  | succ s ih =&gt;</span></span>
+<span class="source-line" id="L425"><a class="line-no" href="#L425" aria-label="Line 425">425</a><span class="line-code">    have ht : HasSum (fun k : Fin s → ℕ =&gt; ∏ i : Fin s, f i.succ (k i))</span></span>
+<span class="source-line" id="L426"><a class="line-no" href="#L426" aria-label="Line 426">426</a><span class="line-code">        (∏ i : Fin s, a i.succ) := ih (fun i =&gt; f i.succ) (fun i =&gt; a i.succ)</span></span>
+<span class="source-line" id="L427"><a class="line-no" href="#L427" aria-label="Line 427">427</a><span class="line-code">      (fun i n =&gt; hn i.succ n) (fun i =&gt; hs i.succ)</span></span>
+<span class="source-line" id="L428"><a class="line-no" href="#L428" aria-label="Line 428">428</a><span class="line-code">    have hn&#x27; : ∀ k : Fin s → ℕ, 0 ≤ ∏ i : Fin s, f i.succ (k i) :=</span></span>
+<span class="source-line" id="L429"><a class="line-no" href="#L429" aria-label="Line 429">429</a><span class="line-code">      fun k =&gt; Finset.prod_nonneg (fun i _ =&gt; hn i.succ (k i))</span></span>
+<span class="source-line" id="L430"><a class="line-no" href="#L430" aria-label="Line 430">430</a><span class="line-code">    have hsum : Summable (fun k : ℕ × (Fin s → ℕ) =&gt;</span></span>
+<span class="source-line" id="L431"><a class="line-no" href="#L431" aria-label="Line 431">431</a><span class="line-code">        f 0 k.1 * ∏ i : Fin s, f i.succ (k.2 i)) := by</span></span>
+<span class="source-line" id="L432"><a class="line-no" href="#L432" aria-label="Line 432">432</a><span class="line-code">      apply (summable_prod_of_nonneg (fun k =&gt; mul_nonneg (hn 0 k.1) (hn&#x27; k.2))).mpr</span></span>
+<span class="source-line" id="L433"><a class="line-no" href="#L433" aria-label="Line 433">433</a><span class="line-code">      constructor</span></span>
+<span class="source-line" id="L434"><a class="line-no" href="#L434" aria-label="Line 434">434</a><span class="line-code">      · intro n</span></span>
+<span class="source-line" id="L435"><a class="line-no" href="#L435" aria-label="Line 435">435</a><span class="line-code">        exact ht.summable.mul_left (f 0 n)</span></span>
+<span class="source-line" id="L436"><a class="line-no" href="#L436" aria-label="Line 436">436</a><span class="line-code">      · have he : (fun n : ℕ =&gt; ∑&#x27; k : Fin s → ℕ, f 0 n * ∏ i : Fin s, f i.succ (k i)) =</span></span>
+<span class="source-line" id="L437"><a class="line-no" href="#L437" aria-label="Line 437">437</a><span class="line-code">            fun n =&gt; f 0 n * ∏ i : Fin s, a i.succ := by</span></span>
+<span class="source-line" id="L438"><a class="line-no" href="#L438" aria-label="Line 438">438</a><span class="line-code">          funext n</span></span>
+<span class="source-line" id="L439"><a class="line-no" href="#L439" aria-label="Line 439">439</a><span class="line-code">          rw [tsum_mul_left, ht.tsum_eq]</span></span>
+<span class="source-line" id="L440"><a class="line-no" href="#L440" aria-label="Line 440">440</a><span class="line-code">        rw [he]</span></span>
+<span class="source-line" id="L441"><a class="line-no" href="#L441" aria-label="Line 441">441</a><span class="line-code">        exact (hs 0).summable.mul_right (∏ i : Fin s, a i.succ)</span></span>
+<span class="source-line" id="L442"><a class="line-no" href="#L442" aria-label="Line 442">442</a><span class="line-code">    have hm : HasSum (fun k : ℕ × (Fin s → ℕ) =&gt;</span></span>
+<span class="source-line" id="L443"><a class="line-no" href="#L443" aria-label="Line 443">443</a><span class="line-code">        f 0 k.1 * ∏ i : Fin s, f i.succ (k.2 i)) (a 0 * ∏ i : Fin s, a i.succ) :=</span></span>
+<span class="source-line" id="L444"><a class="line-no" href="#L444" aria-label="Line 444">444</a><span class="line-code">      HasSum.mul (f := f 0) (g := fun k : Fin s → ℕ =&gt; ∏ i : Fin s, f i.succ (k i))</span></span>
+<span class="source-line" id="L445"><a class="line-no" href="#L445" aria-label="Line 445">445</a><span class="line-code">        (s := a 0) (t := ∏ i : Fin s, a i.succ) (hs 0) ht hsum</span></span>
+<span class="source-line" id="L446"><a class="line-no" href="#L446" aria-label="Line 446">446</a><span class="line-code">    rw [← (Fin.consEquiv (fun _ : Fin (s + 1) =&gt; ℕ)).hasSum_iff]</span></span>
+<span class="source-line" id="L447"><a class="line-no" href="#L447" aria-label="Line 447">447</a><span class="line-code">    simpa [Fin.prod_univ_succ, Fin.consEquiv, Function.comp_def] using hm</span></span>
+<span class="source-line" id="L448"><a class="line-no" href="#L448" aria-label="Line 448">448</a><span class="line-code"> </span></span>
+<span class="source-line" id="L449"><a class="line-no" href="#L449" aria-label="Line 449">449</a><span class="line-code">/-- The product geometric law is a probability distribution. -/</span></span>
+<span class="source-line" id="L450"><a class="line-no" href="#L450" aria-label="Line 450">450</a><span class="line-code">theorem multimode_geometric_hasSum {s : ℕ} {q : Fin s → ℝ}</span></span>
+<span class="source-line" id="L451"><a class="line-no" href="#L451" aria-label="Line 451">451</a><span class="line-code">    (hq0 : ∀ i, 0 ≤ q i) (hq1 : ∀ i, q i &lt; 1) :</span></span>
+<span class="source-line" id="L452"><a class="line-no" href="#L452" aria-label="Line 452">452</a><span class="line-code">    HasSum (fun k : Fin s → ℕ =&gt; ∏ i, geometric (q i) (k i)) 1 := by</span></span>
+<span class="source-line" id="L453"><a class="line-no" href="#L453" aria-label="Line 453">453</a><span class="line-code">  simpa using hasSum_fin_product s (fun i =&gt; geometric (q i)) (fun _ =&gt; 1)</span></span>
+<span class="source-line" id="L454"><a class="line-no" href="#L454" aria-label="Line 454">454</a><span class="line-code">    (fun i n =&gt; geometric_nonneg (hq0 i) (hq1 i).le n)</span></span>
+<span class="source-line" id="L455"><a class="line-no" href="#L455" aria-label="Line 455">455</a><span class="line-code">    (fun i =&gt; geometric_hasSum (hq0 i) (hq1 i))</span></span>
+<span class="source-line" id="L456"><a class="line-no" href="#L456" aria-label="Line 456">456</a><span class="line-code"> </span></span>
+<span class="source-line" id="L457"><a class="line-no" href="#L457" aria-label="Line 457">457</a><span class="line-code">/-- Multiplicativity of thermal affinity, as a convergent series over number tuples. -/</span></span>
+<span class="source-line" id="L458"><a class="line-no" href="#L458" aria-label="Line 458">458</a><span class="line-code">theorem multimode_affinity_hasSum {s : ℕ} {q x : Fin s → ℝ}</span></span>
+<span class="source-line" id="L459"><a class="line-no" href="#L459" aria-label="Line 459">459</a><span class="line-code">    (hq0 : ∀ i, 0 ≤ q i) (hq1 : ∀ i, q i &lt; 1)</span></span>
+<span class="source-line" id="L460"><a class="line-no" href="#L460" aria-label="Line 460">460</a><span class="line-code">    (hx0 : ∀ i, 0 ≤ x i) (hx1 : ∀ i, x i &lt; 1) :</span></span>
+<span class="source-line" id="L461"><a class="line-no" href="#L461" aria-label="Line 461">461</a><span class="line-code">    HasSum (fun k : Fin s → ℕ =&gt;</span></span>
+<span class="source-line" id="L462"><a class="line-no" href="#L462" aria-label="Line 462">462</a><span class="line-code">      ∏ i, Real.sqrt (geometric (q i) (k i) * geometric (x i) (k i)))</span></span>
+<span class="source-line" id="L463"><a class="line-no" href="#L463" aria-label="Line 463">463</a><span class="line-code">      (∏ i, fidelity (q i) (x i)) :=</span></span>
+<span class="source-line" id="L464"><a class="line-no" href="#L464" aria-label="Line 464">464</a><span class="line-code">  hasSum_fin_product s</span></span>
+<span class="source-line" id="L465"><a class="line-no" href="#L465" aria-label="Line 465">465</a><span class="line-code">    (fun i n =&gt; Real.sqrt (geometric (q i) n * geometric (x i) n))</span></span>
+<span class="source-line" id="L466"><a class="line-no" href="#L466" aria-label="Line 466">466</a><span class="line-code">    (fun i =&gt; fidelity (q i) (x i)) (fun _ _ =&gt; Real.sqrt_nonneg _)</span></span>
+<span class="source-line" id="L467"><a class="line-no" href="#L467" aria-label="Line 467">467</a><span class="line-code">    (fun i =&gt; affinity_hasSum (hq0 i) (hq1 i) (hx0 i) (hx1 i))</span></span>
+<span class="source-line" id="L468"><a class="line-no" href="#L468" aria-label="Line 468">468</a><span class="line-code"> </span></span>
+<span class="source-line" id="L469"><a class="line-no" href="#L469" aria-label="Line 469">469</a><span class="line-code">theorem multimode_affinity_of_product_laws {s : ℕ} {q x : Fin s → ℝ}</span></span>
+<span class="source-line" id="L470"><a class="line-no" href="#L470" aria-label="Line 470">470</a><span class="line-code">    (hq0 : ∀ i, 0 ≤ q i) (hq1 : ∀ i, q i &lt; 1)</span></span>
+<span class="source-line" id="L471"><a class="line-no" href="#L471" aria-label="Line 471">471</a><span class="line-code">    (hx0 : ∀ i, 0 ≤ x i) (hx1 : ∀ i, x i &lt; 1) :</span></span>
+<span class="source-line" id="L472"><a class="line-no" href="#L472" aria-label="Line 472">472</a><span class="line-code">    HasSum (fun k : Fin s → ℕ =&gt; Real.sqrt</span></span>
+<span class="source-line" id="L473"><a class="line-no" href="#L473" aria-label="Line 473">473</a><span class="line-code">      ((∏ i, geometric (q i) (k i)) * (∏ i, geometric (x i) (k i))))</span></span>
+<span class="source-line" id="L474"><a class="line-no" href="#L474" aria-label="Line 474">474</a><span class="line-code">      (∏ i, fidelity (q i) (x i)) := by</span></span>
+<span class="source-line" id="L475"><a class="line-no" href="#L475" aria-label="Line 475">475</a><span class="line-code">  have he : (fun k : Fin s → ℕ =&gt; Real.sqrt</span></span>
+<span class="source-line" id="L476"><a class="line-no" href="#L476" aria-label="Line 476">476</a><span class="line-code">      ((∏ i, geometric (q i) (k i)) * (∏ i, geometric (x i) (k i)))) =</span></span>
+<span class="source-line" id="L477"><a class="line-no" href="#L477" aria-label="Line 477">477</a><span class="line-code">      fun k =&gt; ∏ i, Real.sqrt (geometric (q i) (k i) * geometric (x i) (k i)) := by</span></span>
+<span class="source-line" id="L478"><a class="line-no" href="#L478" aria-label="Line 478">478</a><span class="line-code">    funext k</span></span>
+<span class="source-line" id="L479"><a class="line-no" href="#L479" aria-label="Line 479">479</a><span class="line-code">    rw [← Finset.prod_mul_distrib]</span></span>
+<span class="source-line" id="L480"><a class="line-no" href="#L480" aria-label="Line 480">480</a><span class="line-code">    exact Real.sqrt_prod _ (fun i _ =&gt; mul_nonneg</span></span>
+<span class="source-line" id="L481"><a class="line-no" href="#L481" aria-label="Line 481">481</a><span class="line-code">      (geometric_nonneg (hq0 i) (hq1 i).le (k i))</span></span>
+<span class="source-line" id="L482"><a class="line-no" href="#L482" aria-label="Line 482">482</a><span class="line-code">      (geometric_nonneg (hx0 i) (hx1 i).le (k i)))</span></span>
+<span class="source-line" id="L483"><a class="line-no" href="#L483" aria-label="Line 483">483</a><span class="line-code">  rw [he]</span></span>
+<span class="source-line" id="L484"><a class="line-no" href="#L484" aria-label="Line 484">484</a><span class="line-code">  exact multimode_affinity_hasSum hq0 hq1 hx0 hx1</span></span>
+<span class="source-line" id="L485"><a class="line-no" href="#L485" aria-label="Line 485">485</a><span class="line-code"> </span></span>
+<span class="source-line" id="L486"><a class="line-no" href="#L486" aria-label="Line 486">486</a><span class="line-code">/-- A common geometric envelope controls the witness by total occupation. -/</span></span>
+<span class="source-line" id="L487"><a class="line-no" href="#L487" aria-label="Line 487">487</a><span class="line-code">theorem multimode_witness_envelope {s : ℕ} {q x : Fin s → ℝ} {r : ℝ}</span></span>
+<span class="source-line" id="L488"><a class="line-no" href="#L488" aria-label="Line 488">488</a><span class="line-code">    (hq0 : ∀ i, 0 &lt; q i) (hqx : ∀ i, q i &lt; x i) (hx1 : ∀ i, x i &lt; 1)</span></span>
+<span class="source-line" id="L489"><a class="line-no" href="#L489" aria-label="Line 489">489</a><span class="line-code">    (hr : ∀ i, Real.sqrt (q i / x i) ≤ r) (k : Fin s → ℕ) :</span></span>
+<span class="source-line" id="L490"><a class="line-no" href="#L490" aria-label="Line 490">490</a><span class="line-code">    (∏ i, witness (q i) (x i) (k i)) ≤</span></span>
+<span class="source-line" id="L491"><a class="line-no" href="#L491" aria-label="Line 491">491</a><span class="line-code">      (∏ i, Real.sqrt ((1 - q i) / (1 - x i))) * r ^ (∑ i, k i) := by</span></span>
+<span class="source-line" id="L492"><a class="line-no" href="#L492" aria-label="Line 492">492</a><span class="line-code">  calc</span></span>
+<span class="source-line" id="L493"><a class="line-no" href="#L493" aria-label="Line 493">493</a><span class="line-code">    (∏ i, witness (q i) (x i) (k i)) ≤</span></span>
+<span class="source-line" id="L494"><a class="line-no" href="#L494" aria-label="Line 494">494</a><span class="line-code">        ∏ i, Real.sqrt ((1 - q i) / (1 - x i)) * r ^ k i := by</span></span>
+<span class="source-line" id="L495"><a class="line-no" href="#L495" aria-label="Line 495">495</a><span class="line-code">      apply Finset.prod_le_prod</span></span>
+<span class="source-line" id="L496"><a class="line-no" href="#L496" aria-label="Line 496">496</a><span class="line-code">      · intro i _</span></span>
+<span class="source-line" id="L497"><a class="line-no" href="#L497" aria-label="Line 497">497</a><span class="line-code">        exact (witness_pos (hq0 i) (lt_trans (hqx i) (hx1 i))</span></span>
+<span class="source-line" id="L498"><a class="line-no" href="#L498" aria-label="Line 498">498</a><span class="line-code">          (lt_trans (hq0 i) (hqx i)) (hx1 i) (k i)).le</span></span>
+<span class="source-line" id="L499"><a class="line-no" href="#L499" aria-label="Line 499">499</a><span class="line-code">      · intro i _</span></span>
+<span class="source-line" id="L500"><a class="line-no" href="#L500" aria-label="Line 500">500</a><span class="line-code">        rw [witness_closed (hq0 i).le (lt_trans (hqx i) (hx1 i))</span></span>
+<span class="source-line" id="L501"><a class="line-no" href="#L501" aria-label="Line 501">501</a><span class="line-code">          (lt_trans (hq0 i) (hqx i)).le (hx1 i)]</span></span>
+<span class="source-line" id="L502"><a class="line-no" href="#L502" aria-label="Line 502">502</a><span class="line-code">        exact mul_le_mul_of_nonneg_left</span></span>
+<span class="source-line" id="L503"><a class="line-no" href="#L503" aria-label="Line 503">503</a><span class="line-code">          (pow_le_pow_left₀ (Real.sqrt_nonneg _) (hr i) (k i)) (Real.sqrt_nonneg _)</span></span>
+<span class="source-line" id="L504"><a class="line-no" href="#L504" aria-label="Line 504">504</a><span class="line-code">    _ = _ := by rw [Finset.prod_mul_distrib, Finset.prod_pow_eq_pow_sum]</span></span>
+<span class="source-line" id="L505"><a class="line-no" href="#L505" aria-label="Line 505">505</a><span class="line-code"> </span></span>
+<span class="source-line" id="L506"><a class="line-no" href="#L506" aria-label="Line 506">506</a><span class="line-code">/-- Along any family escaping in total occupation, a common ratio bound gives</span></span>
+<span class="source-line" id="L507"><a class="line-no" href="#L507" aria-label="Line 507">507</a><span class="line-code">the vanishing-eigenvalue conclusion needed for compactness of the witness. -/</span></span>
+<span class="source-line" id="L508"><a class="line-no" href="#L508" aria-label="Line 508">508</a><span class="line-code">theorem multimode_witness_tendsto_zero {s : ℕ} {q x : Fin s → ℝ} {r : ℝ}</span></span>
+<span class="source-line" id="L509"><a class="line-no" href="#L509" aria-label="Line 509">509</a><span class="line-code">    (hq0 : ∀ i, 0 &lt; q i) (hqx : ∀ i, q i &lt; x i) (hx1 : ∀ i, x i &lt; 1)</span></span>
+<span class="source-line" id="L510"><a class="line-no" href="#L510" aria-label="Line 510">510</a><span class="line-code">    (hr0 : 0 ≤ r) (hr1 : r &lt; 1) (hr : ∀ i, Real.sqrt (q i / x i) ≤ r)</span></span>
+<span class="source-line" id="L511"><a class="line-no" href="#L511" aria-label="Line 511">511</a><span class="line-code">    (k : ℕ → Fin s → ℕ)</span></span>
+<span class="source-line" id="L512"><a class="line-no" href="#L512" aria-label="Line 512">512</a><span class="line-code">    (hk : Filter.Tendsto (fun n =&gt; ∑ i, k n i) Filter.atTop Filter.atTop) :</span></span>
+<span class="source-line" id="L513"><a class="line-no" href="#L513" aria-label="Line 513">513</a><span class="line-code">    Filter.Tendsto (fun n =&gt; ∏ i, witness (q i) (x i) (k n i)) Filter.atTop (nhds 0) := by</span></span>
+<span class="source-line" id="L514"><a class="line-no" href="#L514" aria-label="Line 514">514</a><span class="line-code">  have he := (tendsto_pow_atTop_nhds_zero_of_lt_one hr0 hr1).comp hk</span></span>
+<span class="source-line" id="L515"><a class="line-no" href="#L515" aria-label="Line 515">515</a><span class="line-code">  have hb : Filter.Tendsto</span></span>
+<span class="source-line" id="L516"><a class="line-no" href="#L516" aria-label="Line 516">516</a><span class="line-code">      (fun n =&gt; (∏ i, Real.sqrt ((1 - q i) / (1 - x i))) * r ^ (∑ i, k n i))</span></span>
+<span class="source-line" id="L517"><a class="line-no" href="#L517" aria-label="Line 517">517</a><span class="line-code">      Filter.atTop (nhds 0) := by</span></span>
+<span class="source-line" id="L518"><a class="line-no" href="#L518" aria-label="Line 518">518</a><span class="line-code">    simpa using he.const_mul (∏ i, Real.sqrt ((1 - q i) / (1 - x i)))</span></span>
+<span class="source-line" id="L519"><a class="line-no" href="#L519" aria-label="Line 519">519</a><span class="line-code">  apply squeeze_zero</span></span>
+<span class="source-line" id="L520"><a class="line-no" href="#L520" aria-label="Line 520">520</a><span class="line-code">    (fun n =&gt; Finset.prod_nonneg (fun i _ =&gt;</span></span>
+<span class="source-line" id="L521"><a class="line-no" href="#L521" aria-label="Line 521">521</a><span class="line-code">      (witness_pos (hq0 i) (lt_trans (hqx i) (hx1 i))</span></span>
+<span class="source-line" id="L522"><a class="line-no" href="#L522" aria-label="Line 522">522</a><span class="line-code">        (lt_trans (hq0 i) (hqx i)) (hx1 i) (k n i)).le))</span></span>
+<span class="source-line" id="L523"><a class="line-no" href="#L523" aria-label="Line 523">523</a><span class="line-code">    (fun n =&gt; multimode_witness_envelope hq0 hqx hx1 hr (k n)) hb</span></span>
+<span class="source-line" id="L524"><a class="line-no" href="#L524" aria-label="Line 524">524</a><span class="line-code"> </span></span>
+<span class="source-line" id="L525"><a class="line-no" href="#L525" aria-label="Line 525">525</a><span class="line-code">/-- The witness moment identity for any finite number of oscillator modes. -/</span></span>
+<span class="source-line" id="L526"><a class="line-no" href="#L526" aria-label="Line 526">526</a><span class="line-code">theorem multimode_witness_moment_hasSum {s : ℕ} {q x : Fin s → ℝ}</span></span>
+<span class="source-line" id="L527"><a class="line-no" href="#L527" aria-label="Line 527">527</a><span class="line-code">    (hq0 : ∀ i, 0 &lt; q i) (hq1 : ∀ i, q i &lt; 1)</span></span>
+<span class="source-line" id="L528"><a class="line-no" href="#L528" aria-label="Line 528">528</a><span class="line-code">    (hx0 : ∀ i, 0 &lt; x i) (hx1 : ∀ i, x i &lt; 1) :</span></span>
+<span class="source-line" id="L529"><a class="line-no" href="#L529" aria-label="Line 529">529</a><span class="line-code">    HasSum (fun k : Fin s → ℕ =&gt;</span></span>
+<span class="source-line" id="L530"><a class="line-no" href="#L530" aria-label="Line 530">530</a><span class="line-code">      ∏ i, geometric (x i) (k i) * witness (q i) (x i) (k i))</span></span>
+<span class="source-line" id="L531"><a class="line-no" href="#L531" aria-label="Line 531">531</a><span class="line-code">      (∏ i, fidelity (q i) (x i)) := by</span></span>
+<span class="source-line" id="L532"><a class="line-no" href="#L532" aria-label="Line 532">532</a><span class="line-code">  simp_rw [witness_weighted_term (hq0 _).le (hq1 _) (hx0 _) (hx1 _)]</span></span>
+<span class="source-line" id="L533"><a class="line-no" href="#L533" aria-label="Line 533">533</a><span class="line-code">  exact multimode_affinity_hasSum (fun i =&gt; (hq0 i).le) hq1 (fun i =&gt; (hx0 i).le) hx1</span></span>
+<span class="source-line" id="L534"><a class="line-no" href="#L534" aria-label="Line 534">534</a><span class="line-code"> </span></span>
+<span class="source-line" id="L535"><a class="line-no" href="#L535" aria-label="Line 535">535</a><span class="line-code">end Cloning.Thermal</span></span>
+</code></pre></div></main>
+<footer class="footer">English guides explain the argument. Lean source and its hypotheses determine the formal claims.
+<a href="../verification.html">Audit evidence</a> · <a href="../scope.html">Scope</a></footer>
+</div></div></body></html>

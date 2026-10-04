@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="An offline guide to the Lean formalization of asymptotic mixed-state quantum cloning. Exact source, proof routes, and audited scope.">
+<title>YoungHyperplane · Lean source · Cloning proof wiki</title>
+<link rel="stylesheet" href="../assets/site.css?v=1811c00ea983">
+<script>window.PROOF_ROOT="../";</script>
+<script defer src="../assets/vendor/katex/katex.min.js"></script>
+<script defer src="../assets/search-index.js?v=850aee981cdc"></script>
+<script defer src="../assets/site.js?v=4bfaac1f06b1"></script>
+</head><body><a class="skip-link" href="#main">Skip to content</a>
+<div class="site-shell"><aside class="sidebar" id="site-navigation">
+<a class="brand" href="../index.html"><span class="brand-mark">C</span><span>Cloning<span class="small muted">A Lean proof wiki</span></span></a>
+<nav aria-label="Main navigation"><div class="nav-section">Explore</div><a class="nav-link" href="../index.html">Overview</a><a class="nav-link" href="../guides/index.html">Proof guide</a><a class="nav-link" href="../results/index.html">27 named results</a><a class="nav-link active" href="../source/index.html" aria-current="page">Lean source</a><a class="nav-link" href="../verification.html">Verification</a><a class="nav-link" href="../scope.html">Scope &amp; conventions</a>
+<div class="nav-section">Read the proof</div><a class="nav-link" href="../guides/physical-problem.html"><span class="nav-number">01</span> The physical problem and its conventions</a><a class="nav-link" href="../guides/young-laws.html"><span class="nav-number">02</span> Young labels: concentration and the local Gaussian law</a><a class="nav-link" href="../guides/cartan-sectors.html"><span class="nav-number">03</span> From PBW frames to uniform Cartan-sector fidelity</a><a class="nav-link" href="../guides/lifted-kernels.html"><span class="nav-number">04</span> Lifted channels, randomized dilation, and factorization</a><a class="nav-link" href="../guides/gaussian-optimum.html"><span class="nav-number">05</span> Gaussian amplification against arbitrary competitors</a><a class="nav-link" href="../guides/physical-lan.html"><span class="nav-number">06</span> Constructed LAN and fidelity transfer</a><a class="nav-link" href="../guides/known-spectrum.html"><span class="nav-number">07</span> The known-spectrum optimum</a><a class="nav-link" href="../guides/unknown-spectrum.html"><span class="nav-number">08</span> One universal cloner and the compact-set optimum</a><a class="nav-link" href="../guides/grassmann.html"><span class="nav-number">09</span> Exact rank compression and projector-state optimality</a><a class="nav-link" href="../guides/purify-clone-trace.html"><span class="nav-number">10</span> Purify–clone–trace: exact channels, limits, and guarantees</a><a class="nav-link" href="../guides/small-errors.html"><span class="nav-number">11</span> Small errors, rank boundaries, and noncommuting limits</a><a class="nav-link" href="../guides/spectral-comparison.html"><span class="nav-number">12</span> Spectral order and what is known for all states</a></nav>
+<div class="sidebar-footer"><span class="badge">Lean 4</span><p>Manuscript → proof → source</p>
+<a href="https://github.com/JWang226/Cloning">Repository ↗</a></div></aside>
+<div class="main-shell"><header class="topbar">
+<button id="nav-toggle" class="button secondary" aria-controls="site-navigation" aria-expanded="false" aria-label="Toggle navigation">Menu</button>
+<div class="search-wrap"><label class="sr-only" for="site-search">Search the proof wiki</label>
+<input id="site-search" type="search" placeholder="Search results, concepts, or Lean names…" autocomplete="off" aria-controls="search-results" aria-expanded="false" role="combobox" aria-autocomplete="list">
+<div id="search-results" class="search-results" role="listbox" hidden></div></div>
+<span class="small muted topbar-label">Offline · exact source</span></header>
+<main id="main" class="content"><div class="eyebrow">Exact Lean source</div><h1 class="source-title">YoungHyperplane</h1><p><code>formalization/Cloning/YoungHyperplane.lean</code></p><p class="small muted">Source hash: <code>2939f43d6e34f877ce6c253cd0d76fb208851dfff1460a139c219778a252f7e2</code></p><div class="actions"><a class="button secondary" href="raw/Cloning.YoungHyperplane.lean">Download .lean</a><a class="button secondary" href="https://github.com/JWang226/Cloning/blob/main/formalization/Cloning/YoungHyperplane.lean">View on GitHub ↗</a><a href="index.html">All modules</a></div><p class="small muted">Full source copied without mathematical changes from the snapshot whose input hash matches the passing audit. Select a line number for a stable source pointer.</p><details><summary>Declarations in this module</summary><div class="module-declarations"><a href="#L23"><span class="badge">definition</span> <code>Cloning.YoungHyperplane.rootSpace</code></a><a href="#L39"><span class="badge">definition</span> <code>Cloning.YoungHyperplane.coordinates</code></a><a href="#L73"><span class="badge">theorem</span> <code>Cloning.YoungHyperplane.coordinates_head</code></a><a href="#L76"><span class="badge">theorem</span> <code>Cloning.YoungHyperplane.coordinates_last</code></a><a href="#L79"><span class="badge">theorem</span> <code>Cloning.YoungHyperplane.coordinates_symm_apply</code></a><a href="#L82"><span class="badge">definition</span> <code>Cloning.YoungHyperplane.coordinatesContinuous</code></a><a href="#L87"><span class="badge">definition</span> <code>Cloning.YoungHyperplane.coordinateMeasure</code></a><a href="#L90"><span class="badge">theorem</span> <code>Cloning.YoungHyperplane.coordinates_measurePreserving</code></a><a href="#L95"><span class="badge">definition</span> <code>Cloning.YoungHyperplane.Lattice</code></a><a href="#L98"><span class="badge">definition</span> <code>Cloning.YoungHyperplane.latticeCoordinates</code></a><a href="#L115"><span class="badge">theorem</span> <code>Cloning.YoungHyperplane.latticeCoordinates_head</code></a><a href="#L118"><span class="badge">theorem</span> <code>Cloning.YoungHyperplane.latticeCoordinates_sum</code></a><a href="#L122"><span class="badge">definition</span> <code>Cloning.YoungHyperplane.cell</code></a><a href="#L125"><span class="badge">theorem</span> <code>Cloning.YoungHyperplane.measurableSet_cell</code></a><a href="#L128"><span class="badge">theorem</span> <code>Cloning.YoungHyperplane.cells_cover</code></a><a href="#L134"><span class="badge">theorem</span> <code>Cloning.YoungHyperplane.cells_disjoint</code></a><a href="#L138"><span class="badge">theorem</span> <code>Cloning.YoungHyperplane.coordinateMeasure_cell</code></a><a href="#L150"><span class="badge">theorem</span> <code>Cloning.YoungHyperplane.integral_coordinates</code></a><a href="#L160"><span class="badge">definition</span> <code>Cloning.YoungHyperplane.latticePMF</code></a><a href="#L163"><span class="badge">theorem</span> <code>Cloning.YoungHyperplane.latticePMF_apply</code></a><a href="#L171"><span class="badge">definition</span> <code>Cloning.YoungHyperplane.latticeRoundingPMF</code></a><a href="#L174"><span class="badge">theorem</span> <code>Cloning.YoungHyperplane.latticeRoundingPMF_apply</code></a><a href="#L182"><span class="badge">definition</span> <code>Cloning.YoungHyperplane.interpolate</code></a><a href="#L187"><span class="badge">theorem</span> <code>Cloning.YoungHyperplane.interpolate_integral</code></a><a href="#L198"><span class="badge">theorem</span> <code>Cloning.YoungHyperplane.interpolate_l1_isometry</code></a><a href="#L218"><span class="badge">theorem</span> <code>Cloning.YoungHyperplane.affineDensity_affinity</code></a><a href="#L236"><span class="badge">theorem</span> <code>Cloning.YoungHyperplane.interpolate_affinity</code></a></div></details><div class="code-wrap source-wrap"><pre class="source-lines"><code><span class="source-line" id="L1"><a class="line-no" href="#L1" aria-label="Line 1">1</a><span class="line-code">import Cloning.YoungCompatibilityFallback</span></span>
+<span class="source-line" id="L2"><a class="line-no" href="#L2" aria-label="Line 2">2</a><span class="line-code">import Mathlib.MeasureTheory.Measure.Haar.InnerProductSpace</span></span>
+<span class="source-line" id="L3"><a class="line-no" href="#L3" aria-label="Line 3">3</a><span class="line-code">import Mathlib.LinearAlgebra.Matrix.SchurComplement</span></span>
+<span class="source-line" id="L4"><a class="line-no" href="#L4" aria-label="Line 4">4</a><span class="line-code"> </span></span>
+<span class="source-line" id="L5"><a class="line-no" href="#L5" aria-label="Line 5">5</a><span class="line-code">/-!</span></span>
+<span class="source-line" id="L6"><a class="line-no" href="#L6" aria-label="Line 6">6</a><span class="line-code"># The root hyperplane and its actual coordinate transport</span></span>
+<span class="source-line" id="L7"><a class="line-no" href="#L7" aria-label="Line 7">7</a><span class="line-code"> </span></span>
+<span class="source-line" id="L8"><a class="line-no" href="#L8" aria-label="Line 8">8</a><span class="line-code">The affine lattice and the real sum-zero hyperplane are constructed as</span></span>
+<span class="source-line" id="L9"><a class="line-no" href="#L9" aria-label="Line 9">9</a><span class="line-code">subtypes, with explicit coordinate equivalences.  Probability distributions,</span></span>
+<span class="source-line" id="L10"><a class="line-no" href="#L10" aria-label="Line 10">10</a><span class="line-code">cells and densities are transported along those equivalences.  This exposes</span></span>
+<span class="source-line" id="L11"><a class="line-no" href="#L11" aria-label="Line 11">11</a><span class="line-code">the dependent last coordinate rather than dropping it from the state space.</span></span>
+<span class="source-line" id="L12"><a class="line-no" href="#L12" aria-label="Line 12">12</a><span class="line-code">-/</span></span>
+<span class="source-line" id="L13"><a class="line-no" href="#L13" aria-label="Line 13">13</a><span class="line-code"> </span></span>
+<span class="source-line" id="L14"><a class="line-no" href="#L14" aria-label="Line 14">14</a><span class="line-code">set_option maxHeartbeats 800000</span></span>
+<span class="source-line" id="L15"><a class="line-no" href="#L15" aria-label="Line 15">15</a><span class="line-code">noncomputable section</span></span>
+<span class="source-line" id="L16"><a class="line-no" href="#L16" aria-label="Line 16">16</a><span class="line-code">open scoped BigOperators Topology Classical</span></span>
+<span class="source-line" id="L17"><a class="line-no" href="#L17" aria-label="Line 17">17</a><span class="line-code">open MeasureTheory</span></span>
+<span class="source-line" id="L18"><a class="line-no" href="#L18" aria-label="Line 18">18</a><span class="line-code"> </span></span>
+<span class="source-line" id="L19"><a class="line-no" href="#L19" aria-label="Line 19">19</a><span class="line-code">namespace Cloning.YoungHyperplane</span></span>
+<span class="source-line" id="L20"><a class="line-no" href="#L20" aria-label="Line 20">20</a><span class="line-code"> </span></span>
+<span class="source-line" id="L21"><a class="line-no" href="#L21" aria-label="Line 21">21</a><span class="line-code">/-- The actual root hyperplane, with the metric and inner product induced</span></span>
+<span class="source-line" id="L22"><a class="line-no" href="#L22" aria-label="Line 22">22</a><span class="line-code">from the ambient Euclidean space of `d+1` coordinates. -/</span></span>
+<span class="source-line" id="L23"><a class="line-no" href="#L23" aria-label="Line 23">23</a><span class="line-code">abbrev rootSpace (d : ℕ) : Submodule ℝ (EuclideanSpace ℝ (Fin (d + 1))) where</span></span>
+<span class="source-line" id="L24"><a class="line-no" href="#L24" aria-label="Line 24">24</a><span class="line-code">  carrier := {x | ∑ i, x i = 0}</span></span>
+<span class="source-line" id="L25"><a class="line-no" href="#L25" aria-label="Line 25">25</a><span class="line-code">  zero_mem&#x27; := by simp</span></span>
+<span class="source-line" id="L26"><a class="line-no" href="#L26" aria-label="Line 26">26</a><span class="line-code">  add_mem&#x27; := by</span></span>
+<span class="source-line" id="L27"><a class="line-no" href="#L27" aria-label="Line 27">27</a><span class="line-code">    intro x y hx hy</span></span>
+<span class="source-line" id="L28"><a class="line-no" href="#L28" aria-label="Line 28">28</a><span class="line-code">    change (∑ i, (x + y) i) = 0</span></span>
+<span class="source-line" id="L29"><a class="line-no" href="#L29" aria-label="Line 29">29</a><span class="line-code">    change (∑ i, x i) = 0 at hx</span></span>
+<span class="source-line" id="L30"><a class="line-no" href="#L30" aria-label="Line 30">30</a><span class="line-code">    change (∑ i, y i) = 0 at hy</span></span>
+<span class="source-line" id="L31"><a class="line-no" href="#L31" aria-label="Line 31">31</a><span class="line-code">    simp only [PiLp.add_apply, Finset.sum_add_distrib, hx, hy, add_zero]</span></span>
+<span class="source-line" id="L32"><a class="line-no" href="#L32" aria-label="Line 32">32</a><span class="line-code">  smul_mem&#x27; := by</span></span>
+<span class="source-line" id="L33"><a class="line-no" href="#L33" aria-label="Line 33">33</a><span class="line-code">    intro c x hx</span></span>
+<span class="source-line" id="L34"><a class="line-no" href="#L34" aria-label="Line 34">34</a><span class="line-code">    change (∑ i, (c • x) i) = 0</span></span>
+<span class="source-line" id="L35"><a class="line-no" href="#L35" aria-label="Line 35">35</a><span class="line-code">    change (∑ i, x i) = 0 at hx</span></span>
+<span class="source-line" id="L36"><a class="line-no" href="#L36" aria-label="Line 36">36</a><span class="line-code">    simp only [PiLp.smul_apply, smul_eq_mul, ← Finset.mul_sum, hx, mul_zero]</span></span>
+<span class="source-line" id="L37"><a class="line-no" href="#L37" aria-label="Line 37">37</a><span class="line-code"> </span></span>
+<span class="source-line" id="L38"><a class="line-no" href="#L38" aria-label="Line 38">38</a><span class="line-code">/-- Coordinates along `e_i-e_last` as an explicit linear equivalence. -/</span></span>
+<span class="source-line" id="L39"><a class="line-no" href="#L39" aria-label="Line 39">39</a><span class="line-code">def coordinates (d : ℕ) : (Fin d → ℝ) ≃ₗ[ℝ] rootSpace d where</span></span>
+<span class="source-line" id="L40"><a class="line-no" href="#L40" aria-label="Line 40">40</a><span class="line-code">  toFun x := ⟨WithLp.toLp 2 (Fin.snoc (α := fun _ : Fin (d + 1) ↦ ℝ) x (-∑ i, x i)), by</span></span>
+<span class="source-line" id="L41"><a class="line-no" href="#L41" aria-label="Line 41">41</a><span class="line-code">    change (∑ i, Fin.snoc (α := fun _ : Fin (d + 1) ↦ ℝ) x (-∑ j, x j) i) = 0</span></span>
+<span class="source-line" id="L42"><a class="line-no" href="#L42" aria-label="Line 42">42</a><span class="line-code">    rw [Fin.sum_univ_castSucc]</span></span>
+<span class="source-line" id="L43"><a class="line-no" href="#L43" aria-label="Line 43">43</a><span class="line-code">    simp⟩</span></span>
+<span class="source-line" id="L44"><a class="line-no" href="#L44" aria-label="Line 44">44</a><span class="line-code">  invFun x i := x.1 i.castSucc</span></span>
+<span class="source-line" id="L45"><a class="line-no" href="#L45" aria-label="Line 45">45</a><span class="line-code">  left_inv x := by ext i; simp</span></span>
+<span class="source-line" id="L46"><a class="line-no" href="#L46" aria-label="Line 46">46</a><span class="line-code">  right_inv x := by</span></span>
+<span class="source-line" id="L47"><a class="line-no" href="#L47" aria-label="Line 47">47</a><span class="line-code">    apply Subtype.ext</span></span>
+<span class="source-line" id="L48"><a class="line-no" href="#L48" aria-label="Line 48">48</a><span class="line-code">    ext i</span></span>
+<span class="source-line" id="L49"><a class="line-no" href="#L49" aria-label="Line 49">49</a><span class="line-code">    change Fin.snoc (α := fun _ : Fin (d + 1) ↦ ℝ) (fun j : Fin d ↦ x.1 j.castSucc) (-∑ j : Fin d, x.1 j.castSucc) i = x.1 i</span></span>
+<span class="source-line" id="L50"><a class="line-no" href="#L50" aria-label="Line 50">50</a><span class="line-code">    refine Fin.lastCases ?_ (fun j ↦ ?_) i</span></span>
+<span class="source-line" id="L51"><a class="line-no" href="#L51" aria-label="Line 51">51</a><span class="line-code">    · rw [Fin.snoc_last]</span></span>
+<span class="source-line" id="L52"><a class="line-no" href="#L52" aria-label="Line 52">52</a><span class="line-code">      have hx := x.2</span></span>
+<span class="source-line" id="L53"><a class="line-no" href="#L53" aria-label="Line 53">53</a><span class="line-code">      change (∑ i, x.1 i) = 0 at hx</span></span>
+<span class="source-line" id="L54"><a class="line-no" href="#L54" aria-label="Line 54">54</a><span class="line-code">      rw [Fin.sum_univ_castSucc] at hx</span></span>
+<span class="source-line" id="L55"><a class="line-no" href="#L55" aria-label="Line 55">55</a><span class="line-code">      linarith</span></span>
+<span class="source-line" id="L56"><a class="line-no" href="#L56" aria-label="Line 56">56</a><span class="line-code">    · simp</span></span>
+<span class="source-line" id="L57"><a class="line-no" href="#L57" aria-label="Line 57">57</a><span class="line-code">  map_add&#x27; x y := by</span></span>
+<span class="source-line" id="L58"><a class="line-no" href="#L58" aria-label="Line 58">58</a><span class="line-code">    apply Subtype.ext</span></span>
+<span class="source-line" id="L59"><a class="line-no" href="#L59" aria-label="Line 59">59</a><span class="line-code">    ext i</span></span>
+<span class="source-line" id="L60"><a class="line-no" href="#L60" aria-label="Line 60">60</a><span class="line-code">    change Fin.snoc (α := fun _ : Fin (d + 1) ↦ ℝ) (x + y) (-∑ j, (x + y) j) i =</span></span>
+<span class="source-line" id="L61"><a class="line-no" href="#L61" aria-label="Line 61">61</a><span class="line-code">      Fin.snoc (α := fun _ : Fin (d + 1) ↦ ℝ) x (-∑ j, x j) i + Fin.snoc (α := fun _ : Fin (d + 1) ↦ ℝ) y (-∑ j, y j) i</span></span>
+<span class="source-line" id="L62"><a class="line-no" href="#L62" aria-label="Line 62">62</a><span class="line-code">    refine Fin.lastCases ?_ (fun j ↦ ?_) i</span></span>
+<span class="source-line" id="L63"><a class="line-no" href="#L63" aria-label="Line 63">63</a><span class="line-code">    · simp [Finset.sum_add_distrib, add_comm]</span></span>
+<span class="source-line" id="L64"><a class="line-no" href="#L64" aria-label="Line 64">64</a><span class="line-code">    · simp</span></span>
+<span class="source-line" id="L65"><a class="line-no" href="#L65" aria-label="Line 65">65</a><span class="line-code">  map_smul&#x27; c x := by</span></span>
+<span class="source-line" id="L66"><a class="line-no" href="#L66" aria-label="Line 66">66</a><span class="line-code">    apply Subtype.ext</span></span>
+<span class="source-line" id="L67"><a class="line-no" href="#L67" aria-label="Line 67">67</a><span class="line-code">    ext i</span></span>
+<span class="source-line" id="L68"><a class="line-no" href="#L68" aria-label="Line 68">68</a><span class="line-code">    change Fin.snoc (α := fun _ : Fin (d + 1) ↦ ℝ) (c • x) (-∑ j, (c • x) j) i = c * Fin.snoc (α := fun _ : Fin (d + 1) ↦ ℝ) x (-∑ j, x j) i</span></span>
+<span class="source-line" id="L69"><a class="line-no" href="#L69" aria-label="Line 69">69</a><span class="line-code">    refine Fin.lastCases ?_ (fun j ↦ ?_) i</span></span>
+<span class="source-line" id="L70"><a class="line-no" href="#L70" aria-label="Line 70">70</a><span class="line-code">    · simp [← Finset.mul_sum]</span></span>
+<span class="source-line" id="L71"><a class="line-no" href="#L71" aria-label="Line 71">71</a><span class="line-code">    · simp</span></span>
+<span class="source-line" id="L72"><a class="line-no" href="#L72" aria-label="Line 72">72</a><span class="line-code"> </span></span>
+<span class="source-line" id="L73"><a class="line-no" href="#L73" aria-label="Line 73">73</a><span class="line-code">@[simp] theorem coordinates_head (d : ℕ) (x : Fin d → ℝ) (i : Fin d) :</span></span>
+<span class="source-line" id="L74"><a class="line-no" href="#L74" aria-label="Line 74">74</a><span class="line-code">    (coordinates d x).1 i.castSucc = x i := by simp [coordinates]</span></span>
+<span class="source-line" id="L75"><a class="line-no" href="#L75" aria-label="Line 75">75</a><span class="line-code"> </span></span>
+<span class="source-line" id="L76"><a class="line-no" href="#L76" aria-label="Line 76">76</a><span class="line-code">@[simp] theorem coordinates_last (d : ℕ) (x : Fin d → ℝ) :</span></span>
+<span class="source-line" id="L77"><a class="line-no" href="#L77" aria-label="Line 77">77</a><span class="line-code">    (coordinates d x).1 (Fin.last d) = -∑ i, x i := by simp [coordinates]</span></span>
+<span class="source-line" id="L78"><a class="line-no" href="#L78" aria-label="Line 78">78</a><span class="line-code"> </span></span>
+<span class="source-line" id="L79"><a class="line-no" href="#L79" aria-label="Line 79">79</a><span class="line-code">@[simp] theorem coordinates_symm_apply (d : ℕ) (x : rootSpace d) (i : Fin d) :</span></span>
+<span class="source-line" id="L80"><a class="line-no" href="#L80" aria-label="Line 80">80</a><span class="line-code">    (coordinates d).symm x i = x.1 i.castSucc := rfl</span></span>
+<span class="source-line" id="L81"><a class="line-no" href="#L81" aria-label="Line 81">81</a><span class="line-code"> </span></span>
+<span class="source-line" id="L82"><a class="line-no" href="#L82" aria-label="Line 82">82</a><span class="line-code">def coordinatesContinuous (d : ℕ) : (Fin d → ℝ) ≃L[ℝ] rootSpace d :=</span></span>
+<span class="source-line" id="L83"><a class="line-no" href="#L83" aria-label="Line 83">83</a><span class="line-code">  (coordinates d).toContinuousLinearEquiv</span></span>
+<span class="source-line" id="L84"><a class="line-no" href="#L84" aria-label="Line 84">84</a><span class="line-code"> </span></span>
+<span class="source-line" id="L85"><a class="line-no" href="#L85" aria-label="Line 85">85</a><span class="line-code">/-- The induced coordinate volume.  Its relation to canonical Euclidean</span></span>
+<span class="source-line" id="L86"><a class="line-no" href="#L86" aria-label="Line 86">86</a><span class="line-code">hyperplane volume is a separate normalization identity. -/</span></span>
+<span class="source-line" id="L87"><a class="line-no" href="#L87" aria-label="Line 87">87</a><span class="line-code">def coordinateMeasure (d : ℕ) : Measure (rootSpace d) :=</span></span>
+<span class="source-line" id="L88"><a class="line-no" href="#L88" aria-label="Line 88">88</a><span class="line-code">  Measure.map (coordinatesContinuous d) volume</span></span>
+<span class="source-line" id="L89"><a class="line-no" href="#L89" aria-label="Line 89">89</a><span class="line-code"> </span></span>
+<span class="source-line" id="L90"><a class="line-no" href="#L90" aria-label="Line 90">90</a><span class="line-code">theorem coordinates_measurePreserving (d : ℕ) :</span></span>
+<span class="source-line" id="L91"><a class="line-no" href="#L91" aria-label="Line 91">91</a><span class="line-code">    MeasurePreserving (coordinatesContinuous d) volume (coordinateMeasure d) :=</span></span>
+<span class="source-line" id="L92"><a class="line-no" href="#L92" aria-label="Line 92">92</a><span class="line-code">  ⟨(coordinatesContinuous d).continuous.measurable, rfl⟩</span></span>
+<span class="source-line" id="L93"><a class="line-no" href="#L93" aria-label="Line 93">93</a><span class="line-code"> </span></span>
+<span class="source-line" id="L94"><a class="line-no" href="#L94" aria-label="Line 94">94</a><span class="line-code">/-- The affine integer lattice with the exact required total mass. -/</span></span>
+<span class="source-line" id="L95"><a class="line-no" href="#L95" aria-label="Line 95">95</a><span class="line-code">def Lattice (d : ℕ) (n : ℤ) := {μ : Fin (d + 1) → ℤ // ∑ i, μ i = n}</span></span>
+<span class="source-line" id="L96"><a class="line-no" href="#L96" aria-label="Line 96">96</a><span class="line-code"> </span></span>
+<span class="source-line" id="L97"><a class="line-no" href="#L97" aria-label="Line 97">97</a><span class="line-code">/-- Every affine label is uniquely determined by its first `d` coordinates. -/</span></span>
+<span class="source-line" id="L98"><a class="line-no" href="#L98" aria-label="Line 98">98</a><span class="line-code">def latticeCoordinates (d : ℕ) (n : ℤ) : (Fin d → ℤ) ≃ Lattice d n where</span></span>
+<span class="source-line" id="L99"><a class="line-no" href="#L99" aria-label="Line 99">99</a><span class="line-code">  toFun z := ⟨YoungCompatibility.complete n z, YoungCompatibility.complete_sum n z⟩</span></span>
+<span class="source-line" id="L100"><a class="line-no" href="#L100" aria-label="Line 100">100</a><span class="line-code">  invFun μ i := μ.1 i.castSucc</span></span>
+<span class="source-line" id="L101"><a class="line-no" href="#L101" aria-label="Line 101">101</a><span class="line-code">  left_inv z := by ext i; simp</span></span>
+<span class="source-line" id="L102"><a class="line-no" href="#L102" aria-label="Line 102">102</a><span class="line-code">  right_inv μ := by</span></span>
+<span class="source-line" id="L103"><a class="line-no" href="#L103" aria-label="Line 103">103</a><span class="line-code">    apply Subtype.ext</span></span>
+<span class="source-line" id="L104"><a class="line-no" href="#L104" aria-label="Line 104">104</a><span class="line-code">    ext i</span></span>
+<span class="source-line" id="L105"><a class="line-no" href="#L105" aria-label="Line 105">105</a><span class="line-code">    refine Fin.lastCases ?_ (fun j ↦ ?_) i</span></span>
+<span class="source-line" id="L106"><a class="line-no" href="#L106" aria-label="Line 106">106</a><span class="line-code">    · change YoungCompatibility.complete n (fun j ↦ μ.1 j.castSucc) (Fin.last d) = μ.1 (Fin.last d)</span></span>
+<span class="source-line" id="L107"><a class="line-no" href="#L107" aria-label="Line 107">107</a><span class="line-code">      rw [YoungCompatibility.complete_last]</span></span>
+<span class="source-line" id="L108"><a class="line-no" href="#L108" aria-label="Line 108">108</a><span class="line-code">      unfold Rounding.completeLast</span></span>
+<span class="source-line" id="L109"><a class="line-no" href="#L109" aria-label="Line 109">109</a><span class="line-code">      have hμ := μ.2</span></span>
+<span class="source-line" id="L110"><a class="line-no" href="#L110" aria-label="Line 110">110</a><span class="line-code">      rw [Fin.sum_univ_castSucc] at hμ</span></span>
+<span class="source-line" id="L111"><a class="line-no" href="#L111" aria-label="Line 111">111</a><span class="line-code">      change n - (∑ j : Fin d, μ.1 j.castSucc) = μ.1 (Fin.last d)</span></span>
+<span class="source-line" id="L112"><a class="line-no" href="#L112" aria-label="Line 112">112</a><span class="line-code">      omega</span></span>
+<span class="source-line" id="L113"><a class="line-no" href="#L113" aria-label="Line 113">113</a><span class="line-code">    · simp</span></span>
+<span class="source-line" id="L114"><a class="line-no" href="#L114" aria-label="Line 114">114</a><span class="line-code"> </span></span>
+<span class="source-line" id="L115"><a class="line-no" href="#L115" aria-label="Line 115">115</a><span class="line-code">@[simp] theorem latticeCoordinates_head (d : ℕ) (n : ℤ) (z : Fin d → ℤ) (i : Fin d) :</span></span>
+<span class="source-line" id="L116"><a class="line-no" href="#L116" aria-label="Line 116">116</a><span class="line-code">    (latticeCoordinates d n z).1 i.castSucc = z i := by simp [latticeCoordinates]</span></span>
+<span class="source-line" id="L117"><a class="line-no" href="#L117" aria-label="Line 117">117</a><span class="line-code"> </span></span>
+<span class="source-line" id="L118"><a class="line-no" href="#L118" aria-label="Line 118">118</a><span class="line-code">@[simp] theorem latticeCoordinates_sum (d : ℕ) (n : ℤ) (μ : Lattice d n) :</span></span>
+<span class="source-line" id="L119"><a class="line-no" href="#L119" aria-label="Line 119">119</a><span class="line-code">    ∑ i, μ.1 i = n := μ.2</span></span>
+<span class="source-line" id="L120"><a class="line-no" href="#L120" aria-label="Line 120">120</a><span class="line-code"> </span></span>
+<span class="source-line" id="L121"><a class="line-no" href="#L121" aria-label="Line 121">121</a><span class="line-code">/-- A literal fundamental cell in the Euclidean root hyperplane. -/</span></span>
+<span class="source-line" id="L122"><a class="line-no" href="#L122" aria-label="Line 122">122</a><span class="line-code">def cell (d : ℕ) (z : Fin d → ℤ) : Set (rootSpace d) :=</span></span>
+<span class="source-line" id="L123"><a class="line-no" href="#L123" aria-label="Line 123">123</a><span class="line-code">  (coordinates d).symm ⁻¹&#x27; YoungRounding.cell z</span></span>
+<span class="source-line" id="L124"><a class="line-no" href="#L124" aria-label="Line 124">124</a><span class="line-code"> </span></span>
+<span class="source-line" id="L125"><a class="line-no" href="#L125" aria-label="Line 125">125</a><span class="line-code">theorem measurableSet_cell (d : ℕ) (z : Fin d → ℤ) : MeasurableSet (cell d z) :=</span></span>
+<span class="source-line" id="L126"><a class="line-no" href="#L126" aria-label="Line 126">126</a><span class="line-code">  (coordinatesContinuous d).symm.continuous.measurable (YoungRounding.measurableSet_cell z)</span></span>
+<span class="source-line" id="L127"><a class="line-no" href="#L127" aria-label="Line 127">127</a><span class="line-code"> </span></span>
+<span class="source-line" id="L128"><a class="line-no" href="#L128" aria-label="Line 128">128</a><span class="line-code">theorem cells_cover (d : ℕ) : (⋃ z : Fin d → ℤ, cell d z) = Set.univ := by</span></span>
+<span class="source-line" id="L129"><a class="line-no" href="#L129" aria-label="Line 129">129</a><span class="line-code">  apply Set.eq_univ_of_forall</span></span>
+<span class="source-line" id="L130"><a class="line-no" href="#L130" aria-label="Line 130">130</a><span class="line-code">  intro x</span></span>
+<span class="source-line" id="L131"><a class="line-no" href="#L131" aria-label="Line 131">131</a><span class="line-code">  refine Set.mem_iUnion.mpr ⟨YoungRounding.round ((coordinates d).symm x), ?_⟩</span></span>
+<span class="source-line" id="L132"><a class="line-no" href="#L132" aria-label="Line 132">132</a><span class="line-code">  exact (YoungRounding.round_eq_iff _ _).mp rfl</span></span>
+<span class="source-line" id="L133"><a class="line-no" href="#L133" aria-label="Line 133">133</a><span class="line-code"> </span></span>
+<span class="source-line" id="L134"><a class="line-no" href="#L134" aria-label="Line 134">134</a><span class="line-code">theorem cells_disjoint (d : ℕ) : Pairwise fun z w : Fin d → ℤ ↦ Disjoint (cell d z) (cell d w) := by</span></span>
+<span class="source-line" id="L135"><a class="line-no" href="#L135" aria-label="Line 135">135</a><span class="line-code">  intro z w hzw</span></span>
+<span class="source-line" id="L136"><a class="line-no" href="#L136" aria-label="Line 136">136</a><span class="line-code">  exact (YoungRounding.cells_disjoint hzw).preimage _</span></span>
+<span class="source-line" id="L137"><a class="line-no" href="#L137" aria-label="Line 137">137</a><span class="line-code"> </span></span>
+<span class="source-line" id="L138"><a class="line-no" href="#L138" aria-label="Line 138">138</a><span class="line-code">theorem coordinateMeasure_cell (d : ℕ) (z : Fin d → ℤ) :</span></span>
+<span class="source-line" id="L139"><a class="line-no" href="#L139" aria-label="Line 139">139</a><span class="line-code">    coordinateMeasure d (cell d z) = 1 := by</span></span>
+<span class="source-line" id="L140"><a class="line-no" href="#L140" aria-label="Line 140">140</a><span class="line-code">  rw [coordinateMeasure, Measure.map_apply (coordinatesContinuous d).continuous.measurable</span></span>
+<span class="source-line" id="L141"><a class="line-no" href="#L141" aria-label="Line 141">141</a><span class="line-code">    (measurableSet_cell d z)]</span></span>
+<span class="source-line" id="L142"><a class="line-no" href="#L142" aria-label="Line 142">142</a><span class="line-code">  have heq : (coordinatesContinuous d) ⁻¹&#x27; cell d z = YoungRounding.cell z := by</span></span>
+<span class="source-line" id="L143"><a class="line-no" href="#L143" aria-label="Line 143">143</a><span class="line-code">    ext x</span></span>
+<span class="source-line" id="L144"><a class="line-no" href="#L144" aria-label="Line 144">144</a><span class="line-code">    change (coordinates d).symm (coordinates d x) ∈ YoungRounding.cell z ↔ _</span></span>
+<span class="source-line" id="L145"><a class="line-no" href="#L145" aria-label="Line 145">145</a><span class="line-code">    rw [LinearEquiv.symm_apply_apply]</span></span>
+<span class="source-line" id="L146"><a class="line-no" href="#L146" aria-label="Line 146">146</a><span class="line-code">  rw [heq, YoungRounding.volume_cell]</span></span>
+<span class="source-line" id="L147"><a class="line-no" href="#L147" aria-label="Line 147">147</a><span class="line-code"> </span></span>
+<span class="source-line" id="L148"><a class="line-no" href="#L148" aria-label="Line 148">148</a><span class="line-code">/-- Integration is transported to the actual hyperplane, rather than merely</span></span>
+<span class="source-line" id="L149"><a class="line-no" href="#L149" aria-label="Line 149">149</a><span class="line-code">asserting an unspecified Jacobian cancellation. -/</span></span>
+<span class="source-line" id="L150"><a class="line-no" href="#L150" aria-label="Line 150">150</a><span class="line-code">theorem integral_coordinates (d : ℕ) (f : (Fin d → ℝ) → ℝ) :</span></span>
+<span class="source-line" id="L151"><a class="line-no" href="#L151" aria-label="Line 151">151</a><span class="line-code">    (∫ x : rootSpace d, f ((coordinates d).symm x) ∂coordinateMeasure d) = ∫ x, f x := by</span></span>
+<span class="source-line" id="L152"><a class="line-no" href="#L152" aria-label="Line 152">152</a><span class="line-code">  have h := (coordinates_measurePreserving d).integral_comp</span></span>
+<span class="source-line" id="L153"><a class="line-no" href="#L153" aria-label="Line 153">153</a><span class="line-code">    (coordinatesContinuous d).toHomeomorph.measurableEmbedding</span></span>
+<span class="source-line" id="L154"><a class="line-no" href="#L154" aria-label="Line 154">154</a><span class="line-code">    (fun x ↦ f ((coordinates d).symm x))</span></span>
+<span class="source-line" id="L155"><a class="line-no" href="#L155" aria-label="Line 155">155</a><span class="line-code">  have heq (x : Fin d → ℝ) : (coordinates d).symm (coordinatesContinuous d x) = x :=</span></span>
+<span class="source-line" id="L156"><a class="line-no" href="#L156" aria-label="Line 156">156</a><span class="line-code">    (coordinates d).symm_apply_apply x</span></span>
+<span class="source-line" id="L157"><a class="line-no" href="#L157" aria-label="Line 157">157</a><span class="line-code">  simpa only [heq] using h.symm</span></span>
+<span class="source-line" id="L158"><a class="line-no" href="#L158" aria-label="Line 158">158</a><span class="line-code"> </span></span>
+<span class="source-line" id="L159"><a class="line-no" href="#L159" aria-label="Line 159">159</a><span class="line-code">/-- The actual affine-label PMF, constructed by pushing forward a head law. -/</span></span>
+<span class="source-line" id="L160"><a class="line-no" href="#L160" aria-label="Line 160">160</a><span class="line-code">def latticePMF (d : ℕ) (n : ℤ) (P : PMF (Fin d → ℤ)) : PMF (Lattice d n) :=</span></span>
+<span class="source-line" id="L161"><a class="line-no" href="#L161" aria-label="Line 161">161</a><span class="line-code">  P.map (latticeCoordinates d n)</span></span>
+<span class="source-line" id="L162"><a class="line-no" href="#L162" aria-label="Line 162">162</a><span class="line-code"> </span></span>
+<span class="source-line" id="L163"><a class="line-no" href="#L163" aria-label="Line 163">163</a><span class="line-code">theorem latticePMF_apply (d : ℕ) (n : ℤ) (P : PMF (Fin d → ℤ)) (z : Fin d → ℤ) :</span></span>
+<span class="source-line" id="L164"><a class="line-no" href="#L164" aria-label="Line 164">164</a><span class="line-code">    latticePMF d n P (latticeCoordinates d n z) = P z := by</span></span>
+<span class="source-line" id="L165"><a class="line-no" href="#L165" aria-label="Line 165">165</a><span class="line-code">  unfold latticePMF</span></span>
+<span class="source-line" id="L166"><a class="line-no" href="#L166" aria-label="Line 166">166</a><span class="line-code">  rw [PMF.map_apply]</span></span>
+<span class="source-line" id="L167"><a class="line-no" href="#L167" aria-label="Line 167">167</a><span class="line-code">  simp only [(latticeCoordinates d n).injective.eq_iff]</span></span>
+<span class="source-line" id="L168"><a class="line-no" href="#L168" aria-label="Line 168">168</a><span class="line-code">  exact tsum_eq_single z (fun b hb ↦ if_neg (Ne.symm hb)) |&gt;.trans (if_pos rfl)</span></span>
+<span class="source-line" id="L169"><a class="line-no" href="#L169" aria-label="Line 169">169</a><span class="line-code"> </span></span>
+<span class="source-line" id="L170"><a class="line-no" href="#L170" aria-label="Line 170">170</a><span class="line-code">/-- Transport the actual dither kernel to the full affine lattice. -/</span></span>
+<span class="source-line" id="L171"><a class="line-no" href="#L171" aria-label="Line 171">171</a><span class="line-code">def latticeRoundingPMF (d : ℕ) (n m : ℤ) (γ : ℝ) (μ : Lattice d n) : PMF (Lattice d m) :=</span></span>
+<span class="source-line" id="L172"><a class="line-no" href="#L172" aria-label="Line 172">172</a><span class="line-code">  latticePMF d m (YoungRounding.roundingPMF γ (fun i : Fin d ↦ (μ.1 i.castSucc : ℝ)))</span></span>
+<span class="source-line" id="L173"><a class="line-no" href="#L173" aria-label="Line 173">173</a><span class="line-code"> </span></span>
+<span class="source-line" id="L174"><a class="line-no" href="#L174" aria-label="Line 174">174</a><span class="line-code">theorem latticeRoundingPMF_apply (d : ℕ) (n m : ℤ) (γ : ℝ) (μ : Lattice d n) (z : Fin d → ℤ) :</span></span>
+<span class="source-line" id="L175"><a class="line-no" href="#L175" aria-label="Line 175">175</a><span class="line-code">    latticeRoundingPMF d n m γ μ (latticeCoordinates d m z) =</span></span>
+<span class="source-line" id="L176"><a class="line-no" href="#L176" aria-label="Line 176">176</a><span class="line-code">      YoungRounding.roundingPMF γ (fun i : Fin d ↦ (μ.1 i.castSucc : ℝ)) z :=</span></span>
+<span class="source-line" id="L177"><a class="line-no" href="#L177" aria-label="Line 177">177</a><span class="line-code">  latticePMF_apply d m _ z</span></span>
+<span class="source-line" id="L178"><a class="line-no" href="#L178" aria-label="Line 178">178</a><span class="line-code"> </span></span>
+<span class="source-line" id="L179"><a class="line-no" href="#L179" aria-label="Line 179">179</a><span class="line-code">/-- Scaled and translated interpolation on the full root hyperplane. The law</span></span>
+<span class="source-line" id="L180"><a class="line-no" href="#L180" aria-label="Line 180">180</a><span class="line-code">is indexed by the actual affine lattice; `a` is the recentering displacement</span></span>
+<span class="source-line" id="L181"><a class="line-no" href="#L181" aria-label="Line 181">181</a><span class="line-code">in the hyperplane and `h&gt;0` is the cell scale. -/</span></span>
+<span class="source-line" id="L182"><a class="line-no" href="#L182" aria-label="Line 182">182</a><span class="line-code">def interpolate (d : ℕ) (n : ℤ) (h : ℝ) (a : rootSpace d)</span></span>
+<span class="source-line" id="L183"><a class="line-no" href="#L183" aria-label="Line 183">183</a><span class="line-code">    (P : Lattice d n → ℝ) (x : rootSpace d) : ℝ :=</span></span>
+<span class="source-line" id="L184"><a class="line-no" href="#L184" aria-label="Line 184">184</a><span class="line-code">  YoungRounding.affineDensity h ((coordinates d).symm a)</span></span>
+<span class="source-line" id="L185"><a class="line-no" href="#L185" aria-label="Line 185">185</a><span class="line-code">    (YoungRounding.interpolate (fun z ↦ P (latticeCoordinates d n z))) ((coordinates d).symm x)</span></span>
+<span class="source-line" id="L186"><a class="line-no" href="#L186" aria-label="Line 186">186</a><span class="line-code"> </span></span>
+<span class="source-line" id="L187"><a class="line-no" href="#L187" aria-label="Line 187">187</a><span class="line-code">theorem interpolate_integral (d : ℕ) (n : ℤ) (h : ℝ) (hh : 0 &lt; h) (a : rootSpace d)</span></span>
+<span class="source-line" id="L188"><a class="line-no" href="#L188" aria-label="Line 188">188</a><span class="line-code">    (P : Lattice d n → ℝ) (hP : Summable P) :</span></span>
+<span class="source-line" id="L189"><a class="line-no" href="#L189" aria-label="Line 189">189</a><span class="line-code">    (∫ x, interpolate d n h a P x ∂coordinateMeasure d) = ∑&#x27; μ, P μ := by</span></span>
+<span class="source-line" id="L190"><a class="line-no" href="#L190" aria-label="Line 190">190</a><span class="line-code">  have hp : Summable (fun z ↦ P (latticeCoordinates d n z)) :=</span></span>
+<span class="source-line" id="L191"><a class="line-no" href="#L191" aria-label="Line 191">191</a><span class="line-code">    (latticeCoordinates d n).summable_iff.mpr hP</span></span>
+<span class="source-line" id="L192"><a class="line-no" href="#L192" aria-label="Line 192">192</a><span class="line-code">  unfold interpolate</span></span>
+<span class="source-line" id="L193"><a class="line-no" href="#L193" aria-label="Line 193">193</a><span class="line-code">  rw [integral_coordinates, YoungRounding.integral_affineDensity h hh,</span></span>
+<span class="source-line" id="L194"><a class="line-no" href="#L194" aria-label="Line 194">194</a><span class="line-code">    YoungRounding.integral_interpolate hp]</span></span>
+<span class="source-line" id="L195"><a class="line-no" href="#L195" aria-label="Line 195">195</a><span class="line-code">  exact (latticeCoordinates d n).tsum_eq P</span></span>
+<span class="source-line" id="L196"><a class="line-no" href="#L196" aria-label="Line 196">196</a><span class="line-code"> </span></span>
+<span class="source-line" id="L197"><a class="line-no" href="#L197" aria-label="Line 197">197</a><span class="line-code">/-- Exact `ℓ¹` preservation on the full affine lattice and root hyperplane. -/</span></span>
+<span class="source-line" id="L198"><a class="line-no" href="#L198" aria-label="Line 198">198</a><span class="line-code">theorem interpolate_l1_isometry (d : ℕ) (n : ℤ) (h : ℝ) (hh : 0 &lt; h) (a : rootSpace d)</span></span>
+<span class="source-line" id="L199"><a class="line-no" href="#L199" aria-label="Line 199">199</a><span class="line-code">    (P Q : Lattice d n → ℝ) (hP : Summable P) (hQ : Summable Q) :</span></span>
+<span class="source-line" id="L200"><a class="line-no" href="#L200" aria-label="Line 200">200</a><span class="line-code">    (∫ x, |interpolate d n h a P x - interpolate d n h a Q x| ∂coordinateMeasure d) =</span></span>
+<span class="source-line" id="L201"><a class="line-no" href="#L201" aria-label="Line 201">201</a><span class="line-code">      ∑&#x27; μ, |P μ - Q μ| := by</span></span>
+<span class="source-line" id="L202"><a class="line-no" href="#L202" aria-label="Line 202">202</a><span class="line-code">  have hp : Summable (fun z ↦ P (latticeCoordinates d n z)) :=</span></span>
+<span class="source-line" id="L203"><a class="line-no" href="#L203" aria-label="Line 203">203</a><span class="line-code">    (latticeCoordinates d n).summable_iff.mpr hP</span></span>
+<span class="source-line" id="L204"><a class="line-no" href="#L204" aria-label="Line 204">204</a><span class="line-code">  have hq : Summable (fun z ↦ Q (latticeCoordinates d n z)) :=</span></span>
+<span class="source-line" id="L205"><a class="line-no" href="#L205" aria-label="Line 205">205</a><span class="line-code">    (latticeCoordinates d n).summable_iff.mpr hQ</span></span>
+<span class="source-line" id="L206"><a class="line-no" href="#L206" aria-label="Line 206">206</a><span class="line-code">  unfold interpolate</span></span>
+<span class="source-line" id="L207"><a class="line-no" href="#L207" aria-label="Line 207">207</a><span class="line-code">  rw [integral_coordinates d (fun y ↦</span></span>
+<span class="source-line" id="L208"><a class="line-no" href="#L208" aria-label="Line 208">208</a><span class="line-code">    |YoungRounding.affineDensity h ((coordinates d).symm a)</span></span>
+<span class="source-line" id="L209"><a class="line-no" href="#L209" aria-label="Line 209">209</a><span class="line-code">        (YoungRounding.interpolate (fun z ↦ P (latticeCoordinates d n z))) y -</span></span>
+<span class="source-line" id="L210"><a class="line-no" href="#L210" aria-label="Line 210">210</a><span class="line-code">      YoungRounding.affineDensity h ((coordinates d).symm a)</span></span>
+<span class="source-line" id="L211"><a class="line-no" href="#L211" aria-label="Line 211">211</a><span class="line-code">        (YoungRounding.interpolate (fun z ↦ Q (latticeCoordinates d n z))) y|),</span></span>
+<span class="source-line" id="L212"><a class="line-no" href="#L212" aria-label="Line 212">212</a><span class="line-code">    YoungRounding.affineDensity_l1_isometry h hh,</span></span>
+<span class="source-line" id="L213"><a class="line-no" href="#L213" aria-label="Line 213">213</a><span class="line-code">    YoungRounding.interpolate_l1_isometry hp hq]</span></span>
+<span class="source-line" id="L214"><a class="line-no" href="#L214" aria-label="Line 214">214</a><span class="line-code">  exact (latticeCoordinates d n).tsum_eq (fun μ ↦ |P μ - Q μ|)</span></span>
+<span class="source-line" id="L215"><a class="line-no" href="#L215" aria-label="Line 215">215</a><span class="line-code"> </span></span>
+<span class="source-line" id="L216"><a class="line-no" href="#L216" aria-label="Line 216">216</a><span class="line-code">/-- Positive affine density transport preserves Hellinger affinity exactly,</span></span>
+<span class="source-line" id="L217"><a class="line-no" href="#L217" aria-label="Line 217">217</a><span class="line-code">including its Jacobian on the density, at every positive scale. -/</span></span>
+<span class="source-line" id="L218"><a class="line-no" href="#L218" aria-label="Line 218">218</a><span class="line-code">theorem affineDensity_affinity (d : ℕ) (h : ℝ) (hh : 0 &lt; h) (a : Fin d → ℝ)</span></span>
+<span class="source-line" id="L219"><a class="line-no" href="#L219" aria-label="Line 219">219</a><span class="line-code">    (f g : (Fin d → ℝ) → ℝ) :</span></span>
+<span class="source-line" id="L220"><a class="line-no" href="#L220" aria-label="Line 220">220</a><span class="line-code">    (∫ x, Real.sqrt (YoungRounding.affineDensity h a f x) *</span></span>
+<span class="source-line" id="L221"><a class="line-no" href="#L221" aria-label="Line 221">221</a><span class="line-code">      Real.sqrt (YoungRounding.affineDensity h a g x)) = ∫ x, Real.sqrt (f x) * Real.sqrt (g x) := by</span></span>
+<span class="source-line" id="L222"><a class="line-no" href="#L222" aria-label="Line 222">222</a><span class="line-code">  have hscale : 0 ≤ (h ^ Fintype.card (Fin d))⁻¹ := inv_nonneg.mpr (pow_nonneg hh.le _)</span></span>
+<span class="source-line" id="L223"><a class="line-no" href="#L223" aria-label="Line 223">223</a><span class="line-code">  have heq : (fun x ↦ Real.sqrt (YoungRounding.affineDensity h a f x) *</span></span>
+<span class="source-line" id="L224"><a class="line-no" href="#L224" aria-label="Line 224">224</a><span class="line-code">      Real.sqrt (YoungRounding.affineDensity h a g x)) =</span></span>
+<span class="source-line" id="L225"><a class="line-no" href="#L225" aria-label="Line 225">225</a><span class="line-code">      YoungRounding.affineDensity h a (fun x ↦ Real.sqrt (f x) * Real.sqrt (g x)) := by</span></span>
+<span class="source-line" id="L226"><a class="line-no" href="#L226" aria-label="Line 226">226</a><span class="line-code">    funext x</span></span>
+<span class="source-line" id="L227"><a class="line-no" href="#L227" aria-label="Line 227">227</a><span class="line-code">    simp only [YoungRounding.affineDensity, Real.sqrt_mul hscale]</span></span>
+<span class="source-line" id="L228"><a class="line-no" href="#L228" aria-label="Line 228">228</a><span class="line-code">    rw [show Real.sqrt (h ^ Fintype.card (Fin d))⁻¹ * Real.sqrt (f (h⁻¹ • (x - a))) *</span></span>
+<span class="source-line" id="L229"><a class="line-no" href="#L229" aria-label="Line 229">229</a><span class="line-code">          (Real.sqrt (h ^ Fintype.card (Fin d))⁻¹ * Real.sqrt (g (h⁻¹ • (x - a)))) =</span></span>
+<span class="source-line" id="L230"><a class="line-no" href="#L230" aria-label="Line 230">230</a><span class="line-code">        (Real.sqrt (h ^ Fintype.card (Fin d))⁻¹) ^ 2 *</span></span>
+<span class="source-line" id="L231"><a class="line-no" href="#L231" aria-label="Line 231">231</a><span class="line-code">          (Real.sqrt (f (h⁻¹ • (x - a))) * Real.sqrt (g (h⁻¹ • (x - a)))) by ring]</span></span>
+<span class="source-line" id="L232"><a class="line-no" href="#L232" aria-label="Line 232">232</a><span class="line-code">    rw [Real.sq_sqrt hscale]</span></span>
+<span class="source-line" id="L233"><a class="line-no" href="#L233" aria-label="Line 233">233</a><span class="line-code">  rw [heq, YoungRounding.integral_affineDensity h hh]</span></span>
+<span class="source-line" id="L234"><a class="line-no" href="#L234" aria-label="Line 234">234</a><span class="line-code"> </span></span>
+<span class="source-line" id="L235"><a class="line-no" href="#L235" aria-label="Line 235">235</a><span class="line-code">/-- Exact Hellinger-affinity preservation on the actual affine lattice. -/</span></span>
+<span class="source-line" id="L236"><a class="line-no" href="#L236" aria-label="Line 236">236</a><span class="line-code">theorem interpolate_affinity (d : ℕ) (n : ℤ) (h : ℝ) (hh : 0 &lt; h) (a : rootSpace d)</span></span>
+<span class="source-line" id="L237"><a class="line-no" href="#L237" aria-label="Line 237">237</a><span class="line-code">    (P Q : Lattice d n → ℝ) (hP0 : ∀ μ, 0 ≤ P μ) (hQ0 : ∀ μ, 0 ≤ Q μ)</span></span>
+<span class="source-line" id="L238"><a class="line-no" href="#L238" aria-label="Line 238">238</a><span class="line-code">    (hP : Summable P) (hQ : Summable Q) :</span></span>
+<span class="source-line" id="L239"><a class="line-no" href="#L239" aria-label="Line 239">239</a><span class="line-code">    (∫ x, Real.sqrt (interpolate d n h a P x) * Real.sqrt (interpolate d n h a Q x)</span></span>
+<span class="source-line" id="L240"><a class="line-no" href="#L240" aria-label="Line 240">240</a><span class="line-code">      ∂coordinateMeasure d) = ∑&#x27; μ, Real.sqrt (P μ) * Real.sqrt (Q μ) := by</span></span>
+<span class="source-line" id="L241"><a class="line-no" href="#L241" aria-label="Line 241">241</a><span class="line-code">  have hp : Summable (fun z ↦ P (latticeCoordinates d n z)) :=</span></span>
+<span class="source-line" id="L242"><a class="line-no" href="#L242" aria-label="Line 242">242</a><span class="line-code">    (latticeCoordinates d n).summable_iff.mpr hP</span></span>
+<span class="source-line" id="L243"><a class="line-no" href="#L243" aria-label="Line 243">243</a><span class="line-code">  have hq : Summable (fun z ↦ Q (latticeCoordinates d n z)) :=</span></span>
+<span class="source-line" id="L244"><a class="line-no" href="#L244" aria-label="Line 244">244</a><span class="line-code">    (latticeCoordinates d n).summable_iff.mpr hQ</span></span>
+<span class="source-line" id="L245"><a class="line-no" href="#L245" aria-label="Line 245">245</a><span class="line-code">  unfold interpolate</span></span>
+<span class="source-line" id="L246"><a class="line-no" href="#L246" aria-label="Line 246">246</a><span class="line-code">  rw [integral_coordinates d (fun y ↦</span></span>
+<span class="source-line" id="L247"><a class="line-no" href="#L247" aria-label="Line 247">247</a><span class="line-code">    Real.sqrt (YoungRounding.affineDensity h ((coordinates d).symm a)</span></span>
+<span class="source-line" id="L248"><a class="line-no" href="#L248" aria-label="Line 248">248</a><span class="line-code">        (YoungRounding.interpolate (fun z ↦ P (latticeCoordinates d n z))) y) *</span></span>
+<span class="source-line" id="L249"><a class="line-no" href="#L249" aria-label="Line 249">249</a><span class="line-code">      Real.sqrt (YoungRounding.affineDensity h ((coordinates d).symm a)</span></span>
+<span class="source-line" id="L250"><a class="line-no" href="#L250" aria-label="Line 250">250</a><span class="line-code">        (YoungRounding.interpolate (fun z ↦ Q (latticeCoordinates d n z))) y)),</span></span>
+<span class="source-line" id="L251"><a class="line-no" href="#L251" aria-label="Line 251">251</a><span class="line-code">    affineDensity_affinity d h hh,</span></span>
+<span class="source-line" id="L252"><a class="line-no" href="#L252" aria-label="Line 252">252</a><span class="line-code">    YoungRounding.interpolate_affinity (fun z ↦ hP0 _) (fun z ↦ hQ0 _) hp hq]</span></span>
+<span class="source-line" id="L253"><a class="line-no" href="#L253" aria-label="Line 253">253</a><span class="line-code">  exact (latticeCoordinates d n).tsum_eq (fun μ ↦ Real.sqrt (P μ) * Real.sqrt (Q μ))</span></span>
+<span class="source-line" id="L254"><a class="line-no" href="#L254" aria-label="Line 254">254</a><span class="line-code"> </span></span>
+<span class="source-line" id="L255"><a class="line-no" href="#L255" aria-label="Line 255">255</a><span class="line-code">end Cloning.YoungHyperplane</span></span>
+</code></pre></div></main>
+<footer class="footer">English guides explain the argument. Lean source and its hypotheses determine the formal claims.
+<a href="../verification.html">Audit evidence</a> · <a href="../scope.html">Scope</a></footer>
+</div></div></body></html>

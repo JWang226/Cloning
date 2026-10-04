@@ -1,0 +1,23 @@
+{
+  "args": [
+    "lake",
+    "env",
+    "lean",
+    "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/formalization/verification/nanoda/.work/diagnostics/ProjectSafetyInventory.lean"
+  ],
+  "completed_utc": "2026-10-04T04:51:41.959857+00:00",
+  "exit_code": 0,
+  "output_log": "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/formalization/verification/nanoda/.work/diagnostics/project-safety.log",
+  "output_log_sha256": "4b6bb4afcd8a093edd614156e813a480b566f5208ac1891c639c28c63fb8ae7a",
+  "pid": 259,
+  "scope": "Complete compiled project declaration safety classification; no Nanoda execution.",
+  "source_sha256": "da5d390c85baf527a37655cc9152cf72053fbd065dcdde02210a2b92752f0df7",
+  "started_utc": "2026-10-04T04:51:30.910345+00:00",
+  "summary": {
+    "modules": 982,
+    "partial_declarations": [],
+    "project_declarations": 14345,
+    "unsafe_declarations": []
+  },
+  "unique_names": 14345
+}

@@ -1,0 +1,275 @@
+{
+  "declaration_kinds": {
+    "axiom": 3,
+    "ctors": 1158,
+    "def": 14130,
+    "opaque": 55,
+    "quot": 4,
+    "recs": 1057,
+    "thm": 66001,
+    "types": 1055
+  },
+  "declarations": 83463,
+  "diagnostic_only": true,
+  "export_bytes": 777746681,
+  "export_sha256": "bc8802d1d0a28c4baef57a93575a4896dd9c5c04e1b848fba5e35be35929d954",
+  "independent_kernel_check": "not_run",
+  "metadata": {
+    "exporter": {
+      "name": "lean4export",
+      "version": "3.1.0"
+    },
+    "format": {
+      "version": "3.1.0"
+    },
+    "lean": {
+      "githash": "00659f8e6071d7e46131ed643bf8003b99b044e9",
+      "version": "4.29.0-rc6"
+    }
+  },
+  "missing_roots": [],
+  "requested_roots": 14403,
+  "unsafe_or_partial": [
+    {
+      "isUnsafe": null,
+      "kind": "def",
+      "line": 10650637,
+      "name": "Cloning.MultimodeCoherent.numberIterate._unsafe_rec",
+      "requested_root": true,
+      "safety": "partial"
+    },
+    {
+      "isUnsafe": null,
+      "kind": "def",
+      "line": 10674586,
+      "name": "Cloning.PBW.errorTerms._unsafe_rec",
+      "requested_root": true,
+      "safety": "partial"
+    },
+    {
+      "isUnsafe": null,
+      "kind": "def",
+      "line": 10678036,
+      "name": "Cloning.PBW.gramConstant._unsafe_rec",
+      "requested_root": true,
+      "safety": "partial"
+    },
+    {
+      "isUnsafe": null,
+      "kind": "def",
+      "line": 10692148,
+      "name": "Cloning.PBW.occupationFactorial._unsafe_rec",
+      "requested_root": true,
+      "safety": "partial"
+    },
+    {
+      "isUnsafe": null,
+      "kind": "def",
+      "line": 10692662,
+      "name": "Cloning.PBW.removeOne._unsafe_rec",
+      "requested_root": true,
+      "safety": "partial"
+    },
+    {
+      "isUnsafe": null,
+      "kind": "def",
+      "line": 10693296,
+      "name": "Cloning.PBW.wick._unsafe_rec",
+      "requested_root": true,
+      "safety": "partial"
+    },
+    {
+      "isUnsafe": null,
+      "kind": "def",
+      "line": 10694290,
+      "name": "Cloning.PBW.word._unsafe_rec",
+      "requested_root": true,
+      "safety": "partial"
+    },
+    {
+      "isUnsafe": null,
+      "kind": "def",
+      "line": 14091869,
+      "name": "Cloning.TensorLie.highestAction._unsafe_rec",
+      "requested_root": true,
+      "safety": "partial"
+    },
+    {
+      "isUnsafe": null,
+      "kind": "def",
+      "line": 14094130,
+      "name": "Cloning.TensorLie.loweringHeight._unsafe_rec",
+      "requested_root": true,
+      "safety": "partial"
+    },
+    {
+      "isUnsafe": null,
+      "kind": "def",
+      "line": 14094585,
+      "name": "Cloning.TensorLie.loweringOperator._unsafe_rec",
+      "requested_root": true,
+      "safety": "partial"
+    },
+    {
+      "isUnsafe": null,
+      "kind": "def",
+      "line": 14095393,
+      "name": "Cloning.TensorLie.loweringScale._unsafe_rec",
+      "requested_root": true,
+      "safety": "partial"
+    },
+    {
+      "isUnsafe": null,
+      "kind": "def",
+      "line": 14095945,
+      "name": "Cloning.TensorLie.loweringSplits._unsafe_rec",
+      "requested_root": true,
+      "safety": "partial"
+    },
+    {
+      "isUnsafe": null,
+      "kind": "def",
+      "line": 14096921,
+      "name": "Cloning.TensorLie.loweringWeight._unsafe_rec",
+      "requested_root": true,
+      "safety": "partial"
+    },
+    {
+      "isUnsafe": null,
+      "kind": "def",
+      "line": 14097289,
+      "name": "Cloning.TensorLie.loweringWord._unsafe_rec",
+      "requested_root": true,
+      "safety": "partial"
+    },
+    {
+      "isUnsafe": null,
+      "kind": "def",
+      "line": 14140223,
+      "name": "Cloning.TensorLie.physicalSectorListSpan._unsafe_rec",
+      "requested_root": true,
+      "safety": "partial"
+    },
+    {
+      "isUnsafe": null,
+      "kind": "def",
+      "line": 14144032,
+      "name": "Cloning.TensorLie.recursivePhysicalDecomposition._unsafe_rec",
+      "requested_root": true,
+      "safety": "partial"
+    },
+    {
+      "isUnsafe": null,
+      "kind": "def",
+      "line": 14144284,
+      "name": "Cloning.TensorLie.rootInversions._unsafe_rec",
+      "requested_root": true,
+      "safety": "partial"
+    },
+    {
+      "isUnsafe": null,
+      "kind": "def",
+      "line": 14144703,
+      "name": "Cloning.TensorLie.rootOccupationSplits._unsafe_rec",
+      "requested_root": true,
+      "safety": "partial"
+    },
+    {
+      "isUnsafe": null,
+      "kind": "def",
+      "line": 14343009,
+      "name": "Cloning.YoungGeneral.shapeAdd._unsafe_rec",
+      "requested_root": true,
+      "safety": "partial"
+    },
+    {
+      "isUnsafe": null,
+      "kind": "def",
+      "line": 14343391,
+      "name": "Cloning.YoungGeneral.shapeRemovable._unsafe_rec",
+      "requested_root": true,
+      "safety": "partial"
+    },
+    {
+      "isUnsafe": null,
+      "kind": "def",
+      "line": 14343897,
+      "name": "Cloning.YoungGeneral.tableauInsert._unsafe_rec",
+      "requested_root": true,
+      "safety": "partial"
+    },
+    {
+      "isUnsafe": null,
+      "kind": "def",
+      "line": 14346641,
+      "name": "Cloning.YoungGeneral.tableauRemovable._unsafe_rec",
+      "requested_root": true,
+      "safety": "partial"
+    },
+    {
+      "isUnsafe": null,
+      "kind": "def",
+      "line": 14347612,
+      "name": "Cloning.YoungGeneral.tableauReverse._unsafe_rec",
+      "requested_root": true,
+      "safety": "partial"
+    },
+    {
+      "isUnsafe": null,
+      "kind": "def",
+      "line": 14370022,
+      "name": "Cloning.YoungTwoRow.Path._unsafe_rec",
+      "requested_root": true,
+      "safety": "partial"
+    },
+    {
+      "isUnsafe": null,
+      "kind": "def",
+      "line": 14399582,
+      "name": "Cloning.YoungTwoRow.legal._unsafe_rec",
+      "requested_root": true,
+      "safety": "partial"
+    },
+    {
+      "isUnsafe": null,
+      "kind": "def",
+      "line": 14399922,
+      "name": "Cloning.YoungTwoRow.lowerRow._unsafe_rec",
+      "requested_root": true,
+      "safety": "partial"
+    },
+    {
+      "isUnsafe": null,
+      "kind": "def",
+      "line": 14416952,
+      "name": "Cloning.YoungTwoRow.pathFintype._unsafe_rec",
+      "requested_root": true,
+      "safety": "partial"
+    },
+    {
+      "isUnsafe": null,
+      "kind": "def",
+      "line": 14417423,
+      "name": "Cloning.YoungTwoRow.spin._unsafe_rec",
+      "requested_root": true,
+      "safety": "partial"
+    },
+    {
+      "isUnsafe": null,
+      "kind": "def",
+      "line": 14417642,
+      "name": "Cloning.YoungTwoRow.upperRow._unsafe_rec",
+      "requested_root": true,
+      "safety": "partial"
+    },
+    {
+      "isUnsafe": null,
+      "kind": "def",
+      "line": 14417834,
+      "name": "Cloning.YoungTwoRow.weight._unsafe_rec",
+      "requested_root": true,
+      "safety": "partial"
+    }
+  ],
+  "unsafe_or_partial_count": 30
+}

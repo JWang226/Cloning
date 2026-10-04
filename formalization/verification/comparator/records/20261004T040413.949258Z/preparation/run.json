@@ -1,0 +1,45 @@
+{
+  "scope": "Diagnostic wrapper build and explicit-type comparison only; kernel verdict belongs to parent run.json.",
+  "diagnostic_cwd": "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/formalization/verification/comparator/.work/diagnostic/runs/20261004T040153.566942Z",
+  "commands": [
+    {
+      "argv": [
+        "/Users/jw/.elan/bin/lake",
+        "build",
+        "Solution"
+      ],
+      "exit_code": 0,
+      "log": "build.log"
+    },
+    {
+      "argv": [
+        "/Users/jw/.elan/bin/lake",
+        "build",
+        "Challenge"
+      ],
+      "exit_code": 0,
+      "log": "challenge-build.log"
+    },
+    {
+      "argv": [
+        "/Users/jw/.elan/bin/lake",
+        "env",
+        "lean",
+        "--run",
+        "CheckTypes.lean"
+      ],
+      "exit_code": 0,
+      "log": "check-types.log",
+      "output": "Matched 27 explicit theorem types; no kernel replay performed."
+    }
+  ],
+  "input_sha256": {
+    "Solution.lean": "cda4148de25917b1cd070efb766486e7a879d92ab9fd5d57eea098cf69493136",
+    "Challenge.lean": "6bdd7bfcf245364ff117328b16c445f600dce4ae10e79d24bde973a0bab2c360",
+    "CheckTypes.lean": "3e36453cc800983799cf171f5231b6df8d350f93e34ada9889eba54092567ded",
+    "lakefile.toml": "7a3a538cf5cb198c53c8027e4848c01dc2e969ddc765333f8c9e91499a216c95",
+    "config.json": "f7ce200c2b7dd9e30d72205dc770ae089bf038fbab2c3458ba1eab27b844ac85",
+    "lean-toolchain": "dc6d65016fad3123d44bf17b5bf0598286284ab16ba75d5c17eb22ed11f47361"
+  },
+  "phase_sample": "../phase-sample.txt"
+}
