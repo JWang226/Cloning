@@ -148,7 +148,7 @@
     "files": 2034,
     "offline_markdown_links_repaired": 74,
     "checker_verdicts_bound_to_current_audit": true,
-    "manifest_sha256": "a9efa52c2180182f4ce5fb84ba9546a449216331491ba5a65f51da698ad69327",
+    "manifest_sha256": "aa8d80af2e485a1a195330b5bd1eb73ebd8fa96bc1afc5c1015a95176dc582de",
     "dependency_stages": 12,
     "dependency_edges": 18,
     "paper_sections": 35,
@@ -258,6 +258,15 @@
     "heading": "Paper → Lean proof",
     "wiki_build": "passed",
     "local_links_and_anchors": "passed",
+    "proof_sources_unchanged": true
+  },
+  "overview_intro_revision": {
+    "recorded_utc": "2026-10-05T01:31:57.785659+00:00",
+    "intro_words": 59,
+    "inline_paper_url": "https://arxiv.org/abs/2609.35986",
+    "wiki_build": "passed",
+    "local_links_and_anchors": "passed",
+    "rendered_intro_matches_editorial_source": true,
     "proof_sources_unchanged": true
   }
 }

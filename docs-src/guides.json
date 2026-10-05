@@ -1,6 +1,6 @@
 {
   "title": "Mixed-state cloning: an informal guide to the Lean proofs",
-  "intro": "These twelve guides explain the proof routes of the paper on arXiv and connect each step to an existing Lean declaration. Guide numbering differs from the paper: the chapters follow an editorial reading order, bringing supporting appendices forward and reuniting theorem statements with their achievability and converse arguments. Each chapter records the corresponding paper sections and explains its relation to the Lean implementation. The proof map gives the complete correspondence for 27 named statements. The explanations are informal navigation aids: linked Lean statements supply the exact hypotheses, and verification records supply recorded build, axiom-audit, and separate checker evidence. The final physical endpoints construct their channels and approximation witnesses; legacy conditional assembly interfaces remain available but are not substitutes for those endpoints.",
+  "intro": "These guides explain the proofs in the paper and link each step to a Lean declaration. Chapters follow a reading order rather than the paper’s numbering, with references to the relevant sections and appendices. The proof map covers all 27 named results; Lean statements give the exact hypotheses, and verification records document the build, axiom audit, and independent checks.",
   "chapters": [
     {
       "id": "physical-problem",

@@ -612,9 +612,11 @@ class Wiki:
 
     def render_overview(self):
         a = self.audit
+        intro = paragraphs(self.guides["intro"]).replace(
+            "the paper", f'the <a href="{ARXIV}">paper</a>', 1)
         body = (f'<section class="hero"><div class="eyebrow">Quantum information · formal mathematics</div>'
                 f'<h1>{esc(self.guides.get("title", "The proof of mixed-state cloning"))}</h1>'
-                f'<div class="lead">{paragraphs(self.guides["intro"])}</div>'
+                f'<div class="lead">{intro}</div>'
                 '<div class="actions"><a class="button" href="guides/index.html">Start the proof guide →</a>'
                 '<a class="button secondary" href="results/index.html">Browse all 27 results</a>'
                 '<a class="button secondary" href="correspondence.html">Paper ↔ Lean correspondence</a>'
