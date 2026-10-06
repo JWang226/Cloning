@@ -68,13 +68,9 @@ in repository Settings → Pages after the generated files have been pushed.
 
 ## Assets and provenance
 
-The page organization is inspired by the Fermat’s Last Theorem proof wiki:
-https://tianyipeng.github.io/fermats-last-theorem/
-https://github.com/anthropics/fermats-last-theorem/tree/main/html
-
 The Python generator, CSS, and application JavaScript are original for this
-repository. KaTeX’s minified distribution and MIT license are vendored from
-anthropics/fermats-last-theorem/html/assets/vendor/katex (retrieved 2026-10-04).
+repository. KaTeX 0.18.4 is bundled with its MIT license; its upstream project is
+https://github.com/KaTeX/KaTeX.
 KaTeX renders native MathML only, so no KaTeX CSS or font assets are required.
 The exact bundled bytes are hashed in manifest.json. See
 assets/vendor/katex/LICENSE and assets/vendor/katex/README.md.

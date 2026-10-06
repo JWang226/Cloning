@@ -1,0 +1,116 @@
+{
+  "description": "Observed end-to-end execution of the root verification wrapper; a fresh test summary, separate from the immutable published source-audit and checker records.",
+  "command": [
+    "bash",
+    "scripts/verify.sh",
+    "all"
+  ],
+  "working_directory": "repository root",
+  "status": "passed",
+  "exit_code": 0,
+  "success_marker": "VERIFICATION PASSED: all",
+  "started_utc": "2026-10-06T00:55:53.652032+00:00",
+  "completed_utc": "2026-10-06T02:14:04.497338+00:00",
+  "elapsed_seconds": 4690.845,
+  "platform": {
+    "system": "Darwin",
+    "version": "27.2",
+    "architecture": "arm64",
+    "python": "3.13.2"
+  },
+  "base_commit": "e384aad4e353045a30a727d3a2690f64c7b2c186",
+  "wrapper_sha256": {
+    "verify.sh": "a5044ebaa92db5071c14c73e07d14adfbafeef4edadeb221b69fc86d0faeb817",
+    "verify.py": "15357247430e6fc3e9ef46719a0dc5ea722d566caf80923aff269819fc221b64"
+  },
+  "tools_lock_sha256": "8aa8601c9f7aa6cca546c687e67e730e3be416c3a3169130af9cc50fee04581e",
+  "source_binding_audit_sha256": "6b2c09f61388362d9ff3ae3f63285b9dd09e0cd95254150273bacba6cd9c799a",
+  "audit_jobs": 3,
+  "checks": {
+    "lean": {
+      "record_sha256": "02b11bdb12b38ed775e0918fff3b950dae5f6bb360709bfec4457195cff9ad01",
+      "modules": 982,
+      "audited_constants": 14345,
+      "local_record": ".verify-work/run-20261006T005553.651534Z-fugzq4ip/lean-audit/run.json",
+      "status": "passed",
+      "started_utc": "2026-10-06T00:56:08.516845+00:00",
+      "completed_utc": "2026-10-06T02:01:03.025652+00:00",
+      "lean_invoked": true,
+      "build_returncode": 0,
+      "returncode": 0,
+      "build_input_hashes_unchanged": true,
+      "input_hashes_unchanged": true,
+      "artifact_hashes_unchanged": true,
+      "elapsed_seconds": 3894.509,
+      "allowed_axioms": [
+        "Classical.choice",
+        "Quot.sound",
+        "propext"
+      ],
+      "axiom_audit": "passed",
+      "source_placeholder_scan": "passed"
+    },
+    "comparator": {
+      "record_sha256": "91ecffb0fb52a5a2a77cb2e00b7c4c79849ee224cb4d77707462e6bea1e8e8bd",
+      "claims": 27,
+      "mode": "trusted-local-no-sandbox",
+      "local_record": ".verify-work/run-20261006T005553.651534Z-fugzq4ip/comparator/runs/20261006T020104.302687Z/run.json",
+      "status": "passed",
+      "started_utc": "2026-10-06T02:01:04.332447+00:00",
+      "completed_utc": "2026-10-06T02:06:14.929976+00:00",
+      "comparator_executed": true,
+      "comparator_verdict": "Your solution is okay!",
+      "elapsed_seconds": 310.598
+    },
+    "nanoda": {
+      "record_sha256": "35f60c9907a83a6185b87270f16ec54388b527f7cc2cdf57afee56e6ce249cc2",
+      "project_declarations": 14345,
+      "checked_declarations": 83433,
+      "local_record": ".verify-work/run-20261006T005553.651534Z-fugzq4ip/nanoda/run-20261006T020615.521577Z/run.json",
+      "status": "passed",
+      "started_utc": "2026-10-06T02:06:15.521929+00:00",
+      "completed_utc": "2026-10-06T02:14:04.487582+00:00",
+      "source_binding": "matched",
+      "inputs_unchanged": true,
+      "independent_kernel_check": "passed",
+      "elapsed_seconds": 468.966,
+      "modules": 982,
+      "missing_roots": [],
+      "success_marker": "Checked 83433 declarations with no errors"
+    }
+  },
+  "executed_stages": [
+    {
+      "name": "dependency-cache",
+      "returncode": 0
+    },
+    {
+      "name": "lean",
+      "returncode": 0
+    },
+    {
+      "name": "comparator",
+      "returncode": 0
+    },
+    {
+      "name": "rust-toolchain",
+      "returncode": 0
+    },
+    {
+      "name": "nanoda",
+      "returncode": 0
+    }
+  ],
+  "local_evidence": {
+    "directory": ".verify-work/run-20261006T005553.651534Z-fugzq4ip",
+    "wrapper_record_sha256": "d0c51c8c824ff08067469d4eb25b49b87dd0dcba5f304e202fc4101668117b58",
+    "raw_logs_published": false
+  },
+  "conditions": [
+    "All proof checks, exports, and kernel checks were executed anew. Existing Lake dependency and compiled-module caches were available; this was not a cache-free build.",
+    "The documented Rustup/Cargo prerequisites were supplied by an existing project-local installation through PATH, RUSTUP_HOME, and CARGO_HOME. The wrapper selected pinned Rust 1.93.1.",
+    "Comparator used explicit trusted local execution without a sandbox. Linux sandbox mode was not exercised in this run.",
+    "Proof sources, source bindings, checker pins, and the verification wrappers remained unchanged during the run.",
+    "The local evidence directory contains the original full reports and logs; this file publishes their observed results and hashes."
+  ]
+}

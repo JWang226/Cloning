@@ -32,7 +32,7 @@ The [manuscript-to-Lean map](PROOF_MAP.md) reconciles **all 27 named theorem, pr
 - [Comparator run](verification/comparator/records/20261004T055545.209379Z/run.json): passed for 27 named-result statements and proof dependencies; trusted local execution, no sandbox.
 - [Nanoda run](verification/nanoda/records/20261004T055629.624926Z/run.json): passed for every audited project root and its dependencies; 83,433 declarations checked.
 
-Reproduce the audit using [scripts/README.md](scripts/README.md) and the [concise reproducer commands](../README.md#reproduce). Comparator's [statement comparison and Lean replay](verification/comparator/README.md) and Nanoda's [independent Rust kernel check](verification/nanoda/README.md) remain distinct from the Lean build, axiom audit, and saved-evidence validation. Cached compiled-input provenance remains trusted.
+Reproduce the audit using [scripts/README.md](scripts/README.md) and the [concise reproducer commands](../README.md#check-it-yourself). Comparator's [statement comparison and Lean replay](verification/comparator/README.md) and Nanoda's [independent Rust kernel check](verification/nanoda/README.md) remain distinct from the Lean build, axiom audit, and saved-evidence validation. Cached compiled-input provenance remains trusted.
 
 The [compiler compatibility repair](verification/kernel-compatibility.md) adds 30 `noncomputable` prefixes across 15 files, retaining every old safe project declaration. The historical [completion audit](verification/completion-pass/run.json) covered 14,375 constants; the current full inventory has 14,345 after the 30 generated partial runtime helpers ceased to be generated. No root filtering or checker patch is used.
 

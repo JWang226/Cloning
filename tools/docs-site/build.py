@@ -1092,18 +1092,21 @@ class Wiki:
                 '<h2>Rebuild or check this wiki</h2><p>From the repository root, using Python 3.10 or newer:</p>'
                 '<pre class="code-block"><code>python3 tools/docs-site/build.py\npython3 tools/docs-site/build.py --check</code></pre>'
                 '<p>Open <code>docs/index.html</code> directly in a browser, or serve the directory with any static web server. Search, mathematics, navigation, and source pages use bundled assets and relative URLs; no network request is needed.</p>'
-                '<h2>Reproduce the formal audit</h2>'
-                '<p>The repository’s verification runner and pinned Lean project remain the authoritative workflow. The commands below run from the repository root:</p>'
-                '<pre class="code-block"><code>cd formalization\nlake build All\npython3 scripts/check_checkpoint.py\npython3 scripts/audit.py --jobs 3</code></pre>'
-                '<p class="small">The checkpoint command checks saved evidence without running Lean. The audit command performs a fresh build and complete compiled-declaration audit. See the <a href="reference/VERIFICATION.md">complete verification instructions</a> for output directories and scope.</p>'
+                '<h2>Check it yourself</h2>'
+                '<p>Use macOS or Linux with Git, curl, tar, Python 3.10+, native C/C++ compiler tools, <a href="https://github.com/leanprover/elan">elan</a>, and <a href="https://rustup.rs/">Rustup</a>. Initial setup needs internet access. The wrapper prepares the pinned tools and runs all three checks:</p>'
+                '<pre class="code-block"><code>git clone https://github.com/JWang226/Cloning.git\ncd Cloning\nbash scripts/verify.sh all</code></pre>'
+                '<p>Success ends with <code>VERIFICATION PASSED: all</code>. Any failed check returns a nonzero exit code. Full verification can take over an hour; fresh logs and reports are saved in the printed <code>.verify-work/run-*</code> directory.</p>'
+                '<p>For individual layers, run from the repository root:</p>'
+                '<pre class="code-block"><code>bash scripts/verify.sh lean        # build + complete axiom audit\nbash scripts/verify.sh comparator  # 27 statements + Lean kernel replay\nbash scripts/verify.sh nanoda      # independent Rust kernel</code></pre>'
+                f'<p>These commands execute fresh trusted local checks without a sandbox. The <a href="{GITHUB}formalization/verification/comparator/README.md">Comparator guide</a> also gives the Linux sandboxed procedure; the <a href="{GITHUB}formalization/verification/nanoda/README.md">Nanoda guide</a> describes its complete export scope. The <a href="reference/VERIFICATION.md">audit guide</a> distinguishes a new proof check from validation of saved evidence.</p>'
                 '<h2>Inspect the evidence</h2><ul>'
+                f'<li><a href="{GITHUB}formalization/verification/reproducer-check.json">Fresh one-command verification run on macOS ↗</a></li>'
                 '<li><a href="data/audit-summary.json">Audit summary copied into this wiki</a></li>'
                 '<li><a href="manifest.json">Wiki inputs, source pointers, and generated-file hashes</a></li>'
                 f'<li><a href="{GITHUB}formalization/{self.latest["directory"]}/run.json">Complete recorded run manifest ↗</a></li>'
                 f'<li><a href="{GITHUB}formalization/{self.latest["directory"]}/verification.json">Complete verification report ↗</a></li>'
                 '<li><a href="README.md">Site build and maintenance notes</a></li></ul>'
-                '<h2>Design and bundled software</h2>'
-                '<p>The reading-route, named-result, and exact-source organization is inspired by the <a href="https://tianyipeng.github.io/fermats-last-theorem/">Fermat’s Last Theorem proof wiki</a> and its <a href="https://github.com/anthropics/fermats-last-theorem/tree/main/html">HTML project</a>. This site uses its own layout, styles, and generator.</p>'
+                '<h2>Bundled software</h2>'
                 '<p>Mathematics is rendered locally by KaTeX using native MathML. KaTeX is distributed under the <a href="assets/vendor/katex/LICENSE">MIT license</a>; no third-party styles or fonts are loaded.</p>')
         self.page("verification.html", "Verification", body, "verification")
         self.put("data/audit-summary.json", json.dumps({
@@ -1244,13 +1247,9 @@ in repository Settings → Pages after the generated files have been pushed.
 
 ## Assets and provenance
 
-The page organization is inspired by the Fermat’s Last Theorem proof wiki:
-https://tianyipeng.github.io/fermats-last-theorem/
-https://github.com/anthropics/fermats-last-theorem/tree/main/html
-
 The Python generator, CSS, and application JavaScript are original for this
-repository. KaTeX’s minified distribution and MIT license are vendored from
-anthropics/fermats-last-theorem/html/assets/vendor/katex (retrieved 2026-10-04).
+repository. KaTeX 0.18.4 is bundled with its MIT license; its upstream project is
+https://github.com/KaTeX/KaTeX.
 KaTeX renders native MathML only, so no KaTeX CSS or font assets are required.
 The exact bundled bytes are hashed in manifest.json. See
 assets/vendor/katex/LICENSE and assets/vendor/katex/README.md.

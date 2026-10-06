@@ -1,60 +1,96 @@
 # Pinned statement comparison and kernel replay
 
-Run from `formalization/`. The [current status](status.json) records a successful full [Comparator run](records/20261004T055545.209379Z/run.json) bound to the [kernel-compatible audit](../kernel-compatible-pass/run.json). All 27 explicit statements and their proof dependencies passed statement comparison, axiom checking, and Lean kernel replay using trusted local execution, no sandbox. Earlier failed and passed attempts remain in the status history.
+From the repository root, run Comparator through the verification wrapper:
 
 ```bash
-verification/comparator/run.sh validate
-LAKE="$HOME/.elan/bin/lake" verification/comparator/run.sh preflight
-LAKE="$HOME/.elan/bin/lake" verification/comparator/run.sh
+bash scripts/verify.sh comparator
+# Build and audit Lean, then run Comparator and Nanoda in sequence:
+bash scripts/verify.sh all
 ```
 
-The default invocation fetches and builds the pinned tools, prepares an isolated
-Lake wrapper, runs Comparator, and writes a fresh `run.json` and
-`comparator.log` under `verification/comparator/.work/runs/`. A successful exit
-requires Comparator's success marker, unchanged audited source hashes,
-unchanged local compiled project artifacts, and unchanged pinned dependency
-checkouts. `setup` builds tools only; `prepare` creates the wrapper only. Neither
-command is a proof-checking verdict. `--work /absolute/path` changes the work
-directory; `--lake /absolute/path/to/lake` or `LAKE` selects elan's Lake launcher.
+The other targets are `lean` for an `All` build and fresh full axiom audit, and
+`nanoda` for the independent all-project-constant check. Each wrapper invocation
+initializes the pinned dependency cache and saves its logs and fresh reports in
+the root `.verify-work/run-*/` directory. The Comparator target builds `All`
+before checking; `all` reuses the build from its Lean audit. It fetches and builds
+the exact pinned checker tools without running `lake update`.
+The Lean audit uses three workers by default; `CLONING_AUDIT_JOBS` selects a
+different positive worker count for the `lean` and `all` targets.
 
-`CheckTypes.lean` is an optional preparation diagnostic: after building the two
-wrapper modules, `lake env lean --run CheckTypes.lean` in the wrapper compares
-their 27 explicit types after removing source metadata. It does not inspect
-proof axioms or perform kernel replay, and it is not a Comparator verdict.
+**The root wrapper explicitly selects trusted local execution on macOS and
+Linux. It does not sandbox build or exporter processes.** Statement comparison,
+axiom checking, and Lean kernel replay still run, but this mode provides no
+protection from malicious elaboration/native code or hostile `.olean` files.
+Use the direct Linux sandboxed alternative below when that isolation is needed.
+
+A successful full check requires Comparator's success marker and unchanged
+audited sources, local compiled project artifacts, and pinned dependency
+checkouts. Preparation and preflight commands are not proof-checking verdicts.
+The wrapper's fresh Lean audit does not silently replace the audit selected by
+the checker lock; source changes require a new passed full audit and an explicit
+lock update.
+
+The [current status](status.json) records a successful full
+[Comparator run](records/20261004T055545.209379Z/run.json) bound to the
+[kernel-compatible audit](../kernel-compatible-pass/run.json). All 27 explicit
+statements and their proof dependencies passed statement comparison, axiom
+checking, and Lean kernel replay using trusted local execution, no sandbox.
+Earlier failed and passed attempts remain in the status history.
 
 ## Prerequisites and platforms
 
-Build the project first with the existing `lean-toolchain` and dependency lock:
+The root wrapper requires Python 3.10+, Bash, Git, curl, tar, elan/Lake with the
+project's pinned **Lean 4.29.0-rc6**, a native C toolchain, and network access for
+uncached pinned dependencies and tools. Comparator's wrapper target does not
+require Go. The `nanoda` and `all` targets additionally require existing
+Rustup/Cargo; the wrapper installs the pinned Rust 1.93.1 toolchain through
+Rustup with the minimal profile.
+
+## Direct runner and Linux sandbox
+
+The direct runner retains Linux sandboxing as its default. From the repository
+root, build the project with its existing toolchain and dependency lock, then
+run the direct checks:
 
 ```bash
+cd formalization
 "$HOME/.elan/bin/lake" build All
+LAKE="$HOME/.elan/bin/lake" bash verification/comparator/run.sh validate
+LAKE="$HOME/.elan/bin/lake" bash verification/comparator/run.sh preflight
+LAKE="$HOME/.elan/bin/lake" bash verification/comparator/run.sh
 ```
 
-Python 3, Git, elan with **Lean 4.29.0-rc6**, a C toolchain for Lake executables,
-and GitHub access are required. The default sandboxed mode additionally needs
-Linux, an unprivileged account, a kernel with Landlock enabled, and the Go
-compiler recorded in `../tools-lock.json` (currently `go1.25.0`). Go downloads
+The sandboxed mode needs Linux, an unprivileged account, a kernel with Landlock
+enabled, and the Go compiler recorded in `../tools-lock.json` (currently
+`go1.25.0`). Go downloads
 the dependencies fixed by upstream `go.mod`/`go.sum`; `-mod=readonly` prevents
 dependency-file updates. The runner builds the pinned Landrun source and checks
 that a write outside the allowed directory is denied. The upstream Comparator
 uses Landrun's `--best-effort`; this is a filesystem sandbox check, not a claim
 that every newer Landlock network/IPC feature is available.
 
-macOS has no Linux Landlock. Use a Linux host/VM for the default mode. For an
-already-built, locally trusted tree, an explicit alternative is available on
-macOS or Linux:
+macOS has no Linux Landlock. Use a Linux host/VM for the direct runner's default
+mode. To select the root wrapper's trusted local mode directly, use these
+commands from `formalization/`:
 
 ```bash
-LAKE="$HOME/.elan/bin/lake" verification/comparator/run.sh preflight --trusted-local
-LAKE="$HOME/.elan/bin/lake" verification/comparator/run.sh --trusted-local
+LAKE="$HOME/.elan/bin/lake" bash verification/comparator/run.sh preflight --trusted-local
+LAKE="$HOME/.elan/bin/lake" bash verification/comparator/run.sh --trusted-local
 ```
 
-This alternative records `trusted-local-no-sandbox`, uses
-`trusted-landrun.py`, and **does not sandbox any build or exporter process**.
-It is never selected automatically. It preserves statement comparison, axiom
-checking, and Lean kernel replay, but provides no protection from malicious
-elaboration/native code or hostile `.olean` files. This is the same distinction
-made by the [FLT reference runner](https://github.com/anthropics/fermats-last-theorem/blob/main/verification/comparator/run.sh).
+This mode records `trusted-local-no-sandbox` and uses `trusted-landrun.py`.
+The direct runner requires the explicit `--trusted-local` flag; the root
+wrapper supplies it.
+
+The direct full invocation prepares an isolated Lake wrapper and writes a fresh
+`run.json` and `comparator.log` under `verification/comparator/.work/runs/` by
+default. `--work /absolute/path` changes that directory;
+`--lake /absolute/path/to/lake` or `LAKE` selects elan's Lake launcher. `setup`
+builds tools only, and `prepare` creates the wrapper only. `CheckTypes.lean` is
+an optional preparation diagnostic: after building the two wrapper modules,
+`lake env lean --run CheckTypes.lean` in that wrapper compares their 27 explicit
+types after removing source metadata. It does not inspect proof axioms or
+perform kernel replay and is not a Comparator verdict.
 
 ## What is pinned and compared
 
@@ -107,10 +143,8 @@ faithfully describes the manuscript; the explicit statements and
 The current archived run records 348.8 seconds between its start and completion timestamps.
 The archived [macOS `/usr/bin/time -l` report](records/20261004T055545.209379Z/resources.json) recorded 3,614,605,312 bytes (3.37 GiB) maximum resident set size for the timed runner command. This is not simultaneous aggregate memory across all processes.
 These are observations of this run, not resource estimates for another machine or workload.
-Expect a potentially long, memory-intensive export/replay. The FLT reference's
-hours and hundreds of GB concern a different library and toolchain and are not
-a measured estimate for this repository. This runner imposes no guessed memory
-cap and does not silently omit declarations to finish sooner. Use an adequately
+Export and replay can take substantial memory and time. This runner imposes no
+guessed memory cap and does not silently omit declarations to finish sooner. Use an adequately
 resourced machine and retain the complete new run directory, including failure
 logs. Never replace the saved completion audit with a Comparator configuration
 check.

@@ -1,12 +1,42 @@
 # Independent Nanoda reproduction
 
+From the repository root, run the independent checker through the verification
+wrapper:
+
+```bash
+bash scripts/verify.sh nanoda
+# Build and audit Lean, then run Comparator and Nanoda in sequence:
+bash scripts/verify.sh all
+```
+
+The other targets are `lean` for an `All` build and fresh full axiom audit, and
+`comparator` for comparison and Lean kernel replay of the 27 explicit statements.
+Each invocation initializes the pinned dependency cache and saves its logs and
+fresh reports in the root `.verify-work/run-*/` directory. The Nanoda target
+installs Rust 1.93.1 through existing Rustup with the minimal profile, then runs
+the pinned exporter and unmodified checker with one thread. It does not run
+`lake update`.
+The Lean audit uses three workers by default; `CLONING_AUDIT_JOBS` selects a
+different positive worker count for the `lean` and `all` targets.
+
+The wrapper requires Python 3.10+, Bash, Git, curl, tar, a native C toolchain,
+elan/Lake with the project's pinned Lean toolchain, and existing Rustup/Cargo.
+Its first run needs network access for uncached pinned dependencies, tools, and
+the Rust toolchain. It does not sandbox builds or exports. The Comparator
+target used by `all` also explicitly runs without a sandbox; its direct Linux
+sandboxed alternative is documented in the [Comparator README](../comparator/README.md).
+
 The [current status](status.json) records a successful full [Nanoda run](records/20261004T055629.624926Z/run.json). The pinned, unmodified independent Rust kernel checked 83,433 exported declarations: all 14,345 project roots from the 982 implementation modules, including private and generated declarations, and all their transitive dependencies. The exact input is bound to the [kernel-compatible audit](../kernel-compatible-pass/run.json). The archived timestamps record 523.1 seconds end to end. The archived [macOS `/usr/bin/time -l` report](records/20261004T055629.624926Z/resources.json) recorded 3,268,395,008 bytes (3.04 GiB) maximum resident set size for the timed runner command. This is not simultaneous aggregate memory across all processes. Observed run measurements are not resource estimates for another machine or workload.
 
 The [compatibility report](../kernel-compatibility.md) records 30 `noncomputable` prefixes in 15 files. They prevent generation of the 30 partial runtime helpers that caused the [first export-safety failure](records/20261004T040757.497668Z/run.json). The original completion audit covered 14,375 project constants. Every old safe project declaration is retained; the current full inventory supplies all roots, with no filtering and no exporter or kernel patch.
 
-From the `formalization` directory:
+## Direct preflight and runner
+
+The direct runner remains available on Linux and macOS. From the repository
+root:
 
 ```sh
+cd formalization
 bash verification/nanoda/run.sh --preflight
 python3 -B verification/nanoda/test_reproduce.py
 ```
@@ -19,25 +49,28 @@ validation failure, and exit 0 means preflight is ready; none is a proof-checkin
 success. Preflight checks executable availability, not an installed Rust
 toolchain or network connectivity.
 
-## Run the actual check
-
-Linux and macOS require Python 3.9+, Bash, Git, Elan/Lake with the project's pinned
-Lean toolchain, and Rustup/Cargo. Install the explicitly pinned Rust toolchain:
+To run the direct full check from `formalization/`, install the explicitly
+pinned Rust toolchain first:
 
 ```sh
 rustup toolchain install 1.93.1 --profile minimal
 bash verification/nanoda/run.sh --run --threads 1
 ```
 
-The runner discovers Lake in `PATH` or `~/.elan/bin`; Rust tools are also searched
+The direct runner requires Python 3.9+, Bash, Git, elan/Lake with the project's
+pinned Lean toolchain, Rustup/Cargo, and native build tools. It discovers Lake in
+`PATH` or `~/.elan/bin`; Rust tools are also searched
 in `~/.cargo/bin`. The first full run needs network access for the two pinned Git
 checkouts, locked Cargo dependencies, and any uncached Lean dependencies. It
-does not install Rust automatically. `--work /absolute/path` selects another
+does not install Rust automatically; the root wrapper performs that setup.
+`--work /absolute/path` selects another
 work directory. Full export and unmodified Nanoda checking can require substantial
-memory, disk, and time; no resource or runtime estimate is claimed for this project.
+memory, disk, and time. The archived measurements above describe one completed
+run, not a resource or runtime estimate for a new run.
 
 `--run` performs the following stages, recording a separate output directory and
-`run.json` for every attempt under `.work`:
+`run.json` for every attempt under the selected work directory (by default,
+`verification/nanoda/.work/run-*/`):
 
 1. Bind the full declaration inventory to the current source files and the pinned
    successful audit in [`../tools-lock.json`](../tools-lock.json).
@@ -89,7 +122,8 @@ Historical macOS `.olean` hashes are not required to match freshly built Linux
 artifacts. The source inventory is bound to the passed audit selected by tools-lock.json, while the
 artifacts used for each new run are hashed immediately before export and checked
 again afterwards. Any source or module-set drift requires a new full audit and
-an explicit lock update.
+an explicit lock update. A fresh Lean audit from the root wrapper does not
+silently change this binding.
 
 Dependency checkouts must match every exact revision in `lake-manifest.json`,
 with no changes to tracked source files, before building and after checking.
@@ -118,9 +152,7 @@ Primary sources reviewed:
 - [Nanoda parser at the pinned commit](https://github.com/ammkrn/nanoda_lib/blob/418320295890faed83a96fd97907b12a3b6728c2/src/parser.rs)
 - [Nanoda configuration and checking behavior](https://github.com/ammkrn/nanoda_lib/blob/418320295890faed83a96fd97907b12a3b6728c2/README.md)
 - [Rust 1.93.1 release](https://github.com/rust-lang/rust/releases/tag/1.93.1)
-- [Anthropic FLT reference runner](https://github.com/anthropics/fermats-last-theorem/blob/main/verification/nanoda/run.sh)
 
-The FLT reference uses the same Nanoda commit with additional performance patches.
-This runner intentionally uses the unmodified commit and no patches; performance
-or compatibility failures remain failures to investigate, without relaxing the
-kernel or the axiom policy.
+The runner uses the unmodified Nanoda commit with no performance patches.
+Performance or compatibility failures remain failures to investigate, without
+relaxing the kernel or the axiom policy.

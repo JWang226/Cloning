@@ -148,7 +148,7 @@
     "files": 2034,
     "offline_markdown_links_repaired": 74,
     "checker_verdicts_bound_to_current_audit": true,
-    "manifest_sha256": "aa8d80af2e485a1a195330b5bd1eb73ebd8fa96bc1afc5c1015a95176dc582de",
+    "manifest_sha256": "46bb8501451732e11307f5333de251f413c33797832e9741a651e52586e96269",
     "dependency_stages": 12,
     "dependency_edges": 18,
     "paper_sections": 35,
@@ -268,5 +268,39 @@
     "local_links_and_anchors": "passed",
     "rendered_intro_matches_editorial_source": true,
     "proof_sources_unchanged": true
+  },
+  "reproducer_revision": {
+    "recorded_utc": "2026-10-06T02:15:54.307333+00:00",
+    "command": [
+      "bash",
+      "scripts/verify.sh",
+      "all"
+    ],
+    "status": "passed",
+    "fresh_run_summary": "formalization/verification/reproducer-check.json",
+    "fresh_run_summary_sha256": "62a28351a3032a7275ae86e9adc62b738fce67894cbfa8b8e558cbaac51b86cd",
+    "platform": "macOS arm64",
+    "elapsed_seconds": 4690.845,
+    "wrapper_test_command": [
+      "python3",
+      "-W",
+      "error::ResourceWarning",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "scripts",
+      "-p",
+      "test_verify.py"
+    ],
+    "wrapper_tests_passed": 9,
+    "wiki_tests_passed": 31,
+    "wiki_check": "passed",
+    "proof_sources_unchanged": true,
+    "source_and_tool_pins_unchanged": true,
+    "existing_saved_verification_records_unchanged": true,
+    "all_mode_executed": true,
+    "individual_mode_dispatch_tested": true,
+    "linux_sandbox_tested": false
   }
 }

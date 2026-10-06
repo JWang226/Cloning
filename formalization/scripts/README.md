@@ -1,6 +1,17 @@
 # Build and verification commands
 
-Run these commands from `formalization/`. The helpers use Python 3.9 or newer;
+For the complete reproducer, run from the repository root:
+
+```sh
+bash scripts/verify.sh all
+```
+
+Use `bash scripts/verify.sh lean` for just the Lean build and complete axiom audit.
+The wrapper prepares dependencies and writes fresh logs under `.verify-work/run-*`.
+See the [root README](https://github.com/JWang226/Cloning#check-it-yourself) for prerequisites and the
+individual Comparator and Nanoda commands.
+
+The lower-level commands below run from `formalization/`. The helpers use Python 3.9 or newer;
 the fresh audit requires a POSIX environment (Linux, macOS, or WSL) and elan/Lake.
 
 ```sh
@@ -46,6 +57,9 @@ historical audit engine** against the built Lake artifacts. Each worker imports
 the full `Cloning` environment and audits disjoint module indices with Lean's
 standard `collectAxioms`. The serial `Audit.lean` remains available for independent
 reproduction. Only `propext`, `Classical.choice`, and `Quot.sound` are allowed.
+
+Lean buffers each worker's command output until its traversal finishes, so the
+audit log can remain quiet for extended periods.
 
 The audit runs in temporary storage. Its proof-source snapshot, engine, generated
 drivers, raw output, summary, build/audit logs, and `run.json` are retained in a new
