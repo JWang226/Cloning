@@ -47,19 +47,23 @@ exported by the implementation modules imported by `Cloning.lean`.
 For a fresh kernel axiom audit:
 
 ```sh
-python3 scripts/audit.py --jobs 3
+python3 scripts/audit.py
 # Or choose a new output directory:
-python3 scripts/audit.py --jobs 3 --output /tmp/cloning-fresh-audit
+python3 scripts/audit.py --output /tmp/cloning-fresh-audit
 ```
 
-The wrapper first runs `lake build All`, then uses `lake env` to run the **unchanged
-historical audit engine** against the built Lake artifacts. Each worker imports
-the full `Cloning` environment and audits disjoint module indices with Lean's
-standard `collectAxioms`. The serial `Audit.lean` remains available for independent
-reproduction. Only `propext`, `Classical.choice`, and `Quot.sound` are allowed.
+The wrapper first runs `lake build All`, then uses `lake env` to run
+`shared_audit.py` against the built Lake artifacts. The shared engine enumerates
+every compiled declaration exported by the imported `Cloning` modules, including
+private and generated declarations. It applies Lean's `CollectAxioms.collect`
+with one shared visited set across all unique roots, so common proof dependencies
+are traversed once. Only `propext`, `Classical.choice`, and `Quot.sound` are allowed.
 
-Lean buffers each worker's command output until its traversal finishes, so the
-audit log can remain quiet for extended periods.
+The new evidence records the complete module/declaration inventory and the
+**aggregate axiom union**. It does not assign that union to each individual
+declaration. Exact inventory coverage, successful native traversal, and the
+allowed-axiom policy must all pass. Stage messages and elapsed-time heartbeats
+show that the process is running even while Lean buffers its standard output.
 
 The audit runs in temporary storage. Its proof-source snapshot, engine, generated
 drivers, raw output, summary, build/audit logs, and `run.json` are retained in a new
@@ -73,11 +77,28 @@ toolchain or package caches while the audit is running.
 To inspect source scanning and driver generation without building or invoking Lean:
 
 ```sh
-python3 scripts/audit.py --prepare-only --jobs 3 --output /tmp/cloning-audit-preview
+python3 scripts/audit.py --prepare-only --output /tmp/cloning-audit-preview
 ```
 
 This produces a snapshot explicitly marked `prepared_only`, not a passing audit.
-For the current checkpoint's serial driver, independent reproduction after a build is:
+The new snapshot's `audit.py --resummarize` command validates and reconstructs
+its saved summary without running Lean. It requires completed execution evidence;
+driver generation alone cannot pass. `check_checkpoint.py` continues to validate
+the published checkpoint selected by `verification/latest.json`.
+
+For the original per-declaration axiom reports, select the archived engine:
+
+```sh
+python3 scripts/audit.py --engine historical --jobs 3
+```
+
+`--jobs` applies to the historical engine; the shared engine uses one process.
+The root wrapper always selects the shared engine. The old `CLONING_AUDIT_JOBS`
+setting no longer changes its worker count.
+
+The historical engine repeats dependency traversal for each root and can take
+over an hour. For the current checkpoint's serial driver, independent
+reproduction after a build is:
 
 ```sh
 lake env lean -DautoImplicit=false verification/kernel-compatible-pass/Audit.lean

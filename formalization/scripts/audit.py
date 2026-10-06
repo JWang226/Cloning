@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-"""Build with Lake and run the archived all-constant auditor in isolated scratch.
+"""Build with Lake and audit every compiled project constant in isolated scratch.
 
-The seventh-pass archive is never rewritten. Fresh evidence is saved separately.
+The default engine shares a single dependency traversal across all roots.
+The historical engine remains available for exact per-declaration axiom reports.
 Use --prepare-only to inspect generated drivers without running Lake or Lean.
 """
 
@@ -46,7 +47,8 @@ def logged_command(command, cwd, env, log, progress_only=False):
         for line in process.stdout:
             output.write(line)
             output.flush()
-            if not progress_only or line.startswith(("AUDIT SHARD", "SHARD ", "AXIOM REPORTS")):
+            if not progress_only or line.startswith(("AUDIT STAGE", "AUDIT HEARTBEAT", "AUDIT SHARD",
+                                                    "SHARD ", "AXIOM REPORTS")):
                 print(line, end="", flush=True)
         return process.wait()
 
@@ -62,22 +64,30 @@ def preserve_workspace(scratch, output):
             shutil.copyfile(item, target)
 
 
-def run(project, output, jobs, prepare_only):
+def run(project, output, jobs, prepare_only, engine_kind="shared"):
     archive = project / "verification/seventh-pass"
     require(not output.is_relative_to(archive.resolve()),
             "Fresh audit output must not be inside the historical checkpoint")
     require(not output.exists(), f"Output already exists: {output}")
-    engine = historical_engine(project)
+    require(engine_kind in ("shared", "historical"), "Unknown audit engine")
+    require(engine_kind == "historical" or jobs == 1,
+            "The shared audit uses one traversal; use --engine historical for --jobs greater than 1")
+    engine = (project / "scripts/shared_audit.py" if engine_kind == "shared"
+              else historical_engine(project))
+    engine_digest = sha256(engine)
     output.mkdir(parents=True)
     result = {"status": "running", "started_utc": datetime.now(timezone.utc).isoformat(),
-              "audit_jobs": jobs, "historical_engine_sha256": sha256(engine),
+              "audit_engine": engine_kind, "audit_jobs": jobs, "engine_sha256": engine_digest,
               "scope": "all compiled declarations exported by imported Cloning modules"}
+    if engine_kind == "historical":
+        result["historical_engine_sha256"] = engine_digest
+    engine_args = ["--jobs", str(jobs)] if engine_kind == "historical" else []
     write_json(output / "run.json", result)
     try:
         inputs = current_inputs(project)
         result["input_sha256"] = inputs
         if not prepare_only:
-            require(os.name != "nt", "The archived engine requires a POSIX Lean search path; use WSL")
+            require(os.name != "nt", "The audit requires a POSIX Lean search path; use WSL")
             lake = shutil.which("lake")
             require(lake is not None, "lake is unavailable; install elan and fetch the pinned toolchain")
             result["build_command"] = [lake, "build", "All"]
@@ -99,8 +109,7 @@ def run(project, output, jobs, prepare_only):
                     "Proof sources changed while preparing the audit snapshot")
             try:
                 if prepare_only:
-                    command = [sys.executable, str(scratch / "audit.py"),
-                               "--generate-only", "--jobs", str(jobs)]
+                    command = [sys.executable, str(scratch / "audit.py"), "--generate-only", *engine_args]
                     code = logged_command(command, scratch, os.environ.copy(), output / "prepare.log")
                     require(code == 0, "Audit driver generation failed")
                     result.update(status="prepared_only", lean_invoked=False, returncode=0)
@@ -111,11 +120,12 @@ def run(project, output, jobs, prepare_only):
                     # subprocess runs from scratch, so it must not use its old fallback path.
                     env["CLONING_LEAN"] = "lean"
                     env["CLONING_PACKAGES"] = str(project / ".lake/packages")
-                    command = [lake, "env", sys.executable, str(scratch / "audit.py"),
-                               "--jobs", str(jobs)]
+                    command = [lake, "env", sys.executable, str(scratch / "audit.py"), *engine_args]
                     result["audit_command"] = ["lake", "env", "python3", "<scratch>/audit.py",
-                                               "--jobs", str(jobs)]
-                    print(f"Auditing in {jobs} worker(s); full log: {output / 'audit.log'}", flush=True)
+                                               *engine_args]
+                    description = ("Shared audit: one dependency traversal for every project constant"
+                                   if engine_kind == "shared" else f"Auditing in {jobs} worker(s)")
+                    print(f"{description}; full log: {output / 'audit.log'}", flush=True)
                     code = logged_command(command, project, env, output / "audit.log", progress_only=True)
                     result["returncode"] = code
                     require(code == 0, f"Lean axiom audit failed; see {output / 'audit.log'}")
@@ -130,7 +140,7 @@ def run(project, output, jobs, prepare_only):
                                   audited_constants=summary["audited_constants"])
                 result["input_hashes_unchanged"] = current_inputs(project) == inputs
                 require(result["input_hashes_unchanged"], "Project sources or dependency pins changed during audit")
-                require(sha256(engine) == result["historical_engine_sha256"], "Historical auditor changed during audit")
+                require(sha256(engine) == engine_digest, "Selected auditor changed during audit")
             finally:
                 preserve_workspace(scratch, output)
         result["evidence_sha256"] = {
@@ -147,17 +157,22 @@ def run(project, output, jobs, prepare_only):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--jobs", type=int, default=1, help="parallel auditor workers (default: 1)")
+    parser.add_argument("--engine", choices=("shared", "historical"), default="shared",
+                        help="shared dependency traversal (default), or archived per-declaration auditor")
+    parser.add_argument("--jobs", type=int, default=1,
+                        help="workers for --engine historical; shared uses one traversal")
     parser.add_argument("--output", type=Path, help="new evidence directory; must not already exist")
     parser.add_argument("--prepare-only", action="store_true", help="generate an isolated audit snapshot; run no Lake or Lean")
     args = parser.parse_args()
     if args.jobs < 1:
         parser.error("--jobs must be a positive integer")
+    if args.engine == "shared" and args.jobs != 1:
+        parser.error("The shared audit uses one traversal; select --engine historical to use --jobs greater than 1")
     project = Path(__file__).resolve().parents[1]
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S.%fZ")
     output = (args.output or project / "verification/runs" / stamp).resolve()
     try:
-        result = run(project, output, args.jobs, args.prepare_only)
+        result = run(project, output, args.jobs, args.prepare_only, args.engine)
     except (CheckpointError, OSError, ValueError, KeyError, TypeError) as error:
         print(f"Audit failed: {error}", file=sys.stderr)
         return 1

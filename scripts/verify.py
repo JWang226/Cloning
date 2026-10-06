@@ -59,13 +59,41 @@ def validate_audit(output):
     require(all(report.get(field) is True for field in
                 ("build_input_hashes_unchanged", "input_hashes_unchanged", "artifact_hashes_unchanged")),
             "Lean source/configuration or compiled-artifact stability failed")
+    require(report.get("audit_engine") == "shared"
+            and report.get("engine_sha256") == sha256(output / "audit.py")
+            and report.get("engine_sha256") == sha256(ROOT / "formalization/scripts/shared_audit.py"),
+            "Lean audit did not run the current shared dependency auditor")
     require(summary.get("axiom_audit") == "passed" and summary.get("source_placeholder_scan") == "passed"
             and summary.get("lean_exit_code") == 0 and set(summary.get("allowed_axioms", [])) == STANDARD_AXIOMS,
             "The complete Lean audit did not satisfy the axiom and placeholder policy")
+    require(not any(summary.get(field) for field in ("unexpected_axioms", "missing_modules", "missing_reports",
+                                                    "duplicate_reports", "conflicting_reports")),
+            "Lean audit reports an axiom or coverage failure")
+    aggregate = summary.get("aggregate_axioms")
+    coverage = summary.get("aggregate_coverage", {})
+    require(summary.get("audit_schema") == "cloning-shared-axiom-audit-v1"
+            and summary.get("audit_strategy") == "shared-transitive-axiom-union"
+            and summary.get("axiom_report_scope") == "aggregate union; no per-root axiom attribution"
+            and isinstance(coverage, dict)
+            and coverage.get("inventory_complete") is True and coverage.get("traversal_complete") is True
+            and coverage.get("includes_private_generated") is True
+            and coverage.get("source_modules") == summary.get("modules")
+            and coverage.get("unique_roots") == summary.get("audited_constants")
+            and isinstance(aggregate, list) and all(isinstance(name, str) for name in aggregate)
+            and set(aggregate) <= STANDARD_AXIOMS,
+            "Shared axiom traversal did not certify complete coverage and the permitted aggregate axioms")
+    require(all(type(coverage.get(field)) is int for field in
+                ("source_modules", "imported_modules", "export_occurrences", "unique_roots", "visited_constants"))
+            and coverage["imported_modules"] == coverage["source_modules"] + 1
+            and coverage["export_occurrences"] == summary.get("raw_constant_reports")
+            and coverage["export_occurrences"] >= coverage["unique_roots"]
+            and coverage["visited_constants"] >= coverage["unique_roots"],
+            "Shared audit inventory and traversal counts are inconsistent")
     for field in ("modules", "audited_constants"):
         require(type(report.get(field)) is int and report[field] > 0 and report[field] == summary.get(field),
                 "Lean audit scope is missing or inconsistent: " + field)
-    return record_info(path, modules=report["modules"], audited_constants=report["audited_constants"])
+    return record_info(path, audit_engine="shared", modules=report["modules"],
+                       audited_constants=report["audited_constants"], aggregate_axioms=aggregate)
 
 
 def validate_comparator(work, lock, lock_sha256):
@@ -109,9 +137,9 @@ def validate_nanoda(work, lock, lock_sha256):
 
 
 class Verification:
-    def __init__(self, mode, jobs):
+    def __init__(self, mode):
         self.project = ROOT / "formalization"
-        self.mode, self.jobs = mode, jobs
+        self.mode = mode
         base = ROOT / ".verify-work"
         base.mkdir(exist_ok=True)
         stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S.%fZ")
@@ -123,7 +151,7 @@ class Verification:
         self.env.pop("LEAN_PATH", None)
         self.env["LEAN_ABORT_ON_PANIC"] = "1"
         self.state = {"status": "running", "mode": mode, "started_utc": datetime.now(timezone.utc).isoformat(),
-                      "audit_jobs": jobs, "commands": [], "checks": {},
+                      "audit_engine": "shared", "audit_jobs": 1, "commands": [], "checks": {},
                       "environment": {"PATH": self.env["PATH"],
                                       "RUSTUP_HOME": self.env.get("RUSTUP_HOME", str(Path.home() / ".rustup")),
                                       "CARGO_HOME": self.env.get("CARGO_HOME", str(Path.home() / ".cargo")),
@@ -196,7 +224,9 @@ class Verification:
         self.command("dependency-cache", [lake, "exe", "cache", "get"])
         if self.mode in ("all", "lean"):
             output = self.work / "lean-audit"
-            self.command("lean", [sys.executable, "scripts/audit.py", "--jobs", str(self.jobs), "--output", output])
+            if "CLONING_AUDIT_JOBS" in self.env:
+                self.emit("The shared audit uses one traversal; CLONING_AUDIT_JOBS no longer applies.")
+            self.command("lean", [sys.executable, "scripts/audit.py", "--engine", "shared", "--output", output])
             self.state["checks"]["lean"] = validate_audit(output)
             self.save()
         if self.mode in ("all", "comparator"):
@@ -228,13 +258,7 @@ def main(argv=None):
     args = parser.parse_args(argv)
     if sys.version_info < (3, 10):
         parser.error("Python 3.10 or newer is required")
-    try:
-        jobs = int(os.environ.get("CLONING_AUDIT_JOBS", "3"))
-        if jobs < 1:
-            raise ValueError
-    except ValueError:
-        parser.error("CLONING_AUDIT_JOBS must be a positive integer (default: 3)")
-    verification = Verification(args.mode, jobs)
+    verification = Verification(args.mode)
     try:
         verification.run()
         return 0

@@ -17,7 +17,7 @@ All three checks passed against the same pinned source snapshot:
 - **Comparator:** all **27 explicit statements** and their proof dependencies matched; axiom checking and Lean kernel replay passed. The recorded run used trusted local execution without a sandbox. [Run record](formalization/verification/comparator/records/20261004T055545.209379Z/run.json).
 - **Nanoda:** the pinned, unmodified independent Rust kernel checked **83,433 exported declarations**, covering every project constant and its dependencies. [Run record](formalization/verification/nanoda/records/20261004T055629.624926Z/run.json).
 
-The one-command reproducer below also [passed a fresh end-to-end run on macOS](formalization/verification/reproducer-check.json).
+A [recorded macOS run](formalization/verification/shared-audit-check.json) with compiled caches passed the shared Lean build + audit in **36 seconds**, versus **65 minutes** for the earlier auditor, with identical declaration coverage and aggregate axioms. The [earlier combined run](formalization/verification/reproducer-check.json) records all three checkers.
 
 The proof library contains no `sorry` or additional axioms. Comparator's deliberate challenge placeholders are outside that library. [Machine-readable status](formalization.yaml) and the [compiler compatibility report](formalization/verification/kernel-compatibility.md) preserve the scope and historical evidence.
 
@@ -31,7 +31,7 @@ cd Cloning
 bash scripts/verify.sh all
 ```
 
-Success ends with **`VERIFICATION PASSED: all`**. Any failed check returns a nonzero exit code. Full verification can take over an hour; fresh logs and reports are saved in the printed `.verify-work/run-*` directory. To run one layer from the repository root:
+Success ends with **`VERIFICATION PASSED: all`**. Any failed check returns a nonzero exit code. Build time depends on caches and hardware; fresh logs and reports are saved in the printed `.verify-work/run-*` directory. To run one layer from the repository root:
 
 ```sh
 bash scripts/verify.sh lean        # build + complete axiom audit

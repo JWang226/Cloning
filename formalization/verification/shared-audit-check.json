@@ -1,0 +1,101 @@
+{
+  "description": "Fresh shared-traversal Lean verification and exact coverage/aggregate-axiom comparison with the completed per-declaration audit.",
+  "command": [
+    "bash",
+    "scripts/verify.sh",
+    "lean"
+  ],
+  "working_directory": "repository root",
+  "status": "passed",
+  "exit_code": 0,
+  "success_marker": "VERIFICATION PASSED: lean",
+  "started_utc": "2026-10-06T04:56:42.946567+00:00",
+  "completed_utc": "2026-10-06T04:57:31.524201+00:00",
+  "platform": {
+    "system": "Darwin",
+    "version": "27.2",
+    "architecture": "arm64",
+    "python": "3.13.2"
+  },
+  "base_commit": "baab673190e2d3dee2a9927b9575a9abbe98df88",
+  "wrapper_sha256": {
+    "verify.sh": "a5044ebaa92db5071c14c73e07d14adfbafeef4edadeb221b69fc86d0faeb817",
+    "verify.py": "99c5001fbd88853886d0c69b35b4a487962b42ba1af8874b4355e0cad6310cbd"
+  },
+  "audit_wrapper_sha256": "637da28e0bf6eb887746783f39f1cd5dec18f1f1bc78a3e5e4eb74782489e1ef",
+  "shared_engine_sha256": "4c8abc576f574f5d93bbb0d6da331ae9fe547e7a2deb681ee387b7f8760e8774",
+  "tools_lock_sha256": "8aa8601c9f7aa6cca546c687e67e730e3be416c3a3169130af9cc50fee04581e",
+  "source_binding_audit_sha256": "6b2c09f61388362d9ff3ae3f63285b9dd09e0cd95254150273bacba6cd9c799a",
+  "scope": {
+    "audit_strategy": "shared-transitive-axiom-union",
+    "axiom_report_scope": "aggregate union; no per-root axiom attribution",
+    "modules": 982,
+    "source_theorems_and_lemmas": 6350,
+    "audited_constants": 14345,
+    "private_constants": 289,
+    "aggregate_axioms": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ],
+    "aggregate_coverage": {
+      "export_occurrences": 14513,
+      "imported_modules": 983,
+      "includes_private_generated": true,
+      "inventory_complete": true,
+      "root_deduplication": "identical repeated module exports counted once",
+      "source_modules": 982,
+      "traversal_complete": true,
+      "unique_roots": 14345,
+      "visited_constants": 82688
+    }
+  },
+  "equivalence": {
+    "status": "passed",
+    "reference": "formalization/verification/kernel-compatible-pass/run.json",
+    "reference_sha256": "6b2c09f61388362d9ff3ae3f63285b9dd09e0cd95254150273bacba6cd9c799a",
+    "reference_log_sha256": "8289b5049cfb045588c002e572079f8e91a0a5446a45c5128ffa1a0da145818a",
+    "exact_imported_module_inventory": true,
+    "exact_module_name_kind_private_export_multiset": true,
+    "exact_unique_root_names": true,
+    "same_aggregate_axiom_union": true,
+    "same_source_and_config_hashes_as_timed_baseline": true,
+    "same_compiled_artifact_hashes_as_timed_baseline": true,
+    "canonical_export_multiset_sha256": "cf5bdfa7fe6f12c2086f2cdda9d0d202449e85084131bf732fd9006bea4d0a62"
+  },
+  "timing": {
+    "native_shared_audit_seconds": 26.261061,
+    "shared_build_and_audit_seconds": 36.243521,
+    "whole_lean_wrapper_seconds": 48.577634,
+    "previous_build_and_audit_seconds": 3894.508807,
+    "previous_audit_workers": 3,
+    "shared_audit_workers": 1,
+    "observed_build_and_audit_speedup": 107.45,
+    "baseline_record": "formalization/verification/reproducer-check.json",
+    "baseline_record_sha256": "62a28351a3032a7275ae86e9adc62b738fce67894cbfa8b8e558cbaac51b86cd",
+    "conditions": "Same local source/config and compiled-artifact hashes; cached project builds in both observed runs. This is one macOS measurement, not a runtime guarantee for a clean checkout or another machine."
+  },
+  "checks": {
+    "wrapper_regression_tests_passed": 14,
+    "shared_native_fixture_and_parser_tests_passed": 13,
+    "native_fixture_parity": {
+      "root_count": 24,
+      "shared_visited_declarations": 71,
+      "sum_of_separate_root_visits": 449
+    },
+    "whole_project_saved_result_resummarize": "passed without invoking Lean",
+    "shared_and_historical_cli_preparation": "passed without invoking Lean",
+    "shared_multiple_workers_rejected": true,
+    "existing_saved_checkpoint": "passed; 995 evidence files checked",
+    "comparator_and_nanoda": "Not rerun for this auditor-only change; their existing pins, runners and saved checks are unchanged."
+  },
+  "local_evidence": {
+    "directory": ".verify-work/run-20261006T045642.945936Z-sx8f86ai",
+    "raw_logs_published": false,
+    "wrapper_record_sha256": "450a3b2135d83134a94e0290e46d87a52456072595ab0802b4e3cacef9cbde7f",
+    "audit_record_sha256": "0d3f99934975fb47bd2f2fd168b74d2df1b9c1bd4abbf3dcfc521406e1749ccb",
+    "native_record_sha256": "7f80fa8627d1abc991cb134aa0f9883fb90129ba6b47d73e44ff2a71e65c57c1",
+    "inventory_sha256": "53689eea42727d74370dff3319c4b3e261fa0d06feb8253e976865f8520abb46",
+    "summary_sha256": "6d1da35639aee660173a972ea45bd1af3895536dd590d19043282e4242e30105"
+  }
+}

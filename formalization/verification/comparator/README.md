@@ -14,8 +14,9 @@ initializes the pinned dependency cache and saves its logs and fresh reports in
 the root `.verify-work/run-*/` directory. The Comparator target builds `All`
 before checking; `all` reuses the build from its Lean audit. It fetches and builds
 the exact pinned checker tools without running `lake update`.
-The Lean audit uses three workers by default; `CLONING_AUDIT_JOBS` selects a
-different positive worker count for the `lean` and `all` targets.
+The Lean audit uses one shared dependency traversal across every compiled project
+declaration; the [audit guide](../../scripts/README.md) also documents the
+historical per-declaration auditor.
 
 **The root wrapper explicitly selects trusted local execution on macOS and
 Linux. It does not sandbox build or exporter processes.** Statement comparison,

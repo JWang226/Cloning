@@ -39,7 +39,7 @@ class VerificationTests(unittest.TestCase):
             with self.subTest(mode=mode):
                 runner = verify.Verification.__new__(verify.Verification)
                 runner.project, runner.work = self.base, self.base / "fresh-work"
-                runner.mode, runner.jobs, runner.env = mode, 3, {"PATH": "/mock"}
+                runner.mode, runner.env = mode, {"PATH": "/mock"}
                 runner.state = {"checks": {}}
                 calls, messages = [], []
                 runner.command = lambda name, argv: calls.append((name, argv))
@@ -52,6 +52,10 @@ class VerificationTests(unittest.TestCase):
                      patch.object(verify, "validate_nanoda", return_value={}):
                     runner.run()
                 self.assertEqual([name for name, argv in calls], names)
+                if mode in ("all", "lean"):
+                    argv = next(argv for name, argv in calls if name == "lean")
+                    self.assertEqual(argv[argv.index("--engine") + 1], "shared")
+                    self.assertNotIn("--jobs", argv)
                 if mode in ("all", "comparator"):
                     argv = next(argv for name, argv in calls if name == "comparator")
                     self.assertIn("run", argv)
@@ -85,6 +89,63 @@ class VerificationTests(unittest.TestCase):
                    "input_hashes_unchanged": True, "artifact_hashes_unchanged": False})
         write_json(self.base / "verification.json", {})
         with self.assertRaisesRegex(RuntimeError, "stability failed"):
+            verify.validate_audit(self.base)
+
+    def shared_audit(self):
+        engine = self.base / "formalization/scripts/shared_audit.py"
+        engine.parent.mkdir(parents=True)
+        engine.write_text("fixture engine\n")
+        (self.base / "audit.py").write_bytes(engine.read_bytes())
+        report = {"status": "passed", "lean_invoked": True, "build_returncode": 0, "returncode": 0,
+                  "build_input_hashes_unchanged": True, "input_hashes_unchanged": True,
+                  "artifact_hashes_unchanged": True, "audit_engine": "shared",
+                  "engine_sha256": verify.sha256(engine), "modules": 2, "audited_constants": 3}
+        summary = {"axiom_audit": "passed", "source_placeholder_scan": "passed", "lean_exit_code": 0,
+                   "allowed_axioms": sorted(verify.STANDARD_AXIOMS), "aggregate_axioms": [],
+                   "audit_schema": "cloning-shared-axiom-audit-v1",
+                   "audit_strategy": "shared-transitive-axiom-union",
+                   "axiom_report_scope": "aggregate union; no per-root axiom attribution",
+                   "modules": 2, "audited_constants": 3, "raw_constant_reports": 4,
+                   "aggregate_coverage": {"inventory_complete": True, "traversal_complete": True,
+                                          "includes_private_generated": True, "source_modules": 2,
+                                          "imported_modules": 3, "export_occurrences": 4,
+                                          "unique_roots": 3, "visited_constants": 5}}
+        write_json(self.base / "run.json", report)
+        write_json(self.base / "verification.json", summary)
+        return report, summary
+
+    def test_complete_shared_audit_accepts_empty_axiom_union(self):
+        self.shared_audit()
+        with patch.object(verify, "ROOT", self.base):
+            result = verify.validate_audit(self.base)
+        self.assertEqual(result["audited_constants"], 3)
+        self.assertEqual(result["aggregate_axioms"], [])
+
+    def test_shared_audit_incomplete_traversal_cannot_pass(self):
+        report, summary = self.shared_audit()
+        summary["aggregate_coverage"]["traversal_complete"] = False
+        write_json(self.base / "verification.json", summary)
+        with patch.object(verify, "ROOT", self.base), self.assertRaisesRegex(RuntimeError, "complete coverage"):
+            verify.validate_audit(self.base)
+
+    def test_shared_audit_forbidden_aggregate_cannot_pass(self):
+        report, summary = self.shared_audit()
+        summary["aggregate_axioms"] = ["sorryAx"]
+        write_json(self.base / "verification.json", summary)
+        with patch.object(verify, "ROOT", self.base), self.assertRaisesRegex(RuntimeError, "permitted aggregate"):
+            verify.validate_audit(self.base)
+
+    def test_shared_audit_changed_engine_cannot_pass(self):
+        self.shared_audit()
+        (self.base / "audit.py").write_text("different engine\n")
+        with patch.object(verify, "ROOT", self.base), self.assertRaisesRegex(RuntimeError, "current shared"):
+            verify.validate_audit(self.base)
+
+    def test_shared_audit_missing_visited_roots_cannot_pass(self):
+        report, summary = self.shared_audit()
+        summary["aggregate_coverage"]["visited_constants"] = 2
+        write_json(self.base / "verification.json", summary)
+        with patch.object(verify, "ROOT", self.base), self.assertRaisesRegex(RuntimeError, "counts are inconsistent"):
             verify.validate_audit(self.base)
 
     def comparator(self):

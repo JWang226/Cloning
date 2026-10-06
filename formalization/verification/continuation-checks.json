@@ -148,7 +148,7 @@
     "files": 2034,
     "offline_markdown_links_repaired": 74,
     "checker_verdicts_bound_to_current_audit": true,
-    "manifest_sha256": "46bb8501451732e11307f5333de251f413c33797832e9741a651e52586e96269",
+    "manifest_sha256": "68b36e567b5345366d5dce837d455116064487598abb4719c06fbf1eb0ecc2d4",
     "dependency_stages": 12,
     "dependency_edges": 18,
     "paper_sections": 35,
@@ -302,5 +302,33 @@
     "all_mode_executed": true,
     "individual_mode_dispatch_tested": true,
     "linux_sandbox_tested": false
+  },
+  "shared_audit_revision": {
+    "recorded_utc": "2026-10-06T05:04:01.818365+00:00",
+    "command": [
+      "bash",
+      "scripts/verify.sh",
+      "lean"
+    ],
+    "status": "passed",
+    "record": "formalization/verification/shared-audit-check.json",
+    "record_sha256": "c3bf0ca294ef663a29bcdf2c26f78c14ead012daa4a8dada3f0c7cbf76f6c984",
+    "wrapper_tests_passed": 14,
+    "shared_native_fixture_and_parser_tests_passed": 13,
+    "source_modules": 982,
+    "unique_compiled_roots": 14345,
+    "raw_exports": 14513,
+    "exact_inventory_and_aggregate_axiom_parity": "passed",
+    "shared_build_and_audit_seconds": 36.243521,
+    "previous_build_and_audit_seconds": 3894.508807,
+    "whole_lean_wrapper_seconds": 48.577634,
+    "whole_project_resummarize": "passed without Lean",
+    "shared_and_historical_cli_preparation": "passed without Lean",
+    "saved_checkpoint": "passed; 995 evidence files checked",
+    "wiki_build_and_links": "passed",
+    "proof_sources_unchanged": true,
+    "source_and_tool_pins_unchanged": true,
+    "historical_verification_records_unchanged": true,
+    "comparator_and_nanoda_rerun": false
   }
 }

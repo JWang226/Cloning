@@ -16,8 +16,9 @@ fresh reports in the root `.verify-work/run-*/` directory. The Nanoda target
 installs Rust 1.93.1 through existing Rustup with the minimal profile, then runs
 the pinned exporter and unmodified checker with one thread. It does not run
 `lake update`.
-The Lean audit uses three workers by default; `CLONING_AUDIT_JOBS` selects a
-different positive worker count for the `lean` and `all` targets.
+The Lean audit uses one shared dependency traversal across every compiled project
+declaration; the [audit guide](../../scripts/README.md) also documents the
+historical per-declaration auditor.
 
 The wrapper requires Python 3.10+, Bash, Git, curl, tar, a native C toolchain,
 elan/Lake with the project's pinned Lean toolchain, and existing Rustup/Cargo.
