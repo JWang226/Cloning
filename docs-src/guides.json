@@ -1045,11 +1045,15 @@
         },
         {
           "title": "Specialize to flat sectors and attain the limit",
-          "explanation": "For the flat rank-r spectrum the internal r-dimensional sector state is maximally mixed. Covariance makes the internal transition exact on that state. The crossing dimension ratios therefore account for the entire sector fidelity; their asymptotics and Young concentration yield γ^(−r(D−r)/2), uniformly over the projector family.",
+          "explanation": "For the flat rank-r spectrum the internal r-dimensional sector state is maximally mixed. Covariance makes the internal transition exact on that state. The crossing dimension ratios therefore account for the entire sector fidelity; their asymptotics and Young concentration yield γ^(−r(D−r)/2), uniformly over the projector family. Both constructions couple the exact input and output Young laws. The paper chooses a transportation-program minimizer; Lean builds a coupling from overlapping densities and proves its exact marginals and optimal limit. Equality of the two finite channel constructions is not established.",
           "lean": [
             {
               "name": "Cloning.TensorCloning.prescribedRankFlatChannel_uniform",
               "file": "formalization/Cloning/TensorCloningPrescribedLimits.lean"
+            },
+            {
+              "name": "Cloning.YoungFlatCoupling.positiveFlatCoupling",
+              "file": "formalization/Cloning/YoungFlatCouplingPhysical.lean"
             }
           ],
           "paper_labels": [
@@ -1113,7 +1117,8 @@
       ],
       "limitations": [
         "This theorem treats spectra flat on their support, not arbitrary nonflat rank-deficient spectra.",
-        "The proved O(1/n) statement is an upper-bound rate, not a rate of convergence of the attaining channel."
+        "The proved O(1/n) statement is an upper-bound rate, not a rate of convergence of the attaining channel.",
+        "The attaining Lean channel uses a density-overlap coupling; it is not identified with the particular transportation-program minimizer selected in the paper."
       ],
       "statement": "\\lim_{n\\to\\infty}\\sup_{\\mathcal M_n}\\inf_{P\\in\\mathrm{Gr}(r,D)}F\\!\\left(\\mathcal M_n((P/r)^{\\otimes n}),(P/r)^{\\otimes m_n}\\right)=\\gamma^{-r(D-r)/2}.",
       "manuscript_labels": [

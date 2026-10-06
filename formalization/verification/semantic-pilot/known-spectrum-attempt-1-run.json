@@ -1,0 +1,27 @@
+{
+  "review_base_head": "d2ccb294f6a69d2cd65aa807cb9bfd1d9f829999",
+  "started_at": "2026-10-06T07:17:23.922707+00:00",
+  "finished_at": "2026-10-06T07:18:46.566309+00:00",
+  "elapsed_seconds": 82.64249,
+  "cwd": "formalization",
+  "command": [
+    "/Users/jw/.elan/bin/lake",
+    "env",
+    "lean",
+    "/var/folders/n6/g42zb5ns1p72c0_5km1zr0sc0000gn/T/cloning-known-semantic-9qqh6_jz/known-spectrum.lean"
+  ],
+  "environment": {
+    "PATH_prefix": "/Users/jw/.elan/bin"
+  },
+  "probe": "formalization/verification/semantic-pilot/known-spectrum.lean.txt",
+  "probe_sha256": "cb11e0daaa89aaafb781f2b05d6e24b5dfab9c6c66fba1f24246555c9c25e6a9",
+  "log": "formalization/verification/semantic-pilot/known-spectrum.log",
+  "log_sha256": "7a6357ac3ea6865924a4ef79904b1ef4a9151efcc1eaf6522cce01078d23d9c6",
+  "returncode": 1,
+  "temporary_probe_removed": true,
+  "success_marker_present": true,
+  "exit_code": 1,
+  "passed": false,
+  "archived_probe": "formalization/verification/semantic-pilot/known-spectrum-attempt-1.lean.txt",
+  "archived_log": "formalization/verification/semantic-pilot/known-spectrum-attempt-1.log"
+}

@@ -269,6 +269,37 @@ class Wiki:
         self.validate_guides()
         self.dependencies = self.read_json(ROOT / "docs-src/dependencies.json")
         self.validate_dependencies()
+        self.statement_review = self.read_json(ROOT / "docs-src/statement-review.json")
+        self.validate_statement_review()
+
+    def validate_statement_review(self):
+        review = self.statement_review
+        if review["source_audit_sha256"] != self.latest["run_sha256"]:
+            raise ValueError("Statement review belongs to a different Lean audit")
+        if review["manuscript_sha256"] != sha(self.read(FORMAL / "reference/cloning.tex")):
+            raise ValueError("Statement review manuscript hash differs")
+        if set(review["results"]) != {"thm:known-optimum", "thm:unknown-optimum", "thm:grassmann"}:
+            raise ValueError("Statement review must identify its three reviewed theorem families")
+        evidence_root = "formalization/verification/semantic-pilot/"
+        for path, expected in review["artifacts"].items():
+            if not path.startswith(evidence_root) or ".." in PurePosixPath(path).parts:
+                raise ValueError("Statement review artifact outside evidence directory")
+            if sha(self.read(ROOT / path)) != expected:
+                raise ValueError("Statement review artifact hash differs: " + path)
+        for label, result in review["results"].items():
+            if label not in self.results:
+                raise ValueError("Unknown statement review result: " + label)
+            for key in ("report", "probe", "log", "run"):
+                if result[key] not in review["artifacts"]:
+                    raise ValueError("Statement review missing bound artifact: " + key)
+            run = self.read_json(ROOT / result["run"])
+            if run.get("exit_code") != 0 or run.get("probe_sha256") != review["artifacts"][result["probe"]]:
+                raise ValueError("Statement review probe did not pass for this source: " + label)
+            if (run.get("log_sha256") != review["artifacts"][result["log"]]
+                    or run.get("source_audit_sha256") != review["source_audit_sha256"]):
+                raise ValueError("Statement review run has a different log or source audit: " + label)
+            for pointer in result["lean"]:
+                self.resolve(pointer["name"], pointer["file"])
 
     def read(self, path):
         data = path.read_bytes()
@@ -753,6 +784,11 @@ class Wiki:
                  'Result pages record hypotheses and any distinctions between a general paper statement and the concrete formal endpoints.</p>'
                  '<p>The LAN guide describes the constructed Lean witnesses underlying the LAN theorem that the paper obtains from cited work. Discussion of all-density optima and degenerate spectra remains distinct from proved results.</p>'
                  '<a href="data/paper-correspondence.json">Download the correspondence data</a></section>')
+        if getattr(self, "statement_review", None):
+            body += ('<section class="callout"><h2>Statement review: Theorems 1.1–1.3</h2>'
+                     '<p>A focused review checks assumptions, definitions, uniformity, and the attaining channels. '
+                     'It records a different finite coupling construction for the projector cloner.</p>'
+                     '<p><a href="statement-review.html">Read the findings and reproduce the Lean probes →</a></p></section>')
         self.page("correspondence.html", "Paper to Lean correspondence", body, "correspondence")
         self.put("data/paper-correspondence.json", json.dumps({"paper_version": self.paper["version_url"],
                  "paper_html": self.paper["html_url"], "source_audit_sha256": self.latest["run_sha256"],
@@ -790,6 +826,11 @@ class Wiki:
                     f'<p><a href="../guides/{c["id"]}.html">{esc(c["title"])} →</a><br>'
                     f'<a class="small" href="../dependencies.html#stage-{c["id"]}">View this stage’s dependencies →</a></p>'
                     for c in chapters) + "</section>"
+            review = getattr(self, "statement_review", {}).get("results", {}).get(result["label"])
+            if review:
+                body += ('<section class="callout"><h2>Statement review</h2>'
+                         + paragraphs(review["summary"])
+                         + f'<p><a href="../statement-review.html#{slug(result["label"])}">Assumptions, definitions, and reproducible probes →</a></p></section>')
             body += ('<details class="manuscript-excerpt"><summary>Exact manuscript TeX statement</summary>'
                      '<p class="small muted">Exact source excerpt identifying this statement. Read the paper for the surrounding mathematical exposition and notation.</p>'
                      f'<p class="small muted">Repository identifier: <code>{esc(result["label"])}</code></p>'
@@ -799,6 +840,49 @@ class Wiki:
             self.page(result["url"], result["title"], body, "results")
             self.search.append({"title": result["title"], "subtitle": result["citation"], "kind": result["kind"].title(),
                                 "url": result["url"], "text": result["label"] + ' ' + " ".join(p["scope"] for p in result["parts"])})
+
+    def render_statement_review(self):
+        review = self.statement_review
+        body = ('<div class="eyebrow">Paper → Lean proof</div><h1>Statement review</h1>'
+                '<p class="lead">A focused check of how Theorems 1.1–1.3 correspond to their Lean statements and constructions.</p>'
+                '<p>This AI-assisted review covers assumptions, definitions, normalization, quantifiers, and applications of upstream results. '
+                'Small Lean probes check exact types and definitional equalities. The review is separate from '
+                '<a href="verification.html">kernel verification</a> and is not external peer review.</p>'
+                '<p>The optimal values and convergence scopes match in the reviewed endpoints. '
+                'For projector states, the finite coupling construction differs as explained below.</p>')
+        for label, entry in review["results"].items():
+            result = self.results[label]
+            body += (f'<section id="{slug(label)}"><h2>{esc(result["citation"])} · {esc(entry["title"])}</h2>'
+                     f'<p>{self.paper_link(label)} · <a href="{result["url"]}">Exact Lean statements</a></p>'
+                     + paragraphs(entry["summary"]) + items(entry["findings"]) + '<p>Inspect the definitions: ')
+            body += ' · '.join(f'<a href="{esc(self.resolve(p["name"], p["file"])["url"])}"><code>{esc(p["name"].split(".")[-1])}</code></a>'
+                               for p in entry["lean"])
+            body += (f'</p><p><a href="{GITHUB}{entry["report"]}">Full review ↗</a> · '
+                     f'<a href="reference/semantic-pilot/{PurePosixPath(entry["report"]).name}">Review Markdown</a> · '
+                     f'<a href="reference/semantic-pilot/{PurePosixPath(entry["probe"]).name}">Lean probe</a> · '
+                     f'<a href="reference/semantic-pilot/{PurePosixPath(entry["log"]).name}">Recorded output</a></p></section>')
+        body += ('<h2>Reproduce the probes</h2><p>After preparing the project with '
+                 '<code>bash scripts/verify.sh lean</code>, run from the repository root with <code>lake</code> on your PATH:</p>'
+                 '<pre class="code-block"><code>for name in known-spectrum unknown-spectrum projector; do\n'
+                 '  cp "formalization/verification/semantic-pilot/$name.lean.txt" "/tmp/cloning-semantic-$name.lean" || exit 1\n'
+                 '  (cd formalization &amp;&amp; lake env lean -DautoImplicit=false "/tmp/cloning-semantic-$name.lean") || exit 1\n'
+                 'done</code></pre>'
+                 '<p>A successful probe confirms the included Lean applications. The English correspondence judgments require reading the paper and definitions; '
+                 'these probes do not automate that judgment or recheck every upstream proof.</p>'
+                 '<h2>Review record</h2>'
+                 f'<p>Reviewed {esc(review["date"])} against source revision <code>{esc(review["reviewed_revision"])}</code>. '
+                 'The site builder checks the manuscript, saved Lean audit, and review-artifact hashes before displaying this record. '
+                 '<a href="data/statement-review.json">Download the record</a>.</p>'
+                 '<p>The review adapts the binder, definition, and quantifier checklist from '
+                 '<a href="https://github.com/scottnarmstrong/LeanAutoformalizationSkills/blob/main/skills/lean-statement-audit/SKILL.md">LeanAutoformalizationSkills: lean-statement-audit</a>. '
+                 'It applies those checks to this completed library; it does not claim completion of that skill’s full draft-and-approval workflow.</p>'
+                 '<p><a href="correspondence.html">← Paper → Lean proof</a></p>')
+        for path in review["artifacts"]:
+            self.put("reference/semantic-pilot/" + PurePosixPath(path).name, self.read(ROOT / path))
+        self.put("data/statement-review.json", json.dumps(review, indent=2, ensure_ascii=False) + "\n")
+        self.page("statement-review.html", "Statement review", body, "correspondence")
+        self.search.append({"title": "Statement review", "subtitle": "Theorems 1.1–1.3: assumptions, definitions, and construction differences",
+                            "kind": "Page", "url": "statement-review.html", "text": "semantic review root fidelity uniformity coupling projector known unknown spectrum"})
 
     def render_dependencies(self):
         data = self.dependencies
@@ -1127,6 +1211,7 @@ class Wiki:
         self.render_correspondence()
         self.render_guides()
         self.render_results()
+        self.render_statement_review()
         self.render_dependencies()
         self.render_sources()
         self.render_scope()
@@ -1194,6 +1279,11 @@ guide combines main-text sections and appendices in an editorial reading order;
 guide numbers differ from paper section numbers. Each chapter and every proof
 step display paper references. The sidebar keeps only the main navigation.
 External paper links point to arXiv v1; the guide and Lean source remain bundled.
+
+[Statement review](statement-review.html) records the scoped review of Theorems
+1.1–1.3, including the projector coupling distinction and reproducible Lean
+probes. Its editorial record is docs-src/statement-review.json; the builder
+checks its manuscript/audit binding and every report, probe, and log hash.
 
 ## Rebuild and check
 

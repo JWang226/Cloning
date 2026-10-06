@@ -1,0 +1,145 @@
+import Cloning.PhysicalCloningKnownTheorem
+import Cloning.TensorCloningPrescribedLimits
+import Lean.Util.CollectAxioms
+
+/- A scoped semantic pilot. Copy to a temporary .lean file and run lake env lean.
+   This is evidence about existing exports, not a new proof-source module. -/
+noncomputable section
+set_option autoImplicit false
+set_option backward.isDefEq.respectTransparency false
+set_option maxHeartbeats 2400000
+open scoped BigOperators Topology Matrix Classical InnerProductSpace
+open Filter
+open Cloning Cloning.TensorCloning Cloning.PCT Cloning.PCTPhysicalState
+open Cloning.PCTUnitaryTransport Cloning.InfiniteTraceClass Cloning.Hybrid
+open Cloning.TensorLAN Cloning.PhysicalCloningConverse Cloning.PCTJointGaussianWhitening
+
+namespace SemanticPilotKnownSpectrum
+
+-- Exact application at the source sup-CPTP/inf-unitary/root-fidelity type.
+theorem known_exact_type {k : ℕ} (p : SimpleSpectrum (k+1))
+    (m : ℕ → ℕ) (γ : ℝ) (hγ : 1 < γ)
+    (hgain : Tendsto (fun n => (m n : ℝ)/(n : ℝ)) atTop (𝓝 γ)) :
+    Tendsto (fun n => ⨆ Φ : QuantumChannel
+        (Register (Fin n → Fin (k+1))) (Register (Fin (m n) → Fin (k+1))),
+      ⨅ U : unitary (Matrix (Fin (k+1)) (Fin (k+1)) ℂ),
+        ((tensorState (conjugatedState
+          (diagonalState p.eigenvalue (fun i => (p.positive i).le) p.normalized) U) n)
+          .map Φ.toPositiveTracePreservingMap).rootFidelity
+        (tensorState (conjugatedState
+          (diagonalState p.eigenvalue (fun i => (p.positive i).le) p.normalized) U) (m n)))
+      atTop (𝓝 (∏ ij : PairIndex (k+1),
+        (Real.sqrt γ + Real.sqrt ((p.eigenvalue ij.val.2 / p.eigenvalue ij.val.1) *
+          (γ - 1 + p.eigenvalue ij.val.2 / p.eigenvalue ij.val.1))) /
+          (γ + p.eigenvalue ij.val.2 / p.eigenvalue ij.val.1))) := by
+  exact knownSpectrumValue_tendsto p m γ hγ hgain
+
+-- Exact compact-uniform epsilon statement, with p-dependent prescribed channel.
+theorem uniform_exact_type {d : ℕ} (K : Set (SimpleSpectrum (d+1))) (hK : IsCompact K)
+    (m : ℕ → ℕ) (γ : ℝ) (hγ : 1 < γ)
+    (hgain : Tendsto (fun n => (m n : ℝ)/(n : ℝ)) atTop (𝓝 γ)) (ε : ℝ) (hε : 0 < ε) :
+    ∀ᶠ n in atTop, ∀ p ∈ K, ∀ U : unitary (Matrix (Fin (d+1)) (Fin (d+1)) ℂ),
+      |((tensorState (conjugatedState
+          (diagonalState p.eigenvalue (fun i => (p.positive i).le) p.normalized) U) n)
+          .map (prescribedKnownSpectrumChannel n (m n) (d+1) p.eigenvalue
+            (fun i => (p.positive i).le) p.normalized).toPositiveTracePreservingMap)
+        .rootFidelity (tensorState (conjugatedState
+          (diagonalState p.eigenvalue (fun i => (p.positive i).le) p.normalized) U) (m n))
+        - orbitalValue γ p| < ε := by
+  exact eventually_uniform_prescribedKnownSpectrumChannel_payoff K hK m γ hγ hgain ε hε
+
+-- Definition equations: neither optimization nor payoff is replaced by its limit.
+theorem minimax_body {d : ℕ} (n m : ℕ) (p : SimpleSpectrum (d+1)) :
+    knownSpectrumValue n m p = ⨆ Φ, ⨅ U, spectrumPayoff n m Φ p U := rfl
+
+theorem orbit_matrix {d : ℕ} (p : SimpleSpectrum (d+1))
+    (U : unitary (Matrix (Fin (d+1)) (Fin (d+1)) ℂ)) :
+    (orbitState p U).matrix = (U : Matrix _ _ ℂ) *
+      Matrix.diagonal (fun i => (p.eigenvalue i : ℂ)) * (U : Matrix _ _ ℂ)ᴴ := rfl
+
+theorem orbital_formula {d : ℕ} (γ : ℝ) (p : SimpleSpectrum d) :
+    orbitalValue γ p = ∏ ij : PairIndex d,
+      (Real.sqrt γ + Real.sqrt ((p.eigenvalue ij.val.2 / p.eigenvalue ij.val.1) *
+        (γ - 1 + p.eigenvalue ij.val.2 / p.eigenvalue ij.val.1))) /
+        (γ + p.eigenvalue ij.val.2 / p.eigenvalue ij.val.1) := rfl
+
+theorem known_sampling {d : ℕ} (n m : ℕ) (p : SimpleSpectrum d) :
+    knownSpectrumChannel n m d p.eigenvalue (fun i => (p.positive i).le) p.normalized =
+      channel n m d (fun _ => knownCopyWeight m d p.eigenvalue)
+        (fun _ => knownCopyWeight_nonneg m d p.eigenvalue)
+        (fun _ => knownCopyWeight_sum m d p.eigenvalue (fun i => (p.positive i).le) p.normalized) := rfl
+
+theorem prescribed_small {d : ℕ} (n m : ℕ) (p : SimpleSpectrum d) (h : m ≤ n) :
+    prescribedKnownSpectrumChannel n m d p.eigenvalue (fun i => (p.positive i).le) p.normalized =
+      restrictionChannel n m d h :=
+  prescribedChannel_of_le n m d _ h
+
+theorem prescribed_large {d : ℕ} (n m : ℕ) (p : SimpleSpectrum d) (h : n < m) :
+    prescribedKnownSpectrumChannel n m d p.eigenvalue (fun i => (p.positive i).le) p.normalized =
+      knownSpectrumChannel n m d p.eigenvalue (fun i => (p.positive i).le) p.normalized :=
+  prescribedChannel_of_lt n m d _ h
+
+-- The carrier's analytic fidelity is literally the unsquared trace norm.
+theorem root_fidelity_body {H : Type*}
+    [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
+    (A B : PositiveTraceClass H) :
+    A.rootFidelity B = traceNorm (CFC.sqrt A.1.1 * CFC.sqrt B.1.1)
+      (Cloning.InfiniteFidelity.sqrt_product_traceClass A.2 B.2 A.1.2 B.1.2) := rfl
+
+-- Producer-to-consumer composition supplies the LAN bundle internally.
+theorem converse_composition {k : ℕ} (p : SimpleSpectrum (k+1))
+    (m : ℕ → ℕ) (γ : ℝ) (hγ : 1 < γ)
+    (hgain : Tendsto (fun n => (m n : ℝ)/(n : ℝ)) atTop (𝓝 γ)) :
+    limsup (fun n => knownSpectrumValue n (m n) p) atTop ≤ orbitalValue γ p := by
+  obtain ⟨b, hb⟩ := exists_whitening_frame (by simp : Fintype.card (Fin (k+1)) = k+1)
+    p.eigenvalue (fun i => (p.positive i).le) p.normalized
+  let e := (Fintype.equivFin (PairIndex (k+1))).symm
+  exact limsup_knownSpectrumValue_le_of_compactWindowLAN p b e
+    (physicalCompactWindowLAN p b hb e) m γ hγ hgain
+
+-- Lower-bound assembly supplies concrete channel, sector/concentration estimates.
+theorem lower_composition {k : ℕ} (p : SimpleSpectrum (k+1))
+    (m : ℕ → ℕ) (γ : ℝ) (hγ : 1 < γ)
+    (hgain : Tendsto (fun n => (m n : ℝ)/(n : ℝ)) atTop (𝓝 γ)) (ε : ℝ) (hε : 0 < ε) :
+    ∀ᶠ n in atTop, orbitalValue γ p - ε < knownSpectrumValue n (m n) p := by
+  have hm := output_size_tendsto m γ (by linarith) hgain
+  exact eventually_knownSpectrumValue_lower (fun n => n) m tendsto_id hm p γ hγ hgain ε hε
+
+-- Uniform prescribed result assembled from the actual unmodified two producers.
+theorem uniform_composition {d : ℕ} (K : Set (SimpleSpectrum (d+1))) (hK : IsCompact K)
+    (m : ℕ → ℕ) (γ : ℝ) (hγ : 1 < γ)
+    (hgain : Tendsto (fun n => (m n : ℝ)/(n : ℝ)) atTop (𝓝 γ)) (ε : ℝ) (hε : 0 < ε) :
+    ∀ᶠ n in atTop, ∀ p ∈ K, ∀ U : unitary (Matrix (Fin (d+1)) (Fin (d+1)) ℂ),
+      |spectrumPayoff n (m n) (prescribedKnownSpectrumChannel n (m n) (d+1) p.eigenvalue
+        (fun i => (p.positive i).le) p.normalized) p U - orbitalValue γ p| < ε := by
+  filter_upwards [eventually_output_gt_input m γ hγ hgain,
+    eventually_uniform_knownSpectrumChannel_payoff K hK m γ hγ hgain ε hε]
+    with n hn hh p hp U
+  simpa only [prescribedKnownSpectrumChannel, prescribedChannel_of_lt n (m n) (d+1) _ hn]
+    using hh p hp U
+
+end SemanticPilotKnownSpectrum
+
+#check @Cloning.TensorCloning.knownSpectrumValue_tendsto
+#check @Cloning.TensorCloning.eventually_uniform_prescribedKnownSpectrumChannel_payoff
+#check SemanticPilotKnownSpectrum.known_exact_type
+#check SemanticPilotKnownSpectrum.uniform_exact_type
+#check SemanticPilotKnownSpectrum.converse_composition
+#check SemanticPilotKnownSpectrum.lower_composition
+#check SemanticPilotKnownSpectrum.uniform_composition
+
+-- Scoped native axiom closure for both actual targets and their audited definitions.
+open Lean in
+set_option maxHeartbeats 0 in
+run_cmd do
+  let env ← getEnv
+  let roots := #[`Cloning.TensorCloning.knownSpectrumValue_tendsto,
+    `Cloning.TensorCloning.eventually_uniform_prescribedKnownSpectrumChannel_payoff,
+    `Cloning.TensorCloning.knownSpectrumValue, `Cloning.TensorCloning.spectrumPayoff,
+    `Cloning.TensorCloning.prescribedKnownSpectrumChannel, `Cloning.orbitalValue]
+  let (_, state) := ((roots.forM CollectAxioms.collect).run env).run {}
+  let names := state.axioms.map Name.toString
+  logInfo m!"PILOT_AXIOMS roots={roots.size} visited={state.visited.toList.length} axioms={names}"
+  if names.any (fun n => n != "Classical.choice" && n != "Quot.sound" && n != "propext") then
+    throwError "Forbidden pilot axiom"
+  logInfo "KNOWN_SPECTRUM_SEMANTIC_PROBES_PASSED"

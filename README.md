@@ -7,7 +7,7 @@ Lean proofs for **all 27 named results** in the frozen reference snapshot: known
 [Dependency map](https://jwang226.github.io/Cloning/dependencies.html) ·
 [Verification guide](https://jwang226.github.io/Cloning/verification.html)
 
-The guides connect paper sections and informal arguments to exact Lean declarations. The [proof map](formalization/PROOF_MAP.md) records the correspondence, assumptions, and scope; the [bundled website](docs/index.html) also works offline.
+The guides connect paper sections and informal arguments to exact Lean declarations. The [proof map](formalization/PROOF_MAP.md) records the correspondence, assumptions, and scope; the [bundled website](docs/index.html) also works offline. A focused [statement review](https://jwang226.github.io/Cloning/statement-review.html) checks Theorems 1.1–1.3 and explains the projector cloner’s different finite coupling construction.
 
 ## How it was verified
 

@@ -1,0 +1,76 @@
+import Cloning.TensorCloningPrescribedLimits
+
+noncomputable section
+open scoped Topology BigOperators Matrix
+open Filter Cloning.InfiniteTraceClass Cloning.PCT Cloning.PCTPhysicalState
+open Cloning.TensorCloning Cloning.PhysicalFlatGrassmann
+
+set_option autoImplicit false
+set_option maxHeartbeats 1000000
+
+-- Print complete exported binders, including section parameters.
+#check @Cloning.PhysicalFlatGrassmann.minimaxValue_tendsto
+#check @Cloning.TensorCloning.prescribedRankFlatChannel_uniform
+#check @Cloning.TensorCloning.prescribedRankFlatChannel_covariant
+
+-- A projector contains exactly the paper's three matrix conditions.
+example (r k : ℕ) : Projector r k =
+    {P : Matrix (Fin (r+k)) (Fin (r+k)) ℂ //
+      P.IsHermitian ∧ P * P = P ∧ P.rank = r} := rfl
+
+example (r k : ℕ) (hr : 0 < r) (P : Projector r k) :
+    (state hr P).matrix = (1 / (r : ℝ)) • P.val := rfl
+
+-- Expand the optimization and payoff together: one unrestricted CPTP map
+-- precedes the infimum over every literal projector; fidelity is unsquared.
+example (r k : ℕ) (hr : 0 < r) (n m : ℕ) :
+    letI : Nonempty (Fin (r+k)) := ⟨⟨0, by omega⟩⟩
+    minimaxValue r k hr n m =
+      ⨆ Φ : QuantumChannel (Register (Fin n → Fin (r+k)))
+          (Register (Fin m → Fin (r+k))),
+        ⨅ P : Projector r k,
+          ((tensorState (state hr P) n).map Φ.toPositiveTracePreservingMap).rootFidelity
+            (tensorState (state hr P) m) := by
+  rfl
+
+-- Consume the public theorem without a supplied LAN, coupling, or limit witness.
+example (r k : ℕ) (hr : 0 < r) (m : ℕ → ℕ) (γ : ℝ) (hγ : 1 < γ)
+    (hgain : Tendsto (fun n => (m n : ℝ) / (n : ℝ)) atTop (𝓝 γ)) :
+    Tendsto (fun n => minimaxValue r k hr n (m n)) atTop
+      (𝓝 (γ ^ (-(((r*k : ℕ) : ℝ)/2)))) :=
+  Cloning.PhysicalFlatGrassmann.minimaxValue_tendsto r k hr m γ hγ hgain
+
+-- One threshold serves every projector for the same prescribed channel.
+example (r k : ℕ) (hr : 0 < r) (m : ℕ → ℕ) (γ : ℝ) (hγ : 1 < γ)
+    (hgain : Tendsto (fun n => (m n : ℝ) / (n : ℝ)) atTop (𝓝 γ))
+    (ε : ℝ) (hε : 0 < ε) :
+    ∀ᶠ n in atTop, ∀ P : Projector r k,
+      |payoff r k hr n (m n) (prescribedRankFlatChannel r k hr n (m n)) P -
+        γ ^ (-(((r*k : ℕ) : ℝ)/2))| < ε :=
+  prescribedRankFlatChannel_uniform r k hr m γ hγ hgain ε hε
+
+-- The orbit proof really covers the literal projector carrier.
+example (r k : ℕ) (hr : 0 < r) (n m : ℕ) :
+    minimaxValue r k hr n m = Cloning.PhysicalFlatConverse.minimaxValue r k hr n m :=
+  minimaxValue_eq_orbit r k hr n m
+
+-- Upstream coupling proofs are applied to the constructed object itself.
+example (r k : ℕ) (hr : 0 < r) (n m : ℕ) :
+    rankFlatChannel r k hr n m =
+      flatCoupledChannel k hr (Cloning.YoungFlatCoupling.rankFlatCoupling r hr n m)
+        (Cloning.YoungFlatCoupling.rankFlatCoupling_map_fst r hr n m)
+        (Cloning.YoungFlatCoupling.rankFlatCoupling_map_snd r hr n m) := rfl
+
+-- Match the paper's dimension D=r+k and its exponent exactly.
+example (r k : ℕ) : ((r * ((r+k)-r) : ℕ) : ℝ) = ((r*k : ℕ) : ℝ) := by simp
+
+-- The broader k=0 endpoint is the stated singleton boundary value 1.
+example (r : ℕ) (hr : 0 < r) (m : ℕ → ℕ) (γ : ℝ) (hγ : 1 < γ)
+    (hgain : Tendsto (fun n => (m n : ℝ) / (n : ℝ)) atTop (𝓝 γ)) :
+    Tendsto (fun n => minimaxValue r 0 hr n (m n)) atTop (𝓝 1) := by
+  simpa using Cloning.PhysicalFlatGrassmann.minimaxValue_tendsto r 0 hr m γ hγ hgain
+
+-- Finite exceptional output sizes disappear from the asymptotic statement.
+example (m : ℕ → ℕ) (γ : ℝ) (hγ : 1 < γ)
+    (hgain : Tendsto (fun n => (m n : ℝ) / (n : ℝ)) atTop (𝓝 γ)) :
+    ∀ᶠ n in atTop, n < m n := eventually_output_gt_input m γ hγ hgain

@@ -4,7 +4,7 @@ from copy import deepcopy
 import json
 import re
 
-from build import ARXIV, Wiki, checker_verdict, lean_mask, offline_proof_map, statement_end, validate_links
+from build import ARXIV, ROOT, Wiki, checker_verdict, lean_mask, offline_proof_map, sha, statement_end, validate_links
 from paper import paper_structure
 
 
@@ -106,6 +106,82 @@ class GuideCorrespondenceTests(unittest.TestCase):
         wiki.chapters[0]["manuscript_labels"] = []
         with self.assertRaisesRegex(ValueError, "Named results missing a proof guide"):
             wiki.validate_guides()
+
+
+class StatementReviewTests(unittest.TestCase):
+    def wiki(self):
+        wiki = Wiki.__new__(Wiki)
+        base = "formalization/verification/semantic-pilot/"
+        files = {base + "probe.lean.txt": "example : True := True.intro\n",
+                 base + "review.md": "Scoped review.\n", base + "output.log": "Checked.\n"}
+        files[base + "run.json"] = json.dumps({"exit_code": 0, "probe_sha256": sha(files[base + "probe.lean.txt"]),
+                                              "log_sha256": sha(files[base + "output.log"]),
+                                              "source_audit_sha256": "audited-sources"})
+        entry = {"report": base + "review.md", "probe": base + "probe.lean.txt",
+                 "log": base + "output.log", "run": base + "run.json", "lean": []}
+        wiki.latest = {"run_sha256": "audited-sources"}
+        wiki.results = {label: {} for label in ("thm:known-optimum", "thm:unknown-optimum", "thm:grassmann")}
+        wiki.statement_review = {"source_audit_sha256": "audited-sources", "manuscript_sha256": sha("paper"),
+                                 "artifacts": {p: sha(v) for p, v in files.items()},
+                                 "results": {label: deepcopy(entry) for label in wiki.results}}
+        files["formalization/reference/cloning.tex"] = "paper"
+        wiki.read = lambda path: files[path.relative_to(ROOT).as_posix()]
+        wiki.read_json = lambda path: json.loads(wiki.read(path))
+        return wiki, files
+
+    def test_matching_review_evidence(self):
+        wiki, _ = self.wiki()
+        wiki.validate_statement_review()
+
+    def test_stale_audit_or_manuscript_rejected(self):
+        for key in ("source_audit_sha256", "manuscript_sha256"):
+            with self.subTest(key=key):
+                wiki, _ = self.wiki()
+                wiki.statement_review[key] = "stale"
+                with self.assertRaises(ValueError):
+                    wiki.validate_statement_review()
+
+    def test_altered_report_or_probe_output_rejected(self):
+        for file in ("review.md", "probe.lean.txt", "output.log"):
+            with self.subTest(file=file):
+                wiki, files = self.wiki()
+                files["formalization/verification/semantic-pilot/" + file] += "changed"
+                with self.assertRaisesRegex(ValueError, "artifact hash differs"):
+                    wiki.validate_statement_review()
+
+    def test_unbound_probe_rejected(self):
+        wiki, _ = self.wiki()
+        wiki.statement_review["results"]["thm:grassmann"]["probe"] = "unbound.txt"
+        with self.assertRaisesRegex(ValueError, "missing bound artifact"):
+            wiki.validate_statement_review()
+
+    def test_failed_or_wrong_probe_run_rejected_even_with_matching_record_hash(self):
+        for run in ({"exit_code": 1}, {"exit_code": 0, "probe_sha256": "wrong"}):
+            with self.subTest(run=run):
+                wiki, files = self.wiki()
+                path = "formalization/verification/semantic-pilot/run.json"
+                files[path] = json.dumps(run)
+                wiki.statement_review["artifacts"][path] = sha(files[path])
+                with self.assertRaisesRegex(ValueError, "probe did not pass"):
+                    wiki.validate_statement_review()
+
+    def test_evidence_path_cannot_escape_review_directory(self):
+        wiki, _ = self.wiki()
+        wiki.statement_review["artifacts"]["formalization/verification/semantic-pilot/../other.md"] = "x"
+        with self.assertRaisesRegex(ValueError, "outside evidence directory"):
+            wiki.validate_statement_review()
+
+    def test_run_cannot_be_mixed_with_another_log_or_audit(self):
+        for key in ("log_sha256", "source_audit_sha256"):
+            with self.subTest(key=key):
+                wiki, files = self.wiki()
+                path = "formalization/verification/semantic-pilot/run.json"
+                run = json.loads(files[path])
+                run[key] = "different"
+                files[path] = json.dumps(run)
+                wiki.statement_review["artifacts"][path] = sha(files[path])
+                with self.assertRaisesRegex(ValueError, "different log or source audit"):
+                    wiki.validate_statement_review()
 
 
 class PaperCorrespondenceTests(unittest.TestCase):

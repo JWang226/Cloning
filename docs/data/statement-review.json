@@ -1,0 +1,104 @@
+{
+  "date": "2026-10-06",
+  "reviewed_revision": "d2ccb294f6a69d2cd65aa807cb9bfd1d9f829999",
+  "source_audit_sha256": "6b2c09f61388362d9ff3ae3f63285b9dd09e0cd95254150273bacba6cd9c799a",
+  "manuscript_sha256": "6f2453656031201968aef5cc9c043f7116bb7a1ed1cd2cebb2b905e3df94038d",
+  "scope": "AI-assisted semantic review of three theorem families, with native Lean type/application probes; not external peer review or a full replay of kernel verification.",
+  "results": {
+    "thm:known-optimum": {
+      "title": "Known spectrum",
+      "summary": "The reviewed endpoints preserve root fidelity, optimization over all quantum channels, and the compact-uniform limit of the spectrum-dependent cloner.",
+      "findings": [
+        "Lean uses physical dimension d+1 and a positive, strictly ordered, normalized SimpleSpectrum. The minimax definition chooses a channel before the unknown unitary.",
+        "The attaining channel may depend on the known spectrum. Its uniform theorem gives one threshold for all spectra in a fixed compact set and all unitaries.",
+        "The channel samples the exact target Young-label law. The review traces its sector construction and the internally constructed LAN witness; neither is an extra hypothesis of the endpoint."
+      ],
+      "lean": [
+        {
+          "name": "Cloning.TensorCloning.knownSpectrumValue",
+          "file": "formalization/Cloning/TensorCloningPayoff.lean"
+        },
+        {
+          "name": "Cloning.TensorCloning.prescribedKnownSpectrumChannel",
+          "file": "formalization/Cloning/TensorCloningPrescribed.lean"
+        }
+      ],
+      "report": "formalization/verification/semantic-pilot/known-spectrum.md",
+      "probe": "formalization/verification/semantic-pilot/known-spectrum.lean.txt",
+      "log": "formalization/verification/semantic-pilot/known-spectrum.log",
+      "run": "formalization/verification/semantic-pilot/known-spectrum-run.json"
+    },
+    "thm:unknown-optimum": {
+      "title": "Unknown spectrum",
+      "summary": "One spectrum-independent channel has the uniform limit in part (a). The minimax conclusion in part (b) retains the paper’s stronger condition on the spectral set.",
+      "findings": [
+        "The channel depends on sample sizes and dimension, without taking the true spectrum, unitary, or compact set as an argument. Its exact covariance is separately proved.",
+        "Part (a) permits every compact spectral set, including a singleton. Part (b) requires a nonempty compact set equal to the closure of its interior in the full trace-one affine hyperplane.",
+        "Lean’s hd: 1≤d means physical dimension d+1≥2. The payoff uses root fidelity, and the limit includes the classical factor with exponent (D−1)/2."
+      ],
+      "lean": [
+        {
+          "name": "Cloning.TensorCloning.unknownSpectrumValue",
+          "file": "formalization/Cloning/TensorCloningPayoff.lean"
+        },
+        {
+          "name": "Cloning.TensorCloning.prescribedUniversalChannel",
+          "file": "formalization/Cloning/TensorCloningPrescribed.lean"
+        },
+        {
+          "name": "Cloning.TensorCloning.unknownSpectrumValue_tendsto_affine",
+          "file": "formalization/Cloning/SpectralAffineTheorem.lean"
+        }
+      ],
+      "report": "formalization/verification/semantic-pilot/unknown-spectrum.md",
+      "probe": "formalization/verification/semantic-pilot/unknown-spectrum.lean.txt",
+      "log": "formalization/verification/semantic-pilot/unknown-spectrum.log",
+      "run": "formalization/verification/semantic-pilot/unknown-spectrum-run.json"
+    },
+    "thm:grassmann": {
+      "title": "Projector states",
+      "summary": "The optimum and uniform attaining-channel limit match. Lean uses a different finite coupling construction from the one selected in the paper.",
+      "findings": [
+        "Projectors are literal Hermitian idempotent matrices of rank r; their states are P/r. The minimax ranges over every quantum channel and every such projector.",
+        "Physical dimension is D=r+k, so γ^(−r*k/2) is the paper’s γ^(−r(D−r)/2). Lean also includes k=0, the singleton boundary with value 1.",
+        "Paper §4.2 selects a transportation-program minimizer. Lean constructs a coupling from overlapping densities, proves its exact marginals, and proves its cloner attains the optimum uniformly. Equality of the two finite constructions is not established."
+      ],
+      "lean": [
+        {
+          "name": "Cloning.PhysicalFlatGrassmann.Projector",
+          "file": "formalization/Cloning/PhysicalFlatGrassmannOrbit.lean"
+        },
+        {
+          "name": "Cloning.PhysicalFlatGrassmann.minimaxValue",
+          "file": "formalization/Cloning/PhysicalFlatGrassmannTheorem.lean"
+        },
+        {
+          "name": "Cloning.YoungFlatCoupling.positiveFlatCoupling",
+          "file": "formalization/Cloning/YoungFlatCouplingPhysical.lean"
+        }
+      ],
+      "report": "formalization/verification/semantic-pilot/projector.md",
+      "probe": "formalization/verification/semantic-pilot/projector.lean.txt",
+      "log": "formalization/verification/semantic-pilot/projector.log",
+      "run": "formalization/verification/semantic-pilot/projector-run.json"
+    }
+  },
+  "artifacts": {
+    "formalization/verification/semantic-pilot/known-spectrum-attempt-1-run.json": "1fdda90231c740d32661d4b13720ac40e1cbed87e3ab711fef4d5b89526d159a",
+    "formalization/verification/semantic-pilot/known-spectrum-attempt-1.lean.txt": "cb11e0daaa89aaafb781f2b05d6e24b5dfab9c6c66fba1f24246555c9c25e6a9",
+    "formalization/verification/semantic-pilot/known-spectrum-attempt-1.log": "7a6357ac3ea6865924a4ef79904b1ef4a9151efcc1eaf6522cce01078d23d9c6",
+    "formalization/verification/semantic-pilot/known-spectrum-run.json": "d25e2703527730bcef1a4b88d4fd884b885a838c3aa16e2e7729c3eb13139ebf",
+    "formalization/verification/semantic-pilot/known-spectrum.lean.txt": "416877625fe1c1b19676b3fc6220b346d6780d8c5b029393aa63905485a98c27",
+    "formalization/verification/semantic-pilot/known-spectrum.log": "8db8458f98277005d75cda041724463dac03d498dcb278f6c01e3a8d8b9065bf",
+    "formalization/verification/semantic-pilot/known-spectrum.md": "b8a2c9f53ef84f61e55208e6de9b81215f0bbfc21dec0d53184e5c4fb7c4fcd1",
+    "formalization/verification/semantic-pilot/projector-run.json": "2d50ee0eb9ad4539ac2d42acb818ed34cce686846ba7f7506390c78aed559f13",
+    "formalization/verification/semantic-pilot/projector.lean.txt": "c051da587e832e9d6d100aaf1fc0935dd1b4d71e7437885df2258279975a6e15",
+    "formalization/verification/semantic-pilot/projector.log": "57f2dbe85e33939d6ed168fb8b2376ee8358c696395c51c14d5ad3a4b9081cdb",
+    "formalization/verification/semantic-pilot/projector.md": "6072c9a6ec18b90db94c1d4055dca1aabaa61ed9f40434b5eedfae330a3fa76a",
+    "formalization/verification/semantic-pilot/unknown-spectrum-run.json": "a9cf0e0354d44c19dd27ca86ac337ad9149ba09ba16ba0a45b7e6dcf741e56d9",
+    "formalization/verification/semantic-pilot/unknown-spectrum.lean.txt": "584d79076a5f62e86c5a4c8179ace665e7c3beb046c769efcc4242630bda3b2e",
+    "formalization/verification/semantic-pilot/unknown-spectrum.log": "e4b45d9f332bb5372883c515f6f44b488af9f0d4fca8bd6b3de204b12e89e918",
+    "formalization/verification/semantic-pilot/unknown-spectrum.md": "169bd647170f15228ec350044c25d035e7cd65cbe6915a6fa7c9b4252b32e1f3",
+    "formalization/verification/semantic-pilot/unknown-spectrum.resources.log": "0fe4cde26113f463d389127c676b72ebd6d5578bd635c9101814102539a90fb6"
+  }
+}

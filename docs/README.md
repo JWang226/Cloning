@@ -15,6 +15,11 @@ guide numbers differ from paper section numbers. Each chapter and every proof
 step display paper references. The sidebar keeps only the main navigation.
 External paper links point to arXiv v1; the guide and Lean source remain bundled.
 
+[Statement review](statement-review.html) records the scoped review of Theorems
+1.1–1.3, including the projector coupling distinction and reproducible Lean
+probes. Its editorial record is docs-src/statement-review.json; the builder
+checks its manuscript/audit binding and every report, probe, and log hash.
+
 ## Rebuild and check
 
 Run from the repository root with Python 3.10 or newer:

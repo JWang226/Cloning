@@ -1,0 +1,144 @@
+@eventually_uniform_prescribedUniversalChannel_payoff : ∀ {d : ℕ},
+  1 ≤ d →
+    ∀ (K : Set (SimpleSpectrum (d + 1))),
+      IsCompact K →
+        ∀ (m : ℕ → ℕ) (γ : ℝ),
+          1 < γ →
+            Tendsto (fun n => ↑(m n) / ↑n) atTop (𝓝 γ) →
+              ∀ (ε : ℝ),
+                0 < ε →
+                  ∀ᶠ (n : ℕ) in atTop,
+                    ∀ p ∈ K,
+                      ∀ (U : ↥(unitary (Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ))),
+                        |spectrumPayoff n (m n) (prescribedUniversalChannel n (m n) d) p U - universalValue γ p| < ε
+prescribedUniversalChannel_covariant : ∀ (n m d : ℕ) (U : Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ),
+  Uᴴ * U = 1 →
+    ∀ (X : TraceClass ↥(TensorRegister n (Fin (d + 1)))),
+      (prescribedUniversalChannel n m d).toLinearMap ((conjugationLinearMap (tensorOperator n U)) X) =
+        (conjugationLinearMap (tensorOperator m U)) ((prescribedUniversalChannel n m d).toLinearMap X)
+@unknownSpectrumValue_tendsto_affine : ∀ {d : ℕ},
+  1 ≤ d →
+    ∀ (K : Set (SimpleSpectrum (d + 1))),
+      IsCompact K →
+        K.Nonempty →
+          closure (interior (SimpleSpectrum.toAffine '' K)) = SimpleSpectrum.toAffine '' K →
+            ∀ (m : ℕ → ℕ) (γ : ℝ),
+              1 < γ →
+                Tendsto (fun n => ↑(m n) / ↑n) atTop (𝓝 γ) →
+                  Tendsto (fun n => unknownSpectrumValue n (m n) K) atTop (𝓝 (⨅ p, universalValue γ ↑p))
+@SimpleSpectrum.mk : {d : ℕ} →
+  (eigenvalue : Fin d → ℝ) →
+    (∀ (i : Fin d), 0 < eigenvalue i) → StrictAnti eigenvalue → ∑ i, eigenvalue i = 1 → SimpleSpectrum d
+SpectralAffine : ℕ → Type
+@QuantumChannel.mk : {H : Type u_1} →
+  {K : Type u_2} →
+    [inst : NormedAddCommGroup H] →
+      [inst_1 : InnerProductSpace ℂ H] →
+        [inst_2 : CompleteSpace H] →
+          [inst_3 : NormedAddCommGroup K] →
+            [inst_4 : InnerProductSpace ℂ K] →
+              [inst_5 : CompleteSpace K] →
+                (toPositiveTracePreservingMap : PositiveTracePreservingMap H K) →
+                  IsCompletelyPositive toPositiveTracePreservingMap.toLinearMap → QuantumChannel H K
+@PositiveTracePreservingMap.mk : {H : Type u_1} →
+  {K : Type u_2} →
+    [inst : NormedAddCommGroup H] →
+      [inst_1 : InnerProductSpace ℂ H] →
+        [inst_2 : CompleteSpace H] →
+          [inst_3 : NormedAddCommGroup K] →
+            [inst_4 : InnerProductSpace ℂ K] →
+              [inst_5 : CompleteSpace K] →
+                (toLinearMap : TraceClass H →ₗ[ℂ] TraceClass K) →
+                  (∀ (A : TraceClass H), 0 ≤ ↑A → 0 ≤ ↑(toLinearMap A)) →
+                    (∀ (A : TraceClass H),
+                        InfiniteTraceClass.trace ↑(toLinearMap A) ⋯ = InfiniteTraceClass.trace ↑A ⋯) →
+                      PositiveTracePreservingMap H K
+@IsCompletelyPositive : {H : Type u_1} →
+  {K : Type u_2} →
+    [inst : NormedAddCommGroup H] →
+      [inst_1 : InnerProductSpace ℂ H] →
+        [inst_2 : CompleteSpace H] →
+          [inst_3 : NormedAddCommGroup K] →
+            [inst_4 : InnerProductSpace ℂ K] → [inst_5 : CompleteSpace K] → (TraceClass H →ₗ[ℂ] TraceClass K) → Prop
+@MatrixFidelity.State.mk : {n : Type u_1} →
+  [inst : Fintype n] → (matrix : Matrix n n ℂ) → matrix.PosSemidef → matrix.trace = 1 → MatrixFidelity.State n
+BINDER Cloning.TensorCloning.eventually_uniform_prescribedUniversalChannel_payoff: d [Lean.BinderInfo.implicit] : ℕ
+BINDER Cloning.TensorCloning.eventually_uniform_prescribedUniversalChannel_payoff: hd [Lean.BinderInfo.default] : 1 ≤ d
+BINDER Cloning.TensorCloning.eventually_uniform_prescribedUniversalChannel_payoff: K [Lean.BinderInfo.default] : Set
+  (SimpleSpectrum (d + 1))
+BINDER Cloning.TensorCloning.eventually_uniform_prescribedUniversalChannel_payoff: hK [Lean.BinderInfo.default] : IsCompact
+  K
+BINDER Cloning.TensorCloning.eventually_uniform_prescribedUniversalChannel_payoff: m [Lean.BinderInfo.default] : ℕ → ℕ
+BINDER Cloning.TensorCloning.eventually_uniform_prescribedUniversalChannel_payoff: γ [Lean.BinderInfo.default] : ℝ
+BINDER Cloning.TensorCloning.eventually_uniform_prescribedUniversalChannel_payoff: hγ [Lean.BinderInfo.default] : 1 < γ
+BINDER Cloning.TensorCloning.eventually_uniform_prescribedUniversalChannel_payoff: hgain [Lean.BinderInfo.default] : Tendsto
+  (fun n => ↑(m n) / ↑n) atTop (𝓝 γ)
+BINDER Cloning.TensorCloning.eventually_uniform_prescribedUniversalChannel_payoff: ε [Lean.BinderInfo.default] : ℝ
+BINDER Cloning.TensorCloning.eventually_uniform_prescribedUniversalChannel_payoff: hε [Lean.BinderInfo.default] : 0 < ε
+PROOF_REFS Cloning.TensorCloning.eventually_uniform_prescribedUniversalChannel_payoff: ["Cloning.SimpleSpectrum","Cloning.universalValue","Cloning.InfiniteTraceClass.QuantumChannel","Cloning.SimpleSpectrum.instTopologicalSpace","Cloning.TensorCloning.eventually_output_gt_input","Cloning.TensorCloning.eventually_uniform_universalChannel_payoff","Cloning.TensorCloning.prescribedChannel_of_lt","Cloning.TensorCloning.prescribedUniversalChannel","Cloning.TensorCloning.spectrumPayoff","Cloning.TensorCloning.universalChannel","Cloning.TensorLie.TensorRegister","Cloning.PCT.Register._proof_1"]
+BINDER Cloning.TensorCloning.prescribedUniversalChannel_covariant: n [Lean.BinderInfo.default] : ℕ
+BINDER Cloning.TensorCloning.prescribedUniversalChannel_covariant: m [Lean.BinderInfo.default] : ℕ
+BINDER Cloning.TensorCloning.prescribedUniversalChannel_covariant: d [Lean.BinderInfo.default] : ℕ
+BINDER Cloning.TensorCloning.prescribedUniversalChannel_covariant: U [Lean.BinderInfo.default] : Matrix (Fin (d + 1))
+  (Fin (d + 1)) ℂ
+BINDER Cloning.TensorCloning.prescribedUniversalChannel_covariant: hU [Lean.BinderInfo.default] : Uᴴ * U = 1
+BINDER Cloning.TensorCloning.prescribedUniversalChannel_covariant: X [Lean.BinderInfo.default] : TraceClass
+  ↥(TensorRegister n (Fin (d + 1)))
+PROOF_REFS Cloning.TensorCloning.prescribedUniversalChannel_covariant: ["Cloning.InfiniteTraceClass.TraceClass","Cloning.TensorCloning.prescribedChannel_covariant","Cloning.TensorCloning.universalChannel","Cloning.TensorCloning.universalChannel_covariant","Cloning.TensorLie.TensorRegister","Cloning.PCT.Register._proof_1"]
+BINDER Cloning.TensorCloning.unknownSpectrumValue_tendsto_affine: d [Lean.BinderInfo.implicit] : ℕ
+BINDER Cloning.TensorCloning.unknownSpectrumValue_tendsto_affine: hd [Lean.BinderInfo.default] : 1 ≤ d
+BINDER Cloning.TensorCloning.unknownSpectrumValue_tendsto_affine: K [Lean.BinderInfo.default] : Set
+  (SimpleSpectrum (d + 1))
+BINDER Cloning.TensorCloning.unknownSpectrumValue_tendsto_affine: hK [Lean.BinderInfo.default] : IsCompact K
+BINDER Cloning.TensorCloning.unknownSpectrumValue_tendsto_affine: hKne [Lean.BinderInfo.default] : K.Nonempty
+BINDER Cloning.TensorCloning.unknownSpectrumValue_tendsto_affine: hregular [Lean.BinderInfo.default] : closure
+    (interior (SimpleSpectrum.toAffine '' K)) =
+  SimpleSpectrum.toAffine '' K
+BINDER Cloning.TensorCloning.unknownSpectrumValue_tendsto_affine: m [Lean.BinderInfo.default] : ℕ → ℕ
+BINDER Cloning.TensorCloning.unknownSpectrumValue_tendsto_affine: γ [Lean.BinderInfo.default] : ℝ
+BINDER Cloning.TensorCloning.unknownSpectrumValue_tendsto_affine: hγ [Lean.BinderInfo.default] : 1 < γ
+BINDER Cloning.TensorCloning.unknownSpectrumValue_tendsto_affine: hgain [Lean.BinderInfo.default] : Tendsto
+  (fun n => ↑(m n) / ↑n) atTop (𝓝 γ)
+PROOF_REFS Cloning.TensorCloning.unknownSpectrumValue_tendsto_affine: ["Cloning.SimpleSpectrum","Cloning.SpectralAffine","Cloning.SimpleSpectrum.instTopologicalSpace","Cloning.SimpleSpectrum.regularClosure_of_affine","Cloning.SimpleSpectrum.toAffine","Cloning.SpectralAffine.instTopologicalSpace","Cloning.TensorCloning.unknownSpectrumValue_tendsto"]
+BINDER Cloning.TensorCloning.unknownSpectrumValue_tendsto: d [Lean.BinderInfo.implicit] : ℕ
+BINDER Cloning.TensorCloning.unknownSpectrumValue_tendsto: hd [Lean.BinderInfo.default] : 1 ≤ d
+BINDER Cloning.TensorCloning.unknownSpectrumValue_tendsto: K [Lean.BinderInfo.default] : Set (SimpleSpectrum (d + 1))
+BINDER Cloning.TensorCloning.unknownSpectrumValue_tendsto: hK [Lean.BinderInfo.default] : IsCompact K
+BINDER Cloning.TensorCloning.unknownSpectrumValue_tendsto: hKne [Lean.BinderInfo.default] : K.Nonempty
+BINDER Cloning.TensorCloning.unknownSpectrumValue_tendsto: hregular [Lean.BinderInfo.default] : closure (interior K) = K
+BINDER Cloning.TensorCloning.unknownSpectrumValue_tendsto: m [Lean.BinderInfo.default] : ℕ → ℕ
+BINDER Cloning.TensorCloning.unknownSpectrumValue_tendsto: γ [Lean.BinderInfo.default] : ℝ
+BINDER Cloning.TensorCloning.unknownSpectrumValue_tendsto: hγ [Lean.BinderInfo.default] : 1 < γ
+BINDER Cloning.TensorCloning.unknownSpectrumValue_tendsto: hgain [Lean.BinderInfo.default] : Tendsto
+  (fun n => ↑(m n) / ↑n) atTop (𝓝 γ)
+PROOF_REFS Cloning.TensorCloning.unknownSpectrumValue_tendsto: ["Cloning.SimpleSpectrum","Cloning.universalValue","Cloning.PhysicalCloningConverse.limsup_unknownSpectrumValue_infimum","Cloning.SimpleSpectrum.instTopologicalSpace","Cloning.TensorCloning.eventually_unknownSpectrumValue_lower","Cloning.TensorCloning.unknownSpectrumValue","Cloning.TensorCloning.unknownSpectrumValue_le_one"]
+BINDER Cloning.PhysicalCloningConverse.limsup_unknownSpectrumValue_le: k [Lean.BinderInfo.implicit] : ℕ
+BINDER Cloning.PhysicalCloningConverse.limsup_unknownSpectrumValue_le: S [Lean.BinderInfo.default] : Set
+  (SimpleSpectrum (k + 1))
+BINDER Cloning.PhysicalCloningConverse.limsup_unknownSpectrumValue_le: p [Lean.BinderInfo.default] : SimpleSpectrum
+  (k + 1)
+BINDER Cloning.PhysicalCloningConverse.limsup_unknownSpectrumValue_le: hp [Lean.BinderInfo.default] : p ∈ interior S
+BINDER Cloning.PhysicalCloningConverse.limsup_unknownSpectrumValue_le: m [Lean.BinderInfo.default] : ℕ → ℕ
+BINDER Cloning.PhysicalCloningConverse.limsup_unknownSpectrumValue_le: g [Lean.BinderInfo.default] : ℝ
+BINDER Cloning.PhysicalCloningConverse.limsup_unknownSpectrumValue_le: hg [Lean.BinderInfo.default] : 1 < g
+BINDER Cloning.PhysicalCloningConverse.limsup_unknownSpectrumValue_le: hratio [Lean.BinderInfo.default] : Tendsto
+  (fun n => ↑(m n) / ↑n) atTop (𝓝 g)
+PROOF_REFS Cloning.PhysicalCloningConverse.limsup_unknownSpectrumValue_le: ["Cloning.PairIndex","Cloning.SimpleSpectrum","Cloning.universalValue","Cloning.PCTJointGaussianWhitening.exists_whitening_frame","Cloning.PCTJointGaussianWhitening.sqrtSpectrum","Cloning.PhysicalCloningConverse.limsup_unknownSpectrumValue_le_of_compactWindowLAN","Cloning.SimpleSpectrum.eigenvalue","Cloning.SimpleSpectrum.instTopologicalSpace","Cloning.SimpleSpectrum.normalized","Cloning.SimpleSpectrum.positive","Cloning.TensorCloning.unknownSpectrumValue","Cloning.TensorLAN.physicalCompactWindowLAN"]
+BINDER Cloning.TensorCloning.eventually_uniform_universalChannel_payoff: d [Lean.BinderInfo.implicit] : ℕ
+BINDER Cloning.TensorCloning.eventually_uniform_universalChannel_payoff: hd [Lean.BinderInfo.default] : 1 ≤ d
+BINDER Cloning.TensorCloning.eventually_uniform_universalChannel_payoff: K [Lean.BinderInfo.default] : Set
+  (SimpleSpectrum (d + 1))
+BINDER Cloning.TensorCloning.eventually_uniform_universalChannel_payoff: hK [Lean.BinderInfo.default] : IsCompact K
+BINDER Cloning.TensorCloning.eventually_uniform_universalChannel_payoff: m [Lean.BinderInfo.default] : ℕ → ℕ
+BINDER Cloning.TensorCloning.eventually_uniform_universalChannel_payoff: γ [Lean.BinderInfo.default] : ℝ
+BINDER Cloning.TensorCloning.eventually_uniform_universalChannel_payoff: hγ [Lean.BinderInfo.default] : 1 < γ
+BINDER Cloning.TensorCloning.eventually_uniform_universalChannel_payoff: hgain [Lean.BinderInfo.default] : Tendsto
+  (fun n => ↑(m n) / ↑n) atTop (𝓝 γ)
+BINDER Cloning.TensorCloning.eventually_uniform_universalChannel_payoff: ε [Lean.BinderInfo.default] : ℝ
+BINDER Cloning.TensorCloning.eventually_uniform_universalChannel_payoff: hε [Lean.BinderInfo.default] : 0 < ε
+PROOF_REFS Cloning.TensorCloning.eventually_uniform_universalChannel_payoff: ["Cloning.SimpleSpectrum","Cloning.classicalValue","Cloning.orbitalValue","Cloning.universalValue","Cloning.PhysicalCloningConverse.output_size_tendsto","Cloning.SimpleSpectrum.eigenvalue","Cloning.SimpleSpectrum.instTopologicalSpace","Cloning.SimpleSpectrum.positive","Cloning.TensorCloning.copyBadMass","Cloning.TensorCloning.copyBadMass_le_universalTailEnvelope","Cloning.TensorCloning.eventually_uniform_universalAffinity","Cloning.TensorCloning.eventually_uniform_universal_retainedCopyFidelity","Cloning.TensorCloning.retainedCopyFidelity","Cloning.TensorCloning.spectrumPayoff","Cloning.TensorCloning.universalAffinity","Cloning.TensorCloning.universalChannel","Cloning.TensorCloning.universalChannel_payoff_abs_error","Cloning.TensorCloning.universalKeep","Cloning.TensorCloning.universalTailEnvelope","Cloning.TensorCloning.universalTailEnvelope_tendsto_zero","Cloning.TensorLAN.SchurCopy","Cloning.TensorLie.PhysicalHighestTensor","Cloning.TensorLie.recursivePhysicalDecomposition"]
+'Cloning.TensorCloning.eventually_uniform_prescribedUniversalChannel_payoff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Cloning.TensorCloning.prescribedUniversalChannel_covariant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Cloning.TensorCloning.unknownSpectrumValue_tendsto_affine' depends on axioms: [propext, Classical.choice, Quot.sound]

@@ -1,0 +1,58 @@
+@knownSpectrumValue_tendsto : ∀ {k : ℕ} (p : SimpleSpectrum (k + 1)) (m : ℕ → ℕ) (g : ℝ),
+  1 < g →
+    Tendsto (fun n => ↑(m n) / ↑n) atTop (𝓝 g) →
+      Tendsto (fun n => knownSpectrumValue n (m n) p) atTop (𝓝 (orbitalValue g p))
+@eventually_uniform_prescribedKnownSpectrumChannel_payoff : ∀ {d : ℕ} (K : Set (SimpleSpectrum (d + 1))),
+  IsCompact K →
+    ∀ (m : ℕ → ℕ) (γ : ℝ),
+      1 < γ →
+        Tendsto (fun n => ↑(m n) / ↑n) atTop (𝓝 γ) →
+          ∀ (ε : ℝ),
+            0 < ε →
+              ∀ᶠ (n : ℕ) in atTop,
+                ∀ p ∈ K,
+                  ∀ (U : ↥(unitary (Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ))),
+                    |spectrumPayoff n (m n) (prescribedKnownSpectrumChannel n (m n) (d + 1) p.eigenvalue ⋯ ⋯) p U -
+                          orbitalValue γ p| <
+                      ε
+SemanticPilotKnownSpectrum.known_exact_type {k : ℕ} (p : SimpleSpectrum (k + 1)) (m : ℕ → ℕ) (γ : ℝ) (hγ : 1 < γ)
+  (hgain : Tendsto (fun n => ↑(m n) / ↑n) atTop (𝓝 γ)) :
+  Tendsto
+    (fun n =>
+      ⨆ Φ,
+        ⨅ U,
+          (PositiveTraceClass.map Φ.toPositiveTracePreservingMap
+                (tensorState (conjugatedState (diagonalState p.eigenvalue ⋯ ⋯) U) n)).rootFidelity
+            (tensorState (conjugatedState (diagonalState p.eigenvalue ⋯ ⋯) U) (m n)))
+    atTop
+    (𝓝
+      (∏ ij,
+        (√γ + √(p.eigenvalue (↑ij).2 / p.eigenvalue (↑ij).1 * (γ - 1 + p.eigenvalue (↑ij).2 / p.eigenvalue (↑ij).1))) /
+          (γ + p.eigenvalue (↑ij).2 / p.eigenvalue (↑ij).1)))
+SemanticPilotKnownSpectrum.uniform_exact_type {d : ℕ} (K : Set (SimpleSpectrum (d + 1))) (hK : IsCompact K) (m : ℕ → ℕ)
+  (γ : ℝ) (hγ : 1 < γ) (hgain : Tendsto (fun n => ↑(m n) / ↑n) atTop (𝓝 γ)) (ε : ℝ) (hε : 0 < ε) :
+  ∀ᶠ (n : ℕ) in atTop,
+    ∀ p ∈ K,
+      ∀ (U : ↥(unitary (Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ))),
+        |(PositiveTraceClass.map
+                    (prescribedKnownSpectrumChannel n (m n) (d + 1) p.eigenvalue ⋯ ⋯).toPositiveTracePreservingMap
+                    (tensorState (conjugatedState (diagonalState p.eigenvalue ⋯ ⋯) U) n)).rootFidelity
+                (tensorState (conjugatedState (diagonalState p.eigenvalue ⋯ ⋯) U) (m n)) -
+              orbitalValue γ p| <
+          ε
+SemanticPilotKnownSpectrum.converse_composition {k : ℕ} (p : SimpleSpectrum (k + 1)) (m : ℕ → ℕ) (γ : ℝ) (hγ : 1 < γ)
+  (hgain : Tendsto (fun n => ↑(m n) / ↑n) atTop (𝓝 γ)) :
+  limsup (fun n => knownSpectrumValue n (m n) p) atTop ≤ orbitalValue γ p
+SemanticPilotKnownSpectrum.lower_composition {k : ℕ} (p : SimpleSpectrum (k + 1)) (m : ℕ → ℕ) (γ : ℝ) (hγ : 1 < γ)
+  (hgain : Tendsto (fun n => ↑(m n) / ↑n) atTop (𝓝 γ)) (ε : ℝ) (hε : 0 < ε) :
+  ∀ᶠ (n : ℕ) in atTop, orbitalValue γ p - ε < knownSpectrumValue n (m n) p
+SemanticPilotKnownSpectrum.uniform_composition {d : ℕ} (K : Set (SimpleSpectrum (d + 1))) (hK : IsCompact K) (m : ℕ → ℕ)
+  (γ : ℝ) (hγ : 1 < γ) (hgain : Tendsto (fun n => ↑(m n) / ↑n) atTop (𝓝 γ)) (ε : ℝ) (hε : 0 < ε) :
+  ∀ᶠ (n : ℕ) in atTop,
+    ∀ p ∈ K,
+      ∀ (U : ↥(unitary (Matrix (Fin (d + 1)) (Fin (d + 1)) ℂ))),
+        |spectrumPayoff n (m n) (prescribedKnownSpectrumChannel n (m n) (d + 1) p.eigenvalue ⋯ ⋯) p U -
+              orbitalValue γ p| <
+          ε
+PILOT_AXIOMS roots=18 visited=69784 axioms=[propext, Quot.sound, Classical.choice]
+KNOWN_SPECTRUM_SEMANTIC_PROBES_PASSED
