@@ -147,7 +147,7 @@ def declaration_locations(text, source):
     return declarations
 
 
-def bound_source(record):
+def bound_source(record, directory=None):
     """Use only source bytes bound by a recorded SHA-256; never guess a revision."""
     source = record.get("source", "")
     expected = record.get("source_sha256")
@@ -157,6 +157,12 @@ def bound_source(record):
     path = (REPO / relative).resolve()
     if not path.is_relative_to(PROJECT.resolve()) or path.suffix != ".lean":
         return [], "Source path is outside the owned Lean project."
+    if record.get("source_snapshot") and directory is not None:
+        snapshot = input_path(directory, record["source_snapshot"])
+        data = snapshot.read_bytes()
+        if hashlib.sha256(data).hexdigest() != expected:
+            raise ValueError("Preserved profile source differs from its recorded SHA-256")
+        return declaration_locations(data.decode("utf-8"), relative), None
     data = path.read_bytes() if path.is_file() else b""
     if hashlib.sha256(data).hexdigest() != expected:
         commit = record.get("commit")
@@ -259,6 +265,7 @@ def parse_firefox_profile(profile, declarations=(), limit=50):
 
 
 def input_path(directory, name):
+    directory = directory.resolve()
     path = (directory / name).resolve()
     if not path.is_relative_to(directory) or not path.is_file():
         raise ValueError("Missing or escaping profile input: " + str(path))
@@ -273,9 +280,18 @@ def summarize(directory, limit=50, threshold_ms=100):
         log_path = input_path(directory, record["log"])
         events_path = input_path(directory, record["events"])
         raw_paths.update((log_path, events_path))
-        if record.get("resources"):
-            raw_paths.add(input_path(directory, record["resources"]))
-        declarations, source_warning = bound_source(record)
+        input_hashes = {}
+        for key in ("log", "events", "resources", "source_snapshot", "setup_snapshot", "trace_snapshot", "import_context"):
+            if record.get(key):
+                raw_path = input_path(directory, record[key])
+                raw_paths.add(raw_path)
+                digest = hashlib.sha256(raw_path.read_bytes()).hexdigest()
+                input_hashes[key] = digest
+                expected_key = {"source_snapshot": "source_sha256", "setup_snapshot": "setup_sha256",
+                                "trace_snapshot": "trace_sha256", "import_context": "import_context_sha256"}.get(key)
+                if expected_key and record.get(expected_key) != digest:
+                    raise ValueError("Profile input differs from its recorded SHA-256: " + key)
+        declarations, source_warning = bound_source(record, directory)
         text = parse_text_profile(log_path.read_text(), threshold_ms)
         for event in text["events_over_threshold"]:
             event["declaration_pointers"] = source_pointers(event["text"], declarations, event["declaration"])
@@ -283,6 +299,8 @@ def summarize(directory, limit=50, threshold_ms=100):
         warnings = [source_warning] if source_warning else []
         if record.get("exit_code") != 0:
             warnings.append("This profile did not complete successfully; timings are partial evidence.")
+        if record.get("measurement_valid") is False:
+            warnings.append("Profile measurement is invalid or incomplete; inspect its input stability guards.")
         if not text["cumulative_blocks"]:
             warnings.append("No cumulative --profile totals found.")
         if not trace["exported_position_count"]:
@@ -291,9 +309,7 @@ def summarize(directory, limit=50, threshold_ms=100):
             warnings.append("Negative trace intervals retained; trace rankings require timeline inspection.")
         if all(row["name"] in ("Import", "runFrontend") for row in trace["top_self_functions"]):
             warnings.append("No detailed timed trace nodes; enable trace.profiler=true for attribution.")
-        results.append({"profile": record, "input_sha256": {
-            "log": hashlib.sha256(log_path.read_bytes()).hexdigest(),
-            "events": hashlib.sha256(events_path.read_bytes()).hexdigest()},
+        results.append({"profile": record, "input_sha256": input_hashes,
             "text_profile": text, "firefox_profile": trace, "warnings": warnings})
     return {"schema": "cloning-elaboration-profile-summary-v1",
             "generated_utc": datetime.now(timezone.utc).isoformat(),

@@ -8,7 +8,8 @@ from __future__ import annotations
 
 import argparse
 from collections import Counter, defaultdict
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from datetime import datetime
 import hashlib
 import io
 import json
@@ -24,6 +25,7 @@ SKILL_PIN = "70bb859295edc2abb9ad81f8f6e31ab2adf8ca07"
 SKILL_BASE = "https://github.com/scottnarmstrong/LeanAutoformalizationSkills/blob/" + SKILL_PIN
 NUMBER = r"[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?"
 BUILT = re.compile(rf"Built\s+(\S+)(?:\s+\(({NUMBER})(ms|s)\))?")
+CONFIGS = ("formalization/lean-toolchain", "formalization/lakefile.toml", "formalization/lake-manifest.json")
 
 
 def load_json(path):
@@ -127,6 +129,51 @@ def archive_sources(commit, sources, repo=REPO):
         return {source: archive.extractfile(source).read().decode("utf-8") for source in sources}
 
 
+def source_provenance(directory, summary, sizes, sources):
+    """Verify manifests against Git; distinguish runner checks from later checks."""
+    source_hashes = {name: hashlib.sha256(text.encode()).hexdigest() for name, text in sources.items()}
+    for row in sizes:
+        if row.get("source_sha256") and row["source_sha256"] != source_hashes[row["source"]]:
+            raise ValueError("Recorded source SHA-256 differs from measured commit: " + row["source"])
+    manifest_path = directory / "source-config-hashes.json"
+    result = {"source_hashes_in_size": all(row.get("source_sha256") for row in sizes),
+              "manifest_verified": False, "config_sha256": {},
+              "built_in_stability": summary.get("source_config_hashes_unchanged"),
+              "supplemental_stability": None}
+    if manifest_path.is_file():
+        inputs = load_json(manifest_path)
+        expected = source_hashes | {name: hashlib.sha256(text.encode()).hexdigest() for name, text in
+                                  archive_sources(summary["commit"], list(CONFIGS)).items()}
+        if inputs != expected:
+            raise ValueError("Source/config manifest differs from measured commit or scope")
+        result.update({"manifest_verified": True, "manifest_sha256": hashlib.sha256(manifest_path.read_bytes()).hexdigest(),
+                       "config_sha256": {name: inputs[name] for name in CONFIGS}})
+    supplemental_path = directory / "source-config-stability.json"
+    if supplemental_path.is_file():
+        stability = load_json(supplemental_path)
+        if (stability.get("schema") != "cloning-elaboration-source-stability-v1"
+                or stability.get("commit") != summary["commit"]
+                or stability.get("comparison") != "post-build-working-tree-vs-measured-commit"
+                or not result["manifest_verified"] or stability.get("inputs") != inputs
+                or not isinstance(stability.get("unchanged"), bool)):
+            raise ValueError("Invalid supplemental source/config stability record")
+        if datetime.fromisoformat(stability["checked_utc"]) < datetime.fromisoformat(summary["end_utc"]):
+            raise ValueError("Supplemental stability check predates measurement completion")
+        result["supplemental_stability"] = stability
+    return result
+
+
+def stability_status(snapshot):
+    provenance = snapshot.provenance
+    if provenance.get("built_in_stability") is not None:
+        return str(provenance["built_in_stability"]) + " (runner start/end check)"
+    supplemental = provenance.get("supplemental_stability")
+    if supplemental is not None:
+        return (str(supplemental["unchanged"]) + " (supplemental post-build check at "
+                + supplemental["checked_utc"] + "; no runner end check recorded)")
+    return "unavailable; no source/config stability check recorded"
+
+
 def timing_rows(summary, log, modules):
     """Keep displayed durations as estimates and reject duplicate module times."""
     timings = {}
@@ -171,6 +218,7 @@ class Snapshot:
     timings: dict
     compiled: set
     resources: dict
+    provenance: dict = field(default_factory=dict)
 
     @classmethod
     def read(cls, directory):
@@ -203,8 +251,9 @@ class Snapshot:
         sources = archive_sources(summary["commit"], [row["source"] for row in sizes])
         if any(len(sources[row["source"]].splitlines()) != row["lines"] for row in sizes):
             raise ValueError("Measured source line counts differ from recorded sizes")
+        provenance = source_provenance(directory, summary, sizes, sources)
         return cls(directory, summary, sizes, graph, log, samples, sources,
-                   timings, compiled, resource_metrics(summary["resources"]))
+                   timings, compiled, resource_metrics(summary["resources"]), provenance)
 
     def groups(self):
         result = defaultdict(lambda: {"modules": 0, "code_lines": 0, "seconds": 0})
@@ -268,6 +317,8 @@ def comparison(current, prior):
     a, b = current.summary, prior.summary
     matched = (a.get("environment") == b.get("environment") and
                a.get("time_tool") == b.get("time_tool") and a.get("host") == b.get("host"))
+    configurations_match = (bool(current.provenance.get("config_sha256")) and
+                            current.provenance.get("config_sha256") == prior.provenance.get("config_sha256"))
     current_sum, prior_sum = sum(current.timings.values()), sum(prior.timings.values())
     pa = ratio(current_sum, current.resources["wall"])
     pb = ratio(prior_sum, prior.resources["wall"])
@@ -281,9 +332,13 @@ def comparison(current, prior):
              up > 0 and down > 0]
     relation = "matched" if matched else "unmatched: avoid a wall-time speedup claim"
     text = (f"Host, environment, and timing tool are **{relation}**. "
+            f"Measured configuration hashes match: {configurations_match} "
+            "(missing manifests do not establish configuration equivalence). "
             f"Contention screens: user CPU down while logged duration sum rises: {flags[0]}; "
             f"logged-duration/wall ratio rises >20%: {flags[1]}; same-module durations move "
             f"in opposite directions by >10%: {flags[2]} ({up} up, {down} down). ")
+    if not configurations_match:
+        text += "Withhold a wall-time speedup claim until configuration equivalence is established. "
     if sum(flags) >= 2:
         text += "At least two screens fire; treat the aggregate trend as contention-limited and withhold structural conclusions. "
     else:
@@ -314,17 +369,49 @@ def profile_section(profiles):
         details.append("### " + record["module"] + " — repetition " + str(record.get("repetition", 1)))
         details.append(f"Recorded profile commit: `{record.get('commit', 'unavailable')}`; "
                        f"source SHA-256: `{record.get('source_sha256', 'unavailable')}`.")
+        details.append(table(["Profile provenance", "Recorded result"], [
+            ["Benchmark commit", record.get("benchmark_commit", "unavailable")],
+            ["Source matches recorded profile commit", record.get("source_matches_commit", "unavailable")],
+            ["Source matches benchmark commit", record.get("source_matches_benchmark", "unavailable")],
+            ["Preserved variant source", record.get("source_snapshot") or "none"],
+            ["Configuration matches benchmark", record.get("config_matches_benchmark", "unavailable")],
+            ["Source/config/artifact/setup inputs stable", record.get("inputs_stable", "unavailable")],
+            ["Measurement valid", record.get("measurement_valid", "unavailable")],
+            ["Import context", record.get("import_context", "unavailable")]]))
+        if record.get("environment"):
+            details.append("Selected effective profile environment: `" + markdown(record["environment"]) + "`.")
+        if record.get("config_sha256"):
+            details.append(table(["Configuration input", "SHA-256"], sorted(record["config_sha256"].items())))
         details.append(table(["Exclusive elapsed phase", "Seconds"],
                              [[k, number(v / 1000, 3)] for k, v in sorted(phases.items(), key=lambda x: -x[1])]))
         events = parsed["events_over_threshold"][:10]
         if events:
             details.append(table(["Largest event (>100 ms)", "Exclusive seconds", "Log line"],
                                  [[e["text"], number(e["exclusive_ms"] / 1000, 3), e["log_line"]] for e in events]))
+        trace = result.get("firefox_profile", {})
+        for ranking, title in (("top_self_functions", "Largest self trace labels"),
+                               ("top_inclusive_functions", "Largest inclusive trace labels (overlap)")):
+            ranked = trace.get(ranking, [])[:10]
+            if ranked:
+                details.append(title + ":\n\n" + table(
+                    ["Trace label (first 300 characters)", "Self s", "Inclusive s", "Declaration pointer"],
+                    [[row["name"][:300], number(row["self_ms"] / 1000, 3), number(row["inclusive_ms"] / 1000, 3),
+                      "; ".join(p["declaration"] + " at " + p["source"] + ":" + str(p["line"])
+                                for p in row.get("declaration_pointers", [])) or "unattributed"]
+                     for row in ranked]))
+        unattributed = parsed.get("unattributed_elaboration_events", [])
+        if unattributed:
+            details.append(f"Unattributed elaboration events above threshold: {len(unattributed)}; "
+                           "the detailed trace rankings supply attribution where their labels identify declarations.")
         details.append("Recorded command:\n\n```sh\n" + shlex.join(record["command"]) + "\n```")
         if result.get("warnings"):
             details.append("\n".join("- " + w for w in result["warnings"]))
     note = ("Cumulative C++ timers are exclusive **elapsed** times summed across threads, not OS CPU. "
             "Trace self weights are elapsed intervals; inclusive trace rankings overlap. "
+            "Detailed profiling adds instrumentation overhead; these are warm own-file attribution runs. "
+            "Saved Lake setups bind mapped artifact paths; direct import families are content hashed and "
+            "mapped transitive artifacts are guarded by path/size/mtime. Newly unmapped direct imports "
+            "fall back to the recorded search path; their nonmapped transitive closure is not inventoried. "
             "The dominant-phase screen requires >5 s and >25% of the displayed phase sum. "
             "Declaration pointers identify declarations, not automatically an exact costly tactic.")
     return note + "\n\n" + table(["Module", "Run", "Exit", "Process wall s", "Phase sum s", "Dominant screen", ">100 ms events"], rows) + "\n\n" + "\n\n".join(details)
@@ -347,9 +434,6 @@ def render(current, profiles=None, prior=None, notes=None):
         ["Maximum compiler lines with another absolute .lean source", census["maxima"].get("other_source", 0)],
         ["Maximum lines with unresolved source/cwd", census["maxima"].get("unresolved", 0)],
         ["Samples containing another absolute .lean source", census["samples_with_other_source"]]])
-    if census["foreign_source_paths"]:
-        load_note += "\n\nObserved source paths from concurrent compiler processes (up to ten):\n\n" + "\n".join(
-            "- `" + path + "`" for path in census["foreign_source_paths"][:10])
     sections = []
     sections.append(("1. Setup/provenance", f"UTC window: `{s['start_utc']}` → `{s['end_utc']}`. "
         f"Measured Git commit: `{s['commit']}`. Target: `All`.\n\n"
@@ -359,7 +443,8 @@ def render(current, profiles=None, prior=None, notes=None):
         f"Environment: `{s['environment']}`.\n\n"
         f"Workflow: [lean-elaboration-test]({SKILL_BASE}/skills/lean-elaboration-test/SKILL.md) and "
         f"[lean-elaboration]({SKILL_BASE}/skills/lean-elaboration/SKILL.md), pinned at `{SKILL_PIN}`.\n\n"
-        + load_note + "\n\nThe raw inventory can include this run and concurrent projects. "
+        + load_note + "\n\nThe public inventory reports counts and omits unrelated paths and command lines. "
+        "The raw inventory can include this run and concurrent projects. "
         "Absolute source paths support the limited attribution above; a Lake command alone does not disclose its cwd. "
         "Presence alone is informational; "
         "it neither invalidates the run nor establishes artifact mutation or causality.\n\n" + comparison(current, prior)))
@@ -425,6 +510,8 @@ def render(current, profiles=None, prior=None, notes=None):
         ["Sorry messages / authorized", f"{s['sorry_messages']} / 0"], ["Warnings", s["warnings"]],
         ["Upstream compilation records", len(s["upstream_compilations"])],
         ["Dependency path/size/mtime digest unchanged", s["dependency_artifacts_unchanged"]],
+        ["Source/config manifest bound to measured commit", current.provenance.get("manifest_verified", False)],
+        ["Source/config byte stability", stability_status(current)],
         ["Compiled all owned modules", current.compiled == {x["module"] for x in current.sizes}],
         ["Files above 1,500 lines", len(oversized)],
         ["Files containing heartbeat overrides", len(overrides)],
@@ -496,7 +583,8 @@ def render(current, profiles=None, prior=None, notes=None):
     sections.append(("10. Methodology", methodology))
     artifacts = []
     for filename in ("summary.json", "size.json", "imports.json", "skill-size.txt", "build.log",
-                     "resources.txt", "process-samples.json", "dependencies-before.json", "dependencies-after.json", "invalidated.json"):
+                     "resources.txt", "process-samples.json", "dependencies-before.json", "dependencies-after.json", "invalidated.json",
+                     "source-config-hashes.json", "source-config-stability.json", "benchmark-runner.py"):
         path = current.directory / filename
         if path.is_file():
             artifacts.append([filename, hashlib.sha256(path.read_bytes()).hexdigest()])
