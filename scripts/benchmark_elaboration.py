@@ -6,6 +6,7 @@ import argparse
 from datetime import datetime, timezone
 import hashlib
 import importlib.util
+import io
 import json
 import os
 from pathlib import Path
@@ -14,6 +15,7 @@ import shutil
 import signal
 import subprocess
 import threading
+import tarfile
 import time
 
 REPO = Path(__file__).resolve().parents[1]
@@ -101,12 +103,14 @@ def main():
     spec.loader.exec_module(counter)
     size = []
     graph = {}
-    for source, module in zip(sources, modules):
-        text = subprocess.check_output(["git", "show", f"{commit}:{source}"], cwd=REPO, text=True)
-        _, flags = counter.code_line_flags(text)
-        size.append({"module": module, "source": source, "lines": len(text.splitlines()),
-                     "code_lines": sum(flags), "module_header": counter.has_module_header(text)})
-        graph[module] = [m for m in re.findall(r"^import\s+(\S+)", text, re.M) if m in modules]
+    archive = subprocess.check_output(["git", "archive", commit, *sources], cwd=REPO)
+    with tarfile.open(fileobj=io.BytesIO(archive)) as tree:
+        for source, module in zip(sources, modules):
+            text = tree.extractfile(source).read().decode("utf-8")
+            _, flags = counter.code_line_flags(text)
+            size.append({"module": module, "source": source, "lines": len(text.splitlines()),
+                         "code_lines": sum(flags), "module_header": counter.has_module_header(text)})
+            graph[module] = [m for m in re.findall(r"^import\s+(\S+)", text, re.M) if m in modules]
     reachable = set()
     def visit(m):
         if m not in reachable:
@@ -118,14 +122,16 @@ def main():
         ap.error("All does not cover owned source scope")
     write_json(output / "size.json", size)
     write_json(output / "imports.json", graph)
+    size_prefixes = ["formalization/Cloning/"] + [s for s in sources if s.count("/") == 1]
     (output / "skill-size.txt").write_text(run("python3", str(args.size_helper.resolve()), commit,
-                                             *sources) + "\n")
+                                             *size_prefixes) + "\n")
     before = dependency_snapshot()
     write_json(output / "dependencies-before.json", before)
     removed = invalidate_owned(modules)
     write_json(output / "invalidated.json", removed)
     env = os.environ.copy()
     env["LEAN_NUM_THREADS"] = str(args.threads)
+    env["LAKE_ARTIFACT_CACHE"] = "false"
     lake = shutil.which("lake") or str(Path.home() / ".elan/bin/lake")
     command = [args.time, "-v", "-o", str(output / "resources.txt"), lake,
                "--no-ansi", "--no-cache", "build", "All"]
@@ -167,8 +173,9 @@ def main():
     write_json(output / "dependencies-after.json", after)
     write_json(output / "process-samples.json", samples)
     log = (output / "build.log").read_text()
-    timings = [{"module": m, "seconds": float(s)} for m, s in
-               re.findall(r"Built\s+(\S+)\s+\(([\d.]+)s\)", log) if m in modules]
+    timings = [{"module": m, "seconds": float(s) / (1000 if unit == "ms" else 1)}
+               for m, s, unit in re.findall(r"Built\s+(\S+)\s+\(([\d.]+)(ms|s)\)", log)
+               if m in modules]
     timings.sort(key=lambda row: row["seconds"], reverse=True)
     resources = {}
     for line in (output / "resources.txt").read_text().splitlines():
@@ -183,7 +190,8 @@ def main():
             chains[m] = (prior[0] + duration.get(m, 0), [*prior[1], m])
         return chains[m]
     summary = {"schema": "cloning-elaboration-test-v1", "commit": commit, "start_utc": start,
-               "end_utc": end, "command": command, "environment": {"LEAN_NUM_THREADS": str(args.threads)},
+               "end_utc": end, "command": command,
+               "environment": {"LEAN_NUM_THREADS": str(args.threads), "LAKE_ARTIFACT_CACHE": "false"},
                "host": run("uname", "-a"), "cpu_count": os.cpu_count(),
                "memory_bytes": run("sysctl", "-n", "hw.memsize"),
                "lean": run(lake, "env", "lean", "--version", cwd=PROJECT),
