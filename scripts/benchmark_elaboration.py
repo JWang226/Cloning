@@ -62,7 +62,7 @@ def invalidate_owned(modules):
         if p.is_symlink() or not p.is_file() or not p.resolve().is_relative_to(build):
             raise ValueError("Unsafe project artifact: " + str(p))
         p.unlink()
-        removed.append(str(p.relative_to(PROJECT)))
+        removed.append(str(p.relative_to(PROJECT.resolve())))
     return removed
 
 
