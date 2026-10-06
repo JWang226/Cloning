@@ -393,7 +393,7 @@ def finish(root, receipt, resummarize=False):
     return summary
 
 
-def run_native(root, manifest):
+def run_native(root):
     lean = os.environ.get("CLONING_LEAN", "lean")
     env = os.environ.copy()
     paths = [str(root / "build"), str(root)]
@@ -455,7 +455,7 @@ def main(argv=None):
             print("AUDIT STAGE generated shared driver; source modules " + str(len(manifest["source_modules"])), flush=True)
             if args.generate_only:
                 return 0
-            summary = finish(root, run_native(root, manifest))
+            summary = finish(root, run_native(root))
         print(f"AUDIT STAGE passed: {summary['audited_constants']} unique compiled roots; "
               f"{summary['aggregate_coverage']['visited_constants']} visited declarations; "
               f"aggregate axioms {summary['aggregate_axioms']}", flush=True)

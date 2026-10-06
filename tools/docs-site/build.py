@@ -550,7 +550,7 @@ class Wiki:
         for node in ids:
             visit(node)
 
-    def page(self, path, title, body, active="", toc="", extra_assets=()):
+    def page(self, path, title, body, active="", extra_assets=()):
         depth = len(PurePosixPath(path).parts) - 1
         prefix = "../" * depth
         nav = [

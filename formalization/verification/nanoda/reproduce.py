@@ -12,7 +12,6 @@ from pathlib import Path
 import re
 import shutil
 import subprocess
-import sys
 
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parent.parent

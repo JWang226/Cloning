@@ -58,12 +58,6 @@ def productMixture {s : ℕ} (L : ℕ) (μ : Measure (Fin s → ℂ)) :
 def coherentMixture {s : ℕ} (μ : Measure (Fin s → ℂ)) : TraceClass (FockSpace s) :=
   ∫ z, MultimodeCoherent.coherentProjector z ∂μ
 
-private theorem pure_nonneg {H : Type*} [NormedAddCommGroup H]
-    [InnerProductSpace ℂ H] [CompleteSpace H] (v : H) :
-    0 ≤ (vectorProjector v).1 :=
-  (InnerProductSpace.rankOne ℂ v v).nonneg_iff_isPositive.mpr
-    (InnerProductSpace.isPositive_rankOne_self v)
-
 theorem occupationChannel_error_le_two {s : ℕ} (z : Fin s → ℂ) (L : ℕ) :
     ‖(occupationChannel L s).toLinearMap (MultimodeCoherent.coherentProjector z) -
       vectorProjector (productTensor z L)‖ ≤ 2 := by
