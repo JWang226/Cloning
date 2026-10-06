@@ -3,6 +3,7 @@
 import argparse
 from datetime import datetime, timezone
 import json
+import hashlib
 import os
 from pathlib import Path
 import shutil
@@ -46,8 +47,11 @@ def main():
             log = output / (label + ".log")
             resources = output / (label + ".resources.txt")
             source = str(Path(source_map[module]).relative_to("formalization"))
+            source_hash = hashlib.sha256((PROJECT / source).read_bytes()).hexdigest()
+            current_commit = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=REPO, text=True).strip()
             command = [args.time, "-v", "-o", str(resources), lake, "env", "lean",
                        "-DautoImplicit=false", "--profile",
+                       "-Dtrace.profiler=true", "-Dtrace.profiler.output.pp=true",
                        "-Dtrace.profiler.output=" + str(events), source]
             print(f"Profiling {module} ({repetition}/{args.repeat})", flush=True)
             start = datetime.now(timezone.utc).isoformat()
@@ -56,10 +60,13 @@ def main():
                 completed = subprocess.run(command, cwd=PROJECT, env=env, stdout=stream,
                                            stderr=subprocess.STDOUT)
             result = {"module": module, "repetition": repetition, "source": source,
+                      "commit": current_commit, "source_sha256": source_hash,
                       "command": command, "start_utc": start, "exit_code": completed.returncode,
                       "wall_seconds": time.monotonic() - clock,
                       "log": log.name, "events": events.name, "resources": resources.name}
             results.append(result)
+            if hashlib.sha256((PROJECT / source).read_bytes()).hexdigest() != source_hash:
+                raise RuntimeError("Profile source changed during measurement: " + source)
             (output / "profiles.json").write_text(json.dumps(results, indent=2) + "\n")
             print(f"Finished {module}: exit {completed.returncode}, {result['wall_seconds']:.2f}s", flush=True)
             if completed.returncode:

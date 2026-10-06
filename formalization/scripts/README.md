@@ -30,8 +30,9 @@ build and axiom audit: every saved evidence hash, the exact current proof and
 entry-point source inventory, dependency pins, successful return codes, and
 source/artifact stability gates. It then replays the pinned audit engine's
 Python-only `--resummarize` mode in temporary storage and requires an identical
-summary, including complete export coverage and every axiom report. Both serial
-and multi-worker evidence are supported.
+summary, including complete export coverage and its recorded axiom scope.
+Shared audits retain their aggregate axiom union; historical audits retain exact
+per-root reports with either serial or multi-worker evidence.
 
 Without a latest pointer, the checker validates the historical seventh-pass
 checkpoint against the corresponding exact source inventory. The original

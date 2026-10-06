@@ -4,8 +4,69 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 
 import reproduce as runner
+from test_check_checkpoint import shared_fixture, write_json
+
+
+class SharedInventoryBinding(unittest.TestCase):
+    def setUp(self):
+        directory = tempfile.TemporaryDirectory()
+        self.addCleanup(directory.cleanup)
+        self.project = Path(directory.name) / "project"
+        self.archive = self.project / "verification/shared"
+        self.run, self.inventory = shared_fixture(self.archive)
+        (self.project / "Cloning").mkdir()
+        for name in ("Cloning.lean", "Cloning/Fixture.lean"):
+            (self.project / name).write_bytes((self.archive / name).read_bytes())
+        for name in ("lean-toolchain", "lakefile.toml", "lake-manifest.json"):
+            (self.project / name).write_text("fixture\n")
+            self.run["input_sha256"][name] = runner.sha256(self.project / name)
+        self.lock = {"audit": {"run_file": "verification/shared/run.json", "modules": 1, "constants": 2}}
+        self.save_run()
+        project_patch = patch.object(runner, "PROJECT", self.project)
+        project_patch.start()
+        self.addCleanup(project_patch.stop)
+
+    def save_run(self):
+        path = self.archive / "run.json"
+        write_json(path, self.run)
+        self.lock["audit"]["run_sha256"] = runner.sha256(path)
+
+    def test_shared_roots_include_private_declarations_and_bind_aggregate_scope(self):
+        roots, binding = runner.bound_inventory(self.lock)
+        self.assertEqual(roots, [row["name"] for row in self.inventory["declarations"]])
+        self.assertTrue(any(name.startswith("_private.") for name in roots))
+        self.assertEqual(binding["project_declarations"], 2)
+        self.assertEqual(binding["inventory_sha256"], runner.sha256(self.archive / "audit-inventory.json"))
+        self.assertEqual(binding["aggregate_axioms"], ["propext"])
+        self.assertEqual(binding["axiom_report_scope"], "aggregate union; no per-root axiom attribution")
+
+    def test_source_drift_cannot_reuse_the_saved_root_catalog(self):
+        (self.project / "Cloning/Fixture.lean").write_text("theorem changed : True := True.intro\n")
+        with self.assertRaisesRegex(RuntimeError, "audited input drift"):
+            runner.bound_inventory(self.lock)
+
+    def test_lock_cannot_weaken_complete_root_scope(self):
+        self.lock["audit"]["constants"] = 1
+        with self.assertRaisesRegex(RuntimeError, "declaration count mismatch"):
+            runner.bound_inventory(self.lock)
+
+    def test_forged_derived_inventory_cannot_pass_with_only_an_updated_outer_hash(self):
+        altered = dict(self.inventory)
+        altered["declarations"] = self.inventory["declarations"][:-1]
+        write_json(self.archive / "audit-inventory.json", altered)
+        self.run["evidence_sha256"]["audit-inventory.json"] = runner.sha256(self.archive / "audit-inventory.json")
+        self.save_run()
+        with self.assertRaisesRegex(RuntimeError, "differs from native"):
+            runner.bound_inventory(self.lock)
+
+    def test_unknown_schema_cannot_fall_back_to_historical_reports(self):
+        self.run["audit_engine"] = "invented"
+        self.save_run()
+        with self.assertRaisesRegex(RuntimeError, "unknown bound audit engine"):
+            runner.bound_inventory(self.lock)
 
 
 class ExportGuards(unittest.TestCase):

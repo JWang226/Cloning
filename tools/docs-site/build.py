@@ -19,6 +19,9 @@ from paper import RESULT_ARGUMENTS, paper_structure
 
 ROOT = Path(__file__).resolve().parents[2]
 FORMAL = ROOT / "formalization"
+sys.path.insert(0, str(FORMAL / "scripts"))
+from check_checkpoint import shared_inventory
+
 OUT = ROOT / "docs"
 ASSETS = Path(__file__).parent / "assets"
 GITHUB = "https://github.com/JWang226/Cloning/blob/main/"
@@ -248,10 +251,7 @@ class Wiki:
             expected = self.run["evidence_sha256"].get(file)
             if expected and sha((self.audit_dir / file).read_bytes()) != expected:
                 raise ValueError(f"Audit evidence hash differs: {file}")
-        self.inventory = []
-        for line in self.read(self.audit_dir / "AXIOMS.txt").splitlines():
-            if line.startswith("AXIOM_REPORT "):
-                self.inventory.append(json.loads(line[len("AXIOM_REPORT "):]))
+        self.inventory = self.compiled_inventory()
         self.index_sources()
         self.manuscript = self.parse_manuscript()
         self.paper = self.read_json(ROOT / "docs-src/paper.json")
@@ -271,6 +271,23 @@ class Wiki:
         self.validate_dependencies()
         self.statement_review = self.read_json(ROOT / "docs-src/statement-review.json")
         self.validate_statement_review()
+
+    def compiled_inventory(self):
+        if self.run.get("audit_engine") == "shared":
+            self.read(FORMAL / "scripts/check_checkpoint.py")
+            self.read(FORMAL / "scripts/shared_audit.py")
+            inventory = shared_inventory(self.audit_dir, self.run)
+            for name in ("audit-inputs.json", "Audit.lean", "audit-native.jsonl", "audit-run.json", "audit-inventory.json"):
+                self.read(self.audit_dir / name)
+            return [{"module": module["module"], **constant}
+                    for module in inventory["modules"] for constant in module["constants"]]
+        if self.run.get("audit_engine") not in (None, "historical"):
+            raise ValueError("Unknown recorded audit engine")
+        rows = []
+        for line in self.read(self.audit_dir / "AXIOMS.txt").splitlines():
+            if line.startswith("AXIOM_REPORT "):
+                rows.append(json.loads(line[len("AXIOM_REPORT "):]))
+        return rows
 
     def validate_statement_review(self):
         review = self.statement_review
@@ -1057,6 +1074,8 @@ class Wiki:
                     f'<a class="button secondary" href="{GITHUB}{esc(info["file"])}">View on GitHub ↗</a>'
                     '<a href="index.html">All modules</a></div>'
                     '<p class="small muted">Full source copied without mathematical changes from the snapshot whose input hash matches the passing audit. Select a line number for a stable source pointer.</p>')
+            if self.run.get("audit_engine") == "shared":
+                body += '<p class="small muted">The declarations belong to the compiled inventory covered by the project’s shared axiom audit. That audit records an aggregate union, without attributing axioms to individual declarations.</p>'
             if module in stage_modules:
                 body += '<p class="small">In the dependency map: ' + " · ".join(
                     f'<a href="../dependencies.html#stage-{c["id"]}">{esc(self.dependency_nodes[c["id"]]["label"])}</a>'
@@ -1160,6 +1179,7 @@ class Wiki:
             ("Allowed logical axioms", ", ".join(a["allowed_axioms"])),
             ("Placeholder scan", a["source_placeholder_scan"]),
             ("Axiom audit", a["axiom_audit"]),
+            ("Axiom report scope", a.get("axiom_report_scope", "exact per-root reports")),
             ("Run manifest SHA-256", self.latest["run_sha256"]),
         ]
         body = ('<div class="eyebrow">Evidence and reproducibility</div><h1>Verification</h1>'
@@ -1167,7 +1187,7 @@ class Wiki:
                 '<div class="table-wrap"><table><tbody>' + "".join(f'<tr><th>{esc(k)}</th><td><code>{esc(v)}</code></td></tr>' for k, v in rows) + "</tbody></table></div>"
                 '<h2>Three distinct checks</h2><ol>'
                 '<li><strong>Lean build:</strong> the formal statements and proof terms elaborate under the pinned toolchain.</li>'
-                '<li><strong>Axiom audit:</strong> every compiled declaration exported by the imported implementation modules is checked against the three standard logical axioms listed above.</li>'
+                '<li><strong>Axiom audit:</strong> every compiled declaration exported by the imported implementation modules is checked against the three standard logical axioms listed above. A shared audit reports their aggregate axiom union without per-declaration attribution.</li>'
                 '<li><strong>Wiki integrity:</strong> manuscript labels, editorial pointers, source line anchors, local links, and deterministic generated files are checked by the site builder.</li></ol>'
                 '<p>The site builder does not rerun the Lean build or the axiom audit. It verifies that its source files match the selected audit’s recorded hashes, and that referenced declarations occur in both source and compiled inventory.</p>'
                 '<section class="callout"><h2>Independent checker status</h2>'
@@ -1201,6 +1221,8 @@ class Wiki:
             "toolchain": self.lean_version, "modules": a["modules"],
             "theorems": a["theorems"], "audited_constants": a["audited_constants"],
             "allowed_axioms": a["allowed_axioms"], "axiom_audit": a["axiom_audit"],
+            "axiom_report_scope": a.get("axiom_report_scope", "exact per-root reports"),
+            **({"aggregate_axioms": a["aggregate_axioms"]} if r.get("audit_engine") == "shared" else {}),
             "source_placeholder_scan": a["source_placeholder_scan"],
             "independent_checkers": checker_statuses,
             "note": "Copied evidence summary, not a new execution of Lean or the axiom audit."
@@ -1321,7 +1343,9 @@ Exact source is authoritative. Statement excerpts may inherit section variables,
 instances, and namespaces; full linked source pages preserve all this context.
 The source declaration index excludes ambiguous names and generated constants;
 all referenced endpoints must still resolve uniquely against the compiled
-AXIOM_REPORT inventory. The recorded full audit covers generated constants too.
+declaration inventory. The recorded full audit covers generated constants too.
+Shared audits report only an aggregate axiom union; the source index does not
+assign that union to individual declarations.
 
 The audit snapshot is {self.latest["directory"]}, completed
 {self.run["completed_utc"]}. manifest.json records input hashes and all

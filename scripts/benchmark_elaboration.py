@@ -109,7 +109,8 @@ def main():
             text = tree.extractfile(source).read().decode("utf-8")
             _, flags = counter.code_line_flags(text)
             size.append({"module": module, "source": source, "lines": len(text.splitlines()),
-                         "code_lines": sum(flags), "module_header": counter.has_module_header(text)})
+                         "code_lines": sum(flags), "module_header": counter.has_module_header(text),
+                         "source_sha256": hashlib.sha256(text.encode()).hexdigest()})
             graph[module] = [m for m in re.findall(r"^import\s+(\S+)", text, re.M) if m in modules]
     reachable = set()
     def visit(m):
@@ -122,6 +123,12 @@ def main():
         ap.error("All does not cover owned source scope")
     write_json(output / "size.json", size)
     write_json(output / "imports.json", graph)
+    inputs = {row["source"]: row["source_sha256"] for row in size}
+    for config in ("lean-toolchain", "lakefile.toml", "lake-manifest.json"):
+        name = "formalization/" + config
+        data = subprocess.check_output(["git", "show", f"{commit}:{name}"], cwd=REPO)
+        inputs[name] = hashlib.sha256(data).hexdigest()
+    write_json(output / "source-config-hashes.json", inputs)
     size_prefixes = ["formalization/Cloning/"] + [s for s in sources if s.count("/") == 1]
     (output / "skill-size.txt").write_text(run("python3", str(args.size_helper.resolve()), commit,
                                              *size_prefixes) + "\n")
@@ -170,6 +177,8 @@ def main():
     monitor.join()
     end = datetime.now(timezone.utc).isoformat()
     after = dependency_snapshot()
+    stable_sources = all(hashlib.sha256((REPO / name).read_bytes()).hexdigest() == digest
+                         for name, digest in inputs.items())
     write_json(output / "dependencies-after.json", after)
     write_json(output / "process-samples.json", samples)
     log = (output / "build.log").read_text()
@@ -199,6 +208,7 @@ def main():
                "time_tool": run(args.time, "--version"), "exit_code": status,
                "wall_seconds_observed": wall, "resources": resources,
                "dependency_artifacts_unchanged": before == after,
+               "source_config_hashes_unchanged": stable_sources,
                "upstream_compilations": forbidden, "module_count": len(modules),
                "total_lines": sum(x["lines"] for x in size),
                "code_lines": sum(x["code_lines"] for x in size),
@@ -213,7 +223,7 @@ def main():
     write_json(output / "summary.json", summary)
     print(json.dumps({k: summary[k] for k in ("commit", "exit_code", "wall_seconds_observed",
           "module_count", "logged_job_seconds", "heavy_tiers", "dependency_artifacts_unchanged")}))
-    return 0 if status == 0 and before == after and not forbidden else 1
+    return 0 if status == 0 and before == after and stable_sources and not forbidden else 1
 
 
 if __name__ == "__main__":

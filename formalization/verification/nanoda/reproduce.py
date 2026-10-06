@@ -12,9 +12,13 @@ from pathlib import Path
 import re
 import shutil
 import subprocess
+import sys
 
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parent.parent
+sys.path.insert(0, str(PROJECT / "scripts"))
+from check_checkpoint import shared_inventory
+
 LOCK_PATH = HERE.parent / "tools-lock.json"
 STANDARD_AXIOMS = {"propext", "Quot.sound", "Classical.choice"}
 # Lean comparator v4.29.0-rc6's primitive and Nanoda builtin targets.
@@ -72,27 +76,39 @@ def bound_inventory(lock: dict) -> tuple[list[str], dict]:
         str(path.relative_to(PROJECT)) for path in (PROJECT / "Cloning").rglob("*.lean")
     } | {"lean-toolchain", "lakefile.toml", "lake-manifest.json"}
     require(proof_files == set(run["input_sha256"]), "project input set changed since bound audit")
-    evidence = run_path.parent / "AXIOMS.txt"
-    require(sha256(evidence) == run["evidence_sha256"]["AXIOMS.txt"],
-            "bound AXIOMS.txt hash changed")
-    inventories, reports = {}, set()
-    with evidence.open(encoding="utf-8") as stream:
-        for line in stream:
-            if line.startswith("SHARD_INVENTORY "):
-                item = json.loads(line.removeprefix("SHARD_INVENTORY "))
-                module, names = item["module"], item["constant_names"]
-                require(module == "Cloning" or module.startswith("Cloning."),
-                        f"unexpected inventory module: {module}")
-                require(module not in inventories or inventories[module] == names,
-                        f"conflicting module inventory: {module}")
-                inventories[module] = names
-            elif line.startswith("AXIOM_REPORT "):
-                item = json.loads(line.removeprefix("AXIOM_REPORT "))
-                require(set(item["axioms"]) <= STANDARD_AXIOMS,
-                        f"unpermitted axiom in archived report: {item['name']}")
-                reports.add(item["name"])
-    roots = sorted({name for names in inventories.values() for name in names})
-    require(set(roots) == reports, "audit roots differ from axiom report coverage")
+    details = {}
+    if run.get("audit_engine") == "shared":
+        inventory = shared_inventory(run_path.parent, run)
+        evidence = run_path.parent / "audit-inventory.json"
+        inventories = {item["module"]: [constant["name"] for constant in item["constants"]]
+                       for item in inventory["modules"]}
+        roots = [item["name"] for item in inventory["declarations"]]
+        details = {"inventory_format": inventory["audit_schema"],
+                   "axiom_report_scope": "aggregate union; no per-root axiom attribution",
+                   "aggregate_axioms": inventory["aggregate_axioms"]}
+    else:
+        require(run.get("audit_engine") in (None, "historical"), "unknown bound audit engine")
+        evidence = run_path.parent / "AXIOMS.txt"
+        require(sha256(evidence) == run["evidence_sha256"]["AXIOMS.txt"],
+                "bound AXIOMS.txt hash changed")
+        inventories, reports = {}, set()
+        with evidence.open(encoding="utf-8") as stream:
+            for line in stream:
+                if line.startswith("SHARD_INVENTORY "):
+                    item = json.loads(line.removeprefix("SHARD_INVENTORY "))
+                    module, names = item["module"], item["constant_names"]
+                    require(module == "Cloning" or module.startswith("Cloning."),
+                            f"unexpected inventory module: {module}")
+                    require(module not in inventories or inventories[module] == names,
+                            f"conflicting module inventory: {module}")
+                    inventories[module] = names
+                elif line.startswith("AXIOM_REPORT "):
+                    item = json.loads(line.removeprefix("AXIOM_REPORT "))
+                    require(set(item["axioms"]) <= STANDARD_AXIOMS,
+                            f"unpermitted axiom in archived report: {item['name']}")
+                    reports.add(item["name"])
+        roots = sorted({name for names in inventories.values() for name in names})
+        require(set(roots) == reports, "audit roots differ from axiom report coverage")
     require(len(roots) == lock["audit"]["constants"] == run["audited_constants"],
             "audit declaration count mismatch")
     # The audit's module count excludes the umbrella Cloning module.
@@ -103,7 +119,7 @@ def bound_inventory(lock: dict) -> tuple[list[str], dict]:
     return roots, {"run_sha256": sha256(run_path), "inventory_sha256": sha256(evidence),
                    "modules": len(set(inventories) - {"Cloning"}),
                    "project_declarations": len(roots), "source_binding": "matched",
-                   "input_sha256": run["input_sha256"]}
+                   "input_sha256": run["input_sha256"], **details}
 
 
 def validate_config(config: dict, lock: dict) -> None:
@@ -251,7 +267,8 @@ def main() -> int:
         roots = sorted(set(project_roots) | set(BUILTINS) | STANDARD_AXIOMS)
         (output / "roots.txt").write_text("\n".join(roots) + "\n", encoding="utf-8")
         write_json(output / "binding.json", binding)
-        files = [LOCK_PATH, Path(__file__), HERE / "ExportCloning.lean", HERE / "nanoda-config.json"]
+        files = [LOCK_PATH, Path(__file__), HERE / "ExportCloning.lean", HERE / "nanoda-config.json",
+                 PROJECT / "scripts/check_checkpoint.py", PROJECT / "scripts/shared_audit.py"]
         harness_hashes = {str(p): sha256(p) for p in files}
         state.update({"tools_lock_sha256": sha256(LOCK_PATH), "harness_sha256": harness_hashes,
                       "tools": lock["tools"], "project_declarations": len(project_roots),

@@ -3,9 +3,59 @@ import unittest
 from copy import deepcopy
 import json
 import re
+from unittest.mock import patch
 
 from build import ARXIV, ROOT, Wiki, checker_verdict, lean_mask, offline_proof_map, sha, statement_end, validate_links
 from paper import paper_structure
+
+
+class CompiledInventoryTests(unittest.TestCase):
+    def wiki(self, engine):
+        wiki = Wiki.__new__(Wiki)
+        wiki.run = {"audit_engine": engine}
+        wiki.audit_dir = ROOT / "formalization/verification/example"
+        wiki.read = lambda path: ""
+        return wiki
+
+    def test_shared_inventory_keeps_private_metadata_without_assigning_axioms(self):
+        wiki = self.wiki("shared")
+        constants = [{"name": "Cloning.visible", "kind": "theorem", "private": False},
+                     {"name": "_private.Cloning.Example.0.hidden", "kind": "definition", "private": True}]
+        inventory = {"modules": [{"module": "Cloning.Example", "constants": constants}],
+                     "aggregate_axioms": ["propext"]}
+        with patch("build.shared_inventory", return_value=inventory) as validate:
+            rows = wiki.compiled_inventory()
+        validate.assert_called_once_with(wiki.audit_dir, wiki.run)
+        self.assertEqual(rows, [{"module": "Cloning.Example", **row} for row in constants])
+        self.assertTrue(all("axioms" not in row for row in rows))
+
+    def test_shared_validation_failure_is_not_rendered_as_a_compiled_inventory(self):
+        with patch("build.shared_inventory", side_effect=ValueError("incomplete native traversal")):
+            with self.assertRaisesRegex(ValueError, "incomplete native"):
+                self.wiki("shared").compiled_inventory()
+
+    def test_historical_inventory_keeps_its_exact_per_root_report(self):
+        wiki = self.wiki("historical")
+        row = {"module": "Cloning.Example", "name": "Cloning.visible", "kind": "theorem",
+               "private": False, "axioms": ["propext"]}
+        wiki.read = lambda path: "AXIOM_REPORT " + json.dumps(row) + "\n"
+        self.assertEqual(wiki.compiled_inventory(), [row])
+
+    def test_unknown_engine_cannot_produce_an_inventory(self):
+        with self.assertRaisesRegex(ValueError, "Unknown recorded audit engine"):
+            self.wiki("unknown").compiled_inventory()
+
+    def test_shared_source_pages_explain_aggregate_scope(self):
+        wiki = self.wiki("shared")
+        wiki.results, wiki.chapters = {}, []
+        wiki.dependencies = {"edges": []}
+        wiki.files, wiki.search = {}, []
+        wiki.modules = {"Cloning.Example": {"name": "Cloning.Example",
+                        "file": "formalization/Cloning/Example.lean", "text": "-- fixture\n",
+                        "declarations": [], "url": "source/Cloning.Example.html"}}
+        wiki.render_sources()
+        page = wiki.files["source/Cloning.Example.html"].decode()
+        self.assertIn("aggregate union, without attributing axioms to individual declarations", page)
 
 
 class SourceExcerptTests(unittest.TestCase):

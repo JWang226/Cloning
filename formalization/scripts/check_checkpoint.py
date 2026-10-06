@@ -15,6 +15,9 @@ import subprocess
 import sys
 import tempfile
 
+from shared_audit import (SCHEMA, generate_driver, make_summary, parse_native_output,
+                          source_info)
+
 
 class CheckpointError(RuntimeError):
     pass
@@ -66,6 +69,52 @@ def historical_engine(project):
     engine = checkpoint / "audit.py"
     check_hash(engine, freeze["audit_script_sha256"])
     return engine
+
+
+def shared_inventory(checkpoint, run):
+    """Validate a saved shared audit; return inventory without per-root axioms."""
+    require(run.get("audit_engine") == "shared", "Expected a shared audit engine")
+    require(run.get("status") == "passed" and run.get("lean_invoked") is True
+            and run.get("build_returncode") == 0 and run.get("returncode") == 0,
+            "Shared audit did not complete a successful build and native traversal")
+    require(all(run.get(key) is True for key in
+                ("build_input_hashes_unchanged", "input_hashes_unchanged", "artifact_hashes_unchanged")),
+            "Shared audit input or artifact stability failed")
+    engine_hash = run.get("engine_sha256")
+    check_hash(checkpoint / "audit.py", engine_hash)
+    for name in ("audit-inputs.json", "Audit.lean", "audit-native.jsonl", "audit-run.json",
+                 "audit-inventory.json", "AXIOMS.txt", "verification.json"):
+        check_hash(checkpoint / name, run.get("evidence_sha256", {}).get(name))
+    manifest = read_json(checkpoint / "audit-inputs.json")
+    info = source_info(checkpoint)
+    recorded_sources = {name: digest for name, digest in run.get("input_sha256", {}).items()
+                        if name == "Cloning.lean" or (name.startswith("Cloning/") and name.endswith(".lean"))}
+    require(recorded_sources == info["source_sha256"],
+            "Shared snapshot differs from the run's exact proof-source hashes")
+    require(manifest == {"audit_schema": SCHEMA, "engine_sha256": engine_hash, **info,
+                         "audit_driver_sha256": sha256(checkpoint / "Audit.lean")},
+            "Shared source inventory or generated driver binding differs")
+    require((checkpoint / "Audit.lean").read_text(encoding="utf-8")
+            == generate_driver(info["source_manifest_sha256"]),
+            "Shared driver differs from its declared strategy")
+    receipt = read_json(checkpoint / "audit-run.json")
+    require(receipt.get("audit_schema") == SCHEMA and receipt.get("status") == "completed"
+            and receipt.get("lean_invoked") is True and type(receipt.get("lean_exit_code")) is int
+            and receipt["lean_exit_code"] == 0,
+            "No successful completed shared native execution receipt")
+    for name in ("audit-inputs.json", "Audit.lean", "audit-native.jsonl", "AXIOMS.txt"):
+        check_hash(checkpoint / name, receipt.get("evidence_sha256", {}).get(name))
+    inventory = parse_native_output((checkpoint / "audit-native.jsonl").read_text(encoding="utf-8"),
+                                    info["expected_modules"], info["source_manifest_sha256"])
+    require(inventory == read_json(checkpoint / "audit-inventory.json"),
+            "Saved shared inventory differs from native events")
+    summary = read_json(checkpoint / "verification.json")
+    require(summary == make_summary(manifest, receipt, inventory, checkpoint),
+            "Saved shared summary differs from its completed native evidence")
+    require(summary["axiom_audit"] == "passed", "Shared aggregate axiom policy failed")
+    for key in ("modules", "theorems", "audited_constants"):
+        require(run.get(key) == summary[key], "Shared run count differs: " + key)
+    return inventory
 
 
 def validate_seventh(project):
@@ -224,14 +273,22 @@ def validate_latest(project, pointer):
     for run_key, summary_key in (("modules", "modules"), ("theorems", "theorems"),
                                  ("audited_constants", "audited_constants")):
         require(run[run_key] == summary[summary_key], f"Latest audit count differs: {run_key}")
-    engine = historical_engine(project)
-    require(sha256(engine) == run["historical_engine_sha256"] == sha256(checkpoint / "audit.py"),
-            "The audited engine differs from the pinned historical engine")
+    shared = run.get("audit_engine") == "shared"
+    if shared:
+        shared_inventory(checkpoint, run)
+    else:
+        require(run.get("audit_engine") in (None, "historical"), "Unknown latest audit engine")
+        engine = historical_engine(project)
+        require(sha256(engine) == run["historical_engine_sha256"] == sha256(checkpoint / "audit.py"),
+                "The audited engine differs from the pinned historical engine")
     with tempfile.TemporaryDirectory(prefix="cloning-latest-check-") as temporary:
         scratch = Path(temporary)
         copy_sources(checkpoint, scratch)
         for name in ("audit.py", "Audit.lean", "AXIOMS.txt", "verification.json"):
             shutil.copyfile(checkpoint / name, scratch / name)
+        if shared:
+            for name in ("audit-inputs.json", "audit-native.jsonl", "audit-run.json", "audit-inventory.json"):
+                shutil.copyfile(checkpoint / name, scratch / name)
         if (checkpoint / "audit-shards").is_dir():
             shutil.copytree(checkpoint / "audit-shards", scratch / "audit-shards")
         replay = subprocess.run([sys.executable, str(scratch / "audit.py"), "--resummarize"],
@@ -244,6 +301,8 @@ def validate_latest(project, pointer):
             "modules": summary["modules"], "source_theorems_and_lemmas": summary["theorems"],
             "audited_constants": summary["audited_constants"],
             "manifest_files_checked": len(evidence), "lean_invoked": False,
+            "audit_engine": "shared" if shared else "historical",
+            "axiom_report_scope": summary.get("axiom_report_scope", "exact per-root reports"),
             "scope": "saved full-project certificate integrity and exact current source/config match"}
 
 

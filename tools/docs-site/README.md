@@ -18,8 +18,8 @@ The generator reads:
 - Every audited implementation module and the original static assets here.
 
 It checks that the Lean inputs still match the audit's recorded hashes, resolves
-all guide/map pointers against actual source declarations and compiled
-AXIOM_REPORT entries, requires exact agreement between the manuscript's 27
+all guide/map pointers against actual source declarations and the validated
+compiled declaration inventory, requires exact agreement between the manuscript's 27
 labels and the named-result map, and validates every generated local link and
 HTML anchor, including links in the downloadable Markdown map. The --check mode
 additionally compares deterministic output
@@ -35,6 +35,9 @@ pages, a local JavaScript search index, chapter guides, named results, scope
 notes, and a verification summary. Statement excerpts are exact source slices
 without proof bodies; linked modules preserve inherited section variables,
 instances, and namespace context.
+Shared audits validate native module/declaration inventory and the complete
+aggregate axiom union. They do not provide per-declaration axiom attribution;
+historical audits retain their exact per-root reports.
 
 The downloadable proof map keeps the source map's prose and rewrites its links
 to the [paper](https://arxiv.org/abs/2609.35986), exact source pages, and verification evidence.
