@@ -507,7 +507,7 @@ def render(current, profiles=None, prior=None, notes=None):
             oversized.append(row["module"])
     health = table(["Check", "Recorded result"], [
         ["Build exit code", s["exit_code"]], ["Errors", s["errors"]],
-        ["Sorry messages / authorized", f"{s['sorry_messages']} / 0"], ["Warnings", s["warnings"]],
+        ["Sorry messages / authorized", f"{s['sorry_messages']} / 0"], ["Total logged warnings", s["warnings"]],
         ["Upstream compilation records", len(s["upstream_compilations"])],
         ["Dependency path/size/mtime digest unchanged", s["dependency_artifacts_unchanged"]],
         ["Source/config manifest bound to measured commit", current.provenance.get("manifest_verified", False)],
@@ -517,11 +517,13 @@ def render(current, profiles=None, prior=None, notes=None):
         ["Files containing heartbeat overrides", len(overrides)],
         ["Heartbeat override commands", sum(len(x[1]) for x in overrides)]])
     if warnings:
-        health += "\n\n" + table(["Warning message kind", "Count"], warnings.most_common(10))
+        health += "\n\n" + table(["Warning message kind (all logged)", "Count"], warnings.most_common(10))
     health += ("\n\nOnly exact project-owned artifacts were invalidated. No `lake clean`, `lake update`, "
                "or upstream compilation is part of this procedure. Existing heartbeat overrides are "
                "a disclosed census, not a performance improvement. The dependency guard compares "
-               "path, size, and mtime metadata rather than every artifact's content hash.")
+               "path, size, and mtime metadata rather than every artifact's content hash. Warning counts "
+               "cover the entire log and can include cached upstream warnings replayed by Lake; "
+               "they are not an own-source-only warning census.")
     sections.append(("4. Build health", health))
     tiers = table(["Rounded logged duration tier", "Measured files", "Prior", "Δ"], [
         [f"≥{tier} s", sum(t >= tier for t in current.timings.values()),
