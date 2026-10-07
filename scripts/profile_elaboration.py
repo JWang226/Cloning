@@ -181,7 +181,7 @@ def main():
             effective = effective_environment(lake, env)
             context_before, mapped_rows = import_context(lake, source, setup, effective, env)
             command = [args.time, "-v", "-o", str(resources), lake, "env", "lean",
-                       "-DautoImplicit=false", "--profile",
+                       "-DautoImplicit=false", "--profile", "--stats",
                        "-Dtrace.profiler=true", "-Dtrace.profiler.output.pp=true",
                        "-Dtrace.profiler.output=" + str(events),
                        "--setup", str(output / setup_snapshot), source]

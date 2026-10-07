@@ -382,6 +382,15 @@ def profile_section(profiles):
             details.append("Selected effective profile environment: `" + markdown(record["environment"]) + "`.")
         if record.get("config_sha256"):
             details.append(table(["Configuration input", "SHA-256"], sorted(record["config_sha256"].items())))
+        stats = result.get("environment_stats", {})
+        if stats:
+            labels = {"imported_regions": "Imported compacted regions (Lean labels these modules)",
+                      "memory_mapped_regions": "Memory-mapped compacted regions",
+                      "imported_region_bytes": "Imported compacted-region bytes (not RSS)",
+                      "imported_constants": "Imported constants", "imported_constant_buckets": "Imported constant-map buckets",
+                      "trust_level": "Import trust level", "extensions": "Environment extensions"}
+            details.append(table(["Lean environment statistic", "Value"],
+                                 [[labels[key], value] for key, value in stats.items() if key in labels]))
         details.append(table(["Exclusive elapsed phase", "Seconds"],
                              [[k, number(v / 1000, 3)] for k, v in sorted(phases.items(), key=lambda x: -x[1])]))
         events = parsed["events_over_threshold"][:10]

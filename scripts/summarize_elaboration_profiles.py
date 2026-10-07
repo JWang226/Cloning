@@ -74,6 +74,28 @@ def parse_text_profile(text, threshold_ms=100):
                 event for event in events if event["category"] == "elaboration" and not event["declaration"]]}
 
 
+def parse_environment_stats(text):
+    """Parse pinned Environment.displayStats numeric labels, preserving units.
+
+    Lean's 'number of imported modules' counts compacted regions, not distinct
+    module names. Imported bytes sum these regions, not resident memory.
+    """
+    labels = {"number of imported modules": "imported_regions",
+              "number of memory-mapped modules": "memory_mapped_regions",
+              "number of imported bytes": "imported_region_bytes",
+              "number of imported consts": "imported_constants",
+              "number of buckets for imported consts": "imported_constant_buckets",
+              "trust level": "trust_level", "number of extensions": "extensions"}
+    result = {}
+    for label, key in labels.items():
+        values = re.findall(r"(?m)^" + re.escape(label) + r":\s*(\d+)\s*$", text)
+        if len(values) > 1:
+            raise ValueError("Duplicate Lean environment statistics label: " + label)
+        if values:
+            result[key] = int(values[0])
+    return result
+
+
 def masked_source(text):
     """Keep character positions while masking nested comments and strings."""
     result = list(text)
@@ -292,15 +314,19 @@ def summarize(directory, limit=50, threshold_ms=100):
                 if expected_key and record.get(expected_key) != digest:
                     raise ValueError("Profile input differs from its recorded SHA-256: " + key)
         declarations, source_warning = bound_source(record, directory)
-        text = parse_text_profile(log_path.read_text(), threshold_ms)
+        log_text = log_path.read_text()
+        text = parse_text_profile(log_text, threshold_ms)
         for event in text["events_over_threshold"]:
             event["declaration_pointers"] = source_pointers(event["text"], declarations, event["declaration"])
         trace = parse_firefox_profile(json.loads(events_path.read_text()), declarations, limit)
+        stats = parse_environment_stats(log_text)
         warnings = [source_warning] if source_warning else []
         if record.get("exit_code") != 0:
             warnings.append("This profile did not complete successfully; timings are partial evidence.")
         if record.get("measurement_valid") is False:
             warnings.append("Profile measurement is invalid or incomplete; inspect its input stability guards.")
+        if "--stats" in record.get("command", []) and not stats:
+            warnings.append("The command requested --stats but no environment statistics were found.")
         if not text["cumulative_blocks"]:
             warnings.append("No cumulative --profile totals found.")
         if not trace["exported_position_count"]:
@@ -310,7 +336,8 @@ def summarize(directory, limit=50, threshold_ms=100):
         if all(row["name"] in ("Import", "runFrontend") for row in trace["top_self_functions"]):
             warnings.append("No detailed timed trace nodes; enable trace.profiler=true for attribution.")
         results.append({"profile": record, "input_sha256": input_hashes,
-            "text_profile": text, "firefox_profile": trace, "warnings": warnings})
+            "text_profile": text, "environment_stats": stats,
+            "firefox_profile": trace, "warnings": warnings})
     return {"schema": "cloning-elaboration-profile-summary-v1",
             "generated_utc": datetime.now(timezone.utc).isoformat(),
             "threshold_ms": threshold_ms, "ranking_limit": limit,
@@ -322,10 +349,12 @@ def summarize(directory, limit=50, threshold_ms=100):
                 "Recursive occurrences of a function count once per inclusive weighted slice.",
                 "Firefox threadCPUDelta is synthesized from elapsed intervals by Lean; it is not sampled CPU.",
                 "Thread trace intervals can overlap; their sum is not process wall time.",
+                "Lean environment 'imported modules' counts compacted regions; imported-region bytes are not RSS.",
                 "Declaration pointers locate hash-bound source declarations, not the precise expensive tactic.",
                 "Text durations use Lean's three-significant-digit display precision."],
             "format_sources": {"cpp_timers": SOURCE_URL + "library/time_task.cpp",
                                "duration_display": SOURCE_URL + "util/timeit.cpp",
+                               "environment_statistics": SOURCE_URL + "Lean/Environment.lean",
                                "firefox_exporter": SOURCE_URL + "Lean/Util/Profiler.lean"},
             "profile_count": len(results), "profiles": results}, raw_paths
 
