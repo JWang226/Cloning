@@ -1,7 +1,7 @@
 {
   "paper_version": "https://arxiv.org/abs/2609.35986v1",
   "paper_html": "https://arxiv.org/html/2609.35986v1",
-  "source_audit_sha256": "6b2c09f61388362d9ff3ae3f63285b9dd09e0cd95254150273bacba6cd9c799a",
+  "source_audit_sha256": "cd6735524ed4f60d02fded4b846eaa349d36fc3d151df5768ddc5fcfe4ada61b",
   "results": [
     {
       "label": "thm:known-optimum",
@@ -822,8 +822,8 @@
         {
           "name": "Cloning.GeneralSymmetricOccupation.physical_werner_traceNorm_limit",
           "file": "formalization/Cloning/WernerPhysicalPullback.lean",
-          "line": 242,
-          "url": "source/Cloning.WernerPhysicalPullback.html#L242"
+          "line": 243,
+          "url": "source/Cloning.WernerPhysicalPullback.html#L243"
         },
         {
           "name": "Cloning.WernerAsymptotics.coefficient_eq_wernerWeight",

@@ -1,0 +1,19 @@
+minimaxValue_tendsto : ∀ (r k : ℕ) (hr : 0 < r) (m : ℕ → ℕ) (γ : ℝ),
+  1 < γ →
+    Tendsto (fun n => ↑(m n) / ↑n) atTop (𝓝 γ) →
+      Tendsto (fun n => minimaxValue r k hr n (m n)) atTop (𝓝 (γ ^ (-(↑(r * k) / 2))))
+prescribedRankFlatChannel_uniform : ∀ (r k : ℕ) (hr : 0 < r) (m : ℕ → ℕ) (γ : ℝ),
+  1 < γ →
+    Tendsto (fun n => ↑(m n) / ↑n) atTop (𝓝 γ) →
+      ∀ (ε : ℝ),
+        0 < ε →
+          ∀ᶠ (n : ℕ) in atTop,
+            ∀ (P : Projector r k),
+              |payoff r k hr n (m n) (prescribedRankFlatChannel r k hr n (m n)) P - γ ^ (-(↑(r * k) / 2))| < ε
+prescribedRankFlatChannel_covariant : ∀ (r k : ℕ) (hr : 0 < r) (n m : ℕ) (U : Matrix (Fin (r + k)) (Fin (r + k)) ℂ),
+  Uᴴ * U = 1 →
+    ∀ (X : TraceClass ↥(Cloning.TensorLie.TensorRegister n (Fin (r + k)))),
+      (prescribedRankFlatChannel r k hr n m).toLinearMap
+          ((conjugationLinearMap (Cloning.TensorLie.tensorOperator n U)) X) =
+        (conjugationLinearMap (Cloning.TensorLie.tensorOperator m U))
+          ((prescribedRankFlatChannel r k hr n m).toLinearMap X)

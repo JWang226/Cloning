@@ -1,0 +1,23 @@
+	Command being timed: "/Users/jw/.elan/bin/lake --no-ansi --no-cache build All"
+	User time (seconds): 9052.61
+	System time (seconds): 4517.38
+	Percent of CPU this job got: 110%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 3:25:16
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 3396256
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 40080698
+	Minor (reclaiming a frame) page faults: 267223338
+	Voluntary context switches: 1905259
+	Involuntary context switches: 159839617
+	Swaps: 0
+	File system inputs: 0
+	File system outputs: 0
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 16384
+	Exit status: 0

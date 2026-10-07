@@ -28,8 +28,10 @@ removal requires a measured elaboration benefit and a successful compile.
 
 ## Tooling and generated website
 
-Removed the unused Nanoda `sys` import, the unused shared-audit `run_native`
-argument, the unused wiki-page `toc` argument, and four unused CSS rules.
+Removed the initially unused Nanoda `sys` import, the unused shared-audit
+`run_native` argument, the unused wiki-page `toc` argument, and four unused CSS
+rules. The subsequent shared-checkpoint integration needs `sys` to load the
+validator, so that import is present and used in the final harness.
 All 1,030 generated HTML pages and the dynamic JavaScript contain no matching
 nodes for those CSS rules. Regenerated HTML changes only the stylesheet cache
 hash. Pinned checker revisions and immutable verification records are preserved.

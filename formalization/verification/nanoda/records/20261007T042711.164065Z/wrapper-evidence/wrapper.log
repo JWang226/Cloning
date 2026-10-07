@@ -1,0 +1,35 @@
+Fresh verification logs: /Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/run-20261007T042658.104812Z-rfy46ocv
++ /Users/jw/.elan/bin/lake exe cache get
+Log: /Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/run-20261007T042658.104812Z-rfy46ocv/dependency-cache.log
+Current branch: HEAD
+Using cache (Azure) from origin: leanprover-community/mathlib4
+No files to download
+Already decompressed 8159 file(s)
++ /Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/formalization/verification/nanoda/.work/rust-local/cargo/bin/rustup toolchain install 1.93.1 --profile minimal
+Log: /Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/run-20261007T042658.104812Z-rfy46ocv/rust-toolchain.log
+info: syncing channel updates for 1.93.1-aarch64-apple-darwin
+
+  1.93.1-aarch64-apple-darwin unchanged - rustc 1.93.1 (01f6ddf75 2026-02-11)
+
+info: checking for self-update (current version: 1.29.1)
++ bash verification/nanoda/run.sh --run --threads 1 --work /Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/run-20261007T042658.104812Z-rfy46ocv/nanoda
+Log: /Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/run-20261007T042658.104812Z-rfy46ocv/nanoda.log
+2026-10-07T04:27:12.474800+00:00 running rustup run 1.93.1 rustc; log: /Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/run-20261007T042658.104812Z-rfy46ocv/nanoda/run-20261007T042711.164065Z/rust-version.log
+2026-10-07T04:27:12.563605+00:00 running lake env lean --version; log: /Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/run-20261007T042658.104812Z-rfy46ocv/nanoda/run-20261007T042711.164065Z/lean-version.log
+2026-10-07T04:27:14.890174+00:00 running git clone --no-checkout https://github.com/leanprover/lean4export.git; log: /Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/run-20261007T042658.104812Z-rfy46ocv/nanoda/run-20261007T042711.164065Z/lean4export-clone.log
+2026-10-07T04:27:15.760645+00:00 running git checkout --detach 71f41350675895dda791b8ff9c1dfb77d18b3585; log: /Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/run-20261007T042658.104812Z-rfy46ocv/nanoda/run-20261007T042711.164065Z/lean4export-checkout.log
+2026-10-07T04:27:15.929551+00:00 running git clone --no-checkout https://github.com/ammkrn/nanoda_lib.git; log: /Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/run-20261007T042658.104812Z-rfy46ocv/nanoda/run-20261007T042711.164065Z/nanoda-clone.log
+2026-10-07T04:27:16.931891+00:00 running git checkout --detach 418320295890faed83a96fd97907b12a3b6728c2; log: /Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/run-20261007T042658.104812Z-rfy46ocv/nanoda/run-20261007T042711.164065Z/nanoda-checkout.log
+2026-10-07T04:27:17.100125+00:00 running lake build; log: /Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/run-20261007T042658.104812Z-rfy46ocv/nanoda/run-20261007T042711.164065Z/exporter-build.log
+2026-10-07T04:27:26.062214+00:00 running rustup run 1.93.1 cargo; log: /Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/run-20261007T042658.104812Z-rfy46ocv/nanoda/run-20261007T042711.164065Z/nanoda-build.log
+2026-10-07T04:27:41.995948+00:00 running lake build All; log: /Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/run-20261007T042658.104812Z-rfy46ocv/nanoda/run-20261007T042711.164065Z/project-build.log
+2026-10-07T04:27:48.086970+00:00 running lake env lean --run; log: /Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/run-20261007T042658.104812Z-rfy46ocv/nanoda/run-20261007T042711.164065Z/cloning.ndjson
+2026-10-07T04:29:37.404444+00:00 running /Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/run-20261007T042658.104812Z-rfy46ocv/nanoda/src/nanoda/target/release/nanoda_bin /Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/run-20261007T042658.104812Z-rfy46ocv/nanoda/run-20261007T042711.164065Z/nanoda-config.json; log: /Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/run-20261007T042658.104812Z-rfy46ocv/nanoda/run-20261007T042711.164065Z/nanoda.stdout
+{
+  "status": "passed",
+  "independent_kernel_check": "passed",
+  "report": "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/run-20261007T042658.104812Z-rfy46ocv/nanoda/run-20261007T042711.164065Z/run.json",
+  "error": null,
+  "missing_prerequisites": []
+}
+VERIFICATION PASSED: nanoda

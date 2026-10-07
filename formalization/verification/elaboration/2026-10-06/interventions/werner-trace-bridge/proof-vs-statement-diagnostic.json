@@ -1,0 +1,94 @@
+{
+  "before_tactic_execution_ms": 39400.0,
+  "diagnostic_tactic_execution_ms": 2510.0,
+  "diagnostic_text_profile": {
+    "cumulative_blocks": 1,
+    "events_over_threshold": [
+      {
+        "category": "import",
+        "declaration": null,
+        "exclusive_ms": 6890.0,
+        "log_line": 1,
+        "text": "import took 6.89s"
+      },
+      {
+        "category": "tactic execution",
+        "declaration": "Lean.Parser.Tactic.change",
+        "exclusive_ms": 2110.0,
+        "log_line": 2,
+        "text": "tactic execution of Lean.Parser.Tactic.change took 2.11s"
+      },
+      {
+        "category": "elaboration",
+        "declaration": null,
+        "exclusive_ms": 558.0,
+        "log_line": 7,
+        "text": "elaboration took 558ms"
+      },
+      {
+        "category": "typeclass inference",
+        "declaration": "CoeFun",
+        "exclusive_ms": 149.0,
+        "log_line": 3,
+        "text": "typeclass inference of CoeFun took 149ms"
+      },
+      {
+        "category": "typeclass inference",
+        "declaration": "CoeFun",
+        "exclusive_ms": 112.0,
+        "log_line": 5,
+        "text": "typeclass inference of CoeFun took 112ms"
+      },
+      {
+        "category": "simp",
+        "declaration": null,
+        "exclusive_ms": 102.0,
+        "log_line": 4,
+        "text": "simp took 102ms"
+      }
+    ],
+    "exclusive_phase_ms": {
+      "attribute application": 0.819,
+      "compilation (IR)": 2.24,
+      "compilation (LCNF base)": 14.2,
+      "compilation (LCNF impure)": 4.9,
+      "compilation (LCNF mono)": 7.02,
+      "congr simp thm": 4.47,
+      "elaboration": 728.0,
+      "fix level params": 1.06,
+      "import": 6890.0,
+      "initialization": 18.4,
+      "instantiate metavars": 1.66,
+      "interpretation": 895.0,
+      "let-to-have transformation": 1.47,
+      "linting": 23.6,
+      "norm_num": 9.91,
+      "parsing": 10.8,
+      "process pre-definitions": 20.4,
+      "share common exprs": 6.49,
+      "simp": 248.0,
+      "tactic execution": 2510.0,
+      "type checking": 206.0,
+      "typeclass inference": 2830.0
+    },
+    "exclusive_phase_sum_ms": 14434.439,
+    "head_class_events_over_threshold": [
+      {
+        "event_count": 2,
+        "head_class": "CoeFun",
+        "logged_exclusive_ms": 261.0
+      }
+    ],
+    "unattributed_elaboration_events": [
+      {
+        "category": "elaboration",
+        "declaration": null,
+        "exclusive_ms": 558.0,
+        "log_line": 7,
+        "text": "elaboration took 558ms"
+      }
+    ]
+  },
+  "note": "pp differs from repository baseline; compare exclusive tactic phase, not whole-process time.",
+  "proof_cost_confirmed": true
+}

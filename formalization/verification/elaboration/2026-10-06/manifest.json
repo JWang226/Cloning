@@ -1,0 +1,4728 @@
+{
+  "archives": [
+    {
+      "bytes": 7233935,
+      "extraction_validated": true,
+      "members": [
+        "profiles-before/Cloning.AmplifierWeylThermal-1.build-trace.json",
+        "profiles-before/Cloning.AmplifierWeylThermal-1.import-context.json",
+        "profiles-before/Cloning.AmplifierWeylThermal-1.json",
+        "profiles-before/Cloning.AmplifierWeylThermal-1.log",
+        "profiles-before/Cloning.AmplifierWeylThermal-1.resources.txt",
+        "profiles-before/Cloning.AmplifierWeylThermal-1.setup.json",
+        "profiles-before/Cloning.AmplifierWeylThermal-1.source.lean.txt",
+        "profiles-before/Cloning.CloningValueComparisonMonotone-1.build-trace.json",
+        "profiles-before/Cloning.CloningValueComparisonMonotone-1.import-context.json",
+        "profiles-before/Cloning.CloningValueComparisonMonotone-1.json",
+        "profiles-before/Cloning.CloningValueComparisonMonotone-1.log",
+        "profiles-before/Cloning.CloningValueComparisonMonotone-1.resources.txt",
+        "profiles-before/Cloning.CloningValueComparisonMonotone-1.setup.json",
+        "profiles-before/Cloning.CloningValueComparisonMonotone-1.source.lean.txt",
+        "profiles-before/Cloning.InfiniteTraceClass-1.build-trace.json",
+        "profiles-before/Cloning.InfiniteTraceClass-1.import-context.json",
+        "profiles-before/Cloning.InfiniteTraceClass-1.json",
+        "profiles-before/Cloning.InfiniteTraceClass-1.log",
+        "profiles-before/Cloning.InfiniteTraceClass-1.resources.txt",
+        "profiles-before/Cloning.InfiniteTraceClass-1.setup.json",
+        "profiles-before/Cloning.InfiniteTraceClass-1.source.lean.txt",
+        "profiles-before/Cloning.PCTClosedForm-1.build-trace.json",
+        "profiles-before/Cloning.PCTClosedForm-1.import-context.json",
+        "profiles-before/Cloning.PCTClosedForm-1.json",
+        "profiles-before/Cloning.PCTClosedForm-1.log",
+        "profiles-before/Cloning.PCTClosedForm-1.resources.txt",
+        "profiles-before/Cloning.PCTClosedForm-1.setup.json",
+        "profiles-before/Cloning.PCTClosedForm-1.source.lean.txt",
+        "profiles-before/Cloning.PCTGlobalPhysical-1.build-trace.json",
+        "profiles-before/Cloning.PCTGlobalPhysical-1.import-context.json",
+        "profiles-before/Cloning.PCTGlobalPhysical-1.json",
+        "profiles-before/Cloning.PCTGlobalPhysical-1.log",
+        "profiles-before/Cloning.PCTGlobalPhysical-1.resources.txt",
+        "profiles-before/Cloning.PCTGlobalPhysical-1.setup.json",
+        "profiles-before/Cloning.PCTGlobalPhysical-1.source.lean.txt",
+        "profiles-before/Cloning.PCTHybridMixtureFactor-1.build-trace.json",
+        "profiles-before/Cloning.PCTHybridMixtureFactor-1.import-context.json",
+        "profiles-before/Cloning.PCTHybridMixtureFactor-1.json",
+        "profiles-before/Cloning.PCTHybridMixtureFactor-1.log",
+        "profiles-before/Cloning.PCTHybridMixtureFactor-1.resources.txt",
+        "profiles-before/Cloning.PCTHybridMixtureFactor-1.setup.json",
+        "profiles-before/Cloning.PCTHybridMixtureFactor-1.source.lean.txt",
+        "profiles-before/Cloning.PCTUnitaryTransportChannels-1.build-trace.json",
+        "profiles-before/Cloning.PCTUnitaryTransportChannels-1.import-context.json",
+        "profiles-before/Cloning.PCTUnitaryTransportChannels-1.json",
+        "profiles-before/Cloning.PCTUnitaryTransportChannels-1.log",
+        "profiles-before/Cloning.PCTUnitaryTransportChannels-1.resources.txt",
+        "profiles-before/Cloning.PCTUnitaryTransportChannels-1.setup.json",
+        "profiles-before/Cloning.PCTUnitaryTransportChannels-1.source.lean.txt",
+        "profiles-before/Cloning.Thermal-1.build-trace.json",
+        "profiles-before/Cloning.Thermal-1.import-context.json",
+        "profiles-before/Cloning.Thermal-1.json",
+        "profiles-before/Cloning.Thermal-1.log",
+        "profiles-before/Cloning.Thermal-1.resources.txt",
+        "profiles-before/Cloning.Thermal-1.setup.json",
+        "profiles-before/Cloning.Thermal-1.source.lean.txt",
+        "profiles-before/Cloning.WernerPhysicalPullback-1.build-trace.json",
+        "profiles-before/Cloning.WernerPhysicalPullback-1.import-context.json",
+        "profiles-before/Cloning.WernerPhysicalPullback-1.json",
+        "profiles-before/Cloning.WernerPhysicalPullback-1.log",
+        "profiles-before/Cloning.WernerPhysicalPullback-1.resources.txt",
+        "profiles-before/Cloning.WernerPhysicalPullback-1.setup.json",
+        "profiles-before/Cloning.WernerPhysicalPullback-1.source.lean.txt",
+        "profiles-before/Cloning.WeylIdlerUniqueness-1.build-trace.json",
+        "profiles-before/Cloning.WeylIdlerUniqueness-1.import-context.json",
+        "profiles-before/Cloning.WeylIdlerUniqueness-1.json",
+        "profiles-before/Cloning.WeylIdlerUniqueness-1.log",
+        "profiles-before/Cloning.WeylIdlerUniqueness-1.resources.txt",
+        "profiles-before/Cloning.WeylIdlerUniqueness-1.setup.json",
+        "profiles-before/Cloning.WeylIdlerUniqueness-1.source.lean.txt",
+        "profiles-before/profiles.json",
+        "profiles-before/summary.json"
+      ],
+      "path": "profiles-before.tar.gz",
+      "sha256": "8291cf2d205041a4217b566ebfebaa619b73b6d7333d783d25c0de7a283a262d"
+    },
+    {
+      "bytes": 8881947,
+      "extraction_validated": true,
+      "members": [
+        "profiles-after/Cloning.AmplifierWeylThermal-1.build-trace.json",
+        "profiles-after/Cloning.AmplifierWeylThermal-1.import-context.json",
+        "profiles-after/Cloning.AmplifierWeylThermal-1.json",
+        "profiles-after/Cloning.AmplifierWeylThermal-1.log",
+        "profiles-after/Cloning.AmplifierWeylThermal-1.resources.txt",
+        "profiles-after/Cloning.AmplifierWeylThermal-1.setup.json",
+        "profiles-after/Cloning.AmplifierWeylThermal-1.source.lean.txt",
+        "profiles-after/Cloning.CloningValueComparisonMonotone-1.build-trace.json",
+        "profiles-after/Cloning.CloningValueComparisonMonotone-1.import-context.json",
+        "profiles-after/Cloning.CloningValueComparisonMonotone-1.json",
+        "profiles-after/Cloning.CloningValueComparisonMonotone-1.log",
+        "profiles-after/Cloning.CloningValueComparisonMonotone-1.resources.txt",
+        "profiles-after/Cloning.CloningValueComparisonMonotone-1.setup.json",
+        "profiles-after/Cloning.CloningValueComparisonMonotone-1.source.lean.txt",
+        "profiles-after/Cloning.InfiniteTraceClass-1.build-trace.json",
+        "profiles-after/Cloning.InfiniteTraceClass-1.import-context.json",
+        "profiles-after/Cloning.InfiniteTraceClass-1.json",
+        "profiles-after/Cloning.InfiniteTraceClass-1.log",
+        "profiles-after/Cloning.InfiniteTraceClass-1.resources.txt",
+        "profiles-after/Cloning.InfiniteTraceClass-1.setup.json",
+        "profiles-after/Cloning.InfiniteTraceClass-1.source.lean.txt",
+        "profiles-after/Cloning.PCTClosedForm-1.build-trace.json",
+        "profiles-after/Cloning.PCTClosedForm-1.import-context.json",
+        "profiles-after/Cloning.PCTClosedForm-1.json",
+        "profiles-after/Cloning.PCTClosedForm-1.log",
+        "profiles-after/Cloning.PCTClosedForm-1.resources.txt",
+        "profiles-after/Cloning.PCTClosedForm-1.setup.json",
+        "profiles-after/Cloning.PCTClosedForm-1.source.lean.txt",
+        "profiles-after/Cloning.PCTGlobalPhysical-1.build-trace.json",
+        "profiles-after/Cloning.PCTGlobalPhysical-1.import-context.json",
+        "profiles-after/Cloning.PCTGlobalPhysical-1.json",
+        "profiles-after/Cloning.PCTGlobalPhysical-1.log",
+        "profiles-after/Cloning.PCTGlobalPhysical-1.resources.txt",
+        "profiles-after/Cloning.PCTGlobalPhysical-1.setup.json",
+        "profiles-after/Cloning.PCTGlobalPhysical-1.source.lean.txt",
+        "profiles-after/Cloning.PCTHybridMixtureFactor-1.build-trace.json",
+        "profiles-after/Cloning.PCTHybridMixtureFactor-1.import-context.json",
+        "profiles-after/Cloning.PCTHybridMixtureFactor-1.json",
+        "profiles-after/Cloning.PCTHybridMixtureFactor-1.log",
+        "profiles-after/Cloning.PCTHybridMixtureFactor-1.resources.txt",
+        "profiles-after/Cloning.PCTHybridMixtureFactor-1.setup.json",
+        "profiles-after/Cloning.PCTHybridMixtureFactor-1.source.lean.txt",
+        "profiles-after/Cloning.PCTUnitaryTransportChannels-1.build-trace.json",
+        "profiles-after/Cloning.PCTUnitaryTransportChannels-1.import-context.json",
+        "profiles-after/Cloning.PCTUnitaryTransportChannels-1.json",
+        "profiles-after/Cloning.PCTUnitaryTransportChannels-1.log",
+        "profiles-after/Cloning.PCTUnitaryTransportChannels-1.resources.txt",
+        "profiles-after/Cloning.PCTUnitaryTransportChannels-1.setup.json",
+        "profiles-after/Cloning.PCTUnitaryTransportChannels-1.source.lean.txt",
+        "profiles-after/Cloning.PhysicalFlatConverseReduction-1.build-trace.json",
+        "profiles-after/Cloning.PhysicalFlatConverseReduction-1.import-context.json",
+        "profiles-after/Cloning.PhysicalFlatConverseReduction-1.log",
+        "profiles-after/Cloning.PhysicalFlatConverseReduction-1.resources.txt",
+        "profiles-after/Cloning.PhysicalFlatConverseReduction-1.setup.json",
+        "profiles-after/Cloning.PhysicalFlatConverseReduction-1.source.lean.txt",
+        "profiles-after/Cloning.PhysicalFlatPinchingInflation-1.source.lean.txt",
+        "profiles-after/Cloning.TensorCartanChannelCovariance-1.source.lean.txt",
+        "profiles-after/Cloning.TensorCartanStateOperator-1.source.lean.txt",
+        "profiles-after/Cloning.TensorFlatProjectorStateFidelity-1.build-trace.json",
+        "profiles-after/Cloning.TensorFlatProjectorStateFidelity-1.import-context.json",
+        "profiles-after/Cloning.TensorFlatProjectorStateFidelity-1.json",
+        "profiles-after/Cloning.TensorFlatProjectorStateFidelity-1.log",
+        "profiles-after/Cloning.TensorFlatProjectorStateFidelity-1.resources.txt",
+        "profiles-after/Cloning.TensorFlatProjectorStateFidelity-1.setup.json",
+        "profiles-after/Cloning.TensorFlatProjectorStateFidelity-1.source.lean.txt",
+        "profiles-after/Cloning.Thermal-1.build-trace.json",
+        "profiles-after/Cloning.Thermal-1.import-context.json",
+        "profiles-after/Cloning.Thermal-1.json",
+        "profiles-after/Cloning.Thermal-1.log",
+        "profiles-after/Cloning.Thermal-1.resources.txt",
+        "profiles-after/Cloning.Thermal-1.setup.json",
+        "profiles-after/Cloning.Thermal-1.source.lean.txt",
+        "profiles-after/Cloning.WernerPhysicalPullback-1.build-trace.json",
+        "profiles-after/Cloning.WernerPhysicalPullback-1.import-context.json",
+        "profiles-after/Cloning.WernerPhysicalPullback-1.json",
+        "profiles-after/Cloning.WernerPhysicalPullback-1.log",
+        "profiles-after/Cloning.WernerPhysicalPullback-1.resources.txt",
+        "profiles-after/Cloning.WernerPhysicalPullback-1.setup.json",
+        "profiles-after/Cloning.WernerPhysicalPullback-1.source.lean.txt",
+        "profiles-after/Cloning.WeylIdlerUniqueness-1.build-trace.json",
+        "profiles-after/Cloning.WeylIdlerUniqueness-1.import-context.json",
+        "profiles-after/Cloning.WeylIdlerUniqueness-1.json",
+        "profiles-after/Cloning.WeylIdlerUniqueness-1.log",
+        "profiles-after/Cloning.WeylIdlerUniqueness-1.resources.txt",
+        "profiles-after/Cloning.WeylIdlerUniqueness-1.setup.json",
+        "profiles-after/Cloning.WeylIdlerUniqueness-1.source.lean.txt",
+        "profiles-after/aggregation.json",
+        "profiles-after/attempts/attempt-0001.source.lean.txt",
+        "profiles-after/attempts/attempt-0002.source.lean.txt",
+        "profiles-after/attempts/attempt-0003.source.lean.txt",
+        "profiles-after/continuation/Cloning.PhysicalFlatPinchingInflation-1.build-trace.json",
+        "profiles-after/continuation/Cloning.PhysicalFlatPinchingInflation-1.import-context.json",
+        "profiles-after/continuation/Cloning.PhysicalFlatPinchingInflation-1.log",
+        "profiles-after/continuation/Cloning.PhysicalFlatPinchingInflation-1.resources.txt",
+        "profiles-after/continuation/Cloning.PhysicalFlatPinchingInflation-1.setup.json",
+        "profiles-after/continuation/Cloning.TensorCartanChannelCovariance-1.build-trace.json",
+        "profiles-after/continuation/Cloning.TensorCartanChannelCovariance-1.import-context.json",
+        "profiles-after/continuation/Cloning.TensorCartanChannelCovariance-1.json",
+        "profiles-after/continuation/Cloning.TensorCartanChannelCovariance-1.log",
+        "profiles-after/continuation/Cloning.TensorCartanChannelCovariance-1.resources.txt",
+        "profiles-after/continuation/Cloning.TensorCartanChannelCovariance-1.setup.json",
+        "profiles-after/continuation/Cloning.TensorCartanStateOperator-1.build-trace.json",
+        "profiles-after/continuation/Cloning.TensorCartanStateOperator-1.import-context.json",
+        "profiles-after/continuation/Cloning.TensorCartanStateOperator-1.json",
+        "profiles-after/continuation/Cloning.TensorCartanStateOperator-1.log",
+        "profiles-after/continuation/Cloning.TensorCartanStateOperator-1.resources.txt",
+        "profiles-after/continuation/Cloning.TensorCartanStateOperator-1.setup.json",
+        "profiles-after/continuation/profile-runner-provenance.json",
+        "profiles-after/continuation/profile-runner.py",
+        "profiles-after/continuation/profiles.json",
+        "profiles-after/native-exploratory/Cloning.PhysicalFlatConverseReduction-1.build-trace.json",
+        "profiles-after/native-exploratory/Cloning.PhysicalFlatConverseReduction-1.setup.json",
+        "profiles-after/native-exploratory/Cloning.PhysicalFlatConverseReduction-native-1.import-context.json",
+        "profiles-after/native-exploratory/Cloning.PhysicalFlatConverseReduction-native-1.log",
+        "profiles-after/native-exploratory/Cloning.PhysicalFlatConverseReduction-native-1.resources.txt",
+        "profiles-after/native-exploratory/driver.py",
+        "profiles-after/native-exploratory/profiles.json",
+        "profiles-after/native-guarded/Cloning.PhysicalFlatConverseReduction-1.build-trace.json",
+        "profiles-after/native-guarded/Cloning.PhysicalFlatConverseReduction-1.import-context.json",
+        "profiles-after/native-guarded/Cloning.PhysicalFlatConverseReduction-1.log",
+        "profiles-after/native-guarded/Cloning.PhysicalFlatConverseReduction-1.resources.txt",
+        "profiles-after/native-guarded/Cloning.PhysicalFlatConverseReduction-1.setup.json",
+        "profiles-after/native-guarded/Cloning.PhysicalFlatPinchingInflation-1.build-trace.json",
+        "profiles-after/native-guarded/Cloning.PhysicalFlatPinchingInflation-1.import-context.json",
+        "profiles-after/native-guarded/Cloning.PhysicalFlatPinchingInflation-1.log",
+        "profiles-after/native-guarded/Cloning.PhysicalFlatPinchingInflation-1.resources.txt",
+        "profiles-after/native-guarded/Cloning.PhysicalFlatPinchingInflation-1.setup.json",
+        "profiles-after/native-guarded/profile-runner-provenance.json",
+        "profiles-after/native-guarded/profile-runner.py",
+        "profiles-after/native-guarded/profiles.json",
+        "profiles-after/profile-attempts-receipt.json",
+        "profiles-after/profile-attempts.json",
+        "profiles-after/profiles-attempt-1.json",
+        "profiles-after/profiles.json",
+        "profiles-after/summary.json"
+      ],
+      "path": "profiles-after.tar.gz",
+      "sha256": "7446b1a7a66ce52dc6dcbcd0b29418d4c222959fdc863905640d334f60c68d97"
+    },
+    {
+      "bytes": 4458751,
+      "extraction_validated": true,
+      "members": [
+        "interventions/weyl-bridge/A-1-bare.import-context.json",
+        "interventions/weyl-bridge/A-1-bare.log",
+        "interventions/weyl-bridge/A-1-bare.resources.txt",
+        "interventions/weyl-bridge/A-1-profile.import-context.json",
+        "interventions/weyl-bridge/A-1-profile.json",
+        "interventions/weyl-bridge/A-1-profile.log",
+        "interventions/weyl-bridge/A-1-profile.resources.txt",
+        "interventions/weyl-bridge/A-2-bare.import-context.json",
+        "interventions/weyl-bridge/A-2-bare.log",
+        "interventions/weyl-bridge/A-2-bare.resources.txt",
+        "interventions/weyl-bridge/A-2-profile.import-context.json",
+        "interventions/weyl-bridge/A-2-profile.json",
+        "interventions/weyl-bridge/A-2-profile.log",
+        "interventions/weyl-bridge/A-2-profile.resources.txt",
+        "interventions/weyl-bridge/A-3-bare.import-context.json",
+        "interventions/weyl-bridge/A-3-bare.log",
+        "interventions/weyl-bridge/A-3-bare.resources.txt",
+        "interventions/weyl-bridge/A-3-profile.import-context.json",
+        "interventions/weyl-bridge/A-3-profile.json",
+        "interventions/weyl-bridge/A-3-profile.log",
+        "interventions/weyl-bridge/A-3-profile.resources.txt",
+        "interventions/weyl-bridge/A.source.lean.txt",
+        "interventions/weyl-bridge/B-1-bare.import-context.json",
+        "interventions/weyl-bridge/B-1-bare.log",
+        "interventions/weyl-bridge/B-1-bare.resources.txt",
+        "interventions/weyl-bridge/B-1-profile.import-context.json",
+        "interventions/weyl-bridge/B-1-profile.json",
+        "interventions/weyl-bridge/B-1-profile.log",
+        "interventions/weyl-bridge/B-1-profile.resources.txt",
+        "interventions/weyl-bridge/B-2-bare.import-context.json",
+        "interventions/weyl-bridge/B-2-bare.log",
+        "interventions/weyl-bridge/B-2-bare.resources.txt",
+        "interventions/weyl-bridge/B-2-profile.import-context.json",
+        "interventions/weyl-bridge/B-2-profile.json",
+        "interventions/weyl-bridge/B-2-profile.log",
+        "interventions/weyl-bridge/B-2-profile.resources.txt",
+        "interventions/weyl-bridge/B-3-bare.import-context.json",
+        "interventions/weyl-bridge/B-3-bare.log",
+        "interventions/weyl-bridge/B-3-bare.resources.txt",
+        "interventions/weyl-bridge/B-3-profile.import-context.json",
+        "interventions/weyl-bridge/B-3-profile.json",
+        "interventions/weyl-bridge/B-3-profile.log",
+        "interventions/weyl-bridge/B-3-profile.resources.txt",
+        "interventions/weyl-bridge/B.source.lean.txt",
+        "interventions/weyl-bridge/REPORT.md",
+        "interventions/weyl-bridge/bare-summary.json",
+        "interventions/weyl-bridge/bare.json",
+        "interventions/weyl-bridge/build-trace.json",
+        "interventions/weyl-bridge/candidate.patch",
+        "interventions/weyl-bridge/diagnostic-1-profile.import-context.json",
+        "interventions/weyl-bridge/diagnostic-1-profile.json",
+        "interventions/weyl-bridge/diagnostic-1-profile.log",
+        "interventions/weyl-bridge/diagnostic-1-profile.resources.txt",
+        "interventions/weyl-bridge/diagnostic.source.lean.txt",
+        "interventions/weyl-bridge/driver.py",
+        "interventions/weyl-bridge/plan.json",
+        "interventions/weyl-bridge/profiles.json",
+        "interventions/weyl-bridge/proof-vs-statement-diagnostic.json",
+        "interventions/weyl-bridge/receipts.json",
+        "interventions/weyl-bridge/setup.json",
+        "interventions/weyl-bridge/summary.json",
+        "interventions/weyl-bridge/verdict.json"
+      ],
+      "path": "interventions/weyl-bridge.tar.gz",
+      "sha256": "0bb1cc51ac6b948d9684d5fd6d11282556cf7fecb610100f979901ed1fb3bacc"
+    },
+    {
+      "bytes": 7847520,
+      "extraction_validated": true,
+      "members": [
+        "interventions/werner-trace-bridge/A-1-bare.import-context.json",
+        "interventions/werner-trace-bridge/A-1-bare.log",
+        "interventions/werner-trace-bridge/A-1-bare.resources.txt",
+        "interventions/werner-trace-bridge/A-1-profile.import-context.json",
+        "interventions/werner-trace-bridge/A-1-profile.json",
+        "interventions/werner-trace-bridge/A-1-profile.log",
+        "interventions/werner-trace-bridge/A-1-profile.resources.txt",
+        "interventions/werner-trace-bridge/A-2-bare.import-context.json",
+        "interventions/werner-trace-bridge/A-2-bare.log",
+        "interventions/werner-trace-bridge/A-2-bare.resources.txt",
+        "interventions/werner-trace-bridge/A-2-profile.import-context.json",
+        "interventions/werner-trace-bridge/A-2-profile.json",
+        "interventions/werner-trace-bridge/A-2-profile.log",
+        "interventions/werner-trace-bridge/A-2-profile.resources.txt",
+        "interventions/werner-trace-bridge/A-3-bare.import-context.json",
+        "interventions/werner-trace-bridge/A-3-bare.log",
+        "interventions/werner-trace-bridge/A-3-bare.resources.txt",
+        "interventions/werner-trace-bridge/A-3-profile.import-context.json",
+        "interventions/werner-trace-bridge/A-3-profile.json",
+        "interventions/werner-trace-bridge/A-3-profile.log",
+        "interventions/werner-trace-bridge/A-3-profile.resources.txt",
+        "interventions/werner-trace-bridge/A.source.lean.txt",
+        "interventions/werner-trace-bridge/B-1-bare.import-context.json",
+        "interventions/werner-trace-bridge/B-1-bare.log",
+        "interventions/werner-trace-bridge/B-1-bare.resources.txt",
+        "interventions/werner-trace-bridge/B-1-profile.import-context.json",
+        "interventions/werner-trace-bridge/B-1-profile.json",
+        "interventions/werner-trace-bridge/B-1-profile.log",
+        "interventions/werner-trace-bridge/B-1-profile.resources.txt",
+        "interventions/werner-trace-bridge/B-2-bare.import-context.json",
+        "interventions/werner-trace-bridge/B-2-bare.log",
+        "interventions/werner-trace-bridge/B-2-bare.resources.txt",
+        "interventions/werner-trace-bridge/B-2-profile.import-context.json",
+        "interventions/werner-trace-bridge/B-2-profile.json",
+        "interventions/werner-trace-bridge/B-2-profile.log",
+        "interventions/werner-trace-bridge/B-2-profile.resources.txt",
+        "interventions/werner-trace-bridge/B-3-bare.import-context.json",
+        "interventions/werner-trace-bridge/B-3-bare.log",
+        "interventions/werner-trace-bridge/B-3-bare.resources.txt",
+        "interventions/werner-trace-bridge/B-3-profile.import-context.json",
+        "interventions/werner-trace-bridge/B-3-profile.json",
+        "interventions/werner-trace-bridge/B-3-profile.log",
+        "interventions/werner-trace-bridge/B-3-profile.resources.txt",
+        "interventions/werner-trace-bridge/B.source.lean.txt",
+        "interventions/werner-trace-bridge/REPORT.md",
+        "interventions/werner-trace-bridge/bare-summary.json",
+        "interventions/werner-trace-bridge/bare.json",
+        "interventions/werner-trace-bridge/build-trace.json",
+        "interventions/werner-trace-bridge/candidate.patch",
+        "interventions/werner-trace-bridge/diagnostic-1-profile.import-context.json",
+        "interventions/werner-trace-bridge/diagnostic-1-profile.json",
+        "interventions/werner-trace-bridge/diagnostic-1-profile.log",
+        "interventions/werner-trace-bridge/diagnostic-1-profile.resources.txt",
+        "interventions/werner-trace-bridge/diagnostic.source.lean.txt",
+        "interventions/werner-trace-bridge/driver.py",
+        "interventions/werner-trace-bridge/plan.json",
+        "interventions/werner-trace-bridge/profiles.json",
+        "interventions/werner-trace-bridge/proof-vs-statement-diagnostic.json",
+        "interventions/werner-trace-bridge/receipts.json",
+        "interventions/werner-trace-bridge/setup.json",
+        "interventions/werner-trace-bridge/summary.json",
+        "interventions/werner-trace-bridge/verdict.json"
+      ],
+      "path": "interventions/werner-trace-bridge.tar.gz",
+      "sha256": "5ded7dd21db72ad4dfb84c4c17abbaf277a3834f5927fcea40795d16dc322bef"
+    }
+  ],
+  "generated_utc": "2026-10-07T04:47:53.730237+00:00",
+  "inspection": {
+    "inspection_only": false,
+    "note": "This completion inspection did not parse, compress or hash large traces. Writing requires explicit plans and repeats validation, source/raw hashes, content screening and extraction checks.",
+    "publication_content_preflight": {
+      "files": 19,
+      "passed": true,
+      "scope": "Small publication helpers, notes and external skill copies; before large trace work"
+    },
+    "ready": true,
+    "schema": "cloning-evidence-bundle-inspection-v1",
+    "sets": [
+      {
+        "detailed_input_bytes": 81811822,
+        "diagnostic_attempts": 0,
+        "explicit_plan_checked": true,
+        "measured_commit": "cbb2fd2007ae367e201d4a6ac7c069899db90dbd",
+        "missing_records": [],
+        "modules": 994,
+        "name": "before",
+        "native_profiles": 0,
+        "profile_modules": [
+          "Cloning.AmplifierWeylThermal",
+          "Cloning.CloningValueComparisonMonotone",
+          "Cloning.InfiniteTraceClass",
+          "Cloning.PCTClosedForm",
+          "Cloning.PCTGlobalPhysical",
+          "Cloning.PCTHybridMixtureFactor",
+          "Cloning.PCTUnitaryTransportChannels",
+          "Cloning.Thermal",
+          "Cloning.WernerPhysicalPullback",
+          "Cloning.WeylIdlerUniqueness"
+        ],
+        "profiles": 10,
+        "ready": true
+      },
+      {
+        "detailed_input_bytes": 113646405,
+        "diagnostic_attempts": 3,
+        "explicit_plan_checked": true,
+        "measured_commit": "3eb587e0f00748c3a9b63f9eeedc1646e4cb77be",
+        "missing_records": [],
+        "modules": 994,
+        "name": "after",
+        "native_profiles": 2,
+        "profile_modules": [
+          "Cloning.AmplifierWeylThermal",
+          "Cloning.CloningValueComparisonMonotone",
+          "Cloning.InfiniteTraceClass",
+          "Cloning.PCTClosedForm",
+          "Cloning.PCTGlobalPhysical",
+          "Cloning.PCTHybridMixtureFactor",
+          "Cloning.PCTUnitaryTransportChannels",
+          "Cloning.PhysicalFlatConverseReduction",
+          "Cloning.PhysicalFlatPinchingInflation",
+          "Cloning.TensorCartanChannelCovariance",
+          "Cloning.TensorCartanStateOperator",
+          "Cloning.TensorFlatProjectorStateFidelity",
+          "Cloning.Thermal",
+          "Cloning.WernerPhysicalPullback",
+          "Cloning.WeylIdlerUniqueness"
+        ],
+        "profiles": 15,
+        "ready": true
+      },
+      {
+        "bare_records": 6,
+        "decision": "accept",
+        "explicit_plan_checked": true,
+        "kind": "intervention",
+        "name": "interventions/weyl-bridge",
+        "profile_records": 7,
+        "ready": true,
+        "receipts": [
+          "diagnostic-1-profile",
+          "A-1-profile",
+          "B-1-profile",
+          "A-2-profile",
+          "B-2-profile",
+          "A-3-profile",
+          "B-3-profile",
+          "A-1-bare",
+          "B-1-bare",
+          "A-2-bare",
+          "B-2-bare",
+          "A-3-bare",
+          "B-3-bare"
+        ]
+      },
+      {
+        "bare_records": 6,
+        "decision": "accept",
+        "explicit_plan_checked": true,
+        "kind": "intervention",
+        "name": "interventions/werner-trace-bridge",
+        "profile_records": 7,
+        "ready": true,
+        "receipts": [
+          "diagnostic-1-profile",
+          "A-1-profile",
+          "B-1-profile",
+          "A-2-profile",
+          "B-2-profile",
+          "A-3-profile",
+          "B-3-profile",
+          "A-1-bare",
+          "B-1-bare",
+          "A-2-bare",
+          "B-2-bare",
+          "A-3-bare",
+          "B-3-bare"
+        ]
+      },
+      {
+        "driver_digest_recorded_at_guard_run": false,
+        "driver_sha256": "9862a8bd8cfb29fc855ee8d1a57680b48af344983ca753400bc6a111fddd2edc",
+        "driver_sha256_capture": "publication-time",
+        "evidence_role": "source-api-guard-not-independent-proof-verification",
+        "kind": "source-api-guard",
+        "name": "source-api-guard",
+        "original_guard_sha256": "3bb846c2fadc1863fcde025c7b9e57a3ea297a0550df69db22cc2d620e3d5486",
+        "proof_body_changes": 2,
+        "ready": true
+      },
+      {
+        "contents_unmodified": true,
+        "copied_files": 5,
+        "kind": "attribution",
+        "license": "CC-BY-4.0",
+        "name": "external-skills",
+        "ready": true,
+        "source_commit": "70bb859295edc2abb9ad81f8f6e31ab2adf8ca07"
+      }
+    ]
+  },
+  "members": [
+    {
+      "bytes": 6200,
+      "locations": [
+        "tree"
+      ],
+      "path": "README.md",
+      "purpose": "publication-guide",
+      "role": "derived",
+      "sha256": "5e4689517fb5b8b22d80e56f609df0f9a40b3091ea4f38dcb8a57174901c47e4"
+    },
+    {
+      "bytes": 15437,
+      "locations": [
+        "tree"
+      ],
+      "path": "after/benchmark-runner.py",
+      "role": "raw",
+      "sha256": "fc202556ed4ee2a3e7366a00180502515f16ef644484e6463ea8ed2c4e579417"
+    },
+    {
+      "bytes": 466101,
+      "locations": [
+        "tree"
+      ],
+      "path": "after/build.log",
+      "role": "raw",
+      "sha256": "703d4989a69213947c2431e1714d976675bb96077e53c2d93d89d6ac7c2dd7b0"
+    },
+    {
+      "bytes": 127,
+      "locations": [
+        "tree"
+      ],
+      "path": "after/dependencies-after.json",
+      "role": "raw",
+      "sha256": "07231494c7ecd316c52ccba38d8e1641671b844bfbb3f5a5f3a53dd61ec64c32"
+    },
+    {
+      "bytes": 127,
+      "locations": [
+        "tree"
+      ],
+      "path": "after/dependencies-before.json",
+      "role": "raw",
+      "sha256": "07231494c7ecd316c52ccba38d8e1641671b844bfbb3f5a5f3a53dd61ec64c32"
+    },
+    {
+      "bytes": 162444,
+      "locations": [
+        "tree"
+      ],
+      "path": "after/imports.json",
+      "role": "raw",
+      "sha256": "f70c604535acac8784947f57a609d73878dae14b050c4c5c51524877930812d0"
+    },
+    {
+      "bytes": 511191,
+      "locations": [
+        "tree"
+      ],
+      "path": "after/invalidated.json",
+      "role": "raw",
+      "sha256": "d9cc84aabdfaad31314f03b04720b29f5d8adc0d4d60ef9436aaea29d00545d3"
+    },
+    {
+      "bytes": 73729,
+      "locations": [
+        "tree"
+      ],
+      "path": "after/process-inventory.json",
+      "provenance": {
+        "original_sha256": "cd661cfdaa3d5939c31a6005206a399de3621ae4d9fe2bc77c14d611bce94d70",
+        "transformation": "UTC/count-only process inventory"
+      },
+      "role": "derived",
+      "sha256": "7eb8c19ae4dad25c386d42320b0208994016b015687f015454d2a296b598fa3c"
+    },
+    {
+      "bytes": 803,
+      "locations": [
+        "tree"
+      ],
+      "path": "after/resources.txt",
+      "role": "raw",
+      "sha256": "c91740dc4627096ec7c67afa592f66fe55d82e649364d9d720dcc341c4de559d"
+    },
+    {
+      "bytes": 282220,
+      "locations": [
+        "tree"
+      ],
+      "path": "after/size.json",
+      "role": "raw",
+      "sha256": "3aedea570e14277db4fb648568f802c588aac232f8c346d34de7a955026541f2"
+    },
+    {
+      "bytes": 54522,
+      "locations": [
+        "tree"
+      ],
+      "path": "after/skill-size.txt",
+      "role": "raw",
+      "sha256": "1e1d48e98fb058c0fde735b9c40d41ad2c8f5f6e5b237239ee9c349de3833438"
+    },
+    {
+      "bytes": 124596,
+      "locations": [
+        "tree"
+      ],
+      "path": "after/source-config-hashes.json",
+      "role": "raw",
+      "sha256": "79e92cce1a039342af451b751e74f232c814e4a5d4c84b23b97ec502a05abe41"
+    },
+    {
+      "bytes": 92046,
+      "locations": [
+        "tree"
+      ],
+      "path": "after/summary.json",
+      "role": "raw",
+      "sha256": "c24bc7e66a0c8bf57623b7bd20284f1b6d47f5a8a478fe6b1d05451fc4e3ae9c"
+    },
+    {
+      "bytes": 10174,
+      "locations": [
+        "tree"
+      ],
+      "path": "before/benchmark-runner.py",
+      "role": "raw",
+      "sha256": "389d4a148f7f46dd41372d014d051c7e31f0f3600b084a4687d15381fcc1f5e5"
+    },
+    {
+      "bytes": 465726,
+      "locations": [
+        "tree"
+      ],
+      "path": "before/build.log",
+      "role": "raw",
+      "sha256": "c762ee058367e834bed8e9dc0e823eb4c18a992cfe4f92da32c11553b75b1027"
+    },
+    {
+      "bytes": 127,
+      "locations": [
+        "tree"
+      ],
+      "path": "before/dependencies-after.json",
+      "role": "raw",
+      "sha256": "07231494c7ecd316c52ccba38d8e1641671b844bfbb3f5a5f3a53dd61ec64c32"
+    },
+    {
+      "bytes": 127,
+      "locations": [
+        "tree"
+      ],
+      "path": "before/dependencies-before.json",
+      "role": "raw",
+      "sha256": "07231494c7ecd316c52ccba38d8e1641671b844bfbb3f5a5f3a53dd61ec64c32"
+    },
+    {
+      "bytes": 162444,
+      "locations": [
+        "tree"
+      ],
+      "path": "before/imports.json",
+      "role": "raw",
+      "sha256": "f70c604535acac8784947f57a609d73878dae14b050c4c5c51524877930812d0"
+    },
+    {
+      "bytes": 511262,
+      "locations": [
+        "tree"
+      ],
+      "path": "before/invalidated.json",
+      "role": "raw",
+      "sha256": "f47ababe2ee193656086168e6f054ef070be04bc7cb08fcfbd94b97af3ced766"
+    },
+    {
+      "bytes": 221961,
+      "locations": [
+        "tree"
+      ],
+      "path": "before/process-inventory.json",
+      "provenance": {
+        "original_sha256": "311d6c2405a94b77170019e73380e4a831fd9f39bd3208206ed17a1dacc77228",
+        "transformation": "UTC/count-only process inventory"
+      },
+      "role": "derived",
+      "sha256": "db1f32ecb9420d1330a3eddc69ab3f31b023fd107447285ff62eb6a61f9ae244"
+    },
+    {
+      "bytes": 806,
+      "locations": [
+        "tree"
+      ],
+      "path": "before/resources.txt",
+      "role": "raw",
+      "sha256": "e659577203a340e0a368b34dc4ccca2caf9e4c0d86435ae54f1c005098f37389"
+    },
+    {
+      "bytes": 193754,
+      "locations": [
+        "tree"
+      ],
+      "path": "before/size.json",
+      "role": "raw",
+      "sha256": "715a283ad190ae152ca55577b2feb022fc9e80ef5d5f8621b6cb638d0ff22978"
+    },
+    {
+      "bytes": 54522,
+      "locations": [
+        "tree"
+      ],
+      "path": "before/skill-size.txt",
+      "role": "raw",
+      "sha256": "71dee55ba87e62aab647f613a9f3d274fd70273710c253cab841c069a5373332"
+    },
+    {
+      "bytes": 124596,
+      "locations": [
+        "tree"
+      ],
+      "path": "before/source-config-hashes.json",
+      "role": "raw",
+      "sha256": "f36cc5652fdc00f468e85d3dec114a623dffdba585e8aab7987416774c93db12"
+    },
+    {
+      "bytes": 127113,
+      "locations": [
+        "tree"
+      ],
+      "path": "before/source-config-stability.json",
+      "role": "raw",
+      "sha256": "73b1ae5e2cbb3a28facc902999db5d8f76544f38c6b5dcb2c7d00983150cb3ce"
+    },
+    {
+      "bytes": 92270,
+      "locations": [
+        "tree"
+      ],
+      "path": "before/summary.json",
+      "role": "raw",
+      "sha256": "fd95b6cbd6fc4a87bc79a80fdad990127633e84b37f63cc86ee69e1586049899"
+    },
+    {
+      "bytes": 3281622,
+      "locations": [
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/A-1-bare.import-context.json",
+      "purpose": "bare GNU control input; content hash captured at publication",
+      "role": "raw",
+      "sha256": "1af66836c8f11b97afce048088fa80219996914da40fb9249425dee14e4bdf5a"
+    },
+    {
+      "bytes": 0,
+      "locations": [
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/A-1-bare.log",
+      "purpose": "bare GNU control input; content hash captured at publication",
+      "role": "raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 1118,
+      "locations": [
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/A-1-bare.resources.txt",
+      "purpose": "bare GNU control input; content hash captured at publication",
+      "role": "raw",
+      "sha256": "85570d5abe2522964e9925d992d1acfec0dd392b57c5fcf7f4028e7c45d9d397"
+    },
+    {
+      "bytes": 3281622,
+      "locations": [
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/A-1-profile.import-context.json",
+      "role": "raw",
+      "sha256": "1af66836c8f11b97afce048088fa80219996914da40fb9249425dee14e4bdf5a"
+    },
+    {
+      "bytes": 10021259,
+      "locations": [
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/A-1-profile.json",
+      "role": "raw",
+      "sha256": "9bc359f8f9f450e30a0f893277fba0850d2d53047af2cb2c898a35322904d8bf"
+    },
+    {
+      "bytes": 30323,
+      "locations": [
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/A-1-profile.log",
+      "role": "raw",
+      "sha256": "55ee89a5ee0931984ca974d73c85d81301898a31b1b2450b0ef21d8185945674"
+    },
+    {
+      "bytes": 1377,
+      "locations": [
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/A-1-profile.resources.txt",
+      "role": "raw",
+      "sha256": "6c3d55484ef2326822664b4c48ad8af01679f81163b7dff6b1669985ba0cc434"
+    },
+    {
+      "bytes": 3281622,
+      "locations": [
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/A-2-bare.import-context.json",
+      "purpose": "bare GNU control input; content hash captured at publication",
+      "role": "raw",
+      "sha256": "1af66836c8f11b97afce048088fa80219996914da40fb9249425dee14e4bdf5a"
+    },
+    {
+      "bytes": 0,
+      "locations": [
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/A-2-bare.log",
+      "purpose": "bare GNU control input; content hash captured at publication",
+      "role": "raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 1118,
+      "locations": [
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/A-2-bare.resources.txt",
+      "purpose": "bare GNU control input; content hash captured at publication",
+      "role": "raw",
+      "sha256": "85f0b1dc71099d8ab4335ef13b6b487cdf6f9be3d789d3b78ddaa073c16f8d18"
+    },
+    {
+      "bytes": 3281622,
+      "locations": [
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/A-2-profile.import-context.json",
+      "role": "raw",
+      "sha256": "1af66836c8f11b97afce048088fa80219996914da40fb9249425dee14e4bdf5a"
+    },
+    {
+      "bytes": 10002683,
+      "locations": [
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/A-2-profile.json",
+      "role": "raw",
+      "sha256": "4f6ff976eaeb612f651ca81e55ddf02515f73733693a6e13175abde4d2cfc0d5"
+    },
+    {
+      "bytes": 30396,
+      "locations": [
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/A-2-profile.log",
+      "role": "raw",
+      "sha256": "9f137d96a7da23dd9ad8c80fde710cd7a959889bc486b0b6144805fab1d266e0"
+    },
+    {
+      "bytes": 1376,
+      "locations": [
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/A-2-profile.resources.txt",
+      "role": "raw",
+      "sha256": "f17cc8a4e01d9c9cec8186817b4e95e66f5ce82acebfef7fca89076f23369224"
+    },
+    {
+      "bytes": 3281622,
+      "locations": [
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/A-3-bare.import-context.json",
+      "purpose": "bare GNU control input; content hash captured at publication",
+      "role": "raw",
+      "sha256": "1af66836c8f11b97afce048088fa80219996914da40fb9249425dee14e4bdf5a"
+    },
+    {
+      "bytes": 0,
+      "locations": [
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/A-3-bare.log",
+      "purpose": "bare GNU control input; content hash captured at publication",
+      "role": "raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 1118,
+      "locations": [
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/A-3-bare.resources.txt",
+      "purpose": "bare GNU control input; content hash captured at publication",
+      "role": "raw",
+      "sha256": "15efd1f773d4d830d5dcd1a6d40a33dd7bf62393b7316f9c0046e72c76c312ac"
+    },
+    {
+      "bytes": 3281622,
+      "locations": [
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/A-3-profile.import-context.json",
+      "role": "raw",
+      "sha256": "1af66836c8f11b97afce048088fa80219996914da40fb9249425dee14e4bdf5a"
+    },
+    {
+      "bytes": 10000466,
+      "locations": [
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/A-3-profile.json",
+      "role": "raw",
+      "sha256": "6b37292ef15ae9335a98dedb87c906bd4bf44adc97d270c8e683ad9ba9f86eb8"
+    },
+    {
+      "bytes": 30403,
+      "locations": [
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/A-3-profile.log",
+      "role": "raw",
+      "sha256": "b10fc183e2068ed5013c2fecdee300967fbdc256110a1aa4a2a4e827787f6786"
+    },
+    {
+      "bytes": 1377,
+      "locations": [
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/A-3-profile.resources.txt",
+      "role": "raw",
+      "sha256": "5e0f4e2808027781a701efe44f0bc2d9365d8948025fbfb80c3e35275ec3a4b8"
+    },
+    {
+      "bytes": 11783,
+      "locations": [
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/A.source.lean.txt",
+      "provenance": {
+        "origin": "preserved-profile-source",
+        "source": "formalization/Cloning/WernerPhysicalPullback.lean"
+      },
+      "purpose": "hash-bound source copy",
+      "role": "raw",
+      "sha256": "815e8e1962e901e11ae9fbd73bd3988bd0cc58ec6c953685b05fa25226aa17ea"
+    },
+    {
+      "bytes": 3281622,
+      "locations": [
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/B-1-bare.import-context.json",
+      "purpose": "bare GNU control input; content hash captured at publication",
+      "role": "raw",
+      "sha256": "1af66836c8f11b97afce048088fa80219996914da40fb9249425dee14e4bdf5a"
+    },
+    {
+      "bytes": 0,
+      "locations": [
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/B-1-bare.log",
+      "purpose": "bare GNU control input; content hash captured at publication",
+      "role": "raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 1118,
+      "locations": [
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/B-1-bare.resources.txt",
+      "purpose": "bare GNU control input; content hash captured at publication",
+      "role": "raw",
+      "sha256": "8aa576a828da1e67a9023e14cbac82187b0526e70aebe44915cd13efe26ab269"
+    },
+    {
+      "bytes": 3281622,
+      "locations": [
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/B-1-profile.import-context.json",
+      "role": "raw",
+      "sha256": "1af66836c8f11b97afce048088fa80219996914da40fb9249425dee14e4bdf5a"
+    },
+    {
+      "bytes": 923149,
+      "locations": [
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/B-1-profile.json",
+      "role": "raw",
+      "sha256": "69eaa483843d66256e83afa264503c6a88647cbc0d37dbdc2dcf3ff7d4c9d0e9"
+    },
+    {
+      "bytes": 30305,
+      "locations": [
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/B-1-profile.log",
+      "role": "raw",
+      "sha256": "da6864d60ee4fea54a3d5b8213a3ca0499ea71be956373395117b074db40f12b"
+    },
+    {
+      "bytes": 1376,
+      "locations": [
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/B-1-profile.resources.txt",
+      "role": "raw",
+      "sha256": "5d4c2e4beb925d1ee22b383d9826b46c15227fc39c0d4df89190f48c3944bea7"
+    },
+    {
+      "bytes": 3281622,
+      "locations": [
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/B-2-bare.import-context.json",
+      "purpose": "bare GNU control input; content hash captured at publication",
+      "role": "raw",
+      "sha256": "1af66836c8f11b97afce048088fa80219996914da40fb9249425dee14e4bdf5a"
+    },
+    {
+      "bytes": 0,
+      "locations": [
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/B-2-bare.log",
+      "purpose": "bare GNU control input; content hash captured at publication",
+      "role": "raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 1118,
+      "locations": [
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/B-2-bare.resources.txt",
+      "purpose": "bare GNU control input; content hash captured at publication",
+      "role": "raw",
+      "sha256": "686e193daf281f3c125ab0891a11fa0f6e382fa92ccd79898dc71029aa7e0b85"
+    },
+    {
+      "bytes": 3281622,
+      "locations": [
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/B-2-profile.import-context.json",
+      "role": "raw",
+      "sha256": "1af66836c8f11b97afce048088fa80219996914da40fb9249425dee14e4bdf5a"
+    },
+    {
+      "bytes": 937749,
+      "locations": [
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/B-2-profile.json",
+      "role": "raw",
+      "sha256": "dda07de731ecf0b36527f998511a29a93fb805b8f2f4c5a00464e18373dbc5d4"
+    },
+    {
+      "bytes": 30344,
+      "locations": [
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/B-2-profile.log",
+      "role": "raw",
+      "sha256": "acb719875b9c5582abcf9f501d6468cb01f59fb53b8eceb43c010a08b42aea5e"
+    },
+    {
+      "bytes": 1376,
+      "locations": [
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/B-2-profile.resources.txt",
+      "role": "raw",
+      "sha256": "283e415d0bc59edc6db17d020b234e88cd4c03afbff8214d57d47e9c7a13fb69"
+    },
+    {
+      "bytes": 3281622,
+      "locations": [
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/B-3-bare.import-context.json",
+      "purpose": "bare GNU control input; content hash captured at publication",
+      "role": "raw",
+      "sha256": "1af66836c8f11b97afce048088fa80219996914da40fb9249425dee14e4bdf5a"
+    },
+    {
+      "bytes": 0,
+      "locations": [
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/B-3-bare.log",
+      "purpose": "bare GNU control input; content hash captured at publication",
+      "role": "raw",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 1118,
+      "locations": [
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/B-3-bare.resources.txt",
+      "purpose": "bare GNU control input; content hash captured at publication",
+      "role": "raw",
+      "sha256": "c6ce8a89a265bfa555bac3fdd636ecb498f69025e8d14f838422662a1f68fdbb"
+    },
+    {
+      "bytes": 3281622,
+      "locations": [
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/B-3-profile.import-context.json",
+      "role": "raw",
+      "sha256": "1af66836c8f11b97afce048088fa80219996914da40fb9249425dee14e4bdf5a"
+    },
+    {
+      "bytes": 925020,
+      "locations": [
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/B-3-profile.json",
+      "role": "raw",
+      "sha256": "5a1730a34af3fd7eb839700998aa4c3d17c5bf260d0edd1cad534a5827f5804a"
+    },
+    {
+      "bytes": 30307,
+      "locations": [
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/B-3-profile.log",
+      "role": "raw",
+      "sha256": "aafe67d942404a2463f785a698cf7d179f53b0646687f0a7ee66f69248aad2b4"
+    },
+    {
+      "bytes": 1376,
+      "locations": [
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/B-3-profile.resources.txt",
+      "role": "raw",
+      "sha256": "db37a03f875c7c0a2db9d164e678adf1a4dcf2dccae9c2a8fa6cc2fe910fb818"
+    },
+    {
+      "bytes": 11816,
+      "locations": [
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/B.source.lean.txt",
+      "provenance": {
+        "origin": "preserved-profile-source",
+        "source": "formalization/Cloning/WernerPhysicalPullback.lean"
+      },
+      "purpose": "hash-bound source copy",
+      "role": "raw",
+      "sha256": "328dd36bde83e302e13d99f6168651cb90f5a10b39811339590e645822c5b30b"
+    },
+    {
+      "bytes": 4998,
+      "locations": [
+        "tree",
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/REPORT.md",
+      "purpose": "recorded experiment interpretation; not independent verification",
+      "role": "raw",
+      "sha256": "6a6e4c63784132fccc64d605eb607073c7798a851269577a76afb60b8e391f1c"
+    },
+    {
+      "bytes": 37844,
+      "locations": [
+        "tree",
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/bare-summary.json",
+      "purpose": "native GNU timing controls; no fabricated trace",
+      "role": "derived",
+      "sha256": "33ec6c41eab1e994fc0f48cded9cf21fcb7fe3cdee5c0f29e3a09b3c10ef26dc"
+    },
+    {
+      "bytes": 28560,
+      "locations": [
+        "tree",
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/bare.json",
+      "provenance": {
+        "original_sha256": "d415f7d39e1f0065c5c305776259e5e60f361d922b998621e9753ea202e782be",
+        "transformation": "Preserved arm/mode/repetition; removed inherited environment paths"
+      },
+      "role": "derived",
+      "sha256": "f5cd9eef27eb4b36b92174b32b662628fc69a2d2d6116f054306cc5bcefbeb1e"
+    },
+    {
+      "bytes": 4061,
+      "locations": [
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/build-trace.json",
+      "role": "raw",
+      "sha256": "d5f95cbae7f59e8f69ea4c3c3bf0892e94aa9401dd367a891a13971d5252cac0"
+    },
+    {
+      "bytes": 980,
+      "locations": [
+        "tree",
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/candidate.patch",
+      "purpose": "measured candidate proof-body patch",
+      "role": "raw",
+      "sha256": "5d28eab43249bfe0214f7cdcf38d4c296702524cd1cb344deb524c186d3656f5"
+    },
+    {
+      "bytes": 3281622,
+      "locations": [
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/diagnostic-1-profile.import-context.json",
+      "role": "raw",
+      "sha256": "1af66836c8f11b97afce048088fa80219996914da40fb9249425dee14e4bdf5a"
+    },
+    {
+      "bytes": 905582,
+      "locations": [
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/diagnostic-1-profile.json",
+      "role": "raw",
+      "sha256": "6b7c89a451ba519636ac6adb378fe120a777090e5af17e9c051851b6e1f6a4ae"
+    },
+    {
+      "bytes": 30520,
+      "locations": [
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/diagnostic-1-profile.log",
+      "role": "raw",
+      "sha256": "8538059646d876a753a05b0f671bcbc889d9ce4aa214eb0c0838d41deb853d29"
+    },
+    {
+      "bytes": 1388,
+      "locations": [
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/diagnostic-1-profile.resources.txt",
+      "role": "raw",
+      "sha256": "c07dc58db4b48ebf56af336e88862a3ddec9b76ee52d65945dc864b1b5992e8e"
+    },
+    {
+      "bytes": 11165,
+      "locations": [
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/diagnostic.source.lean.txt",
+      "provenance": {
+        "origin": "preserved-profile-source",
+        "source": "formalization/Cloning/WernerPhysicalPullback.lean"
+      },
+      "purpose": "hash-bound source copy",
+      "role": "raw",
+      "sha256": "72968e4e209fca14912a5223b9b1bd6c1563a11227c2c9793e09752675ba49d2"
+    },
+    {
+      "bytes": 11225,
+      "locations": [
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/driver.py",
+      "provenance": {
+        "original_name": "run_werner_trace_bridge.py",
+        "original_sha256": "157a0754b435b8e74bae29c73745d9b37b7d106bb8514e88ffe60965e2c5b670"
+      },
+      "purpose": "experimental driver bound by plan.script_sha256",
+      "role": "raw",
+      "sha256": "157a0754b435b8e74bae29c73745d9b37b7d106bb8514e88ffe60965e2c5b670"
+    },
+    {
+      "bytes": 2933,
+      "locations": [
+        "tree",
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/plan.json",
+      "provenance": {
+        "original_sha256": "8e01a6d2cc1cddf9160a19113a59a97b57a4092a0646dd8fdfa4f9af1409dbbe",
+        "transformation": "Removed inherited environment path fields; experimental plan/decision retained"
+      },
+      "role": "derived",
+      "sha256": "4bcf2a02b80726313aa48c3ba99db5fff1638ff5bfac3387790f58d328d13a37"
+    },
+    {
+      "bytes": 35980,
+      "locations": [
+        "tree",
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/profiles.json",
+      "provenance": {
+        "original_sha256": "ab672dda23b2c5bc5f6178dcc7bf26580ce275f2af74a312d9cdb89bd17ae4de",
+        "transformation": "Controlled environment fields and hash-bound source pointers"
+      },
+      "role": "derived",
+      "sha256": "c9c53da3e8c98e5c9ae0da2e73f3584793c0bb06afba3a62f624e880d5f03f80"
+    },
+    {
+      "bytes": 2646,
+      "locations": [
+        "tree",
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/proof-vs-statement-diagnostic.json",
+      "purpose": "recorded diagnostic",
+      "role": "raw",
+      "sha256": "ad4fecdacea71f5c8f7a0f3432ffd9fa4afe2460a0cf430ab26a2f65c09dde67"
+    },
+    {
+      "bytes": 7604,
+      "locations": [
+        "tree",
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/receipts.json",
+      "purpose": "complete experiment identity and role mapping",
+      "role": "derived",
+      "sha256": "8f5eb7d357bbea4ddb472d89f869aeef9b9ce35533625c3370459525cf80dea7"
+    },
+    {
+      "bytes": 2406847,
+      "locations": [
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/setup.json",
+      "role": "raw",
+      "sha256": "257a5dac9e7fe1bbab5b94c1ba93c2d89f6dab60d06e820de4773673e43324c5"
+    },
+    {
+      "bytes": 2099176,
+      "locations": [
+        "tree",
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/summary.json",
+      "provenance": {
+        "original_sha256": "4ae28e58fac1c6ef789b19f71d9d4a598679c935028c3385010191c1666eeac2",
+        "transformation": "Regenerated from identical raw logs/traces and a redacted derived index with verified source snapshots."
+      },
+      "role": "derived",
+      "sha256": "4160665cb88314286c18ab23e9c264142b51993a420ef6180d374c095ad4c078"
+    },
+    {
+      "bytes": 11020,
+      "locations": [
+        "tree",
+        "interventions/werner-trace-bridge.tar.gz"
+      ],
+      "path": "interventions/werner-trace-bridge/verdict.json",
+      "purpose": "recorded experiment verdict",
+      "role": "raw",
+      "sha256": "f21e6e9ce422856928ac103f939b8f51a092330a0cdb7af35f3893e47b4c3334"
+    },
+    {
+      "bytes": 3348872,
+      "locations": [
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/A-1-bare.import-context.json",
+      "purpose": "bare GNU control input; content hash captured at publication",
+      "role": "raw",
+      "sha256": "fbb6948557c4982ac822f2507cff96988353ba17e9f815f813dcec9e1712e56b"
+    },
+    {
+      "bytes": 486,
+      "locations": [
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/A-1-bare.log",
+      "purpose": "bare GNU control input; content hash captured at publication",
+      "role": "raw",
+      "sha256": "bef74b241006f41f6cdd921bd8fac5f2a1122faca0656489a62b828d56a06672"
+    },
+    {
+      "bytes": 1101,
+      "locations": [
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/A-1-bare.resources.txt",
+      "purpose": "bare GNU control input; content hash captured at publication",
+      "role": "raw",
+      "sha256": "ae1d2bfba0bfe4b5d5c23171436569a2dcb16899b409feb993c111a9dfe66dd7"
+    },
+    {
+      "bytes": 3348872,
+      "locations": [
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/A-1-profile.import-context.json",
+      "role": "raw",
+      "sha256": "fbb6948557c4982ac822f2507cff96988353ba17e9f815f813dcec9e1712e56b"
+    },
+    {
+      "bytes": 3018529,
+      "locations": [
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/A-1-profile.json",
+      "role": "raw",
+      "sha256": "5adc2daaa05480cfdb276cb09107bb49d30bf6110cb89b4e4dfe6d07490ff98f"
+    },
+    {
+      "bytes": 30802,
+      "locations": [
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/A-1-profile.log",
+      "role": "raw",
+      "sha256": "abf513fdc229105e6ba8f129d51ad10f22335f95900e287e1373c9f4f06e3388"
+    },
+    {
+      "bytes": 1355,
+      "locations": [
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/A-1-profile.resources.txt",
+      "role": "raw",
+      "sha256": "96db0860b5f55460cc3a6e735dd98805f2a38d4dd1346aef3d7c97cc44066508"
+    },
+    {
+      "bytes": 3348872,
+      "locations": [
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/A-2-bare.import-context.json",
+      "purpose": "bare GNU control input; content hash captured at publication",
+      "role": "raw",
+      "sha256": "fbb6948557c4982ac822f2507cff96988353ba17e9f815f813dcec9e1712e56b"
+    },
+    {
+      "bytes": 486,
+      "locations": [
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/A-2-bare.log",
+      "purpose": "bare GNU control input; content hash captured at publication",
+      "role": "raw",
+      "sha256": "bef74b241006f41f6cdd921bd8fac5f2a1122faca0656489a62b828d56a06672"
+    },
+    {
+      "bytes": 1101,
+      "locations": [
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/A-2-bare.resources.txt",
+      "purpose": "bare GNU control input; content hash captured at publication",
+      "role": "raw",
+      "sha256": "ee570e9a8624c193c3d3350fd5349127cb779d07d37b7269885668a9896ab66f"
+    },
+    {
+      "bytes": 3348872,
+      "locations": [
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/A-2-profile.import-context.json",
+      "role": "raw",
+      "sha256": "fbb6948557c4982ac822f2507cff96988353ba17e9f815f813dcec9e1712e56b"
+    },
+    {
+      "bytes": 3038456,
+      "locations": [
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/A-2-profile.json",
+      "role": "raw",
+      "sha256": "3ccb6e95efc964ebf59dc6ce597de43410802df86d34b476bd95931087d34d9d"
+    },
+    {
+      "bytes": 30836,
+      "locations": [
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/A-2-profile.log",
+      "role": "raw",
+      "sha256": "5a0dcc3a35680ee8393c91a243d9c191f3cbc79fd3055a5dafba019a757effda"
+    },
+    {
+      "bytes": 1354,
+      "locations": [
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/A-2-profile.resources.txt",
+      "role": "raw",
+      "sha256": "30411bdde065c44a155468f3e53a35c49032835b157885407b08580199582f3b"
+    },
+    {
+      "bytes": 3348872,
+      "locations": [
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/A-3-bare.import-context.json",
+      "purpose": "bare GNU control input; content hash captured at publication",
+      "role": "raw",
+      "sha256": "fbb6948557c4982ac822f2507cff96988353ba17e9f815f813dcec9e1712e56b"
+    },
+    {
+      "bytes": 486,
+      "locations": [
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/A-3-bare.log",
+      "purpose": "bare GNU control input; content hash captured at publication",
+      "role": "raw",
+      "sha256": "bef74b241006f41f6cdd921bd8fac5f2a1122faca0656489a62b828d56a06672"
+    },
+    {
+      "bytes": 1101,
+      "locations": [
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/A-3-bare.resources.txt",
+      "purpose": "bare GNU control input; content hash captured at publication",
+      "role": "raw",
+      "sha256": "ba7bd21096d8b980c0769e8de7220efd117047faae7b5b04737c8a22812e1c24"
+    },
+    {
+      "bytes": 3348872,
+      "locations": [
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/A-3-profile.import-context.json",
+      "role": "raw",
+      "sha256": "fbb6948557c4982ac822f2507cff96988353ba17e9f815f813dcec9e1712e56b"
+    },
+    {
+      "bytes": 3004504,
+      "locations": [
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/A-3-profile.json",
+      "role": "raw",
+      "sha256": "fc9d3e4028a138b179a8f64773dea4bef13614b8c2b2df387cdf120961b61c6d"
+    },
+    {
+      "bytes": 30781,
+      "locations": [
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/A-3-profile.log",
+      "role": "raw",
+      "sha256": "ebcd483100ad2b941032a36855d34d76ff974f8ada0072f745d1781da47a0e18"
+    },
+    {
+      "bytes": 1353,
+      "locations": [
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/A-3-profile.resources.txt",
+      "role": "raw",
+      "sha256": "2b8ec4cfa3fc3c012c856f13fcf986e6942ebfb28aff30ad7b599a6e69489732"
+    },
+    {
+      "bytes": 8902,
+      "locations": [
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/A.source.lean.txt",
+      "provenance": {
+        "origin": "preserved-profile-source",
+        "source": "formalization/Cloning/WeylIdlerUniqueness.lean"
+      },
+      "purpose": "hash-bound source copy",
+      "role": "raw",
+      "sha256": "c3ad276535f7e0b776dae495c8a0a8e42e9967d8a36f8ed7d5a8ef55193ac80d"
+    },
+    {
+      "bytes": 3348872,
+      "locations": [
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/B-1-bare.import-context.json",
+      "purpose": "bare GNU control input; content hash captured at publication",
+      "role": "raw",
+      "sha256": "fbb6948557c4982ac822f2507cff96988353ba17e9f815f813dcec9e1712e56b"
+    },
+    {
+      "bytes": 486,
+      "locations": [
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/B-1-bare.log",
+      "purpose": "bare GNU control input; content hash captured at publication",
+      "role": "raw",
+      "sha256": "43d0c0d7d7d5711cad2c2d5d40813d00461f919416ddb1f032a6442575964d83"
+    },
+    {
+      "bytes": 1099,
+      "locations": [
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/B-1-bare.resources.txt",
+      "purpose": "bare GNU control input; content hash captured at publication",
+      "role": "raw",
+      "sha256": "0afa6731b901a59b69c9e283b3244e085314915c25598e4cbd01db9526fdc0a4"
+    },
+    {
+      "bytes": 3348872,
+      "locations": [
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/B-1-profile.import-context.json",
+      "role": "raw",
+      "sha256": "fbb6948557c4982ac822f2507cff96988353ba17e9f815f813dcec9e1712e56b"
+    },
+    {
+      "bytes": 270300,
+      "locations": [
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/B-1-profile.json",
+      "role": "raw",
+      "sha256": "a95bc1706a1170b1bff5aec3cd513769a22f23956f99f73539a026e23a25d76e"
+    },
+    {
+      "bytes": 30724,
+      "locations": [
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/B-1-profile.log",
+      "role": "raw",
+      "sha256": "a57b8de13d6cc2b1f20f9fce475be9a7bf1e6455eb4df81dfa1672777ea579a0"
+    },
+    {
+      "bytes": 1353,
+      "locations": [
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/B-1-profile.resources.txt",
+      "role": "raw",
+      "sha256": "507b1556de3b2a6a651de375ed3fff679a4355d22b7c3492cf155ef5ce18f954"
+    },
+    {
+      "bytes": 3348872,
+      "locations": [
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/B-2-bare.import-context.json",
+      "purpose": "bare GNU control input; content hash captured at publication",
+      "role": "raw",
+      "sha256": "fbb6948557c4982ac822f2507cff96988353ba17e9f815f813dcec9e1712e56b"
+    },
+    {
+      "bytes": 486,
+      "locations": [
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/B-2-bare.log",
+      "purpose": "bare GNU control input; content hash captured at publication",
+      "role": "raw",
+      "sha256": "43d0c0d7d7d5711cad2c2d5d40813d00461f919416ddb1f032a6442575964d83"
+    },
+    {
+      "bytes": 1100,
+      "locations": [
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/B-2-bare.resources.txt",
+      "purpose": "bare GNU control input; content hash captured at publication",
+      "role": "raw",
+      "sha256": "aeefdc71567fbfe079a29321faae487f992357dd0fa972a77c042560ed6cd04f"
+    },
+    {
+      "bytes": 3348872,
+      "locations": [
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/B-2-profile.import-context.json",
+      "role": "raw",
+      "sha256": "fbb6948557c4982ac822f2507cff96988353ba17e9f815f813dcec9e1712e56b"
+    },
+    {
+      "bytes": 306043,
+      "locations": [
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/B-2-profile.json",
+      "role": "raw",
+      "sha256": "65431deb759f1d41d1ea350d963c9e38753625aab52fb9e05d9ed52b5a0fff75"
+    },
+    {
+      "bytes": 30785,
+      "locations": [
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/B-2-profile.log",
+      "role": "raw",
+      "sha256": "2818a225dac47ea88ef95ce52829f6c4410822821e833708cc69637da5035488"
+    },
+    {
+      "bytes": 1351,
+      "locations": [
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/B-2-profile.resources.txt",
+      "role": "raw",
+      "sha256": "2fe7faf0fbe14177accfa1f5a72ee1d44001a1595a53fc1eb773dcb894a4aff5"
+    },
+    {
+      "bytes": 3348872,
+      "locations": [
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/B-3-bare.import-context.json",
+      "purpose": "bare GNU control input; content hash captured at publication",
+      "role": "raw",
+      "sha256": "fbb6948557c4982ac822f2507cff96988353ba17e9f815f813dcec9e1712e56b"
+    },
+    {
+      "bytes": 486,
+      "locations": [
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/B-3-bare.log",
+      "purpose": "bare GNU control input; content hash captured at publication",
+      "role": "raw",
+      "sha256": "43d0c0d7d7d5711cad2c2d5d40813d00461f919416ddb1f032a6442575964d83"
+    },
+    {
+      "bytes": 1101,
+      "locations": [
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/B-3-bare.resources.txt",
+      "purpose": "bare GNU control input; content hash captured at publication",
+      "role": "raw",
+      "sha256": "2767c9593128838730d3857593d77c8f47b187d5818d400c7fafb411ae322b54"
+    },
+    {
+      "bytes": 3348872,
+      "locations": [
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/B-3-profile.import-context.json",
+      "role": "raw",
+      "sha256": "fbb6948557c4982ac822f2507cff96988353ba17e9f815f813dcec9e1712e56b"
+    },
+    {
+      "bytes": 288541,
+      "locations": [
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/B-3-profile.json",
+      "role": "raw",
+      "sha256": "35452c4aef796c4f27a495e8a167a46dabba752b165a328e79e2234c7d8c5bcc"
+    },
+    {
+      "bytes": 30779,
+      "locations": [
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/B-3-profile.log",
+      "role": "raw",
+      "sha256": "589c6b9be6a1187b16951a64555713f536a73ee42fd85eb9e6bd0e4c7565eabd"
+    },
+    {
+      "bytes": 1350,
+      "locations": [
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/B-3-profile.resources.txt",
+      "role": "raw",
+      "sha256": "f97daa097b8dd1aa79384b6db241303cfba145c171eb6050d91ece5c169c554c"
+    },
+    {
+      "bytes": 8965,
+      "locations": [
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/B.source.lean.txt",
+      "provenance": {
+        "origin": "preserved-profile-source",
+        "source": "formalization/Cloning/WeylIdlerUniqueness.lean"
+      },
+      "purpose": "hash-bound source copy",
+      "role": "raw",
+      "sha256": "e1413287599caab0c36d5cf8625f327b319f75c097fe6cc33d4351f22cff5dc7"
+    },
+    {
+      "bytes": 4878,
+      "locations": [
+        "tree",
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/REPORT.md",
+      "purpose": "recorded experiment interpretation; not independent verification",
+      "role": "raw",
+      "sha256": "9f28b152cbe77f0280337628af46d1a585e5a44554aa6ecab09c305e3df35c7a"
+    },
+    {
+      "bytes": 37564,
+      "locations": [
+        "tree",
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/bare-summary.json",
+      "purpose": "native GNU timing controls; no fabricated trace",
+      "role": "derived",
+      "sha256": "b4915ef8c34d0d47b23406d6dca95fdf72733a34e204465205337276d153c937"
+    },
+    {
+      "bytes": 28281,
+      "locations": [
+        "tree",
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/bare.json",
+      "provenance": {
+        "original_sha256": "4023253553439c4a327972459f3ef51d27c9a12e8e90a660c6d5633dc5e01c32",
+        "transformation": "Preserved arm/mode/repetition; removed inherited environment paths"
+      },
+      "role": "derived",
+      "sha256": "9d470f6dd37ce622076db685c0b41c6632e896eec5b05ee54660bb16a340f8b2"
+    },
+    {
+      "bytes": 4089,
+      "locations": [
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/build-trace.json",
+      "role": "raw",
+      "sha256": "a10ee1b6ac0c37190e7c25e320a2456888fcde210e08d982e778540d4c07af4f"
+    },
+    {
+      "bytes": 494,
+      "locations": [
+        "tree",
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/candidate.patch",
+      "purpose": "measured candidate proof-body patch",
+      "role": "raw",
+      "sha256": "ad34e4c41702c75e980abef88691dcb5033d1d24b5580765444b8cc56b59793f"
+    },
+    {
+      "bytes": 3348872,
+      "locations": [
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/diagnostic-1-profile.import-context.json",
+      "role": "raw",
+      "sha256": "fbb6948557c4982ac822f2507cff96988353ba17e9f815f813dcec9e1712e56b"
+    },
+    {
+      "bytes": 206728,
+      "locations": [
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/diagnostic-1-profile.json",
+      "role": "raw",
+      "sha256": "478c6f2faa6f2a33c559b4c3a691d695ff80ddcaf79ab0e49841819f026722e7"
+    },
+    {
+      "bytes": 30908,
+      "locations": [
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/diagnostic-1-profile.log",
+      "role": "raw",
+      "sha256": "b3053dbb6395be7d524d811c00024a24939b222aa87858418cd1cc256fa03c75"
+    },
+    {
+      "bytes": 1360,
+      "locations": [
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/diagnostic-1-profile.resources.txt",
+      "role": "raw",
+      "sha256": "86d4c7e7dc4e27408d7852621341f16ee498cac04ee715742f4c8e1ac2d3ccc4"
+    },
+    {
+      "bytes": 8089,
+      "locations": [
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/diagnostic.source.lean.txt",
+      "provenance": {
+        "origin": "preserved-profile-source",
+        "source": "formalization/Cloning/WeylIdlerUniqueness.lean"
+      },
+      "purpose": "hash-bound source copy",
+      "role": "raw",
+      "sha256": "97e8c10e8a4d524400259627e0d5c6567e1406518b88654e08f7ac0d2a9196c2"
+    },
+    {
+      "bytes": 10887,
+      "locations": [
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/driver.py",
+      "provenance": {
+        "original_name": "run_weyl_bridge.py",
+        "original_sha256": "968687bc80c9f9ecdf373a74fa3409be5ee6c6af4dce633f78e63f13725bc79a"
+      },
+      "purpose": "experimental driver bound by plan.script_sha256",
+      "role": "raw",
+      "sha256": "968687bc80c9f9ecdf373a74fa3409be5ee6c6af4dce633f78e63f13725bc79a"
+    },
+    {
+      "bytes": 2925,
+      "locations": [
+        "tree",
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/plan.json",
+      "provenance": {
+        "original_sha256": "518c758b6d1f9578f4770c774ede76355a491d3d223ba3f1a435961ddd1e50a6",
+        "transformation": "Removed inherited environment path fields; experimental plan/decision retained"
+      },
+      "role": "derived",
+      "sha256": "084e77384e39648d2e6032afe67f1986c689078026fc3c49164ca42c33c16684"
+    },
+    {
+      "bytes": 35597,
+      "locations": [
+        "tree",
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/profiles.json",
+      "provenance": {
+        "original_sha256": "830f5ac29d91113439da4fa8bc92a0effe54bc7dfe88b396bc21314d345671c3",
+        "transformation": "Controlled environment fields and hash-bound source pointers"
+      },
+      "role": "derived",
+      "sha256": "0552c88917e756e1f36de64b3831fbdf5c53a6b7ed8a552b5e98a7dfb48f18df"
+    },
+    {
+      "bytes": 2095,
+      "locations": [
+        "tree",
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/proof-vs-statement-diagnostic.json",
+      "purpose": "recorded diagnostic",
+      "role": "raw",
+      "sha256": "9aa11913b44bac3708de050d609034d7286c96b134477542ce18bd4e7e045743"
+    },
+    {
+      "bytes": 7565,
+      "locations": [
+        "tree",
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/receipts.json",
+      "purpose": "complete experiment identity and role mapping",
+      "role": "derived",
+      "sha256": "ecd62f0c64efcdf02f0af0b4646f870d99362a34d699652b1143b4a0a8b4b88b"
+    },
+    {
+      "bytes": 2460066,
+      "locations": [
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/setup.json",
+      "role": "raw",
+      "sha256": "7398bb862731937c44e19ae7c44ceaddba2e487349b4e5739978e15bcbc015c6"
+    },
+    {
+      "bytes": 1376205,
+      "locations": [
+        "tree",
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/summary.json",
+      "provenance": {
+        "original_sha256": "e1a3576a91987dffca5028ad0207d048b16d38cedc3ed99ba81164eba7a4d2ae",
+        "transformation": "Regenerated from identical raw logs/traces and a redacted derived index with verified source snapshots."
+      },
+      "role": "derived",
+      "sha256": "152978cdc4d72f091fa843c18fc55c13fb19633737e93c68c0533005a2d7a5f8"
+    },
+    {
+      "bytes": 10986,
+      "locations": [
+        "tree",
+        "interventions/weyl-bridge.tar.gz"
+      ],
+      "path": "interventions/weyl-bridge/verdict.json",
+      "purpose": "recorded experiment verdict",
+      "role": "raw",
+      "sha256": "46b617bafc81ee45753d895a12700faa9e9fa1e1812da28d0891cf8f7b06f849"
+    },
+    {
+      "bytes": 4102,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.AmplifierWeylThermal-1.build-trace.json",
+      "role": "raw",
+      "sha256": "6ae8c2c7438f7d81e25f2fd087e5603f9f9a2995e3f75677f5c295afa701b733"
+    },
+    {
+      "bytes": 3363981,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.AmplifierWeylThermal-1.import-context.json",
+      "role": "raw",
+      "sha256": "2c7d23c95f8e6ce5093e24b21183c4adba7389dcceffdaf8fe163a1c60b32ff5"
+    },
+    {
+      "bytes": 267072,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.AmplifierWeylThermal-1.json",
+      "role": "raw",
+      "sha256": "bc7971d321aa092e1434f5f6f0593f47c3531e868729fdbd7eaa8e62bca749b8"
+    },
+    {
+      "bytes": 30326,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.AmplifierWeylThermal-1.log",
+      "role": "raw",
+      "sha256": "61e4345a66fdd34d52c70c622e5f7a880473f3f7992c6294dc3e996c094bfbaf"
+    },
+    {
+      "bytes": 1272,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.AmplifierWeylThermal-1.resources.txt",
+      "role": "raw",
+      "sha256": "042d3ff8398d9203e3e69a296f3a0ea181a14662c20c817f133fc70901a05df4"
+    },
+    {
+      "bytes": 2469563,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.AmplifierWeylThermal-1.setup.json",
+      "role": "raw",
+      "sha256": "412348d6670d40509ebab10e3bc928923e3a7ddc34591a5f45f4d46aa62c43ec"
+    },
+    {
+      "bytes": 5845,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.AmplifierWeylThermal-1.source.lean.txt",
+      "provenance": {
+        "commit": "3eb587e0f00748c3a9b63f9eeedc1646e4cb77be",
+        "origin": "measured-git-blob",
+        "source": "formalization/Cloning/AmplifierWeylThermal.lean"
+      },
+      "purpose": "hash-bound source copy",
+      "role": "raw",
+      "sha256": "eeee0e083b71ae3155a11fc033a5cd888fcac86911f4ed7cfe97ab77fce4760b"
+    },
+    {
+      "bytes": 4331,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.CloningValueComparisonMonotone-1.build-trace.json",
+      "role": "raw",
+      "sha256": "0ee832225b99879dce22c001c8b65a950971df533998d4f0175646a65f1332c1"
+    },
+    {
+      "bytes": 2767622,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.CloningValueComparisonMonotone-1.import-context.json",
+      "role": "raw",
+      "sha256": "51be91f5c12445c8964bae4edf55d7a9ab70cffc687df5c869a31e937ed9dd79"
+    },
+    {
+      "bytes": 74662,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.CloningValueComparisonMonotone-1.json",
+      "role": "raw",
+      "sha256": "58b14341dd5c0d9013956d2d343fb6f3cae15b3ec7a9e183383d730036255ebf"
+    },
+    {
+      "bytes": 30328,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.CloningValueComparisonMonotone-1.log",
+      "role": "raw",
+      "sha256": "d17d9d5baea7bd5d5d1c5a88b66fb6b5b29df7736469480cb52abec5e30d5e09"
+    },
+    {
+      "bytes": 1299,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.CloningValueComparisonMonotone-1.resources.txt",
+      "role": "raw",
+      "sha256": "d50170c899c2e9a2502487db905c0f024d57d8ec41ee42aa641bfbe855d422d8"
+    },
+    {
+      "bytes": 2015444,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.CloningValueComparisonMonotone-1.setup.json",
+      "role": "raw",
+      "sha256": "8796c48833cd7a16407a33cfb144efde9e00d368d12a5cc1efce352241806d47"
+    },
+    {
+      "bytes": 4849,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.CloningValueComparisonMonotone-1.source.lean.txt",
+      "provenance": {
+        "commit": "3eb587e0f00748c3a9b63f9eeedc1646e4cb77be",
+        "origin": "measured-git-blob",
+        "source": "formalization/Cloning/CloningValueComparisonMonotone.lean"
+      },
+      "purpose": "hash-bound source copy",
+      "role": "raw",
+      "sha256": "0dbf7031761a5f1b7e1352befdb6a4284734445e63799b3726977bb7c8312551"
+    },
+    {
+      "bytes": 5170,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.InfiniteTraceClass-1.build-trace.json",
+      "role": "raw",
+      "sha256": "7f79695349ceb65e9857fc8039aa20efa3d0fdb72820b2e4da6e1f098d1ed769"
+    },
+    {
+      "bytes": 3252724,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.InfiniteTraceClass-1.import-context.json",
+      "role": "raw",
+      "sha256": "7f0d8fc848080d5388bc9190c05f1dd4652aea2307a4faae586cca033d56b2a7"
+    },
+    {
+      "bytes": 2057295,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.InfiniteTraceClass-1.json",
+      "role": "raw",
+      "sha256": "f5f95e6a78b11f827b52a60e4bc1ec12a221b318990257baf610a775f7df296a"
+    },
+    {
+      "bytes": 31771,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.InfiniteTraceClass-1.log",
+      "role": "raw",
+      "sha256": "915c16c1dbc008196c238a752e3f48a0d3b37a3e730117b831475fb05537f2d6"
+    },
+    {
+      "bytes": 1265,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.InfiniteTraceClass-1.resources.txt",
+      "role": "raw",
+      "sha256": "681961647a27f404bd019bd9ac6e299fc989d63e088ae1d75be6e6ec4ac391e8"
+    },
+    {
+      "bytes": 2366592,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.InfiniteTraceClass-1.setup.json",
+      "role": "raw",
+      "sha256": "81e25de1c6de0e40cb5b24fad672c784dec028327895426939ba766509fc09ee"
+    },
+    {
+      "bytes": 23760,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.InfiniteTraceClass-1.source.lean.txt",
+      "provenance": {
+        "commit": "3eb587e0f00748c3a9b63f9eeedc1646e4cb77be",
+        "origin": "measured-git-blob",
+        "source": "formalization/Cloning/InfiniteTraceClass.lean"
+      },
+      "purpose": "hash-bound source copy",
+      "role": "raw",
+      "sha256": "8989a10ec2f035d84eeadeb1ab47af9dbbbb80ccbfcdf85f31577d3c5e55f3c9"
+    },
+    {
+      "bytes": 4025,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.PCTClosedForm-1.build-trace.json",
+      "role": "raw",
+      "sha256": "30b7f950c216f16df8cdc3494d706cbe61c9eb12c7363b4f005a7f0acb7111b6"
+    },
+    {
+      "bytes": 2739753,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.PCTClosedForm-1.import-context.json",
+      "role": "raw",
+      "sha256": "b84777a2cc4f4e53063de80b625a44832234fdae19f6ca2c06190e542e321632"
+    },
+    {
+      "bytes": 94068,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.PCTClosedForm-1.json",
+      "role": "raw",
+      "sha256": "2ab3d881998d2879500c4fbb60ea7155b44df523ad8dfdec7282e0449c5bc5b3"
+    },
+    {
+      "bytes": 30438,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.PCTClosedForm-1.log",
+      "role": "raw",
+      "sha256": "0b511727b97018f163753b05b86c24925490e9c3589bb667b7198d54510861e7"
+    },
+    {
+      "bytes": 1251,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.PCTClosedForm-1.resources.txt",
+      "role": "raw",
+      "sha256": "7c7b7dbba37aecc3efc44b4fabc57b61031b995e4a6d5c5f548eeb81092f5d1a"
+    },
+    {
+      "bytes": 2002121,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.PCTClosedForm-1.setup.json",
+      "role": "raw",
+      "sha256": "8e2a0b874765878dd0d9c4b50bc778d154e375426da4c8a51ceafd9d2405b7d0"
+    },
+    {
+      "bytes": 2790,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.PCTClosedForm-1.source.lean.txt",
+      "provenance": {
+        "commit": "3eb587e0f00748c3a9b63f9eeedc1646e4cb77be",
+        "origin": "measured-git-blob",
+        "source": "formalization/Cloning/PCTClosedForm.lean"
+      },
+      "purpose": "hash-bound source copy",
+      "role": "raw",
+      "sha256": "a237c4cbc91c79ac818a1a4b7ca3c4445c8e4eba19dd333600b7d727e219c846"
+    },
+    {
+      "bytes": 3646,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.PCTGlobalPhysical-1.build-trace.json",
+      "role": "raw",
+      "sha256": "169e2f19b21a1b05ab1a76823b7b8e29610700637547c094adfa9118c00391bb"
+    },
+    {
+      "bytes": 3350422,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.PCTGlobalPhysical-1.import-context.json",
+      "role": "raw",
+      "sha256": "4518f94489f5d9eefbd979db335ff096dc3f95129e58e53872f138455873e5d3"
+    },
+    {
+      "bytes": 4920878,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.PCTGlobalPhysical-1.json",
+      "role": "raw",
+      "sha256": "ec0420b6a3c6a297b2457b828d2854e753c75a47a70900d21417271f7e6692e4"
+    },
+    {
+      "bytes": 30323,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.PCTGlobalPhysical-1.log",
+      "role": "raw",
+      "sha256": "dd2f3e8eaab5e4d3c75c31d1952c512cf6c64fb5de843e1336c1c0ff0b1e2dcf"
+    },
+    {
+      "bytes": 1265,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.PCTGlobalPhysical-1.resources.txt",
+      "role": "raw",
+      "sha256": "aa46f6bd26a03d662e09ae83787509c312dee69e98b4cba2371d04efb8d0f952"
+    },
+    {
+      "bytes": 2461114,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.PCTGlobalPhysical-1.setup.json",
+      "role": "raw",
+      "sha256": "3f8f95543a6f9e3f4b89b40ffeb676a9db081e8a1c44b1737fd59d475e851916"
+    },
+    {
+      "bytes": 6672,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.PCTGlobalPhysical-1.source.lean.txt",
+      "provenance": {
+        "commit": "3eb587e0f00748c3a9b63f9eeedc1646e4cb77be",
+        "origin": "measured-git-blob",
+        "source": "formalization/Cloning/PCTGlobalPhysical.lean"
+      },
+      "purpose": "hash-bound source copy",
+      "role": "raw",
+      "sha256": "fb0231237298a06a32147e115e6e8f29f0ad572e8a0f4698db82b86654f553c6"
+    },
+    {
+      "bytes": 4250,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.PCTHybridMixtureFactor-1.build-trace.json",
+      "role": "raw",
+      "sha256": "830602b48b89f340893b89c6202f71dc9f3fc07fef7009c7fd9fc465db1f037c"
+    },
+    {
+      "bytes": 3402822,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.PCTHybridMixtureFactor-1.import-context.json",
+      "role": "raw",
+      "sha256": "76bc8972634ed18090244f500794254a65fd2d00d413e37be9be1748611b46ab"
+    },
+    {
+      "bytes": 1931020,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.PCTHybridMixtureFactor-1.json",
+      "role": "raw",
+      "sha256": "e306cc0a49c6ba3b7ef3702de9da3dbb0874ca38cb766fb287083fe8e50fa957"
+    },
+    {
+      "bytes": 31118,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.PCTHybridMixtureFactor-1.log",
+      "role": "raw",
+      "sha256": "29f405e4ec75a700362530f3cbd92c9bdfa707403a95675e9e68b210883997cd"
+    },
+    {
+      "bytes": 1281,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.PCTHybridMixtureFactor-1.resources.txt",
+      "role": "raw",
+      "sha256": "fcdeaf14fcd3a4f7218237d094ee422893348f6bd940edd06145e5f646bf6c76"
+    },
+    {
+      "bytes": 2498578,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.PCTHybridMixtureFactor-1.setup.json",
+      "role": "raw",
+      "sha256": "9f79e479559f10fd46b90dffb38663f805139855f8120488cc0665b6720fce52"
+    },
+    {
+      "bytes": 5052,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.PCTHybridMixtureFactor-1.source.lean.txt",
+      "provenance": {
+        "commit": "3eb587e0f00748c3a9b63f9eeedc1646e4cb77be",
+        "origin": "measured-git-blob",
+        "source": "formalization/Cloning/PCTHybridMixtureFactor.lean"
+      },
+      "purpose": "hash-bound source copy",
+      "role": "raw",
+      "sha256": "dc112ae5e22432d2e6502a06efd023939d9e5b40b13b63a044f06b480272ef54"
+    },
+    {
+      "bytes": 4191,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.PCTUnitaryTransportChannels-1.build-trace.json",
+      "role": "raw",
+      "sha256": "61052072b1224bb941a4221c50d738b314fca279ce1cd16b5801c087ec241995"
+    },
+    {
+      "bytes": 3431533,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.PCTUnitaryTransportChannels-1.import-context.json",
+      "role": "raw",
+      "sha256": "9ec4f439909782f2afe19f81fe160722df0768048421c403dded4846ad02ef65"
+    },
+    {
+      "bytes": 159077,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.PCTUnitaryTransportChannels-1.json",
+      "role": "raw",
+      "sha256": "28a860bd925ccb9acc3bd958e4cd0b849ccfe5e872df1692ea97b457b196ef51"
+    },
+    {
+      "bytes": 30400,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.PCTUnitaryTransportChannels-1.log",
+      "role": "raw",
+      "sha256": "68a9fc88835c0b50067b0404bd73368c6195db825033b0404378434e762f85cf"
+    },
+    {
+      "bytes": 1293,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.PCTUnitaryTransportChannels-1.resources.txt",
+      "role": "raw",
+      "sha256": "456b4948f963aa5a40c6e92d9a39fb20701f44fc711acf40e828f2a5b4576885"
+    },
+    {
+      "bytes": 2524092,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.PCTUnitaryTransportChannels-1.setup.json",
+      "role": "raw",
+      "sha256": "f9529fcfb5c00debf7ff8e06b360aa74e37752defc588abb6d5b067cc2fddffa"
+    },
+    {
+      "bytes": 5446,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.PCTUnitaryTransportChannels-1.source.lean.txt",
+      "provenance": {
+        "commit": "3eb587e0f00748c3a9b63f9eeedc1646e4cb77be",
+        "origin": "measured-git-blob",
+        "source": "formalization/Cloning/PCTUnitaryTransportChannels.lean"
+      },
+      "purpose": "hash-bound source copy",
+      "role": "raw",
+      "sha256": "9eff2831f65aaf27d9d81958f1a14501a9126e4a389de0db9e76bf6a0990e57a"
+    },
+    {
+      "bytes": 4154,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.PhysicalFlatConverseReduction-1.build-trace.json",
+      "purpose": "diagnostic profile attempt; excluded from valid coverage",
+      "role": "raw",
+      "sha256": "b925afe9c22d9edb615e5b8579514c42225a935340524f18c8ea5f2f84ab65d0"
+    },
+    {
+      "bytes": 4026392,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.PhysicalFlatConverseReduction-1.import-context.json",
+      "purpose": "diagnostic profile attempt; excluded from valid coverage",
+      "role": "raw",
+      "sha256": "18312450251bf15791c22c530cef48cd669909fb432ab7a814130a29421bb2cb"
+    },
+    {
+      "bytes": 33493,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.PhysicalFlatConverseReduction-1.log",
+      "purpose": "diagnostic profile attempt; excluded from valid coverage",
+      "role": "raw",
+      "sha256": "a5dd22424d3eb91d97e6c308268a8bceb28bfd44052a57381d66b9c868d135ab"
+    },
+    {
+      "bytes": 1340,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.PhysicalFlatConverseReduction-1.resources.txt",
+      "purpose": "diagnostic profile attempt; excluded from valid coverage",
+      "role": "raw",
+      "sha256": "f93727be323cc3e2c7254c8cd33d3c7bb95368e47f969f4b4970ed1bcaf5cfcd"
+    },
+    {
+      "bytes": 2967212,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.PhysicalFlatConverseReduction-1.setup.json",
+      "purpose": "diagnostic profile attempt; excluded from valid coverage",
+      "role": "raw",
+      "sha256": "ee1ef19b7a810033b80250ba62e10a98dc958263b764649d5d37345624320b12"
+    },
+    {
+      "bytes": 6141,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.PhysicalFlatConverseReduction-1.source.lean.txt",
+      "provenance": {
+        "commit": "3eb587e0f00748c3a9b63f9eeedc1646e4cb77be",
+        "origin": "measured-git-blob",
+        "source": "formalization/Cloning/PhysicalFlatConverseReduction.lean"
+      },
+      "purpose": "hash-bound source copy",
+      "role": "raw",
+      "sha256": "bca45225c36db32c7041c1ebcbafd5bf974abc6bc9fc0172ace4d773088e037f"
+    },
+    {
+      "bytes": 6148,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.PhysicalFlatPinchingInflation-1.source.lean.txt",
+      "provenance": {
+        "commit": "3eb587e0f00748c3a9b63f9eeedc1646e4cb77be",
+        "origin": "measured-git-blob",
+        "source": "formalization/Cloning/PhysicalFlatPinchingInflation.lean"
+      },
+      "purpose": "hash-bound source copy",
+      "role": "raw",
+      "sha256": "ec819ddc2ab205994ecc7801f948b9af02e042e5a79928b0d04a9ea16dc786b4"
+    },
+    {
+      "bytes": 5313,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.TensorCartanChannelCovariance-1.source.lean.txt",
+      "provenance": {
+        "commit": "3eb587e0f00748c3a9b63f9eeedc1646e4cb77be",
+        "origin": "measured-git-blob",
+        "source": "formalization/Cloning/TensorCartanChannelCovariance.lean"
+      },
+      "purpose": "hash-bound source copy",
+      "role": "raw",
+      "sha256": "f9eb714670b6f2a467b262ef6641f7095912c24c601e6ea206e152aad342667c"
+    },
+    {
+      "bytes": 8200,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.TensorCartanStateOperator-1.source.lean.txt",
+      "provenance": {
+        "commit": "3eb587e0f00748c3a9b63f9eeedc1646e4cb77be",
+        "origin": "measured-git-blob",
+        "source": "formalization/Cloning/TensorCartanStateOperator.lean"
+      },
+      "purpose": "hash-bound source copy",
+      "role": "raw",
+      "sha256": "3ae1e4805c1a3809235778d3abc8d7a650d6c58b543cb15e94e70d49be870def"
+    },
+    {
+      "bytes": 4013,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.TensorFlatProjectorStateFidelity-1.build-trace.json",
+      "role": "raw",
+      "sha256": "280ddc577c723f2f18bfde5955e3d6818364221541c11f92a4281af5c46d93a8"
+    },
+    {
+      "bytes": 4075241,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.TensorFlatProjectorStateFidelity-1.import-context.json",
+      "role": "raw",
+      "sha256": "24935a7efccf2d743a5b2c1ec51e9fe58cb991c8543ed23db7e1e90b490f79d1"
+    },
+    {
+      "bytes": 3436949,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.TensorFlatProjectorStateFidelity-1.json",
+      "role": "raw",
+      "sha256": "c8d5f5925a87eb1dcff6b41a95f024669f64240c792509ef6a47cbc0400a77db"
+    },
+    {
+      "bytes": 32186,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.TensorFlatProjectorStateFidelity-1.log",
+      "role": "raw",
+      "sha256": "0eccaef3d9e73ffa166e88460d8b94239f9f6b1fba14793e5d6790d351b3040b"
+    },
+    {
+      "bytes": 1309,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.TensorFlatProjectorStateFidelity-1.resources.txt",
+      "role": "raw",
+      "sha256": "284bac5ebc0f9bb6950d75b1705bcdbbddef684dfcbc168bdeff594e1681e7b4"
+    },
+    {
+      "bytes": 3005942,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.TensorFlatProjectorStateFidelity-1.setup.json",
+      "role": "raw",
+      "sha256": "39d185f8a2ea002719da2bb2346a0d98e2b095697f3e80fec99f68a80acf911b"
+    },
+    {
+      "bytes": 7281,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.TensorFlatProjectorStateFidelity-1.source.lean.txt",
+      "provenance": {
+        "commit": "3eb587e0f00748c3a9b63f9eeedc1646e4cb77be",
+        "origin": "measured-git-blob",
+        "source": "formalization/Cloning/TensorFlatProjectorStateFidelity.lean"
+      },
+      "purpose": "hash-bound source copy",
+      "role": "raw",
+      "sha256": "576d4d68ef53b41ab4396038ced442774eda9458e3ce73d76465692333e31d62"
+    },
+    {
+      "bytes": 4993,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.Thermal-1.build-trace.json",
+      "role": "raw",
+      "sha256": "d55a5f3db80496a7afd4f00b9741be8145500848488df2c427e047078e5acf05"
+    },
+    {
+      "bytes": 1862640,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.Thermal-1.import-context.json",
+      "role": "raw",
+      "sha256": "c9635848bf60d41ba5f7e4b664919d79d69906da3bccc01832886bbd5540fd37"
+    },
+    {
+      "bytes": 394642,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.Thermal-1.json",
+      "role": "raw",
+      "sha256": "280f684277cfdf0777e1a6f0300d09d835166941f1d5aca2ddc1068591fca984"
+    },
+    {
+      "bytes": 30199,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.Thermal-1.log",
+      "role": "raw",
+      "sha256": "0964539ec42c2205a9fdd4979afd954bf9460aea61cd84f8205b142b8c6d9900"
+    },
+    {
+      "bytes": 1232,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.Thermal-1.resources.txt",
+      "role": "raw",
+      "sha256": "354368220602e56d92f85236bd6932511d07a01d29d35699f4aa32d23f822234"
+    },
+    {
+      "bytes": 1334895,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.Thermal-1.setup.json",
+      "role": "raw",
+      "sha256": "3d20cf6749c4de50da042520754fedc18a35ab07b93b620207aedf219c661fb6"
+    },
+    {
+      "bytes": 24206,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.Thermal-1.source.lean.txt",
+      "provenance": {
+        "commit": "3eb587e0f00748c3a9b63f9eeedc1646e4cb77be",
+        "origin": "measured-git-blob",
+        "source": "formalization/Cloning/Thermal.lean"
+      },
+      "purpose": "hash-bound source copy",
+      "role": "raw",
+      "sha256": "d3dc50c83b60b9e7a734b11aed79064d33bbdf3b44b9b210f093f1c94e0b9a91"
+    },
+    {
+      "bytes": 4061,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.WernerPhysicalPullback-1.build-trace.json",
+      "role": "raw",
+      "sha256": "8b8eac72b385659896fd6a88a3e215365c013a36f7a7583a9dca412c552568a4"
+    },
+    {
+      "bytes": 3282200,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.WernerPhysicalPullback-1.import-context.json",
+      "role": "raw",
+      "sha256": "ec22dc52ccef78aae94636a8f36945fdccca914d415c44f0bfbc23791509c564"
+    },
+    {
+      "bytes": 1869178,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.WernerPhysicalPullback-1.json",
+      "role": "raw",
+      "sha256": "9e4f6b707166be4ad13ce140882a7ab4fb71070856e5e2c1e207366072b7104c"
+    },
+    {
+      "bytes": 30251,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.WernerPhysicalPullback-1.log",
+      "role": "raw",
+      "sha256": "b92aa0c4d644d0ea4e9e63c278ba9cca53450b75cbcf82d488fc5b8f5a3a75f5"
+    },
+    {
+      "bytes": 1279,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.WernerPhysicalPullback-1.resources.txt",
+      "role": "raw",
+      "sha256": "18da9e2ba766e2b330e1832c6c31c904ef32789d37f21b491e509e8503621b51"
+    },
+    {
+      "bytes": 2406847,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.WernerPhysicalPullback-1.setup.json",
+      "role": "raw",
+      "sha256": "257a5dac9e7fe1bbab5b94c1ba93c2d89f6dab60d06e820de4773673e43324c5"
+    },
+    {
+      "bytes": 11816,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.WernerPhysicalPullback-1.source.lean.txt",
+      "provenance": {
+        "commit": "3eb587e0f00748c3a9b63f9eeedc1646e4cb77be",
+        "origin": "measured-git-blob",
+        "source": "formalization/Cloning/WernerPhysicalPullback.lean"
+      },
+      "purpose": "hash-bound source copy",
+      "role": "raw",
+      "sha256": "328dd36bde83e302e13d99f6168651cb90f5a10b39811339590e645822c5b30b"
+    },
+    {
+      "bytes": 4089,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.WeylIdlerUniqueness-1.build-trace.json",
+      "role": "raw",
+      "sha256": "3a3bd5710454055a81648feec028f66510edf682fb849f7092e40a583e65546c"
+    },
+    {
+      "bytes": 3349450,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.WeylIdlerUniqueness-1.import-context.json",
+      "role": "raw",
+      "sha256": "7ee8079bc1835d62dbe0ccfdbc6ac8f8b639688339fd2273ff8c6164a6cef58d"
+    },
+    {
+      "bytes": 611672,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.WeylIdlerUniqueness-1.json",
+      "role": "raw",
+      "sha256": "922e7718ce05a0f1177ed32541c7c9221697865d6088f290f1fe9af2a418cdb9"
+    },
+    {
+      "bytes": 30598,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.WeylIdlerUniqueness-1.log",
+      "role": "raw",
+      "sha256": "802280426b84865763dc5086b14881952b970ce5541a7ba22db7fab45e2085e4"
+    },
+    {
+      "bytes": 1270,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.WeylIdlerUniqueness-1.resources.txt",
+      "role": "raw",
+      "sha256": "a7843888c35ca33929d4a1d995a996f08c3f2043472cc1766abcb69e2217e7fc"
+    },
+    {
+      "bytes": 2460066,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.WeylIdlerUniqueness-1.setup.json",
+      "role": "raw",
+      "sha256": "7398bb862731937c44e19ae7c44ceaddba2e487349b4e5739978e15bcbc015c6"
+    },
+    {
+      "bytes": 8965,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/Cloning.WeylIdlerUniqueness-1.source.lean.txt",
+      "provenance": {
+        "commit": "3eb587e0f00748c3a9b63f9eeedc1646e4cb77be",
+        "origin": "measured-git-blob",
+        "source": "formalization/Cloning/WeylIdlerUniqueness.lean"
+      },
+      "purpose": "hash-bound source copy",
+      "role": "raw",
+      "sha256": "e1413287599caab0c36d5cf8625f327b319f75c097fe6cc33d4351f22cff5dc7"
+    },
+    {
+      "bytes": 672,
+      "locations": [
+        "tree",
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/aggregation.json",
+      "purpose": "saved profile runner or post-measurement aggregation provenance",
+      "role": "raw",
+      "sha256": "6cb6d8d068594dedaea4a5608e5962f13c412277938ed25e83359c3f81e53dd2"
+    },
+    {
+      "bytes": 6141,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/attempts/attempt-0001.source.lean.txt",
+      "provenance": {
+        "commit": "3eb587e0f00748c3a9b63f9eeedc1646e4cb77be",
+        "origin": "measured-git-blob",
+        "source": "formalization/Cloning/PhysicalFlatConverseReduction.lean"
+      },
+      "purpose": "hash-bound diagnostic production source copy",
+      "role": "raw",
+      "sha256": "bca45225c36db32c7041c1ebcbafd5bf974abc6bc9fc0172ace4d773088e037f"
+    },
+    {
+      "bytes": 6148,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/attempts/attempt-0002.source.lean.txt",
+      "provenance": {
+        "commit": "3eb587e0f00748c3a9b63f9eeedc1646e4cb77be",
+        "origin": "measured-git-blob",
+        "source": "formalization/Cloning/PhysicalFlatPinchingInflation.lean"
+      },
+      "purpose": "hash-bound diagnostic production source copy",
+      "role": "raw",
+      "sha256": "ec819ddc2ab205994ecc7801f948b9af02e042e5a79928b0d04a9ea16dc786b4"
+    },
+    {
+      "bytes": 6141,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/attempts/attempt-0003.source.lean.txt",
+      "provenance": {
+        "commit": "3eb587e0f00748c3a9b63f9eeedc1646e4cb77be",
+        "origin": "measured-git-blob",
+        "source": "formalization/Cloning/PhysicalFlatConverseReduction.lean"
+      },
+      "purpose": "hash-bound diagnostic production source copy",
+      "role": "raw",
+      "sha256": "bca45225c36db32c7041c1ebcbafd5bf974abc6bc9fc0172ace4d773088e037f"
+    },
+    {
+      "bytes": 4910,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/continuation/Cloning.PhysicalFlatPinchingInflation-1.build-trace.json",
+      "purpose": "diagnostic profile attempt; excluded from valid coverage",
+      "role": "raw",
+      "sha256": "e5d18d90192e5b2afcbcc317d067447dfc8e37372e7919d50029a16f9ea32ab6"
+    },
+    {
+      "bytes": 4022340,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/continuation/Cloning.PhysicalFlatPinchingInflation-1.import-context.json",
+      "purpose": "diagnostic profile attempt; excluded from valid coverage",
+      "role": "raw",
+      "sha256": "bbe2d587cc8c982e3c9bdc1eda9da638ef9216ab606bfc6b07cb4615dace5a75"
+    },
+    {
+      "bytes": 34544,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/continuation/Cloning.PhysicalFlatPinchingInflation-1.log",
+      "purpose": "diagnostic profile attempt; excluded from valid coverage",
+      "role": "raw",
+      "sha256": "8ae1dc0fa57af81d884fdb8ec8f04173dfdd11341280f398ef6d5a055df28759"
+    },
+    {
+      "bytes": 1366,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/continuation/Cloning.PhysicalFlatPinchingInflation-1.resources.txt",
+      "purpose": "diagnostic profile attempt; excluded from valid coverage",
+      "role": "raw",
+      "sha256": "6d5d3f8a3da155399f2c00ac4b2319954cc361303dae38b8ff1e100a9cd5a35c"
+    },
+    {
+      "bytes": 2964924,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/continuation/Cloning.PhysicalFlatPinchingInflation-1.setup.json",
+      "purpose": "diagnostic profile attempt; excluded from valid coverage",
+      "role": "raw",
+      "sha256": "10aebcde63ad07877061ccfdf8b08719b2fffb04b58b70860c9f9d79fc9c3565"
+    },
+    {
+      "bytes": 3775,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/continuation/Cloning.TensorCartanChannelCovariance-1.build-trace.json",
+      "role": "raw",
+      "sha256": "9c605b4e7e45cbccaf5971d620430b081faaabbedc5df003c9557dcfbe3c8e75"
+    },
+    {
+      "bytes": 3917894,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/continuation/Cloning.TensorCartanChannelCovariance-1.import-context.json",
+      "role": "raw",
+      "sha256": "5203c55f24e95648d23b74f7c0aa5a4281e1b4f609ee3d106918d6aea0bb894a"
+    },
+    {
+      "bytes": 5963321,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/continuation/Cloning.TensorCartanChannelCovariance-1.json",
+      "role": "raw",
+      "sha256": "2e557ecc65b31dc844e07cc10be84792cc39989929dfde0da0b893cfa7781528"
+    },
+    {
+      "bytes": 35983,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/continuation/Cloning.TensorCartanChannelCovariance-1.log",
+      "role": "raw",
+      "sha256": "6e7c0a4f07dcc517f8cf8f8236b470039de9d4165c98e7c3eb215036b2c73364"
+    },
+    {
+      "bytes": 1329,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/continuation/Cloning.TensorCartanChannelCovariance-1.resources.txt",
+      "role": "raw",
+      "sha256": "1ff4c4b85dc0549769e19f594cc3d8ef81a8ad6ec03ab51b9f8574496e26f54f"
+    },
+    {
+      "bytes": 2884098,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/continuation/Cloning.TensorCartanChannelCovariance-1.setup.json",
+      "role": "raw",
+      "sha256": "3387061ffc3d7c52a667ba766e2e621b8d3d98d604d1d834ebc4f0397d775541"
+    },
+    {
+      "bytes": 3735,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/continuation/Cloning.TensorCartanStateOperator-1.build-trace.json",
+      "role": "raw",
+      "sha256": "0dbf0f38bd790f5676a0000762636401ef570f841c2fc91154e255d9eb739bb4"
+    },
+    {
+      "bytes": 3916347,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/continuation/Cloning.TensorCartanStateOperator-1.import-context.json",
+      "role": "raw",
+      "sha256": "ff3b76203ca5ceb6bec385e1ae7162f813c5a3cef1febb2c8f72cf76e82ad6e2"
+    },
+    {
+      "bytes": 3306452,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/continuation/Cloning.TensorCartanStateOperator-1.json",
+      "role": "raw",
+      "sha256": "1f943e729b13890d85ead3873049b78bae6c579783637e70d384f5923965a37d"
+    },
+    {
+      "bytes": 34123,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/continuation/Cloning.TensorCartanStateOperator-1.log",
+      "role": "raw",
+      "sha256": "f1cc516f79e317ff6f19ea3c47bd42edf306368b29d097416d6c040a9e57019d"
+    },
+    {
+      "bytes": 1316,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/continuation/Cloning.TensorCartanStateOperator-1.resources.txt",
+      "role": "raw",
+      "sha256": "821a59002bc0e0a225476529d98431d9fdf73a00bd3ff2c90bc53a8ac8a6433f"
+    },
+    {
+      "bytes": 2882834,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/continuation/Cloning.TensorCartanStateOperator-1.setup.json",
+      "role": "raw",
+      "sha256": "67b02e61150fffb619a66868f07d8e9b1b93bf2884922f5e4f81100ba401cbbb"
+    },
+    {
+      "bytes": 187,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/continuation/profile-runner-provenance.json",
+      "purpose": "saved profile runner or post-measurement aggregation provenance",
+      "role": "raw",
+      "sha256": "5a73280af2799164ca625d82f34802a7d24fc52e1da53f04510cb6caf2398984"
+    },
+    {
+      "bytes": 15342,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/continuation/profile-runner.py",
+      "purpose": "saved profile runner or post-measurement aggregation provenance",
+      "role": "raw",
+      "sha256": "a7c8e25affe55c51e4bd7a60691d597ac5551157d1140e644d4af533b87f73a8"
+    },
+    {
+      "bytes": 12709,
+      "locations": [
+        "tree",
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/continuation/profiles.json",
+      "provenance": {
+        "omitted_environment_fields": [
+          "[0].environment.LEAN_PATH",
+          "[0].environment.LEAN_SYSROOT",
+          "[0].environment.PATH",
+          "[0].toolchain.environment.LEAN_PATH",
+          "[0].toolchain.environment.LEAN_SYSROOT",
+          "[0].toolchain.environment.PATH",
+          "[1].environment.LEAN_PATH",
+          "[1].environment.LEAN_SYSROOT",
+          "[1].environment.PATH",
+          "[1].toolchain.environment.LEAN_PATH",
+          "[1].toolchain.environment.LEAN_SYSROOT",
+          "[1].toolchain.environment.PATH",
+          "[2].environment.LEAN_PATH",
+          "[2].environment.LEAN_SYSROOT",
+          "[2].environment.PATH",
+          "[2].toolchain.environment.LEAN_PATH",
+          "[2].toolchain.environment.LEAN_SYSROOT",
+          "[2].toolchain.environment.PATH"
+        ],
+        "original_sha256": "8b87f18cf769d016e8885d495623c950791d071a033b8512ea3783482eb90684",
+        "transformation": "Removed inherited environment path fields; original record positions retained"
+      },
+      "purpose": "derived origin index",
+      "role": "derived",
+      "sha256": "53395674a8e1a345a4e1210070370a4548225934407cdd050c06f0c563d33d22"
+    },
+    {
+      "bytes": 4154,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/native-exploratory/Cloning.PhysicalFlatConverseReduction-1.build-trace.json",
+      "purpose": "diagnostic profile attempt; excluded from valid coverage",
+      "role": "raw",
+      "sha256": "b925afe9c22d9edb615e5b8579514c42225a935340524f18c8ea5f2f84ab65d0"
+    },
+    {
+      "bytes": 2967212,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/native-exploratory/Cloning.PhysicalFlatConverseReduction-1.setup.json",
+      "purpose": "diagnostic profile attempt; excluded from valid coverage",
+      "role": "raw",
+      "sha256": "ee1ef19b7a810033b80250ba62e10a98dc958263b764649d5d37345624320b12"
+    },
+    {
+      "bytes": 4025900,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/native-exploratory/Cloning.PhysicalFlatConverseReduction-native-1.import-context.json",
+      "purpose": "diagnostic profile attempt; excluded from valid coverage",
+      "role": "raw",
+      "sha256": "393dd3030bb9d5f3c1d3c8faf6969c874a5bcf980302c5514318afacc201aa1c"
+    },
+    {
+      "bytes": 31441,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/native-exploratory/Cloning.PhysicalFlatConverseReduction-native-1.log",
+      "purpose": "diagnostic profile attempt; excluded from valid coverage",
+      "role": "raw",
+      "sha256": "830a6b7558e2a040d748bb921e45012360ceb27190b2c3b3bc26cf661e61eb45"
+    },
+    {
+      "bytes": 1050,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/native-exploratory/Cloning.PhysicalFlatConverseReduction-native-1.resources.txt",
+      "purpose": "diagnostic profile attempt; excluded from valid coverage",
+      "role": "raw",
+      "sha256": "f1075f8f1dcc5b97f042dde5575229f41893fd689a7f97b2145dfe942eb9014c"
+    },
+    {
+      "bytes": 3454,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/native-exploratory/driver.py",
+      "purpose": "saved profile runner or post-measurement aggregation provenance",
+      "role": "raw",
+      "sha256": "b09aa5b3c8ddf66537fae5dc6c4d8581c78ce45a14a0b607e45983c6e60ef8b5"
+    },
+    {
+      "bytes": 4321,
+      "locations": [
+        "tree",
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/native-exploratory/profiles.json",
+      "provenance": {
+        "omitted_environment_fields": [
+          "[0].environment.LEAN_PATH",
+          "[0].environment.LEAN_SYSROOT",
+          "[0].environment.PATH",
+          "[0].toolchain.environment.LEAN_PATH",
+          "[0].toolchain.environment.LEAN_SYSROOT",
+          "[0].toolchain.environment.PATH"
+        ],
+        "original_sha256": "01a1caf1c94710e055ddff3cbf3ace555230c8813687a47b9ede2094c3ba7060",
+        "transformation": "Removed inherited environment path fields; original record positions retained"
+      },
+      "purpose": "derived origin index",
+      "role": "derived",
+      "sha256": "50031c9797870f03289d164ab48c8b11ea1e85cf533dd57d4789e2807d18e4a5"
+    },
+    {
+      "bytes": 4154,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/native-guarded/Cloning.PhysicalFlatConverseReduction-1.build-trace.json",
+      "role": "raw",
+      "sha256": "b925afe9c22d9edb615e5b8579514c42225a935340524f18c8ea5f2f84ab65d0"
+    },
+    {
+      "bytes": 4026392,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/native-guarded/Cloning.PhysicalFlatConverseReduction-1.import-context.json",
+      "role": "raw",
+      "sha256": "18312450251bf15791c22c530cef48cd669909fb432ab7a814130a29421bb2cb"
+    },
+    {
+      "bytes": 31437,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/native-guarded/Cloning.PhysicalFlatConverseReduction-1.log",
+      "role": "raw",
+      "sha256": "87312e7bf0b47d0fadd2facf390f520fccd8edb263d7707cfec2e3816944b322"
+    },
+    {
+      "bytes": 1049,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/native-guarded/Cloning.PhysicalFlatConverseReduction-1.resources.txt",
+      "role": "raw",
+      "sha256": "a8e0122e8cebca76197259ae3ff6d0b3d8b7f34e83c3d5a97f72dc34f9db5fb4"
+    },
+    {
+      "bytes": 2967212,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/native-guarded/Cloning.PhysicalFlatConverseReduction-1.setup.json",
+      "role": "raw",
+      "sha256": "ee1ef19b7a810033b80250ba62e10a98dc958263b764649d5d37345624320b12"
+    },
+    {
+      "bytes": 4910,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/native-guarded/Cloning.PhysicalFlatPinchingInflation-1.build-trace.json",
+      "role": "raw",
+      "sha256": "e5d18d90192e5b2afcbcc317d067447dfc8e37372e7919d50029a16f9ea32ab6"
+    },
+    {
+      "bytes": 4022340,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/native-guarded/Cloning.PhysicalFlatPinchingInflation-1.import-context.json",
+      "role": "raw",
+      "sha256": "bbe2d587cc8c982e3c9bdc1eda9da638ef9216ab606bfc6b07cb4615dace5a75"
+    },
+    {
+      "bytes": 32749,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/native-guarded/Cloning.PhysicalFlatPinchingInflation-1.log",
+      "role": "raw",
+      "sha256": "a1a9226da668a37c590528810dfac170c75ed4b1d0370e5837a4cf1a7cdf1d2f"
+    },
+    {
+      "bytes": 1051,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/native-guarded/Cloning.PhysicalFlatPinchingInflation-1.resources.txt",
+      "role": "raw",
+      "sha256": "c2feb0e66e03c1ae01d66b313b12a19c19475e12e2ac6e8b21479b55f9d70aac"
+    },
+    {
+      "bytes": 2964924,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/native-guarded/Cloning.PhysicalFlatPinchingInflation-1.setup.json",
+      "role": "raw",
+      "sha256": "10aebcde63ad07877061ccfdf8b08719b2fffb04b58b70860c9f9d79fc9c3565"
+    },
+    {
+      "bytes": 174,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/native-guarded/profile-runner-provenance.json",
+      "purpose": "saved profile runner or post-measurement aggregation provenance",
+      "role": "raw",
+      "sha256": "015ec449e5fb3e2e3715cea6899852797ee2a5b66818f79edcde3b7aefbb96f4"
+    },
+    {
+      "bytes": 15955,
+      "locations": [
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/native-guarded/profile-runner.py",
+      "purpose": "saved profile runner or post-measurement aggregation provenance",
+      "role": "raw",
+      "sha256": "9be3675af8f6560ac32a665bc577b7b7d326e8718d229687f0cecd975fdc76a3"
+    },
+    {
+      "bytes": 7858,
+      "locations": [
+        "tree",
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/native-guarded/profiles.json",
+      "provenance": {
+        "omitted_environment_fields": [
+          "[0].environment.LEAN_PATH",
+          "[0].environment.LEAN_SYSROOT",
+          "[0].environment.PATH",
+          "[0].toolchain.environment.LEAN_PATH",
+          "[0].toolchain.environment.LEAN_SYSROOT",
+          "[0].toolchain.environment.PATH",
+          "[1].environment.LEAN_PATH",
+          "[1].environment.LEAN_SYSROOT",
+          "[1].environment.PATH",
+          "[1].toolchain.environment.LEAN_PATH",
+          "[1].toolchain.environment.LEAN_SYSROOT",
+          "[1].toolchain.environment.PATH"
+        ],
+        "original_sha256": "e4632b27d5b5b61302af8427bc8b514929bff79b8f447dade52b11afd1f3547c",
+        "transformation": "Removed inherited environment path fields; original record positions retained"
+      },
+      "purpose": "derived origin index",
+      "role": "derived",
+      "sha256": "8155771777215a5a03f8ae8f0f200d05152af9641c22b5f271d0f73b063e0737"
+    },
+    {
+      "bytes": 5313,
+      "locations": [
+        "tree",
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/profile-attempts-receipt.json",
+      "purpose": "derived diagnostic attempts receipt",
+      "role": "derived",
+      "sha256": "faa553767f600b8f3aae3d0341ecc287a672eca88c231a86f2795558e68c881a"
+    },
+    {
+      "bytes": 18671,
+      "locations": [
+        "tree",
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/profile-attempts.json",
+      "provenance": {
+        "original_sha256": "04a3de02c9466225cd0791fbcc8c28a755f68bd8dbcdc3e8185829e82c370ff6",
+        "transformation": "Rebased archived inputs and source copies; removed inherited environment paths; roles and reasons preserved"
+      },
+      "purpose": "derived diagnostic attempts index",
+      "role": "derived",
+      "sha256": "bc475a681b0590ae7bf79252126602dd66a74512d0ef4d80a1e009691694b5e9"
+    },
+    {
+      "bytes": 49434,
+      "locations": [
+        "tree",
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/profiles-attempt-1.json",
+      "provenance": {
+        "omitted_environment_fields": [
+          "[0].environment.LEAN_PATH",
+          "[0].environment.LEAN_SYSROOT",
+          "[0].environment.PATH",
+          "[0].toolchain.environment.LEAN_PATH",
+          "[0].toolchain.environment.LEAN_SYSROOT",
+          "[0].toolchain.environment.PATH",
+          "[10].environment.LEAN_PATH",
+          "[10].environment.LEAN_SYSROOT",
+          "[10].environment.PATH",
+          "[10].toolchain.environment.LEAN_PATH",
+          "[10].toolchain.environment.LEAN_SYSROOT",
+          "[10].toolchain.environment.PATH",
+          "[11].environment.LEAN_PATH",
+          "[11].environment.LEAN_SYSROOT",
+          "[11].environment.PATH",
+          "[11].toolchain.environment.LEAN_PATH",
+          "[11].toolchain.environment.LEAN_SYSROOT",
+          "[11].toolchain.environment.PATH",
+          "[1].environment.LEAN_PATH",
+          "[1].environment.LEAN_SYSROOT",
+          "[1].environment.PATH",
+          "[1].toolchain.environment.LEAN_PATH",
+          "[1].toolchain.environment.LEAN_SYSROOT",
+          "[1].toolchain.environment.PATH",
+          "[2].environment.LEAN_PATH",
+          "[2].environment.LEAN_SYSROOT",
+          "[2].environment.PATH",
+          "[2].toolchain.environment.LEAN_PATH",
+          "[2].toolchain.environment.LEAN_SYSROOT",
+          "[2].toolchain.environment.PATH",
+          "[3].environment.LEAN_PATH",
+          "[3].environment.LEAN_SYSROOT",
+          "[3].environment.PATH",
+          "[3].toolchain.environment.LEAN_PATH",
+          "[3].toolchain.environment.LEAN_SYSROOT",
+          "[3].toolchain.environment.PATH",
+          "[4].environment.LEAN_PATH",
+          "[4].environment.LEAN_SYSROOT",
+          "[4].environment.PATH",
+          "[4].toolchain.environment.LEAN_PATH",
+          "[4].toolchain.environment.LEAN_SYSROOT",
+          "[4].toolchain.environment.PATH",
+          "[5].environment.LEAN_PATH",
+          "[5].environment.LEAN_SYSROOT",
+          "[5].environment.PATH",
+          "[5].toolchain.environment.LEAN_PATH",
+          "[5].toolchain.environment.LEAN_SYSROOT",
+          "[5].toolchain.environment.PATH",
+          "[6].environment.LEAN_PATH",
+          "[6].environment.LEAN_SYSROOT",
+          "[6].environment.PATH",
+          "[6].toolchain.environment.LEAN_PATH",
+          "[6].toolchain.environment.LEAN_SYSROOT",
+          "[6].toolchain.environment.PATH",
+          "[7].environment.LEAN_PATH",
+          "[7].environment.LEAN_SYSROOT",
+          "[7].environment.PATH",
+          "[7].toolchain.environment.LEAN_PATH",
+          "[7].toolchain.environment.LEAN_SYSROOT",
+          "[7].toolchain.environment.PATH",
+          "[8].environment.LEAN_PATH",
+          "[8].environment.LEAN_SYSROOT",
+          "[8].environment.PATH",
+          "[8].toolchain.environment.LEAN_PATH",
+          "[8].toolchain.environment.LEAN_SYSROOT",
+          "[8].toolchain.environment.PATH",
+          "[9].environment.LEAN_PATH",
+          "[9].environment.LEAN_SYSROOT",
+          "[9].environment.PATH",
+          "[9].toolchain.environment.LEAN_PATH",
+          "[9].toolchain.environment.LEAN_SYSROOT",
+          "[9].toolchain.environment.PATH"
+        ],
+        "original_sha256": "f7945f3d1c011035c355fc5c9ef04d2618690ce66f9d3bda1dc6710930dfd07f",
+        "transformation": "Removed inherited environment path fields; original record positions retained"
+      },
+      "purpose": "derived origin index",
+      "role": "derived",
+      "sha256": "19b30aa366ce05a8ab6e29b72ea6a4b204924a5360694d9b01ccebd0621b9450"
+    },
+    {
+      "bytes": 77655,
+      "locations": [
+        "tree",
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/profiles.json",
+      "provenance": {
+        "original_sha256": "c796ad4e0bad239322b6ef5522fa4b6f87cc074e51c6285e13eb68e33fb18833",
+        "transformation": "Controlled environment fields and hash-bound source pointers"
+      },
+      "role": "derived",
+      "sha256": "5ae582e3b32838b9c2f26a9fd866986c83981fbdd98d5a1f061625c8f5f110bb"
+    },
+    {
+      "bytes": 7462522,
+      "locations": [
+        "tree",
+        "profiles-after.tar.gz"
+      ],
+      "path": "profiles-after/summary.json",
+      "provenance": {
+        "original_sha256": "43dd6bdf193a11dad8b1b4b7077538bff627b83a43d1b926ba503057c1a79ca5",
+        "transformation": "Regenerated from identical raw logs/traces and a redacted derived index with verified source snapshots."
+      },
+      "role": "derived",
+      "sha256": "7e7eb59295c2969da2ea0655064bce12cc9dba0a95dcfc11c8c55443e2b3667d"
+    },
+    {
+      "bytes": 4102,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.AmplifierWeylThermal-1.build-trace.json",
+      "role": "raw",
+      "sha256": "c367f1611a3b904f98786f6cd535c1aba97ea67b85c50fe1f25a1718058d9cfb"
+    },
+    {
+      "bytes": 3363981,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.AmplifierWeylThermal-1.import-context.json",
+      "role": "raw",
+      "sha256": "e230f4212694d4c9b1c636e634833eabedb2d5b3faea26ab2c918f73de6fd863"
+    },
+    {
+      "bytes": 284700,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.AmplifierWeylThermal-1.json",
+      "role": "raw",
+      "sha256": "bd332ea7d9ca383b4347ac220a7ad39a88c83cd3d4f59d7b7c6c4e1549b0da6d"
+    },
+    {
+      "bytes": 30325,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.AmplifierWeylThermal-1.log",
+      "role": "raw",
+      "sha256": "34619f3e1cf8c9581618e96cca0fad32d188788a8f6404cb0e3e2df1d3c8219a"
+    },
+    {
+      "bytes": 1274,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.AmplifierWeylThermal-1.resources.txt",
+      "role": "raw",
+      "sha256": "e3fd10528cbd3c78e76068e1c217e8561da84f3edeb781277b26479399ad9555"
+    },
+    {
+      "bytes": 2469563,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.AmplifierWeylThermal-1.setup.json",
+      "role": "raw",
+      "sha256": "412348d6670d40509ebab10e3bc928923e3a7ddc34591a5f45f4d46aa62c43ec"
+    },
+    {
+      "bytes": 5845,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.AmplifierWeylThermal-1.source.lean.txt",
+      "provenance": {
+        "commit": "80e4b7ca1aa43969f85105171bfd80bf662d6b32",
+        "origin": "measured-git-blob",
+        "source": "formalization/Cloning/AmplifierWeylThermal.lean"
+      },
+      "purpose": "hash-bound source copy",
+      "role": "raw",
+      "sha256": "eeee0e083b71ae3155a11fc033a5cd888fcac86911f4ed7cfe97ab77fce4760b"
+    },
+    {
+      "bytes": 4331,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.CloningValueComparisonMonotone-1.build-trace.json",
+      "role": "raw",
+      "sha256": "0ee832225b99879dce22c001c8b65a950971df533998d4f0175646a65f1332c1"
+    },
+    {
+      "bytes": 2767622,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.CloningValueComparisonMonotone-1.import-context.json",
+      "role": "raw",
+      "sha256": "3bc7cf20bb50809c0eb56acb7100e743ea9902dc653e7ecfe2c4adf43d1515fe"
+    },
+    {
+      "bytes": 161793,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.CloningValueComparisonMonotone-1.json",
+      "role": "raw",
+      "sha256": "dba6963fa593510b9a77f514e425f20af1fab41827f9ae85a9c0ae73dec14789"
+    },
+    {
+      "bytes": 30327,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.CloningValueComparisonMonotone-1.log",
+      "role": "raw",
+      "sha256": "e6e3284631ec94b658f1453d5fef546cecf96e0ceb1ae49a771e0ea4352f7627"
+    },
+    {
+      "bytes": 1304,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.CloningValueComparisonMonotone-1.resources.txt",
+      "role": "raw",
+      "sha256": "ca5eb332ad1321733bbb0a06e50ba7361929566c5f27262865ddb0c69e7ed5e3"
+    },
+    {
+      "bytes": 2015444,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.CloningValueComparisonMonotone-1.setup.json",
+      "role": "raw",
+      "sha256": "8796c48833cd7a16407a33cfb144efde9e00d368d12a5cc1efce352241806d47"
+    },
+    {
+      "bytes": 4849,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.CloningValueComparisonMonotone-1.source.lean.txt",
+      "provenance": {
+        "commit": "80e4b7ca1aa43969f85105171bfd80bf662d6b32",
+        "origin": "measured-git-blob",
+        "source": "formalization/Cloning/CloningValueComparisonMonotone.lean"
+      },
+      "purpose": "hash-bound source copy",
+      "role": "raw",
+      "sha256": "0dbf7031761a5f1b7e1352befdb6a4284734445e63799b3726977bb7c8312551"
+    },
+    {
+      "bytes": 5170,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.InfiniteTraceClass-1.build-trace.json",
+      "role": "raw",
+      "sha256": "7f79695349ceb65e9857fc8039aa20efa3d0fdb72820b2e4da6e1f098d1ed769"
+    },
+    {
+      "bytes": 3252724,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.InfiniteTraceClass-1.import-context.json",
+      "role": "raw",
+      "sha256": "7f0d8fc848080d5388bc9190c05f1dd4652aea2307a4faae586cca033d56b2a7"
+    },
+    {
+      "bytes": 3124924,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.InfiniteTraceClass-1.json",
+      "role": "raw",
+      "sha256": "7b47ba017763174e780100aec037ae59846a59cc868bb61104748b6df534993f"
+    },
+    {
+      "bytes": 34325,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.InfiniteTraceClass-1.log",
+      "role": "raw",
+      "sha256": "66b06dd96d247387d8ff82223a7815fc620d99cfb6e6839060dca4c801bb6b13"
+    },
+    {
+      "bytes": 1270,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.InfiniteTraceClass-1.resources.txt",
+      "role": "raw",
+      "sha256": "34ce202cc493c345b00254b2f33c7d1e0d2e1bd94318838cc8b300577d3ae5d2"
+    },
+    {
+      "bytes": 2366592,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.InfiniteTraceClass-1.setup.json",
+      "role": "raw",
+      "sha256": "81e25de1c6de0e40cb5b24fad672c784dec028327895426939ba766509fc09ee"
+    },
+    {
+      "bytes": 23760,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.InfiniteTraceClass-1.source.lean.txt",
+      "provenance": {
+        "commit": "80e4b7ca1aa43969f85105171bfd80bf662d6b32",
+        "origin": "measured-git-blob",
+        "source": "formalization/Cloning/InfiniteTraceClass.lean"
+      },
+      "purpose": "hash-bound source copy",
+      "role": "raw",
+      "sha256": "8989a10ec2f035d84eeadeb1ab47af9dbbbb80ccbfcdf85f31577d3c5e55f3c9"
+    },
+    {
+      "bytes": 4025,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.PCTClosedForm-1.build-trace.json",
+      "role": "raw",
+      "sha256": "30b7f950c216f16df8cdc3494d706cbe61c9eb12c7363b4f005a7f0acb7111b6"
+    },
+    {
+      "bytes": 2739753,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.PCTClosedForm-1.import-context.json",
+      "role": "raw",
+      "sha256": "28aa797cb699f8f6527634e2f1dd71f623bc507c5eb35c55eb28e233a78f3758"
+    },
+    {
+      "bytes": 93611,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.PCTClosedForm-1.json",
+      "role": "raw",
+      "sha256": "b299fb516fb51a617ba234bbc8fcff2bea6d164d4077661f920551aa6d9d1060"
+    },
+    {
+      "bytes": 30405,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.PCTClosedForm-1.log",
+      "role": "raw",
+      "sha256": "ff68f736e7ef5d842e7b77a2f5a7bb210811ff99da989855b43f32db045ad2aa"
+    },
+    {
+      "bytes": 1253,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.PCTClosedForm-1.resources.txt",
+      "role": "raw",
+      "sha256": "82a9558dd4db0f521688ae9f5ee270833f32e14af60eb6539bc65149a1cbede4"
+    },
+    {
+      "bytes": 2002121,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.PCTClosedForm-1.setup.json",
+      "role": "raw",
+      "sha256": "8e2a0b874765878dd0d9c4b50bc778d154e375426da4c8a51ceafd9d2405b7d0"
+    },
+    {
+      "bytes": 2790,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.PCTClosedForm-1.source.lean.txt",
+      "provenance": {
+        "commit": "80e4b7ca1aa43969f85105171bfd80bf662d6b32",
+        "origin": "measured-git-blob",
+        "source": "formalization/Cloning/PCTClosedForm.lean"
+      },
+      "purpose": "hash-bound source copy",
+      "role": "raw",
+      "sha256": "a237c4cbc91c79ac818a1a4b7ca3c4445c8e4eba19dd333600b7d727e219c846"
+    },
+    {
+      "bytes": 3646,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.PCTGlobalPhysical-1.build-trace.json",
+      "role": "raw",
+      "sha256": "e22e226f41a5327e94103f969065ef2ae033b4e6c05604306f95bf3ce65b832f"
+    },
+    {
+      "bytes": 3350422,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.PCTGlobalPhysical-1.import-context.json",
+      "role": "raw",
+      "sha256": "2e597733893a0c5180529fd6a983e679db7088ebf8974436af870b57edd6c9a0"
+    },
+    {
+      "bytes": 5499104,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.PCTGlobalPhysical-1.json",
+      "role": "raw",
+      "sha256": "de7f4fb73b46753057512b6ec9498a9903ae73cbe1ec2cc1ada2b093f33a045f"
+    },
+    {
+      "bytes": 30897,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.PCTGlobalPhysical-1.log",
+      "role": "raw",
+      "sha256": "aa8b500b666993f9a5fb636ba9e3696f4492ec1c91978da6bc1246792166a951"
+    },
+    {
+      "bytes": 1269,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.PCTGlobalPhysical-1.resources.txt",
+      "role": "raw",
+      "sha256": "c3fb9a8b02729ce232936d91d678b5dfd31ea3d82070d391d5d51402a965f91d"
+    },
+    {
+      "bytes": 2461114,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.PCTGlobalPhysical-1.setup.json",
+      "role": "raw",
+      "sha256": "3f8f95543a6f9e3f4b89b40ffeb676a9db081e8a1c44b1737fd59d475e851916"
+    },
+    {
+      "bytes": 6672,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.PCTGlobalPhysical-1.source.lean.txt",
+      "provenance": {
+        "commit": "80e4b7ca1aa43969f85105171bfd80bf662d6b32",
+        "origin": "measured-git-blob",
+        "source": "formalization/Cloning/PCTGlobalPhysical.lean"
+      },
+      "purpose": "hash-bound source copy",
+      "role": "raw",
+      "sha256": "fb0231237298a06a32147e115e6e8f29f0ad572e8a0f4698db82b86654f553c6"
+    },
+    {
+      "bytes": 4250,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.PCTHybridMixtureFactor-1.build-trace.json",
+      "role": "raw",
+      "sha256": "0da9d1f1d2563451f229eb786de980a4a6223815fc909bd5c4b85d0adba2ef39"
+    },
+    {
+      "bytes": 3402822,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.PCTHybridMixtureFactor-1.import-context.json",
+      "role": "raw",
+      "sha256": "8640e695d6375ba57862aa81c8d65b684771e35351eb8592f3944f34c773bde3"
+    },
+    {
+      "bytes": 2067970,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.PCTHybridMixtureFactor-1.json",
+      "role": "raw",
+      "sha256": "d12c9b09973e94907fa76dd61997ef8cee7200faede4c83aab642dfe307942ce"
+    },
+    {
+      "bytes": 31110,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.PCTHybridMixtureFactor-1.log",
+      "role": "raw",
+      "sha256": "9db04acc62c3631b0571609daf2c7f40ecb0ac04de03ee1d539c09576134e967"
+    },
+    {
+      "bytes": 1283,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.PCTHybridMixtureFactor-1.resources.txt",
+      "role": "raw",
+      "sha256": "4627fac50ff71be79eaa810d684f07945dcbb38738162115167db171865082c0"
+    },
+    {
+      "bytes": 2498578,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.PCTHybridMixtureFactor-1.setup.json",
+      "role": "raw",
+      "sha256": "9f79e479559f10fd46b90dffb38663f805139855f8120488cc0665b6720fce52"
+    },
+    {
+      "bytes": 5052,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.PCTHybridMixtureFactor-1.source.lean.txt",
+      "provenance": {
+        "commit": "80e4b7ca1aa43969f85105171bfd80bf662d6b32",
+        "origin": "measured-git-blob",
+        "source": "formalization/Cloning/PCTHybridMixtureFactor.lean"
+      },
+      "purpose": "hash-bound source copy",
+      "role": "raw",
+      "sha256": "dc112ae5e22432d2e6502a06efd023939d9e5b40b13b63a044f06b480272ef54"
+    },
+    {
+      "bytes": 4191,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.PCTUnitaryTransportChannels-1.build-trace.json",
+      "role": "raw",
+      "sha256": "77265381c6f8610c7633fc832c5e32630212a54bdb193dd8b5de9fd13f1b9e87"
+    },
+    {
+      "bytes": 3431533,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.PCTUnitaryTransportChannels-1.import-context.json",
+      "role": "raw",
+      "sha256": "3180119f3b6e55a0c976add1739a4d55f21f52f492a775cf6fa267704dffb24f"
+    },
+    {
+      "bytes": 227807,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.PCTUnitaryTransportChannels-1.json",
+      "role": "raw",
+      "sha256": "916533aa03f0439e72d4c380d147bb3c3e88a90100dd5676a69f3e1b4c5cd682"
+    },
+    {
+      "bytes": 30601,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.PCTUnitaryTransportChannels-1.log",
+      "role": "raw",
+      "sha256": "8318be4e30fea78f9609fbc066443f6f202009142f063a21bd5cb01f47cebf6a"
+    },
+    {
+      "bytes": 1296,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.PCTUnitaryTransportChannels-1.resources.txt",
+      "role": "raw",
+      "sha256": "3c4e7a442f95d03aad287de3eb001036de9d3053dc9f4c711b3467e780f5b395"
+    },
+    {
+      "bytes": 2524092,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.PCTUnitaryTransportChannels-1.setup.json",
+      "role": "raw",
+      "sha256": "f9529fcfb5c00debf7ff8e06b360aa74e37752defc588abb6d5b067cc2fddffa"
+    },
+    {
+      "bytes": 5446,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.PCTUnitaryTransportChannels-1.source.lean.txt",
+      "provenance": {
+        "commit": "80e4b7ca1aa43969f85105171bfd80bf662d6b32",
+        "origin": "measured-git-blob",
+        "source": "formalization/Cloning/PCTUnitaryTransportChannels.lean"
+      },
+      "purpose": "hash-bound source copy",
+      "role": "raw",
+      "sha256": "9eff2831f65aaf27d9d81958f1a14501a9126e4a389de0db9e76bf6a0990e57a"
+    },
+    {
+      "bytes": 4993,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.Thermal-1.build-trace.json",
+      "role": "raw",
+      "sha256": "d55a5f3db80496a7afd4f00b9741be8145500848488df2c427e047078e5acf05"
+    },
+    {
+      "bytes": 1862640,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.Thermal-1.import-context.json",
+      "role": "raw",
+      "sha256": "c9635848bf60d41ba5f7e4b664919d79d69906da3bccc01832886bbd5540fd37"
+    },
+    {
+      "bytes": 525008,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.Thermal-1.json",
+      "role": "raw",
+      "sha256": "11f296d51362e4b881a47b6d34958297e27a1b76cd9f319bc8ad40189b950be9"
+    },
+    {
+      "bytes": 30346,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.Thermal-1.log",
+      "role": "raw",
+      "sha256": "078246fb5988391d97b27fd339b9651d075fd8c2220ea887bc357ff52d39aa01"
+    },
+    {
+      "bytes": 1237,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.Thermal-1.resources.txt",
+      "role": "raw",
+      "sha256": "4bd821ebdbb054b16c32f646e4f801444609c419c3dd31e2579eda375b349695"
+    },
+    {
+      "bytes": 1334895,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.Thermal-1.setup.json",
+      "role": "raw",
+      "sha256": "3d20cf6749c4de50da042520754fedc18a35ab07b93b620207aedf219c661fb6"
+    },
+    {
+      "bytes": 24206,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.Thermal-1.source.lean.txt",
+      "provenance": {
+        "commit": "80e4b7ca1aa43969f85105171bfd80bf662d6b32",
+        "origin": "measured-git-blob",
+        "source": "formalization/Cloning/Thermal.lean"
+      },
+      "purpose": "hash-bound source copy",
+      "role": "raw",
+      "sha256": "d3dc50c83b60b9e7a734b11aed79064d33bbdf3b44b9b210f093f1c94e0b9a91"
+    },
+    {
+      "bytes": 4061,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.WernerPhysicalPullback-1.build-trace.json",
+      "role": "raw",
+      "sha256": "d5f95cbae7f59e8f69ea4c3c3bf0892e94aa9401dd367a891a13971d5252cac0"
+    },
+    {
+      "bytes": 3282200,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.WernerPhysicalPullback-1.import-context.json",
+      "role": "raw",
+      "sha256": "f143e44bf30980594d0443499fb387c768f9ec2488fa1cc65574bbd75f6bf4cd"
+    },
+    {
+      "bytes": 12395929,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.WernerPhysicalPullback-1.json",
+      "role": "raw",
+      "sha256": "0e2fcd953d88ddb8f4a891ca140eda38428168407d289fa705fdd6e4645d5837"
+    },
+    {
+      "bytes": 30519,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.WernerPhysicalPullback-1.log",
+      "role": "raw",
+      "sha256": "ef88f36c0fbf2ab658f0699152e5ceb8bff6ee72cf9a344ca07afddd0e83ea32"
+    },
+    {
+      "bytes": 1284,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.WernerPhysicalPullback-1.resources.txt",
+      "role": "raw",
+      "sha256": "22cfd2d21ab6fc2ef8523cfc8d4cc233a907beb9a9174f1ff674adc6721cbf42"
+    },
+    {
+      "bytes": 2406847,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.WernerPhysicalPullback-1.setup.json",
+      "role": "raw",
+      "sha256": "257a5dac9e7fe1bbab5b94c1ba93c2d89f6dab60d06e820de4773673e43324c5"
+    },
+    {
+      "bytes": 11783,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.WernerPhysicalPullback-1.source.lean.txt",
+      "provenance": {
+        "commit": "80e4b7ca1aa43969f85105171bfd80bf662d6b32",
+        "origin": "measured-git-blob",
+        "source": "formalization/Cloning/WernerPhysicalPullback.lean"
+      },
+      "purpose": "hash-bound source copy",
+      "role": "raw",
+      "sha256": "815e8e1962e901e11ae9fbd73bd3988bd0cc58ec6c953685b05fa25226aa17ea"
+    },
+    {
+      "bytes": 4089,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.WeylIdlerUniqueness-1.build-trace.json",
+      "role": "raw",
+      "sha256": "a10ee1b6ac0c37190e7c25e320a2456888fcde210e08d982e778540d4c07af4f"
+    },
+    {
+      "bytes": 3349450,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.WeylIdlerUniqueness-1.import-context.json",
+      "role": "raw",
+      "sha256": "a6d856acf41c7768a48314268c5869d4f10435f2a4818f54b812b3634d95931f"
+    },
+    {
+      "bytes": 3723408,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.WeylIdlerUniqueness-1.json",
+      "role": "raw",
+      "sha256": "af276c8647b9703b681bf5bbeb03e1c364192a5e73ea3642063e2c434d61e096"
+    },
+    {
+      "bytes": 30651,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.WeylIdlerUniqueness-1.log",
+      "role": "raw",
+      "sha256": "7abc969080702a4296750f4b154c9d07308830b80bc14ee6894ee3e4a4e20f1d"
+    },
+    {
+      "bytes": 1275,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.WeylIdlerUniqueness-1.resources.txt",
+      "role": "raw",
+      "sha256": "1135a5e22a76b753825fa8bc3cfb4e293ce980d78ecdea5ab30d467bef8701ab"
+    },
+    {
+      "bytes": 2460066,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.WeylIdlerUniqueness-1.setup.json",
+      "role": "raw",
+      "sha256": "7398bb862731937c44e19ae7c44ceaddba2e487349b4e5739978e15bcbc015c6"
+    },
+    {
+      "bytes": 8902,
+      "locations": [
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/Cloning.WeylIdlerUniqueness-1.source.lean.txt",
+      "provenance": {
+        "commit": "80e4b7ca1aa43969f85105171bfd80bf662d6b32",
+        "origin": "measured-git-blob",
+        "source": "formalization/Cloning/WeylIdlerUniqueness.lean"
+      },
+      "purpose": "hash-bound source copy",
+      "role": "raw",
+      "sha256": "c3ad276535f7e0b776dae495c8a0a8e42e9967d8a36f8ed7d5a8ef55193ac80d"
+    },
+    {
+      "bytes": 47819,
+      "locations": [
+        "tree",
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/profiles.json",
+      "provenance": {
+        "original_sha256": "b250e1c4d5246550ad4c7a5cc6108fe92875c235d7d1f05ee9e0bf56483dfb20",
+        "transformation": "Controlled environment fields and hash-bound source pointers"
+      },
+      "role": "derived",
+      "sha256": "3fb34050eb0cabb58107df1f344963a565b2da9cea1cbdf9c1e069debbe5a80b"
+    },
+    {
+      "bytes": 23227682,
+      "locations": [
+        "tree",
+        "profiles-before.tar.gz"
+      ],
+      "path": "profiles-before/summary.json",
+      "provenance": {
+        "original_sha256": "d16011a7bada71b7889a18635ff20bfdb910280abe6ed778619d841352d5f985",
+        "transformation": "Regenerated from identical raw logs/traces and a redacted derived index with verified source snapshots."
+      },
+      "role": "derived",
+      "sha256": "8df20401606958b10d1a1f7d9b4dc17b2eec7271d339b4e1d32e333ca8978fca"
+    },
+    {
+      "bytes": 2214,
+      "locations": [
+        "tree"
+      ],
+      "path": "skills/ATTRIBUTION.md",
+      "purpose": "generated external skill attribution and pinned source provenance",
+      "role": "derived",
+      "sha256": "d0140c9c3543a3e77544991bbeeb3281709b6a576fcb1e7576ae4d7c4b265adf"
+    },
+    {
+      "bytes": 18657,
+      "locations": [
+        "tree"
+      ],
+      "path": "skills/LICENSE",
+      "provenance": {
+        "commit": "70bb859295edc2abb9ad81f8f6e31ab2adf8ca07",
+        "content_status": "unmodified",
+        "creator": "Scott Armstrong (scottnarmstrong)",
+        "license": "CC-BY-4.0",
+        "source_url": "https://github.com/scottnarmstrong/LeanAutoformalizationSkills/blob/70bb859295edc2abb9ad81f8f6e31ab2adf8ca07/LICENSE"
+      },
+      "purpose": "pinned external skill or license",
+      "role": "raw",
+      "sha256": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411"
+    },
+    {
+      "bytes": 5501,
+      "locations": [
+        "tree"
+      ],
+      "path": "skills/count_lean_lines.py",
+      "provenance": {
+        "commit": "70bb859295edc2abb9ad81f8f6e31ab2adf8ca07",
+        "content_status": "unmodified",
+        "creator": "Scott Armstrong (scottnarmstrong)",
+        "license": "CC-BY-4.0",
+        "source_url": "https://github.com/scottnarmstrong/LeanAutoformalizationSkills/blob/70bb859295edc2abb9ad81f8f6e31ab2adf8ca07/skills/lean-elaboration-test/scripts/count_lean_lines.py"
+      },
+      "purpose": "pinned external skill or license",
+      "role": "raw",
+      "sha256": "6690ea76cf6031fa082bf5b1f85f3606db19508df511d0bb8d934048fa583220"
+    },
+    {
+      "bytes": 7595,
+      "locations": [
+        "tree"
+      ],
+      "path": "skills/evidence.md",
+      "provenance": {
+        "commit": "70bb859295edc2abb9ad81f8f6e31ab2adf8ca07",
+        "content_status": "unmodified",
+        "creator": "Scott Armstrong (scottnarmstrong)",
+        "license": "CC-BY-4.0",
+        "source_url": "https://github.com/scottnarmstrong/LeanAutoformalizationSkills/blob/70bb859295edc2abb9ad81f8f6e31ab2adf8ca07/skills/lean-elaboration/references/evidence.md"
+      },
+      "purpose": "pinned external skill or license",
+      "role": "raw",
+      "sha256": "065d9495d5f95a4770ec888d47ab763fced7be88f4385a83daadb2d011a500bc"
+    },
+    {
+      "bytes": 9833,
+      "locations": [
+        "tree"
+      ],
+      "path": "skills/lean-elaboration-test.md",
+      "provenance": {
+        "commit": "70bb859295edc2abb9ad81f8f6e31ab2adf8ca07",
+        "content_status": "unmodified",
+        "creator": "Scott Armstrong (scottnarmstrong)",
+        "license": "CC-BY-4.0",
+        "source_url": "https://github.com/scottnarmstrong/LeanAutoformalizationSkills/blob/70bb859295edc2abb9ad81f8f6e31ab2adf8ca07/skills/lean-elaboration-test/SKILL.md"
+      },
+      "purpose": "pinned external skill or license",
+      "role": "raw",
+      "sha256": "ea9fa6123d8c3a5085d480eb7fa1f87e497c3bd5f5e7bfd9e4f4d0b8d12bd284"
+    },
+    {
+      "bytes": 18159,
+      "locations": [
+        "tree"
+      ],
+      "path": "skills/lean-elaboration.md",
+      "provenance": {
+        "commit": "70bb859295edc2abb9ad81f8f6e31ab2adf8ca07",
+        "content_status": "unmodified",
+        "creator": "Scott Armstrong (scottnarmstrong)",
+        "license": "CC-BY-4.0",
+        "source_url": "https://github.com/scottnarmstrong/LeanAutoformalizationSkills/blob/70bb859295edc2abb9ad81f8f6e31ab2adf8ca07/skills/lean-elaboration/SKILL.md"
+      },
+      "purpose": "pinned external skill or license",
+      "role": "raw",
+      "sha256": "f7a3ed0be7bfed0535122a11878b57331d59b464122158339ab9445a12beb608"
+    },
+    {
+      "bytes": 4305,
+      "locations": [
+        "tree"
+      ],
+      "path": "skills/provenance.json",
+      "purpose": "generated external skill attribution and pinned source provenance",
+      "role": "derived",
+      "sha256": "d9a54d89f8ff063578567b27e0b1651d89b3f4c6038f7fc30dff30ebb7120130"
+    },
+    {
+      "bytes": 2668,
+      "locations": [
+        "tree"
+      ],
+      "path": "source-api-guard/cleanup-api-source-guard.json",
+      "purpose": "original source/API guard; not an independent proof verification",
+      "role": "raw",
+      "sha256": "3bb846c2fadc1863fcde025c7b9e57a3ea297a0550df69db22cc2d620e3d5486"
+    },
+    {
+      "bytes": 3523,
+      "locations": [
+        "tree"
+      ],
+      "path": "source-api-guard/driver.py",
+      "provenance": {
+        "original_name": "check_cleanup_api_sources.py",
+        "original_sha256": "9862a8bd8cfb29fc855ee8d1a57680b48af344983ca753400bc6a111fddd2edc",
+        "sha256_capture": "publication-time"
+      },
+      "purpose": "source/API guard driver; digest captured at publication",
+      "role": "raw",
+      "sha256": "9862a8bd8cfb29fc855ee8d1a57680b48af344983ca753400bc6a111fddd2edc"
+    },
+    {
+      "bytes": 1438,
+      "locations": [
+        "tree"
+      ],
+      "path": "source-api-guard/receipt.json",
+      "purpose": "source/API supplemental role and honest provenance",
+      "role": "derived",
+      "sha256": "cb20275c02376b1366115014855eb8f9df53166c3a9e53d00f4e2370156aae54"
+    },
+    {
+      "bytes": 5379,
+      "locations": [
+        "tree"
+      ],
+      "path": "tools/aggregate-after-profiles.py",
+      "provenance": {
+        "note": "Untimed report/support/aggregation snapshot; not a timed Lean driver unless separately bound",
+        "original_name": "aggregate-after-profiles.py",
+        "sha256_capture": "publication-time"
+      },
+      "purpose": "publication-helper",
+      "role": "raw",
+      "sha256": "72a8fbafef91adf79e440798fa2d35dc437d34699d9b92aaff76d7ef5acbffa2"
+    },
+    {
+      "bytes": 15437,
+      "locations": [
+        "tree"
+      ],
+      "path": "tools/benchmark_elaboration.py",
+      "purpose": "publication-helper",
+      "role": "raw",
+      "sha256": "fc202556ed4ee2a3e7366a00180502515f16ef644484e6463ea8ed2c4e579417"
+    },
+    {
+      "bytes": 97533,
+      "locations": [
+        "tree"
+      ],
+      "path": "tools/bundle_elaboration_evidence.py",
+      "purpose": "publication-helper",
+      "role": "raw",
+      "sha256": "77c0b376fcbcc73a07134f71e411e30279c8b702190dc5e7adef08e39ae8a7ab"
+    },
+    {
+      "bytes": 9608,
+      "locations": [
+        "tree"
+      ],
+      "path": "tools/comparison_support.py",
+      "provenance": {
+        "note": "Untimed report/support/aggregation snapshot; not a timed Lean driver unless separately bound",
+        "original_name": "comparison_support.py",
+        "sha256_capture": "publication-time"
+      },
+      "purpose": "publication-helper",
+      "role": "raw",
+      "sha256": "159b9b124c3ed13fb31b8c439537e27e306d43da3b7b60caecf8db859b58f1f9"
+    },
+    {
+      "bytes": 16330,
+      "locations": [
+        "tree"
+      ],
+      "path": "tools/profile_elaboration.py",
+      "purpose": "publication-helper",
+      "role": "raw",
+      "sha256": "1b3e2eed7be054c9373f1d64b821d11fabb01f31614af8e957271ccf0f04de77"
+    },
+    {
+      "bytes": 610,
+      "locations": [
+        "tree"
+      ],
+      "path": "tools/profiler-heartbeat-exception-provenance.json",
+      "provenance": {
+        "note": "Untimed report/support/aggregation snapshot; not a timed Lean driver unless separately bound",
+        "original_name": "profiler-heartbeat-exception-provenance.json",
+        "sha256_capture": "publication-time"
+      },
+      "purpose": "publication-helper",
+      "role": "raw",
+      "sha256": "8ef7fe4d70980bbc0dd3c160d0d0cb5f6c200cd4db770c1891dcf904c5494d49"
+    },
+    {
+      "bytes": 7345,
+      "locations": [
+        "tree"
+      ],
+      "path": "tools/profiler-heartbeat-exception.md",
+      "provenance": {
+        "note": "Untimed report/support/aggregation snapshot; not a timed Lean driver unless separately bound",
+        "original_name": "profiler-heartbeat-exception-public.md",
+        "sha256_capture": "publication-time"
+      },
+      "purpose": "publication-helper",
+      "role": "raw",
+      "sha256": "b5aec248bd308aa5fd96363215eb990446434ffedcbc17089cf58ba64ce5583b"
+    },
+    {
+      "bytes": 29597,
+      "locations": [
+        "tree"
+      ],
+      "path": "tools/render_final_comparison.py",
+      "provenance": {
+        "note": "Untimed report/support/aggregation snapshot; not a timed Lean driver unless separately bound",
+        "original_name": "render_final_comparison.py",
+        "sha256_capture": "publication-time"
+      },
+      "purpose": "publication-helper",
+      "role": "raw",
+      "sha256": "88dfa8bb54860deadee792d90d204cd9cd934b4ec542108b79f31757b2170a9c"
+    },
+    {
+      "bytes": 52559,
+      "locations": [
+        "tree"
+      ],
+      "path": "tools/report_elaboration.py",
+      "purpose": "publication-helper",
+      "role": "raw",
+      "sha256": "1621a6b46e3df01d4a95bd4a9c960fc3c3b71171a622fc0b3b773fb6673426f9"
+    },
+    {
+      "bytes": 26810,
+      "locations": [
+        "tree"
+      ],
+      "path": "tools/summarize_elaboration_profiles.py",
+      "purpose": "publication-helper",
+      "role": "raw",
+      "sha256": "48c379880afd42ae59c7cea00ca34df106bb00a4effde1b70758b26141915ed2"
+    },
+    {
+      "bytes": 3841,
+      "locations": [
+        "tree"
+      ],
+      "path": "tools/test_comparison_support.py",
+      "provenance": {
+        "note": "Untimed report/support/aggregation snapshot; not a timed Lean driver unless separately bound",
+        "original_name": "test_comparison_support.py",
+        "sha256_capture": "publication-time"
+      },
+      "purpose": "publication-helper",
+      "role": "raw",
+      "sha256": "bce69d79d228fe94ac2dd0ad54a4b59be7cf4a0ee3334e5eae5bfe2c18c6a8b7"
+    },
+    {
+      "bytes": 11333,
+      "locations": [
+        "tree"
+      ],
+      "path": "tools/test_render_final_comparison.py",
+      "provenance": {
+        "note": "Untimed report/support/aggregation snapshot; not a timed Lean driver unless separately bound",
+        "original_name": "test_render_final_comparison.py",
+        "sha256_capture": "publication-time"
+      },
+      "purpose": "publication-helper",
+      "role": "raw",
+      "sha256": "7b80b95798b8adac4ca9b97fed0dfcb2d42058eb3783cf47b7c50ae110a23593"
+    }
+  ],
+  "omitted_originals": [
+    {
+      "path": "before/process-samples.json",
+      "reason": "Unrelated process commands/paths omitted",
+      "role": "omitted-original",
+      "sha256": "311d6c2405a94b77170019e73380e4a831fd9f39bd3208206ed17a1dacc77228"
+    },
+    {
+      "path": "profiles-before/profiles.json",
+      "reason": "Original inherited environment paths omitted; derived index published",
+      "role": "omitted-original",
+      "sha256": "b250e1c4d5246550ad4c7a5cc6108fe92875c235d7d1f05ee9e0bf56483dfb20"
+    },
+    {
+      "path": "profiles-before/summary.json",
+      "reason": "Original embedded metadata omitted; derived summary published",
+      "role": "omitted-original",
+      "sha256": "d16011a7bada71b7889a18635ff20bfdb910280abe6ed778619d841352d5f985"
+    },
+    {
+      "path": "after/process-samples.json",
+      "reason": "Unrelated process commands/paths omitted",
+      "role": "omitted-original",
+      "sha256": "cd661cfdaa3d5939c31a6005206a399de3621ae4d9fe2bc77c14d611bce94d70"
+    },
+    {
+      "path": "profiles-after/profiles-attempt-1.json",
+      "reason": "Redacted public origin index has an explicitly distinct digest",
+      "role": "omitted-original",
+      "sha256": "f7945f3d1c011035c355fc5c9ef04d2618690ce66f9d3bda1dc6710930dfd07f"
+    },
+    {
+      "path": "profiles-after/native-guarded/profiles.json",
+      "reason": "Redacted public origin index has an explicitly distinct digest",
+      "role": "omitted-original",
+      "sha256": "e4632b27d5b5b61302af8427bc8b514929bff79b8f447dade52b11afd1f3547c"
+    },
+    {
+      "path": "profiles-after/continuation/profiles.json",
+      "reason": "Redacted public origin index has an explicitly distinct digest",
+      "role": "omitted-original",
+      "sha256": "8b87f18cf769d016e8885d495623c950791d071a033b8512ea3783482eb90684"
+    },
+    {
+      "path": "profiles-after/native-exploratory/profiles.json",
+      "reason": "Redacted public origin index has an explicitly distinct digest",
+      "role": "omitted-original",
+      "sha256": "01a1caf1c94710e055ddff3cbf3ace555230c8813687a47b9ede2094c3ba7060"
+    },
+    {
+      "path": "profiles-after/profile-attempts.json",
+      "reason": "Redacted/rebased public diagnostic index has distinct digest",
+      "role": "omitted-original",
+      "sha256": "04a3de02c9466225cd0791fbcc8c28a755f68bd8dbcdc3e8185829e82c370ff6"
+    },
+    {
+      "path": "profiles-after/profiles.json",
+      "reason": "Original inherited environment paths omitted; derived index published",
+      "role": "omitted-original",
+      "sha256": "c796ad4e0bad239322b6ef5522fa4b6f87cc074e51c6285e13eb68e33fb18833"
+    },
+    {
+      "path": "profiles-after/summary.json",
+      "reason": "Original embedded metadata omitted; derived summary published",
+      "role": "omitted-original",
+      "sha256": "43dd6bdf193a11dad8b1b4b7077538bff627b83a43d1b926ba503057c1a79ca5"
+    },
+    {
+      "path": "interventions/weyl-bridge/profiles.json",
+      "reason": "Original inherited environment paths omitted; derived index published",
+      "role": "omitted-original",
+      "sha256": "830f5ac29d91113439da4fa8bc92a0effe54bc7dfe88b396bc21314d345671c3"
+    },
+    {
+      "path": "interventions/weyl-bridge/summary.json",
+      "reason": "Original embedded metadata omitted; derived summary published",
+      "role": "omitted-original",
+      "sha256": "e1a3576a91987dffca5028ad0207d048b16d38cedc3ed99ba81164eba7a4d2ae"
+    },
+    {
+      "path": "interventions/weyl-bridge/bare.json",
+      "reason": "Inherited environment paths omitted; derived bare index published",
+      "role": "omitted-original",
+      "sha256": "4023253553439c4a327972459f3ef51d27c9a12e8e90a660c6d5633dc5e01c32"
+    },
+    {
+      "path": "interventions/weyl-bridge/plan.json",
+      "reason": "Derived public metadata replaces the environment-bearing original",
+      "role": "omitted-original",
+      "sha256": "518c758b6d1f9578f4770c774ede76355a491d3d223ba3f1a435961ddd1e50a6"
+    },
+    {
+      "path": "interventions/werner-trace-bridge/profiles.json",
+      "reason": "Original inherited environment paths omitted; derived index published",
+      "role": "omitted-original",
+      "sha256": "ab672dda23b2c5bc5f6178dcc7bf26580ce275f2af74a312d9cdb89bd17ae4de"
+    },
+    {
+      "path": "interventions/werner-trace-bridge/summary.json",
+      "reason": "Original embedded metadata omitted; derived summary published",
+      "role": "omitted-original",
+      "sha256": "4ae28e58fac1c6ef789b19f71d9d4a598679c935028c3385010191c1666eeac2"
+    },
+    {
+      "path": "interventions/werner-trace-bridge/bare.json",
+      "reason": "Inherited environment paths omitted; derived bare index published",
+      "role": "omitted-original",
+      "sha256": "d415f7d39e1f0065c5c305776259e5e60f361d922b998621e9753ea202e782be"
+    },
+    {
+      "path": "interventions/werner-trace-bridge/plan.json",
+      "reason": "Derived public metadata replaces the environment-bearing original",
+      "role": "omitted-original",
+      "sha256": "8e01a6d2cc1cddf9160a19113a59a97b57a4092a0646dd8fdfa4f9af1409dbbe"
+    }
+  ],
+  "original_small_records_sha256": {
+    "after/benchmark-runner.py": "fc202556ed4ee2a3e7366a00180502515f16ef644484e6463ea8ed2c4e579417",
+    "after/build.log": "703d4989a69213947c2431e1714d976675bb96077e53c2d93d89d6ac7c2dd7b0",
+    "after/dependencies-after.json": "07231494c7ecd316c52ccba38d8e1641671b844bfbb3f5a5f3a53dd61ec64c32",
+    "after/dependencies-before.json": "07231494c7ecd316c52ccba38d8e1641671b844bfbb3f5a5f3a53dd61ec64c32",
+    "after/imports.json": "f70c604535acac8784947f57a609d73878dae14b050c4c5c51524877930812d0",
+    "after/invalidated.json": "d9cc84aabdfaad31314f03b04720b29f5d8adc0d4d60ef9436aaea29d00545d3",
+    "after/process-samples.json": "cd661cfdaa3d5939c31a6005206a399de3621ae4d9fe2bc77c14d611bce94d70",
+    "after/resources.txt": "c91740dc4627096ec7c67afa592f66fe55d82e649364d9d720dcc341c4de559d",
+    "after/size.json": "3aedea570e14277db4fb648568f802c588aac232f8c346d34de7a955026541f2",
+    "after/skill-size.txt": "1e1d48e98fb058c0fde735b9c40d41ad2c8f5f6e5b237239ee9c349de3833438",
+    "after/source-config-hashes.json": "79e92cce1a039342af451b751e74f232c814e4a5d4c84b23b97ec502a05abe41",
+    "after/summary.json": "c24bc7e66a0c8bf57623b7bd20284f1b6d47f5a8a478fe6b1d05451fc4e3ae9c",
+    "before/benchmark-runner.py": "389d4a148f7f46dd41372d014d051c7e31f0f3600b084a4687d15381fcc1f5e5",
+    "before/build.log": "c762ee058367e834bed8e9dc0e823eb4c18a992cfe4f92da32c11553b75b1027",
+    "before/dependencies-after.json": "07231494c7ecd316c52ccba38d8e1641671b844bfbb3f5a5f3a53dd61ec64c32",
+    "before/dependencies-before.json": "07231494c7ecd316c52ccba38d8e1641671b844bfbb3f5a5f3a53dd61ec64c32",
+    "before/imports.json": "f70c604535acac8784947f57a609d73878dae14b050c4c5c51524877930812d0",
+    "before/invalidated.json": "f47ababe2ee193656086168e6f054ef070be04bc7cb08fcfbd94b97af3ced766",
+    "before/process-samples.json": "311d6c2405a94b77170019e73380e4a831fd9f39bd3208206ed17a1dacc77228",
+    "before/resources.txt": "e659577203a340e0a368b34dc4ccca2caf9e4c0d86435ae54f1c005098f37389",
+    "before/size.json": "715a283ad190ae152ca55577b2feb022fc9e80ef5d5f8621b6cb638d0ff22978",
+    "before/skill-size.txt": "71dee55ba87e62aab647f613a9f3d274fd70273710c253cab841c069a5373332",
+    "before/source-config-hashes.json": "f36cc5652fdc00f468e85d3dec114a623dffdba585e8aab7987416774c93db12",
+    "before/source-config-stability.json": "73b1ae5e2cbb3a28facc902999db5d8f76544f38c6b5dcb2c7d00983150cb3ce",
+    "before/summary.json": "fd95b6cbd6fc4a87bc79a80fdad990127633e84b37f63cc86ee69e1586049899",
+    "interventions/werner-trace-bridge/REPORT.md": "6a6e4c63784132fccc64d605eb607073c7798a851269577a76afb60b8e391f1c",
+    "interventions/werner-trace-bridge/bare.json": "d415f7d39e1f0065c5c305776259e5e60f361d922b998621e9753ea202e782be",
+    "interventions/werner-trace-bridge/candidate.patch": "5d28eab43249bfe0214f7cdcf38d4c296702524cd1cb344deb524c186d3656f5",
+    "interventions/werner-trace-bridge/driver.py": "157a0754b435b8e74bae29c73745d9b37b7d106bb8514e88ffe60965e2c5b670",
+    "interventions/werner-trace-bridge/plan.json": "8e01a6d2cc1cddf9160a19113a59a97b57a4092a0646dd8fdfa4f9af1409dbbe",
+    "interventions/werner-trace-bridge/profiles.json": "ab672dda23b2c5bc5f6178dcc7bf26580ce275f2af74a312d9cdb89bd17ae4de",
+    "interventions/werner-trace-bridge/proof-vs-statement-diagnostic.json": "ad4fecdacea71f5c8f7a0f3432ffd9fa4afe2460a0cf430ab26a2f65c09dde67",
+    "interventions/werner-trace-bridge/summary.json": "4ae28e58fac1c6ef789b19f71d9d4a598679c935028c3385010191c1666eeac2",
+    "interventions/werner-trace-bridge/verdict.json": "f21e6e9ce422856928ac103f939b8f51a092330a0cdb7af35f3893e47b4c3334",
+    "interventions/weyl-bridge/REPORT.md": "9f28b152cbe77f0280337628af46d1a585e5a44554aa6ecab09c305e3df35c7a",
+    "interventions/weyl-bridge/bare.json": "4023253553439c4a327972459f3ef51d27c9a12e8e90a660c6d5633dc5e01c32",
+    "interventions/weyl-bridge/candidate.patch": "ad34e4c41702c75e980abef88691dcb5033d1d24b5580765444b8cc56b59793f",
+    "interventions/weyl-bridge/driver.py": "968687bc80c9f9ecdf373a74fa3409be5ee6c6af4dce633f78e63f13725bc79a",
+    "interventions/weyl-bridge/plan.json": "518c758b6d1f9578f4770c774ede76355a491d3d223ba3f1a435961ddd1e50a6",
+    "interventions/weyl-bridge/profiles.json": "830f5ac29d91113439da4fa8bc92a0effe54bc7dfe88b396bc21314d345671c3",
+    "interventions/weyl-bridge/proof-vs-statement-diagnostic.json": "9aa11913b44bac3708de050d609034d7286c96b134477542ce18bd4e7e045743",
+    "interventions/weyl-bridge/summary.json": "e1a3576a91987dffca5028ad0207d048b16d38cedc3ed99ba81164eba7a4d2ae",
+    "interventions/weyl-bridge/verdict.json": "46b617bafc81ee45753d895a12700faa9e9fa1e1812da28d0891cf8f7b06f849",
+    "profiles-after/aggregation.json": "6cb6d8d068594dedaea4a5608e5962f13c412277938ed25e83359c3f81e53dd2",
+    "profiles-after/continuation/profile-runner-provenance.json": "5a73280af2799164ca625d82f34802a7d24fc52e1da53f04510cb6caf2398984",
+    "profiles-after/continuation/profile-runner.py": "a7c8e25affe55c51e4bd7a60691d597ac5551157d1140e644d4af533b87f73a8",
+    "profiles-after/continuation/profiles.json": "8b87f18cf769d016e8885d495623c950791d071a033b8512ea3783482eb90684",
+    "profiles-after/native-exploratory/driver.py": "b09aa5b3c8ddf66537fae5dc6c4d8581c78ce45a14a0b607e45983c6e60ef8b5",
+    "profiles-after/native-exploratory/profiles.json": "01a1caf1c94710e055ddff3cbf3ace555230c8813687a47b9ede2094c3ba7060",
+    "profiles-after/native-guarded/profile-runner-provenance.json": "015ec449e5fb3e2e3715cea6899852797ee2a5b66818f79edcde3b7aefbb96f4",
+    "profiles-after/native-guarded/profile-runner.py": "9be3675af8f6560ac32a665bc577b7b7d326e8718d229687f0cecd975fdc76a3",
+    "profiles-after/native-guarded/profiles.json": "e4632b27d5b5b61302af8427bc8b514929bff79b8f447dade52b11afd1f3547c",
+    "profiles-after/profile-attempts.json": "04a3de02c9466225cd0791fbcc8c28a755f68bd8dbcdc3e8185829e82c370ff6",
+    "profiles-after/profiles-attempt-1.json": "f7945f3d1c011035c355fc5c9ef04d2618690ce66f9d3bda1dc6710930dfd07f",
+    "profiles-after/profiles.json": "c796ad4e0bad239322b6ef5522fa4b6f87cc074e51c6285e13eb68e33fb18833",
+    "profiles-after/summary.json": "43dd6bdf193a11dad8b1b4b7077538bff627b83a43d1b926ba503057c1a79ca5",
+    "profiles-before/profiles.json": "b250e1c4d5246550ad4c7a5cc6108fe92875c235d7d1f05ee9e0bf56483dfb20",
+    "profiles-before/summary.json": "d16011a7bada71b7889a18635ff20bfdb910280abe6ed778619d841352d5f985",
+    "skills/ATTRIBUTION.md": "d0140c9c3543a3e77544991bbeeb3281709b6a576fcb1e7576ae4d7c4b265adf",
+    "skills/LICENSE": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411",
+    "skills/count_lean_lines.py": "6690ea76cf6031fa082bf5b1f85f3606db19508df511d0bb8d934048fa583220",
+    "skills/evidence.md": "065d9495d5f95a4770ec888d47ab763fced7be88f4385a83daadb2d011a500bc",
+    "skills/lean-elaboration-test.md": "ea9fa6123d8c3a5085d480eb7fa1f87e497c3bd5f5e7bfd9e4f4d0b8d12bd284",
+    "skills/lean-elaboration.md": "f7a3ed0be7bfed0535122a11878b57331d59b464122158339ab9445a12beb608",
+    "skills/provenance.json": "d9a54d89f8ff063578567b27e0b1651d89b3f4c6038f7fc30dff30ebb7120130",
+    "source-api-guard/cleanup-api-source-guard.json": "3bb846c2fadc1863fcde025c7b9e57a3ea297a0550df69db22cc2d620e3d5486",
+    "source-api-guard/driver.py": "9862a8bd8cfb29fc855ee8d1a57680b48af344983ca753400bc6a111fddd2edc",
+    "tools/aggregate-after-profiles.py": "72a8fbafef91adf79e440798fa2d35dc437d34699d9b92aaff76d7ef5acbffa2",
+    "tools/comparison_support.py": "159b9b124c3ed13fb31b8c439537e27e306d43da3b7b60caecf8db859b58f1f9",
+    "tools/profiler-heartbeat-exception-provenance.json": "8ef7fe4d70980bbc0dd3c160d0d0cb5f6c200cd4db770c1891dcf904c5494d49",
+    "tools/profiler-heartbeat-exception.md": "b5aec248bd308aa5fd96363215eb990446434ffedcbc17089cf58ba64ce5583b",
+    "tools/render_final_comparison.py": "88dfa8bb54860deadee792d90d204cd9cd934b4ec542108b79f31757b2170a9c",
+    "tools/test_comparison_support.py": "bce69d79d228fe94ac2dd0ad54a4b59be7cf4a0ee3334e5eae5bfe2c18c6a8b7",
+    "tools/test_render_final_comparison.py": "7b80b95798b8adac4ca9b97fed0dfcb2d42058eb3783cf47b7c50ae110a23593"
+  },
+  "publication_notes": [
+    "Raw benchmark and profile input records are byte-identical where labeled raw.",
+    "Derived metadata and original omitted-file digests are explicitly labeled.",
+    "Content screening allows task source/setup/import/tool paths; it rejects unapproved host-path tokens.",
+    "The manifest cannot hash itself; manifest.sha256 checks its bytes.",
+    {
+      "amended_readme_sha256": "5e4689517fb5b8b22d80e56f609df0f9a40b3091ea4f38dcb8a57174901c47e4",
+      "amendment": "Clarified 13 Firefox plus 2 native after records, preserved excluded attempts/historical note scope, and split fresh after-leader reproduction into three Firefox and two native runs with separate summaries. No generic merge is claimed.",
+      "kind": "README-editorial-amendment",
+      "original_manifest_sha256": "1063c01429af72b9cc3448fd543c069f464f6ac32c7109e8970ba4f9a55deb8d",
+      "original_readme_sha256": "fa7194b6f154e84d37d9dc2dedd2fb683d02cc58de5e09368284b9508778a19a",
+      "raw_measurements_and_archives_changed": false,
+      "recorded_utc": "2026-10-07T04:52:35.258246+00:00",
+      "retained_originals": ".verify-work/elaboration-campaign/publication-amendments/README-native-reproducer-v1"
+    }
+  ],
+  "schema": "cloning-elaboration-evidence-bundle-v1"
+}

@@ -1,0 +1,6 @@
+AUDIT STAGE generated shared driver; source modules 982
+AUDIT STAGE native Lean started; inventory: audit-native.jsonl
+AUDIT HEARTBEAT 5.0s; native output 0 bytes
+AUDIT HEARTBEAT 10.1s; native output 1489785 bytes
+AUDIT STAGE native Lean completed with exit 0
+AUDIT STAGE passed: 14344 unique compiled roots; 82687 visited declarations; aggregate axioms ['Classical.choice', 'Quot.sound', 'propext']

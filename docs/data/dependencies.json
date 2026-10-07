@@ -1,7 +1,7 @@
 {
   "title": "How the proof fits together",
   "semantics": "Ingredient arrows show contributions to the argument explained in a later stage. Comparison arrows identify an established benchmark, rather than a construction ingredient. Each edge links to compiled Lean declarations explaining the connection.",
-  "source_audit_sha256": "6b2c09f61388362d9ff3ae3f63285b9dd09e0cd95254150273bacba6cd9c799a",
+  "source_audit_sha256": "cd6735524ed4f60d02fded4b846eaa349d36fc3d151df5768ddc5fcfe4ada61b",
   "nodes": [
     {
       "id": "physical-problem",

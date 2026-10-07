@@ -1,0 +1,80 @@
+{
+  "status": "passed",
+  "mode": "nanoda",
+  "started_utc": "2026-10-07T04:26:58.105334+00:00",
+  "audit_engine": "shared",
+  "audit_jobs": 1,
+  "commands": [
+    {
+      "name": "dependency-cache",
+      "argv": [
+        "/Users/jw/.elan/bin/lake",
+        "exe",
+        "cache",
+        "get"
+      ],
+      "cwd": "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/formalization",
+      "log": "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/run-20261007T042658.104812Z-rfy46ocv/dependency-cache.log",
+      "returncode": 0
+    },
+    {
+      "name": "rust-toolchain",
+      "argv": [
+        "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/formalization/verification/nanoda/.work/rust-local/cargo/bin/rustup",
+        "toolchain",
+        "install",
+        "1.93.1",
+        "--profile",
+        "minimal"
+      ],
+      "cwd": "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/formalization",
+      "log": "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/run-20261007T042658.104812Z-rfy46ocv/rust-toolchain.log",
+      "returncode": 0
+    },
+    {
+      "name": "nanoda",
+      "argv": [
+        "bash",
+        "verification/nanoda/run.sh",
+        "--run",
+        "--threads",
+        "1",
+        "--work",
+        "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/run-20261007T042658.104812Z-rfy46ocv/nanoda"
+      ],
+      "cwd": "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/formalization",
+      "log": "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/run-20261007T042658.104812Z-rfy46ocv/nanoda.log",
+      "returncode": 0
+    }
+  ],
+  "checks": {
+    "nanoda": {
+      "record": "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/run-20261007T042658.104812Z-rfy46ocv/nanoda/run-20261007T042711.164065Z/run.json",
+      "record_sha256": "9911e35a13e8f053301152298909c9604b7b6751abe9e1270e3efd022fbd5152",
+      "project_declarations": 14344,
+      "checked_declarations": 83432
+    }
+  },
+  "environment": {
+    "PATH": "/Users/jw/.elan/bin:/Users/jw/.cargo/bin:/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/formalization/verification/nanoda/.work/rust-local/cargo/bin:/Users/jw/.local/bin:/Library/Frameworks/Python.framework/Versions/3.13/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/pkg/env/global/bin:/Library/Apple/usr/bin:/Library/TeX/texbin:/Applications/ChatGPT.app/Contents/Resources/codex-cli/codex-path:/Users/jw/.codex/tmp/arg0/codex-arg0OvzR06:/Users/jw/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/override:/Users/jw/.cache/codex-runtimes/codex-primary-runtime/dependencies/bin/fallback:/Applications/ChatGPT.app/Contents/Resources:/Applications/ChatGPT.app/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS",
+    "RUSTUP_HOME": "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/formalization/verification/nanoda/.work/rust-local/rustup",
+    "CARGO_HOME": "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/formalization/verification/nanoda/.work/rust-local/cargo",
+    "inherited_LEAN_PATH_removed": true
+  },
+  "wrapper_sha256": {
+    "verify.sh": "a5044ebaa92db5071c14c73e07d14adfbafeef4edadeb221b69fc86d0faeb817",
+    "verify.py": "99c5001fbd88853886d0c69b35b4a487962b42ba1af8874b4355e0cad6310cbd"
+  },
+  "tools_lock_sha256": "f33906cf7dbb9f76b8a70651b497c3a0dd43fae83748db50976ea863b9f1aaf7",
+  "source_binding_audit_sha256": "cd6735524ed4f60d02fded4b846eaa349d36fc3d151df5768ddc5fcfe4ada61b",
+  "executables": {
+    "git": "/usr/bin/git",
+    "curl": "/usr/bin/curl",
+    "tar": "/usr/bin/tar",
+    "lake": "/Users/jw/.elan/bin/lake",
+    "rustup": "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/formalization/verification/nanoda/.work/rust-local/cargo/bin/rustup",
+    "cargo": "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/formalization/verification/nanoda/.work/rust-local/cargo/bin/cargo"
+  },
+  "phase": "complete",
+  "completed_utc": "2026-10-07T04:34:58.991170+00:00"
+}

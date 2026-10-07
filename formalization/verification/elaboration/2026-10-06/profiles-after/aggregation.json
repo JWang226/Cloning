@@ -1,0 +1,12 @@
+{
+  "driver_sha256": "72a8fbafef91adf79e440798fa2d35dc437d34699d9b92aaff76d7ef5acbffa2",
+  "notes": [
+    "Canonical index is derived; every row is bound to an exact preserved original index.",
+    "Only evidence input filenames are rebased; native commands and measurements are unchanged.",
+    "Failed and exploratory attempts are preserved separately and excluded from canonical success."
+  ],
+  "plan_sha256": "9d69e8ff6d1a871c2cf217b3e6c33ba0d2c5ae73e688556df76b3a6d6cc94bbf",
+  "preserved_interrupted_index_sha256": "f7945f3d1c011035c355fc5c9ef04d2618690ce66f9d3bda1dc6710930dfd07f",
+  "profile_count": 15,
+  "schema": "cloning-elaboration-profile-aggregation-v1"
+}

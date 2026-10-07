@@ -1,0 +1,51 @@
+{
+  "baseline_commit": "cbb2fd2007ae367e201d4a6ac7c069899db90dbd",
+  "configuration": {
+    "formalization/lake-manifest.json": {
+      "byte_identical_to_baseline": true,
+      "sha256": "e4630915680b82b58c6a005e1ba1e515e865e5541c7e665d4a2d57f783eeadb4"
+    },
+    "formalization/lakefile.toml": {
+      "byte_identical_to_baseline": true,
+      "sha256": "ddeb0d2c8217676fc393afd24c13629993c580f35f9d8ad15240c6a167b020c1"
+    },
+    "formalization/lean-toolchain": {
+      "byte_identical_to_baseline": true,
+      "sha256": "dc6d65016fad3123d44bf17b5bf0598286284ab16ba75d5c17eb22ed11f47361"
+    }
+  },
+  "current_commit": "f66714d5f0b21c248696d833f35f86f364ae413a",
+  "notes": [
+    "Exact source equality outside two theorem bodies preserves declarations, statements, namespace, attributes, imports, options and variables.",
+    "Accepted variants were Lean-kernel checked in six controlled runs each with fixed imports/configs; no sorry variant was applied.",
+    "This is a source/API guard, not an independent full-library type-exporter comparison; the final campaign runs fresh library/public/axiom checks."
+  ],
+  "owned_sources_checked": 994,
+  "proof_only_changes": [
+    {
+      "outside_body_sha256": "31e32bdea7cba792d0987c95f306b96b0125c68e3195ea5d393eca518ef37205",
+      "signature_sha256": "2cc6e2eb4b334aa01a8b9e94460475af040d9f7a748c214c9e285e1cae836a36",
+      "source": "formalization/Cloning/WernerPhysicalPullback.lean",
+      "source_after_sha256": "328dd36bde83e302e13d99f6168651cb90f5a10b39811339590e645822c5b30b",
+      "source_before_sha256": "815e8e1962e901e11ae9fbd73bd3988bd0cc58ec6c953685b05fa25226aa17ea",
+      "source_outside_body_byte_identical": true,
+      "statement_byte_identical": true,
+      "theorem": "wernerOutput_trace_one"
+    },
+    {
+      "outside_body_sha256": "2536fb999fbf2fe0db8a80e03aeac23e0c81f94f735a7abdad9a4c0d5093222a",
+      "signature_sha256": "332d4e9fb576a46b08df4a4d0d08067991f1e9db43b4eed6cafbc67366cfd1e2",
+      "source": "formalization/Cloning/WeylIdlerUniqueness.lean",
+      "source_after_sha256": "e1413287599caab0c36d5cf8625f327b319f75c097fe6cc33d4351f22cff5dc7",
+      "source_before_sha256": "c3ad276535f7e0b776dae495c8a0a8e42e9967d8a36f8ed7d5a8ef55193ac80d",
+      "source_outside_body_byte_identical": true,
+      "statement_byte_identical": true,
+      "theorem": "integral_weighted_characteristic"
+    }
+  ],
+  "public_check_commands_byte_identical": true,
+  "public_check_count": 316,
+  "public_check_inventory_sha256": "5539b34b57ebc49fdf0e84c1b898643e3e51affe09fb5e6b942785b3df120b10",
+  "schema": "cloning-elaboration-cleanup-api-source-guard-v1",
+  "unchanged_owned_sources": 992
+}

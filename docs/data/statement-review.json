@@ -1,9 +1,9 @@
 {
   "date": "2026-10-06",
   "reviewed_revision": "d2ccb294f6a69d2cd65aa807cb9bfd1d9f829999",
-  "source_audit_sha256": "6b2c09f61388362d9ff3ae3f63285b9dd09e0cd95254150273bacba6cd9c799a",
+  "source_audit_sha256": "cd6735524ed4f60d02fded4b846eaa349d36fc3d151df5768ddc5fcfe4ada61b",
   "manuscript_sha256": "6f2453656031201968aef5cc9c043f7116bb7a1ed1cd2cebb2b905e3df94038d",
-  "scope": "AI-assisted semantic review of three theorem families, with native Lean type/application probes; not external peer review or a full replay of kernel verification.",
+  "scope": "Original AI-assisted endpoint semantic review retained; three unchanged native Lean type/application probes freshly revalidated against the cleanup revision. This is not a new full semantic review, external peer review, or kernel-check replay.",
   "results": {
     "thm:known-optimum": {
       "title": "Known spectrum",
@@ -23,10 +23,10 @@
           "file": "formalization/Cloning/TensorCloningPrescribed.lean"
         }
       ],
-      "report": "formalization/verification/semantic-pilot/known-spectrum.md",
-      "probe": "formalization/verification/semantic-pilot/known-spectrum.lean.txt",
-      "log": "formalization/verification/semantic-pilot/known-spectrum.log",
-      "run": "formalization/verification/semantic-pilot/known-spectrum-run.json"
+      "report": "formalization/verification/semantic-pilot/cleanup-pass/cleanup-known-spectrum.md",
+      "probe": "formalization/verification/semantic-pilot/cleanup-pass/cleanup-known-spectrum.lean.txt",
+      "log": "formalization/verification/semantic-pilot/cleanup-pass/cleanup-known-spectrum.log",
+      "run": "formalization/verification/semantic-pilot/cleanup-pass/cleanup-known-spectrum-run.json"
     },
     "thm:unknown-optimum": {
       "title": "Unknown spectrum",
@@ -50,10 +50,10 @@
           "file": "formalization/Cloning/SpectralAffineTheorem.lean"
         }
       ],
-      "report": "formalization/verification/semantic-pilot/unknown-spectrum.md",
-      "probe": "formalization/verification/semantic-pilot/unknown-spectrum.lean.txt",
-      "log": "formalization/verification/semantic-pilot/unknown-spectrum.log",
-      "run": "formalization/verification/semantic-pilot/unknown-spectrum-run.json"
+      "report": "formalization/verification/semantic-pilot/cleanup-pass/cleanup-unknown-spectrum.md",
+      "probe": "formalization/verification/semantic-pilot/cleanup-pass/cleanup-unknown-spectrum.lean.txt",
+      "log": "formalization/verification/semantic-pilot/cleanup-pass/cleanup-unknown-spectrum.log",
+      "run": "formalization/verification/semantic-pilot/cleanup-pass/cleanup-unknown-spectrum-run.json"
     },
     "thm:grassmann": {
       "title": "Projector states",
@@ -77,28 +77,35 @@
           "file": "formalization/Cloning/YoungFlatCouplingPhysical.lean"
         }
       ],
-      "report": "formalization/verification/semantic-pilot/projector.md",
-      "probe": "formalization/verification/semantic-pilot/projector.lean.txt",
-      "log": "formalization/verification/semantic-pilot/projector.log",
-      "run": "formalization/verification/semantic-pilot/projector-run.json"
+      "report": "formalization/verification/semantic-pilot/cleanup-pass/cleanup-projector.md",
+      "probe": "formalization/verification/semantic-pilot/cleanup-pass/cleanup-projector.lean.txt",
+      "log": "formalization/verification/semantic-pilot/cleanup-pass/cleanup-projector.log",
+      "run": "formalization/verification/semantic-pilot/cleanup-pass/cleanup-projector-run.json"
     }
   },
   "artifacts": {
-    "formalization/verification/semantic-pilot/known-spectrum-attempt-1-run.json": "1fdda90231c740d32661d4b13720ac40e1cbed87e3ab711fef4d5b89526d159a",
-    "formalization/verification/semantic-pilot/known-spectrum-attempt-1.lean.txt": "cb11e0daaa89aaafb781f2b05d6e24b5dfab9c6c66fba1f24246555c9c25e6a9",
-    "formalization/verification/semantic-pilot/known-spectrum-attempt-1.log": "7a6357ac3ea6865924a4ef79904b1ef4a9151efcc1eaf6522cce01078d23d9c6",
-    "formalization/verification/semantic-pilot/known-spectrum-run.json": "d25e2703527730bcef1a4b88d4fd884b885a838c3aa16e2e7729c3eb13139ebf",
-    "formalization/verification/semantic-pilot/known-spectrum.lean.txt": "416877625fe1c1b19676b3fc6220b346d6780d8c5b029393aa63905485a98c27",
-    "formalization/verification/semantic-pilot/known-spectrum.log": "8db8458f98277005d75cda041724463dac03d498dcb278f6c01e3a8d8b9065bf",
-    "formalization/verification/semantic-pilot/known-spectrum.md": "b8a2c9f53ef84f61e55208e6de9b81215f0bbfc21dec0d53184e5c4fb7c4fcd1",
-    "formalization/verification/semantic-pilot/projector-run.json": "2d50ee0eb9ad4539ac2d42acb818ed34cce686846ba7f7506390c78aed559f13",
-    "formalization/verification/semantic-pilot/projector.lean.txt": "c051da587e832e9d6d100aaf1fc0935dd1b4d71e7437885df2258279975a6e15",
-    "formalization/verification/semantic-pilot/projector.log": "57f2dbe85e33939d6ed168fb8b2376ee8358c696395c51c14d5ad3a4b9081cdb",
-    "formalization/verification/semantic-pilot/projector.md": "6072c9a6ec18b90db94c1d4055dca1aabaa61ed9f40434b5eedfae330a3fa76a",
-    "formalization/verification/semantic-pilot/unknown-spectrum-run.json": "a9cf0e0354d44c19dd27ca86ac337ad9149ba09ba16ba0a45b7e6dcf741e56d9",
-    "formalization/verification/semantic-pilot/unknown-spectrum.lean.txt": "584d79076a5f62e86c5a4c8179ace665e7c3beb046c769efcc4242630bda3b2e",
-    "formalization/verification/semantic-pilot/unknown-spectrum.log": "e4b45d9f332bb5372883c515f6f44b488af9f0d4fca8bd6b3de204b12e89e918",
-    "formalization/verification/semantic-pilot/unknown-spectrum.md": "169bd647170f15228ec350044c25d035e7cd65cbe6915a6fa7c9b4252b32e1f3",
-    "formalization/verification/semantic-pilot/unknown-spectrum.resources.log": "0fe4cde26113f463d389127c676b72ebd6d5578bd635c9101814102539a90fb6"
-  }
+    "formalization/verification/semantic-pilot/cleanup-pass/cleanup-known-spectrum.md": "f2d5f8e3e64fd366d3ed3c1a18390e140365d389f27a787bbb8c644c52ec8375",
+    "formalization/verification/semantic-pilot/cleanup-pass/cleanup-known-spectrum.lean.txt": "416877625fe1c1b19676b3fc6220b346d6780d8c5b029393aa63905485a98c27",
+    "formalization/verification/semantic-pilot/cleanup-pass/cleanup-known-spectrum.log": "8db8458f98277005d75cda041724463dac03d498dcb278f6c01e3a8d8b9065bf",
+    "formalization/verification/semantic-pilot/cleanup-pass/cleanup-known-spectrum-run.json": "323edcb5a8ffb9e0f08c43f6b7f22c6c606f3397498aa6297c979c61d795bbe2",
+    "formalization/verification/semantic-pilot/cleanup-pass/cleanup-known-spectrum.resources.log": "0bc867419b8e87c11a457cfa30c3f98a2290d02b1711526ae442795bc38223cb",
+    "formalization/verification/semantic-pilot/cleanup-pass/cleanup-unknown-spectrum.md": "f01bfbc4174ccdfc6d1ce81f64e1bb4bd31621337c096b64a18f0154704dc329",
+    "formalization/verification/semantic-pilot/cleanup-pass/cleanup-unknown-spectrum.lean.txt": "584d79076a5f62e86c5a4c8179ace665e7c3beb046c769efcc4242630bda3b2e",
+    "formalization/verification/semantic-pilot/cleanup-pass/cleanup-unknown-spectrum.log": "e4b45d9f332bb5372883c515f6f44b488af9f0d4fca8bd6b3de204b12e89e918",
+    "formalization/verification/semantic-pilot/cleanup-pass/cleanup-unknown-spectrum-run.json": "c7fc366dcb8c49a52ec9e0d8d3861b5bb763f6f126b45583e86d6e630df105c6",
+    "formalization/verification/semantic-pilot/cleanup-pass/cleanup-unknown-spectrum.resources.log": "cf59a8dacbb35bd91dd631ed1f9334d902249d361418bc76254b8db68ca26b9a",
+    "formalization/verification/semantic-pilot/cleanup-pass/cleanup-projector.md": "e5dfbf16aa7e98e05b47dd845e628903a44fdb573713228a378818383ee6e569",
+    "formalization/verification/semantic-pilot/cleanup-pass/cleanup-projector.lean.txt": "c051da587e832e9d6d100aaf1fc0935dd1b4d71e7437885df2258279975a6e15",
+    "formalization/verification/semantic-pilot/cleanup-pass/cleanup-projector.log": "57f2dbe85e33939d6ed168fb8b2376ee8358c696395c51c14d5ad3a4b9081cdb",
+    "formalization/verification/semantic-pilot/cleanup-pass/cleanup-projector-run.json": "6f431cc4864a27ecfdda4c63246819b5f5d7a2e5a78a403f94367210ef6daf48",
+    "formalization/verification/semantic-pilot/cleanup-pass/cleanup-projector.resources.log": "af28c67d6e439c6ac770fd7db0b82d2635d9d421a026d04b13860d83fd589add"
+  },
+  "original_review": {
+    "date": "2026-10-06",
+    "reviewed_revision": "d2ccb294f6a69d2cd65aa807cb9bfd1d9f829999",
+    "source_audit_sha256": "6b2c09f61388362d9ff3ae3f63285b9dd09e0cd95254150273bacba6cd9c799a",
+    "scope": "AI-assisted semantic review of three theorem families, with native Lean type/application probes; not external peer review or a full replay of kernel verification."
+  },
+  "revalidation_revision": "bcb3c208c0a47a9d905d71ec48ec107a0118db04",
+  "revalidation_date": "2026-10-07"
 }

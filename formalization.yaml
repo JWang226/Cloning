@@ -13,9 +13,9 @@ status:
   overall: verified_complete_for_frozen_manuscript
   explicit_scope: All 27 named results in the unchanged frozen manuscript are reconciled to concrete Lean endpoints.
     The current 982-module full build passed with 4563 jobs; the complete all-declaration axiom audit
-    passed for 14345 project constants with the standard three-axiom policy and unchanged run inputs/artifacts.
+    passed for 14344 project constants with the standard three-axiom policy and unchanged run inputs/artifacts.
     Comparator passed explicit statement/dependency comparison and Lean kernel replay; unmodified Nanoda passed
-    all 14345 audited project roots and their dependencies (83433 exported declarations checked).
+    all 14344 audited project roots and their dependencies (83432 exported declarations checked).
     Compiler compatibility annotations suppress 30 unused generated partial runtime helpers without filtering roots.
   sorry_count: 0
   sorry_in_definitions: 0
@@ -26,15 +26,15 @@ status:
   additional_project_axioms: []
   verified_library:
     modules: 982
-    lemmas_and_theorems: 6350
-    unique_compiled_project_constants: 14345
+    lemmas_and_theorems: 6349
+    unique_compiled_project_constants: 14344
     explicit_scope: Complete current kernel-compatible library, including every imported implementation export, private declaration
       and generated helper.
   main_results:
   - name: Lifted-sector fidelity, PBW bounds, and achievability
     declaration: Cloning.TensorCloning.eventually_uniform_lifted_fidelity_factorization
     sorry_count: 0
-    axioms:
+    permitted_axioms:
     - Classical.choice
     - Quot.sound
     - propext
@@ -124,7 +124,7 @@ status:
   - name: Projector converse and dimension factors
     declaration: Cloning.PhysicalFlatGrassmann.minimaxValue_tendsto
     sorry_count: 0
-    axioms:
+    permitted_axioms:
     - Classical.choice
     - Quot.sound
     - propext
@@ -147,7 +147,7 @@ status:
   - name: Normalized Young law, classical rounding and dimension moments
     declaration: Cloning.TensorLie.exists_tensorYoungPMF_uniform_exp_threshold
     sorry_count: 0
-    axioms:
+    permitted_axioms:
     - Classical.choice
     - Quot.sound
     - propext
@@ -188,7 +188,7 @@ status:
   - name: Physical Werner output, coherent limits, and PCT mixtures
     declaration: Cloning.GeneralSymmetricOccupation.wernerChannel_thermal_limit
     sorry_count: 0
-    axioms:
+    permitted_axioms:
     - Classical.choice
     - Quot.sound
     - propext
@@ -236,7 +236,7 @@ status:
   - name: Actual joint PCT comparison, fidelity and physical local chart
     declaration: Cloning.PCTPrescribed.rankChannel_uniform_sample_guarantee
     sorry_count: 0
-    axioms:
+    permitted_axioms:
     - Classical.choice
     - Quot.sound
     - propext
@@ -305,7 +305,7 @@ status:
   - name: Universal orbital Gaussian optimality and physical attainment
     declaration: Cloning.MultimodeCoherent.realFlatBoxOptimalPayoff_tendsto_modeFactor_nonneg
     sorry_count: 0
-    axioms:
+    permitted_axioms:
     - Classical.choice
     - Quot.sound
     - propext
@@ -347,7 +347,7 @@ status:
   - name: Quantum fidelity and hybrid Gaussian optimality
     declaration: Cloning.PCTJointGaussianWhitening.scoreGaussianOptimal_tendsto
     sorry_count: 0
-    axioms:
+    permitted_axioms:
     - Classical.choice
     - Quot.sound
     - propext
@@ -400,7 +400,7 @@ status:
   - name: Common-subsequence CP limits and flat-prior payoff transfer
     declaration: Cloning.MultimodeCoherent.exists_flatBox_thermal_payoff_limit
     sorry_count: 0
-    axioms:
+    permitted_axioms:
     - Classical.choice
     - Quot.sound
     - propext
@@ -438,7 +438,7 @@ status:
   - name: Mixed-channel LAN, coordinate and mixture fidelity transfer
     declaration: Cloning.MixedLANTransfer.fidelity_transfer
     sorry_count: 0
-    axioms:
+    permitted_axioms:
     - Classical.choice
     - Quot.sound
     - propext
@@ -483,7 +483,7 @@ status:
   - name: Unconditional physical cloning main theorems
     declaration: Cloning.TensorCloning.knownSpectrumValue_tendsto
     sorry_count: 0
-    axioms:
+    permitted_axioms:
     - Classical.choice
     - Quot.sound
     - propext
@@ -539,49 +539,58 @@ status:
   remaining_gaps: []
   verification:
     latest_record: formalization/verification/latest.json
-    full_audit: formalization/verification/kernel-compatible-pass/run.json
+    full_audit: formalization/verification/cleanup-pass/run.json
     progress_report: formalization/PROGRESS.md
-    semantic_review: formalization/verification/completion-semantic-review.md
+    semantic_review: formalization/verification/current-semantic-review.md
     compatibility_report: formalization/verification/kernel-compatibility.md
-    completed_utc: "2026-10-04T05:54:37.522297+00:00"
+    completed_utc: "2026-10-07T04:34:58.981857+00:00"
     explicit_scope: Fresh complete build, exhaustive axiom audit, source/artifact stability,
       explicit Comparator statement comparison and Lean replay, and all-root unmodified Nanoda checking passed.
-    saved_evidence_check: formalization/verification/kernel-compatible-checkpoint.json
-    saved_evidence_sha256: 5fa5d6986f875e59e30b7a622178ca4171aa39b366f05de0d8a745b7f7e5bffe
+    axiom_evidence_scope: "Aggregate union over all project roots and dependencies; no per-root attribution. Per-result permitted_axioms lists state checker policy."
+    saved_evidence_check: formalization/verification/cleanup-checkpoint.json
+    saved_evidence_sha256: 3d3a00a8f219b58de1e3747509f6c3e7dd4bc734e1ef33d4ed882f56a7fe895c
     independent_reproducers:
       tool_pins: formalization/verification/tools-lock.json
       comparator:
         status: passed
         scope: "27 independently written named-result targets and their proof dependencies; statement comparison and Lean replay"
+        command_from_repository: bash scripts/verify.sh comparator
         command_from_formalization: bash verification/comparator/run.sh
         instructions: formalization/verification/comparator/README.md
         status_record: formalization/verification/comparator/status.json
-        run_record: formalization/verification/comparator/records/20261004T055545.209379Z/run.json
-        run_record_sha256: 10cd07049fa3607797765114c4d970a9e0aa51b408e795641b7f342e50983b7a
-        source_audit_sha256: 6b2c09f61388362d9ff3ae3f63285b9dd09e0cd95254150273bacba6cd9c799a
+        run_record: formalization/verification/comparator/records/20261007T042117.504957Z/run.json
+        run_record_sha256: 90446abcf031bf2b76f350cf2f96d080108adacf153eec6c66a719e868e684f3
+        source_audit_sha256: cd6735524ed4f60d02fded4b846eaa349d36fc3d151df5768ddc5fcfe4ada61b
         mode: trusted-local-no-sandbox
         claims: 27
-        resource_record: formalization/verification/comparator/records/20261004T055545.209379Z/resources.json
-        resource_record_sha256: 5f778f904484a09852d193fb556ed63d11bf11783b6f909b481822d9f018155a
-        timed_command_maximum_resident_set_bytes: 3614605312
-        resource_measurement_scope: "macOS /usr/bin/time -l report for the runner command; not simultaneous aggregate memory across all processes"
+        current_resource_measurement: "Native runner timestamps recorded; CPU and maximum resident memory not measured."
+        historical_resource_observation:
+          run_record: formalization/verification/comparator/records/20261004T055545.209379Z/run.json
+          resource_record: formalization/verification/comparator/records/20261004T055545.209379Z/resources.json
+          resource_record_sha256: 5f778f904484a09852d193fb556ed63d11bf11783b6f909b481822d9f018155a
+          timed_command_maximum_resident_set_bytes: 3614605312
+          resource_measurement_scope: "macOS /usr/bin/time -l report for the runner command; not simultaneous aggregate memory across all processes"
       nanoda:
         status: passed
-        scope: "All 14345 audited project constants and their transitive dependencies"
+        scope: "All 14344 audited project constants and their transitive dependencies"
+        command_from_repository: bash scripts/verify.sh nanoda
         command_from_formalization: bash verification/nanoda/run.sh --run --threads 1
         instructions: formalization/verification/nanoda/README.md
         status_record: formalization/verification/nanoda/status.json
-        run_record: formalization/verification/nanoda/records/20261004T055629.624926Z/run.json
-        run_record_sha256: 1920e73469cdd1f953b3b15e46d927b159d6ab8de585630162e95dd14f0c2050
-        source_audit_sha256: 6b2c09f61388362d9ff3ae3f63285b9dd09e0cd95254150273bacba6cd9c799a
+        run_record: formalization/verification/nanoda/records/20261007T042711.164065Z/run.json
+        run_record_sha256: 9911e35a13e8f053301152298909c9604b7b6751abe9e1270e3efd022fbd5152
+        source_audit_sha256: cd6735524ed4f60d02fded4b846eaa349d36fc3d151df5768ddc5fcfe4ada61b
         independent_kernel_check: passed
-        project_declarations: 14345
-        exported_declarations: 83433
-        checked_declarations: 83433
-        resource_record: formalization/verification/nanoda/records/20261004T055629.624926Z/resources.json
-        resource_record_sha256: 674177a0d32b666f83205ac9bcab1d3b22226116198cc9133120089d2bf641de
-        timed_command_maximum_resident_set_bytes: 3268395008
-        resource_measurement_scope: "macOS /usr/bin/time -l measured the official runner command (bash verification/nanoda/run.sh --run --threads 1), including its child processes. Maximum resident set is the timed command measurement, not aggregate simultaneous memory with Comparator or the desktop. The run elapsed time comes from runner timestamps; sampled process memory is retained separately in resource-observations.jsonl."
+        project_declarations: 14344
+        exported_declarations: 83432
+        checked_declarations: 83432
+        current_resource_measurement: "Native runner timestamps recorded; CPU and maximum resident memory not measured."
+        historical_resource_observation:
+          run_record: formalization/verification/nanoda/records/20261004T055629.624926Z/run.json
+          resource_record: formalization/verification/nanoda/records/20261004T055629.624926Z/resources.json
+          resource_record_sha256: 674177a0d32b666f83205ac9bcab1d3b22226116198cc9133120089d2bf641de
+          timed_command_maximum_resident_set_bytes: 3268395008
+          resource_measurement_scope: "macOS /usr/bin/time -l measured the official runner command (bash verification/nanoda/run.sh --run --threads 1), including its child processes. Maximum resident set is the timed command measurement, not aggregate simultaneous memory with Comparator or the desktop. The run elapsed time comes from runner timestamps; sampled process memory is retained separately in resource-observations.jsonl."
     historical_completion_audit:
       run_record: formalization/verification/completion-pass/run.json
       run_record_sha256: 00b03eb5cfff71467000058132c3953d8508a394b22b2a8092a464fb42593dae

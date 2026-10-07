@@ -1,0 +1,4130 @@
+{
+  "code_lines": 92405,
+  "command": [
+    "/opt/homebrew/bin/gtime",
+    "-v",
+    "-o",
+    "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/before/resources.txt",
+    "/Users/jw/.elan/bin/lake",
+    "--no-ansi",
+    "--no-cache",
+    "build",
+    "All"
+  ],
+  "commit": "cbb2fd2007ae367e201d4a6ac7c069899db90dbd",
+  "cpu_count": 8,
+  "critical_path_logged_lower_bound": [
+    3281.0000000000005,
+    [
+      "Cloning.InfiniteTraceClass",
+      "Cloning.InfiniteHilbertSchmidt",
+      "Cloning.InfiniteTraceClassBasis",
+      "Cloning.InfiniteTraceClassIdeal",
+      "Cloning.InfiniteTraceClassNormBounds",
+      "Cloning.InfiniteTraceClassSpace",
+      "Cloning.InfiniteTraceClassBanach",
+      "Cloning.InfiniteTraceClassAlgebra",
+      "Cloning.InfiniteTraceClassSeries",
+      "Cloning.InfinitePureStateContinuity",
+      "Cloning.SymmetricOccupation",
+      "Cloning.GeneralSymmetricOccupation",
+      "Cloning.GeneralSymmetricDimension",
+      "Cloning.WernerPhysicalOperator",
+      "Cloning.WernerPhysicalPullback",
+      "Cloning.GeneralCoherentCoordinates",
+      "Cloning.GeneralCoherentLimits",
+      "Cloning.GeneralCoherentChannels",
+      "Cloning.GeneralCoherentMixture",
+      "Cloning.PCTWernerMixture",
+      "Cloning.PCTPartialTrace",
+      "Cloning.PCTTensorFrame",
+      "Cloning.TensorLieGenerators",
+      "Cloning.TensorLieRelations",
+      "Cloning.TensorLieHighestWeight",
+      "Cloning.TensorLieFiltration",
+      "Cloning.TensorLieLeibniz",
+      "Cloning.TensorWedge",
+      "Cloning.TensorWedgeHighest",
+      "Cloning.TensorPartitionHighest",
+      "Cloning.TensorCyclicSector",
+      "Cloning.TensorCyclicSectorIrreducible",
+      "Cloning.TensorCyclicSectorOperators",
+      "Cloning.TensorCyclicSectorTensorPower",
+      "Cloning.TensorCyclicSectorTransvection",
+      "Cloning.TensorCyclicSectorCovariance",
+      "Cloning.TensorHighestExtractionBasic",
+      "Cloning.TensorHighestExtraction",
+      "Cloning.TensorSchurDecompositionData",
+      "Cloning.TensorSchurDecomposition",
+      "Cloning.TensorSchurDecompositionIsometry",
+      "Cloning.TensorSchurDecompositionTrace",
+      "Cloning.TensorSchurDecompositionPMF",
+      "Cloning.TensorSchurDecompositionMultiplicity",
+      "Cloning.TensorSchurDecompositionBounds",
+      "Cloning.TensorSchurDecompositionCasimir",
+      "Cloning.TensorSchurDecompositionCharacter",
+      "Cloning.TensorSchurDecompositionRadialTrace",
+      "Cloning.TensorSchurDecompositionRootSum",
+      "Cloning.TensorSchurDecompositionRadialEquation",
+      "Cloning.TensorSchurDecompositionCharacterSpectrum",
+      "Cloning.TensorSchurDecompositionWeylCharacter",
+      "Cloning.WeylCharacterDimensionPhysical",
+      "Cloning.TensorFlatProjectorLaw",
+      "Cloning.TensorFlatProjectorEmbedding",
+      "Cloning.TensorFlatProjectorNaturality",
+      "Cloning.TensorFlatProjectorSupport",
+      "Cloning.TensorFlatProjectorSector",
+      "Cloning.TensorFlatProjectorRestriction",
+      "Cloning.TensorFlatProjectorSectorSupport",
+      "Cloning.TensorFlatProjectorState",
+      "Cloning.TensorFlatProjectorMatrix",
+      "Cloning.TensorFlatProjectorCompression",
+      "Cloning.TensorFlatProjectorFidelity",
+      "Cloning.TensorFlatProjectorTraceClass",
+      "Cloning.TensorFlatProjectorGibbs",
+      "Cloning.TensorFlatProjectorGibbsState",
+      "Cloning.TensorFlatProjectorStateFidelity",
+      "Cloning.TensorFlatProjectorTransitionCovariance",
+      "Cloning.TensorFlatProjectorChannel",
+      "Cloning.TensorFlatProjectorAchievability",
+      "Cloning.TensorRankOneCoupling",
+      "Cloning.TensorRankOneTransition",
+      "Cloning.TensorRankOneGlobal",
+      "Cloning",
+      "All"
+    ]
+  ],
+  "dependency_artifacts_unchanged": true,
+  "end_utc": "2026-10-07T02:09:30.814062+00:00",
+  "environment": {
+    "LAKE_ARTIFACT_CACHE": "false",
+    "LEAN_NUM_THREADS": "2"
+  },
+  "errors": 0,
+  "exit_code": 0,
+  "heavy_tiers": {
+    "10": 557,
+    "20": 357,
+    "30": 261,
+    "40": 193
+  },
+  "host": "Darwin Mac.attlocal.net 27.2.0 Darwin Kernel Version 27.2.0: Tue Sep 29 21:45:37 PDT 2026; root:xnu-13432.40.177.0.3~56/RELEASE_ARM64_T8112 arm64",
+  "lake": "Lake version 5.0.0-src+00659f8 (Lean version 4.29.0-rc6)",
+  "lake_jobs": 4563,
+  "lean": "Lean (version 4.29.0-rc6, arm64-apple-darwin24.6.0, commit 00659f8e6071d7e46131ed643bf8003b99b044e9, Release)",
+  "legacy_header_files": 994,
+  "logged_job_seconds": 24284.9,
+  "memory_bytes": "17179869184",
+  "module_count": 994,
+  "resources": {
+    "Average resident set size (kbytes)": "0",
+    "Average shared text size (kbytes)": "0",
+    "Average stack size (kbytes)": "0",
+    "Average total size (kbytes)": "0",
+    "Average unshared data size (kbytes)": "0",
+    "Command being timed": "\"/Users/jw/.elan/bin/lake --no-ansi --no-cache build All\"",
+    "Elapsed (wall clock) time (h:mm:ss or m:ss)": "3:25:16",
+    "Exit status": "0",
+    "File system inputs": "0",
+    "File system outputs": "0",
+    "Involuntary context switches": "159839617",
+    "Major (requiring I/O) page faults": "40080698",
+    "Maximum resident set size (kbytes)": "3396256",
+    "Minor (reclaiming a frame) page faults": "267223338",
+    "Page size (bytes)": "16384",
+    "Percent of CPU this job got": "110%",
+    "Signals delivered": "0",
+    "Socket messages received": "0",
+    "Socket messages sent": "0",
+    "Swaps": "0",
+    "System time (seconds)": "4517.38",
+    "User time (seconds)": "9052.61",
+    "Voluntary context switches": "1905259"
+  },
+  "schema": "cloning-elaboration-test-v1",
+  "sorry_messages": 0,
+  "start_utc": "2026-10-06T22:44:14.173734+00:00",
+  "time_tool": "time (GNU Time) 1.10\nCopyright (C) 2026 Free Software Foundation, Inc.\nLicense GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>.\nThis is free software: you are free to change and redistribute it.\nThere is NO WARRANTY, to the extent permitted by law.\n\nWritten by David Keppel, David MacKenzie, and Assaf Gordon.",
+  "timings": [
+    {
+      "module": "Cloning.WeylIdlerUniqueness",
+      "seconds": 237.0
+    },
+    {
+      "module": "Cloning.PCTHybridMixtureFactor",
+      "seconds": 228.0
+    },
+    {
+      "module": "Cloning.WernerPhysicalPullback",
+      "seconds": 198.0
+    },
+    {
+      "module": "Cloning.PCTGlobalPhysical",
+      "seconds": 171.0
+    },
+    {
+      "module": "Cloning.PCTUnitaryTransportChannels",
+      "seconds": 171.0
+    },
+    {
+      "module": "Cloning.MatrixChannelTraceNorm",
+      "seconds": 169.0
+    },
+    {
+      "module": "Cloning.MatrixLiftedCPTP",
+      "seconds": 168.0
+    },
+    {
+      "module": "Cloning.InfiniteTraceClass",
+      "seconds": 158.0
+    },
+    {
+      "module": "Cloning.MatrixTransitionAchievability",
+      "seconds": 151.0
+    },
+    {
+      "module": "Cloning.MatrixLANTransfer",
+      "seconds": 150.0
+    },
+    {
+      "module": "Cloning.PCTJointGaussianReal",
+      "seconds": 144.0
+    },
+    {
+      "module": "Cloning.InfiniteTraceClassSpace",
+      "seconds": 140.0
+    },
+    {
+      "module": "Cloning.PCTJointGaussianWhitenedLaw",
+      "seconds": 133.0
+    },
+    {
+      "module": "Cloning.InfiniteTraceClassNormBounds",
+      "seconds": 130.0
+    },
+    {
+      "module": "Cloning.PCTGlobalMatrixBridge",
+      "seconds": 130.0
+    },
+    {
+      "module": "Cloning.InfiniteHilbertSchmidt",
+      "seconds": 127.0
+    },
+    {
+      "module": "Cloning.TensorFlatProjectorStateFidelity",
+      "seconds": 127.0
+    },
+    {
+      "module": "Cloning.MatrixLiftedCPTPAction",
+      "seconds": 126.0
+    },
+    {
+      "module": "Cloning.MatrixLiftedTrimming",
+      "seconds": 126.0
+    },
+    {
+      "module": "Cloning.TensorCyclicFiltration",
+      "seconds": 126.0
+    },
+    {
+      "module": "Cloning.PCTPhysicalFidelityLAN",
+      "seconds": 121.0
+    },
+    {
+      "module": "Cloning.MatrixTraceOrder",
+      "seconds": 119.0
+    },
+    {
+      "module": "Cloning.AmplifierWeylThermal",
+      "seconds": 118.0
+    },
+    {
+      "module": "Cloning.PCTGaussianOutputTangent",
+      "seconds": 114.0
+    },
+    {
+      "module": "Cloning.MatrixFidelityBounds",
+      "seconds": 111.0
+    },
+    {
+      "module": "Cloning.TensorSchurDecompositionIsometry",
+      "seconds": 111.0
+    },
+    {
+      "module": "Cloning.InfiniteTraceClassPolar",
+      "seconds": 107.0
+    },
+    {
+      "module": "Cloning.WernerPhysicalOperator",
+      "seconds": 105.0
+    },
+    {
+      "module": "Cloning.InfiniteTraceClassIdeal",
+      "seconds": 104.0
+    },
+    {
+      "module": "Cloning.PCTHybridFidelity",
+      "seconds": 104.0
+    },
+    {
+      "module": "Cloning.PCTHybridFidelityTransfer",
+      "seconds": 104.0
+    },
+    {
+      "module": "Cloning.TensorGibbsCutoffState",
+      "seconds": 101.0
+    },
+    {
+      "module": "Cloning.InfiniteTraceClassBanach",
+      "seconds": 99.0
+    },
+    {
+      "module": "Cloning.PCTLocalChartAlgebra",
+      "seconds": 99.0
+    },
+    {
+      "module": "Cloning.BosonicAmplifier",
+      "seconds": 96.0
+    },
+    {
+      "module": "Cloning.UniformCoherent",
+      "seconds": 96.0
+    },
+    {
+      "module": "Cloning.TensorLieGenerators",
+      "seconds": 94.0
+    },
+    {
+      "module": "Cloning.PCTUnitaryTransport",
+      "seconds": 94.0
+    },
+    {
+      "module": "Cloning.PhysicalFlatConverseReduction",
+      "seconds": 94.0
+    },
+    {
+      "module": "Cloning.HybridClassicalAverageTrace",
+      "seconds": 93.0
+    },
+    {
+      "module": "Cloning.InfiniteTraceClassBasis",
+      "seconds": 90.0
+    },
+    {
+      "module": "Cloning.MatrixLiftedCPTPKraus",
+      "seconds": 90.0
+    },
+    {
+      "module": "Cloning.PCTGlobalWerner",
+      "seconds": 90.0
+    },
+    {
+      "module": "Cloning.GeneralSymmetricDimension",
+      "seconds": 89.0
+    },
+    {
+      "module": "Cloning.WeylThermalFourier",
+      "seconds": 89.0
+    },
+    {
+      "module": "Cloning.PCTPartialTrace",
+      "seconds": 89.0
+    },
+    {
+      "module": "Cloning.MatrixWeightedFidelity",
+      "seconds": 89.0
+    },
+    {
+      "module": "Cloning.PCTHybridMixtureClassical",
+      "seconds": 89.0
+    },
+    {
+      "module": "Cloning.PoissonApproximation",
+      "seconds": 87.0
+    },
+    {
+      "module": "Cloning.HybridTranslation",
+      "seconds": 86.0
+    },
+    {
+      "module": "Cloning.MixedChannelsReverseFidelity",
+      "seconds": 86.0
+    },
+    {
+      "module": "Cloning.PCTJointGaussianConvolution",
+      "seconds": 86.0
+    },
+    {
+      "module": "Cloning.TensorCartanChannelCovariance",
+      "seconds": 86.0
+    },
+    {
+      "module": "Cloning.TensorLANEmbeddingCellError",
+      "seconds": 85.0
+    },
+    {
+      "module": "Cloning.UniversalLeastNoiseThermalTest",
+      "seconds": 83.0
+    },
+    {
+      "module": "Cloning.TensorCartanStateOperator",
+      "seconds": 83.0
+    },
+    {
+      "module": "Cloning.MatrixFidelity",
+      "seconds": 82.0
+    },
+    {
+      "module": "Cloning.MatrixLiftedCPTPPhysical",
+      "seconds": 82.0
+    },
+    {
+      "module": "Cloning.MixedChannelsFidelity",
+      "seconds": 81.0
+    },
+    {
+      "module": "Cloning.Thermal",
+      "seconds": 80.0
+    },
+    {
+      "module": "Cloning.InfiniteFidelityWitness",
+      "seconds": 80.0
+    },
+    {
+      "module": "Cloning.MixedChannelsPositiveApprox",
+      "seconds": 79.0
+    },
+    {
+      "module": "Cloning.MixedLANTransfer",
+      "seconds": 79.0
+    },
+    {
+      "module": "Cloning.PCTPhysicalFidelityFrame",
+      "seconds": 78.0
+    },
+    {
+      "module": "Cloning.CountableScheffe",
+      "seconds": 77.0
+    },
+    {
+      "module": "Cloning.TensorPBWWeight",
+      "seconds": 77.0
+    },
+    {
+      "module": "Cloning.PCTWernerMixture",
+      "seconds": 76.0
+    },
+    {
+      "module": "Cloning.Moments",
+      "seconds": 76.0
+    },
+    {
+      "module": "Cloning.TensorLieRelations",
+      "seconds": 76.0
+    },
+    {
+      "module": "Cloning.GeneralCoherentModel",
+      "seconds": 75.0
+    },
+    {
+      "module": "Cloning.HybridCovariantWeighted",
+      "seconds": 75.0
+    },
+    {
+      "module": "Cloning.PCTWernerCovariance",
+      "seconds": 73.0
+    },
+    {
+      "module": "Cloning.PCTPhysicalWerner",
+      "seconds": 73.0
+    },
+    {
+      "module": "Cloning.TensorFlatProjectorMixture",
+      "seconds": 73.0
+    },
+    {
+      "module": "Cloning.HeisenbergDualResidual",
+      "seconds": 71.0
+    },
+    {
+      "module": "Cloning.InfiniteDensityState",
+      "seconds": 70.0
+    },
+    {
+      "module": "Cloning.InfiniteTraceClassCutoff",
+      "seconds": 69.0
+    },
+    {
+      "module": "Cloning.InfiniteFidelityWeighted",
+      "seconds": 69.0
+    },
+    {
+      "module": "Cloning.PCTPurificationInvariance",
+      "seconds": 69.0
+    },
+    {
+      "module": "Cloning.WeylGaussianPrior",
+      "seconds": 68.0
+    },
+    {
+      "module": "Cloning.PCTTensorFrame",
+      "seconds": 68.0
+    },
+    {
+      "module": "Cloning.TensorGibbsState",
+      "seconds": 68.0
+    },
+    {
+      "module": "Cloning.InfiniteTraceClassSeparable",
+      "seconds": 67.0
+    },
+    {
+      "module": "Cloning.MixedChannelsBounded",
+      "seconds": 66.0
+    },
+    {
+      "module": "Cloning.MatrixCovariantBalance",
+      "seconds": 65.0
+    },
+    {
+      "module": "Cloning.GeneralCoherentMultiplicity",
+      "seconds": 64.0
+    },
+    {
+      "module": "Cloning.HybridChannel",
+      "seconds": 64.0
+    },
+    {
+      "module": "Cloning.MultimodeLeastNoise",
+      "seconds": 64.0
+    },
+    {
+      "module": "Cloning.UniversalGaussianRealBox",
+      "seconds": 64.0
+    },
+    {
+      "module": "Cloning.PCTJointGaussianChart",
+      "seconds": 64.0
+    },
+    {
+      "module": "Cloning.InfiniteTraceClassCompactness",
+      "seconds": 63.0
+    },
+    {
+      "module": "Cloning.GeneralSymmetricBalance",
+      "seconds": 62.0
+    },
+    {
+      "module": "Cloning.HybridWeightedFidelity",
+      "seconds": 62.0
+    },
+    {
+      "module": "Cloning.PCTMixedMixtureTransfer",
+      "seconds": 61.0
+    },
+    {
+      "module": "Cloning.TensorPositiveSpectrumCompression",
+      "seconds": 61.0
+    },
+    {
+      "module": "Cloning.ClassicalFidelity",
+      "seconds": 59.0
+    },
+    {
+      "module": "Cloning.HybridL1Cone",
+      "seconds": 59.0
+    },
+    {
+      "module": "Cloning.PCTPhysicalFidelity",
+      "seconds": 59.0
+    },
+    {
+      "module": "Cloning.TensorFlatProjectorState",
+      "seconds": 59.0
+    },
+    {
+      "module": "Cloning.InfiniteChannelLimitReconstruction",
+      "seconds": 58.0
+    },
+    {
+      "module": "Cloning.WeylFoelnerPayoff",
+      "seconds": 58.0
+    },
+    {
+      "module": "Cloning.GaussianConverseReduction",
+      "seconds": 58.0
+    },
+    {
+      "module": "Cloning.TensorPBWSpanning",
+      "seconds": 58.0
+    },
+    {
+      "module": "Cloning.TensorCyclicPartition",
+      "seconds": 58.0
+    },
+    {
+      "module": "Cloning.InfiniteTraceClassFamilyCompactness",
+      "seconds": 57.0
+    },
+    {
+      "module": "Cloning.InfiniteCompactObservableLimit",
+      "seconds": 57.0
+    },
+    {
+      "module": "Cloning.TensorLieHighestWeight",
+      "seconds": 57.0
+    },
+    {
+      "module": "Cloning.TensorFlatProjectorGibbsState",
+      "seconds": 57.0
+    },
+    {
+      "module": "Cloning.InfiniteTraceClassSeries",
+      "seconds": 56.0
+    },
+    {
+      "module": "Cloning.WeylFoelnerLimit",
+      "seconds": 56.0
+    },
+    {
+      "module": "Cloning.InfiniteKrausChannel",
+      "seconds": 55.0
+    },
+    {
+      "module": "Cloning.WeylFoelner",
+      "seconds": 55.0
+    },
+    {
+      "module": "Cloning.HybridClassicalConvolution",
+      "seconds": 55.0
+    },
+    {
+      "module": "Cloning.HybridFoelnerResidual",
+      "seconds": 55.0
+    },
+    {
+      "module": "Cloning.PCTTangentNormalization",
+      "seconds": 55.0
+    },
+    {
+      "module": "Cloning.CoherentCoefficients",
+      "seconds": 54.0
+    },
+    {
+      "module": "Cloning.WeylCovariantization",
+      "seconds": 54.0
+    },
+    {
+      "module": "Cloning.InfiniteTraceBoundedMaps",
+      "seconds": 54.0
+    },
+    {
+      "module": "Cloning.GeneralCoherentConvergence",
+      "seconds": 53.0
+    },
+    {
+      "module": "Cloning.HybridJensen",
+      "seconds": 53.0
+    },
+    {
+      "module": "Cloning.TensorLANEmbeddingAction",
+      "seconds": 53.0
+    },
+    {
+      "module": "Cloning.GeneralSymmetricProjector",
+      "seconds": 52.0
+    },
+    {
+      "module": "Cloning.TensorCCR",
+      "seconds": 52.0
+    },
+    {
+      "module": "Cloning.InfiniteChannelTraceRepair",
+      "seconds": 51.0
+    },
+    {
+      "module": "Cloning.WernerPhysicalAgreement",
+      "seconds": 51.0
+    },
+    {
+      "module": "Cloning.HybridWeightedMaps",
+      "seconds": 51.0
+    },
+    {
+      "module": "Cloning.HybridWeightedTrace",
+      "seconds": 51.0
+    },
+    {
+      "module": "Cloning.HybridProduct",
+      "seconds": 50.0
+    },
+    {
+      "module": "Cloning.HybridJensenSigmaFinite",
+      "seconds": 50.0
+    },
+    {
+      "module": "Cloning.WeylFlatPriorLimit",
+      "seconds": 50.0
+    },
+    {
+      "module": "Cloning.TensorCyclicOccupancy",
+      "seconds": 50.0
+    },
+    {
+      "module": "Cloning.TensorFundamentalBranchingSlices",
+      "seconds": 50.0
+    },
+    {
+      "module": "Cloning.TensorRankOneCartan",
+      "seconds": 50.0
+    },
+    {
+      "module": "Cloning.Rounding",
+      "seconds": 49.0
+    },
+    {
+      "module": "Cloning.InfiniteTraceClassDecomposition",
+      "seconds": 49.0
+    },
+    {
+      "module": "Cloning.InfiniteCompletelyPositive",
+      "seconds": 49.0
+    },
+    {
+      "module": "Cloning.PCTGlobalRecovery",
+      "seconds": 49.0
+    },
+    {
+      "module": "Cloning.PCTJointGaussianWhitening",
+      "seconds": 49.0
+    },
+    {
+      "module": "Cloning.TensorWedgeHighest",
+      "seconds": 49.0
+    },
+    {
+      "module": "Cloning.TensorCyclicError",
+      "seconds": 49.0
+    },
+    {
+      "module": "Cloning.BlockFidelity",
+      "seconds": 48.0
+    },
+    {
+      "module": "Cloning.InfiniteChannelAdjoint",
+      "seconds": 48.0
+    },
+    {
+      "module": "Cloning.PCTPurificationChannelPhysical",
+      "seconds": 48.0
+    },
+    {
+      "module": "Cloning.PCTHybridMixtureGaussian",
+      "seconds": 48.0
+    },
+    {
+      "module": "Cloning.TensorPBWOrder",
+      "seconds": 48.0
+    },
+    {
+      "module": "Cloning.TensorCartanIntertwiner",
+      "seconds": 48.0
+    },
+    {
+      "module": "Cloning.TensorCloningGlobalCovarianceSector",
+      "seconds": 48.0
+    },
+    {
+      "module": "Cloning.MatrixFidelityWitness",
+      "seconds": 47.0
+    },
+    {
+      "module": "Cloning.InfiniteTraceClassCutoffConvergence",
+      "seconds": 47.0
+    },
+    {
+      "module": "Cloning.PCTGaussianAssembly",
+      "seconds": 47.0
+    },
+    {
+      "module": "Cloning.WeylFlatPriorThermal",
+      "seconds": 47.0
+    },
+    {
+      "module": "Cloning.TensorCloningPayoff",
+      "seconds": 47.0
+    },
+    {
+      "module": "Cloning.TensorGibbsLocalUnitary",
+      "seconds": 47.0
+    },
+    {
+      "module": "Cloning.PhysicalFlatPinchingCovariance",
+      "seconds": 47.0
+    },
+    {
+      "module": "Cloning.WeylGaussianTwirl",
+      "seconds": 47.0
+    },
+    {
+      "module": "Cloning.BosonicNumberLaw",
+      "seconds": 46.0
+    },
+    {
+      "module": "Cloning.InfiniteHilbertSchmidtPositive",
+      "seconds": 46.0
+    },
+    {
+      "module": "Cloning.HybridCovariantQuantum",
+      "seconds": 46.0
+    },
+    {
+      "module": "Cloning.HybridStates",
+      "seconds": 45.0
+    },
+    {
+      "module": "Cloning.WeylFlatPrior",
+      "seconds": 45.0
+    },
+    {
+      "module": "Cloning.TensorCCRScalar",
+      "seconds": 45.0
+    },
+    {
+      "module": "Cloning.TensorPartitionHighest",
+      "seconds": 45.0
+    },
+    {
+      "module": "Cloning.TensorFlatProjectorTraceClass",
+      "seconds": 45.0
+    },
+    {
+      "module": "Cloning.TensorLANEmbeddingCellRecovery",
+      "seconds": 45.0
+    },
+    {
+      "module": "Cloning.PhysicalFlatPinchingInflation",
+      "seconds": 45.0
+    },
+    {
+      "module": "Cloning.TensorSchurHaarIntertwiner",
+      "seconds": 45.0
+    },
+    {
+      "module": "Cloning.InfiniteChannelCompactness",
+      "seconds": 44.0
+    },
+    {
+      "module": "Cloning.HybridGaussianMass",
+      "seconds": 44.0
+    },
+    {
+      "module": "Cloning.OrbitalGaussianAttainment",
+      "seconds": 44.0
+    },
+    {
+      "module": "Cloning.TensorLANEmbeddingFockProtocol",
+      "seconds": 44.0
+    },
+    {
+      "module": "Cloning.InfiniteChannelCovariance",
+      "seconds": 43.0
+    },
+    {
+      "module": "Cloning.TensorLocalUnitaryFockPolynomial",
+      "seconds": 43.0
+    },
+    {
+      "module": "Cloning.TensorLANEmbeddingSchurState",
+      "seconds": 43.0
+    },
+    {
+      "module": "Cloning.TensorLocalUnitaryWeyl",
+      "seconds": 43.0
+    },
+    {
+      "module": "Cloning.Occupation",
+      "seconds": 42.0
+    },
+    {
+      "module": "Cloning.WernerNormalization",
+      "seconds": 42.0
+    },
+    {
+      "module": "Cloning.InfiniteTraceClassChannels",
+      "seconds": 42.0
+    },
+    {
+      "module": "Cloning.WeylThermalFourierChannel",
+      "seconds": 42.0
+    },
+    {
+      "module": "Cloning.TensorSchurDecompositionCharacterSpectrum",
+      "seconds": 42.0
+    },
+    {
+      "module": "Cloning.TensorCloningChannel",
+      "seconds": 42.0
+    },
+    {
+      "module": "Cloning.InfinitePowersStormer",
+      "seconds": 41.0
+    },
+    {
+      "module": "Cloning.PCTPurificationFrame",
+      "seconds": 41.0
+    },
+    {
+      "module": "Cloning.GaussianWitness",
+      "seconds": 41.0
+    },
+    {
+      "module": "Cloning.MixedGaussianConverse",
+      "seconds": 41.0
+    },
+    {
+      "module": "Cloning.TensorRootBounds",
+      "seconds": 41.0
+    },
+    {
+      "module": "Cloning.PCTRankPurificationBlockMatrices",
+      "seconds": 41.0
+    },
+    {
+      "module": "Cloning.SymmetricOccupation",
+      "seconds": 40.0
+    },
+    {
+      "module": "Cloning.HybridFoelner",
+      "seconds": 40.0
+    },
+    {
+      "module": "Cloning.PBWNormalOrdering",
+      "seconds": 40.0
+    },
+    {
+      "module": "Cloning.PCTJointGaussianLaw",
+      "seconds": 40.0
+    },
+    {
+      "module": "Cloning.TensorCyclicSector",
+      "seconds": 40.0
+    },
+    {
+      "module": "Cloning.TensorGibbsDisplacedState",
+      "seconds": 40.0
+    },
+    {
+      "module": "Cloning.TensorFundamentalBranchingTransport",
+      "seconds": 40.0
+    },
+    {
+      "module": "Cloning.InfiniteTraceClassPositive",
+      "seconds": 39.0
+    },
+    {
+      "module": "Cloning.InfiniteOccupationStates",
+      "seconds": 39.0
+    },
+    {
+      "module": "Cloning.GeneralCoherentMixture",
+      "seconds": 39.0
+    },
+    {
+      "module": "Cloning.InfiniteFidelityConcavity",
+      "seconds": 39.0
+    },
+    {
+      "module": "Cloning.TensorLocalUnitaryPhysical",
+      "seconds": 39.0
+    },
+    {
+      "module": "Cloning.WernerAsymptotics",
+      "seconds": 38.0
+    },
+    {
+      "module": "Cloning.GeneralSymmetricSplitting",
+      "seconds": 38.0
+    },
+    {
+      "module": "Cloning.GeneralCoherentChannels",
+      "seconds": 38.0
+    },
+    {
+      "module": "Cloning.WeylFlatBox",
+      "seconds": 38.0
+    },
+    {
+      "module": "Cloning.HybridCoordinateTransport",
+      "seconds": 38.0
+    },
+    {
+      "module": "Cloning.PhysicalCloningConverseChart",
+      "seconds": 38.0
+    },
+    {
+      "module": "Cloning.FiniteKrausLift",
+      "seconds": 37.0
+    },
+    {
+      "module": "Cloning.InfiniteAsymptoticCPCompactness",
+      "seconds": 37.0
+    },
+    {
+      "module": "Cloning.TensorGibbsPureTransfer",
+      "seconds": 37.0
+    },
+    {
+      "module": "Cloning.PhysicalCloningConverseSpectrum",
+      "seconds": 37.0
+    },
+    {
+      "module": "Cloning.InfiniteFidelity",
+      "seconds": 36.0
+    },
+    {
+      "module": "Cloning.WeylThermalCharacteristic",
+      "seconds": 36.0
+    },
+    {
+      "module": "Cloning.GeneralSymmetricCounting",
+      "seconds": 36.0
+    },
+    {
+      "module": "Cloning.HybridGaussianConverse",
+      "seconds": 36.0
+    },
+    {
+      "module": "Cloning.TensorLANEmbeddingFrame",
+      "seconds": 36.0
+    },
+    {
+      "module": "Cloning.PhysicalCloningConverseWindows",
+      "seconds": 36.0
+    },
+    {
+      "module": "Cloning.YoungCompatibility",
+      "seconds": 36.0
+    },
+    {
+      "module": "Cloning.LAN",
+      "seconds": 35.0
+    },
+    {
+      "module": "Cloning.PCTTangentChartAdmissible",
+      "seconds": 35.0
+    },
+    {
+      "module": "Cloning.TensorPBWOccupations",
+      "seconds": 35.0
+    },
+    {
+      "module": "Cloning.TensorLocalUnitaryCoordinates",
+      "seconds": 35.0
+    },
+    {
+      "module": "Cloning.TensorSchurDecompositionTrace",
+      "seconds": 35.0
+    },
+    {
+      "module": "Cloning.TensorFlatProjectorGibbs",
+      "seconds": 35.0
+    },
+    {
+      "module": "Cloning.MatrixFidelityTraceBound",
+      "seconds": 34.0
+    },
+    {
+      "module": "Cloning.WeylQuantumPositiveBlocks",
+      "seconds": 34.0
+    },
+    {
+      "module": "Cloning.InfiniteBilinearWeakClosure",
+      "seconds": 34.0
+    },
+    {
+      "module": "Cloning.HybridFidelity",
+      "seconds": 34.0
+    },
+    {
+      "module": "Cloning.HybridThermalWitness",
+      "seconds": 34.0
+    },
+    {
+      "module": "Cloning.TensorPBWStraightening",
+      "seconds": 34.0
+    },
+    {
+      "module": "Cloning.TensorLANEmbeddingTotal",
+      "seconds": 34.0
+    },
+    {
+      "module": "Cloning.TensorCartanCoordinates",
+      "seconds": 34.0
+    },
+    {
+      "module": "Cloning.TensorCartanStateOccupation",
+      "seconds": 34.0
+    },
+    {
+      "module": "Cloning.TensorLANEmbeddingBlocks",
+      "seconds": 34.0
+    },
+    {
+      "module": "Cloning.TensorFlatProjectorProduct",
+      "seconds": 34.0
+    },
+    {
+      "module": "Cloning.TensorCloningBlockFidelity",
+      "seconds": 34.0
+    },
+    {
+      "module": "Cloning.TensorCloningBlockTrimming",
+      "seconds": 34.0
+    },
+    {
+      "module": "Cloning.InfiniteFiniteCorner",
+      "seconds": 33.0
+    },
+    {
+      "module": "Cloning.InfiniteFidelityContinuity",
+      "seconds": 33.0
+    },
+    {
+      "module": "Cloning.MatrixFidelityContinuity",
+      "seconds": 33.0
+    },
+    {
+      "module": "Cloning.MatrixFidelityAsymptotics",
+      "seconds": 33.0
+    },
+    {
+      "module": "Cloning.PCTGaussianCovarianceJoint",
+      "seconds": 33.0
+    },
+    {
+      "module": "Cloning.TensorSchurDecompositionBounds",
+      "seconds": 33.0
+    },
+    {
+      "module": "Cloning.TensorSchurDecompositionRadialEquation",
+      "seconds": 33.0
+    },
+    {
+      "module": "Cloning.TensorSchurDecompositionWeylCharacter",
+      "seconds": 33.0
+    },
+    {
+      "module": "Cloning.PhysicalFlatConverseCommutant",
+      "seconds": 33.0
+    },
+    {
+      "module": "Cloning.PCTLocalChartInverse",
+      "seconds": 32.0
+    },
+    {
+      "module": "Cloning.TensorWedge",
+      "seconds": 32.0
+    },
+    {
+      "module": "Cloning.TensorCartanFrame",
+      "seconds": 32.0
+    },
+    {
+      "module": "Cloning.TensorLocalUnitaryWeylUniform",
+      "seconds": 32.0
+    },
+    {
+      "module": "Cloning.InfiniteRectangularKraus",
+      "seconds": 31.0
+    },
+    {
+      "module": "Cloning.HybridCovariantization",
+      "seconds": 31.0
+    },
+    {
+      "module": "Cloning.HybridFoelnerThermal",
+      "seconds": 31.0
+    },
+    {
+      "module": "Cloning.PBWRootBounds",
+      "seconds": 31.0
+    },
+    {
+      "module": "Cloning.TensorLANEmbeddingPhysical",
+      "seconds": 31.0
+    },
+    {
+      "module": "Cloning.TensorFundamentalBranchingMultiplicity",
+      "seconds": 31.0
+    },
+    {
+      "module": "Cloning.InfiniteTraceClassWeakLimit",
+      "seconds": 30.0
+    },
+    {
+      "module": "Cloning.GeneralCoherentLimits",
+      "seconds": 30.0
+    },
+    {
+      "module": "Cloning.ThermalIdlerFidelity",
+      "seconds": 30.0
+    },
+    {
+      "module": "Cloning.PurificationSupport",
+      "seconds": 30.0
+    },
+    {
+      "module": "Cloning.PCTGaussianCovarianceOrbital",
+      "seconds": 30.0
+    },
+    {
+      "module": "Cloning.TensorCartanCutoffMatrixLimit",
+      "seconds": 30.0
+    },
+    {
+      "module": "Cloning.PhysicalFlatPinching",
+      "seconds": 30.0
+    },
+    {
+      "module": "Cloning.TensorCloningRetainedCoefficients",
+      "seconds": 30.0
+    },
+    {
+      "module": "Cloning.InfiniteIsometricChannel",
+      "seconds": 29.0
+    },
+    {
+      "module": "Cloning.InfiniteCompletelyPositiveCompactness",
+      "seconds": 29.0
+    },
+    {
+      "module": "Cloning.PCTTangentChart",
+      "seconds": 29.0
+    },
+    {
+      "module": "Cloning.PCTPhysicalState",
+      "seconds": 29.0
+    },
+    {
+      "module": "Cloning.TensorCyclicSectorOperators",
+      "seconds": 29.0
+    },
+    {
+      "module": "Cloning.TensorGibbsTruncation",
+      "seconds": 29.0
+    },
+    {
+      "module": "Cloning.TensorCartanChannel",
+      "seconds": 29.0
+    },
+    {
+      "module": "Cloning.TensorCartanTensorAction",
+      "seconds": 29.0
+    },
+    {
+      "module": "Cloning.TensorCartanStateCovariance",
+      "seconds": 29.0
+    },
+    {
+      "module": "Cloning.PCTHybridMixtureChannel",
+      "seconds": 28.0
+    },
+    {
+      "module": "Cloning.TensorFundamentalBranchingLift",
+      "seconds": 28.0
+    },
+    {
+      "module": "Cloning.TensorCartanStateProduct",
+      "seconds": 28.0
+    },
+    {
+      "module": "Cloning.HeisenbergDual",
+      "seconds": 27.0
+    },
+    {
+      "module": "Cloning.HybridL1",
+      "seconds": 27.0
+    },
+    {
+      "module": "Cloning.MatrixFidelityAchievability",
+      "seconds": 27.0
+    },
+    {
+      "module": "Cloning.MatrixFidelityLimit",
+      "seconds": 27.0
+    },
+    {
+      "module": "Cloning.MatrixFidelityJointConcavity",
+      "seconds": 27.0
+    },
+    {
+      "module": "Cloning.TensorGibbsStateTransfer",
+      "seconds": 27.0
+    },
+    {
+      "module": "Cloning.TensorLANEmbeddingSchur",
+      "seconds": 27.0
+    },
+    {
+      "module": "Cloning.TensorFlatProjectorLaw",
+      "seconds": 27.0
+    },
+    {
+      "module": "Cloning.TensorFlatProjectorSectorSupport",
+      "seconds": 27.0
+    },
+    {
+      "module": "Cloning.YoungFlatCorrection",
+      "seconds": 27.0
+    },
+    {
+      "module": "Cloning.MatrixFidelityBlockBound",
+      "seconds": 26.0
+    },
+    {
+      "module": "Cloning.OccupationCompression",
+      "seconds": 26.0
+    },
+    {
+      "module": "Cloning.HybridIntegralBounds",
+      "seconds": 26.0
+    },
+    {
+      "module": "Cloning.OccupationRecovery",
+      "seconds": 26.0
+    },
+    {
+      "module": "Cloning.PCTGlobalChannels",
+      "seconds": 26.0
+    },
+    {
+      "module": "Cloning.TensorCartanStateFidelity",
+      "seconds": 26.0
+    },
+    {
+      "module": "Cloning.TensorCloningSectorCovariance",
+      "seconds": 26.0
+    },
+    {
+      "module": "Cloning.GeneralCoherentCoordinates",
+      "seconds": 25.0
+    },
+    {
+      "module": "Cloning.MultimodeThermalIdlerFidelity",
+      "seconds": 25.0
+    },
+    {
+      "module": "Cloning.TensorGibbsBosonicPartition",
+      "seconds": 25.0
+    },
+    {
+      "module": "Cloning.TensorSchurDecompositionCharacterHighest",
+      "seconds": 25.0
+    },
+    {
+      "module": "Cloning.TensorCartanStateCoefficients",
+      "seconds": 25.0
+    },
+    {
+      "module": "Cloning.TensorCloningCopyAffinity",
+      "seconds": 25.0
+    },
+    {
+      "module": "Cloning.TensorFlatProjectorMatrix",
+      "seconds": 25.0
+    },
+    {
+      "module": "Cloning.TensorGibbsPhysicalLANUniform",
+      "seconds": 25.0
+    },
+    {
+      "module": "Cloning.PCTCountMeasurementSmoothing",
+      "seconds": 25.0
+    },
+    {
+      "module": "Cloning.TensorRankOneGlobal",
+      "seconds": 25.0
+    },
+    {
+      "module": "Cloning.WeylThermalFourierWitness",
+      "seconds": 24.0
+    },
+    {
+      "module": "Cloning.WernerPhysicalChannel",
+      "seconds": 24.0
+    },
+    {
+      "module": "Cloning.HybridGaussianAttainmentChannel",
+      "seconds": 24.0
+    },
+    {
+      "module": "Cloning.PCTPhysicalStateSpectrum",
+      "seconds": 24.0
+    },
+    {
+      "module": "Cloning.TensorLocalUnitaryTail",
+      "seconds": 24.0
+    },
+    {
+      "module": "Cloning.TensorLocalUnitaryCompression",
+      "seconds": 24.0
+    },
+    {
+      "module": "Cloning.TensorWeylMatrixPowers",
+      "seconds": 24.0
+    },
+    {
+      "module": "Cloning.WeylSqueezerProduct",
+      "seconds": 24.0
+    },
+    {
+      "module": "Cloning.PCTTangentChartSamples",
+      "seconds": 23.0
+    },
+    {
+      "module": "Cloning.TensorCyclicPBW",
+      "seconds": 23.0
+    },
+    {
+      "module": "Cloning.TensorGibbsStateLimit",
+      "seconds": 23.0
+    },
+    {
+      "module": "Cloning.TensorSchurDecompositionConcentration",
+      "seconds": 23.0
+    },
+    {
+      "module": "Cloning.TensorCloningAchievabilityMixture",
+      "seconds": 23.0
+    },
+    {
+      "module": "Cloning.PhysicalFlatConverseFinite",
+      "seconds": 23.0
+    },
+    {
+      "module": "Cloning.MatrixRegularization",
+      "seconds": 22.0
+    },
+    {
+      "module": "Cloning.MatrixFidelitySymmetry",
+      "seconds": 22.0
+    },
+    {
+      "module": "Cloning.ChannelAveraging",
+      "seconds": 22.0
+    },
+    {
+      "module": "Cloning.GaussianAffinity",
+      "seconds": 22.0
+    },
+    {
+      "module": "Cloning.InfiniteChannelFidelity",
+      "seconds": 22.0
+    },
+    {
+      "module": "Cloning.TensorPBWNormalization",
+      "seconds": 22.0
+    },
+    {
+      "module": "Cloning.TensorGibbsTrace",
+      "seconds": 22.0
+    },
+    {
+      "module": "Cloning.TensorSchurDecompositionPMF",
+      "seconds": 22.0
+    },
+    {
+      "module": "Cloning.TensorCartanOccupationAmplitude",
+      "seconds": 22.0
+    },
+    {
+      "module": "Cloning.TensorCartanCutoffAmplitude",
+      "seconds": 22.0
+    },
+    {
+      "module": "Cloning.TensorLANEmbeddingLocalSpectrum",
+      "seconds": 22.0
+    },
+    {
+      "module": "Cloning.TensorSchurDecompositionRootSum",
+      "seconds": 22.0
+    },
+    {
+      "module": "Cloning.TensorGibbsPhysicalLAN",
+      "seconds": 22.0
+    },
+    {
+      "module": "Cloning.TensorRankOneTransition",
+      "seconds": 22.0
+    },
+    {
+      "module": "Cloning.InfinitePureStateContinuity",
+      "seconds": 21.0
+    },
+    {
+      "module": "Cloning.InfiniteChannelWeakLimit",
+      "seconds": 21.0
+    },
+    {
+      "module": "Cloning.WeylGaussianThermal",
+      "seconds": 21.0
+    },
+    {
+      "module": "Cloning.HybridOrbitPayoff",
+      "seconds": 21.0
+    },
+    {
+      "module": "Cloning.UniversalGaussianBoundary",
+      "seconds": 21.0
+    },
+    {
+      "module": "Cloning.PBWCutoffGram",
+      "seconds": 21.0
+    },
+    {
+      "module": "Cloning.TensorLANEmbeddingChannel",
+      "seconds": 21.0
+    },
+    {
+      "module": "Cloning.TensorFundamentalBranchingExistence",
+      "seconds": 21.0
+    },
+    {
+      "module": "Cloning.WeylCharacterAlternantUniqueness",
+      "seconds": 21.0
+    },
+    {
+      "module": "Cloning.TensorCloningAchievabilityProbability",
+      "seconds": 21.0
+    },
+    {
+      "module": "Cloning.TensorCloningUniversalMixture",
+      "seconds": 21.0
+    },
+    {
+      "module": "Cloning.TensorCloningTransitionCovariance",
+      "seconds": 21.0
+    },
+    {
+      "module": "Cloning.TensorCloningGlobalCovarianceAlgebra",
+      "seconds": 21.0
+    },
+    {
+      "module": "Cloning.PhysicalFlatPinchingBlocks",
+      "seconds": 21.0
+    },
+    {
+      "module": "Cloning.TensorFlatProjectorCouplingPadding",
+      "seconds": 21.0
+    },
+    {
+      "module": "Cloning.WeylChannel",
+      "seconds": 20.0
+    },
+    {
+      "module": "Cloning.AmplifierWeylMultimode",
+      "seconds": 20.0
+    },
+    {
+      "module": "Cloning.IsometricRecovery",
+      "seconds": 20.0
+    },
+    {
+      "module": "Cloning.HeisenbergDualBounded",
+      "seconds": 20.0
+    },
+    {
+      "module": "Cloning.HybridClassicalAverageBound",
+      "seconds": 20.0
+    },
+    {
+      "module": "Cloning.MatrixTraceNormOrder",
+      "seconds": 20.0
+    },
+    {
+      "module": "Cloning.MatrixFidelityMixtures",
+      "seconds": 20.0
+    },
+    {
+      "module": "Cloning.OrbitalSeededOptimum",
+      "seconds": 20.0
+    },
+    {
+      "module": "Cloning.TensorCyclicSectorIrreducible",
+      "seconds": 20.0
+    },
+    {
+      "module": "Cloning.TensorLocalUnitaryMatrixElements",
+      "seconds": 20.0
+    },
+    {
+      "module": "Cloning.PhysicalCloningConverseAdmissible",
+      "seconds": 20.0
+    },
+    {
+      "module": "Cloning.TensorSchurDecompositionRadial",
+      "seconds": 20.0
+    },
+    {
+      "module": "Cloning.TensorLocalUnitaryApproximation",
+      "seconds": 20.0
+    },
+    {
+      "module": "Cloning.TensorRankOneProduct",
+      "seconds": 20.0
+    },
+    {
+      "module": "Cloning.ThermalWitness",
+      "seconds": 19.0
+    },
+    {
+      "module": "Cloning.WeylMultimodeChannel",
+      "seconds": 19.0
+    },
+    {
+      "module": "Cloning.WeylIrreducible",
+      "seconds": 19.0
+    },
+    {
+      "module": "Cloning.HybridFoelnerPayoff",
+      "seconds": 19.0
+    },
+    {
+      "module": "Cloning.MixedChannelsSectorInstrument",
+      "seconds": 19.0
+    },
+    {
+      "module": "Cloning.OrbitalGaussianAttainmentBoundary",
+      "seconds": 19.0
+    },
+    {
+      "module": "Cloning.PCTCoordinateFrame",
+      "seconds": 19.0
+    },
+    {
+      "module": "Cloning.PCTGaussianOutput",
+      "seconds": 19.0
+    },
+    {
+      "module": "Cloning.PCTPhysicalFidelityUnitary",
+      "seconds": 19.0
+    },
+    {
+      "module": "Cloning.TensorHighestGramAction",
+      "seconds": 19.0
+    },
+    {
+      "module": "Cloning.TensorLocalUnitaryFrameMatrix",
+      "seconds": 19.0
+    },
+    {
+      "module": "Cloning.TensorHighestGramCovariance",
+      "seconds": 19.0
+    },
+    {
+      "module": "Cloning.TensorGibbsDisplacedTransfer",
+      "seconds": 19.0
+    },
+    {
+      "module": "Cloning.TensorFundamentalBranchingHighest",
+      "seconds": 19.0
+    },
+    {
+      "module": "Cloning.TensorCartanStateLimit",
+      "seconds": 19.0
+    },
+    {
+      "module": "Cloning.TensorLANEmbeddingCompression",
+      "seconds": 19.0
+    },
+    {
+      "module": "Cloning.TensorSchurHaarOrthogonality",
+      "seconds": 19.0
+    },
+    {
+      "module": "Cloning.TensorRankCartanRestriction",
+      "seconds": 19.0
+    },
+    {
+      "module": "Cloning.InfiniteFidelityBlockBound",
+      "seconds": 18.0
+    },
+    {
+      "module": "Cloning.AmplifierWeylCovariance",
+      "seconds": 18.0
+    },
+    {
+      "module": "Cloning.WernerMultivariateConvolution",
+      "seconds": 18.0
+    },
+    {
+      "module": "Cloning.MatrixFidelityDeletion",
+      "seconds": 18.0
+    },
+    {
+      "module": "Cloning.PBWRootGram",
+      "seconds": 18.0
+    },
+    {
+      "module": "Cloning.TensorCyclicSectorTensorPower",
+      "seconds": 18.0
+    },
+    {
+      "module": "Cloning.TensorCyclicIndependence",
+      "seconds": 18.0
+    },
+    {
+      "module": "Cloning.TensorGibbsThermalCutoff",
+      "seconds": 18.0
+    },
+    {
+      "module": "Cloning.TensorCartanStateCutoff",
+      "seconds": 18.0
+    },
+    {
+      "module": "Cloning.TensorCartanStateThermal",
+      "seconds": 18.0
+    },
+    {
+      "module": "Cloning.TensorLANEmbeddingCopyTail",
+      "seconds": 18.0
+    },
+    {
+      "module": "Cloning.TensorFlatProjectorTransitionCovariance",
+      "seconds": 18.0
+    },
+    {
+      "module": "Cloning.WeylSqueezerProductSlices",
+      "seconds": 18.0
+    },
+    {
+      "module": "Cloning.QubitDegeneracy",
+      "seconds": 18.0
+    },
+    {
+      "module": "Cloning.MatrixFidelityEmbedding",
+      "seconds": 17.0
+    },
+    {
+      "module": "Cloning.OccupationChannel",
+      "seconds": 17.0
+    },
+    {
+      "module": "Cloning.HybridGaussianAttainmentFidelity",
+      "seconds": 17.0
+    },
+    {
+      "module": "Cloning.PCTGaussianCovariance",
+      "seconds": 17.0
+    },
+    {
+      "module": "Cloning.PBWGramLimit",
+      "seconds": 17.0
+    },
+    {
+      "module": "Cloning.TensorCCRBounds",
+      "seconds": 17.0
+    },
+    {
+      "module": "Cloning.TensorCyclicSectorTransvection",
+      "seconds": 17.0
+    },
+    {
+      "module": "Cloning.TensorCartanInclusion",
+      "seconds": 17.0
+    },
+    {
+      "module": "Cloning.TensorGibbsPartitionLimit",
+      "seconds": 17.0
+    },
+    {
+      "module": "Cloning.TensorSchurDecompositionCharacterDegree",
+      "seconds": 17.0
+    },
+    {
+      "module": "Cloning.PBWSymmetricFrameRateMatrix",
+      "seconds": 17.0
+    },
+    {
+      "module": "Cloning.WeylContinuity",
+      "seconds": 16.0
+    },
+    {
+      "module": "Cloning.WeylIrreducibleAverage",
+      "seconds": 16.0
+    },
+    {
+      "module": "Cloning.UniversalLeastNoiseQuantumKernel",
+      "seconds": 16.0
+    },
+    {
+      "module": "Cloning.WernerDimensionIdentity",
+      "seconds": 16.0
+    },
+    {
+      "module": "Cloning.HybridChannelAveraging",
+      "seconds": 16.0
+    },
+    {
+      "module": "Cloning.MatrixDiscardLabel",
+      "seconds": 16.0
+    },
+    {
+      "module": "Cloning.TensorLieProduct",
+      "seconds": 16.0
+    },
+    {
+      "module": "Cloning.TensorGibbsHeightSpectrum",
+      "seconds": 16.0
+    },
+    {
+      "module": "Cloning.TensorFundamentalBranchingWedge",
+      "seconds": 16.0
+    },
+    {
+      "module": "Cloning.TensorCartanOccupationLimit",
+      "seconds": 16.0
+    },
+    {
+      "module": "Cloning.WeylCharacterAlternantSubsets",
+      "seconds": 16.0
+    },
+    {
+      "module": "Cloning.TensorSchurDecompositionRadialTrace",
+      "seconds": 16.0
+    },
+    {
+      "module": "Cloning.WeylCharacterDimensionPhysical",
+      "seconds": 16.0
+    },
+    {
+      "module": "Cloning.TensorLANEmbeddingMixtureError",
+      "seconds": 16.0
+    },
+    {
+      "module": "Cloning.WeylIdlerKernel",
+      "seconds": 16.0
+    },
+    {
+      "module": "Cloning.PCTRankGlobalRecovery",
+      "seconds": 16.0
+    },
+    {
+      "module": "Cloning.WeylIrreducibleMultimode",
+      "seconds": 15.0
+    },
+    {
+      "module": "Cloning.AmplifierWeylMultimodeCovariance",
+      "seconds": 15.0
+    },
+    {
+      "module": "Cloning.HeisenbergDualContinuity",
+      "seconds": 15.0
+    },
+    {
+      "module": "Cloning.GeneralSymmetricOccupation",
+      "seconds": 15.0
+    },
+    {
+      "module": "Cloning.InfiniteGentleCompression",
+      "seconds": 15.0
+    },
+    {
+      "module": "Cloning.MixedChannelsFiniteSelector",
+      "seconds": 15.0
+    },
+    {
+      "module": "Cloning.MatrixFidelityProjector",
+      "seconds": 15.0
+    },
+    {
+      "module": "Cloning.TensorCartanWordSplit",
+      "seconds": 15.0
+    },
+    {
+      "module": "Cloning.TensorSchurDecompositionData",
+      "seconds": 15.0
+    },
+    {
+      "module": "Cloning.TensorSchurDecomposition",
+      "seconds": 15.0
+    },
+    {
+      "module": "Cloning.TensorPBWDominance",
+      "seconds": 15.0
+    },
+    {
+      "module": "Cloning.TensorCartanScalarity",
+      "seconds": 15.0
+    },
+    {
+      "module": "Cloning.WeylCharacterAlternantDominance",
+      "seconds": 15.0
+    },
+    {
+      "module": "Cloning.WeylCharacterAlternantPolynomial",
+      "seconds": 15.0
+    },
+    {
+      "module": "Cloning.TensorFlatProjectorDimensionLimit",
+      "seconds": 15.0
+    },
+    {
+      "module": "Cloning.TensorGibbsPhysicalDisplacement",
+      "seconds": 15.0
+    },
+    {
+      "module": "Cloning.TensorCloningRetainedTypical",
+      "seconds": 15.0
+    },
+    {
+      "module": "Cloning.TensorCloningRetainedUniversal",
+      "seconds": 15.0
+    },
+    {
+      "module": "Cloning.InfiniteTraceClassAlgebra",
+      "seconds": 14.0
+    },
+    {
+      "module": "Cloning.PCTPurificationChannel",
+      "seconds": 14.0
+    },
+    {
+      "module": "Cloning.Main",
+      "seconds": 14.0
+    },
+    {
+      "module": "Cloning.PCTReducedGaussian",
+      "seconds": 14.0
+    },
+    {
+      "module": "Cloning.HybridPrior",
+      "seconds": 14.0
+    },
+    {
+      "module": "Cloning.HybridL1Jensen",
+      "seconds": 14.0
+    },
+    {
+      "module": "Cloning.MixedChannelsFiniteInstrument",
+      "seconds": 14.0
+    },
+    {
+      "module": "Cloning.TensorLieFiltration",
+      "seconds": 14.0
+    },
+    {
+      "module": "Cloning.TensorCyclicSectorDiagonal",
+      "seconds": 14.0
+    },
+    {
+      "module": "Cloning.TensorGibbsDecay",
+      "seconds": 14.0
+    },
+    {
+      "module": "Cloning.TensorCartanSplitCoefficients",
+      "seconds": 14.0
+    },
+    {
+      "module": "Cloning.TensorCartanCutoffFrame",
+      "seconds": 14.0
+    },
+    {
+      "module": "Cloning.TensorHighestExtractionBasic",
+      "seconds": 14.0
+    },
+    {
+      "module": "Cloning.TensorSchurDecompositionCasimir",
+      "seconds": 14.0
+    },
+    {
+      "module": "Cloning.TensorCloningGlobalCovarianceState",
+      "seconds": 14.0
+    },
+    {
+      "module": "Cloning.TensorCloningAchievabilitySector",
+      "seconds": 14.0
+    },
+    {
+      "module": "Cloning.WeylNumberDerivative",
+      "seconds": 14.0
+    },
+    {
+      "module": "Cloning.TensorLANEmbeddingProtocolError",
+      "seconds": 14.0
+    },
+    {
+      "module": "Cloning.TensorCloningGlobalCovariance",
+      "seconds": 14.0
+    },
+    {
+      "module": "Cloning.PCTRankPurificationMatrices",
+      "seconds": 14.0
+    },
+    {
+      "module": "Cloning.TensorRankOneCopy",
+      "seconds": 14.0
+    },
+    {
+      "module": "Cloning.InfiniteTraceClassPairing",
+      "seconds": 13.0
+    },
+    {
+      "module": "Cloning.MixedChannels",
+      "seconds": 13.0
+    },
+    {
+      "module": "Cloning.InfiniteTraceClassAsymptoticBound",
+      "seconds": 13.0
+    },
+    {
+      "module": "Cloning.PCTTangentChartFrame",
+      "seconds": 13.0
+    },
+    {
+      "module": "Cloning.TensorGibbsHeight",
+      "seconds": 13.0
+    },
+    {
+      "module": "Cloning.TensorCartanMatrixLimit",
+      "seconds": 13.0
+    },
+    {
+      "module": "Cloning.TensorLocalUnitaryGenerator",
+      "seconds": 13.0
+    },
+    {
+      "module": "Cloning.TensorLocalUnitaryPolynomial",
+      "seconds": 13.0
+    },
+    {
+      "module": "Cloning.PhysicalCloningConverseQuantumReduction",
+      "seconds": 13.0
+    },
+    {
+      "module": "Cloning.TensorCartanSplitMultiplicity",
+      "seconds": 13.0
+    },
+    {
+      "module": "Cloning.PhysicalCloningConverseKnown",
+      "seconds": 13.0
+    },
+    {
+      "module": "Cloning.TensorCartanStateThermalFidelity",
+      "seconds": 13.0
+    },
+    {
+      "module": "Cloning.TensorCloningRetainedMixture",
+      "seconds": 13.0
+    },
+    {
+      "module": "Cloning.PhysicalFlatPinchingOrbit",
+      "seconds": 13.0
+    },
+    {
+      "module": "Cloning.CountMultinomialMixture",
+      "seconds": 13.0
+    },
+    {
+      "module": "Cloning.MatrixFidelityScaling",
+      "seconds": 12.0
+    },
+    {
+      "module": "Cloning.WeylMultimodeDisplacement",
+      "seconds": 12.0
+    },
+    {
+      "module": "Cloning.AmplifierWeylCoherent",
+      "seconds": 12.0
+    },
+    {
+      "module": "Cloning.WeylQuantumPositiveDual",
+      "seconds": 12.0
+    },
+    {
+      "module": "Cloning.PCTPurificationChannelAction",
+      "seconds": 12.0
+    },
+    {
+      "module": "Cloning.HybridL1Fidelity",
+      "seconds": 12.0
+    },
+    {
+      "module": "Cloning.InfiniteCompactObservableExtraction",
+      "seconds": 12.0
+    },
+    {
+      "module": "Cloning.InfiniteCutoffChannels",
+      "seconds": 12.0
+    },
+    {
+      "module": "Cloning.InfiniteFiniteInstrument",
+      "seconds": 12.0
+    },
+    {
+      "module": "Cloning.PCTGaussianCovarianceClassical",
+      "seconds": 12.0
+    },
+    {
+      "module": "Cloning.TensorCyclicGramLimit",
+      "seconds": 12.0
+    },
+    {
+      "module": "Cloning.TensorHighestGram",
+      "seconds": 12.0
+    },
+    {
+      "module": "Cloning.TensorCyclicSectorCovariance",
+      "seconds": 12.0
+    },
+    {
+      "module": "Cloning.TensorHighestGramIsometry",
+      "seconds": 12.0
+    },
+    {
+      "module": "Cloning.TensorWeightFrameOrthogonal",
+      "seconds": 12.0
+    },
+    {
+      "module": "Cloning.TensorHighestExtraction",
+      "seconds": 12.0
+    },
+    {
+      "module": "Cloning.TensorSchurDecompositionFundamental",
+      "seconds": 12.0
+    },
+    {
+      "module": "Cloning.TensorSchurDecompositionCharacter",
+      "seconds": 12.0
+    },
+    {
+      "module": "Cloning.TensorSchurDecompositionCharacterSymmetry",
+      "seconds": 12.0
+    },
+    {
+      "module": "Cloning.TensorLANEmbeddingWhitening",
+      "seconds": 12.0
+    },
+    {
+      "module": "Cloning.TensorFlatProjectorSupport",
+      "seconds": 12.0
+    },
+    {
+      "module": "Cloning.TensorGibbsCenteredLAN",
+      "seconds": 12.0
+    },
+    {
+      "module": "Cloning.TensorFlatProjectorRankLaw",
+      "seconds": 12.0
+    },
+    {
+      "module": "Cloning.WeylNumberTaylor",
+      "seconds": 12.0
+    },
+    {
+      "module": "Cloning.TensorLANEmbeddingSectorUniform",
+      "seconds": 12.0
+    },
+    {
+      "module": "Cloning.PCTRankAdaptedPartialTrace",
+      "seconds": 12.0
+    },
+    {
+      "module": "Cloning.PCTRankGlobalWerner",
+      "seconds": 12.0
+    },
+    {
+      "module": "Cloning.TensorPositiveSpectrumCompressionMatrix",
+      "seconds": 12.0
+    },
+    {
+      "module": "Cloning.ComplexCoherent",
+      "seconds": 11.0
+    },
+    {
+      "module": "Cloning.InfiniteFidelityRegularized",
+      "seconds": 11.0
+    },
+    {
+      "module": "Cloning.MultimodeIdler",
+      "seconds": 11.0
+    },
+    {
+      "module": "Cloning.WeylCovariantMultiplier",
+      "seconds": 11.0
+    },
+    {
+      "module": "Cloning.ThermalWitnessGeometric",
+      "seconds": 11.0
+    },
+    {
+      "module": "Cloning.HybridGaussianRealBox",
+      "seconds": 11.0
+    },
+    {
+      "module": "Cloning.HybridGaussianAttainmentAction",
+      "seconds": 11.0
+    },
+    {
+      "module": "Cloning.MixedChannelsPreparation",
+      "seconds": 11.0
+    },
+    {
+      "module": "Cloning.TensorPBWCutoffBasis",
+      "seconds": 11.0
+    },
+    {
+      "module": "Cloning.TensorGibbsWeights",
+      "seconds": 11.0
+    },
+    {
+      "module": "Cloning.YoungGeneralConcentration",
+      "seconds": 11.0
+    },
+    {
+      "module": "Cloning.YoungGeneralLimit",
+      "seconds": 11.0
+    },
+    {
+      "module": "Cloning.TensorPBWFiniteSector",
+      "seconds": 11.0
+    },
+    {
+      "module": "Cloning.PhysicalCloningConversePreparation",
+      "seconds": 11.0
+    },
+    {
+      "module": "Cloning.TensorSchurMultiplicityDecomposition",
+      "seconds": 11.0
+    },
+    {
+      "module": "Cloning.TensorLANEmbeddingTypical",
+      "seconds": 11.0
+    },
+    {
+      "module": "Cloning.TensorSchurDecompositionCharacterLeading",
+      "seconds": 11.0
+    },
+    {
+      "module": "Cloning.WeylCharacterAlternantProduct",
+      "seconds": 11.0
+    },
+    {
+      "module": "Cloning.YoungPhysicalRounding",
+      "seconds": 11.0
+    },
+    {
+      "module": "Cloning.TensorFlatProjectorFidelity",
+      "seconds": 11.0
+    },
+    {
+      "module": "Cloning.InfiniteTraceClassNormalPart",
+      "seconds": 10.0
+    },
+    {
+      "module": "Cloning.CoherentKernel",
+      "seconds": 10.0
+    },
+    {
+      "module": "Cloning.CoherentContinuity",
+      "seconds": 10.0
+    },
+    {
+      "module": "Cloning.WeylDisplacement",
+      "seconds": 10.0
+    },
+    {
+      "module": "Cloning.WeylMultimodeContinuity",
+      "seconds": 10.0
+    },
+    {
+      "module": "Cloning.WeylQuantumPositive",
+      "seconds": 10.0
+    },
+    {
+      "module": "Cloning.WeylGaussianTwistedConvolution",
+      "seconds": 10.0
+    },
+    {
+      "module": "Cloning.TensorHighestGramIntertwiner",
+      "seconds": 10.0
+    },
+    {
+      "module": "Cloning.YoungGeneralTableaux",
+      "seconds": 10.0
+    },
+    {
+      "module": "Cloning.YoungBranchingStandard",
+      "seconds": 10.0
+    },
+    {
+      "module": "Cloning.PhysicalCloningConverseTransfer",
+      "seconds": 10.0
+    },
+    {
+      "module": "Cloning.WeylCharacterDimensionSpecialization",
+      "seconds": 10.0
+    },
+    {
+      "module": "Cloning.TensorLANEmbeddingSelector",
+      "seconds": 10.0
+    },
+    {
+      "module": "Cloning.TensorFlatProjectorCasimirMoment",
+      "seconds": 10.0
+    },
+    {
+      "module": "Cloning.TensorFlatProjectorSector",
+      "seconds": 10.0
+    },
+    {
+      "module": "Cloning.TensorFlatProjectorRestriction",
+      "seconds": 10.0
+    },
+    {
+      "module": "Cloning.TensorLocalUnitaryReverse",
+      "seconds": 10.0
+    },
+    {
+      "module": "Cloning.TensorFlatProjectorCompression",
+      "seconds": 10.0
+    },
+    {
+      "module": "Cloning.WeylNumberBounds",
+      "seconds": 10.0
+    },
+    {
+      "module": "Cloning.TensorLANEmbeddingFockReindex",
+      "seconds": 10.0
+    },
+    {
+      "module": "Cloning.TensorLANEmbeddingFockCoordinates",
+      "seconds": 10.0
+    },
+    {
+      "module": "Cloning.YoungDimensionSecondOrder",
+      "seconds": 10.0
+    },
+    {
+      "module": "Cloning.TensorLANEmbeddingFockStateCoordinates",
+      "seconds": 10.0
+    },
+    {
+      "module": "Cloning.YoungFlatLocal",
+      "seconds": 10.0
+    },
+    {
+      "module": "Cloning.TensorLANEmbeddingStateBounds",
+      "seconds": 10.0
+    },
+    {
+      "module": "Cloning.PhysicalFlatPinchingTrace",
+      "seconds": 10.0
+    },
+    {
+      "module": "Cloning.YoungFlatLimit",
+      "seconds": 10.0
+    },
+    {
+      "module": "Cloning.PCTRankGlobalMatrixBridge",
+      "seconds": 10.0
+    },
+    {
+      "module": "Cloning.PCTRankGlobalPhysical",
+      "seconds": 10.0
+    },
+    {
+      "module": "Cloning.TensorCloningPrescribedTrace",
+      "seconds": 10.0
+    },
+    {
+      "module": "Cloning.PCTRankPurificationMomentComparison",
+      "seconds": 10.0
+    },
+    {
+      "module": "Cloning.PCTRankPurificationBlockSupport",
+      "seconds": 10.0
+    },
+    {
+      "module": "Cloning.WeylIrreducibleRepresentation",
+      "seconds": 10.0
+    },
+    {
+      "module": "Cloning.WeylSqueezerKraus",
+      "seconds": 10.0
+    },
+    {
+      "module": "Cloning.MultimodeIdlerCharacteristicIsometry",
+      "seconds": 10.0
+    },
+    {
+      "module": "Cloning.PCTWernerLowerBasis",
+      "seconds": 10.0
+    },
+    {
+      "module": "Cloning.MultimodeIdlerCharacteristicCovariance",
+      "seconds": 10.0
+    },
+    {
+      "module": "Cloning.PBWSymmetricFrameRateCFC",
+      "seconds": 10.0
+    },
+    {
+      "module": "Cloning.TensorCloningLiftedFactorization",
+      "seconds": 10.0
+    },
+    {
+      "module": "Cloning.BosonicIdlerChannel",
+      "seconds": 9.9
+    },
+    {
+      "module": "Cloning.WeylIrreducibleGaussian",
+      "seconds": 9.9
+    },
+    {
+      "module": "Cloning.UniversalGaussianConverse",
+      "seconds": 9.9
+    },
+    {
+      "module": "Cloning.PCTRankAdaptedWerner",
+      "seconds": 9.8
+    },
+    {
+      "module": "Cloning.WeylDiagonalMultiplier",
+      "seconds": 9.8
+    },
+    {
+      "module": "Cloning.HeisenbergDualWeyl",
+      "seconds": 9.7
+    },
+    {
+      "module": "Cloning.InfiniteFidelityTransitionWeights",
+      "seconds": 9.7
+    },
+    {
+      "module": "Cloning.TensorCloningAchievability",
+      "seconds": 9.7
+    },
+    {
+      "module": "Cloning.WeylMultimodeKernel",
+      "seconds": 9.6
+    },
+    {
+      "module": "Cloning.TensorLocalUnitaryTaylor",
+      "seconds": 9.6
+    },
+    {
+      "module": "Cloning.TensorCloningAchievabilityUniform",
+      "seconds": 9.6
+    },
+    {
+      "module": "Cloning.YoungFlatTightness",
+      "seconds": 9.6
+    },
+    {
+      "module": "Cloning.TensorCloningPrescribedRestriction",
+      "seconds": 9.6
+    },
+    {
+      "module": "Cloning.YoungHyperplaneVolume",
+      "seconds": 9.5
+    },
+    {
+      "module": "Cloning.TensorLocalUnitaryPhysicalWeyl",
+      "seconds": 9.5
+    },
+    {
+      "module": "Cloning.MatrixFidelityBlocks",
+      "seconds": 9.4
+    },
+    {
+      "module": "Cloning.MatrixSqrtSubadditivity",
+      "seconds": 9.4
+    },
+    {
+      "module": "Cloning.PCTLocalChartCoordinates",
+      "seconds": 9.4
+    },
+    {
+      "module": "Cloning.TensorLieLeibniz",
+      "seconds": 9.4
+    },
+    {
+      "module": "Cloning.TensorFlatProjectorCasimirTrace",
+      "seconds": 9.4
+    },
+    {
+      "module": "Cloning.TensorLANEmbeddingCellProtocol",
+      "seconds": 9.4
+    },
+    {
+      "module": "Cloning.WeylCharacterDimension",
+      "seconds": 9.3
+    },
+    {
+      "module": "Cloning.TensorFlatProjectorEmbedding",
+      "seconds": 9.3
+    },
+    {
+      "module": "Cloning.TensorCloningUniversalSupport",
+      "seconds": 9.3
+    },
+    {
+      "module": "Cloning.YoungFlatUniform",
+      "seconds": 9.3
+    },
+    {
+      "module": "Cloning.WeylMultimodeDensity",
+      "seconds": 9.2
+    },
+    {
+      "module": "Cloning.Channels",
+      "seconds": 9.2
+    },
+    {
+      "module": "Cloning.WeylQuantumPositiveBounds",
+      "seconds": 9.2
+    },
+    {
+      "module": "Cloning.YoungPhysicalRoundingGaussian",
+      "seconds": 9.2
+    },
+    {
+      "module": "Cloning.TensorLANEmbeddingWhiteningGaussian",
+      "seconds": 9.2
+    },
+    {
+      "module": "Cloning.PhysicalFlatPCTAction",
+      "seconds": 9.2
+    },
+    {
+      "module": "Cloning.TensorSchurDecompositionMultiplicity",
+      "seconds": 9.1
+    },
+    {
+      "module": "Cloning.CoherentGaussianMixture",
+      "seconds": 9.0
+    },
+    {
+      "module": "Cloning.WeylDensity",
+      "seconds": 9.0
+    },
+    {
+      "module": "Cloning.TensorCloningUniversalFrequencies",
+      "seconds": 9.0
+    },
+    {
+      "module": "Cloning.WeylNumberKernelDerivative",
+      "seconds": 9.0
+    },
+    {
+      "module": "Cloning.PCTRankAdaptedCompression",
+      "seconds": 9.0
+    },
+    {
+      "module": "Cloning.PCTRankAdaptedReduced",
+      "seconds": 9.0
+    },
+    {
+      "module": "Cloning.TensorRankOnePhase",
+      "seconds": 9.0
+    },
+    {
+      "module": "Cloning.TensorLANEmbeddingClassicalCenter",
+      "seconds": 8.9
+    },
+    {
+      "module": "Cloning.TensorFlatProjectorNaturality",
+      "seconds": 8.9
+    },
+    {
+      "module": "Cloning.TensorCloningUniversalError",
+      "seconds": 8.9
+    },
+    {
+      "module": "Cloning.TensorLANEmbeddingClassicalLimit",
+      "seconds": 8.9
+    },
+    {
+      "module": "Cloning.PCTFlatGaussianCrossFrame",
+      "seconds": 8.9
+    },
+    {
+      "module": "Cloning.WeylDiagonalRepresentation",
+      "seconds": 8.8
+    },
+    {
+      "module": "Cloning.WeylKernel",
+      "seconds": 8.7
+    },
+    {
+      "module": "Cloning.MultimodeCoherent",
+      "seconds": 8.7
+    },
+    {
+      "module": "Cloning.YoungCompatibilityPMF",
+      "seconds": 8.7
+    },
+    {
+      "module": "Cloning.YoungUniformLocalQuantization",
+      "seconds": 8.7
+    },
+    {
+      "module": "Cloning.PCTCountParameters",
+      "seconds": 8.7
+    },
+    {
+      "module": "Cloning.PCTCountPhysical",
+      "seconds": 8.7
+    },
+    {
+      "module": "Cloning.WeylSqueezerIdlerState",
+      "seconds": 8.7
+    },
+    {
+      "module": "Cloning.TensorSchurDecompositionHighest",
+      "seconds": 8.6
+    },
+    {
+      "module": "Cloning.PhysicalCloningConverseUnknown",
+      "seconds": 8.6
+    },
+    {
+      "module": "Cloning.YoungPhysicalRoundingCoordinates",
+      "seconds": 8.6
+    },
+    {
+      "module": "Cloning.TensorFlatProjectorPadding",
+      "seconds": 8.6
+    },
+    {
+      "module": "Cloning.PCTRankPurificationBlockHaar",
+      "seconds": 8.6
+    },
+    {
+      "module": "Cloning.MultimodeCoherentGaussianMixture",
+      "seconds": 8.5
+    },
+    {
+      "module": "Cloning.TensorWeightFrameLimit",
+      "seconds": 8.5
+    },
+    {
+      "module": "Cloning.YoungUniformLocalGaussian",
+      "seconds": 8.5
+    },
+    {
+      "module": "Cloning.WeylNumberTaylorLimit",
+      "seconds": 8.5
+    },
+    {
+      "module": "Cloning.PCTWernerLower",
+      "seconds": 8.5
+    },
+    {
+      "module": "Cloning.TensorPBWHighestLine",
+      "seconds": 8.4
+    },
+    {
+      "module": "Cloning.PhysicalCloningConverseUnconditional",
+      "seconds": 8.4
+    },
+    {
+      "module": "Cloning.PhysicalFlatConverseHaar",
+      "seconds": 8.4
+    },
+    {
+      "module": "Cloning.PCTCountAffinity",
+      "seconds": 8.4
+    },
+    {
+      "module": "Cloning.BosonicMixtureStochasticOrder",
+      "seconds": 8.3
+    },
+    {
+      "module": "Cloning.ThermalParameterContinuity",
+      "seconds": 8.3
+    },
+    {
+      "module": "Cloning.WeylCharacterAlternantDenominator",
+      "seconds": 8.3
+    },
+    {
+      "module": "Cloning.TensorLANEmbeddingCellWeights",
+      "seconds": 8.3
+    },
+    {
+      "module": "Cloning.WeylSqueezerUnitary",
+      "seconds": 8.3
+    },
+    {
+      "module": "Cloning.UniversalLeastNoiseGaussian",
+      "seconds": 8.2
+    },
+    {
+      "module": "Cloning.YoungUniformLocalPhysicalLimit",
+      "seconds": 8.2
+    },
+    {
+      "module": "Cloning.YoungPhysicalRoundingAffinity",
+      "seconds": 8.2
+    },
+    {
+      "module": "Cloning.YoungFlatCells",
+      "seconds": 8.2
+    },
+    {
+      "module": "Cloning.CountMultinomialLimit",
+      "seconds": 8.2
+    },
+    {
+      "module": "Cloning.TensorRankOneHighest",
+      "seconds": 8.2
+    },
+    {
+      "module": "Cloning.PCTRankOnePureInput",
+      "seconds": 8.2
+    },
+    {
+      "module": "Cloning.PCTProjectorPurityPhysical",
+      "seconds": 8.2
+    },
+    {
+      "module": "Cloning.MatrixFidelityTensor",
+      "seconds": 8.1
+    },
+    {
+      "module": "Cloning.TensorGibbsThermalIdentification",
+      "seconds": 8.1
+    },
+    {
+      "module": "Cloning.UniformCoherentChannels",
+      "seconds": 8.1
+    },
+    {
+      "module": "Cloning.PBWSymmetricFrameRateBlocks",
+      "seconds": 8.1
+    },
+    {
+      "module": "Cloning.TensorGibbsHeightBasis",
+      "seconds": 8.0
+    },
+    {
+      "module": "Cloning.YoungUniformLocalPhysicalLattice",
+      "seconds": 8.0
+    },
+    {
+      "module": "Cloning.PCTRankPurificationSectors",
+      "seconds": 8.0
+    },
+    {
+      "module": "Cloning.PCTRankPurificationCompression",
+      "seconds": 8.0
+    },
+    {
+      "module": "Cloning.PCTRankOneWerner",
+      "seconds": 8.0
+    },
+    {
+      "module": "Cloning.CovariantAmplifierLeastNoise",
+      "seconds": 8.0
+    },
+    {
+      "module": "Cloning.WeylEigenoperators",
+      "seconds": 7.9
+    },
+    {
+      "module": "Cloning.TensorLANEmbeddingSchurWeights",
+      "seconds": 7.9
+    },
+    {
+      "module": "Cloning.TensorCloningUniformCovariance",
+      "seconds": 7.9
+    },
+    {
+      "module": "Cloning.TensorRankOneGibbs",
+      "seconds": 7.9
+    },
+    {
+      "module": "Cloning.HybridFlatBox",
+      "seconds": 7.8
+    },
+    {
+      "module": "Cloning.YoungUniformLocalCells",
+      "seconds": 7.8
+    },
+    {
+      "module": "Cloning.TensorCloningUniversalProbability",
+      "seconds": 7.8
+    },
+    {
+      "module": "Cloning.CovariantAmplifierTraceLoss",
+      "seconds": 7.8
+    },
+    {
+      "module": "Cloning.WeylQuantumBochnerReflection",
+      "seconds": 7.8
+    },
+    {
+      "module": "Cloning.Compression",
+      "seconds": 7.7
+    },
+    {
+      "module": "Cloning.HybridGaussianBoundary",
+      "seconds": 7.7
+    },
+    {
+      "module": "Cloning.TensorGibbsTail",
+      "seconds": 7.7
+    },
+    {
+      "module": "Cloning.TensorSchurMultiplicityRefinement",
+      "seconds": 7.7
+    },
+    {
+      "module": "Cloning.TensorLANEmbeddingWindow",
+      "seconds": 7.7
+    },
+    {
+      "module": "Cloning.PhysicalFlatGrassmannIsometry",
+      "seconds": 7.7
+    },
+    {
+      "module": "Cloning.CovariantAmplifierCompositeReflected",
+      "seconds": 7.7
+    },
+    {
+      "module": "Cloning.YoungRounding",
+      "seconds": 7.6
+    },
+    {
+      "module": "Cloning.YoungHyperplane",
+      "seconds": 7.6
+    },
+    {
+      "module": "Cloning.YoungPhysicalRoundingFallback",
+      "seconds": 7.6
+    },
+    {
+      "module": "Cloning.YoungPhysicalRoundingLimit",
+      "seconds": 7.6
+    },
+    {
+      "module": "Cloning.YoungFlatCouplingEvents",
+      "seconds": 7.6
+    },
+    {
+      "module": "Cloning.TensorCloningPrescribed",
+      "seconds": 7.6
+    },
+    {
+      "module": "Cloning.MultimodeIdlerCharacteristicMultiplier",
+      "seconds": 7.6
+    },
+    {
+      "module": "Cloning.TensorWeylMatrixEntries",
+      "seconds": 7.5
+    },
+    {
+      "module": "Cloning.TensorGibbsSchurBridge",
+      "seconds": 7.5
+    },
+    {
+      "module": "Cloning.CartanChannel",
+      "seconds": 7.4
+    },
+    {
+      "module": "Cloning.UniversalLeastNoiseKernel",
+      "seconds": 7.4
+    },
+    {
+      "module": "Cloning.MatrixChannelFidelity",
+      "seconds": 7.4
+    },
+    {
+      "module": "Cloning.TensorSchurMultiplicityBranching",
+      "seconds": 7.4
+    },
+    {
+      "module": "Cloning.YoungPhysicalRoundingAnalysis",
+      "seconds": 7.4
+    },
+    {
+      "module": "Cloning.TensorLANEmbeddingSelectorRecovery",
+      "seconds": 7.4
+    },
+    {
+      "module": "Cloning.YoungFlatMass",
+      "seconds": 7.4
+    },
+    {
+      "module": "Cloning.TensorFlatProjectorMoments",
+      "seconds": 7.3
+    },
+    {
+      "module": "Cloning.YoungFlatIntegrability",
+      "seconds": 7.3
+    },
+    {
+      "module": "Cloning.PCTCountMixture",
+      "seconds": 7.3
+    },
+    {
+      "module": "Cloning.PCTCountMeasurementMixture",
+      "seconds": 7.3
+    },
+    {
+      "module": "Cloning.MatrixLiftedChannel",
+      "seconds": 7.2
+    },
+    {
+      "module": "Cloning.TensorCloningKernelLabels",
+      "seconds": 7.2
+    },
+    {
+      "module": "Cloning.CountMultinomialLocal",
+      "seconds": 7.2
+    },
+    {
+      "module": "Cloning.YoungFlatCouplingLimit",
+      "seconds": 7.2
+    },
+    {
+      "module": "Cloning.PCTCountMeasurementWeights",
+      "seconds": 7.2
+    },
+    {
+      "module": "Cloning.WeylDiagonalQuantumPositive",
+      "seconds": 7.2
+    },
+    {
+      "module": "Cloning.WeylFockDecomposition",
+      "seconds": 7.2
+    },
+    {
+      "module": "Cloning.WeylQuantumBochner",
+      "seconds": 7.2
+    },
+    {
+      "module": "Cloning.WeylSqueezerPhase",
+      "seconds": 7.2
+    },
+    {
+      "module": "Cloning.CovariantAmplifierLeastNoiseIdler",
+      "seconds": 7.2
+    },
+    {
+      "module": "Cloning.PCTFlatGaussianCrossFrameExistence",
+      "seconds": 7.2
+    },
+    {
+      "module": "Cloning.PBWSymmetricFrameRateCartan",
+      "seconds": 7.2
+    },
+    {
+      "module": "Cloning.TensorSchurDecompositionSharpConcentration",
+      "seconds": 7.2
+    },
+    {
+      "module": "Cloning.MatrixPartialTraceCovariance",
+      "seconds": 7.1
+    },
+    {
+      "module": "Cloning.YoungUniformLocalPhysicalMass",
+      "seconds": 7.1
+    },
+    {
+      "module": "Cloning.TensorWeylMatrixSupport",
+      "seconds": 7.1
+    },
+    {
+      "module": "Cloning.PCTCountGaussian",
+      "seconds": 7.1
+    },
+    {
+      "module": "Cloning.PCTCountMeasurementFidelity",
+      "seconds": 7.1
+    },
+    {
+      "module": "Cloning.PCTCountMeasurementTensor",
+      "seconds": 7.1
+    },
+    {
+      "module": "Cloning.HybridGaussianAttainment",
+      "seconds": 7.0
+    },
+    {
+      "module": "Cloning.TensorCartanProduct",
+      "seconds": 7.0
+    },
+    {
+      "module": "Cloning.TensorLANEmbeddingClassicalUniform",
+      "seconds": 7.0
+    },
+    {
+      "module": "Cloning.PCTRankAdaptedFidelity",
+      "seconds": 7.0
+    },
+    {
+      "module": "Cloning.YoungFlatCouplingPhysical",
+      "seconds": 7.0
+    },
+    {
+      "module": "Cloning.PCTRankPurificationFlatAction",
+      "seconds": 7.0
+    },
+    {
+      "module": "Cloning.TensorCloningAchievabilityValue",
+      "seconds": 6.9
+    },
+    {
+      "module": "Cloning.TensorFlatProjectorDimensions",
+      "seconds": 6.9
+    },
+    {
+      "module": "Cloning.InfiniteFidelityBlockFactorization",
+      "seconds": 6.9
+    },
+    {
+      "module": "Cloning.YoungFlatSmoothing",
+      "seconds": 6.9
+    },
+    {
+      "module": "Cloning.TensorCloningShrinkingMixture",
+      "seconds": 6.9
+    },
+    {
+      "module": "Cloning.InfiniteFidelityCornerLimit",
+      "seconds": 6.8
+    },
+    {
+      "module": "Cloning.HybridGaussianAttainmentRealBox",
+      "seconds": 6.8
+    },
+    {
+      "module": "Cloning.TensorFundamentalBranchingShape",
+      "seconds": 6.8
+    },
+    {
+      "module": "Cloning.YoungMultinomialLocalEntropy",
+      "seconds": 6.8
+    },
+    {
+      "module": "Cloning.YoungUniformLocalSampleShape",
+      "seconds": 6.8
+    },
+    {
+      "module": "Cloning.TensorLANEmbeddingCompactLAN",
+      "seconds": 6.8
+    },
+    {
+      "module": "Cloning.YoungFlatMoment",
+      "seconds": 6.8
+    },
+    {
+      "module": "Cloning.PCTRankPurificationFrames",
+      "seconds": 6.8
+    },
+    {
+      "module": "Cloning.PCTRankOneAction",
+      "seconds": 6.8
+    },
+    {
+      "module": "Cloning.PhysicalFlatPCTTheorem",
+      "seconds": 6.8
+    },
+    {
+      "module": "Cloning.WeylSqueezerIrreducible",
+      "seconds": 6.8
+    },
+    {
+      "module": "Cloning.TensorCloningShrinkingWindows",
+      "seconds": 6.8
+    },
+    {
+      "module": "Cloning.YoungUniformLocalCharacter",
+      "seconds": 6.7
+    },
+    {
+      "module": "Cloning.WeylNumberKernel",
+      "seconds": 6.7
+    },
+    {
+      "module": "Cloning.YoungBranchingContent",
+      "seconds": 6.7
+    },
+    {
+      "module": "Cloning.InfiniteFidelityCornerMixture",
+      "seconds": 6.7
+    },
+    {
+      "module": "Cloning.PCTRankPurificationBlockCoordinate",
+      "seconds": 6.7
+    },
+    {
+      "module": "Cloning.WeylGaussianProjection",
+      "seconds": 6.7
+    },
+    {
+      "module": "Cloning.HybridWeightedFidelityLimit",
+      "seconds": 6.7
+    },
+    {
+      "module": "Cloning.InfiniteFidelityTransition",
+      "seconds": 6.6
+    },
+    {
+      "module": "Cloning.PCTRankGlobalEmbedding",
+      "seconds": 6.6
+    },
+    {
+      "module": "Cloning.PCTPrescribedRankTheorem",
+      "seconds": 6.6
+    },
+    {
+      "module": "Cloning.PCTRankPurificationGeneralPurification",
+      "seconds": 6.6
+    },
+    {
+      "module": "Cloning.YoungUniformLocalPhysicalL1",
+      "seconds": 6.5
+    },
+    {
+      "module": "Cloning.PhysicalFlatConverseOrbit",
+      "seconds": 6.5
+    },
+    {
+      "module": "Cloning.TensorFlatProjectorCopyCoupling",
+      "seconds": 6.5
+    },
+    {
+      "module": "Cloning.PCTRankGlobalChannels",
+      "seconds": 6.5
+    },
+    {
+      "module": "Cloning.PhysicalFlatPCTBound",
+      "seconds": 6.5
+    },
+    {
+      "module": "Cloning.WeylGaussianProjectionSandwich",
+      "seconds": 6.5
+    },
+    {
+      "module": "Cloning.PCTPrescribedExtension",
+      "seconds": 6.5
+    },
+    {
+      "module": "Cloning.TensorRankOneDimension",
+      "seconds": 6.5
+    },
+    {
+      "module": "Cloning.WeylSqueezerProductDisplacement",
+      "seconds": 6.5
+    },
+    {
+      "module": "Cloning.YoungDimensionMomentRate",
+      "seconds": 6.5
+    },
+    {
+      "module": "Cloning.TensorCyclicSectorWeightTrace",
+      "seconds": 6.4
+    },
+    {
+      "module": "Cloning.YoungCompatibilityFallback",
+      "seconds": 6.4
+    },
+    {
+      "module": "Cloning.PhysicalFlatConverseJensen",
+      "seconds": 6.4
+    },
+    {
+      "module": "Cloning.TensorCloningGlobalCovarianceInstrument",
+      "seconds": 6.4
+    },
+    {
+      "module": "Cloning.PCTCountMeasurementChannel",
+      "seconds": 6.4
+    },
+    {
+      "module": "Cloning.TensorFlatProjectorChannel",
+      "seconds": 6.4
+    },
+    {
+      "module": "Cloning.PhysicalFlatGrassmannOrbit",
+      "seconds": 6.4
+    },
+    {
+      "module": "Cloning.PCTRankPurificationFlatState",
+      "seconds": 6.4
+    },
+    {
+      "module": "Cloning.PBWSymmetricFrameRate",
+      "seconds": 6.4
+    },
+    {
+      "module": "Cloning.InfiniteWeakLimitRepair",
+      "seconds": 6.3
+    },
+    {
+      "module": "Cloning.YoungDimensionRatio",
+      "seconds": 6.3
+    },
+    {
+      "module": "Cloning.YoungPhysicalRoundingLabels",
+      "seconds": 6.3
+    },
+    {
+      "module": "Cloning.YoungFlatCompatibility",
+      "seconds": 6.3
+    },
+    {
+      "module": "Cloning.CovariantAmplifierComposite",
+      "seconds": 6.3
+    },
+    {
+      "module": "Cloning.PCTRankPurificationCovariance",
+      "seconds": 6.3
+    },
+    {
+      "module": "Cloning.PCTRankPurificationFlatOrbit",
+      "seconds": 6.3
+    },
+    {
+      "module": "Cloning.MultimodeIdlerCharacteristicKernel",
+      "seconds": 6.3
+    },
+    {
+      "module": "Cloning.YoungDimensionMomentRateAlgebra",
+      "seconds": 6.3
+    },
+    {
+      "module": "Cloning.PCTRankPurificationGeneralAction",
+      "seconds": 6.3
+    },
+    {
+      "module": "Cloning.CloningValueComparisonMonotone",
+      "seconds": 6.3
+    },
+    {
+      "module": "Cloning.PCTRankPurificationGeneralPhysical",
+      "seconds": 6.3
+    },
+    {
+      "module": "Cloning.PhysicalCloningSmallError",
+      "seconds": 6.3
+    },
+    {
+      "module": "Cloning.SpectralGapThreshold",
+      "seconds": 6.3
+    },
+    {
+      "module": "Cloning.ComplexGaussianMoments",
+      "seconds": 6.2
+    },
+    {
+      "module": "Cloning.InfiniteFidelityFiniteMixture",
+      "seconds": 6.2
+    },
+    {
+      "module": "Cloning.YoungHyperplaneCovariance",
+      "seconds": 6.2
+    },
+    {
+      "module": "Cloning.TensorLANEmbeddingAverageUniform",
+      "seconds": 6.2
+    },
+    {
+      "module": "Cloning.PCTRankAdaptedStates",
+      "seconds": 6.2
+    },
+    {
+      "module": "Cloning.YoungFlatFidelity",
+      "seconds": 6.2
+    },
+    {
+      "module": "Cloning.YoungFlatCouplingQuantizer",
+      "seconds": 6.2
+    },
+    {
+      "module": "Cloning.PhysicalFlatPCTProtocol",
+      "seconds": 6.2
+    },
+    {
+      "module": "Cloning.TensorCloningPrescribedLimits",
+      "seconds": 6.2
+    },
+    {
+      "module": "Cloning.WeylSqueezerUnitaryChannel",
+      "seconds": 6.2
+    },
+    {
+      "module": "Cloning.SampleRatioThreshold",
+      "seconds": 6.2
+    },
+    {
+      "module": "Cloning.BosonicAmplifierChannel",
+      "seconds": 6.1
+    },
+    {
+      "module": "Cloning.PCTRankAdaptedTensor",
+      "seconds": 6.1
+    },
+    {
+      "module": "Cloning.PhysicalCloningKnownTheorem",
+      "seconds": 6.1
+    },
+    {
+      "module": "Cloning.TensorCloningUniversalClassical",
+      "seconds": 6.1
+    },
+    {
+      "module": "Cloning.PhysicalCloningUniversalTheorem",
+      "seconds": 6.1
+    },
+    {
+      "module": "Cloning.PhysicalFlatConverseOrbitAverage",
+      "seconds": 6.1
+    },
+    {
+      "module": "Cloning.WeylFockVacuum",
+      "seconds": 6.1
+    },
+    {
+      "module": "Cloning.PCTPrescribedFull",
+      "seconds": 6.1
+    },
+    {
+      "module": "Cloning.PCTProjectorPurityParticle",
+      "seconds": 6.1
+    },
+    {
+      "module": "Cloning.PCTFlatGaussianCrossKernel",
+      "seconds": 6.1
+    },
+    {
+      "module": "Cloning.PCTPurityFidelityMixture",
+      "seconds": 6.1
+    },
+    {
+      "module": "Cloning.ScoreReferenceMeasure",
+      "seconds": 6.1
+    },
+    {
+      "module": "Cloning.BosonicAmplifierThermal",
+      "seconds": 6.0
+    },
+    {
+      "module": "Cloning.TensorCartanLieBalance",
+      "seconds": 6.0
+    },
+    {
+      "module": "Cloning.TensorCloningKernel",
+      "seconds": 6.0
+    },
+    {
+      "module": "Cloning.YoungTwoRowConcentration",
+      "seconds": 6.0
+    },
+    {
+      "module": "Cloning.PhysicalFlatPinchingMoments",
+      "seconds": 6.0
+    },
+    {
+      "module": "Cloning.YoungFlatSupport",
+      "seconds": 6.0
+    },
+    {
+      "module": "Cloning.PCTCountMeasurementImage",
+      "seconds": 6.0
+    },
+    {
+      "module": "Cloning.PhysicalFlatGrassmannUniform",
+      "seconds": 6.0
+    },
+    {
+      "module": "Cloning.WeylGNSAction",
+      "seconds": 6.0
+    },
+    {
+      "module": "Cloning.CovariantAmplifierCompositeIdler",
+      "seconds": 6.0
+    },
+    {
+      "module": "Cloning.TensorRankOneSector",
+      "seconds": 6.0
+    },
+    {
+      "module": "Cloning.PCTPurityFidelity",
+      "seconds": 6.0
+    },
+    {
+      "module": "Cloning.PhysicalFlatRateRounded",
+      "seconds": 6.0
+    },
+    {
+      "module": "Cloning.SpectralRatioMajorizationCounterexample",
+      "seconds": 6.0
+    },
+    {
+      "module": "Cloning.BosonicStochasticOrder",
+      "seconds": 5.9
+    },
+    {
+      "module": "Cloning.InfiniteGentleCompressionLimit",
+      "seconds": 5.9
+    },
+    {
+      "module": "Cloning.YoungGeneralPMF",
+      "seconds": 5.9
+    },
+    {
+      "module": "Cloning.YoungMultinomialLocalLimit",
+      "seconds": 5.9
+    },
+    {
+      "module": "Cloning.YoungUniformLocalLabels",
+      "seconds": 5.9
+    },
+    {
+      "module": "Cloning.CountMultinomialPMF",
+      "seconds": 5.9
+    },
+    {
+      "module": "Cloning.PCTPhysicalFidelityUnconditional",
+      "seconds": 5.9
+    },
+    {
+      "module": "Cloning.TensorCloningUniversalSector",
+      "seconds": 5.9
+    },
+    {
+      "module": "Cloning.PhysicalFlatConverseMoments",
+      "seconds": 5.9
+    },
+    {
+      "module": "Cloning.PCTRankPurificationFunctional",
+      "seconds": 5.9
+    },
+    {
+      "module": "Cloning.PCTRankPurificationFlatScalar",
+      "seconds": 5.9
+    },
+    {
+      "module": "Cloning.PhysicalFlatRateBounded",
+      "seconds": 5.9
+    },
+    {
+      "module": "Cloning.TensorRankOneWernerCovariance",
+      "seconds": 5.9
+    },
+    {
+      "module": "Cloning.UniversalLeastNoiseRecursion",
+      "seconds": 5.8
+    },
+    {
+      "module": "Cloning.PCTPurificationChannelHaar",
+      "seconds": 5.8
+    },
+    {
+      "module": "Cloning.YoungUniformLocalScheffe",
+      "seconds": 5.8
+    },
+    {
+      "module": "Cloning.YoungGeneralMoments",
+      "seconds": 5.8
+    },
+    {
+      "module": "Cloning.YoungTwoRowAsymptotics",
+      "seconds": 5.8
+    },
+    {
+      "module": "Cloning.PCTRankPurificationMoment",
+      "seconds": 5.8
+    },
+    {
+      "module": "Cloning.PhysicalFlatGrassmannEmbedding",
+      "seconds": 5.8
+    },
+    {
+      "module": "Cloning.TensorCloningUniformBlocks",
+      "seconds": 5.8
+    },
+    {
+      "module": "Cloning.PCTPrescribedRank",
+      "seconds": 5.8
+    },
+    {
+      "module": "Cloning.PCTProjectorPurityEnvelope",
+      "seconds": 5.8
+    },
+    {
+      "module": "Cloning.PCTPurityFidelityPhysical",
+      "seconds": 5.8
+    },
+    {
+      "module": "Cloning.PCTProjectorPurityEnvelopeLimits",
+      "seconds": 5.8
+    },
+    {
+      "module": "Cloning.PCTRankPurificationGeneralHaar",
+      "seconds": 5.8
+    },
+    {
+      "module": "Cloning.SpectralGapCompact",
+      "seconds": 5.8
+    },
+    {
+      "module": "Cloning.YoungHyperplaneSampling",
+      "seconds": 5.7
+    },
+    {
+      "module": "Cloning.CountMultinomialDensity",
+      "seconds": 5.7
+    },
+    {
+      "module": "Cloning.YoungNormalizationLimits",
+      "seconds": 5.7
+    },
+    {
+      "module": "Cloning.PCTRankPurificationNormalization",
+      "seconds": 5.7
+    },
+    {
+      "module": "Cloning.TensorSchurHaarCompression",
+      "seconds": 5.7
+    },
+    {
+      "module": "Cloning.WeylGaussianSandwichNormalized",
+      "seconds": 5.7
+    },
+    {
+      "module": "Cloning.WeylGaussianApproximation",
+      "seconds": 5.7
+    },
+    {
+      "module": "Cloning.MultimodeIdlerCharacteristicPhase",
+      "seconds": 5.7
+    },
+    {
+      "module": "Cloning.PCTRankPurificationGeneralOrbit",
+      "seconds": 5.7
+    },
+    {
+      "module": "Cloning.PhysicalAllStateMinimax",
+      "seconds": 5.7
+    },
+    {
+      "module": "Cloning.PCTRankPurificationGeneralTheorem",
+      "seconds": 5.7
+    },
+    {
+      "module": "Cloning.PBWSymmetricFrameRateGram",
+      "seconds": 5.7
+    },
+    {
+      "module": "Cloning.InfiniteDiagonalFidelity",
+      "seconds": 5.6
+    },
+    {
+      "module": "Cloning.InfiniteFidelityMixtureNormalization",
+      "seconds": 5.6
+    },
+    {
+      "module": "Cloning.YoungFlatFidelityBounds",
+      "seconds": 5.6
+    },
+    {
+      "module": "Cloning.YoungFlatCouplingRank",
+      "seconds": 5.6
+    },
+    {
+      "module": "Cloning.PCTRankAdaptedFlat",
+      "seconds": 5.6
+    },
+    {
+      "module": "Cloning.TensorCloningUniformUniversal",
+      "seconds": 5.6
+    },
+    {
+      "module": "Cloning.TensorCloningUniformKnown",
+      "seconds": 5.6
+    },
+    {
+      "module": "Cloning.WeylGNSKernel",
+      "seconds": 5.6
+    },
+    {
+      "module": "Cloning.WeylDiagonalIdler",
+      "seconds": 5.6
+    },
+    {
+      "module": "Cloning.HybridGaussianFlatBody",
+      "seconds": 5.6
+    },
+    {
+      "module": "Cloning.MatrixFidelityLifted",
+      "seconds": 5.5
+    },
+    {
+      "module": "Cloning.YoungRSKInsertion",
+      "seconds": 5.5
+    },
+    {
+      "module": "Cloning.PCTRankAdaptedProduct",
+      "seconds": 5.5
+    },
+    {
+      "module": "Cloning.PhysicalFlatConverseLimit",
+      "seconds": 5.5
+    },
+    {
+      "module": "Cloning.PCTRankPurificationInvariant",
+      "seconds": 5.5
+    },
+    {
+      "module": "Cloning.WeylFockRepresentation",
+      "seconds": 5.5
+    },
+    {
+      "module": "Cloning.CovariantAmplifierLeastNoiseParameters",
+      "seconds": 5.5
+    },
+    {
+      "module": "Cloning.PCTPurityFidelityBoundAlgebra",
+      "seconds": 5.5
+    },
+    {
+      "module": "Cloning.PCTProjectorPurityEnvelopeTheorem",
+      "seconds": 5.5
+    },
+    {
+      "module": "Cloning.PBWSymmetricFrameRateWord",
+      "seconds": 5.5
+    },
+    {
+      "module": "Cloning.TensorRankCartanCompression",
+      "seconds": 5.5
+    },
+    {
+      "module": "LiftedSectorFidelity",
+      "seconds": 5.5
+    },
+    {
+      "module": "ConditionalCloningTheorems",
+      "seconds": 5.5
+    },
+    {
+      "module": "Cloning.PhysicalCloningPCTTheorem",
+      "seconds": 5.4
+    },
+    {
+      "module": "Cloning.TensorFlatProjectorAchievability",
+      "seconds": 5.4
+    },
+    {
+      "module": "Cloning.PCTRankPurificationBlockAlgebra",
+      "seconds": 5.4
+    },
+    {
+      "module": "Cloning.PCTRankGlobalChannel",
+      "seconds": 5.4
+    },
+    {
+      "module": "Cloning.PCTRankPurificationVectorization",
+      "seconds": 5.4
+    },
+    {
+      "module": "Cloning.WeylFockState",
+      "seconds": 5.4
+    },
+    {
+      "module": "Cloning.ScalarTaylorInverse",
+      "seconds": 5.4
+    },
+    {
+      "module": "Cloning.PCTProjectorPurityTargets",
+      "seconds": 5.4
+    },
+    {
+      "module": "ClassicalRounding",
+      "seconds": 5.4
+    },
+    {
+      "module": "Cloning.TensorPositiveSpectrumCompressionFidelity",
+      "seconds": 5.4
+    },
+    {
+      "module": "Cloning.HybridGaussianAttainmentBoundary",
+      "seconds": 5.3
+    },
+    {
+      "module": "Cloning.YoungMultinomialLocal",
+      "seconds": 5.3
+    },
+    {
+      "module": "Cloning.YoungUniformLocalMultinomial",
+      "seconds": 5.3
+    },
+    {
+      "module": "Cloning.CountMultinomialMeasurability",
+      "seconds": 5.3
+    },
+    {
+      "module": "Cloning.PCTRankAdaptedFactor",
+      "seconds": 5.3
+    },
+    {
+      "module": "Cloning.PhysicalFlatCloningTheorem",
+      "seconds": 5.3
+    },
+    {
+      "module": "Cloning.WeylGaussianTotalityScalar",
+      "seconds": 5.3
+    },
+    {
+      "module": "Cloning.WeylGaussianVacuumSpace",
+      "seconds": 5.3
+    },
+    {
+      "module": "Cloning.WeylGaussianTotality",
+      "seconds": 5.3
+    },
+    {
+      "module": "Cloning.WeylSqueezerPreparation",
+      "seconds": 5.3
+    },
+    {
+      "module": "Cloning.PCTFlatGaussianCrossLaw",
+      "seconds": 5.3
+    },
+    {
+      "module": "Cloning.CloningValueBoundaryCoefficients",
+      "seconds": 5.3
+    },
+    {
+      "module": "Cloning.PhysicalAllStateMinimaxBounds",
+      "seconds": 5.3
+    },
+    {
+      "module": "Cloning.PBWSymmetricFrameRateCartanBounds",
+      "seconds": 5.3
+    },
+    {
+      "module": "Cloning.PCTRankPurificationGeneralFinite",
+      "seconds": 5.3
+    },
+    {
+      "module": "Cloning.InfiniteFidelityRegularizedLimit",
+      "seconds": 5.3
+    },
+    {
+      "module": "Cloning.MatrixRankCompressionFidelity",
+      "seconds": 5.3
+    },
+    {
+      "module": "Cloning.YoungGeneralFallback",
+      "seconds": 5.2
+    },
+    {
+      "module": "Cloning.TensorCloningAchievabilityCompatibility",
+      "seconds": 5.2
+    },
+    {
+      "module": "Cloning.TensorCloningAchievabilityTypical",
+      "seconds": 5.2
+    },
+    {
+      "module": "Cloning.TensorCloningUniversalAchievability",
+      "seconds": 5.2
+    },
+    {
+      "module": "Cloning.PhysicalFlatGrassmannTheorem",
+      "seconds": 5.2
+    },
+    {
+      "module": "Cloning.PhysicalFlatPCTFinite",
+      "seconds": 5.2
+    },
+    {
+      "module": "Cloning.PCTProjectorPurityDomination",
+      "seconds": 5.2
+    },
+    {
+      "module": "Cloning.CloningValueExpansionTarget",
+      "seconds": 5.2
+    },
+    {
+      "module": "Cloning.PBWSymmetricFrameRatePhysical",
+      "seconds": 5.2
+    },
+    {
+      "module": "Cloning.PCTProjectorPurityEnvelopePhysical",
+      "seconds": 5.2
+    },
+    {
+      "module": "Cloning.SpectralRatioMajorization",
+      "seconds": 5.2
+    },
+    {
+      "module": "Cloning.YoungGeneralSharpConcentration",
+      "seconds": 5.2
+    },
+    {
+      "module": "Cloning.YoungPhysicalRoundingUniformDensity",
+      "seconds": 5.2
+    },
+    {
+      "module": "Cloning",
+      "seconds": 5.2
+    },
+    {
+      "module": "Cloning.MatrixFidelityNormalization",
+      "seconds": 5.1
+    },
+    {
+      "module": "Cloning.YoungFlatCouplingDensity",
+      "seconds": 5.1
+    },
+    {
+      "module": "Cloning.PCTRankAdaptedLimit",
+      "seconds": 5.1
+    },
+    {
+      "module": "Cloning.WeylSqueezerPartialTrace",
+      "seconds": 5.1
+    },
+    {
+      "module": "Cloning.PCTProjectorPurityEnvelopeRate",
+      "seconds": 5.1
+    },
+    {
+      "module": "Cloning.PhysicalAllStateMinimaxLower",
+      "seconds": 5.1
+    },
+    {
+      "module": "Cloning.PBWSymmetricFrameRateCartanGrouping",
+      "seconds": 5.1
+    },
+    {
+      "module": "Cloning.PCTPrescribedRankGuarantee",
+      "seconds": 5.1
+    },
+    {
+      "module": "Cloning.HybridFlatBody",
+      "seconds": 5.1
+    },
+    {
+      "module": "CoherentGaussianMixtures",
+      "seconds": 5.1
+    },
+    {
+      "module": "ProjectorBounds",
+      "seconds": 5.1
+    },
+    {
+      "module": "Cloning.InfiniteLANTransfer",
+      "seconds": 5.0
+    },
+    {
+      "module": "Cloning.YoungUniformLocalDensity",
+      "seconds": 5.0
+    },
+    {
+      "module": "Cloning.PhysicalFlatRate",
+      "seconds": 5.0
+    },
+    {
+      "module": "Cloning.YoungDimensionMomentRateAsymptotics",
+      "seconds": 5.0
+    },
+    {
+      "module": "Cloning.PCTRankPurificationGeneralEmbedding",
+      "seconds": 5.0
+    },
+    {
+      "module": "Cloning.YoungHookCount",
+      "seconds": 4.9
+    },
+    {
+      "module": "Cloning.YoungMultinomialLocalStirling",
+      "seconds": 4.9
+    },
+    {
+      "module": "Cloning.ScalarTaylorRemainder",
+      "seconds": 4.9
+    },
+    {
+      "module": "Cloning.SpectralAffineTheorem",
+      "seconds": 4.9
+    },
+    {
+      "module": "Cloning.SampleRatioExpansion",
+      "seconds": 4.9
+    },
+    {
+      "module": "Cloning.SampleRatioFinite",
+      "seconds": 4.9
+    },
+    {
+      "module": "Cloning.CloningValueExpansionClassical",
+      "seconds": 4.9
+    },
+    {
+      "module": "Cloning.HybridScorePolytope",
+      "seconds": 4.9
+    },
+    {
+      "module": "Cloning.YoungHookDeterminant",
+      "seconds": 4.8
+    },
+    {
+      "module": "Cloning.YoungUniformLocalGaussianTails",
+      "seconds": 4.8
+    },
+    {
+      "module": "Cloning.InfiniteFidelityHilbertSum",
+      "seconds": 4.8
+    },
+    {
+      "module": "Cloning.InfiniteFidelityMixtureRestriction",
+      "seconds": 4.8
+    },
+    {
+      "module": "Cloning.PCTRankPurificationCompletion",
+      "seconds": 4.8
+    },
+    {
+      "module": "Cloning.PCTRankAdaptedUpper",
+      "seconds": 4.8
+    },
+    {
+      "module": "Cloning.PhysicalFlatGrassmannSpectral",
+      "seconds": 4.8
+    },
+    {
+      "module": "Cloning.WeylGNSRegular",
+      "seconds": 4.8
+    },
+    {
+      "module": "Cloning.PCTClosedForm",
+      "seconds": 4.8
+    },
+    {
+      "module": "Cloning.CloningValueExpansionThreshold",
+      "seconds": 4.8
+    },
+    {
+      "module": "Cloning.PCTProjectorPurityLimit",
+      "seconds": 4.8
+    },
+    {
+      "module": "LANTransfer",
+      "seconds": 4.8
+    },
+    {
+      "module": "Cloning.YoungHookRatioLimit",
+      "seconds": 4.7
+    },
+    {
+      "module": "Cloning.WeylGaussianSandwich",
+      "seconds": 4.7
+    },
+    {
+      "module": "Cloning.MultimodeIdlerCharacteristic",
+      "seconds": 4.7
+    },
+    {
+      "module": "Cloning.PCTProjectorPurityGaussianSingle",
+      "seconds": 4.7
+    },
+    {
+      "module": "Cloning.PCTProjectorPurityKernel",
+      "seconds": 4.7
+    },
+    {
+      "module": "Cloning.PCTPurityFidelityBound",
+      "seconds": 4.7
+    },
+    {
+      "module": "Cloning.SampleRatioLimit",
+      "seconds": 4.7
+    },
+    {
+      "module": "Cloning.CloningValueComparisonInfimum",
+      "seconds": 4.7
+    },
+    {
+      "module": "Cloning.HybridGaussianScoreOptimum",
+      "seconds": 4.7
+    },
+    {
+      "module": "Cloning.YoungHookVandermonde",
+      "seconds": 4.6
+    },
+    {
+      "module": "Cloning.YoungHookRatio",
+      "seconds": 4.6
+    },
+    {
+      "module": "Cloning.PCTProjectorPurityGaussianCross",
+      "seconds": 4.6
+    },
+    {
+      "module": "Cloning.PCTFlatGaussianCrossMoment",
+      "seconds": 4.6
+    },
+    {
+      "module": "Cloning.CloningValueExpansionThermal",
+      "seconds": 4.6
+    },
+    {
+      "module": "Cloning.YoungUniformCharacterWindows",
+      "seconds": 4.6
+    },
+    {
+      "module": "Cloning.YoungFlatCouplingConvergence",
+      "seconds": 4.5
+    },
+    {
+      "module": "Cloning.CloningValueExpansion",
+      "seconds": 4.5
+    },
+    {
+      "module": "Cloning.PBWSymmetricFrameRateWeightSpace",
+      "seconds": 4.5
+    },
+    {
+      "module": "Cloning.YoungRSKTableau",
+      "seconds": 4.4
+    },
+    {
+      "module": "Cloning.YoungTwoRowMoment",
+      "seconds": 4.4
+    },
+    {
+      "module": "Cloning.TensorRankOneCoupling",
+      "seconds": 4.4
+    },
+    {
+      "module": "Cloning.CloningValueExpansionAlgebra",
+      "seconds": 4.4
+    },
+    {
+      "module": "Cloning.WeylSqueezerRepresentation",
+      "seconds": 4.4
+    },
+    {
+      "module": "Cloning.PCTFlatGaussianCrossReduction",
+      "seconds": 4.4
+    },
+    {
+      "module": "Cloning.YoungNormalizationBranching",
+      "seconds": 4.3
+    },
+    {
+      "module": "Cloning.YoungRSKPieri",
+      "seconds": 4.3
+    },
+    {
+      "module": "Cloning.WeylSqueezerChannel",
+      "seconds": 4.3
+    },
+    {
+      "module": "Cloning.CloningValueExpansionProjector",
+      "seconds": 4.3
+    },
+    {
+      "module": "BosonicSeededOptimum",
+      "seconds": 4.3
+    },
+    {
+      "module": "Cloning.YoungRSKInterlacing",
+      "seconds": 4.2
+    },
+    {
+      "module": "Cloning.YoungRSKTableauReverse",
+      "seconds": 4.2
+    },
+    {
+      "module": "OccupationLimits",
+      "seconds": 4.2
+    },
+    {
+      "module": "CompactCPLimits",
+      "seconds": 4.2
+    },
+    {
+      "module": "Cloning.YoungNormalization",
+      "seconds": 4.1
+    },
+    {
+      "module": "Cloning.YoungFlatCouplingFinite",
+      "seconds": 4.1
+    },
+    {
+      "module": "Cloning.CloningValueComparisonLargeGain",
+      "seconds": 4.1
+    },
+    {
+      "module": "Cloning.ThermalNearPure",
+      "seconds": 4.1
+    },
+    {
+      "module": "QuantumFidelity",
+      "seconds": 4.1
+    },
+    {
+      "module": "Cloning.Projector",
+      "seconds": 4.0
+    },
+    {
+      "module": "Cloning.PCTRankPurificationCoefficients",
+      "seconds": 4.0
+    },
+    {
+      "module": "Cloning.SpectralAffineTopology",
+      "seconds": 4.0
+    },
+    {
+      "module": "Cloning.ScalarPowerExpansion",
+      "seconds": 4.0
+    },
+    {
+      "module": "Cloning.PCTProjectorPurityEnvelopeExpansion",
+      "seconds": 4.0
+    },
+    {
+      "module": "Cloning.YoungRSKContent",
+      "seconds": 3.9
+    },
+    {
+      "module": "Cloning.CloningValueComparisonGeometric",
+      "seconds": 3.9
+    },
+    {
+      "module": "All",
+      "seconds": 3.9
+    },
+    {
+      "module": "Cloning.YoungRSKShape",
+      "seconds": 3.4
+    },
+    {
+      "module": "Cloning.TensorLANEmbeddingDiagonal",
+      "seconds": 3.0
+    },
+    {
+      "module": "Cloning.YoungRSKReverse",
+      "seconds": 3.0
+    },
+    {
+      "module": "Cloning.PCTProjectorPurityGaussianEnergy",
+      "seconds": 3.0
+    }
+  ],
+  "total_lines": 111939,
+  "upstream_compilations": [],
+  "wall_seconds_observed": 12316.508268584,
+  "warnings": 499
+}

@@ -1,0 +1,90 @@
+[
+  {
+    "benchmark_commit": "3eb587e0f00748c3a9b63f9eeedc1646e4cb77be",
+    "build_setup_unchanged": true,
+    "build_trace_unchanged": true,
+    "command": [
+      "/opt/homebrew/bin/gtime",
+      "-v",
+      "-o",
+      "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/native-profile-control/Cloning.PhysicalFlatConverseReduction-native-1.resources.txt",
+      "/Users/jw/.elan/bin/lake",
+      "env",
+      "lean",
+      "-DautoImplicit=false",
+      "--profile",
+      "--stats",
+      "--setup",
+      "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/native-profile-control/Cloning.PhysicalFlatConverseReduction-1.setup.json",
+      "Cloning/PhysicalFlatConverseReduction.lean"
+    ],
+    "commit": "3eb587e0f00748c3a9b63f9eeedc1646e4cb77be",
+    "config_hashes_unchanged": true,
+    "config_matches_benchmark": true,
+    "config_sha256": {
+      "formalization/lake-manifest.json": "e4630915680b82b58c6a005e1ba1e515e865e5541c7e665d4a2d57f783eeadb4",
+      "formalization/lakefile.toml": "ddeb0d2c8217676fc393afd24c13629993c580f35f9d8ad15240c6a167b020c1",
+      "formalization/lean-toolchain": "dc6d65016fad3123d44bf17b5bf0598286284ab16ba75d5c17eb22ed11f47361"
+    },
+    "end_utc": "2026-10-07T04:09:15.411884+00:00",
+    "environment": {
+      "LAKE_ARTIFACT_CACHE": "false",
+      "LAKE_NO_CACHE": "false",
+      "LANG": "C.UTF-8",
+      "LC_ALL": "C.UTF-8",
+      "LEAN_GITHASH": "00659f8e6071d7e46131ed643bf8003b99b044e9",
+      "LEAN_NUM_THREADS": "2"
+    },
+    "environment_capture": "Selected effective Lake environment values; the complete inherited environment is not recorded.",
+    "environment_overrides": {
+      "LAKE_ARTIFACT_CACHE": "false",
+      "LEAN_NUM_THREADS": "2"
+    },
+    "events": null,
+    "exit_code": 0,
+    "import_artifacts_unchanged": true,
+    "import_context": "Cloning.PhysicalFlatConverseReduction-native-1.import-context.json",
+    "import_context_sha256": "393dd3030bb9d5f3c1d3c8faf6969c874a5bcf980302c5514318afacc201aa1c",
+    "inputs_stable": true,
+    "log": "Cloning.PhysicalFlatConverseReduction-native-1.log",
+    "measurement_valid": true,
+    "module": "Cloning.PhysicalFlatConverseReduction",
+    "native_control_driver_sha256": "b09aa5b3c8ddf66537fae5dc6c4d8581c78ce45a14a0b607e45983c6e60ef8b5",
+    "notes": [
+      "No proof, heartbeat, or source option changed; omitted only Firefox trace flags."
+    ],
+    "original_failed_index_sha256": "f7945f3d1c011035c355fc5c9ef04d2618690ce66f9d3bda1dc6710930dfd07f",
+    "original_failed_record_position": 11,
+    "post_guard_error": null,
+    "repetition": 1,
+    "resources": "Cloning.PhysicalFlatConverseReduction-native-1.resources.txt",
+    "setup_sha256": "ee1ef19b7a810033b80250ba62e10a98dc958263b764649d5d37345624320b12",
+    "setup_snapshot": "Cloning.PhysicalFlatConverseReduction-1.setup.json",
+    "source": "Cloning/PhysicalFlatConverseReduction.lean",
+    "source_hash_unchanged": true,
+    "source_matches_benchmark": true,
+    "source_matches_commit": true,
+    "source_sha256": "bca45225c36db32c7041c1ebcbafd5bf974abc6bc9fc0172ace4d773088e037f",
+    "source_snapshot": null,
+    "start_utc": "2026-10-07T04:08:14.796713+00:00",
+    "toolchain": {
+      "environment": {
+        "LAKE_ARTIFACT_CACHE": "false",
+        "LAKE_NO_CACHE": "false",
+        "LANG": "C.UTF-8",
+        "LC_ALL": "C.UTF-8",
+        "LEAN_GITHASH": "00659f8e6071d7e46131ed643bf8003b99b044e9",
+        "LEAN_NUM_THREADS": "2"
+      },
+      "lake_version": "Lake version 5.0.0-src+00659f8 (Lean version 4.29.0-rc6)",
+      "lean_binary": "/Users/jw/.elan/toolchains/leanprover--lean4---v4.29.0-rc6/bin/lean",
+      "lean_binary_sha256": "2974847fff2e2621502841f4c2dbac4035b4847d6060a4f2087cbc0d04005e37",
+      "lean_libdir": "/Users/jw/.elan/toolchains/leanprover--lean4---v4.29.0-rc6/lib/lean",
+      "lean_version": "Lean (version 4.29.0-rc6, arm64-apple-darwin24.6.0, commit 00659f8e6071d7e46131ed643bf8003b99b044e9, Release)"
+    },
+    "trace_mode": "native",
+    "trace_sha256": "b925afe9c22d9edb615e5b8579514c42225a935340524f18c8ea5f2f84ab65d0",
+    "trace_snapshot": "Cloning.PhysicalFlatConverseReduction-1.build-trace.json",
+    "wall_seconds": 60.614335750000464
+  }
+]

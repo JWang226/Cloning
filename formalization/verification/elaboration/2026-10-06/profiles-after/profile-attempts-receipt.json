@@ -1,0 +1,90 @@
+{
+  "attempt_count": 3,
+  "attempts": [
+    {
+      "event_status": "not-produced",
+      "evidence_role": "failed-profile-attempt",
+      "exit_code": 1,
+      "expected_missing_inputs": [
+        "events"
+      ],
+      "input_prefix": "",
+      "input_sha256": {
+        "import_context": "18312450251bf15791c22c530cef48cd669909fb432ab7a814130a29421bb2cb",
+        "log": "a5dd22424d3eb91d97e6c308268a8bceb28bfd44052a57381d66b9c868d135ab",
+        "resources": "f93727be323cc3e2c7254c8cd33d3c7bb95368e47f969f4b4970ed1bcaf5cfcd",
+        "setup_snapshot": "ee1ef19b7a810033b80250ba62e10a98dc958263b764649d5d37345624320b12",
+        "source_snapshot": "bca45225c36db32c7041c1ebcbafd5bf974abc6bc9fc0172ace4d773088e037f",
+        "trace_snapshot": "b925afe9c22d9edb615e5b8579514c42225a935340524f18c8ea5f2f84ab65d0"
+      },
+      "module": "Cloning.PhysicalFlatConverseReduction",
+      "original_index": "profiles-attempt-1.json",
+      "original_index_sha256": "f7945f3d1c011035c355fc5c9ef04d2618690ce66f9d3bda1dc6710930dfd07f",
+      "original_record_index": 11,
+      "public_index_sha256": "19b30aa366ce05a8ab6e29b72ea6a4b204924a5360694d9b01ccebd0621b9450",
+      "reason": "Untouched module passed the full cold build, but Firefox trace collection hit its existing typeclass and elaboration heartbeat limits. No Firefox export occurred after errors. Excluded from successful cohort.",
+      "source_copy": "attempts/attempt-0001.source.lean.txt",
+      "source_sha256": "bca45225c36db32c7041c1ebcbafd5bf974abc6bc9fc0172ace4d773088e037f",
+      "trace_mode": "firefox"
+    },
+    {
+      "event_status": "not-produced",
+      "evidence_role": "failed-profile-attempt",
+      "exit_code": 1,
+      "expected_missing_inputs": [
+        "events"
+      ],
+      "input_prefix": "continuation",
+      "input_sha256": {
+        "import_context": "bbe2d587cc8c982e3c9bdc1eda9da638ef9216ab606bfc6b07cb4615dace5a75",
+        "log": "8ae1dc0fa57af81d884fdb8ec8f04173dfdd11341280f398ef6d5a055df28759",
+        "resources": "6d5d3f8a3da155399f2c00ac4b2319954cc361303dae38b8ff1e100a9cd5a35c",
+        "setup_snapshot": "10aebcde63ad07877061ccfdf8b08719b2fffb04b58b70860c9f9d79fc9c3565",
+        "source_snapshot": "ec819ddc2ab205994ecc7801f948b9af02e042e5a79928b0d04a9ea16dc786b4",
+        "trace_snapshot": "e5d18d90192e5b2afcbcc317d067447dfc8e37372e7919d50029a16f9ea32ab6"
+      },
+      "module": "Cloning.PhysicalFlatPinchingInflation",
+      "original_index": "continuation/profiles.json",
+      "original_index_sha256": "8b87f18cf769d016e8885d495623c950791d071a033b8512ea3783482eb90684",
+      "original_record_index": 2,
+      "public_index_sha256": "53395674a8e1a345a4e1210070370a4548225934407cdd050c06f0c563d33d22",
+      "reason": "Untouched module passed the full cold build, but Firefox trace collection hit its existing typeclass heartbeat limit. No Firefox export occurred after errors. Excluded from successful cohort.",
+      "source_copy": "attempts/attempt-0002.source.lean.txt",
+      "source_sha256": "ec819ddc2ab205994ecc7801f948b9af02e042e5a79928b0d04a9ea16dc786b4",
+      "trace_mode": "firefox"
+    },
+    {
+      "event_status": "disabled",
+      "evidence_role": "diagnostic-native-control",
+      "exit_code": 0,
+      "expected_missing_inputs": [],
+      "input_prefix": "native-exploratory",
+      "input_sha256": {
+        "import_context": "393dd3030bb9d5f3c1d3c8faf6969c874a5bcf980302c5514318afacc201aa1c",
+        "log": "830a6b7558e2a040d748bb921e45012360ceb27190b2c3b3bc26cf661e61eb45",
+        "resources": "f1075f8f1dcc5b97f042dde5575229f41893fd689a7f97b2145dfe942eb9014c",
+        "setup_snapshot": "ee1ef19b7a810033b80250ba62e10a98dc958263b764649d5d37345624320b12",
+        "source_snapshot": "bca45225c36db32c7041c1ebcbafd5bf974abc6bc9fc0172ace4d773088e037f",
+        "trace_snapshot": "b925afe9c22d9edb615e5b8579514c42225a935340524f18c8ea5f2f84ab65d0"
+      },
+      "module": "Cloning.PhysicalFlatConverseReduction",
+      "original_index": "native-exploratory/profiles.json",
+      "original_index_sha256": "01a1caf1c94710e055ddff3cbf3ace555230c8813687a47b9ede2094c3ba7060",
+      "original_record_index": 0,
+      "public_index_sha256": "50031c9797870f03289d164ab48c8b11ea1e85cf533dd57d4789e2807d18e4a5",
+      "reason": "Exploratory native-only control passed, but setup/trace unchanged flags were inherited from the failed record, not remeasured by this driver. Excluded from canonical cohort; the fresh guarded native run is canonical.",
+      "source_copy": "attempts/attempt-0003.source.lean.txt",
+      "source_sha256": "bca45225c36db32c7041c1ebcbafd5bf974abc6bc9fc0172ace4d773088e037f",
+      "trace_mode": "native"
+    }
+  ],
+  "notes": [
+    "Diagnostics are excluded from completed-profile coverage and speed comparisons.",
+    "A failed Firefox export is recorded as absent, without fabricated events or rankings.",
+    "Original guard flags are preserved as recorded; exploratory inherited flags are not asserted as validated.",
+    "Raw diagnostic log/resource hashes are captured during publication."
+  ],
+  "original_attempts_sha256": "04a3de02c9466225cd0791fbcc8c28a755f68bd8dbcdc3e8185829e82c370ff6",
+  "public_attempts_sha256": "bc475a681b0590ae7bf79252126602dd66a74512d0ef4d80a1e009691694b5e9",
+  "schema": "cloning-elaboration-profile-attempts-receipt-v1"
+}

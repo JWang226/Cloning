@@ -1,0 +1,75 @@
+{
+  "axiom_policy": "strict_standard_three",
+  "checked_declarations": 83433,
+  "exported_declarations": 83433,
+  "independent_kernel_check": "passed",
+  "inputs_unchanged": true,
+  "limitations": [
+    "The pass checks the exact lean4export terms with the pinned unmodified Nanoda kernel; Lean elaboration, the exporter, Rust toolchain, host, and Nanoda Nat/String kernel extensions remain trusted components.",
+    "Dependency source revisions and cleanliness are checked, but existing compiled dependency caches and the exporter loading path remain trusted provenance; source hashes alone do not attest that a cached .olean was derived from those sources.",
+    "Correspondence between exported terms and source-level statements requires the separate Comparator workflow; this kernel replay does not replace that comparison.",
+    "The large NDJSON export remains under ignored .work with its exact SHA256 and location archived; the tracked record contains logs, roots, configuration, harness snapshots, and metadata."
+  ],
+  "modules": 982,
+  "permitted_axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
+  "previous_attempts": [
+    {
+      "error": "unsafe/partial def: Cloning.MultimodeCoherent.numberIterate._unsafe_rec",
+      "failure_phase": "export_safety_validation",
+      "independent_kernel_check": "not_run",
+      "project_declarations": 14375,
+      "recorded_utc": "2026-10-04T04:10:08.958336+00:00",
+      "run_record": "formalization/verification/nanoda/records/20261004T040757.497668Z/run.json",
+      "run_record_sha256": "ea55c9f4cbbefa78dbfee72a4041445d5c031bc38d210437973638b1efebe7ab",
+      "scope": "Every audited project constant and dependencies; no requested root was omitted",
+      "source_audit_sha256": "00b03eb5cfff71467000058132c3953d8508a394b22b2a8092a464fb42593dae",
+      "status": "failed"
+    },
+    {
+      "archive": "formalization/verification/nanoda/diagnostics/20261004T051640.548545Z/archive.json",
+      "archive_sha256": "5cbf83d53a0df7b400594a54088e9062ac37f7d03ddec001d02de5e19cb38dde",
+      "error": "missing/mismatched unqualified success count",
+      "independent_kernel_check": "failed_or_incomplete_preliminary_unbound",
+      "observed_pretty_printer_errors": 1,
+      "observed_typechecker_errors": 0,
+      "official_bound_runner": "not_run",
+      "project_declarations": 14345,
+      "record": "formalization/verification/nanoda/diagnostics/20261004T051640.548545Z/diagnostic.json",
+      "record_sha256": "2aa21a454305fbac3c80aa8c37284fec7bb995cf72d792d67ea7728acbaf47e9",
+      "scope": "unbound_preliminary_diagnostic",
+      "status": "failed_preliminary_unbound"
+    }
+  ],
+  "project_declarations": 14345,
+  "provenance": {
+    "execution_host": "macOS",
+    "lean4export_commit": "71f41350675895dda791b8ff9c1dfb77d18b3585",
+    "nanoda_commit": "418320295890faed83a96fd97907b12a3b6728c2",
+    "nanoda_patches": [],
+    "official_command": "bash verification/nanoda/run.sh --run --threads 1",
+    "orchestration_reference": "https://github.com/anthropics/fermats-last-theorem/blob/main/verification/nanoda/run.sh",
+    "tools_lock_sha256": "8aa8601c9f7aa6cca546c687e67e730e3be416c3a3169130af9cc50fee04581e"
+  },
+  "recorded_utc": "2026-10-04T06:07:43.910834+00:00",
+  "requested_roots": 14373,
+  "resources": "formalization/verification/nanoda/records/20261004T055629.624926Z/resources.json",
+  "resources_sha256": "674177a0d32b666f83205ac9bcab1d3b22226116198cc9133120089d2bf641de",
+  "retained_ignored_export": {
+    "absolute_path": "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/formalization/verification/nanoda/.work/run-20261004T055629.624926Z/cloning.ndjson",
+    "bytes": 777716026,
+    "path": "formalization/verification/nanoda/.work/run-20261004T055629.624926Z/cloning.ndjson",
+    "sha256": "303071fc64f122beb54de50384e30bc41291edb2d7dd8b9190a6500fe7c3ce52"
+  },
+  "run_archive": "formalization/verification/nanoda/records/20261004T055629.624926Z/archive.json",
+  "run_archive_sha256": "c4f37e06471fceb15cbc5ff0676df0692a047dddd4c7e5cc4144b4587cdbf3dd",
+  "run_record": "formalization/verification/nanoda/records/20261004T055629.624926Z/run.json",
+  "run_record_sha256": "1920e73469cdd1f953b3b15e46d927b159d6ab8de585630162e95dd14f0c2050",
+  "scope": "Every audited project constant, including private and generated constants, the fixed Lean builtin prerequisites, and all transitive exported dependencies; every requested root is present.",
+  "source_audit_sha256": "6b2c09f61388362d9ff3ae3f63285b9dd09e0cd95254150273bacba6cd9c799a",
+  "source_binding": "matched",
+  "status": "passed"
+}

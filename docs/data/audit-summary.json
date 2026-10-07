@@ -1,18 +1,24 @@
 {
-  "recorded_run": "verification/kernel-compatible-pass",
-  "run_sha256": "6b2c09f61388362d9ff3ae3f63285b9dd09e0cd95254150273bacba6cd9c799a",
+  "recorded_run": "verification/cleanup-pass",
+  "run_sha256": "cd6735524ed4f60d02fded4b846eaa349d36fc3d151df5768ddc5fcfe4ada61b",
   "status": "passed",
-  "completed_utc": "2026-10-04T05:54:37.522297+00:00",
+  "completed_utc": "2026-10-07T04:19:48.873134+00:00",
   "toolchain": "leanprover/lean4:v4.29.0-rc6",
   "modules": 982,
-  "theorems": 6350,
-  "audited_constants": 14345,
+  "theorems": 6349,
+  "audited_constants": 14344,
   "allowed_axioms": [
     "Classical.choice",
     "Quot.sound",
     "propext"
   ],
   "axiom_audit": "passed",
+  "axiom_report_scope": "aggregate union; no per-root axiom attribution",
+  "aggregate_axioms": [
+    "Classical.choice",
+    "Quot.sound",
+    "propext"
+  ],
   "source_placeholder_scan": "passed",
   "independent_checkers": {
     "comparator": {
@@ -21,7 +27,7 @@
     },
     "nanoda": {
       "recorded_status": "passed",
-      "displayed_verdict": "Passed: 14,345 project roots; 83,433 declarations checked"
+      "displayed_verdict": "Passed: 14,344 project roots; 83,432 declarations checked"
     }
   },
   "note": "Copied evidence summary, not a new execution of Lean or the axiom audit."

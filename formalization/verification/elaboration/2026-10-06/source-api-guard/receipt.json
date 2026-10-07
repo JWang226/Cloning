@@ -1,0 +1,22 @@
+{
+  "baseline_commit": "cbb2fd2007ae367e201d4a6ac7c069899db90dbd",
+  "candidate_interventions": {
+    "formalization/Cloning/WernerPhysicalPullback.lean": "werner-trace-bridge",
+    "formalization/Cloning/WeylIdlerUniqueness.lean": "weyl-bridge"
+  },
+  "driver_digest_recorded_at_guard_run": false,
+  "driver_sha256": "9862a8bd8cfb29fc855ee8d1a57680b48af344983ca753400bc6a111fddd2edc",
+  "driver_sha256_capture": "publication-time",
+  "evidence_role": "source-api-guard-not-independent-proof-verification",
+  "historical_current_commit": "f66714d5f0b21c248696d833f35f86f364ae413a",
+  "notes": [
+    "The original guard and its historical Git context are preserved without modification.",
+    "Candidate source hashes bind to preserved accepted intervention snapshots, including dirty working sources.",
+    "Historical current_commit is context, not a claim that every candidate source was committed then.",
+    "The driver digest is measured during publication; an absent original driver digest supplies no run-time attestation.",
+    "This receipt validates saved source/API bindings and does not replace the full build and axiom checks.",
+    "The bundler does not rerun the source/API checker or recompute signature, outside-body or public-check inventory digests."
+  ],
+  "original_guard_sha256": "3bb846c2fadc1863fcde025c7b9e57a3ea297a0550df69db22cc2d620e3d5486",
+  "schema": "cloning-elaboration-source-api-guard-publication-v1"
+}

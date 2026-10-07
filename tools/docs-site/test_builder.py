@@ -5,7 +5,7 @@ import json
 import re
 from unittest.mock import patch
 
-from build import ARXIV, ROOT, Wiki, checker_verdict, lean_mask, offline_proof_map, semantic_probe_commands, sha, statement_end, validate_links
+from build import ARXIV, ROOT, Wiki, checker_verdict, lean_mask, offline_proof_map, semantic_probe_commands, sha, statement_end, statement_review_record, validate_links
 from paper import paper_structure
 
 
@@ -199,6 +199,51 @@ class StatementReviewTests(unittest.TestCase):
     def test_matching_review_evidence(self):
         wiki, _ = self.wiki()
         wiki.validate_statement_review()
+
+    def test_original_review_and_revalidation_are_displayed_separately(self):
+        review = {"date": "2026-10-06", "reviewed_revision": "a" * 40,
+                  "revalidation_date": "2026-10-07", "revalidation_revision": "b" * 40}
+        record = statement_review_record(review)
+        self.assertIn("Original semantic review 2026-10-06", record)
+        self.assertIn("three unchanged Lean probes were re-executed 2026-10-07", record)
+        self.assertIn("does not repeat the full semantic review", record)
+        legacy = statement_review_record({"date": "2026-10-06", "reviewed_revision": "a" * 40})
+        self.assertIn("Reviewed 2026-10-06", legacy)
+        self.assertNotIn("re-executed", legacy)
+
+    def revalidated_wiki(self):
+        wiki, files = self.wiki()
+        base = "formalization/verification/semantic-pilot/"
+        review = wiki.statement_review
+        review.update(date="2026-10-06", reviewed_revision="a" * 40,
+                      revalidation_date="2026-10-07", revalidation_revision="b" * 40,
+                      original_review={"date": "2026-10-06", "reviewed_revision": "a" * 40})
+        path = base + "run.json"
+        run = json.loads(files[path])
+        run.update(revalidation_revision="b" * 40, review_base_head="a" * 40,
+                   source_config_hashes_unchanged=True, original_probe=base + "original.lean.txt",
+                   original_probe_sha256=run["probe_sha256"])
+        files[base + "original.lean.txt"] = files[base + "probe.lean.txt"]
+        files[path] = json.dumps(run)
+        review["artifacts"][path] = sha(files[path])
+        return wiki, files
+
+    def test_matching_original_probe_revalidation(self):
+        wiki, _ = self.revalidated_wiki()
+        wiki.validate_statement_review()
+
+    def test_revalidation_cannot_claim_a_new_review_or_changed_probe(self):
+        for change in ("original_revision", "new_revision", "original_probe"):
+            with self.subTest(change=change):
+                wiki, files = self.revalidated_wiki()
+                if change == "original_revision":
+                    wiki.statement_review["original_review"]["reviewed_revision"] = "c" * 40
+                elif change == "new_revision":
+                    wiki.statement_review["revalidation_revision"] = "c" * 40
+                else:
+                    files["formalization/verification/semantic-pilot/original.lean.txt"] += "changed"
+                with self.assertRaisesRegex(ValueError, "revalidation"):
+                    wiki.validate_statement_review()
 
     def test_stale_audit_or_manuscript_rejected(self):
         for key in ("source_audit_sha256", "manuscript_sha256"):

@@ -1,4 +1,4 @@
 {
-  "directory": "verification/kernel-compatible-pass",
-  "run_sha256": "6b2c09f61388362d9ff3ae3f63285b9dd09e0cd95254150273bacba6cd9c799a"
+  "directory": "verification/cleanup-pass",
+  "run_sha256": "cd6735524ed4f60d02fded4b846eaa349d36fc3d151df5768ddc5fcfe4ada61b"
 }

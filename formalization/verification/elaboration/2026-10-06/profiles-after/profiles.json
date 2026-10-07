@@ -1,0 +1,1618 @@
+[
+  {
+    "benchmark_commit": "3eb587e0f00748c3a9b63f9eeedc1646e4cb77be",
+    "build_setup_unchanged": true,
+    "build_trace_unchanged": true,
+    "command": [
+      "/opt/homebrew/bin/gtime",
+      "-v",
+      "-o",
+      "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/profiles-after/Cloning.WeylIdlerUniqueness-1.resources.txt",
+      "/Users/jw/.elan/bin/lake",
+      "env",
+      "lean",
+      "-DautoImplicit=false",
+      "--profile",
+      "--stats",
+      "-Dtrace.profiler=true",
+      "-Dtrace.profiler.output.pp=true",
+      "-Dtrace.profiler.output=/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/profiles-after/Cloning.WeylIdlerUniqueness-1.json",
+      "--setup",
+      "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/profiles-after/Cloning.WeylIdlerUniqueness-1.setup.json",
+      "Cloning/WeylIdlerUniqueness.lean"
+    ],
+    "commit": "3eb587e0f00748c3a9b63f9eeedc1646e4cb77be",
+    "config_hashes_unchanged": true,
+    "config_matches_benchmark": true,
+    "config_sha256": {
+      "formalization/lake-manifest.json": "e4630915680b82b58c6a005e1ba1e515e865e5541c7e665d4a2d57f783eeadb4",
+      "formalization/lakefile.toml": "ddeb0d2c8217676fc393afd24c13629993c580f35f9d8ad15240c6a167b020c1",
+      "formalization/lean-toolchain": "dc6d65016fad3123d44bf17b5bf0598286284ab16ba75d5c17eb22ed11f47361"
+    },
+    "end_utc": "2026-10-07T03:58:44.348930+00:00",
+    "environment": {
+      "LAKE_ARTIFACT_CACHE": "false",
+      "LAKE_NO_CACHE": "false",
+      "LANG": "C.UTF-8",
+      "LC_ALL": "C.UTF-8",
+      "LEAN_GITHASH": "00659f8e6071d7e46131ed643bf8003b99b044e9",
+      "LEAN_NUM_THREADS": "2"
+    },
+    "environment_capture": "Selected effective Lake environment values; the complete inherited environment is not recorded.",
+    "environment_overrides": {
+      "LAKE_ARTIFACT_CACHE": "false",
+      "LEAN_NUM_THREADS": "2"
+    },
+    "events": "Cloning.WeylIdlerUniqueness-1.json",
+    "exit_code": 0,
+    "import_artifacts_unchanged": true,
+    "import_context": "Cloning.WeylIdlerUniqueness-1.import-context.json",
+    "import_context_sha256": "7ee8079bc1835d62dbe0ccfdbc6ac8f8b639688339fd2273ff8c6164a6cef58d",
+    "inputs_stable": true,
+    "log": "Cloning.WeylIdlerUniqueness-1.log",
+    "measurement_valid": true,
+    "module": "Cloning.WeylIdlerUniqueness",
+    "post_guard_error": null,
+    "publication": {
+      "omitted_environment_fields": [
+        "environment.LEAN_PATH",
+        "environment.LEAN_SYSROOT",
+        "environment.PATH",
+        "toolchain.environment.LEAN_PATH",
+        "toolchain.environment.LEAN_SYSROOT",
+        "toolchain.environment.PATH"
+      ],
+      "original_index_sha256": "c796ad4e0bad239322b6ef5522fa4b6f87cc074e51c6285e13eb68e33fb18833",
+      "original_record_index": 0,
+      "transformations": [
+        "Preserved an identical source snapshot bound to source_sha256.",
+        "Removed inherited path-valued environment fields; exact task setup/import paths remain."
+      ]
+    },
+    "receipt_origin": {
+      "binding_form": "derived-public-index",
+      "index": "profiles-attempt-1.json",
+      "input_prefix": "",
+      "original_index_sha256": "f7945f3d1c011035c355fc5c9ef04d2618690ce66f9d3bda1dc6710930dfd07f",
+      "public_index_sha256": "19b30aa366ce05a8ab6e29b72ea6a4b204924a5360694d9b01ccebd0621b9450",
+      "record_index": 0
+    },
+    "repetition": 1,
+    "resources": "Cloning.WeylIdlerUniqueness-1.resources.txt",
+    "setup_sha256": "7398bb862731937c44e19ae7c44ceaddba2e487349b4e5739978e15bcbc015c6",
+    "setup_snapshot": "Cloning.WeylIdlerUniqueness-1.setup.json",
+    "source": "Cloning/WeylIdlerUniqueness.lean",
+    "source_hash_unchanged": true,
+    "source_matches_benchmark": true,
+    "source_matches_commit": true,
+    "source_sha256": "e1413287599caab0c36d5cf8625f327b319f75c097fe6cc33d4351f22cff5dc7",
+    "source_snapshot": "Cloning.WeylIdlerUniqueness-1.source.lean.txt",
+    "start_utc": "2026-10-07T03:58:35.403246+00:00",
+    "toolchain": {
+      "environment": {
+        "LAKE_ARTIFACT_CACHE": "false",
+        "LAKE_NO_CACHE": "false",
+        "LANG": "C.UTF-8",
+        "LC_ALL": "C.UTF-8",
+        "LEAN_GITHASH": "00659f8e6071d7e46131ed643bf8003b99b044e9",
+        "LEAN_NUM_THREADS": "2"
+      },
+      "lake_version": "Lake version 5.0.0-src+00659f8 (Lean version 4.29.0-rc6)",
+      "lean_binary": "/Users/jw/.elan/toolchains/leanprover--lean4---v4.29.0-rc6/bin/lean",
+      "lean_binary_sha256": "2974847fff2e2621502841f4c2dbac4035b4847d6060a4f2087cbc0d04005e37",
+      "lean_libdir": "/Users/jw/.elan/toolchains/leanprover--lean4---v4.29.0-rc6/lib/lean",
+      "lean_version": "Lean (version 4.29.0-rc6, arm64-apple-darwin24.6.0, commit 00659f8e6071d7e46131ed643bf8003b99b044e9, Release)"
+    },
+    "trace_sha256": "3a3bd5710454055a81648feec028f66510edf682fb849f7092e40a583e65546c",
+    "trace_snapshot": "Cloning.WeylIdlerUniqueness-1.build-trace.json",
+    "wall_seconds": 8.94490745800067
+  },
+  {
+    "benchmark_commit": "3eb587e0f00748c3a9b63f9eeedc1646e4cb77be",
+    "build_setup_unchanged": true,
+    "build_trace_unchanged": true,
+    "command": [
+      "/opt/homebrew/bin/gtime",
+      "-v",
+      "-o",
+      "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/profiles-after/Cloning.PCTHybridMixtureFactor-1.resources.txt",
+      "/Users/jw/.elan/bin/lake",
+      "env",
+      "lean",
+      "-DautoImplicit=false",
+      "--profile",
+      "--stats",
+      "-Dtrace.profiler=true",
+      "-Dtrace.profiler.output.pp=true",
+      "-Dtrace.profiler.output=/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/profiles-after/Cloning.PCTHybridMixtureFactor-1.json",
+      "--setup",
+      "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/profiles-after/Cloning.PCTHybridMixtureFactor-1.setup.json",
+      "Cloning/PCTHybridMixtureFactor.lean"
+    ],
+    "commit": "3eb587e0f00748c3a9b63f9eeedc1646e4cb77be",
+    "config_hashes_unchanged": true,
+    "config_matches_benchmark": true,
+    "config_sha256": {
+      "formalization/lake-manifest.json": "e4630915680b82b58c6a005e1ba1e515e865e5541c7e665d4a2d57f783eeadb4",
+      "formalization/lakefile.toml": "ddeb0d2c8217676fc393afd24c13629993c580f35f9d8ad15240c6a167b020c1",
+      "formalization/lean-toolchain": "dc6d65016fad3123d44bf17b5bf0598286284ab16ba75d5c17eb22ed11f47361"
+    },
+    "end_utc": "2026-10-07T03:59:22.798630+00:00",
+    "environment": {
+      "LAKE_ARTIFACT_CACHE": "false",
+      "LAKE_NO_CACHE": "false",
+      "LANG": "C.UTF-8",
+      "LC_ALL": "C.UTF-8",
+      "LEAN_GITHASH": "00659f8e6071d7e46131ed643bf8003b99b044e9",
+      "LEAN_NUM_THREADS": "2"
+    },
+    "environment_capture": "Selected effective Lake environment values; the complete inherited environment is not recorded.",
+    "environment_overrides": {
+      "LAKE_ARTIFACT_CACHE": "false",
+      "LEAN_NUM_THREADS": "2"
+    },
+    "events": "Cloning.PCTHybridMixtureFactor-1.json",
+    "exit_code": 0,
+    "import_artifacts_unchanged": true,
+    "import_context": "Cloning.PCTHybridMixtureFactor-1.import-context.json",
+    "import_context_sha256": "76bc8972634ed18090244f500794254a65fd2d00d413e37be9be1748611b46ab",
+    "inputs_stable": true,
+    "log": "Cloning.PCTHybridMixtureFactor-1.log",
+    "measurement_valid": true,
+    "module": "Cloning.PCTHybridMixtureFactor",
+    "post_guard_error": null,
+    "publication": {
+      "omitted_environment_fields": [
+        "environment.LEAN_PATH",
+        "environment.LEAN_SYSROOT",
+        "environment.PATH",
+        "toolchain.environment.LEAN_PATH",
+        "toolchain.environment.LEAN_SYSROOT",
+        "toolchain.environment.PATH"
+      ],
+      "original_index_sha256": "c796ad4e0bad239322b6ef5522fa4b6f87cc074e51c6285e13eb68e33fb18833",
+      "original_record_index": 1,
+      "transformations": [
+        "Preserved an identical source snapshot bound to source_sha256.",
+        "Removed inherited path-valued environment fields; exact task setup/import paths remain."
+      ]
+    },
+    "receipt_origin": {
+      "binding_form": "derived-public-index",
+      "index": "profiles-attempt-1.json",
+      "input_prefix": "",
+      "original_index_sha256": "f7945f3d1c011035c355fc5c9ef04d2618690ce66f9d3bda1dc6710930dfd07f",
+      "public_index_sha256": "19b30aa366ce05a8ab6e29b72ea6a4b204924a5360694d9b01ccebd0621b9450",
+      "record_index": 1
+    },
+    "repetition": 1,
+    "resources": "Cloning.PCTHybridMixtureFactor-1.resources.txt",
+    "setup_sha256": "9f79e479559f10fd46b90dffb38663f805139855f8120488cc0665b6720fce52",
+    "setup_snapshot": "Cloning.PCTHybridMixtureFactor-1.setup.json",
+    "source": "Cloning/PCTHybridMixtureFactor.lean",
+    "source_hash_unchanged": true,
+    "source_matches_benchmark": true,
+    "source_matches_commit": true,
+    "source_sha256": "dc112ae5e22432d2e6502a06efd023939d9e5b40b13b63a044f06b480272ef54",
+    "source_snapshot": "Cloning.PCTHybridMixtureFactor-1.source.lean.txt",
+    "start_utc": "2026-10-07T03:58:53.737413+00:00",
+    "toolchain": {
+      "environment": {
+        "LAKE_ARTIFACT_CACHE": "false",
+        "LAKE_NO_CACHE": "false",
+        "LANG": "C.UTF-8",
+        "LC_ALL": "C.UTF-8",
+        "LEAN_GITHASH": "00659f8e6071d7e46131ed643bf8003b99b044e9",
+        "LEAN_NUM_THREADS": "2"
+      },
+      "lake_version": "Lake version 5.0.0-src+00659f8 (Lean version 4.29.0-rc6)",
+      "lean_binary": "/Users/jw/.elan/toolchains/leanprover--lean4---v4.29.0-rc6/bin/lean",
+      "lean_binary_sha256": "2974847fff2e2621502841f4c2dbac4035b4847d6060a4f2087cbc0d04005e37",
+      "lean_libdir": "/Users/jw/.elan/toolchains/leanprover--lean4---v4.29.0-rc6/lib/lean",
+      "lean_version": "Lean (version 4.29.0-rc6, arm64-apple-darwin24.6.0, commit 00659f8e6071d7e46131ed643bf8003b99b044e9, Release)"
+    },
+    "trace_sha256": "830602b48b89f340893b89c6202f71dc9f3fc07fef7009c7fd9fc465db1f037c",
+    "trace_snapshot": "Cloning.PCTHybridMixtureFactor-1.build-trace.json",
+    "wall_seconds": 29.060919042000023
+  },
+  {
+    "benchmark_commit": "3eb587e0f00748c3a9b63f9eeedc1646e4cb77be",
+    "build_setup_unchanged": true,
+    "build_trace_unchanged": true,
+    "command": [
+      "/opt/homebrew/bin/gtime",
+      "-v",
+      "-o",
+      "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/profiles-after/Cloning.WernerPhysicalPullback-1.resources.txt",
+      "/Users/jw/.elan/bin/lake",
+      "env",
+      "lean",
+      "-DautoImplicit=false",
+      "--profile",
+      "--stats",
+      "-Dtrace.profiler=true",
+      "-Dtrace.profiler.output.pp=true",
+      "-Dtrace.profiler.output=/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/profiles-after/Cloning.WernerPhysicalPullback-1.json",
+      "--setup",
+      "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/profiles-after/Cloning.WernerPhysicalPullback-1.setup.json",
+      "Cloning/WernerPhysicalPullback.lean"
+    ],
+    "commit": "3eb587e0f00748c3a9b63f9eeedc1646e4cb77be",
+    "config_hashes_unchanged": true,
+    "config_matches_benchmark": true,
+    "config_sha256": {
+      "formalization/lake-manifest.json": "e4630915680b82b58c6a005e1ba1e515e865e5541c7e665d4a2d57f783eeadb4",
+      "formalization/lakefile.toml": "ddeb0d2c8217676fc393afd24c13629993c580f35f9d8ad15240c6a167b020c1",
+      "formalization/lean-toolchain": "dc6d65016fad3123d44bf17b5bf0598286284ab16ba75d5c17eb22ed11f47361"
+    },
+    "end_utc": "2026-10-07T04:00:01.787191+00:00",
+    "environment": {
+      "LAKE_ARTIFACT_CACHE": "false",
+      "LAKE_NO_CACHE": "false",
+      "LANG": "C.UTF-8",
+      "LC_ALL": "C.UTF-8",
+      "LEAN_GITHASH": "00659f8e6071d7e46131ed643bf8003b99b044e9",
+      "LEAN_NUM_THREADS": "2"
+    },
+    "environment_capture": "Selected effective Lake environment values; the complete inherited environment is not recorded.",
+    "environment_overrides": {
+      "LAKE_ARTIFACT_CACHE": "false",
+      "LEAN_NUM_THREADS": "2"
+    },
+    "events": "Cloning.WernerPhysicalPullback-1.json",
+    "exit_code": 0,
+    "import_artifacts_unchanged": true,
+    "import_context": "Cloning.WernerPhysicalPullback-1.import-context.json",
+    "import_context_sha256": "ec22dc52ccef78aae94636a8f36945fdccca914d415c44f0bfbc23791509c564",
+    "inputs_stable": true,
+    "log": "Cloning.WernerPhysicalPullback-1.log",
+    "measurement_valid": true,
+    "module": "Cloning.WernerPhysicalPullback",
+    "post_guard_error": null,
+    "publication": {
+      "omitted_environment_fields": [
+        "environment.LEAN_PATH",
+        "environment.LEAN_SYSROOT",
+        "environment.PATH",
+        "toolchain.environment.LEAN_PATH",
+        "toolchain.environment.LEAN_SYSROOT",
+        "toolchain.environment.PATH"
+      ],
+      "original_index_sha256": "c796ad4e0bad239322b6ef5522fa4b6f87cc074e51c6285e13eb68e33fb18833",
+      "original_record_index": 2,
+      "transformations": [
+        "Preserved an identical source snapshot bound to source_sha256.",
+        "Removed inherited path-valued environment fields; exact task setup/import paths remain."
+      ]
+    },
+    "receipt_origin": {
+      "binding_form": "derived-public-index",
+      "index": "profiles-attempt-1.json",
+      "input_prefix": "",
+      "original_index_sha256": "f7945f3d1c011035c355fc5c9ef04d2618690ce66f9d3bda1dc6710930dfd07f",
+      "public_index_sha256": "19b30aa366ce05a8ab6e29b72ea6a4b204924a5360694d9b01ccebd0621b9450",
+      "record_index": 2
+    },
+    "repetition": 1,
+    "resources": "Cloning.WernerPhysicalPullback-1.resources.txt",
+    "setup_sha256": "257a5dac9e7fe1bbab5b94c1ba93c2d89f6dab60d06e820de4773673e43324c5",
+    "setup_snapshot": "Cloning.WernerPhysicalPullback-1.setup.json",
+    "source": "Cloning/WernerPhysicalPullback.lean",
+    "source_hash_unchanged": true,
+    "source_matches_benchmark": true,
+    "source_matches_commit": true,
+    "source_sha256": "328dd36bde83e302e13d99f6168651cb90f5a10b39811339590e645822c5b30b",
+    "source_snapshot": "Cloning.WernerPhysicalPullback-1.source.lean.txt",
+    "start_utc": "2026-10-07T03:59:32.078900+00:00",
+    "toolchain": {
+      "environment": {
+        "LAKE_ARTIFACT_CACHE": "false",
+        "LAKE_NO_CACHE": "false",
+        "LANG": "C.UTF-8",
+        "LC_ALL": "C.UTF-8",
+        "LEAN_GITHASH": "00659f8e6071d7e46131ed643bf8003b99b044e9",
+        "LEAN_NUM_THREADS": "2"
+      },
+      "lake_version": "Lake version 5.0.0-src+00659f8 (Lean version 4.29.0-rc6)",
+      "lean_binary": "/Users/jw/.elan/toolchains/leanprover--lean4---v4.29.0-rc6/bin/lean",
+      "lean_binary_sha256": "2974847fff2e2621502841f4c2dbac4035b4847d6060a4f2087cbc0d04005e37",
+      "lean_libdir": "/Users/jw/.elan/toolchains/leanprover--lean4---v4.29.0-rc6/lib/lean",
+      "lean_version": "Lean (version 4.29.0-rc6, arm64-apple-darwin24.6.0, commit 00659f8e6071d7e46131ed643bf8003b99b044e9, Release)"
+    },
+    "trace_sha256": "8b8eac72b385659896fd6a88a3e215365c013a36f7a7583a9dca412c552568a4",
+    "trace_snapshot": "Cloning.WernerPhysicalPullback-1.build-trace.json",
+    "wall_seconds": 29.707992249997915
+  },
+  {
+    "benchmark_commit": "3eb587e0f00748c3a9b63f9eeedc1646e4cb77be",
+    "build_setup_unchanged": true,
+    "build_trace_unchanged": true,
+    "command": [
+      "/opt/homebrew/bin/gtime",
+      "-v",
+      "-o",
+      "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/profiles-after/Cloning.PCTGlobalPhysical-1.resources.txt",
+      "/Users/jw/.elan/bin/lake",
+      "env",
+      "lean",
+      "-DautoImplicit=false",
+      "--profile",
+      "--stats",
+      "-Dtrace.profiler=true",
+      "-Dtrace.profiler.output.pp=true",
+      "-Dtrace.profiler.output=/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/profiles-after/Cloning.PCTGlobalPhysical-1.json",
+      "--setup",
+      "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/profiles-after/Cloning.PCTGlobalPhysical-1.setup.json",
+      "Cloning/PCTGlobalPhysical.lean"
+    ],
+    "commit": "3eb587e0f00748c3a9b63f9eeedc1646e4cb77be",
+    "config_hashes_unchanged": true,
+    "config_matches_benchmark": true,
+    "config_sha256": {
+      "formalization/lake-manifest.json": "e4630915680b82b58c6a005e1ba1e515e865e5541c7e665d4a2d57f783eeadb4",
+      "formalization/lakefile.toml": "ddeb0d2c8217676fc393afd24c13629993c580f35f9d8ad15240c6a167b020c1",
+      "formalization/lean-toolchain": "dc6d65016fad3123d44bf17b5bf0598286284ab16ba75d5c17eb22ed11f47361"
+    },
+    "end_utc": "2026-10-07T04:01:08.579398+00:00",
+    "environment": {
+      "LAKE_ARTIFACT_CACHE": "false",
+      "LAKE_NO_CACHE": "false",
+      "LANG": "C.UTF-8",
+      "LC_ALL": "C.UTF-8",
+      "LEAN_GITHASH": "00659f8e6071d7e46131ed643bf8003b99b044e9",
+      "LEAN_NUM_THREADS": "2"
+    },
+    "environment_capture": "Selected effective Lake environment values; the complete inherited environment is not recorded.",
+    "environment_overrides": {
+      "LAKE_ARTIFACT_CACHE": "false",
+      "LEAN_NUM_THREADS": "2"
+    },
+    "events": "Cloning.PCTGlobalPhysical-1.json",
+    "exit_code": 0,
+    "import_artifacts_unchanged": true,
+    "import_context": "Cloning.PCTGlobalPhysical-1.import-context.json",
+    "import_context_sha256": "4518f94489f5d9eefbd979db335ff096dc3f95129e58e53872f138455873e5d3",
+    "inputs_stable": true,
+    "log": "Cloning.PCTGlobalPhysical-1.log",
+    "measurement_valid": true,
+    "module": "Cloning.PCTGlobalPhysical",
+    "post_guard_error": null,
+    "publication": {
+      "omitted_environment_fields": [
+        "environment.LEAN_PATH",
+        "environment.LEAN_SYSROOT",
+        "environment.PATH",
+        "toolchain.environment.LEAN_PATH",
+        "toolchain.environment.LEAN_SYSROOT",
+        "toolchain.environment.PATH"
+      ],
+      "original_index_sha256": "c796ad4e0bad239322b6ef5522fa4b6f87cc074e51c6285e13eb68e33fb18833",
+      "original_record_index": 3,
+      "transformations": [
+        "Preserved an identical source snapshot bound to source_sha256.",
+        "Removed inherited path-valued environment fields; exact task setup/import paths remain."
+      ]
+    },
+    "receipt_origin": {
+      "binding_form": "derived-public-index",
+      "index": "profiles-attempt-1.json",
+      "input_prefix": "",
+      "original_index_sha256": "f7945f3d1c011035c355fc5c9ef04d2618690ce66f9d3bda1dc6710930dfd07f",
+      "public_index_sha256": "19b30aa366ce05a8ab6e29b72ea6a4b204924a5360694d9b01ccebd0621b9450",
+      "record_index": 3
+    },
+    "repetition": 1,
+    "resources": "Cloning.PCTGlobalPhysical-1.resources.txt",
+    "setup_sha256": "3f8f95543a6f9e3f4b89b40ffeb676a9db081e8a1c44b1737fd59d475e851916",
+    "setup_snapshot": "Cloning.PCTGlobalPhysical-1.setup.json",
+    "source": "Cloning/PCTGlobalPhysical.lean",
+    "source_hash_unchanged": true,
+    "source_matches_benchmark": true,
+    "source_matches_commit": true,
+    "source_sha256": "fb0231237298a06a32147e115e6e8f29f0ad572e8a0f4698db82b86654f553c6",
+    "source_snapshot": "Cloning.PCTGlobalPhysical-1.source.lean.txt",
+    "start_utc": "2026-10-07T04:00:10.936860+00:00",
+    "toolchain": {
+      "environment": {
+        "LAKE_ARTIFACT_CACHE": "false",
+        "LAKE_NO_CACHE": "false",
+        "LANG": "C.UTF-8",
+        "LC_ALL": "C.UTF-8",
+        "LEAN_GITHASH": "00659f8e6071d7e46131ed643bf8003b99b044e9",
+        "LEAN_NUM_THREADS": "2"
+      },
+      "lake_version": "Lake version 5.0.0-src+00659f8 (Lean version 4.29.0-rc6)",
+      "lean_binary": "/Users/jw/.elan/toolchains/leanprover--lean4---v4.29.0-rc6/bin/lean",
+      "lean_binary_sha256": "2974847fff2e2621502841f4c2dbac4035b4847d6060a4f2087cbc0d04005e37",
+      "lean_libdir": "/Users/jw/.elan/toolchains/leanprover--lean4---v4.29.0-rc6/lib/lean",
+      "lean_version": "Lean (version 4.29.0-rc6, arm64-apple-darwin24.6.0, commit 00659f8e6071d7e46131ed643bf8003b99b044e9, Release)"
+    },
+    "trace_sha256": "169e2f19b21a1b05ab1a76823b7b8e29610700637547c094adfa9118c00391bb",
+    "trace_snapshot": "Cloning.PCTGlobalPhysical-1.build-trace.json",
+    "wall_seconds": 57.641963540998404
+  },
+  {
+    "benchmark_commit": "3eb587e0f00748c3a9b63f9eeedc1646e4cb77be",
+    "build_setup_unchanged": true,
+    "build_trace_unchanged": true,
+    "command": [
+      "/opt/homebrew/bin/gtime",
+      "-v",
+      "-o",
+      "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/profiles-after/Cloning.PCTUnitaryTransportChannels-1.resources.txt",
+      "/Users/jw/.elan/bin/lake",
+      "env",
+      "lean",
+      "-DautoImplicit=false",
+      "--profile",
+      "--stats",
+      "-Dtrace.profiler=true",
+      "-Dtrace.profiler.output.pp=true",
+      "-Dtrace.profiler.output=/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/profiles-after/Cloning.PCTUnitaryTransportChannels-1.json",
+      "--setup",
+      "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/profiles-after/Cloning.PCTUnitaryTransportChannels-1.setup.json",
+      "Cloning/PCTUnitaryTransportChannels.lean"
+    ],
+    "commit": "3eb587e0f00748c3a9b63f9eeedc1646e4cb77be",
+    "config_hashes_unchanged": true,
+    "config_matches_benchmark": true,
+    "config_sha256": {
+      "formalization/lake-manifest.json": "e4630915680b82b58c6a005e1ba1e515e865e5541c7e665d4a2d57f783eeadb4",
+      "formalization/lakefile.toml": "ddeb0d2c8217676fc393afd24c13629993c580f35f9d8ad15240c6a167b020c1",
+      "formalization/lean-toolchain": "dc6d65016fad3123d44bf17b5bf0598286284ab16ba75d5c17eb22ed11f47361"
+    },
+    "end_utc": "2026-10-07T04:01:24.155702+00:00",
+    "environment": {
+      "LAKE_ARTIFACT_CACHE": "false",
+      "LAKE_NO_CACHE": "false",
+      "LANG": "C.UTF-8",
+      "LC_ALL": "C.UTF-8",
+      "LEAN_GITHASH": "00659f8e6071d7e46131ed643bf8003b99b044e9",
+      "LEAN_NUM_THREADS": "2"
+    },
+    "environment_capture": "Selected effective Lake environment values; the complete inherited environment is not recorded.",
+    "environment_overrides": {
+      "LAKE_ARTIFACT_CACHE": "false",
+      "LEAN_NUM_THREADS": "2"
+    },
+    "events": "Cloning.PCTUnitaryTransportChannels-1.json",
+    "exit_code": 0,
+    "import_artifacts_unchanged": true,
+    "import_context": "Cloning.PCTUnitaryTransportChannels-1.import-context.json",
+    "import_context_sha256": "9ec4f439909782f2afe19f81fe160722df0768048421c403dded4846ad02ef65",
+    "inputs_stable": true,
+    "log": "Cloning.PCTUnitaryTransportChannels-1.log",
+    "measurement_valid": true,
+    "module": "Cloning.PCTUnitaryTransportChannels",
+    "post_guard_error": null,
+    "publication": {
+      "omitted_environment_fields": [
+        "environment.LEAN_PATH",
+        "environment.LEAN_SYSROOT",
+        "environment.PATH",
+        "toolchain.environment.LEAN_PATH",
+        "toolchain.environment.LEAN_SYSROOT",
+        "toolchain.environment.PATH"
+      ],
+      "original_index_sha256": "c796ad4e0bad239322b6ef5522fa4b6f87cc074e51c6285e13eb68e33fb18833",
+      "original_record_index": 4,
+      "transformations": [
+        "Preserved an identical source snapshot bound to source_sha256.",
+        "Removed inherited path-valued environment fields; exact task setup/import paths remain."
+      ]
+    },
+    "receipt_origin": {
+      "binding_form": "derived-public-index",
+      "index": "profiles-attempt-1.json",
+      "input_prefix": "",
+      "original_index_sha256": "f7945f3d1c011035c355fc5c9ef04d2618690ce66f9d3bda1dc6710930dfd07f",
+      "public_index_sha256": "19b30aa366ce05a8ab6e29b72ea6a4b204924a5360694d9b01ccebd0621b9450",
+      "record_index": 4
+    },
+    "repetition": 1,
+    "resources": "Cloning.PCTUnitaryTransportChannels-1.resources.txt",
+    "setup_sha256": "f9529fcfb5c00debf7ff8e06b360aa74e37752defc588abb6d5b067cc2fddffa",
+    "setup_snapshot": "Cloning.PCTUnitaryTransportChannels-1.setup.json",
+    "source": "Cloning/PCTUnitaryTransportChannels.lean",
+    "source_hash_unchanged": true,
+    "source_matches_benchmark": true,
+    "source_matches_commit": true,
+    "source_sha256": "9eff2831f65aaf27d9d81958f1a14501a9126e4a389de0db9e76bf6a0990e57a",
+    "source_snapshot": "Cloning.PCTUnitaryTransportChannels-1.source.lean.txt",
+    "start_utc": "2026-10-07T04:01:17.730700+00:00",
+    "toolchain": {
+      "environment": {
+        "LAKE_ARTIFACT_CACHE": "false",
+        "LAKE_NO_CACHE": "false",
+        "LANG": "C.UTF-8",
+        "LC_ALL": "C.UTF-8",
+        "LEAN_GITHASH": "00659f8e6071d7e46131ed643bf8003b99b044e9",
+        "LEAN_NUM_THREADS": "2"
+      },
+      "lake_version": "Lake version 5.0.0-src+00659f8 (Lean version 4.29.0-rc6)",
+      "lean_binary": "/Users/jw/.elan/toolchains/leanprover--lean4---v4.29.0-rc6/bin/lean",
+      "lean_binary_sha256": "2974847fff2e2621502841f4c2dbac4035b4847d6060a4f2087cbc0d04005e37",
+      "lean_libdir": "/Users/jw/.elan/toolchains/leanprover--lean4---v4.29.0-rc6/lib/lean",
+      "lean_version": "Lean (version 4.29.0-rc6, arm64-apple-darwin24.6.0, commit 00659f8e6071d7e46131ed643bf8003b99b044e9, Release)"
+    },
+    "trace_sha256": "61052072b1224bb941a4221c50d738b314fca279ce1cd16b5801c087ec241995",
+    "trace_snapshot": "Cloning.PCTUnitaryTransportChannels-1.build-trace.json",
+    "wall_seconds": 6.42491125000015
+  },
+  {
+    "benchmark_commit": "3eb587e0f00748c3a9b63f9eeedc1646e4cb77be",
+    "build_setup_unchanged": true,
+    "build_trace_unchanged": true,
+    "command": [
+      "/opt/homebrew/bin/gtime",
+      "-v",
+      "-o",
+      "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/profiles-after/Cloning.InfiniteTraceClass-1.resources.txt",
+      "/Users/jw/.elan/bin/lake",
+      "env",
+      "lean",
+      "-DautoImplicit=false",
+      "--profile",
+      "--stats",
+      "-Dtrace.profiler=true",
+      "-Dtrace.profiler.output.pp=true",
+      "-Dtrace.profiler.output=/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/profiles-after/Cloning.InfiniteTraceClass-1.json",
+      "--setup",
+      "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/profiles-after/Cloning.InfiniteTraceClass-1.setup.json",
+      "Cloning/InfiniteTraceClass.lean"
+    ],
+    "commit": "3eb587e0f00748c3a9b63f9eeedc1646e4cb77be",
+    "config_hashes_unchanged": true,
+    "config_matches_benchmark": true,
+    "config_sha256": {
+      "formalization/lake-manifest.json": "e4630915680b82b58c6a005e1ba1e515e865e5541c7e665d4a2d57f783eeadb4",
+      "formalization/lakefile.toml": "ddeb0d2c8217676fc393afd24c13629993c580f35f9d8ad15240c6a167b020c1",
+      "formalization/lean-toolchain": "dc6d65016fad3123d44bf17b5bf0598286284ab16ba75d5c17eb22ed11f47361"
+    },
+    "end_utc": "2026-10-07T04:01:50.069264+00:00",
+    "environment": {
+      "LAKE_ARTIFACT_CACHE": "false",
+      "LAKE_NO_CACHE": "false",
+      "LANG": "C.UTF-8",
+      "LC_ALL": "C.UTF-8",
+      "LEAN_GITHASH": "00659f8e6071d7e46131ed643bf8003b99b044e9",
+      "LEAN_NUM_THREADS": "2"
+    },
+    "environment_capture": "Selected effective Lake environment values; the complete inherited environment is not recorded.",
+    "environment_overrides": {
+      "LAKE_ARTIFACT_CACHE": "false",
+      "LEAN_NUM_THREADS": "2"
+    },
+    "events": "Cloning.InfiniteTraceClass-1.json",
+    "exit_code": 0,
+    "import_artifacts_unchanged": true,
+    "import_context": "Cloning.InfiniteTraceClass-1.import-context.json",
+    "import_context_sha256": "7f0d8fc848080d5388bc9190c05f1dd4652aea2307a4faae586cca033d56b2a7",
+    "inputs_stable": true,
+    "log": "Cloning.InfiniteTraceClass-1.log",
+    "measurement_valid": true,
+    "module": "Cloning.InfiniteTraceClass",
+    "post_guard_error": null,
+    "publication": {
+      "omitted_environment_fields": [
+        "environment.LEAN_PATH",
+        "environment.LEAN_SYSROOT",
+        "environment.PATH",
+        "toolchain.environment.LEAN_PATH",
+        "toolchain.environment.LEAN_SYSROOT",
+        "toolchain.environment.PATH"
+      ],
+      "original_index_sha256": "c796ad4e0bad239322b6ef5522fa4b6f87cc074e51c6285e13eb68e33fb18833",
+      "original_record_index": 5,
+      "transformations": [
+        "Preserved an identical source snapshot bound to source_sha256.",
+        "Removed inherited path-valued environment fields; exact task setup/import paths remain."
+      ]
+    },
+    "receipt_origin": {
+      "binding_form": "derived-public-index",
+      "index": "profiles-attempt-1.json",
+      "input_prefix": "",
+      "original_index_sha256": "f7945f3d1c011035c355fc5c9ef04d2618690ce66f9d3bda1dc6710930dfd07f",
+      "public_index_sha256": "19b30aa366ce05a8ab6e29b72ea6a4b204924a5360694d9b01ccebd0621b9450",
+      "record_index": 5
+    },
+    "repetition": 1,
+    "resources": "Cloning.InfiniteTraceClass-1.resources.txt",
+    "setup_sha256": "81e25de1c6de0e40cb5b24fad672c784dec028327895426939ba766509fc09ee",
+    "setup_snapshot": "Cloning.InfiniteTraceClass-1.setup.json",
+    "source": "Cloning/InfiniteTraceClass.lean",
+    "source_hash_unchanged": true,
+    "source_matches_benchmark": true,
+    "source_matches_commit": true,
+    "source_sha256": "8989a10ec2f035d84eeadeb1ab47af9dbbbb80ccbfcdf85f31577d3c5e55f3c9",
+    "source_snapshot": "Cloning.InfiniteTraceClass-1.source.lean.txt",
+    "start_utc": "2026-10-07T04:01:33.246069+00:00",
+    "toolchain": {
+      "environment": {
+        "LAKE_ARTIFACT_CACHE": "false",
+        "LAKE_NO_CACHE": "false",
+        "LANG": "C.UTF-8",
+        "LC_ALL": "C.UTF-8",
+        "LEAN_GITHASH": "00659f8e6071d7e46131ed643bf8003b99b044e9",
+        "LEAN_NUM_THREADS": "2"
+      },
+      "lake_version": "Lake version 5.0.0-src+00659f8 (Lean version 4.29.0-rc6)",
+      "lean_binary": "/Users/jw/.elan/toolchains/leanprover--lean4---v4.29.0-rc6/bin/lean",
+      "lean_binary_sha256": "2974847fff2e2621502841f4c2dbac4035b4847d6060a4f2087cbc0d04005e37",
+      "lean_libdir": "/Users/jw/.elan/toolchains/leanprover--lean4---v4.29.0-rc6/lib/lean",
+      "lean_version": "Lean (version 4.29.0-rc6, arm64-apple-darwin24.6.0, commit 00659f8e6071d7e46131ed643bf8003b99b044e9, Release)"
+    },
+    "trace_sha256": "7f79695349ceb65e9857fc8039aa20efa3d0fdb72820b2e4da6e1f098d1ed769",
+    "trace_snapshot": "Cloning.InfiniteTraceClass-1.build-trace.json",
+    "wall_seconds": 16.823011584001506
+  },
+  {
+    "benchmark_commit": "3eb587e0f00748c3a9b63f9eeedc1646e4cb77be",
+    "build_setup_unchanged": true,
+    "build_trace_unchanged": true,
+    "command": [
+      "/opt/homebrew/bin/gtime",
+      "-v",
+      "-o",
+      "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/profiles-after/Cloning.Thermal-1.resources.txt",
+      "/Users/jw/.elan/bin/lake",
+      "env",
+      "lean",
+      "-DautoImplicit=false",
+      "--profile",
+      "--stats",
+      "-Dtrace.profiler=true",
+      "-Dtrace.profiler.output.pp=true",
+      "-Dtrace.profiler.output=/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/profiles-after/Cloning.Thermal-1.json",
+      "--setup",
+      "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/profiles-after/Cloning.Thermal-1.setup.json",
+      "Cloning/Thermal.lean"
+    ],
+    "commit": "3eb587e0f00748c3a9b63f9eeedc1646e4cb77be",
+    "config_hashes_unchanged": true,
+    "config_matches_benchmark": true,
+    "config_sha256": {
+      "formalization/lake-manifest.json": "e4630915680b82b58c6a005e1ba1e515e865e5541c7e665d4a2d57f783eeadb4",
+      "formalization/lakefile.toml": "ddeb0d2c8217676fc393afd24c13629993c580f35f9d8ad15240c6a167b020c1",
+      "formalization/lean-toolchain": "dc6d65016fad3123d44bf17b5bf0598286284ab16ba75d5c17eb22ed11f47361"
+    },
+    "end_utc": "2026-10-07T04:02:04.123513+00:00",
+    "environment": {
+      "LAKE_ARTIFACT_CACHE": "false",
+      "LAKE_NO_CACHE": "false",
+      "LANG": "C.UTF-8",
+      "LC_ALL": "C.UTF-8",
+      "LEAN_GITHASH": "00659f8e6071d7e46131ed643bf8003b99b044e9",
+      "LEAN_NUM_THREADS": "2"
+    },
+    "environment_capture": "Selected effective Lake environment values; the complete inherited environment is not recorded.",
+    "environment_overrides": {
+      "LAKE_ARTIFACT_CACHE": "false",
+      "LEAN_NUM_THREADS": "2"
+    },
+    "events": "Cloning.Thermal-1.json",
+    "exit_code": 0,
+    "import_artifacts_unchanged": true,
+    "import_context": "Cloning.Thermal-1.import-context.json",
+    "import_context_sha256": "c9635848bf60d41ba5f7e4b664919d79d69906da3bccc01832886bbd5540fd37",
+    "inputs_stable": true,
+    "log": "Cloning.Thermal-1.log",
+    "measurement_valid": true,
+    "module": "Cloning.Thermal",
+    "post_guard_error": null,
+    "publication": {
+      "omitted_environment_fields": [
+        "environment.LEAN_PATH",
+        "environment.LEAN_SYSROOT",
+        "environment.PATH",
+        "toolchain.environment.LEAN_PATH",
+        "toolchain.environment.LEAN_SYSROOT",
+        "toolchain.environment.PATH"
+      ],
+      "original_index_sha256": "c796ad4e0bad239322b6ef5522fa4b6f87cc074e51c6285e13eb68e33fb18833",
+      "original_record_index": 6,
+      "transformations": [
+        "Preserved an identical source snapshot bound to source_sha256.",
+        "Removed inherited path-valued environment fields; exact task setup/import paths remain."
+      ]
+    },
+    "receipt_origin": {
+      "binding_form": "derived-public-index",
+      "index": "profiles-attempt-1.json",
+      "input_prefix": "",
+      "original_index_sha256": "f7945f3d1c011035c355fc5c9ef04d2618690ce66f9d3bda1dc6710930dfd07f",
+      "public_index_sha256": "19b30aa366ce05a8ab6e29b72ea6a4b204924a5360694d9b01ccebd0621b9450",
+      "record_index": 6
+    },
+    "repetition": 1,
+    "resources": "Cloning.Thermal-1.resources.txt",
+    "setup_sha256": "3d20cf6749c4de50da042520754fedc18a35ab07b93b620207aedf219c661fb6",
+    "setup_snapshot": "Cloning.Thermal-1.setup.json",
+    "source": "Cloning/Thermal.lean",
+    "source_hash_unchanged": true,
+    "source_matches_benchmark": true,
+    "source_matches_commit": true,
+    "source_sha256": "d3dc50c83b60b9e7a734b11aed79064d33bbdf3b44b9b210f093f1c94e0b9a91",
+    "source_snapshot": "Cloning.Thermal-1.source.lean.txt",
+    "start_utc": "2026-10-07T04:01:59.056635+00:00",
+    "toolchain": {
+      "environment": {
+        "LAKE_ARTIFACT_CACHE": "false",
+        "LAKE_NO_CACHE": "false",
+        "LANG": "C.UTF-8",
+        "LC_ALL": "C.UTF-8",
+        "LEAN_GITHASH": "00659f8e6071d7e46131ed643bf8003b99b044e9",
+        "LEAN_NUM_THREADS": "2"
+      },
+      "lake_version": "Lake version 5.0.0-src+00659f8 (Lean version 4.29.0-rc6)",
+      "lean_binary": "/Users/jw/.elan/toolchains/leanprover--lean4---v4.29.0-rc6/bin/lean",
+      "lean_binary_sha256": "2974847fff2e2621502841f4c2dbac4035b4847d6060a4f2087cbc0d04005e37",
+      "lean_libdir": "/Users/jw/.elan/toolchains/leanprover--lean4---v4.29.0-rc6/lib/lean",
+      "lean_version": "Lean (version 4.29.0-rc6, arm64-apple-darwin24.6.0, commit 00659f8e6071d7e46131ed643bf8003b99b044e9, Release)"
+    },
+    "trace_sha256": "d55a5f3db80496a7afd4f00b9741be8145500848488df2c427e047078e5acf05",
+    "trace_snapshot": "Cloning.Thermal-1.build-trace.json",
+    "wall_seconds": 5.066800332999264
+  },
+  {
+    "benchmark_commit": "3eb587e0f00748c3a9b63f9eeedc1646e4cb77be",
+    "build_setup_unchanged": true,
+    "build_trace_unchanged": true,
+    "command": [
+      "/opt/homebrew/bin/gtime",
+      "-v",
+      "-o",
+      "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/profiles-after/Cloning.AmplifierWeylThermal-1.resources.txt",
+      "/Users/jw/.elan/bin/lake",
+      "env",
+      "lean",
+      "-DautoImplicit=false",
+      "--profile",
+      "--stats",
+      "-Dtrace.profiler=true",
+      "-Dtrace.profiler.output.pp=true",
+      "-Dtrace.profiler.output=/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/profiles-after/Cloning.AmplifierWeylThermal-1.json",
+      "--setup",
+      "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/profiles-after/Cloning.AmplifierWeylThermal-1.setup.json",
+      "Cloning/AmplifierWeylThermal.lean"
+    ],
+    "commit": "3eb587e0f00748c3a9b63f9eeedc1646e4cb77be",
+    "config_hashes_unchanged": true,
+    "config_matches_benchmark": true,
+    "config_sha256": {
+      "formalization/lake-manifest.json": "e4630915680b82b58c6a005e1ba1e515e865e5541c7e665d4a2d57f783eeadb4",
+      "formalization/lakefile.toml": "ddeb0d2c8217676fc393afd24c13629993c580f35f9d8ad15240c6a167b020c1",
+      "formalization/lean-toolchain": "dc6d65016fad3123d44bf17b5bf0598286284ab16ba75d5c17eb22ed11f47361"
+    },
+    "end_utc": "2026-10-07T04:02:20.234605+00:00",
+    "environment": {
+      "LAKE_ARTIFACT_CACHE": "false",
+      "LAKE_NO_CACHE": "false",
+      "LANG": "C.UTF-8",
+      "LC_ALL": "C.UTF-8",
+      "LEAN_GITHASH": "00659f8e6071d7e46131ed643bf8003b99b044e9",
+      "LEAN_NUM_THREADS": "2"
+    },
+    "environment_capture": "Selected effective Lake environment values; the complete inherited environment is not recorded.",
+    "environment_overrides": {
+      "LAKE_ARTIFACT_CACHE": "false",
+      "LEAN_NUM_THREADS": "2"
+    },
+    "events": "Cloning.AmplifierWeylThermal-1.json",
+    "exit_code": 0,
+    "import_artifacts_unchanged": true,
+    "import_context": "Cloning.AmplifierWeylThermal-1.import-context.json",
+    "import_context_sha256": "2c7d23c95f8e6ce5093e24b21183c4adba7389dcceffdaf8fe163a1c60b32ff5",
+    "inputs_stable": true,
+    "log": "Cloning.AmplifierWeylThermal-1.log",
+    "measurement_valid": true,
+    "module": "Cloning.AmplifierWeylThermal",
+    "post_guard_error": null,
+    "publication": {
+      "omitted_environment_fields": [
+        "environment.LEAN_PATH",
+        "environment.LEAN_SYSROOT",
+        "environment.PATH",
+        "toolchain.environment.LEAN_PATH",
+        "toolchain.environment.LEAN_SYSROOT",
+        "toolchain.environment.PATH"
+      ],
+      "original_index_sha256": "c796ad4e0bad239322b6ef5522fa4b6f87cc074e51c6285e13eb68e33fb18833",
+      "original_record_index": 7,
+      "transformations": [
+        "Preserved an identical source snapshot bound to source_sha256.",
+        "Removed inherited path-valued environment fields; exact task setup/import paths remain."
+      ]
+    },
+    "receipt_origin": {
+      "binding_form": "derived-public-index",
+      "index": "profiles-attempt-1.json",
+      "input_prefix": "",
+      "original_index_sha256": "f7945f3d1c011035c355fc5c9ef04d2618690ce66f9d3bda1dc6710930dfd07f",
+      "public_index_sha256": "19b30aa366ce05a8ab6e29b72ea6a4b204924a5360694d9b01ccebd0621b9450",
+      "record_index": 7
+    },
+    "repetition": 1,
+    "resources": "Cloning.AmplifierWeylThermal-1.resources.txt",
+    "setup_sha256": "412348d6670d40509ebab10e3bc928923e3a7ddc34591a5f45f4d46aa62c43ec",
+    "setup_snapshot": "Cloning.AmplifierWeylThermal-1.setup.json",
+    "source": "Cloning/AmplifierWeylThermal.lean",
+    "source_hash_unchanged": true,
+    "source_matches_benchmark": true,
+    "source_matches_commit": true,
+    "source_sha256": "eeee0e083b71ae3155a11fc033a5cd888fcac86911f4ed7cfe97ab77fce4760b",
+    "source_snapshot": "Cloning.AmplifierWeylThermal-1.source.lean.txt",
+    "start_utc": "2026-10-07T04:02:13.008447+00:00",
+    "toolchain": {
+      "environment": {
+        "LAKE_ARTIFACT_CACHE": "false",
+        "LAKE_NO_CACHE": "false",
+        "LANG": "C.UTF-8",
+        "LC_ALL": "C.UTF-8",
+        "LEAN_GITHASH": "00659f8e6071d7e46131ed643bf8003b99b044e9",
+        "LEAN_NUM_THREADS": "2"
+      },
+      "lake_version": "Lake version 5.0.0-src+00659f8 (Lean version 4.29.0-rc6)",
+      "lean_binary": "/Users/jw/.elan/toolchains/leanprover--lean4---v4.29.0-rc6/bin/lean",
+      "lean_binary_sha256": "2974847fff2e2621502841f4c2dbac4035b4847d6060a4f2087cbc0d04005e37",
+      "lean_libdir": "/Users/jw/.elan/toolchains/leanprover--lean4---v4.29.0-rc6/lib/lean",
+      "lean_version": "Lean (version 4.29.0-rc6, arm64-apple-darwin24.6.0, commit 00659f8e6071d7e46131ed643bf8003b99b044e9, Release)"
+    },
+    "trace_sha256": "6ae8c2c7438f7d81e25f2fd087e5603f9f9a2995e3f75677f5c295afa701b733",
+    "trace_snapshot": "Cloning.AmplifierWeylThermal-1.build-trace.json",
+    "wall_seconds": 7.226063416001125
+  },
+  {
+    "benchmark_commit": "3eb587e0f00748c3a9b63f9eeedc1646e4cb77be",
+    "build_setup_unchanged": true,
+    "build_trace_unchanged": true,
+    "command": [
+      "/opt/homebrew/bin/gtime",
+      "-v",
+      "-o",
+      "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/profiles-after/Cloning.PCTClosedForm-1.resources.txt",
+      "/Users/jw/.elan/bin/lake",
+      "env",
+      "lean",
+      "-DautoImplicit=false",
+      "--profile",
+      "--stats",
+      "-Dtrace.profiler=true",
+      "-Dtrace.profiler.output.pp=true",
+      "-Dtrace.profiler.output=/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/profiles-after/Cloning.PCTClosedForm-1.json",
+      "--setup",
+      "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/profiles-after/Cloning.PCTClosedForm-1.setup.json",
+      "Cloning/PCTClosedForm.lean"
+    ],
+    "commit": "3eb587e0f00748c3a9b63f9eeedc1646e4cb77be",
+    "config_hashes_unchanged": true,
+    "config_matches_benchmark": true,
+    "config_sha256": {
+      "formalization/lake-manifest.json": "e4630915680b82b58c6a005e1ba1e515e865e5541c7e665d4a2d57f783eeadb4",
+      "formalization/lakefile.toml": "ddeb0d2c8217676fc393afd24c13629993c580f35f9d8ad15240c6a167b020c1",
+      "formalization/lean-toolchain": "dc6d65016fad3123d44bf17b5bf0598286284ab16ba75d5c17eb22ed11f47361"
+    },
+    "end_utc": "2026-10-07T04:02:34.318521+00:00",
+    "environment": {
+      "LAKE_ARTIFACT_CACHE": "false",
+      "LAKE_NO_CACHE": "false",
+      "LANG": "C.UTF-8",
+      "LC_ALL": "C.UTF-8",
+      "LEAN_GITHASH": "00659f8e6071d7e46131ed643bf8003b99b044e9",
+      "LEAN_NUM_THREADS": "2"
+    },
+    "environment_capture": "Selected effective Lake environment values; the complete inherited environment is not recorded.",
+    "environment_overrides": {
+      "LAKE_ARTIFACT_CACHE": "false",
+      "LEAN_NUM_THREADS": "2"
+    },
+    "events": "Cloning.PCTClosedForm-1.json",
+    "exit_code": 0,
+    "import_artifacts_unchanged": true,
+    "import_context": "Cloning.PCTClosedForm-1.import-context.json",
+    "import_context_sha256": "b84777a2cc4f4e53063de80b625a44832234fdae19f6ca2c06190e542e321632",
+    "inputs_stable": true,
+    "log": "Cloning.PCTClosedForm-1.log",
+    "measurement_valid": true,
+    "module": "Cloning.PCTClosedForm",
+    "post_guard_error": null,
+    "publication": {
+      "omitted_environment_fields": [
+        "environment.LEAN_PATH",
+        "environment.LEAN_SYSROOT",
+        "environment.PATH",
+        "toolchain.environment.LEAN_PATH",
+        "toolchain.environment.LEAN_SYSROOT",
+        "toolchain.environment.PATH"
+      ],
+      "original_index_sha256": "c796ad4e0bad239322b6ef5522fa4b6f87cc074e51c6285e13eb68e33fb18833",
+      "original_record_index": 8,
+      "transformations": [
+        "Preserved an identical source snapshot bound to source_sha256.",
+        "Removed inherited path-valued environment fields; exact task setup/import paths remain."
+      ]
+    },
+    "receipt_origin": {
+      "binding_form": "derived-public-index",
+      "index": "profiles-attempt-1.json",
+      "input_prefix": "",
+      "original_index_sha256": "f7945f3d1c011035c355fc5c9ef04d2618690ce66f9d3bda1dc6710930dfd07f",
+      "public_index_sha256": "19b30aa366ce05a8ab6e29b72ea6a4b204924a5360694d9b01ccebd0621b9450",
+      "record_index": 8
+    },
+    "repetition": 1,
+    "resources": "Cloning.PCTClosedForm-1.resources.txt",
+    "setup_sha256": "8e2a0b874765878dd0d9c4b50bc778d154e375426da4c8a51ceafd9d2405b7d0",
+    "setup_snapshot": "Cloning.PCTClosedForm-1.setup.json",
+    "source": "Cloning/PCTClosedForm.lean",
+    "source_hash_unchanged": true,
+    "source_matches_benchmark": true,
+    "source_matches_commit": true,
+    "source_sha256": "a237c4cbc91c79ac818a1a4b7ca3c4445c8e4eba19dd333600b7d727e219c846",
+    "source_snapshot": "Cloning.PCTClosedForm-1.source.lean.txt",
+    "start_utc": "2026-10-07T04:02:29.287029+00:00",
+    "toolchain": {
+      "environment": {
+        "LAKE_ARTIFACT_CACHE": "false",
+        "LAKE_NO_CACHE": "false",
+        "LANG": "C.UTF-8",
+        "LC_ALL": "C.UTF-8",
+        "LEAN_GITHASH": "00659f8e6071d7e46131ed643bf8003b99b044e9",
+        "LEAN_NUM_THREADS": "2"
+      },
+      "lake_version": "Lake version 5.0.0-src+00659f8 (Lean version 4.29.0-rc6)",
+      "lean_binary": "/Users/jw/.elan/toolchains/leanprover--lean4---v4.29.0-rc6/bin/lean",
+      "lean_binary_sha256": "2974847fff2e2621502841f4c2dbac4035b4847d6060a4f2087cbc0d04005e37",
+      "lean_libdir": "/Users/jw/.elan/toolchains/leanprover--lean4---v4.29.0-rc6/lib/lean",
+      "lean_version": "Lean (version 4.29.0-rc6, arm64-apple-darwin24.6.0, commit 00659f8e6071d7e46131ed643bf8003b99b044e9, Release)"
+    },
+    "trace_sha256": "30b7f950c216f16df8cdc3494d706cbe61c9eb12c7363b4f005a7f0acb7111b6",
+    "trace_snapshot": "Cloning.PCTClosedForm-1.build-trace.json",
+    "wall_seconds": 5.031419416998688
+  },
+  {
+    "benchmark_commit": "3eb587e0f00748c3a9b63f9eeedc1646e4cb77be",
+    "build_setup_unchanged": true,
+    "build_trace_unchanged": true,
+    "command": [
+      "/opt/homebrew/bin/gtime",
+      "-v",
+      "-o",
+      "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/profiles-after/Cloning.CloningValueComparisonMonotone-1.resources.txt",
+      "/Users/jw/.elan/bin/lake",
+      "env",
+      "lean",
+      "-DautoImplicit=false",
+      "--profile",
+      "--stats",
+      "-Dtrace.profiler=true",
+      "-Dtrace.profiler.output.pp=true",
+      "-Dtrace.profiler.output=/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/profiles-after/Cloning.CloningValueComparisonMonotone-1.json",
+      "--setup",
+      "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/profiles-after/Cloning.CloningValueComparisonMonotone-1.setup.json",
+      "Cloning/CloningValueComparisonMonotone.lean"
+    ],
+    "commit": "3eb587e0f00748c3a9b63f9eeedc1646e4cb77be",
+    "config_hashes_unchanged": true,
+    "config_matches_benchmark": true,
+    "config_sha256": {
+      "formalization/lake-manifest.json": "e4630915680b82b58c6a005e1ba1e515e865e5541c7e665d4a2d57f783eeadb4",
+      "formalization/lakefile.toml": "ddeb0d2c8217676fc393afd24c13629993c580f35f9d8ad15240c6a167b020c1",
+      "formalization/lean-toolchain": "dc6d65016fad3123d44bf17b5bf0598286284ab16ba75d5c17eb22ed11f47361"
+    },
+    "end_utc": "2026-10-07T04:02:50.043964+00:00",
+    "environment": {
+      "LAKE_ARTIFACT_CACHE": "false",
+      "LAKE_NO_CACHE": "false",
+      "LANG": "C.UTF-8",
+      "LC_ALL": "C.UTF-8",
+      "LEAN_GITHASH": "00659f8e6071d7e46131ed643bf8003b99b044e9",
+      "LEAN_NUM_THREADS": "2"
+    },
+    "environment_capture": "Selected effective Lake environment values; the complete inherited environment is not recorded.",
+    "environment_overrides": {
+      "LAKE_ARTIFACT_CACHE": "false",
+      "LEAN_NUM_THREADS": "2"
+    },
+    "events": "Cloning.CloningValueComparisonMonotone-1.json",
+    "exit_code": 0,
+    "import_artifacts_unchanged": true,
+    "import_context": "Cloning.CloningValueComparisonMonotone-1.import-context.json",
+    "import_context_sha256": "51be91f5c12445c8964bae4edf55d7a9ab70cffc687df5c869a31e937ed9dd79",
+    "inputs_stable": true,
+    "log": "Cloning.CloningValueComparisonMonotone-1.log",
+    "measurement_valid": true,
+    "module": "Cloning.CloningValueComparisonMonotone",
+    "post_guard_error": null,
+    "publication": {
+      "omitted_environment_fields": [
+        "environment.LEAN_PATH",
+        "environment.LEAN_SYSROOT",
+        "environment.PATH",
+        "toolchain.environment.LEAN_PATH",
+        "toolchain.environment.LEAN_SYSROOT",
+        "toolchain.environment.PATH"
+      ],
+      "original_index_sha256": "c796ad4e0bad239322b6ef5522fa4b6f87cc074e51c6285e13eb68e33fb18833",
+      "original_record_index": 9,
+      "transformations": [
+        "Preserved an identical source snapshot bound to source_sha256.",
+        "Removed inherited path-valued environment fields; exact task setup/import paths remain."
+      ]
+    },
+    "receipt_origin": {
+      "binding_form": "derived-public-index",
+      "index": "profiles-attempt-1.json",
+      "input_prefix": "",
+      "original_index_sha256": "f7945f3d1c011035c355fc5c9ef04d2618690ce66f9d3bda1dc6710930dfd07f",
+      "public_index_sha256": "19b30aa366ce05a8ab6e29b72ea6a4b204924a5360694d9b01ccebd0621b9450",
+      "record_index": 9
+    },
+    "repetition": 1,
+    "resources": "Cloning.CloningValueComparisonMonotone-1.resources.txt",
+    "setup_sha256": "8796c48833cd7a16407a33cfb144efde9e00d368d12a5cc1efce352241806d47",
+    "setup_snapshot": "Cloning.CloningValueComparisonMonotone-1.setup.json",
+    "source": "Cloning/CloningValueComparisonMonotone.lean",
+    "source_hash_unchanged": true,
+    "source_matches_benchmark": true,
+    "source_matches_commit": true,
+    "source_sha256": "0dbf7031761a5f1b7e1352befdb6a4284734445e63799b3726977bb7c8312551",
+    "source_snapshot": "Cloning.CloningValueComparisonMonotone-1.source.lean.txt",
+    "start_utc": "2026-10-07T04:02:43.284578+00:00",
+    "toolchain": {
+      "environment": {
+        "LAKE_ARTIFACT_CACHE": "false",
+        "LAKE_NO_CACHE": "false",
+        "LANG": "C.UTF-8",
+        "LC_ALL": "C.UTF-8",
+        "LEAN_GITHASH": "00659f8e6071d7e46131ed643bf8003b99b044e9",
+        "LEAN_NUM_THREADS": "2"
+      },
+      "lake_version": "Lake version 5.0.0-src+00659f8 (Lean version 4.29.0-rc6)",
+      "lean_binary": "/Users/jw/.elan/toolchains/leanprover--lean4---v4.29.0-rc6/bin/lean",
+      "lean_binary_sha256": "2974847fff2e2621502841f4c2dbac4035b4847d6060a4f2087cbc0d04005e37",
+      "lean_libdir": "/Users/jw/.elan/toolchains/leanprover--lean4---v4.29.0-rc6/lib/lean",
+      "lean_version": "Lean (version 4.29.0-rc6, arm64-apple-darwin24.6.0, commit 00659f8e6071d7e46131ed643bf8003b99b044e9, Release)"
+    },
+    "trace_sha256": "0ee832225b99879dce22c001c8b65a950971df533998d4f0175646a65f1332c1",
+    "trace_snapshot": "Cloning.CloningValueComparisonMonotone-1.build-trace.json",
+    "wall_seconds": 6.759287500000937
+  },
+  {
+    "benchmark_commit": "3eb587e0f00748c3a9b63f9eeedc1646e4cb77be",
+    "build_setup_unchanged": true,
+    "build_trace_unchanged": true,
+    "command": [
+      "/opt/homebrew/bin/gtime",
+      "-v",
+      "-o",
+      "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/profiles-after/Cloning.TensorFlatProjectorStateFidelity-1.resources.txt",
+      "/Users/jw/.elan/bin/lake",
+      "env",
+      "lean",
+      "-DautoImplicit=false",
+      "--profile",
+      "--stats",
+      "-Dtrace.profiler=true",
+      "-Dtrace.profiler.output.pp=true",
+      "-Dtrace.profiler.output=/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/profiles-after/Cloning.TensorFlatProjectorStateFidelity-1.json",
+      "--setup",
+      "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/profiles-after/Cloning.TensorFlatProjectorStateFidelity-1.setup.json",
+      "Cloning/TensorFlatProjectorStateFidelity.lean"
+    ],
+    "commit": "3eb587e0f00748c3a9b63f9eeedc1646e4cb77be",
+    "config_hashes_unchanged": true,
+    "config_matches_benchmark": true,
+    "config_sha256": {
+      "formalization/lake-manifest.json": "e4630915680b82b58c6a005e1ba1e515e865e5541c7e665d4a2d57f783eeadb4",
+      "formalization/lakefile.toml": "ddeb0d2c8217676fc393afd24c13629993c580f35f9d8ad15240c6a167b020c1",
+      "formalization/lean-toolchain": "dc6d65016fad3123d44bf17b5bf0598286284ab16ba75d5c17eb22ed11f47361"
+    },
+    "end_utc": "2026-10-07T04:04:38.250207+00:00",
+    "environment": {
+      "LAKE_ARTIFACT_CACHE": "false",
+      "LAKE_NO_CACHE": "false",
+      "LANG": "C.UTF-8",
+      "LC_ALL": "C.UTF-8",
+      "LEAN_GITHASH": "00659f8e6071d7e46131ed643bf8003b99b044e9",
+      "LEAN_NUM_THREADS": "2"
+    },
+    "environment_capture": "Selected effective Lake environment values; the complete inherited environment is not recorded.",
+    "environment_overrides": {
+      "LAKE_ARTIFACT_CACHE": "false",
+      "LEAN_NUM_THREADS": "2"
+    },
+    "events": "Cloning.TensorFlatProjectorStateFidelity-1.json",
+    "exit_code": 0,
+    "import_artifacts_unchanged": true,
+    "import_context": "Cloning.TensorFlatProjectorStateFidelity-1.import-context.json",
+    "import_context_sha256": "24935a7efccf2d743a5b2c1ec51e9fe58cb991c8543ed23db7e1e90b490f79d1",
+    "inputs_stable": true,
+    "log": "Cloning.TensorFlatProjectorStateFidelity-1.log",
+    "measurement_valid": true,
+    "module": "Cloning.TensorFlatProjectorStateFidelity",
+    "post_guard_error": null,
+    "publication": {
+      "omitted_environment_fields": [
+        "environment.LEAN_PATH",
+        "environment.LEAN_SYSROOT",
+        "environment.PATH",
+        "toolchain.environment.LEAN_PATH",
+        "toolchain.environment.LEAN_SYSROOT",
+        "toolchain.environment.PATH"
+      ],
+      "original_index_sha256": "c796ad4e0bad239322b6ef5522fa4b6f87cc074e51c6285e13eb68e33fb18833",
+      "original_record_index": 10,
+      "transformations": [
+        "Preserved an identical source snapshot bound to source_sha256.",
+        "Removed inherited path-valued environment fields; exact task setup/import paths remain."
+      ]
+    },
+    "receipt_origin": {
+      "binding_form": "derived-public-index",
+      "index": "profiles-attempt-1.json",
+      "input_prefix": "",
+      "original_index_sha256": "f7945f3d1c011035c355fc5c9ef04d2618690ce66f9d3bda1dc6710930dfd07f",
+      "public_index_sha256": "19b30aa366ce05a8ab6e29b72ea6a4b204924a5360694d9b01ccebd0621b9450",
+      "record_index": 10
+    },
+    "repetition": 1,
+    "resources": "Cloning.TensorFlatProjectorStateFidelity-1.resources.txt",
+    "setup_sha256": "39d185f8a2ea002719da2bb2346a0d98e2b095697f3e80fec99f68a80acf911b",
+    "setup_snapshot": "Cloning.TensorFlatProjectorStateFidelity-1.setup.json",
+    "source": "Cloning/TensorFlatProjectorStateFidelity.lean",
+    "source_hash_unchanged": true,
+    "source_matches_benchmark": true,
+    "source_matches_commit": true,
+    "source_sha256": "576d4d68ef53b41ab4396038ced442774eda9458e3ce73d76465692333e31d62",
+    "source_snapshot": "Cloning.TensorFlatProjectorStateFidelity-1.source.lean.txt",
+    "start_utc": "2026-10-07T04:02:59.337410+00:00",
+    "toolchain": {
+      "environment": {
+        "LAKE_ARTIFACT_CACHE": "false",
+        "LAKE_NO_CACHE": "false",
+        "LANG": "C.UTF-8",
+        "LC_ALL": "C.UTF-8",
+        "LEAN_GITHASH": "00659f8e6071d7e46131ed643bf8003b99b044e9",
+        "LEAN_NUM_THREADS": "2"
+      },
+      "lake_version": "Lake version 5.0.0-src+00659f8 (Lean version 4.29.0-rc6)",
+      "lean_binary": "/Users/jw/.elan/toolchains/leanprover--lean4---v4.29.0-rc6/bin/lean",
+      "lean_binary_sha256": "2974847fff2e2621502841f4c2dbac4035b4847d6060a4f2087cbc0d04005e37",
+      "lean_libdir": "/Users/jw/.elan/toolchains/leanprover--lean4---v4.29.0-rc6/lib/lean",
+      "lean_version": "Lean (version 4.29.0-rc6, arm64-apple-darwin24.6.0, commit 00659f8e6071d7e46131ed643bf8003b99b044e9, Release)"
+    },
+    "trace_sha256": "280ddc577c723f2f18bfde5955e3d6818364221541c11f92a4281af5c46d93a8",
+    "trace_snapshot": "Cloning.TensorFlatProjectorStateFidelity-1.build-trace.json",
+    "wall_seconds": 98.90965570800108
+  },
+  {
+    "benchmark_commit": "3eb587e0f00748c3a9b63f9eeedc1646e4cb77be",
+    "build_setup_unchanged": true,
+    "build_trace_unchanged": true,
+    "command": [
+      "/opt/homebrew/bin/gtime",
+      "-v",
+      "-o",
+      "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/native-profile-guarded/Cloning.PhysicalFlatConverseReduction-1.resources.txt",
+      "/Users/jw/.elan/bin/lake",
+      "env",
+      "lean",
+      "-DautoImplicit=false",
+      "--profile",
+      "--stats",
+      "--setup",
+      "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/native-profile-guarded/Cloning.PhysicalFlatConverseReduction-1.setup.json",
+      "Cloning/PhysicalFlatConverseReduction.lean"
+    ],
+    "commit": "3eb587e0f00748c3a9b63f9eeedc1646e4cb77be",
+    "config_hashes_unchanged": true,
+    "config_matches_benchmark": true,
+    "config_sha256": {
+      "formalization/lake-manifest.json": "e4630915680b82b58c6a005e1ba1e515e865e5541c7e665d4a2d57f783eeadb4",
+      "formalization/lakefile.toml": "ddeb0d2c8217676fc393afd24c13629993c580f35f9d8ad15240c6a167b020c1",
+      "formalization/lean-toolchain": "dc6d65016fad3123d44bf17b5bf0598286284ab16ba75d5c17eb22ed11f47361"
+    },
+    "end_utc": "2026-10-07T04:17:04.028986+00:00",
+    "environment": {
+      "LAKE_ARTIFACT_CACHE": "false",
+      "LAKE_NO_CACHE": "false",
+      "LANG": "C.UTF-8",
+      "LC_ALL": "C.UTF-8",
+      "LEAN_GITHASH": "00659f8e6071d7e46131ed643bf8003b99b044e9",
+      "LEAN_NUM_THREADS": "2"
+    },
+    "environment_capture": "Selected effective Lake environment values; the complete inherited environment is not recorded.",
+    "environment_overrides": {
+      "LAKE_ARTIFACT_CACHE": "false",
+      "LEAN_NUM_THREADS": "2"
+    },
+    "events": null,
+    "exit_code": 0,
+    "import_artifacts_unchanged": true,
+    "import_context": "native-guarded/Cloning.PhysicalFlatConverseReduction-1.import-context.json",
+    "import_context_sha256": "18312450251bf15791c22c530cef48cd669909fb432ab7a814130a29421bb2cb",
+    "inputs_stable": true,
+    "log": "native-guarded/Cloning.PhysicalFlatConverseReduction-1.log",
+    "measurement_valid": true,
+    "module": "Cloning.PhysicalFlatConverseReduction",
+    "post_guard_error": null,
+    "publication": {
+      "omitted_environment_fields": [
+        "environment.LEAN_PATH",
+        "environment.LEAN_SYSROOT",
+        "environment.PATH",
+        "toolchain.environment.LEAN_PATH",
+        "toolchain.environment.LEAN_SYSROOT",
+        "toolchain.environment.PATH"
+      ],
+      "original_index_sha256": "c796ad4e0bad239322b6ef5522fa4b6f87cc074e51c6285e13eb68e33fb18833",
+      "original_record_index": 11,
+      "transformations": [
+        "Preserved an identical source snapshot bound to source_sha256.",
+        "Removed inherited path-valued environment fields; exact task setup/import paths remain."
+      ]
+    },
+    "receipt_origin": {
+      "binding_form": "derived-public-index",
+      "index": "native-guarded/profiles.json",
+      "input_prefix": "native-guarded",
+      "original_index_sha256": "e4632b27d5b5b61302af8427bc8b514929bff79b8f447dade52b11afd1f3547c",
+      "public_index_sha256": "8155771777215a5a03f8ae8f0f200d05152af9641c22b5f271d0f73b063e0737",
+      "record_index": 0
+    },
+    "repetition": 1,
+    "resources": "native-guarded/Cloning.PhysicalFlatConverseReduction-1.resources.txt",
+    "setup_sha256": "ee1ef19b7a810033b80250ba62e10a98dc958263b764649d5d37345624320b12",
+    "setup_snapshot": "native-guarded/Cloning.PhysicalFlatConverseReduction-1.setup.json",
+    "source": "Cloning/PhysicalFlatConverseReduction.lean",
+    "source_hash_unchanged": true,
+    "source_matches_benchmark": true,
+    "source_matches_commit": true,
+    "source_sha256": "bca45225c36db32c7041c1ebcbafd5bf974abc6bc9fc0172ace4d773088e037f",
+    "source_snapshot": "Cloning.PhysicalFlatConverseReduction-1.source.lean.txt",
+    "start_utc": "2026-10-07T04:16:04.834695+00:00",
+    "toolchain": {
+      "environment": {
+        "LAKE_ARTIFACT_CACHE": "false",
+        "LAKE_NO_CACHE": "false",
+        "LANG": "C.UTF-8",
+        "LC_ALL": "C.UTF-8",
+        "LEAN_GITHASH": "00659f8e6071d7e46131ed643bf8003b99b044e9",
+        "LEAN_NUM_THREADS": "2"
+      },
+      "lake_version": "Lake version 5.0.0-src+00659f8 (Lean version 4.29.0-rc6)",
+      "lean_binary": "/Users/jw/.elan/toolchains/leanprover--lean4---v4.29.0-rc6/bin/lean",
+      "lean_binary_sha256": "2974847fff2e2621502841f4c2dbac4035b4847d6060a4f2087cbc0d04005e37",
+      "lean_libdir": "/Users/jw/.elan/toolchains/leanprover--lean4---v4.29.0-rc6/lib/lean",
+      "lean_version": "Lean (version 4.29.0-rc6, arm64-apple-darwin24.6.0, commit 00659f8e6071d7e46131ed643bf8003b99b044e9, Release)"
+    },
+    "trace_mode": "native",
+    "trace_sha256": "b925afe9c22d9edb615e5b8579514c42225a935340524f18c8ea5f2f84ab65d0",
+    "trace_snapshot": "native-guarded/Cloning.PhysicalFlatConverseReduction-1.build-trace.json",
+    "wall_seconds": 59.19239270899925
+  },
+  {
+    "benchmark_commit": "3eb587e0f00748c3a9b63f9eeedc1646e4cb77be",
+    "build_setup_unchanged": true,
+    "build_trace_unchanged": true,
+    "command": [
+      "/opt/homebrew/bin/gtime",
+      "-v",
+      "-o",
+      "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/profiles-after-continuation/Cloning.TensorCartanChannelCovariance-1.resources.txt",
+      "/Users/jw/.elan/bin/lake",
+      "env",
+      "lean",
+      "-DautoImplicit=false",
+      "--profile",
+      "--stats",
+      "-Dtrace.profiler=true",
+      "-Dtrace.profiler.output.pp=true",
+      "-Dtrace.profiler.output=/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/profiles-after-continuation/Cloning.TensorCartanChannelCovariance-1.json",
+      "--setup",
+      "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/profiles-after-continuation/Cloning.TensorCartanChannelCovariance-1.setup.json",
+      "Cloning/TensorCartanChannelCovariance.lean"
+    ],
+    "commit": "3eb587e0f00748c3a9b63f9eeedc1646e4cb77be",
+    "config_hashes_unchanged": true,
+    "config_matches_benchmark": true,
+    "config_sha256": {
+      "formalization/lake-manifest.json": "e4630915680b82b58c6a005e1ba1e515e865e5541c7e665d4a2d57f783eeadb4",
+      "formalization/lakefile.toml": "ddeb0d2c8217676fc393afd24c13629993c580f35f9d8ad15240c6a167b020c1",
+      "formalization/lean-toolchain": "dc6d65016fad3123d44bf17b5bf0598286284ab16ba75d5c17eb22ed11f47361"
+    },
+    "end_utc": "2026-10-07T04:13:43.876962+00:00",
+    "environment": {
+      "LAKE_ARTIFACT_CACHE": "false",
+      "LAKE_NO_CACHE": "false",
+      "LANG": "C.UTF-8",
+      "LC_ALL": "C.UTF-8",
+      "LEAN_GITHASH": "00659f8e6071d7e46131ed643bf8003b99b044e9",
+      "LEAN_NUM_THREADS": "2"
+    },
+    "environment_capture": "Selected effective Lake environment values; the complete inherited environment is not recorded.",
+    "environment_overrides": {
+      "LAKE_ARTIFACT_CACHE": "false",
+      "LEAN_NUM_THREADS": "2"
+    },
+    "events": "continuation/Cloning.TensorCartanChannelCovariance-1.json",
+    "exit_code": 0,
+    "import_artifacts_unchanged": true,
+    "import_context": "continuation/Cloning.TensorCartanChannelCovariance-1.import-context.json",
+    "import_context_sha256": "5203c55f24e95648d23b74f7c0aa5a4281e1b4f609ee3d106918d6aea0bb894a",
+    "inputs_stable": true,
+    "log": "continuation/Cloning.TensorCartanChannelCovariance-1.log",
+    "measurement_valid": true,
+    "module": "Cloning.TensorCartanChannelCovariance",
+    "post_guard_error": null,
+    "publication": {
+      "omitted_environment_fields": [
+        "environment.LEAN_PATH",
+        "environment.LEAN_SYSROOT",
+        "environment.PATH",
+        "toolchain.environment.LEAN_PATH",
+        "toolchain.environment.LEAN_SYSROOT",
+        "toolchain.environment.PATH"
+      ],
+      "original_index_sha256": "c796ad4e0bad239322b6ef5522fa4b6f87cc074e51c6285e13eb68e33fb18833",
+      "original_record_index": 12,
+      "transformations": [
+        "Preserved an identical source snapshot bound to source_sha256.",
+        "Removed inherited path-valued environment fields; exact task setup/import paths remain."
+      ]
+    },
+    "receipt_origin": {
+      "binding_form": "derived-public-index",
+      "index": "continuation/profiles.json",
+      "input_prefix": "continuation",
+      "original_index_sha256": "8b87f18cf769d016e8885d495623c950791d071a033b8512ea3783482eb90684",
+      "public_index_sha256": "53395674a8e1a345a4e1210070370a4548225934407cdd050c06f0c563d33d22",
+      "record_index": 0
+    },
+    "repetition": 1,
+    "resources": "continuation/Cloning.TensorCartanChannelCovariance-1.resources.txt",
+    "setup_sha256": "3387061ffc3d7c52a667ba766e2e621b8d3d98d604d1d834ebc4f0397d775541",
+    "setup_snapshot": "continuation/Cloning.TensorCartanChannelCovariance-1.setup.json",
+    "source": "Cloning/TensorCartanChannelCovariance.lean",
+    "source_hash_unchanged": true,
+    "source_matches_benchmark": true,
+    "source_matches_commit": true,
+    "source_sha256": "f9eb714670b6f2a467b262ef6641f7095912c24c601e6ea206e152aad342667c",
+    "source_snapshot": "Cloning.TensorCartanChannelCovariance-1.source.lean.txt",
+    "start_utc": "2026-10-07T04:11:51.979910+00:00",
+    "toolchain": {
+      "environment": {
+        "LAKE_ARTIFACT_CACHE": "false",
+        "LAKE_NO_CACHE": "false",
+        "LANG": "C.UTF-8",
+        "LC_ALL": "C.UTF-8",
+        "LEAN_GITHASH": "00659f8e6071d7e46131ed643bf8003b99b044e9",
+        "LEAN_NUM_THREADS": "2"
+      },
+      "lake_version": "Lake version 5.0.0-src+00659f8 (Lean version 4.29.0-rc6)",
+      "lean_binary": "/Users/jw/.elan/toolchains/leanprover--lean4---v4.29.0-rc6/bin/lean",
+      "lean_binary_sha256": "2974847fff2e2621502841f4c2dbac4035b4847d6060a4f2087cbc0d04005e37",
+      "lean_libdir": "/Users/jw/.elan/toolchains/leanprover--lean4---v4.29.0-rc6/lib/lean",
+      "lean_version": "Lean (version 4.29.0-rc6, arm64-apple-darwin24.6.0, commit 00659f8e6071d7e46131ed643bf8003b99b044e9, Release)"
+    },
+    "trace_sha256": "9c605b4e7e45cbccaf5971d620430b081faaabbedc5df003c9557dcfbe3c8e75",
+    "trace_snapshot": "continuation/Cloning.TensorCartanChannelCovariance-1.build-trace.json",
+    "wall_seconds": 111.89565766700252
+  },
+  {
+    "benchmark_commit": "3eb587e0f00748c3a9b63f9eeedc1646e4cb77be",
+    "build_setup_unchanged": true,
+    "build_trace_unchanged": true,
+    "command": [
+      "/opt/homebrew/bin/gtime",
+      "-v",
+      "-o",
+      "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/profiles-after-continuation/Cloning.TensorCartanStateOperator-1.resources.txt",
+      "/Users/jw/.elan/bin/lake",
+      "env",
+      "lean",
+      "-DautoImplicit=false",
+      "--profile",
+      "--stats",
+      "-Dtrace.profiler=true",
+      "-Dtrace.profiler.output.pp=true",
+      "-Dtrace.profiler.output=/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/profiles-after-continuation/Cloning.TensorCartanStateOperator-1.json",
+      "--setup",
+      "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/profiles-after-continuation/Cloning.TensorCartanStateOperator-1.setup.json",
+      "Cloning/TensorCartanStateOperator.lean"
+    ],
+    "commit": "3eb587e0f00748c3a9b63f9eeedc1646e4cb77be",
+    "config_hashes_unchanged": true,
+    "config_matches_benchmark": true,
+    "config_sha256": {
+      "formalization/lake-manifest.json": "e4630915680b82b58c6a005e1ba1e515e865e5541c7e665d4a2d57f783eeadb4",
+      "formalization/lakefile.toml": "ddeb0d2c8217676fc393afd24c13629993c580f35f9d8ad15240c6a167b020c1",
+      "formalization/lean-toolchain": "dc6d65016fad3123d44bf17b5bf0598286284ab16ba75d5c17eb22ed11f47361"
+    },
+    "end_utc": "2026-10-07T04:14:53.803200+00:00",
+    "environment": {
+      "LAKE_ARTIFACT_CACHE": "false",
+      "LAKE_NO_CACHE": "false",
+      "LANG": "C.UTF-8",
+      "LC_ALL": "C.UTF-8",
+      "LEAN_GITHASH": "00659f8e6071d7e46131ed643bf8003b99b044e9",
+      "LEAN_NUM_THREADS": "2"
+    },
+    "environment_capture": "Selected effective Lake environment values; the complete inherited environment is not recorded.",
+    "environment_overrides": {
+      "LAKE_ARTIFACT_CACHE": "false",
+      "LEAN_NUM_THREADS": "2"
+    },
+    "events": "continuation/Cloning.TensorCartanStateOperator-1.json",
+    "exit_code": 0,
+    "import_artifacts_unchanged": true,
+    "import_context": "continuation/Cloning.TensorCartanStateOperator-1.import-context.json",
+    "import_context_sha256": "ff3b76203ca5ceb6bec385e1ae7162f813c5a3cef1febb2c8f72cf76e82ad6e2",
+    "inputs_stable": true,
+    "log": "continuation/Cloning.TensorCartanStateOperator-1.log",
+    "measurement_valid": true,
+    "module": "Cloning.TensorCartanStateOperator",
+    "post_guard_error": null,
+    "publication": {
+      "omitted_environment_fields": [
+        "environment.LEAN_PATH",
+        "environment.LEAN_SYSROOT",
+        "environment.PATH",
+        "toolchain.environment.LEAN_PATH",
+        "toolchain.environment.LEAN_SYSROOT",
+        "toolchain.environment.PATH"
+      ],
+      "original_index_sha256": "c796ad4e0bad239322b6ef5522fa4b6f87cc074e51c6285e13eb68e33fb18833",
+      "original_record_index": 13,
+      "transformations": [
+        "Preserved an identical source snapshot bound to source_sha256.",
+        "Removed inherited path-valued environment fields; exact task setup/import paths remain."
+      ]
+    },
+    "receipt_origin": {
+      "binding_form": "derived-public-index",
+      "index": "continuation/profiles.json",
+      "input_prefix": "continuation",
+      "original_index_sha256": "8b87f18cf769d016e8885d495623c950791d071a033b8512ea3783482eb90684",
+      "public_index_sha256": "53395674a8e1a345a4e1210070370a4548225934407cdd050c06f0c563d33d22",
+      "record_index": 1
+    },
+    "repetition": 1,
+    "resources": "continuation/Cloning.TensorCartanStateOperator-1.resources.txt",
+    "setup_sha256": "67b02e61150fffb619a66868f07d8e9b1b93bf2884922f5e4f81100ba401cbbb",
+    "setup_snapshot": "continuation/Cloning.TensorCartanStateOperator-1.setup.json",
+    "source": "Cloning/TensorCartanStateOperator.lean",
+    "source_hash_unchanged": true,
+    "source_matches_benchmark": true,
+    "source_matches_commit": true,
+    "source_sha256": "3ae1e4805c1a3809235778d3abc8d7a650d6c58b543cb15e94e70d49be870def",
+    "source_snapshot": "Cloning.TensorCartanStateOperator-1.source.lean.txt",
+    "start_utc": "2026-10-07T04:13:54.286966+00:00",
+    "toolchain": {
+      "environment": {
+        "LAKE_ARTIFACT_CACHE": "false",
+        "LAKE_NO_CACHE": "false",
+        "LANG": "C.UTF-8",
+        "LC_ALL": "C.UTF-8",
+        "LEAN_GITHASH": "00659f8e6071d7e46131ed643bf8003b99b044e9",
+        "LEAN_NUM_THREADS": "2"
+      },
+      "lake_version": "Lake version 5.0.0-src+00659f8 (Lean version 4.29.0-rc6)",
+      "lean_binary": "/Users/jw/.elan/toolchains/leanprover--lean4---v4.29.0-rc6/bin/lean",
+      "lean_binary_sha256": "2974847fff2e2621502841f4c2dbac4035b4847d6060a4f2087cbc0d04005e37",
+      "lean_libdir": "/Users/jw/.elan/toolchains/leanprover--lean4---v4.29.0-rc6/lib/lean",
+      "lean_version": "Lean (version 4.29.0-rc6, arm64-apple-darwin24.6.0, commit 00659f8e6071d7e46131ed643bf8003b99b044e9, Release)"
+    },
+    "trace_sha256": "0dbf0f38bd790f5676a0000762636401ef570f841c2fc91154e255d9eb739bb4",
+    "trace_snapshot": "continuation/Cloning.TensorCartanStateOperator-1.build-trace.json",
+    "wall_seconds": 59.515582625001116
+  },
+  {
+    "benchmark_commit": "3eb587e0f00748c3a9b63f9eeedc1646e4cb77be",
+    "build_setup_unchanged": true,
+    "build_trace_unchanged": true,
+    "command": [
+      "/opt/homebrew/bin/gtime",
+      "-v",
+      "-o",
+      "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/native-profile-guarded/Cloning.PhysicalFlatPinchingInflation-1.resources.txt",
+      "/Users/jw/.elan/bin/lake",
+      "env",
+      "lean",
+      "-DautoImplicit=false",
+      "--profile",
+      "--stats",
+      "--setup",
+      "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/native-profile-guarded/Cloning.PhysicalFlatPinchingInflation-1.setup.json",
+      "Cloning/PhysicalFlatPinchingInflation.lean"
+    ],
+    "commit": "3eb587e0f00748c3a9b63f9eeedc1646e4cb77be",
+    "config_hashes_unchanged": true,
+    "config_matches_benchmark": true,
+    "config_sha256": {
+      "formalization/lake-manifest.json": "e4630915680b82b58c6a005e1ba1e515e865e5541c7e665d4a2d57f783eeadb4",
+      "formalization/lakefile.toml": "ddeb0d2c8217676fc393afd24c13629993c580f35f9d8ad15240c6a167b020c1",
+      "formalization/lean-toolchain": "dc6d65016fad3123d44bf17b5bf0598286284ab16ba75d5c17eb22ed11f47361"
+    },
+    "end_utc": "2026-10-07T04:17:43.954185+00:00",
+    "environment": {
+      "LAKE_ARTIFACT_CACHE": "false",
+      "LAKE_NO_CACHE": "false",
+      "LANG": "C.UTF-8",
+      "LC_ALL": "C.UTF-8",
+      "LEAN_GITHASH": "00659f8e6071d7e46131ed643bf8003b99b044e9",
+      "LEAN_NUM_THREADS": "2"
+    },
+    "environment_capture": "Selected effective Lake environment values; the complete inherited environment is not recorded.",
+    "environment_overrides": {
+      "LAKE_ARTIFACT_CACHE": "false",
+      "LEAN_NUM_THREADS": "2"
+    },
+    "events": null,
+    "exit_code": 0,
+    "import_artifacts_unchanged": true,
+    "import_context": "native-guarded/Cloning.PhysicalFlatPinchingInflation-1.import-context.json",
+    "import_context_sha256": "bbe2d587cc8c982e3c9bdc1eda9da638ef9216ab606bfc6b07cb4615dace5a75",
+    "inputs_stable": true,
+    "log": "native-guarded/Cloning.PhysicalFlatPinchingInflation-1.log",
+    "measurement_valid": true,
+    "module": "Cloning.PhysicalFlatPinchingInflation",
+    "post_guard_error": null,
+    "publication": {
+      "omitted_environment_fields": [
+        "environment.LEAN_PATH",
+        "environment.LEAN_SYSROOT",
+        "environment.PATH",
+        "toolchain.environment.LEAN_PATH",
+        "toolchain.environment.LEAN_SYSROOT",
+        "toolchain.environment.PATH"
+      ],
+      "original_index_sha256": "c796ad4e0bad239322b6ef5522fa4b6f87cc074e51c6285e13eb68e33fb18833",
+      "original_record_index": 14,
+      "transformations": [
+        "Preserved an identical source snapshot bound to source_sha256.",
+        "Removed inherited path-valued environment fields; exact task setup/import paths remain."
+      ]
+    },
+    "receipt_origin": {
+      "binding_form": "derived-public-index",
+      "index": "native-guarded/profiles.json",
+      "input_prefix": "native-guarded",
+      "original_index_sha256": "e4632b27d5b5b61302af8427bc8b514929bff79b8f447dade52b11afd1f3547c",
+      "public_index_sha256": "8155771777215a5a03f8ae8f0f200d05152af9641c22b5f271d0f73b063e0737",
+      "record_index": 1
+    },
+    "repetition": 1,
+    "resources": "native-guarded/Cloning.PhysicalFlatPinchingInflation-1.resources.txt",
+    "setup_sha256": "10aebcde63ad07877061ccfdf8b08719b2fffb04b58b70860c9f9d79fc9c3565",
+    "setup_snapshot": "native-guarded/Cloning.PhysicalFlatPinchingInflation-1.setup.json",
+    "source": "Cloning/PhysicalFlatPinchingInflation.lean",
+    "source_hash_unchanged": true,
+    "source_matches_benchmark": true,
+    "source_matches_commit": true,
+    "source_sha256": "ec819ddc2ab205994ecc7801f948b9af02e042e5a79928b0d04a9ea16dc786b4",
+    "source_snapshot": "Cloning.PhysicalFlatPinchingInflation-1.source.lean.txt",
+    "start_utc": "2026-10-07T04:17:13.773764+00:00",
+    "toolchain": {
+      "environment": {
+        "LAKE_ARTIFACT_CACHE": "false",
+        "LAKE_NO_CACHE": "false",
+        "LANG": "C.UTF-8",
+        "LC_ALL": "C.UTF-8",
+        "LEAN_GITHASH": "00659f8e6071d7e46131ed643bf8003b99b044e9",
+        "LEAN_NUM_THREADS": "2"
+      },
+      "lake_version": "Lake version 5.0.0-src+00659f8 (Lean version 4.29.0-rc6)",
+      "lean_binary": "/Users/jw/.elan/toolchains/leanprover--lean4---v4.29.0-rc6/bin/lean",
+      "lean_binary_sha256": "2974847fff2e2621502841f4c2dbac4035b4847d6060a4f2087cbc0d04005e37",
+      "lean_libdir": "/Users/jw/.elan/toolchains/leanprover--lean4---v4.29.0-rc6/lib/lean",
+      "lean_version": "Lean (version 4.29.0-rc6, arm64-apple-darwin24.6.0, commit 00659f8e6071d7e46131ed643bf8003b99b044e9, Release)"
+    },
+    "trace_mode": "native",
+    "trace_sha256": "e5d18d90192e5b2afcbcc317d067447dfc8e37372e7919d50029a16f9ea32ab6",
+    "trace_snapshot": "native-guarded/Cloning.PhysicalFlatPinchingInflation-1.build-trace.json",
+    "wall_seconds": 30.180072167000617
+  }
+]

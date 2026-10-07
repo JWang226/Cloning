@@ -1,14 +1,21 @@
 {
-  "recorded_utc": "2026-10-04T06:01:33.995105+00:00",
+  "recorded_utc": "2026-10-07T04:26:53.051471+00:00",
   "status": "passed",
+  "source_audit_sha256": "cd6735524ed4f60d02fded4b846eaa349d36fc3d151df5768ddc5fcfe4ada61b",
+  "run_record": "formalization/verification/comparator/records/20261007T042117.504957Z/run.json",
+  "run_record_sha256": "90446abcf031bf2b76f350cf2f96d080108adacf153eec6c66a719e868e684f3",
+  "run_archive": "formalization/verification/comparator/records/20261007T042117.504957Z/archive.json",
+  "run_archive_sha256": "a097437fd7f0e91e6c8f235c42457d7a8d2b77e5c5e439111d879523cdf8a337",
   "claims": 27,
-  "source_audit_sha256": "6b2c09f61388362d9ff3ae3f63285b9dd09e0cd95254150273bacba6cd9c799a",
   "mode": "trusted-local-no-sandbox",
   "comparator_executed": true,
   "comparator_verdict": "Your solution is okay!",
-  "run_record": "formalization/verification/comparator/records/20261004T055545.209379Z/run.json",
-  "run_record_sha256": "10cd07049fa3607797765114c4d970a9e0aa51b408e795641b7f342e50983b7a",
   "scope": "27 independently written named-result targets and their proof dependencies; statement/dependency comparison, three-axiom check, and Lean kernel replay",
+  "limitations": [
+    "trusted-local-no-sandbox mode does not sandbox elaboration or native/exporter code",
+    "Comparator replays selected proofs in Lean; Nanoda is a separate independent Rust kernel check",
+    "Cached compiled input provenance remains trusted; this was not a clean rebuild on another host"
+  ],
   "attempts": [
     {
       "run_record": "formalization/verification/comparator/records/20261004T035736.789819Z/run.json",
@@ -22,11 +29,11 @@
       "run_record": "formalization/verification/comparator/records/20261004T055545.209379Z/run.json",
       "status": "passed",
       "source_audit_sha256": "6b2c09f61388362d9ff3ae3f63285b9dd09e0cd95254150273bacba6cd9c799a"
+    },
+    {
+      "run_record": "formalization/verification/comparator/records/20261007T042117.504957Z/run.json",
+      "status": "passed",
+      "source_audit_sha256": "cd6735524ed4f60d02fded4b846eaa349d36fc3d151df5768ddc5fcfe4ada61b"
     }
-  ],
-  "limitations": [
-    "trusted-local-no-sandbox mode does not sandbox elaboration or native/exporter code",
-    "Comparator replays selected proofs in Lean; Nanoda is a separate independent Rust kernel check",
-    "Cached compiled input provenance remains trusted; this was not a clean rebuild on another host"
   ]
 }

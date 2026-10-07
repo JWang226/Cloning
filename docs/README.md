@@ -56,10 +56,12 @@ Exact source is authoritative. Statement excerpts may inherit section variables,
 instances, and namespaces; full linked source pages preserve all this context.
 The source declaration index excludes ambiguous names and generated constants;
 all referenced endpoints must still resolve uniquely against the compiled
-AXIOM_REPORT inventory. The recorded full audit covers generated constants too.
+declaration inventory. The recorded full audit covers generated constants too.
+Shared audits report only an aggregate axiom union; the source index does not
+assign that union to individual declarations.
 
-The audit snapshot is verification/kernel-compatible-pass, completed
-2026-10-04T05:54:37.522297+00:00. manifest.json records input hashes and all
+The audit snapshot is verification/cleanup-pass, completed
+2026-10-07T04:19:48.873134+00:00. manifest.json records input hashes and all
 validated guide/map declarations. data/audit-summary.json copies key evidence;
 the complete original evidence remains in formalization/verification/.
 

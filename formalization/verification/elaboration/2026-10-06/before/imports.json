@@ -1,0 +1,4954 @@
+{
+  "All": [
+    "Cloning",
+    "LiftedSectorFidelity",
+    "ProjectorBounds",
+    "ClassicalRounding",
+    "OccupationLimits",
+    "CoherentGaussianMixtures",
+    "BosonicSeededOptimum",
+    "QuantumFidelity",
+    "CompactCPLimits",
+    "LANTransfer",
+    "ConditionalCloningTheorems"
+  ],
+  "BosonicSeededOptimum": [
+    "Cloning.ScoreReferenceMeasure",
+    "Cloning.HybridGaussianScoreOptimum",
+    "Cloning.OrbitalSeededOptimum",
+    "Cloning.MultimodeLeastNoise",
+    "Cloning.BosonicAmplifierThermal",
+    "Cloning.WeylCovariantMultiplier",
+    "Cloning.WeylMultimodeChannel",
+    "Cloning.UniversalGaussianRealBox",
+    "Cloning.WeylIdlerUniqueness",
+    "Cloning.OrbitalGaussianAttainmentBoundary",
+    "Cloning.WeylQuantumBochner",
+    "Cloning.WeylDiagonalRepresentation",
+    "Cloning.WeylSqueezerUnitary",
+    "Cloning.WeylSqueezerRepresentation",
+    "Cloning.CovariantAmplifierLeastNoise"
+  ],
+  "ClassicalRounding": [
+    "Cloning.YoungPhysicalRoundingUniformDensity",
+    "Cloning.TensorSchurDecompositionSharpConcentration",
+    "Cloning.YoungRounding",
+    "Cloning.GaussianAffinity",
+    "Cloning.YoungTwoRowAsymptotics",
+    "Cloning.YoungTwoRowConcentration",
+    "Cloning.YoungCompatibilityFallback",
+    "Cloning.YoungHyperplaneSampling",
+    "Cloning.YoungHyperplaneCovariance",
+    "Cloning.YoungGeneralFallback",
+    "Cloning.YoungGeneralMoments",
+    "Cloning.YoungNormalizationLimits",
+    "Cloning.YoungHookRatioLimit",
+    "Cloning.YoungUniformLocalMultinomial",
+    "Cloning.YoungUniformLocalPhysicalL1",
+    "Cloning.YoungUniformLocalQuantization",
+    "Cloning.TensorSchurDecompositionConcentration",
+    "Cloning.YoungPhysicalRounding",
+    "Cloning.YoungFlatLimit",
+    "Cloning.YoungFlatCouplingRank"
+  ],
+  "Cloning": [
+    "Cloning.AmplifierWeylCoherent",
+    "Cloning.AmplifierWeylCovariance",
+    "Cloning.AmplifierWeylMultimode",
+    "Cloning.AmplifierWeylMultimodeCovariance",
+    "Cloning.AmplifierWeylThermal",
+    "Cloning.BlockFidelity",
+    "Cloning.BosonicAmplifier",
+    "Cloning.BosonicAmplifierChannel",
+    "Cloning.BosonicAmplifierThermal",
+    "Cloning.BosonicIdlerChannel",
+    "Cloning.BosonicMixtureStochasticOrder",
+    "Cloning.BosonicNumberLaw",
+    "Cloning.BosonicStochasticOrder",
+    "Cloning.CartanChannel",
+    "Cloning.ChannelAveraging",
+    "Cloning.Channels",
+    "Cloning.ClassicalFidelity",
+    "Cloning.CoherentCoefficients",
+    "Cloning.CoherentContinuity",
+    "Cloning.CoherentGaussianMixture",
+    "Cloning.CoherentKernel",
+    "Cloning.ComplexCoherent",
+    "Cloning.ComplexGaussianMoments",
+    "Cloning.Compression",
+    "Cloning.CountableScheffe",
+    "Cloning.FiniteKrausLift",
+    "Cloning.GaussianAffinity",
+    "Cloning.GaussianConverseReduction",
+    "Cloning.GaussianWitness",
+    "Cloning.GeneralCoherentChannels",
+    "Cloning.GeneralCoherentConvergence",
+    "Cloning.GeneralCoherentCoordinates",
+    "Cloning.GeneralCoherentLimits",
+    "Cloning.GeneralCoherentMixture",
+    "Cloning.GeneralCoherentModel",
+    "Cloning.GeneralCoherentMultiplicity",
+    "Cloning.GeneralSymmetricBalance",
+    "Cloning.GeneralSymmetricCounting",
+    "Cloning.GeneralSymmetricDimension",
+    "Cloning.GeneralSymmetricOccupation",
+    "Cloning.GeneralSymmetricProjector",
+    "Cloning.GeneralSymmetricSplitting",
+    "Cloning.HeisenbergDual",
+    "Cloning.HeisenbergDualBounded",
+    "Cloning.HeisenbergDualContinuity",
+    "Cloning.HeisenbergDualResidual",
+    "Cloning.HeisenbergDualWeyl",
+    "Cloning.HybridChannel",
+    "Cloning.HybridChannelAveraging",
+    "Cloning.HybridClassicalAverageBound",
+    "Cloning.HybridClassicalAverageTrace",
+    "Cloning.HybridClassicalConvolution",
+    "Cloning.HybridCoordinateTransport",
+    "Cloning.HybridCovariantQuantum",
+    "Cloning.HybridCovariantWeighted",
+    "Cloning.HybridCovariantization",
+    "Cloning.HybridFidelity",
+    "Cloning.HybridFlatBox",
+    "Cloning.HybridFoelner",
+    "Cloning.HybridFoelnerPayoff",
+    "Cloning.HybridFoelnerResidual",
+    "Cloning.HybridFoelnerThermal",
+    "Cloning.HybridGaussianAttainment",
+    "Cloning.HybridGaussianAttainmentAction",
+    "Cloning.HybridGaussianAttainmentBoundary",
+    "Cloning.HybridGaussianAttainmentChannel",
+    "Cloning.HybridGaussianAttainmentFidelity",
+    "Cloning.HybridGaussianAttainmentRealBox",
+    "Cloning.HybridGaussianBoundary",
+    "Cloning.HybridGaussianConverse",
+    "Cloning.HybridGaussianMass",
+    "Cloning.HybridGaussianRealBox",
+    "Cloning.HybridIntegralBounds",
+    "Cloning.HybridJensen",
+    "Cloning.HybridJensenSigmaFinite",
+    "Cloning.HybridL1",
+    "Cloning.HybridL1Cone",
+    "Cloning.HybridL1Fidelity",
+    "Cloning.HybridL1Jensen",
+    "Cloning.HybridOrbitPayoff",
+    "Cloning.HybridPrior",
+    "Cloning.HybridProduct",
+    "Cloning.HybridStates",
+    "Cloning.HybridThermalWitness",
+    "Cloning.HybridTranslation",
+    "Cloning.HybridWeightedFidelity",
+    "Cloning.HybridWeightedMaps",
+    "Cloning.HybridWeightedTrace",
+    "Cloning.InfiniteAsymptoticCPCompactness",
+    "Cloning.InfiniteBilinearWeakClosure",
+    "Cloning.InfiniteChannelAdjoint",
+    "Cloning.InfiniteChannelCompactness",
+    "Cloning.InfiniteChannelCovariance",
+    "Cloning.InfiniteChannelFidelity",
+    "Cloning.InfiniteChannelLimitReconstruction",
+    "Cloning.InfiniteChannelTraceRepair",
+    "Cloning.InfiniteChannelWeakLimit",
+    "Cloning.InfiniteCompactObservableExtraction",
+    "Cloning.InfiniteCompactObservableLimit",
+    "Cloning.InfiniteCompletelyPositive",
+    "Cloning.InfiniteCompletelyPositiveCompactness",
+    "Cloning.InfiniteCutoffChannels",
+    "Cloning.InfiniteDensityState",
+    "Cloning.InfiniteDiagonalFidelity",
+    "Cloning.InfiniteFidelity",
+    "Cloning.InfiniteFidelityBlockBound",
+    "Cloning.InfiniteFidelityConcavity",
+    "Cloning.InfiniteFidelityContinuity",
+    "Cloning.InfiniteFidelityCornerLimit",
+    "Cloning.InfiniteFidelityFiniteMixture",
+    "Cloning.InfiniteFidelityRegularized",
+    "Cloning.InfiniteFidelityTransition",
+    "Cloning.InfiniteFidelityTransitionWeights",
+    "Cloning.InfiniteFidelityWeighted",
+    "Cloning.InfiniteFidelityWitness",
+    "Cloning.InfiniteFiniteCorner",
+    "Cloning.InfiniteFiniteInstrument",
+    "Cloning.InfiniteGentleCompression",
+    "Cloning.InfiniteGentleCompressionLimit",
+    "Cloning.InfiniteHilbertSchmidt",
+    "Cloning.InfiniteHilbertSchmidtPositive",
+    "Cloning.InfiniteIsometricChannel",
+    "Cloning.InfiniteKrausChannel",
+    "Cloning.InfiniteLANTransfer",
+    "Cloning.InfiniteOccupationStates",
+    "Cloning.InfinitePowersStormer",
+    "Cloning.InfinitePureStateContinuity",
+    "Cloning.InfiniteRectangularKraus",
+    "Cloning.InfiniteTraceBoundedMaps",
+    "Cloning.InfiniteTraceClass",
+    "Cloning.InfiniteTraceClassAlgebra",
+    "Cloning.InfiniteTraceClassAsymptoticBound",
+    "Cloning.InfiniteTraceClassBanach",
+    "Cloning.InfiniteTraceClassBasis",
+    "Cloning.InfiniteTraceClassChannels",
+    "Cloning.InfiniteTraceClassCompactness",
+    "Cloning.InfiniteTraceClassCutoff",
+    "Cloning.InfiniteTraceClassCutoffConvergence",
+    "Cloning.InfiniteTraceClassDecomposition",
+    "Cloning.InfiniteTraceClassFamilyCompactness",
+    "Cloning.InfiniteTraceClassIdeal",
+    "Cloning.InfiniteTraceClassNormBounds",
+    "Cloning.InfiniteTraceClassNormalPart",
+    "Cloning.InfiniteTraceClassPairing",
+    "Cloning.InfiniteTraceClassPolar",
+    "Cloning.InfiniteTraceClassPositive",
+    "Cloning.InfiniteTraceClassSeparable",
+    "Cloning.InfiniteTraceClassSeries",
+    "Cloning.InfiniteTraceClassSpace",
+    "Cloning.InfiniteTraceClassWeakLimit",
+    "Cloning.InfiniteWeakLimitRepair",
+    "Cloning.IsometricRecovery",
+    "Cloning.LAN",
+    "Cloning.Main",
+    "Cloning.MatrixChannelFidelity",
+    "Cloning.MatrixChannelTraceNorm",
+    "Cloning.MatrixCovariantBalance",
+    "Cloning.MatrixDiscardLabel",
+    "Cloning.MatrixFidelity",
+    "Cloning.MatrixFidelityAchievability",
+    "Cloning.MatrixFidelityAsymptotics",
+    "Cloning.MatrixFidelityBlockBound",
+    "Cloning.MatrixFidelityBlocks",
+    "Cloning.MatrixFidelityBounds",
+    "Cloning.MatrixFidelityContinuity",
+    "Cloning.MatrixFidelityDeletion",
+    "Cloning.MatrixFidelityEmbedding",
+    "Cloning.MatrixFidelityJointConcavity",
+    "Cloning.MatrixFidelityLifted",
+    "Cloning.MatrixFidelityLimit",
+    "Cloning.MatrixFidelityMixtures",
+    "Cloning.MatrixFidelityNormalization",
+    "Cloning.MatrixFidelityProjector",
+    "Cloning.MatrixFidelityScaling",
+    "Cloning.MatrixFidelitySymmetry",
+    "Cloning.MatrixFidelityTensor",
+    "Cloning.MatrixFidelityTraceBound",
+    "Cloning.MatrixFidelityWitness",
+    "Cloning.MatrixLANTransfer",
+    "Cloning.MatrixLiftedCPTP",
+    "Cloning.MatrixLiftedCPTPAction",
+    "Cloning.MatrixLiftedCPTPKraus",
+    "Cloning.MatrixLiftedCPTPPhysical",
+    "Cloning.MatrixLiftedChannel",
+    "Cloning.MatrixLiftedTrimming",
+    "Cloning.MatrixPartialTraceCovariance",
+    "Cloning.MatrixRegularization",
+    "Cloning.MatrixSqrtSubadditivity",
+    "Cloning.MatrixTraceNormOrder",
+    "Cloning.MatrixTraceOrder",
+    "Cloning.MatrixTransitionAchievability",
+    "Cloning.MatrixWeightedFidelity",
+    "Cloning.MixedChannels",
+    "Cloning.MixedChannelsBounded",
+    "Cloning.MixedChannelsFidelity",
+    "Cloning.MixedChannelsFiniteInstrument",
+    "Cloning.MixedChannelsFiniteSelector",
+    "Cloning.MixedChannelsPositiveApprox",
+    "Cloning.MixedChannelsPreparation",
+    "Cloning.MixedChannelsReverseFidelity",
+    "Cloning.MixedChannelsSectorInstrument",
+    "Cloning.MixedGaussianConverse",
+    "Cloning.MixedLANTransfer",
+    "Cloning.Moments",
+    "Cloning.MultimodeCoherent",
+    "Cloning.MultimodeCoherentGaussianMixture",
+    "Cloning.MultimodeIdler",
+    "Cloning.MultimodeLeastNoise",
+    "Cloning.MultimodeThermalIdlerFidelity",
+    "Cloning.Occupation",
+    "Cloning.OccupationChannel",
+    "Cloning.OccupationCompression",
+    "Cloning.OccupationRecovery",
+    "Cloning.OrbitalGaussianAttainment",
+    "Cloning.OrbitalGaussianAttainmentBoundary",
+    "Cloning.OrbitalSeededOptimum",
+    "Cloning.PBWCutoffGram",
+    "Cloning.PBWGramLimit",
+    "Cloning.PBWNormalOrdering",
+    "Cloning.PBWRootBounds",
+    "Cloning.PBWRootGram",
+    "Cloning.PCTCoordinateFrame",
+    "Cloning.PCTGaussianAssembly",
+    "Cloning.PCTGaussianCovariance",
+    "Cloning.PCTGaussianCovarianceClassical",
+    "Cloning.PCTGaussianCovarianceJoint",
+    "Cloning.PCTGaussianCovarianceOrbital",
+    "Cloning.PCTGaussianOutput",
+    "Cloning.PCTGaussianOutputTangent",
+    "Cloning.PCTGlobalChannels",
+    "Cloning.PCTGlobalMatrixBridge",
+    "Cloning.PCTGlobalPhysical",
+    "Cloning.PCTGlobalRecovery",
+    "Cloning.PCTGlobalWerner",
+    "Cloning.PCTHybridFidelity",
+    "Cloning.PCTHybridFidelityTransfer",
+    "Cloning.PCTHybridMixtureChannel",
+    "Cloning.PCTHybridMixtureClassical",
+    "Cloning.PCTHybridMixtureFactor",
+    "Cloning.PCTHybridMixtureGaussian",
+    "Cloning.PCTJointGaussianChart",
+    "Cloning.PCTJointGaussianConvolution",
+    "Cloning.PCTJointGaussianLaw",
+    "Cloning.PCTJointGaussianReal",
+    "Cloning.PCTJointGaussianWhitenedLaw",
+    "Cloning.PCTJointGaussianWhitening",
+    "Cloning.PCTLocalChartAlgebra",
+    "Cloning.PCTLocalChartCoordinates",
+    "Cloning.PCTLocalChartInverse",
+    "Cloning.PCTMixedMixtureTransfer",
+    "Cloning.PCTPartialTrace",
+    "Cloning.PCTPhysicalFidelity",
+    "Cloning.PCTPhysicalFidelityFrame",
+    "Cloning.PCTPhysicalFidelityLAN",
+    "Cloning.PCTPhysicalFidelityUnitary",
+    "Cloning.PCTPhysicalState",
+    "Cloning.PCTPhysicalStateSpectrum",
+    "Cloning.PCTPhysicalWerner",
+    "Cloning.PCTPurificationChannel",
+    "Cloning.PCTPurificationChannelAction",
+    "Cloning.PCTPurificationChannelHaar",
+    "Cloning.PCTPurificationChannelPhysical",
+    "Cloning.PCTPurificationFrame",
+    "Cloning.PCTPurificationInvariance",
+    "Cloning.PCTReducedGaussian",
+    "Cloning.PCTTangentChart",
+    "Cloning.PCTTangentChartAdmissible",
+    "Cloning.PCTTangentChartFrame",
+    "Cloning.PCTTangentChartSamples",
+    "Cloning.PCTTangentNormalization",
+    "Cloning.PCTTensorFrame",
+    "Cloning.PCTUnitaryTransport",
+    "Cloning.PCTUnitaryTransportChannels",
+    "Cloning.PCTWernerCovariance",
+    "Cloning.PCTWernerMixture",
+    "Cloning.PhysicalCloningConverseAdmissible",
+    "Cloning.PhysicalCloningConverseChart",
+    "Cloning.PhysicalCloningConverseKnown",
+    "Cloning.PhysicalCloningConversePreparation",
+    "Cloning.PhysicalCloningConverseQuantumReduction",
+    "Cloning.PhysicalCloningConverseSpectrum",
+    "Cloning.PhysicalCloningConverseTransfer",
+    "Cloning.PhysicalCloningConverseUnknown",
+    "Cloning.PhysicalCloningConverseWindows",
+    "Cloning.PoissonApproximation",
+    "Cloning.Projector",
+    "Cloning.PurificationSupport",
+    "Cloning.Rounding",
+    "Cloning.SymmetricOccupation",
+    "Cloning.TensorCCR",
+    "Cloning.TensorCCRBounds",
+    "Cloning.TensorCCRScalar",
+    "Cloning.TensorCartanChannel",
+    "Cloning.TensorCartanChannelCovariance",
+    "Cloning.TensorCartanCoordinates",
+    "Cloning.TensorCartanCutoffAmplitude",
+    "Cloning.TensorCartanCutoffFrame",
+    "Cloning.TensorCartanCutoffMatrixLimit",
+    "Cloning.TensorCartanFrame",
+    "Cloning.TensorCartanInclusion",
+    "Cloning.TensorCartanIntertwiner",
+    "Cloning.TensorCartanLieBalance",
+    "Cloning.TensorCartanMatrixLimit",
+    "Cloning.TensorCartanOccupationAmplitude",
+    "Cloning.TensorCartanOccupationLimit",
+    "Cloning.TensorCartanProduct",
+    "Cloning.TensorCartanScalarity",
+    "Cloning.TensorCartanSplitCoefficients",
+    "Cloning.TensorCartanSplitMultiplicity",
+    "Cloning.TensorCartanStateCoefficients",
+    "Cloning.TensorCartanStateCovariance",
+    "Cloning.TensorCartanStateCutoff",
+    "Cloning.TensorCartanStateFidelity",
+    "Cloning.TensorCartanStateLimit",
+    "Cloning.TensorCartanStateOccupation",
+    "Cloning.TensorCartanStateOperator",
+    "Cloning.TensorCartanStateProduct",
+    "Cloning.TensorCartanStateThermal",
+    "Cloning.TensorCartanStateThermalFidelity",
+    "Cloning.TensorCartanTensorAction",
+    "Cloning.TensorCartanWordSplit",
+    "Cloning.TensorCloningAchievability",
+    "Cloning.TensorCloningAchievabilityCompatibility",
+    "Cloning.TensorCloningAchievabilityMixture",
+    "Cloning.TensorCloningAchievabilityProbability",
+    "Cloning.TensorCloningAchievabilitySector",
+    "Cloning.TensorCloningAchievabilityTypical",
+    "Cloning.TensorCloningAchievabilityUniform",
+    "Cloning.TensorCloningAchievabilityValue",
+    "Cloning.TensorCloningChannel",
+    "Cloning.TensorCloningCopyAffinity",
+    "Cloning.TensorCloningKernel",
+    "Cloning.TensorCloningKernelLabels",
+    "Cloning.TensorCloningPayoff",
+    "Cloning.TensorCloningSectorCovariance",
+    "Cloning.TensorCloningTransitionCovariance",
+    "Cloning.TensorCloningUniversalError",
+    "Cloning.TensorCloningUniversalFrequencies",
+    "Cloning.TensorCloningUniversalMixture",
+    "Cloning.TensorCloningUniversalProbability",
+    "Cloning.TensorCloningUniversalSupport",
+    "Cloning.TensorCyclicError",
+    "Cloning.TensorCyclicFiltration",
+    "Cloning.TensorCyclicGramLimit",
+    "Cloning.TensorCyclicIndependence",
+    "Cloning.TensorCyclicOccupancy",
+    "Cloning.TensorCyclicPBW",
+    "Cloning.TensorCyclicPartition",
+    "Cloning.TensorCyclicSector",
+    "Cloning.TensorCyclicSectorCovariance",
+    "Cloning.TensorCyclicSectorDiagonal",
+    "Cloning.TensorCyclicSectorIrreducible",
+    "Cloning.TensorCyclicSectorOperators",
+    "Cloning.TensorCyclicSectorTensorPower",
+    "Cloning.TensorCyclicSectorTransvection",
+    "Cloning.TensorCyclicSectorWeightTrace",
+    "Cloning.TensorFlatProjectorCasimirMoment",
+    "Cloning.TensorFlatProjectorCasimirTrace",
+    "Cloning.TensorFlatProjectorCompression",
+    "Cloning.TensorFlatProjectorDimensionLimit",
+    "Cloning.TensorFlatProjectorDimensions",
+    "Cloning.TensorFlatProjectorEmbedding",
+    "Cloning.TensorFlatProjectorFidelity",
+    "Cloning.TensorFlatProjectorLaw",
+    "Cloning.TensorFlatProjectorMatrix",
+    "Cloning.TensorFlatProjectorMoments",
+    "Cloning.TensorFlatProjectorNaturality",
+    "Cloning.TensorFlatProjectorPadding",
+    "Cloning.TensorFlatProjectorProduct",
+    "Cloning.TensorFlatProjectorRankLaw",
+    "Cloning.TensorFlatProjectorRestriction",
+    "Cloning.TensorFlatProjectorSector",
+    "Cloning.TensorFlatProjectorSectorSupport",
+    "Cloning.TensorFlatProjectorState",
+    "Cloning.TensorFlatProjectorSupport",
+    "Cloning.TensorFlatProjectorTraceClass",
+    "Cloning.TensorFundamentalBranchingExistence",
+    "Cloning.TensorFundamentalBranchingHighest",
+    "Cloning.TensorFundamentalBranchingLift",
+    "Cloning.TensorFundamentalBranchingMultiplicity",
+    "Cloning.TensorFundamentalBranchingShape",
+    "Cloning.TensorFundamentalBranchingSlices",
+    "Cloning.TensorFundamentalBranchingTransport",
+    "Cloning.TensorFundamentalBranchingWedge",
+    "Cloning.TensorGibbsBosonicPartition",
+    "Cloning.TensorGibbsCenteredLAN",
+    "Cloning.TensorGibbsCutoffState",
+    "Cloning.TensorGibbsDecay",
+    "Cloning.TensorGibbsDisplacedState",
+    "Cloning.TensorGibbsDisplacedTransfer",
+    "Cloning.TensorGibbsHeight",
+    "Cloning.TensorGibbsHeightBasis",
+    "Cloning.TensorGibbsHeightSpectrum",
+    "Cloning.TensorGibbsLocalUnitary",
+    "Cloning.TensorGibbsPartitionLimit",
+    "Cloning.TensorGibbsPhysicalDisplacement",
+    "Cloning.TensorGibbsPhysicalLAN",
+    "Cloning.TensorGibbsPhysicalLANUniform",
+    "Cloning.TensorGibbsPureTransfer",
+    "Cloning.TensorGibbsSchurBridge",
+    "Cloning.TensorGibbsState",
+    "Cloning.TensorGibbsStateLimit",
+    "Cloning.TensorGibbsStateTransfer",
+    "Cloning.TensorGibbsTail",
+    "Cloning.TensorGibbsThermalCutoff",
+    "Cloning.TensorGibbsThermalIdentification",
+    "Cloning.TensorGibbsTrace",
+    "Cloning.TensorGibbsTruncation",
+    "Cloning.TensorGibbsWeights",
+    "Cloning.TensorHighestExtraction",
+    "Cloning.TensorHighestExtractionBasic",
+    "Cloning.TensorHighestGram",
+    "Cloning.TensorHighestGramAction",
+    "Cloning.TensorHighestGramCovariance",
+    "Cloning.TensorHighestGramIntertwiner",
+    "Cloning.TensorHighestGramIsometry",
+    "Cloning.TensorLANEmbeddingAction",
+    "Cloning.TensorLANEmbeddingAverageUniform",
+    "Cloning.TensorLANEmbeddingBlocks",
+    "Cloning.TensorLANEmbeddingCellError",
+    "Cloning.TensorLANEmbeddingCellProtocol",
+    "Cloning.TensorLANEmbeddingCellRecovery",
+    "Cloning.TensorLANEmbeddingCellWeights",
+    "Cloning.TensorLANEmbeddingChannel",
+    "Cloning.TensorLANEmbeddingClassicalCenter",
+    "Cloning.TensorLANEmbeddingClassicalLimit",
+    "Cloning.TensorLANEmbeddingClassicalUniform",
+    "Cloning.TensorLANEmbeddingCompactLAN",
+    "Cloning.TensorLANEmbeddingCompression",
+    "Cloning.TensorLANEmbeddingCopyTail",
+    "Cloning.TensorLANEmbeddingDiagonal",
+    "Cloning.TensorLANEmbeddingFockCoordinates",
+    "Cloning.TensorLANEmbeddingFockProtocol",
+    "Cloning.TensorLANEmbeddingFockReindex",
+    "Cloning.TensorLANEmbeddingFockStateCoordinates",
+    "Cloning.TensorLANEmbeddingFrame",
+    "Cloning.TensorLANEmbeddingLocalSpectrum",
+    "Cloning.TensorLANEmbeddingMixtureError",
+    "Cloning.TensorLANEmbeddingPhysical",
+    "Cloning.TensorLANEmbeddingProtocolError",
+    "Cloning.TensorLANEmbeddingSchur",
+    "Cloning.TensorLANEmbeddingSchurState",
+    "Cloning.TensorLANEmbeddingSchurWeights",
+    "Cloning.TensorLANEmbeddingSectorUniform",
+    "Cloning.TensorLANEmbeddingSelector",
+    "Cloning.TensorLANEmbeddingSelectorRecovery",
+    "Cloning.TensorLANEmbeddingStateBounds",
+    "Cloning.TensorLANEmbeddingTotal",
+    "Cloning.TensorLANEmbeddingTypical",
+    "Cloning.TensorLANEmbeddingWhitening",
+    "Cloning.TensorLANEmbeddingWhiteningGaussian",
+    "Cloning.TensorLANEmbeddingWindow",
+    "Cloning.TensorLieFiltration",
+    "Cloning.TensorLieGenerators",
+    "Cloning.TensorLieHighestWeight",
+    "Cloning.TensorLieLeibniz",
+    "Cloning.TensorLieProduct",
+    "Cloning.TensorLieRelations",
+    "Cloning.TensorLocalUnitaryApproximation",
+    "Cloning.TensorLocalUnitaryCompression",
+    "Cloning.TensorLocalUnitaryCoordinates",
+    "Cloning.TensorLocalUnitaryFockPolynomial",
+    "Cloning.TensorLocalUnitaryFrameMatrix",
+    "Cloning.TensorLocalUnitaryGenerator",
+    "Cloning.TensorLocalUnitaryMatrixElements",
+    "Cloning.TensorLocalUnitaryPhysical",
+    "Cloning.TensorLocalUnitaryPhysicalWeyl",
+    "Cloning.TensorLocalUnitaryPolynomial",
+    "Cloning.TensorLocalUnitaryReverse",
+    "Cloning.TensorLocalUnitaryTail",
+    "Cloning.TensorLocalUnitaryTaylor",
+    "Cloning.TensorLocalUnitaryWeyl",
+    "Cloning.TensorLocalUnitaryWeylUniform",
+    "Cloning.TensorPBWCutoffBasis",
+    "Cloning.TensorPBWDominance",
+    "Cloning.TensorPBWFiniteSector",
+    "Cloning.TensorPBWHighestLine",
+    "Cloning.TensorPBWNormalization",
+    "Cloning.TensorPBWOccupations",
+    "Cloning.TensorPBWOrder",
+    "Cloning.TensorPBWSpanning",
+    "Cloning.TensorPBWStraightening",
+    "Cloning.TensorPBWWeight",
+    "Cloning.TensorPartitionHighest",
+    "Cloning.TensorRootBounds",
+    "Cloning.TensorSchurDecomposition",
+    "Cloning.TensorSchurDecompositionBounds",
+    "Cloning.TensorSchurDecompositionCasimir",
+    "Cloning.TensorSchurDecompositionCharacter",
+    "Cloning.TensorSchurDecompositionCharacterDegree",
+    "Cloning.TensorSchurDecompositionCharacterHighest",
+    "Cloning.TensorSchurDecompositionCharacterLeading",
+    "Cloning.TensorSchurDecompositionCharacterSpectrum",
+    "Cloning.TensorSchurDecompositionCharacterSymmetry",
+    "Cloning.TensorSchurDecompositionConcentration",
+    "Cloning.TensorSchurDecompositionData",
+    "Cloning.TensorSchurDecompositionFundamental",
+    "Cloning.TensorSchurDecompositionHighest",
+    "Cloning.TensorSchurDecompositionIsometry",
+    "Cloning.TensorSchurDecompositionMultiplicity",
+    "Cloning.TensorSchurDecompositionPMF",
+    "Cloning.TensorSchurDecompositionRadial",
+    "Cloning.TensorSchurDecompositionRadialEquation",
+    "Cloning.TensorSchurDecompositionRadialTrace",
+    "Cloning.TensorSchurDecompositionTrace",
+    "Cloning.TensorSchurDecompositionWeylCharacter",
+    "Cloning.TensorSchurMultiplicityBranching",
+    "Cloning.TensorSchurMultiplicityDecomposition",
+    "Cloning.TensorSchurMultiplicityRefinement",
+    "Cloning.TensorWedge",
+    "Cloning.TensorWedgeHighest",
+    "Cloning.TensorWeightFrameLimit",
+    "Cloning.TensorWeightFrameOrthogonal",
+    "Cloning.TensorWeylMatrixEntries",
+    "Cloning.TensorWeylMatrixPowers",
+    "Cloning.TensorWeylMatrixSupport",
+    "Cloning.Thermal",
+    "Cloning.ThermalIdlerFidelity",
+    "Cloning.ThermalParameterContinuity",
+    "Cloning.ThermalWitness",
+    "Cloning.ThermalWitnessGeometric",
+    "Cloning.UniformCoherent",
+    "Cloning.UniformCoherentChannels",
+    "Cloning.UniversalGaussianBoundary",
+    "Cloning.UniversalGaussianConverse",
+    "Cloning.UniversalGaussianRealBox",
+    "Cloning.UniversalLeastNoiseGaussian",
+    "Cloning.UniversalLeastNoiseKernel",
+    "Cloning.UniversalLeastNoiseQuantumKernel",
+    "Cloning.UniversalLeastNoiseRecursion",
+    "Cloning.UniversalLeastNoiseThermalTest",
+    "Cloning.WernerAsymptotics",
+    "Cloning.WernerDimensionIdentity",
+    "Cloning.WernerMultivariateConvolution",
+    "Cloning.WernerNormalization",
+    "Cloning.WernerPhysicalAgreement",
+    "Cloning.WernerPhysicalChannel",
+    "Cloning.WernerPhysicalOperator",
+    "Cloning.WernerPhysicalPullback",
+    "Cloning.WeylChannel",
+    "Cloning.WeylCharacterAlternantDenominator",
+    "Cloning.WeylCharacterAlternantDominance",
+    "Cloning.WeylCharacterAlternantPolynomial",
+    "Cloning.WeylCharacterAlternantProduct",
+    "Cloning.WeylCharacterAlternantSubsets",
+    "Cloning.WeylCharacterAlternantUniqueness",
+    "Cloning.WeylCharacterDimension",
+    "Cloning.WeylCharacterDimensionPhysical",
+    "Cloning.WeylCharacterDimensionSpecialization",
+    "Cloning.WeylContinuity",
+    "Cloning.WeylCovariantMultiplier",
+    "Cloning.WeylCovariantization",
+    "Cloning.WeylDensity",
+    "Cloning.WeylDisplacement",
+    "Cloning.WeylEigenoperators",
+    "Cloning.WeylFlatBox",
+    "Cloning.WeylFlatPrior",
+    "Cloning.WeylFlatPriorLimit",
+    "Cloning.WeylFlatPriorThermal",
+    "Cloning.WeylFoelner",
+    "Cloning.WeylFoelnerLimit",
+    "Cloning.WeylFoelnerPayoff",
+    "Cloning.WeylGaussianPrior",
+    "Cloning.WeylGaussianThermal",
+    "Cloning.WeylGaussianTwistedConvolution",
+    "Cloning.WeylIdlerKernel",
+    "Cloning.WeylIdlerUniqueness",
+    "Cloning.WeylIrreducible",
+    "Cloning.WeylIrreducibleAverage",
+    "Cloning.WeylIrreducibleGaussian",
+    "Cloning.WeylIrreducibleMultimode",
+    "Cloning.WeylKernel",
+    "Cloning.WeylMultimodeChannel",
+    "Cloning.WeylMultimodeContinuity",
+    "Cloning.WeylMultimodeDensity",
+    "Cloning.WeylMultimodeDisplacement",
+    "Cloning.WeylMultimodeKernel",
+    "Cloning.WeylNumberBounds",
+    "Cloning.WeylNumberDerivative",
+    "Cloning.WeylNumberKernel",
+    "Cloning.WeylNumberKernelDerivative",
+    "Cloning.WeylNumberTaylor",
+    "Cloning.WeylNumberTaylorLimit",
+    "Cloning.WeylQuantumPositive",
+    "Cloning.WeylQuantumPositiveBlocks",
+    "Cloning.WeylQuantumPositiveBounds",
+    "Cloning.WeylQuantumPositiveDual",
+    "Cloning.WeylThermalCharacteristic",
+    "Cloning.WeylThermalFourier",
+    "Cloning.WeylThermalFourierChannel",
+    "Cloning.WeylThermalFourierWitness",
+    "Cloning.YoungBranchingContent",
+    "Cloning.YoungBranchingStandard",
+    "Cloning.YoungCompatibility",
+    "Cloning.YoungCompatibilityFallback",
+    "Cloning.YoungCompatibilityPMF",
+    "Cloning.YoungDimensionRatio",
+    "Cloning.YoungDimensionSecondOrder",
+    "Cloning.YoungFlatCells",
+    "Cloning.YoungFlatCorrection",
+    "Cloning.YoungFlatIntegrability",
+    "Cloning.YoungFlatLocal",
+    "Cloning.YoungFlatMass",
+    "Cloning.YoungGeneralConcentration",
+    "Cloning.YoungGeneralFallback",
+    "Cloning.YoungGeneralLimit",
+    "Cloning.YoungGeneralMoments",
+    "Cloning.YoungGeneralPMF",
+    "Cloning.YoungGeneralTableaux",
+    "Cloning.YoungHookCount",
+    "Cloning.YoungHookDeterminant",
+    "Cloning.YoungHookRatio",
+    "Cloning.YoungHookRatioLimit",
+    "Cloning.YoungHookVandermonde",
+    "Cloning.YoungHyperplane",
+    "Cloning.YoungHyperplaneCovariance",
+    "Cloning.YoungHyperplaneSampling",
+    "Cloning.YoungHyperplaneVolume",
+    "Cloning.YoungMultinomialLocal",
+    "Cloning.YoungMultinomialLocalEntropy",
+    "Cloning.YoungMultinomialLocalLimit",
+    "Cloning.YoungMultinomialLocalStirling",
+    "Cloning.YoungNormalization",
+    "Cloning.YoungNormalizationBranching",
+    "Cloning.YoungNormalizationLimits",
+    "Cloning.YoungPhysicalRounding",
+    "Cloning.YoungPhysicalRoundingAffinity",
+    "Cloning.YoungPhysicalRoundingAnalysis",
+    "Cloning.YoungPhysicalRoundingCoordinates",
+    "Cloning.YoungPhysicalRoundingFallback",
+    "Cloning.YoungPhysicalRoundingGaussian",
+    "Cloning.YoungPhysicalRoundingLabels",
+    "Cloning.YoungPhysicalRoundingLimit",
+    "Cloning.YoungRSKContent",
+    "Cloning.YoungRSKInsertion",
+    "Cloning.YoungRSKInterlacing",
+    "Cloning.YoungRSKPieri",
+    "Cloning.YoungRSKReverse",
+    "Cloning.YoungRSKShape",
+    "Cloning.YoungRSKTableau",
+    "Cloning.YoungRSKTableauReverse",
+    "Cloning.YoungRounding",
+    "Cloning.YoungTwoRowAsymptotics",
+    "Cloning.YoungTwoRowConcentration",
+    "Cloning.YoungTwoRowMoment",
+    "Cloning.YoungUniformLocalCells",
+    "Cloning.YoungUniformLocalCharacter",
+    "Cloning.YoungUniformLocalDensity",
+    "Cloning.YoungUniformLocalGaussian",
+    "Cloning.YoungUniformLocalGaussianTails",
+    "Cloning.YoungUniformLocalLabels",
+    "Cloning.YoungUniformLocalMultinomial",
+    "Cloning.YoungUniformLocalPhysicalL1",
+    "Cloning.YoungUniformLocalPhysicalLattice",
+    "Cloning.YoungUniformLocalPhysicalLimit",
+    "Cloning.YoungUniformLocalPhysicalMass",
+    "Cloning.YoungUniformLocalQuantization",
+    "Cloning.YoungUniformLocalSampleShape",
+    "Cloning.YoungUniformLocalScheffe",
+    "Cloning.CountMultinomialDensity",
+    "Cloning.CountMultinomialLimit",
+    "Cloning.CountMultinomialLocal",
+    "Cloning.CountMultinomialMeasurability",
+    "Cloning.CountMultinomialPMF",
+    "Cloning.InfiniteFidelityBlockFactorization",
+    "Cloning.InfiniteFidelityCornerMixture",
+    "Cloning.InfiniteFidelityHilbertSum",
+    "Cloning.InfiniteFidelityMixtureNormalization",
+    "Cloning.InfiniteFidelityMixtureRestriction",
+    "Cloning.PCTCountParameters",
+    "Cloning.PCTPhysicalFidelityUnconditional",
+    "Cloning.PCTRankAdaptedCompression",
+    "Cloning.PCTRankAdaptedFactor",
+    "Cloning.PCTRankAdaptedFidelity",
+    "Cloning.PCTRankAdaptedPartialTrace",
+    "Cloning.PCTRankAdaptedProduct",
+    "Cloning.PCTRankAdaptedReduced",
+    "Cloning.PCTRankAdaptedStates",
+    "Cloning.PCTRankAdaptedTensor",
+    "Cloning.PCTRankAdaptedWerner",
+    "Cloning.PCTRankPurificationCompletion",
+    "Cloning.PCTRankPurificationMoment",
+    "Cloning.PhysicalCloningConverseUnconditional",
+    "Cloning.PhysicalCloningKnownTheorem",
+    "Cloning.PhysicalCloningPCTTheorem",
+    "Cloning.PhysicalCloningUniversalTheorem",
+    "Cloning.PhysicalFlatConverseCommutant",
+    "Cloning.PhysicalFlatConverseHaar",
+    "Cloning.PhysicalFlatConverseJensen",
+    "Cloning.PhysicalFlatConverseMoments",
+    "Cloning.PhysicalFlatConverseOrbit",
+    "Cloning.PhysicalFlatConverseOrbitAverage",
+    "Cloning.PhysicalFlatConverseReduction",
+    "Cloning.PhysicalFlatPinching",
+    "Cloning.PhysicalFlatPinchingBlocks",
+    "Cloning.PhysicalFlatPinchingCovariance",
+    "Cloning.PhysicalFlatPinchingInflation",
+    "Cloning.PhysicalFlatPinchingMoments",
+    "Cloning.PhysicalFlatPinchingOrbit",
+    "Cloning.PhysicalFlatPinchingTrace",
+    "Cloning.TensorCloningBlockFidelity",
+    "Cloning.TensorCloningGlobalCovariance",
+    "Cloning.TensorCloningGlobalCovarianceAlgebra",
+    "Cloning.TensorCloningGlobalCovarianceInstrument",
+    "Cloning.TensorCloningGlobalCovarianceSector",
+    "Cloning.TensorCloningGlobalCovarianceState",
+    "Cloning.TensorCloningRetainedCoefficients",
+    "Cloning.TensorCloningRetainedMixture",
+    "Cloning.TensorCloningRetainedTypical",
+    "Cloning.TensorCloningRetainedUniversal",
+    "Cloning.TensorCloningUniversalAchievability",
+    "Cloning.TensorCloningUniversalClassical",
+    "Cloning.TensorCloningUniversalSector",
+    "Cloning.TensorFlatProjectorAchievability",
+    "Cloning.TensorFlatProjectorChannel",
+    "Cloning.TensorFlatProjectorCopyCoupling",
+    "Cloning.TensorFlatProjectorCouplingPadding",
+    "Cloning.TensorFlatProjectorGibbs",
+    "Cloning.TensorFlatProjectorGibbsState",
+    "Cloning.TensorFlatProjectorMixture",
+    "Cloning.TensorFlatProjectorStateFidelity",
+    "Cloning.TensorFlatProjectorTransitionCovariance",
+    "Cloning.TensorSchurDecompositionRootSum",
+    "Cloning.YoungFlatCompatibility",
+    "Cloning.YoungFlatCouplingConvergence",
+    "Cloning.YoungFlatCouplingDensity",
+    "Cloning.YoungFlatCouplingEvents",
+    "Cloning.YoungFlatCouplingFinite",
+    "Cloning.YoungFlatCouplingLimit",
+    "Cloning.YoungFlatCouplingPhysical",
+    "Cloning.YoungFlatCouplingQuantizer",
+    "Cloning.YoungFlatCouplingRank",
+    "Cloning.YoungFlatFidelity",
+    "Cloning.YoungFlatFidelityBounds",
+    "Cloning.YoungFlatLimit",
+    "Cloning.YoungFlatMoment",
+    "Cloning.YoungFlatSmoothing",
+    "Cloning.YoungFlatSupport",
+    "Cloning.YoungFlatTightness",
+    "Cloning.YoungFlatUniform",
+    "Cloning.CountMultinomialMixture",
+    "Cloning.CovariantAmplifierComposite",
+    "Cloning.PCTCountAffinity",
+    "Cloning.PCTCountGaussian",
+    "Cloning.PCTCountMeasurementChannel",
+    "Cloning.PCTCountMeasurementFidelity",
+    "Cloning.PCTCountMeasurementImage",
+    "Cloning.PCTCountMeasurementMixture",
+    "Cloning.PCTCountMeasurementSmoothing",
+    "Cloning.PCTCountMeasurementTensor",
+    "Cloning.PCTCountMeasurementWeights",
+    "Cloning.PCTCountMixture",
+    "Cloning.PCTCountPhysical",
+    "Cloning.PCTRankAdaptedFlat",
+    "Cloning.PCTRankAdaptedLimit",
+    "Cloning.PCTRankAdaptedUpper",
+    "Cloning.PCTRankGlobalChannel",
+    "Cloning.PCTRankGlobalChannels",
+    "Cloning.PCTRankGlobalMatrixBridge",
+    "Cloning.PCTRankGlobalPhysical",
+    "Cloning.PCTRankGlobalRecovery",
+    "Cloning.PCTRankGlobalWerner",
+    "Cloning.PCTRankPurificationBlockAlgebra",
+    "Cloning.PCTRankPurificationFunctional",
+    "Cloning.PCTRankPurificationMatrices",
+    "Cloning.PCTRankPurificationNormalization",
+    "Cloning.PCTRankPurificationSectors",
+    "Cloning.PhysicalFlatCloningTheorem",
+    "Cloning.PhysicalFlatConverseFinite",
+    "Cloning.PhysicalFlatConverseLimit",
+    "Cloning.PhysicalFlatGrassmannEmbedding",
+    "Cloning.PhysicalFlatGrassmannOrbit",
+    "Cloning.PhysicalFlatGrassmannSpectral",
+    "Cloning.PhysicalFlatGrassmannTheorem",
+    "Cloning.PhysicalFlatGrassmannUniform",
+    "Cloning.TensorCloningBlockTrimming",
+    "Cloning.TensorCloningUniformBlocks",
+    "Cloning.TensorCloningUniformCovariance",
+    "Cloning.TensorCloningUniformKnown",
+    "Cloning.TensorCloningUniformUniversal",
+    "Cloning.TensorSchurHaarCompression",
+    "Cloning.TensorSchurHaarIntertwiner",
+    "Cloning.TensorSchurHaarOrthogonality",
+    "Cloning.WeylGNSRegular",
+    "Cloning.WeylGaussianSandwich",
+    "Cloning.PCTRankGlobalEmbedding",
+    "Cloning.PCTRankPurificationBlockCoordinate",
+    "Cloning.PCTRankPurificationBlockHaar",
+    "Cloning.PCTRankPurificationBlockMatrices",
+    "Cloning.PCTRankPurificationCoefficients",
+    "Cloning.PCTRankPurificationFrames",
+    "Cloning.PCTRankPurificationInvariant",
+    "Cloning.PCTRankPurificationVectorization",
+    "Cloning.PhysicalFlatGrassmannIsometry",
+    "Cloning.PhysicalFlatPCTBound",
+    "Cloning.PhysicalFlatPCTProtocol",
+    "Cloning.TensorCloningPrescribedTrace",
+    "Cloning.WeylGNSAction",
+    "Cloning.WeylGNSKernel",
+    "Cloning.WeylGaussianProjection",
+    "Cloning.WeylGaussianSandwichNormalized",
+    "Cloning.WeylGaussianTotalityScalar",
+    "Cloning.CovariantAmplifierCompositeIdler",
+    "Cloning.CovariantAmplifierTraceLoss",
+    "Cloning.PCTClosedForm",
+    "Cloning.PCTPrescribedExtension",
+    "Cloning.PCTPrescribedFull",
+    "Cloning.PCTPrescribedRank",
+    "Cloning.PCTPrescribedRankTheorem",
+    "Cloning.PCTRankOneAction",
+    "Cloning.PCTRankOneWerner",
+    "Cloning.PCTRankPurificationBlockSupport",
+    "Cloning.PCTRankPurificationCompression",
+    "Cloning.PCTRankPurificationCovariance",
+    "Cloning.PCTRankPurificationFlatAction",
+    "Cloning.PCTRankPurificationFlatOrbit",
+    "Cloning.PCTRankPurificationFlatScalar",
+    "Cloning.PCTRankPurificationFlatState",
+    "Cloning.PCTRankPurificationMomentComparison",
+    "Cloning.PhysicalFlatPCTAction",
+    "Cloning.PhysicalFlatPCTTheorem",
+    "Cloning.TensorCloningPrescribed",
+    "Cloning.TensorCloningPrescribedLimits",
+    "Cloning.TensorCloningPrescribedRestriction",
+    "Cloning.TensorRankOneDimension",
+    "Cloning.TensorRankOneHighest",
+    "Cloning.TensorRankOneSector",
+    "Cloning.WeylDiagonalIdler",
+    "Cloning.WeylDiagonalMultiplier",
+    "Cloning.WeylDiagonalQuantumPositive",
+    "Cloning.WeylDiagonalRepresentation",
+    "Cloning.WeylFockDecomposition",
+    "Cloning.WeylFockRepresentation",
+    "Cloning.WeylFockState",
+    "Cloning.WeylFockVacuum",
+    "Cloning.WeylGaussianApproximation",
+    "Cloning.WeylGaussianProjectionSandwich",
+    "Cloning.WeylGaussianTotality",
+    "Cloning.WeylGaussianTwirl",
+    "Cloning.WeylGaussianVacuumSpace",
+    "Cloning.WeylIrreducibleRepresentation",
+    "Cloning.WeylQuantumBochner",
+    "Cloning.WeylQuantumBochnerReflection",
+    "Cloning.WeylSqueezerIdlerState",
+    "Cloning.WeylSqueezerIrreducible",
+    "Cloning.WeylSqueezerKraus",
+    "Cloning.WeylSqueezerPhase",
+    "Cloning.WeylSqueezerUnitary",
+    "Cloning.WeylSqueezerUnitaryChannel",
+    "Cloning.CovariantAmplifierCompositeReflected",
+    "Cloning.CovariantAmplifierLeastNoise",
+    "Cloning.CovariantAmplifierLeastNoiseIdler",
+    "Cloning.CovariantAmplifierLeastNoiseParameters",
+    "Cloning.MultimodeIdlerCharacteristic",
+    "Cloning.MultimodeIdlerCharacteristicCovariance",
+    "Cloning.MultimodeIdlerCharacteristicIsometry",
+    "Cloning.MultimodeIdlerCharacteristicKernel",
+    "Cloning.MultimodeIdlerCharacteristicMultiplier",
+    "Cloning.MultimodeIdlerCharacteristicPhase",
+    "Cloning.PCTFlatGaussianCrossFrame",
+    "Cloning.PCTFlatGaussianCrossFrameExistence",
+    "Cloning.PCTFlatGaussianCrossKernel",
+    "Cloning.PCTProjectorPurityParticle",
+    "Cloning.PCTPurityFidelity",
+    "Cloning.PCTPurityFidelityMixture",
+    "Cloning.PCTRankOnePureInput",
+    "Cloning.PCTWernerLowerBasis",
+    "Cloning.PhysicalFlatRate",
+    "Cloning.PhysicalFlatRateRounded",
+    "Cloning.SampleRatioExpansion",
+    "Cloning.SampleRatioThreshold",
+    "Cloning.ScalarPowerExpansion",
+    "Cloning.ScalarTaylorInverse",
+    "Cloning.ScalarTaylorRemainder",
+    "Cloning.SpectralAffineTheorem",
+    "Cloning.SpectralAffineTopology",
+    "Cloning.TensorRankOneCartan",
+    "Cloning.TensorRankOneCoupling",
+    "Cloning.TensorRankOneGibbs",
+    "Cloning.TensorRankOnePhase",
+    "Cloning.TensorRankOneProduct",
+    "Cloning.WeylSqueezerChannel",
+    "Cloning.WeylSqueezerPartialTrace",
+    "Cloning.WeylSqueezerPreparation",
+    "Cloning.WeylSqueezerProduct",
+    "Cloning.WeylSqueezerProductDisplacement",
+    "Cloning.WeylSqueezerProductSlices",
+    "Cloning.WeylSqueezerRepresentation",
+    "Cloning.YoungDimensionMomentRate",
+    "Cloning.YoungDimensionMomentRateAlgebra",
+    "Cloning.YoungDimensionMomentRateAsymptotics",
+    "Cloning.CloningValueExpansionAlgebra",
+    "Cloning.PBWSymmetricFrameRateCFC",
+    "Cloning.PCTFlatGaussianCrossLaw",
+    "Cloning.PCTFlatGaussianCrossMoment",
+    "Cloning.PCTFlatGaussianCrossReduction",
+    "Cloning.PCTProjectorPurityEnvelope",
+    "Cloning.PCTProjectorPurityGaussianCross",
+    "Cloning.PCTProjectorPurityGaussianEnergy",
+    "Cloning.PCTProjectorPurityGaussianSingle",
+    "Cloning.PCTProjectorPurityKernel",
+    "Cloning.PCTPurityFidelityBound",
+    "Cloning.PCTPurityFidelityBoundAlgebra",
+    "Cloning.PCTPurityFidelityPhysical",
+    "Cloning.PCTWernerLower",
+    "Cloning.PhysicalFlatPCTFinite",
+    "Cloning.PhysicalFlatRateBounded",
+    "Cloning.SampleRatioFinite",
+    "Cloning.SampleRatioLimit",
+    "Cloning.TensorRankOneCopy",
+    "Cloning.TensorRankOneTransition",
+    "Cloning.TensorRankOneWernerCovariance",
+    "Cloning.CloningValueExpansion",
+    "Cloning.CloningValueExpansionClassical",
+    "Cloning.CloningValueExpansionProjector",
+    "Cloning.CloningValueExpansionTarget",
+    "Cloning.CloningValueExpansionThermal",
+    "Cloning.CloningValueExpansionThreshold",
+    "Cloning.PBWSymmetricFrameRate",
+    "Cloning.PBWSymmetricFrameRateMatrix",
+    "Cloning.PBWSymmetricFrameRatePhysical",
+    "Cloning.PCTProjectorPurityDomination",
+    "Cloning.PCTProjectorPurityEnvelopeExpansion",
+    "Cloning.PCTProjectorPurityEnvelopeLimits",
+    "Cloning.PCTProjectorPurityEnvelopePhysical",
+    "Cloning.PCTProjectorPurityEnvelopeRate",
+    "Cloning.PCTProjectorPurityEnvelopeTheorem",
+    "Cloning.PCTProjectorPurityLimit",
+    "Cloning.PCTProjectorPurityPhysical",
+    "Cloning.PCTProjectorPurityTargets",
+    "Cloning.PCTRankPurificationGeneralAction",
+    "Cloning.PCTRankPurificationGeneralEmbedding",
+    "Cloning.PCTRankPurificationGeneralOrbit",
+    "Cloning.PhysicalAllStateMinimax",
+    "Cloning.TensorRankOneGlobal",
+    "Cloning.CloningValueComparisonGeometric",
+    "Cloning.CloningValueComparisonMonotone",
+    "Cloning.PBWSymmetricFrameRateWeightSpace",
+    "Cloning.PCTRankPurificationGeneralPhysical",
+    "Cloning.PCTRankPurificationGeneralTheorem",
+    "Cloning.PhysicalAllStateMinimaxLower",
+    "Cloning.CloningValueBoundaryCoefficients",
+    "Cloning.CloningValueComparisonInfimum",
+    "Cloning.CloningValueComparisonLargeGain",
+    "Cloning.PBWSymmetricFrameRateBlocks",
+    "Cloning.PBWSymmetricFrameRateCartan",
+    "Cloning.PBWSymmetricFrameRateCartanBounds",
+    "Cloning.PBWSymmetricFrameRateCartanGrouping",
+    "Cloning.PBWSymmetricFrameRateGram",
+    "Cloning.PBWSymmetricFrameRateWord",
+    "Cloning.PCTPrescribedRankGuarantee",
+    "Cloning.PCTRankPurificationGeneralFinite",
+    "Cloning.PCTRankPurificationGeneralHaar",
+    "Cloning.PCTRankPurificationGeneralPurification",
+    "Cloning.PhysicalAllStateMinimaxBounds",
+    "Cloning.PhysicalCloningSmallError",
+    "Cloning.SpectralGapCompact",
+    "Cloning.SpectralGapThreshold",
+    "Cloning.SpectralRatioMajorization",
+    "Cloning.SpectralRatioMajorizationCounterexample",
+    "Cloning.ThermalNearPure",
+    "Cloning.YoungGeneralSharpConcentration",
+    "Cloning.QubitDegeneracy",
+    "Cloning.TensorCloningShrinkingWindows",
+    "Cloning.YoungUniformCharacterWindows",
+    "Cloning.TensorSchurDecompositionSharpConcentration",
+    "Cloning.InfiniteFidelityRegularizedLimit",
+    "Cloning.HybridWeightedFidelityLimit",
+    "Cloning.TensorCloningShrinkingMixture",
+    "Cloning.YoungPhysicalRoundingUniformDensity",
+    "Cloning.TensorCloningLiftedFactorization",
+    "Cloning.HybridScorePolytope",
+    "Cloning.HybridFlatBody",
+    "Cloning.HybridGaussianFlatBody",
+    "Cloning.HybridGaussianScoreOptimum",
+    "Cloning.MatrixRankCompressionFidelity",
+    "Cloning.TensorRankCartanRestriction",
+    "Cloning.TensorRankCartanCompression",
+    "Cloning.TensorPositiveSpectrumCompression",
+    "Cloning.TensorPositiveSpectrumCompressionMatrix",
+    "Cloning.TensorPositiveSpectrumCompressionFidelity",
+    "Cloning.ScoreReferenceMeasure"
+  ],
+  "Cloning.AmplifierWeylCoherent": [
+    "Cloning.BosonicAmplifierThermal",
+    "Cloning.WeylDisplacement",
+    "Cloning.InfiniteTraceClassPairing"
+  ],
+  "Cloning.AmplifierWeylCovariance": [
+    "Cloning.AmplifierWeylCoherent",
+    "Cloning.WeylChannel"
+  ],
+  "Cloning.AmplifierWeylMultimode": [
+    "Cloning.MultimodeIdler",
+    "Cloning.ThermalWitness",
+    "Cloning.AmplifierWeylCoherent",
+    "Cloning.WeylMultimodeChannel"
+  ],
+  "Cloning.AmplifierWeylMultimodeCovariance": [
+    "Cloning.AmplifierWeylMultimode",
+    "Cloning.AmplifierWeylCovariance"
+  ],
+  "Cloning.AmplifierWeylThermal": [
+    "Cloning.AmplifierWeylMultimodeCovariance",
+    "Cloning.WeylThermalFourierChannel",
+    "Cloning.UniversalLeastNoiseThermalTest"
+  ],
+  "Cloning.BlockFidelity": [],
+  "Cloning.BosonicAmplifier": [
+    "Cloning.CoherentCoefficients"
+  ],
+  "Cloning.BosonicAmplifierChannel": [
+    "Cloning.BosonicAmplifier",
+    "Cloning.InfiniteKrausChannel",
+    "Cloning.InfiniteOccupationStates"
+  ],
+  "Cloning.BosonicAmplifierThermal": [
+    "Cloning.BosonicAmplifierChannel",
+    "Cloning.BosonicNumberLaw",
+    "Cloning.InfiniteDiagonalFidelity"
+  ],
+  "Cloning.BosonicIdlerChannel": [
+    "Cloning.BosonicAmplifierChannel"
+  ],
+  "Cloning.BosonicMixtureStochasticOrder": [
+    "Cloning.BosonicStochasticOrder"
+  ],
+  "Cloning.BosonicNumberLaw": [
+    "Cloning.Thermal"
+  ],
+  "Cloning.BosonicStochasticOrder": [
+    "Cloning.BosonicNumberLaw"
+  ],
+  "Cloning.CartanChannel": [
+    "Cloning.Channels",
+    "Cloning.Compression"
+  ],
+  "Cloning.ChannelAveraging": [
+    "Cloning.InfiniteCompletelyPositive",
+    "Cloning.InfiniteChannelTraceRepair",
+    "Cloning.InfiniteChannelCovariance"
+  ],
+  "Cloning.Channels": [],
+  "Cloning.ClassicalFidelity": [
+    "Cloning.Rounding",
+    "Cloning.BlockFidelity"
+  ],
+  "Cloning.CloningValueBoundaryCoefficients": [
+    "Cloning.CloningValueExpansionThreshold"
+  ],
+  "Cloning.CloningValueComparisonGeometric": [
+    "Cloning.CloningValueComparisonMonotone"
+  ],
+  "Cloning.CloningValueComparisonInfimum": [
+    "Cloning.CloningValueComparisonGeometric"
+  ],
+  "Cloning.CloningValueComparisonLargeGain": [
+    "Cloning.CloningValueComparisonInfimum"
+  ],
+  "Cloning.CloningValueComparisonMonotone": [
+    "Cloning.Main"
+  ],
+  "Cloning.CloningValueExpansion": [
+    "Cloning.CloningValueExpansionClassical"
+  ],
+  "Cloning.CloningValueExpansionAlgebra": [
+    "Cloning.ScalarTaylorRemainder"
+  ],
+  "Cloning.CloningValueExpansionClassical": [
+    "Cloning.CloningValueExpansionThermal",
+    "Cloning.Main"
+  ],
+  "Cloning.CloningValueExpansionProjector": [
+    "Cloning.CloningValueExpansionClassical"
+  ],
+  "Cloning.CloningValueExpansionTarget": [
+    "Cloning.CloningValueExpansionThreshold"
+  ],
+  "Cloning.CloningValueExpansionThermal": [
+    "Cloning.CloningValueExpansionAlgebra",
+    "Cloning.Thermal"
+  ],
+  "Cloning.CloningValueExpansionThreshold": [
+    "Cloning.CloningValueExpansion"
+  ],
+  "Cloning.CoherentCoefficients": [
+    "Cloning.PoissonApproximation"
+  ],
+  "Cloning.CoherentContinuity": [
+    "Cloning.CoherentKernel"
+  ],
+  "Cloning.CoherentGaussianMixture": [
+    "Cloning.CoherentContinuity",
+    "Cloning.ComplexGaussianMoments",
+    "Cloning.InfiniteDiagonalFidelity",
+    "Cloning.InfiniteChannelCovariance"
+  ],
+  "Cloning.CoherentKernel": [
+    "Cloning.ComplexCoherent"
+  ],
+  "Cloning.ComplexCoherent": [
+    "Cloning.OccupationChannel"
+  ],
+  "Cloning.ComplexGaussianMoments": [],
+  "Cloning.Compression": [],
+  "Cloning.CountMultinomialDensity": [
+    "Cloning.CountMultinomialPMF",
+    "Cloning.YoungFlatCells"
+  ],
+  "Cloning.CountMultinomialLimit": [
+    "Cloning.CountMultinomialLocal"
+  ],
+  "Cloning.CountMultinomialLocal": [
+    "Cloning.CountMultinomialDensity",
+    "Cloning.YoungUniformLocalScheffe"
+  ],
+  "Cloning.CountMultinomialMeasurability": [
+    "Cloning.CountMultinomialDensity",
+    "Cloning.YoungUniformLocalQuantization"
+  ],
+  "Cloning.CountMultinomialMixture": [
+    "Cloning.CountMultinomialMeasurability"
+  ],
+  "Cloning.CountMultinomialPMF": [
+    "Cloning.GeneralCoherentMultiplicity",
+    "Cloning.YoungUniformLocalPhysicalLattice",
+    "Cloning.YoungMultinomialLocalStirling"
+  ],
+  "Cloning.CountableScheffe": [
+    "Cloning.ClassicalFidelity",
+    "Cloning.Thermal"
+  ],
+  "Cloning.CovariantAmplifierComposite": [
+    "Cloning.AmplifierWeylThermal"
+  ],
+  "Cloning.CovariantAmplifierCompositeIdler": [
+    "Cloning.CovariantAmplifierComposite",
+    "Cloning.WeylDiagonalRepresentation"
+  ],
+  "Cloning.CovariantAmplifierCompositeReflected": [
+    "Cloning.CovariantAmplifierComposite",
+    "Cloning.WeylQuantumBochnerReflection"
+  ],
+  "Cloning.CovariantAmplifierLeastNoise": [
+    "Cloning.CovariantAmplifierLeastNoiseIdler",
+    "Cloning.CovariantAmplifierTraceLoss",
+    "Cloning.MultimodeIdlerCharacteristic",
+    "Cloning.MultimodeLeastNoise"
+  ],
+  "Cloning.CovariantAmplifierLeastNoiseIdler": [
+    "Cloning.CovariantAmplifierCompositeReflected",
+    "Cloning.CovariantAmplifierLeastNoiseParameters"
+  ],
+  "Cloning.CovariantAmplifierLeastNoiseParameters": [
+    "Cloning.CovariantAmplifierComposite"
+  ],
+  "Cloning.CovariantAmplifierTraceLoss": [
+    "Cloning.HeisenbergDualResidual"
+  ],
+  "Cloning.FiniteKrausLift": [
+    "Cloning.PCTPurificationChannelPhysical",
+    "Cloning.InfiniteRectangularKraus"
+  ],
+  "Cloning.GaussianAffinity": [
+    "Cloning.Main"
+  ],
+  "Cloning.GaussianConverseReduction": [
+    "Cloning.WeylFlatPriorThermal",
+    "Cloning.HeisenbergDualResidual"
+  ],
+  "Cloning.GaussianWitness": [
+    "Cloning.GaussianAffinity"
+  ],
+  "Cloning.GeneralCoherentChannels": [
+    "Cloning.GeneralCoherentLimits"
+  ],
+  "Cloning.GeneralCoherentConvergence": [
+    "Cloning.UniformCoherent",
+    "Cloning.MultimodeCoherent"
+  ],
+  "Cloning.GeneralCoherentCoordinates": [
+    "Cloning.GeneralCoherentModel",
+    "Cloning.GeneralCoherentMultiplicity",
+    "Cloning.WernerPhysicalPullback"
+  ],
+  "Cloning.GeneralCoherentLimits": [
+    "Cloning.GeneralCoherentCoordinates",
+    "Cloning.GeneralCoherentConvergence"
+  ],
+  "Cloning.GeneralCoherentMixture": [
+    "Cloning.GeneralCoherentChannels",
+    "Cloning.MultimodeCoherentGaussianMixture"
+  ],
+  "Cloning.GeneralCoherentModel": [
+    "Cloning.GeneralSymmetricDimension",
+    "Cloning.MultimodeCoherent",
+    "Cloning.IsometricRecovery"
+  ],
+  "Cloning.GeneralCoherentMultiplicity": [
+    "Cloning.GeneralSymmetricDimension"
+  ],
+  "Cloning.GeneralSymmetricBalance": [
+    "Cloning.GeneralSymmetricSplitting",
+    "Cloning.WernerMultivariateConvolution"
+  ],
+  "Cloning.GeneralSymmetricCounting": [
+    "Cloning.GeneralSymmetricOccupation"
+  ],
+  "Cloning.GeneralSymmetricDimension": [
+    "Cloning.GeneralSymmetricOccupation",
+    "Cloning.WernerNormalization"
+  ],
+  "Cloning.GeneralSymmetricOccupation": [
+    "Cloning.SymmetricOccupation"
+  ],
+  "Cloning.GeneralSymmetricProjector": [
+    "Cloning.GeneralSymmetricOccupation"
+  ],
+  "Cloning.GeneralSymmetricSplitting": [
+    "Cloning.GeneralSymmetricDimension",
+    "Cloning.GeneralCoherentMultiplicity",
+    "Cloning.CartanChannel"
+  ],
+  "Cloning.HeisenbergDual": [
+    "Cloning.InfiniteTraceClassPairing",
+    "Cloning.InfiniteCompletelyPositive"
+  ],
+  "Cloning.HeisenbergDualBounded": [
+    "Cloning.HeisenbergDual"
+  ],
+  "Cloning.HeisenbergDualContinuity": [
+    "Cloning.HeisenbergDualWeyl"
+  ],
+  "Cloning.HeisenbergDualResidual": [
+    "Cloning.HeisenbergDualWeyl",
+    "Cloning.InfiniteTraceBoundedMaps"
+  ],
+  "Cloning.HeisenbergDualWeyl": [
+    "Cloning.HeisenbergDual",
+    "Cloning.WeylCovariantMultiplier",
+    "Cloning.WeylMultimodeChannel"
+  ],
+  "Cloning.HybridChannel": [
+    "Cloning.HybridWeightedTrace"
+  ],
+  "Cloning.HybridChannelAveraging": [
+    "Cloning.HybridChannel",
+    "Cloning.HybridL1Cone"
+  ],
+  "Cloning.HybridClassicalAverageBound": [
+    "Cloning.HybridClassicalAverageTrace",
+    "Cloning.HybridClassicalConvolution"
+  ],
+  "Cloning.HybridClassicalAverageTrace": [
+    "Cloning.HybridGaussianMass",
+    "Cloning.HybridTranslation",
+    "Cloning.HybridCovariantWeighted"
+  ],
+  "Cloning.HybridClassicalConvolution": [
+    "Cloning.HybridTranslation"
+  ],
+  "Cloning.HybridCoordinateTransport": [
+    "Cloning.MixedChannels",
+    "Cloning.HybridGaussianAttainmentFidelity"
+  ],
+  "Cloning.HybridCovariantQuantum": [
+    "Cloning.HybridCovariantWeighted",
+    "Cloning.HybridTranslation",
+    "Cloning.WeylCovariantization"
+  ],
+  "Cloning.HybridCovariantWeighted": [
+    "Cloning.HybridWeightedTrace",
+    "Cloning.WeylMultimodeChannel"
+  ],
+  "Cloning.HybridCovariantization": [
+    "Cloning.HybridChannelAveraging",
+    "Cloning.HybridCovariantQuantum"
+  ],
+  "Cloning.HybridFidelity": [
+    "Cloning.HybridStates",
+    "Cloning.HybridIntegralBounds",
+    "Cloning.InfiniteChannelFidelity"
+  ],
+  "Cloning.HybridFlatBody": [
+    "Cloning.HybridFlatBox"
+  ],
+  "Cloning.HybridFlatBox": [
+    "Cloning.HybridPrior"
+  ],
+  "Cloning.HybridFoelner": [
+    "Cloning.HybridPrior"
+  ],
+  "Cloning.HybridFoelnerPayoff": [
+    "Cloning.HybridFoelnerThermal"
+  ],
+  "Cloning.HybridFoelnerResidual": [
+    "Cloning.HybridClassicalAverageBound",
+    "Cloning.UniversalGaussianConverse",
+    "Cloning.InfiniteTraceClassAsymptoticBound"
+  ],
+  "Cloning.HybridFoelnerThermal": [
+    "Cloning.HybridFoelnerResidual"
+  ],
+  "Cloning.HybridGaussianAttainment": [
+    "Cloning.HybridGaussianAttainmentAction",
+    "Cloning.HybridGaussianAttainmentFidelity",
+    "Cloning.HybridGaussianConverse"
+  ],
+  "Cloning.HybridGaussianAttainmentAction": [
+    "Cloning.HybridGaussianAttainmentChannel",
+    "Cloning.HybridGaussianAttainmentFidelity",
+    "Cloning.HybridGaussianConverse",
+    "Cloning.ThermalParameterContinuity"
+  ],
+  "Cloning.HybridGaussianAttainmentBoundary": [
+    "Cloning.HybridGaussianAttainmentRealBox",
+    "Cloning.HybridGaussianBoundary"
+  ],
+  "Cloning.HybridGaussianAttainmentChannel": [
+    "Cloning.HybridCovariantization",
+    "Cloning.AmplifierWeylThermal"
+  ],
+  "Cloning.HybridGaussianAttainmentFidelity": [
+    "Cloning.HybridFoelnerPayoff",
+    "Cloning.HybridL1Fidelity"
+  ],
+  "Cloning.HybridGaussianAttainmentRealBox": [
+    "Cloning.HybridGaussianAttainment",
+    "Cloning.HybridGaussianRealBox"
+  ],
+  "Cloning.HybridGaussianBoundary": [
+    "Cloning.HybridGaussianRealBox",
+    "Cloning.ThermalParameterContinuity"
+  ],
+  "Cloning.HybridGaussianConverse": [
+    "Cloning.HybridFoelnerPayoff",
+    "Cloning.HybridFoelner",
+    "Cloning.HybridL1Fidelity",
+    "Cloning.HybridOrbitPayoff"
+  ],
+  "Cloning.HybridGaussianFlatBody": [
+    "Cloning.HybridFlatBody",
+    "Cloning.HybridGaussianAttainmentBoundary"
+  ],
+  "Cloning.HybridGaussianMass": [
+    "Cloning.HybridThermalWitness"
+  ],
+  "Cloning.HybridGaussianRealBox": [
+    "Cloning.HybridFlatBox",
+    "Cloning.HybridGaussianConverse"
+  ],
+  "Cloning.HybridGaussianScoreOptimum": [
+    "Cloning.HybridGaussianFlatBody",
+    "Cloning.HybridScorePolytope",
+    "Cloning.PCTPhysicalFidelityLAN"
+  ],
+  "Cloning.HybridIntegralBounds": [],
+  "Cloning.HybridJensen": [
+    "Cloning.HybridL1",
+    "Cloning.InfiniteFidelityConcavity"
+  ],
+  "Cloning.HybridJensenSigmaFinite": [
+    "Cloning.HybridJensen"
+  ],
+  "Cloning.HybridL1": [
+    "Cloning.HybridFidelity",
+    "Cloning.ChannelAveraging"
+  ],
+  "Cloning.HybridL1Cone": [
+    "Cloning.HybridWeightedTrace"
+  ],
+  "Cloning.HybridL1Fidelity": [
+    "Cloning.HybridL1Cone",
+    "Cloning.HybridJensen",
+    "Cloning.HybridChannel"
+  ],
+  "Cloning.HybridL1Jensen": [
+    "Cloning.HybridL1Fidelity"
+  ],
+  "Cloning.HybridOrbitPayoff": [
+    "Cloning.HybridFoelner",
+    "Cloning.HybridL1Jensen",
+    "Cloning.WeylFoelnerPayoff"
+  ],
+  "Cloning.HybridPrior": [
+    "Cloning.HybridCovariantization"
+  ],
+  "Cloning.HybridProduct": [
+    "Cloning.HybridFidelity"
+  ],
+  "Cloning.HybridScorePolytope": [
+    "Cloning.PCTJointGaussianChart",
+    "Cloning.HybridFlatBox"
+  ],
+  "Cloning.HybridStates": [
+    "Cloning.InfiniteFidelityContinuity",
+    "Cloning.InfiniteTraceClassChannels",
+    "Cloning.InfiniteTraceClassSeries"
+  ],
+  "Cloning.HybridThermalWitness": [
+    "Cloning.HybridWeightedFidelity",
+    "Cloning.HybridL1",
+    "Cloning.GaussianWitness",
+    "Cloning.ThermalWitness"
+  ],
+  "Cloning.HybridTranslation": [
+    "Cloning.HybridWeightedTrace"
+  ],
+  "Cloning.HybridWeightedFidelity": [
+    "Cloning.HybridProduct",
+    "Cloning.InfiniteFidelityRegularized",
+    "Cloning.InfiniteTraceClassPairing"
+  ],
+  "Cloning.HybridWeightedFidelityLimit": [
+    "Cloning.HybridWeightedFidelity",
+    "Cloning.InfiniteFidelityRegularizedLimit"
+  ],
+  "Cloning.HybridWeightedMaps": [
+    "Cloning.HybridThermalWitness"
+  ],
+  "Cloning.HybridWeightedTrace": [
+    "Cloning.HybridWeightedMaps",
+    "Cloning.InfiniteTraceBoundedMaps"
+  ],
+  "Cloning.InfiniteAsymptoticCPCompactness": [
+    "Cloning.InfiniteCompletelyPositiveCompactness",
+    "Cloning.InfiniteTraceClassAsymptoticBound"
+  ],
+  "Cloning.InfiniteBilinearWeakClosure": [],
+  "Cloning.InfiniteChannelAdjoint": [
+    "Cloning.InfiniteTraceClassChannels"
+  ],
+  "Cloning.InfiniteChannelCompactness": [
+    "Cloning.InfiniteTraceClassFamilyCompactness",
+    "Cloning.InfiniteTraceClassSeparable",
+    "Cloning.InfiniteTraceClassPairing",
+    "Cloning.InfiniteBilinearWeakClosure"
+  ],
+  "Cloning.InfiniteChannelCovariance": [
+    "Cloning.InfiniteTraceClassCutoff"
+  ],
+  "Cloning.InfiniteChannelFidelity": [
+    "Cloning.InfiniteFidelityBlockBound",
+    "Cloning.InfiniteFidelityWitness",
+    "Cloning.InfiniteChannelAdjoint"
+  ],
+  "Cloning.InfiniteChannelLimitReconstruction": [
+    "Cloning.InfiniteChannelWeakLimit",
+    "Cloning.InfiniteChannelTraceRepair"
+  ],
+  "Cloning.InfiniteChannelTraceRepair": [
+    "Cloning.InfiniteCompletelyPositive"
+  ],
+  "Cloning.InfiniteChannelWeakLimit": [
+    "Cloning.InfiniteCompletelyPositive",
+    "Cloning.InfiniteTraceClassWeakLimit"
+  ],
+  "Cloning.InfiniteCompactObservableExtraction": [
+    "Cloning.InfiniteTraceClassCompactness",
+    "Cloning.InfiniteCompactObservableLimit"
+  ],
+  "Cloning.InfiniteCompactObservableLimit": [
+    "Cloning.InfiniteTraceClassNormalPart"
+  ],
+  "Cloning.InfiniteCompletelyPositive": [
+    "Cloning.InfiniteTraceClassCutoff",
+    "Cloning.InfiniteTraceClassDecomposition"
+  ],
+  "Cloning.InfiniteCompletelyPositiveCompactness": [
+    "Cloning.InfiniteChannelCompactness",
+    "Cloning.InfiniteChannelLimitReconstruction",
+    "Cloning.InfiniteTraceBoundedMaps",
+    "Cloning.InfiniteChannelTraceRepair",
+    "Cloning.InfiniteChannelWeakLimit",
+    "Cloning.InfiniteCompactObservableLimit",
+    "Cloning.InfiniteChannelCovariance"
+  ],
+  "Cloning.InfiniteCutoffChannels": [
+    "Cloning.InfiniteCompletelyPositive",
+    "Cloning.InfiniteTraceClassCutoffConvergence"
+  ],
+  "Cloning.InfiniteDensityState": [
+    "Cloning.InfiniteTraceClass"
+  ],
+  "Cloning.InfiniteDiagonalFidelity": [
+    "Cloning.InfiniteFidelityBlockBound",
+    "Cloning.InfiniteOccupationStates",
+    "Cloning.MatrixFidelityScaling"
+  ],
+  "Cloning.InfiniteFidelity": [
+    "Cloning.InfiniteTraceClassPositive"
+  ],
+  "Cloning.InfiniteFidelityBlockBound": [
+    "Cloning.InfiniteTraceClassCutoffConvergence",
+    "Cloning.InfiniteFidelityContinuity",
+    "Cloning.MatrixFidelityBlockBound",
+    "Cloning.InfiniteFiniteCorner"
+  ],
+  "Cloning.InfiniteFidelityBlockFactorization": [
+    "Cloning.InfiniteFidelityHilbertSum",
+    "Cloning.BlockFidelity"
+  ],
+  "Cloning.InfiniteFidelityConcavity": [
+    "Cloning.InfiniteChannelFidelity"
+  ],
+  "Cloning.InfiniteFidelityContinuity": [
+    "Cloning.InfinitePowersStormer"
+  ],
+  "Cloning.InfiniteFidelityCornerLimit": [
+    "Cloning.InfiniteGentleCompression",
+    "Cloning.InfiniteFiniteCorner",
+    "Cloning.HybridStates",
+    "Cloning.MatrixFidelitySymmetry"
+  ],
+  "Cloning.InfiniteFidelityCornerMixture": [
+    "Cloning.InfiniteFidelityCornerLimit",
+    "Cloning.InfiniteFidelityFiniteMixture"
+  ],
+  "Cloning.InfiniteFidelityFiniteMixture": [
+    "Cloning.InfiniteFidelityConcavity",
+    "Cloning.HybridGaussianAttainmentFidelity"
+  ],
+  "Cloning.InfiniteFidelityHilbertSum": [
+    "Cloning.InfiniteFidelityFiniteMixture",
+    "Cloning.InfiniteFiniteCorner",
+    "Cloning.MatrixFidelityBlocks",
+    "Cloning.PCTGlobalMatrixBridge"
+  ],
+  "Cloning.InfiniteFidelityMixtureNormalization": [
+    "Cloning.InfiniteFidelityBlockFactorization"
+  ],
+  "Cloning.InfiniteFidelityMixtureRestriction": [
+    "Cloning.InfiniteFidelityMixtureNormalization"
+  ],
+  "Cloning.InfiniteFidelityRegularized": [
+    "Cloning.InfiniteFidelityWeighted"
+  ],
+  "Cloning.InfiniteFidelityRegularizedLimit": [
+    "Cloning.InfiniteFidelityRegularized"
+  ],
+  "Cloning.InfiniteFidelityTransition": [
+    "Cloning.InfiniteFidelityFiniteMixture"
+  ],
+  "Cloning.InfiniteFidelityTransitionWeights": [
+    "Cloning.InfiniteFidelityTransition"
+  ],
+  "Cloning.InfiniteFidelityWeighted": [
+    "Cloning.InfiniteFidelity"
+  ],
+  "Cloning.InfiniteFidelityWitness": [
+    "Cloning.InfiniteCompletelyPositive",
+    "Cloning.InfiniteFidelityWeighted"
+  ],
+  "Cloning.InfiniteFiniteCorner": [
+    "Cloning.InfiniteFidelity",
+    "Cloning.InfinitePureStateContinuity",
+    "Cloning.InfiniteHilbertSchmidtPositive",
+    "Cloning.InfiniteTraceClassCutoffConvergence"
+  ],
+  "Cloning.InfiniteFiniteInstrument": [
+    "Cloning.MixedChannelsSectorInstrument",
+    "Cloning.MixedChannelsFiniteSelector",
+    "Cloning.HeisenbergDualResidual"
+  ],
+  "Cloning.InfiniteGentleCompression": [
+    "Cloning.InfiniteTraceClassCutoffConvergence",
+    "Cloning.InfiniteHilbertSchmidt"
+  ],
+  "Cloning.InfiniteGentleCompressionLimit": [
+    "Cloning.InfiniteGentleCompression",
+    "Cloning.InfiniteFiniteCorner"
+  ],
+  "Cloning.InfiniteHilbertSchmidt": [
+    "Cloning.InfiniteTraceClass"
+  ],
+  "Cloning.InfiniteHilbertSchmidtPositive": [
+    "Cloning.InfiniteTraceClassAlgebra",
+    "Cloning.MatrixTraceOrder"
+  ],
+  "Cloning.InfiniteIsometricChannel": [
+    "Cloning.InfiniteChannelTraceRepair",
+    "Cloning.InfiniteTraceClassDecomposition"
+  ],
+  "Cloning.InfiniteKrausChannel": [
+    "Cloning.InfiniteChannelWeakLimit",
+    "Cloning.InfiniteChannelTraceRepair",
+    "Cloning.InfiniteChannelCovariance"
+  ],
+  "Cloning.InfiniteLANTransfer": [
+    "Cloning.InfiniteFidelityContinuity",
+    "Cloning.InfiniteChannelFidelity",
+    "Cloning.InfiniteCompletelyPositive",
+    "Cloning.LAN"
+  ],
+  "Cloning.InfiniteOccupationStates": [
+    "Cloning.WernerAsymptotics",
+    "Cloning.InfiniteTraceClassSeries"
+  ],
+  "Cloning.InfinitePowersStormer": [
+    "Cloning.InfiniteFidelityWeighted",
+    "Cloning.InfiniteTraceClassChannels",
+    "Cloning.InfiniteTraceClassSeries",
+    "Cloning.InfiniteHilbertSchmidtPositive"
+  ],
+  "Cloning.InfinitePureStateContinuity": [
+    "Cloning.InfiniteTraceClassSeries",
+    "Cloning.CoherentCoefficients"
+  ],
+  "Cloning.InfiniteRectangularKraus": [
+    "Cloning.InfiniteIsometricChannel",
+    "Cloning.InfiniteChannelWeakLimit",
+    "Cloning.InfiniteChannelCovariance"
+  ],
+  "Cloning.InfiniteTraceBoundedMaps": [
+    "Cloning.InfiniteTraceClassChannels",
+    "Cloning.InfiniteTraceClassSeries"
+  ],
+  "Cloning.InfiniteTraceClass": [],
+  "Cloning.InfiniteTraceClassAlgebra": [
+    "Cloning.InfiniteTraceClassNormBounds",
+    "Cloning.InfiniteTraceClassBanach"
+  ],
+  "Cloning.InfiniteTraceClassAsymptoticBound": [
+    "Cloning.InfiniteTraceClassWeakLimit",
+    "Cloning.InfiniteTraceClassSeries"
+  ],
+  "Cloning.InfiniteTraceClassBanach": [
+    "Cloning.InfiniteTraceClassSpace"
+  ],
+  "Cloning.InfiniteTraceClassBasis": [
+    "Cloning.InfiniteTraceClassPolar",
+    "Cloning.InfiniteHilbertSchmidt"
+  ],
+  "Cloning.InfiniteTraceClassChannels": [
+    "Cloning.InfiniteTraceClassAlgebra",
+    "Cloning.InfiniteTraceClassPositive",
+    "Cloning.InfiniteDensityState"
+  ],
+  "Cloning.InfiniteTraceClassCompactness": [
+    "Cloning.InfiniteTraceClassNormalPart"
+  ],
+  "Cloning.InfiniteTraceClassCutoff": [
+    "Cloning.InfiniteTraceClassChannels",
+    "Cloning.InfiniteTraceClassSeries"
+  ],
+  "Cloning.InfiniteTraceClassCutoffConvergence": [
+    "Cloning.InfiniteTraceClassCutoff",
+    "Cloning.InfiniteTraceClassDecomposition",
+    "Cloning.InfinitePureStateContinuity"
+  ],
+  "Cloning.InfiniteTraceClassDecomposition": [
+    "Cloning.InfiniteTraceClassSeries",
+    "Cloning.InfiniteTraceClassPositive"
+  ],
+  "Cloning.InfiniteTraceClassFamilyCompactness": [
+    "Cloning.InfiniteTraceClassCompactness"
+  ],
+  "Cloning.InfiniteTraceClassIdeal": [
+    "Cloning.InfiniteTraceClassBasis"
+  ],
+  "Cloning.InfiniteTraceClassNormBounds": [
+    "Cloning.InfiniteTraceClassIdeal"
+  ],
+  "Cloning.InfiniteTraceClassNormalPart": [
+    "Cloning.InfiniteTraceClassCutoffConvergence",
+    "Cloning.InfiniteTraceClassWeakLimit"
+  ],
+  "Cloning.InfiniteTraceClassPairing": [
+    "Cloning.InfiniteTraceClassNormalPart"
+  ],
+  "Cloning.InfiniteTraceClassPolar": [
+    "Cloning.InfiniteTraceClass"
+  ],
+  "Cloning.InfiniteTraceClassPositive": [
+    "Cloning.InfiniteTraceClassAlgebra",
+    "Cloning.InfiniteDensityState"
+  ],
+  "Cloning.InfiniteTraceClassSeparable": [
+    "Cloning.InfiniteTraceClassDecomposition",
+    "Cloning.InfiniteTraceClassChannels",
+    "Cloning.InfinitePureStateContinuity"
+  ],
+  "Cloning.InfiniteTraceClassSeries": [
+    "Cloning.InfiniteTraceClassAlgebra",
+    "Cloning.InfiniteDensityState",
+    "Cloning.CountableScheffe"
+  ],
+  "Cloning.InfiniteTraceClassSpace": [
+    "Cloning.InfiniteTraceClass",
+    "Cloning.InfiniteTraceClassIdeal",
+    "Cloning.InfiniteTraceClassNormBounds"
+  ],
+  "Cloning.InfiniteTraceClassWeakLimit": [
+    "Cloning.InfiniteTraceClassPositive"
+  ],
+  "Cloning.InfiniteWeakLimitRepair": [
+    "Cloning.InfiniteChannelWeakLimit",
+    "Cloning.InfiniteChannelTraceRepair"
+  ],
+  "Cloning.IsometricRecovery": [
+    "Cloning.InfiniteIsometricChannel"
+  ],
+  "Cloning.LAN": [],
+  "Cloning.Main": [
+    "Cloning.BlockFidelity",
+    "Cloning.Thermal",
+    "Cloning.LAN"
+  ],
+  "Cloning.MatrixChannelFidelity": [
+    "Cloning.Channels",
+    "Cloning.MatrixFidelitySymmetry",
+    "Cloning.MatrixFidelityWitness",
+    "Cloning.MatrixFidelityBlockBound"
+  ],
+  "Cloning.MatrixChannelTraceNorm": [
+    "Cloning.MatrixLiftedChannel",
+    "Cloning.MatrixTraceNormOrder"
+  ],
+  "Cloning.MatrixCovariantBalance": [
+    "Cloning.CartanChannel",
+    "Cloning.MatrixPartialTraceCovariance"
+  ],
+  "Cloning.MatrixDiscardLabel": [
+    "Cloning.Channels",
+    "Cloning.MatrixFidelityBlocks"
+  ],
+  "Cloning.MatrixFidelity": [],
+  "Cloning.MatrixFidelityAchievability": [
+    "Cloning.MatrixFidelityLifted",
+    "Cloning.MatrixFidelityProjector"
+  ],
+  "Cloning.MatrixFidelityAsymptotics": [
+    "Cloning.Main",
+    "Cloning.MatrixFidelityDeletion",
+    "Cloning.MatrixFidelityAchievability"
+  ],
+  "Cloning.MatrixFidelityBlockBound": [
+    "Cloning.MatrixTraceOrder",
+    "Cloning.MatrixFidelitySymmetry",
+    "Cloning.MatrixFidelityWitness"
+  ],
+  "Cloning.MatrixFidelityBlocks": [
+    "Cloning.MatrixFidelity"
+  ],
+  "Cloning.MatrixFidelityBounds": [
+    "Cloning.MatrixFidelity"
+  ],
+  "Cloning.MatrixFidelityContinuity": [
+    "Cloning.MatrixFidelityDeletion",
+    "Cloning.MatrixFidelitySymmetry"
+  ],
+  "Cloning.MatrixFidelityDeletion": [
+    "Cloning.MatrixFidelityLifted",
+    "Cloning.MatrixFidelityProjector",
+    "Cloning.MatrixSqrtSubadditivity",
+    "Cloning.MatrixFidelityTraceBound"
+  ],
+  "Cloning.MatrixFidelityEmbedding": [
+    "Cloning.MatrixFidelity"
+  ],
+  "Cloning.MatrixFidelityJointConcavity": [
+    "Cloning.MatrixDiscardLabel",
+    "Cloning.MatrixChannelFidelity",
+    "Cloning.MatrixFidelityScaling"
+  ],
+  "Cloning.MatrixFidelityLifted": [
+    "Cloning.MatrixFidelityBlocks",
+    "Cloning.MatrixFidelityTensor",
+    "Cloning.MatrixFidelityScaling",
+    "Cloning.MatrixFidelityNormalization"
+  ],
+  "Cloning.MatrixFidelityLimit": [
+    "Cloning.MatrixFidelityLifted"
+  ],
+  "Cloning.MatrixFidelityMixtures": [
+    "Cloning.MatrixFidelity",
+    "Cloning.MatrixFidelityProjector"
+  ],
+  "Cloning.MatrixFidelityNormalization": [
+    "Cloning.MatrixFidelityScaling"
+  ],
+  "Cloning.MatrixFidelityProjector": [
+    "Cloning.MatrixFidelity",
+    "Cloning.MatrixFidelityBlocks",
+    "Cloning.Projector",
+    "Cloning.Channels"
+  ],
+  "Cloning.MatrixFidelityScaling": [
+    "Cloning.MatrixFidelity",
+    "Cloning.BlockFidelity"
+  ],
+  "Cloning.MatrixFidelitySymmetry": [
+    "Cloning.MatrixFidelityTraceBound",
+    "Cloning.MatrixFidelityEmbedding"
+  ],
+  "Cloning.MatrixFidelityTensor": [
+    "Cloning.MatrixFidelity"
+  ],
+  "Cloning.MatrixFidelityTraceBound": [
+    "Cloning.MatrixFidelityBounds",
+    "Cloning.MatrixRegularization"
+  ],
+  "Cloning.MatrixFidelityWitness": [
+    "Cloning.MatrixFidelitySymmetry",
+    "Cloning.MatrixRegularization"
+  ],
+  "Cloning.MatrixLANTransfer": [
+    "Cloning.MatrixChannelFidelity",
+    "Cloning.MatrixChannelTraceNorm",
+    "Cloning.MatrixFidelityContinuity",
+    "Cloning.MatrixLiftedChannel",
+    "Cloning.LAN"
+  ],
+  "Cloning.MatrixLiftedCPTP": [
+    "Cloning.MatrixLiftedChannel"
+  ],
+  "Cloning.MatrixLiftedCPTPAction": [
+    "Cloning.MatrixLiftedCPTP",
+    "Cloning.MatrixChannelFidelity"
+  ],
+  "Cloning.MatrixLiftedCPTPKraus": [
+    "Cloning.MatrixLiftedCPTPAction",
+    "Cloning.FiniteKrausLift"
+  ],
+  "Cloning.MatrixLiftedCPTPPhysical": [
+    "Cloning.MatrixLiftedCPTPKraus"
+  ],
+  "Cloning.MatrixLiftedChannel": [
+    "Cloning.Channels",
+    "Cloning.MatrixFidelityBlocks",
+    "Cloning.MatrixFidelityTensor",
+    "Cloning.MatrixFidelityLifted"
+  ],
+  "Cloning.MatrixLiftedTrimming": [
+    "Cloning.MatrixLiftedChannel",
+    "Cloning.MatrixFidelityDeletion",
+    "Cloning.MatrixFidelityAsymptotics"
+  ],
+  "Cloning.MatrixPartialTraceCovariance": [
+    "Cloning.Compression"
+  ],
+  "Cloning.MatrixRankCompressionFidelity": [
+    "Cloning.MatrixFidelityEmbedding",
+    "Cloning.MatrixFidelityScaling",
+    "Cloning.CartanChannel"
+  ],
+  "Cloning.MatrixRegularization": [
+    "Cloning.MatrixFidelityBounds"
+  ],
+  "Cloning.MatrixSqrtSubadditivity": [
+    "Cloning.MatrixFidelity",
+    "Cloning.MatrixTraceOrder",
+    "Cloning.MatrixRegularization"
+  ],
+  "Cloning.MatrixTraceNormOrder": [
+    "Cloning.MatrixFidelityContinuity"
+  ],
+  "Cloning.MatrixTraceOrder": [
+    "Cloning.MatrixFidelity"
+  ],
+  "Cloning.MatrixTransitionAchievability": [
+    "Cloning.MatrixLiftedTrimming",
+    "Cloning.MatrixFidelityMixtures",
+    "Cloning.MatrixFidelityAchievability"
+  ],
+  "Cloning.MatrixWeightedFidelity": [
+    "Cloning.MatrixFidelityBlockBound"
+  ],
+  "Cloning.MixedChannels": [
+    "Cloning.HybridChannelAveraging",
+    "Cloning.HybridL1Fidelity",
+    "Cloning.InfiniteChannelFidelity"
+  ],
+  "Cloning.MixedChannelsBounded": [
+    "Cloning.MixedChannels"
+  ],
+  "Cloning.MixedChannelsFidelity": [
+    "Cloning.MixedChannels"
+  ],
+  "Cloning.MixedChannelsFiniteInstrument": [
+    "Cloning.MixedChannelsPreparation",
+    "Cloning.InfiniteRectangularKraus"
+  ],
+  "Cloning.MixedChannelsFiniteSelector": [
+    "Cloning.MixedChannelsFiniteInstrument"
+  ],
+  "Cloning.MixedChannelsPositiveApprox": [
+    "Cloning.MixedChannels"
+  ],
+  "Cloning.MixedChannelsPreparation": [
+    "Cloning.MixedChannels",
+    "Cloning.HybridCovariantWeighted"
+  ],
+  "Cloning.MixedChannelsReverseFidelity": [
+    "Cloning.MixedChannelsPositiveApprox"
+  ],
+  "Cloning.MixedChannelsSectorInstrument": [
+    "Cloning.MixedChannelsFiniteInstrument"
+  ],
+  "Cloning.MixedGaussianConverse": [
+    "Cloning.MixedLANTransfer",
+    "Cloning.HybridGaussianAttainmentBoundary"
+  ],
+  "Cloning.MixedLANTransfer": [
+    "Cloning.MixedChannelsFidelity",
+    "Cloning.LAN"
+  ],
+  "Cloning.Moments": [],
+  "Cloning.MultimodeCoherent": [
+    "Cloning.CoherentContinuity"
+  ],
+  "Cloning.MultimodeCoherentGaussianMixture": [
+    "Cloning.MultimodeCoherent",
+    "Cloning.CoherentGaussianMixture"
+  ],
+  "Cloning.MultimodeIdler": [
+    "Cloning.BosonicIdlerChannel",
+    "Cloning.BosonicNumberLaw"
+  ],
+  "Cloning.MultimodeIdlerCharacteristic": [
+    "Cloning.MultimodeIdlerCharacteristicCovariance",
+    "Cloning.MultimodeIdlerCharacteristicMultiplier"
+  ],
+  "Cloning.MultimodeIdlerCharacteristicCovariance": [
+    "Cloning.MultimodeIdlerCharacteristicIsometry",
+    "Cloning.WeylSqueezerPartialTrace",
+    "Cloning.PCTGaussianOutput",
+    "Cloning.WeylQuantumPositiveBlocks"
+  ],
+  "Cloning.MultimodeIdlerCharacteristicIsometry": [
+    "Cloning.MultimodeIdlerCharacteristicKernel",
+    "Cloning.MultimodeIdlerCharacteristicPhase",
+    "Cloning.WeylSqueezerProductDisplacement"
+  ],
+  "Cloning.MultimodeIdlerCharacteristicKernel": [
+    "Cloning.AmplifierWeylMultimode",
+    "Cloning.WeylSqueezerProduct"
+  ],
+  "Cloning.MultimodeIdlerCharacteristicMultiplier": [
+    "Cloning.WeylDiagonalMultiplier",
+    "Cloning.WeylQuantumBochnerReflection",
+    "Cloning.WeylThermalCharacteristic"
+  ],
+  "Cloning.MultimodeIdlerCharacteristicPhase": [
+    "Cloning.AmplifierWeylMultimode"
+  ],
+  "Cloning.MultimodeLeastNoise": [
+    "Cloning.MultimodeThermalIdlerFidelity",
+    "Cloning.BosonicMixtureStochasticOrder"
+  ],
+  "Cloning.MultimodeThermalIdlerFidelity": [
+    "Cloning.ThermalIdlerFidelity",
+    "Cloning.MultimodeIdler"
+  ],
+  "Cloning.Occupation": [],
+  "Cloning.OccupationChannel": [
+    "Cloning.OccupationCompression",
+    "Cloning.InfiniteRectangularKraus"
+  ],
+  "Cloning.OccupationCompression": [
+    "Cloning.SymmetricOccupation"
+  ],
+  "Cloning.OccupationRecovery": [
+    "Cloning.IsometricRecovery",
+    "Cloning.ComplexCoherent"
+  ],
+  "Cloning.OrbitalGaussianAttainment": [
+    "Cloning.AmplifierWeylThermal",
+    "Cloning.UniversalGaussianRealBox",
+    "Cloning.InfiniteDiagonalFidelity"
+  ],
+  "Cloning.OrbitalGaussianAttainmentBoundary": [
+    "Cloning.ThermalParameterContinuity",
+    "Cloning.OrbitalGaussianAttainment",
+    "Cloning.UniversalGaussianBoundary"
+  ],
+  "Cloning.OrbitalSeededOptimum": [
+    "Cloning.Main",
+    "Cloning.MultimodeThermalIdlerFidelity"
+  ],
+  "Cloning.PBWCutoffGram": [
+    "Cloning.PBWNormalOrdering"
+  ],
+  "Cloning.PBWGramLimit": [
+    "Cloning.PBWCutoffGram"
+  ],
+  "Cloning.PBWNormalOrdering": [],
+  "Cloning.PBWRootBounds": [
+    "Cloning.PBWCutoffGram"
+  ],
+  "Cloning.PBWRootGram": [
+    "Cloning.PBWRootBounds",
+    "Cloning.PBWGramLimit"
+  ],
+  "Cloning.PBWSymmetricFrameRate": [
+    "Cloning.PBWSymmetricFrameRateCFC"
+  ],
+  "Cloning.PBWSymmetricFrameRateBlocks": [
+    "Cloning.PBWSymmetricFrameRatePhysical",
+    "Cloning.PBWSymmetricFrameRateWeightSpace"
+  ],
+  "Cloning.PBWSymmetricFrameRateCFC": [
+    "Cloning.InfiniteFiniteCorner"
+  ],
+  "Cloning.PBWSymmetricFrameRateCartan": [
+    "Cloning.PBWSymmetricFrameRateWord",
+    "Cloning.PBWSymmetricFrameRateCartanGrouping"
+  ],
+  "Cloning.PBWSymmetricFrameRateCartanBounds": [
+    "Cloning.PBWSymmetricFrameRateBlocks",
+    "Cloning.TensorCartanOccupationAmplitude"
+  ],
+  "Cloning.PBWSymmetricFrameRateCartanGrouping": [
+    "Cloning.PBWSymmetricFrameRateCartanBounds"
+  ],
+  "Cloning.PBWSymmetricFrameRateGram": [
+    "Cloning.PBWSymmetricFrameRateBlocks"
+  ],
+  "Cloning.PBWSymmetricFrameRateMatrix": [
+    "Cloning.PBWSymmetricFrameRate"
+  ],
+  "Cloning.PBWSymmetricFrameRatePhysical": [
+    "Cloning.PBWSymmetricFrameRateMatrix",
+    "Cloning.TensorCartanCutoffFrame"
+  ],
+  "Cloning.PBWSymmetricFrameRateWeightSpace": [
+    "Cloning.PBWSymmetricFrameRateMatrix",
+    "Cloning.TensorGibbsHeight",
+    "Cloning.TensorPBWFiniteSector"
+  ],
+  "Cloning.PBWSymmetricFrameRateWord": [
+    "Cloning.PBWSymmetricFrameRateBlocks"
+  ],
+  "Cloning.PCTClosedForm": [
+    "Cloning.Main"
+  ],
+  "Cloning.PCTCoordinateFrame": [
+    "Cloning.FiniteKrausLift",
+    "Cloning.PurificationSupport"
+  ],
+  "Cloning.PCTCountAffinity": [
+    "Cloning.PCTCountGaussian",
+    "Cloning.YoungPhysicalRoundingAnalysis"
+  ],
+  "Cloning.PCTCountGaussian": [
+    "Cloning.PCTCountMixture",
+    "Cloning.TensorLANEmbeddingWhiteningGaussian",
+    "Cloning.PCTJointGaussianConvolution"
+  ],
+  "Cloning.PCTCountMeasurementChannel": [
+    "Cloning.PCTCountMeasurementWeights",
+    "Cloning.FiniteKrausLift",
+    "Cloning.InfiniteChannelFidelity"
+  ],
+  "Cloning.PCTCountMeasurementFidelity": [
+    "Cloning.PCTCountMeasurementChannel",
+    "Cloning.MatrixFidelityScaling"
+  ],
+  "Cloning.PCTCountMeasurementImage": [
+    "Cloning.PCTCountMeasurementFidelity"
+  ],
+  "Cloning.PCTCountMeasurementMixture": [
+    "Cloning.PCTCountMeasurementSmoothing",
+    "Cloning.PCTCountParameters",
+    "Cloning.ChannelAveraging"
+  ],
+  "Cloning.PCTCountMeasurementSmoothing": [
+    "Cloning.PCTCountMeasurementImage",
+    "Cloning.PCTCountMeasurementTensor",
+    "Cloning.CountMultinomialMeasurability"
+  ],
+  "Cloning.PCTCountMeasurementTensor": [
+    "Cloning.PCTCountMeasurementFidelity",
+    "Cloning.CountMultinomialPMF",
+    "Cloning.PCTPhysicalState"
+  ],
+  "Cloning.PCTCountMeasurementWeights": [
+    "Cloning.InfiniteChannelCovariance",
+    "Cloning.InfiniteTraceClassChannels",
+    "Cloning.InfiniteFidelityHilbertSum"
+  ],
+  "Cloning.PCTCountMixture": [
+    "Cloning.PCTCountParameters",
+    "Cloning.CountMultinomialMixture"
+  ],
+  "Cloning.PCTCountParameters": [
+    "Cloning.CountMultinomialLimit",
+    "Cloning.PCTPhysicalState",
+    "Cloning.PCTTangentChartFrame",
+    "Cloning.PCTJointGaussianChart"
+  ],
+  "Cloning.PCTCountPhysical": [
+    "Cloning.PCTCountAffinity",
+    "Cloning.PCTCountMeasurementMixture"
+  ],
+  "Cloning.PCTFlatGaussianCrossFrame": [
+    "Cloning.PCTGaussianCovariance",
+    "Cloning.PCTPurificationFrame"
+  ],
+  "Cloning.PCTFlatGaussianCrossFrameExistence": [
+    "Cloning.PCTFlatGaussianCrossFrame",
+    "Cloning.PCTTangentNormalization"
+  ],
+  "Cloning.PCTFlatGaussianCrossKernel": [
+    "Cloning.PCTFlatGaussianCrossFrameExistence",
+    "Cloning.PCTGaussianCovarianceClassical"
+  ],
+  "Cloning.PCTFlatGaussianCrossLaw": [
+    "Cloning.PCTGaussianCovariance"
+  ],
+  "Cloning.PCTFlatGaussianCrossMoment": [
+    "Cloning.PCTFlatGaussianCrossReduction",
+    "Cloning.PCTProjectorPurityGaussianCross"
+  ],
+  "Cloning.PCTFlatGaussianCrossReduction": [
+    "Cloning.PCTFlatGaussianCrossKernel",
+    "Cloning.PCTFlatGaussianCrossLaw"
+  ],
+  "Cloning.PCTGaussianAssembly": [
+    "Cloning.PCTPhysicalWerner"
+  ],
+  "Cloning.PCTGaussianCovariance": [
+    "Cloning.PCTReducedGaussian",
+    "Cloning.WeylThermalFourierWitness"
+  ],
+  "Cloning.PCTGaussianCovarianceClassical": [
+    "Cloning.PCTGaussianCovariance"
+  ],
+  "Cloning.PCTGaussianCovarianceJoint": [
+    "Cloning.PCTGaussianCovarianceOrbital"
+  ],
+  "Cloning.PCTGaussianCovarianceOrbital": [
+    "Cloning.PCTGaussianCovarianceClassical",
+    "Cloning.PCTGaussianOutput"
+  ],
+  "Cloning.PCTGaussianOutput": [
+    "Cloning.WeylThermalFourierChannel",
+    "Cloning.WeylCovariantization",
+    "Cloning.Thermal"
+  ],
+  "Cloning.PCTGaussianOutputTangent": [
+    "Cloning.PCTGaussianCovarianceJoint"
+  ],
+  "Cloning.PCTGlobalChannels": [
+    "Cloning.FiniteKrausLift",
+    "Cloning.PurificationSupport",
+    "Cloning.WernerPhysicalAgreement"
+  ],
+  "Cloning.PCTGlobalMatrixBridge": [
+    "Cloning.PCTGlobalRecovery"
+  ],
+  "Cloning.PCTGlobalPhysical": [
+    "Cloning.PCTGlobalWerner"
+  ],
+  "Cloning.PCTGlobalRecovery": [
+    "Cloning.PCTGlobalChannels"
+  ],
+  "Cloning.PCTGlobalWerner": [
+    "Cloning.PCTCoordinateFrame",
+    "Cloning.PCTGlobalMatrixBridge"
+  ],
+  "Cloning.PCTHybridFidelity": [
+    "Cloning.HybridGaussianAttainmentFidelity",
+    "Cloning.MixedGaussianConverse",
+    "Cloning.Main"
+  ],
+  "Cloning.PCTHybridFidelityTransfer": [
+    "Cloning.PCTHybridFidelity",
+    "Cloning.MixedChannelsReverseFidelity"
+  ],
+  "Cloning.PCTHybridMixtureChannel": [
+    "Cloning.PCTHybridMixtureGaussian"
+  ],
+  "Cloning.PCTHybridMixtureClassical": [
+    "Cloning.PCTJointGaussianConvolution",
+    "Cloning.HybridClassicalConvolution"
+  ],
+  "Cloning.PCTHybridMixtureFactor": [
+    "Cloning.PCTJointGaussianLaw",
+    "Cloning.PCTJointGaussianWhitening",
+    "Cloning.MixedChannelsPreparation",
+    "Cloning.HybridCovariantization"
+  ],
+  "Cloning.PCTHybridMixtureGaussian": [
+    "Cloning.PCTHybridMixtureFactor",
+    "Cloning.PCTHybridMixtureClassical",
+    "Cloning.PCTJointGaussianWhitenedLaw",
+    "Cloning.PCTHybridFidelity"
+  ],
+  "Cloning.PCTJointGaussianChart": [
+    "Cloning.PCTJointGaussianWhitenedLaw",
+    "Cloning.HybridCoordinateTransport"
+  ],
+  "Cloning.PCTJointGaussianConvolution": [
+    "Cloning.PCTJointGaussianReal"
+  ],
+  "Cloning.PCTJointGaussianLaw": [
+    "Cloning.PCTGaussianOutputTangent"
+  ],
+  "Cloning.PCTJointGaussianReal": [
+    "Cloning.PCTJointGaussianLaw",
+    "Cloning.GaussianWitness"
+  ],
+  "Cloning.PCTJointGaussianWhitenedLaw": [
+    "Cloning.PCTJointGaussianLaw",
+    "Cloning.PCTJointGaussianReal",
+    "Cloning.PCTJointGaussianWhitening"
+  ],
+  "Cloning.PCTJointGaussianWhitening": [
+    "Cloning.PCTGaussianCovarianceClassical"
+  ],
+  "Cloning.PCTLocalChartAlgebra": [
+    "Cloning.PCTTangentNormalization"
+  ],
+  "Cloning.PCTLocalChartCoordinates": [
+    "Cloning.PCTTangentChart",
+    "Cloning.PCTGaussianCovarianceJoint"
+  ],
+  "Cloning.PCTLocalChartInverse": [
+    "Cloning.PCTLocalChartAlgebra"
+  ],
+  "Cloning.PCTMixedMixtureTransfer": [
+    "Cloning.PCTHybridFidelityTransfer",
+    "Cloning.MixedChannelsBounded"
+  ],
+  "Cloning.PCTPartialTrace": [
+    "Cloning.PCTWernerMixture"
+  ],
+  "Cloning.PCTPhysicalFidelity": [
+    "Cloning.PCTPhysicalFidelityFrame"
+  ],
+  "Cloning.PCTPhysicalFidelityFrame": [
+    "Cloning.PCTPhysicalFidelityLAN"
+  ],
+  "Cloning.PCTPhysicalFidelityLAN": [
+    "Cloning.PCTPhysicalState",
+    "Cloning.PCTTangentChartAdmissible",
+    "Cloning.PCTHybridMixtureChannel"
+  ],
+  "Cloning.PCTPhysicalFidelityUnconditional": [
+    "Cloning.PCTPhysicalStateSpectrum",
+    "Cloning.TensorLANEmbeddingCompactLAN"
+  ],
+  "Cloning.PCTPhysicalFidelityUnitary": [
+    "Cloning.PCTPhysicalFidelity",
+    "Cloning.PCTUnitaryTransportChannels"
+  ],
+  "Cloning.PCTPhysicalState": [
+    "Cloning.PCTGlobalPhysical",
+    "Cloning.PCTTangentChartFrame",
+    "Cloning.PCTMixedMixtureTransfer",
+    "Cloning.MatrixFidelityScaling"
+  ],
+  "Cloning.PCTPhysicalStateSpectrum": [
+    "Cloning.PCTPhysicalFidelityUnitary"
+  ],
+  "Cloning.PCTPhysicalWerner": [
+    "Cloning.PCTWernerCovariance"
+  ],
+  "Cloning.PCTPrescribedExtension": [
+    "Cloning.TensorCloningPrescribedRestriction",
+    "Cloning.TensorCloningPayoff",
+    "Cloning.WernerAsymptotics"
+  ],
+  "Cloning.PCTPrescribedFull": [
+    "Cloning.PCTPrescribedExtension",
+    "Cloning.PhysicalCloningPCTTheorem"
+  ],
+  "Cloning.PCTPrescribedRank": [
+    "Cloning.PCTPrescribedExtension",
+    "Cloning.PhysicalFlatPCTProtocol"
+  ],
+  "Cloning.PCTPrescribedRankGuarantee": [
+    "Cloning.PCTPrescribedRank",
+    "Cloning.PCTRankPurificationGeneralFinite"
+  ],
+  "Cloning.PCTPrescribedRankTheorem": [
+    "Cloning.PCTPrescribedRank",
+    "Cloning.PhysicalFlatPCTTheorem"
+  ],
+  "Cloning.PCTProjectorPurityDomination": [
+    "Cloning.PCTProjectorPurityKernel",
+    "Cloning.PCTPurityFidelityBound",
+    "Cloning.PCTFlatGaussianCrossKernel",
+    "Cloning.MatrixTraceOrder",
+    "Cloning.GeneralCoherentMixture"
+  ],
+  "Cloning.PCTProjectorPurityEnvelope": [],
+  "Cloning.PCTProjectorPurityEnvelopeExpansion": [
+    "Cloning.PCTProjectorPurityEnvelope",
+    "Cloning.ScalarTaylorRemainder"
+  ],
+  "Cloning.PCTProjectorPurityEnvelopeLimits": [
+    "Cloning.PCTProjectorPurityEnvelopeTheorem",
+    "Cloning.PCTProjectorPurityEnvelopeRate",
+    "Cloning.PCTPrescribedRankTheorem"
+  ],
+  "Cloning.PCTProjectorPurityEnvelopePhysical": [
+    "Cloning.PCTProjectorPurityEnvelope",
+    "Cloning.PhysicalFlatPCTTheorem"
+  ],
+  "Cloning.PCTProjectorPurityEnvelopeRate": [
+    "Cloning.PCTProjectorPurityEnvelope",
+    "Cloning.ScalarTaylorRemainder"
+  ],
+  "Cloning.PCTProjectorPurityEnvelopeTheorem": [
+    "Cloning.PCTProjectorPurityEnvelopePhysical",
+    "Cloning.PCTProjectorPurityEnvelopeExpansion",
+    "Cloning.PCTProjectorPurityPhysical",
+    "Cloning.PCTWernerLower"
+  ],
+  "Cloning.PCTProjectorPurityGaussianCross": [
+    "Cloning.PCTProjectorPurityGaussianSingle"
+  ],
+  "Cloning.PCTProjectorPurityGaussianEnergy": [
+    "Cloning.WeylGaussianTwistedConvolution",
+    "Cloning.MultimodeCoherentGaussianMixture"
+  ],
+  "Cloning.PCTProjectorPurityGaussianSingle": [
+    "Cloning.PCTProjectorPurityGaussianEnergy",
+    "Cloning.WeylGaussianThermal"
+  ],
+  "Cloning.PCTProjectorPurityKernel": [
+    "Cloning.PCTProjectorPurityParticle"
+  ],
+  "Cloning.PCTProjectorPurityLimit": [
+    "Cloning.PCTProjectorPurityDomination",
+    "Cloning.PCTProjectorPurityGaussianEnergy",
+    "Cloning.PCTFlatGaussianCrossMoment"
+  ],
+  "Cloning.PCTProjectorPurityParticle": [
+    "Cloning.PCTTangentChartFrame",
+    "Cloning.PCTPhysicalState",
+    "Cloning.YoungGeneralMoments"
+  ],
+  "Cloning.PCTProjectorPurityPhysical": [
+    "Cloning.PCTProjectorPurityLimit",
+    "Cloning.PCTPurityFidelityPhysical"
+  ],
+  "Cloning.PCTProjectorPurityTargets": [
+    "Cloning.PCTProjectorPurityEnvelopeLimits"
+  ],
+  "Cloning.PCTPurificationChannel": [
+    "Cloning.CartanChannel",
+    "Cloning.MatrixFidelityBounds"
+  ],
+  "Cloning.PCTPurificationChannelAction": [
+    "Cloning.PCTPurificationChannelHaar"
+  ],
+  "Cloning.PCTPurificationChannelHaar": [
+    "Cloning.PCTPurificationChannel"
+  ],
+  "Cloning.PCTPurificationChannelPhysical": [
+    "Cloning.PCTPurificationChannelAction",
+    "Cloning.PCTReducedGaussian"
+  ],
+  "Cloning.PCTPurificationFrame": [
+    "Cloning.PCTTensorFrame"
+  ],
+  "Cloning.PCTPurificationInvariance": [
+    "Cloning.PCTTensorFrame"
+  ],
+  "Cloning.PCTPurityFidelity": [
+    "Cloning.MatrixFidelityEmbedding",
+    "Cloning.MatrixFidelityScaling"
+  ],
+  "Cloning.PCTPurityFidelityBound": [
+    "Cloning.PCTPurityFidelityBoundAlgebra",
+    "Cloning.PCTProjectorPurityParticle"
+  ],
+  "Cloning.PCTPurityFidelityBoundAlgebra": [
+    "Cloning.PCTGaussianCovariance"
+  ],
+  "Cloning.PCTPurityFidelityMixture": [
+    "Cloning.PCTPhysicalState"
+  ],
+  "Cloning.PCTPurityFidelityPhysical": [
+    "Cloning.PCTPurityFidelity",
+    "Cloning.PCTPurityFidelityMixture",
+    "Cloning.PCTCountMeasurementMixture",
+    "Cloning.PCTRankAdaptedFlat",
+    "Cloning.InfiniteFidelityHilbertSum",
+    "Cloning.MatrixTraceOrder"
+  ],
+  "Cloning.PCTRankAdaptedCompression": [
+    "Cloning.PCTRankAdaptedTensor"
+  ],
+  "Cloning.PCTRankAdaptedFactor": [
+    "Cloning.PCTRankAdaptedWerner",
+    "Cloning.WernerAsymptotics",
+    "Cloning.Main"
+  ],
+  "Cloning.PCTRankAdaptedFidelity": [
+    "Cloning.PCTRankAdaptedReduced",
+    "Cloning.InfiniteFidelityHilbertSum",
+    "Cloning.MatrixFidelityEmbedding",
+    "Cloning.MatrixFidelityScaling"
+  ],
+  "Cloning.PCTRankAdaptedFlat": [
+    "Cloning.PCTRankAdaptedUpper",
+    "Cloning.YoungGeneralMoments"
+  ],
+  "Cloning.PCTRankAdaptedLimit": [
+    "Cloning.PCTRankAdaptedProduct",
+    "Cloning.PCTRankAdaptedFactor"
+  ],
+  "Cloning.PCTRankAdaptedPartialTrace": [
+    "Cloning.PCTRankAdaptedWerner"
+  ],
+  "Cloning.PCTRankAdaptedProduct": [
+    "Cloning.PCTRankAdaptedStates",
+    "Cloning.PCTPhysicalState"
+  ],
+  "Cloning.PCTRankAdaptedReduced": [
+    "Cloning.PCTRankAdaptedPartialTrace"
+  ],
+  "Cloning.PCTRankAdaptedStates": [
+    "Cloning.PCTRankAdaptedFidelity"
+  ],
+  "Cloning.PCTRankAdaptedTensor": [
+    "Cloning.PCTGlobalPhysical"
+  ],
+  "Cloning.PCTRankAdaptedUpper": [
+    "Cloning.PCTRankAdaptedLimit"
+  ],
+  "Cloning.PCTRankAdaptedWerner": [
+    "Cloning.PCTRankAdaptedCompression"
+  ],
+  "Cloning.PCTRankGlobalChannel": [
+    "Cloning.PCTRankGlobalPhysical",
+    "Cloning.PCTRankPurificationNormalization",
+    "Cloning.MatrixLiftedCPTPKraus"
+  ],
+  "Cloning.PCTRankGlobalChannels": [
+    "Cloning.PCTGlobalMatrixBridge"
+  ],
+  "Cloning.PCTRankGlobalEmbedding": [
+    "Cloning.PCTRankGlobalChannel",
+    "Cloning.PCTRankAdaptedProduct"
+  ],
+  "Cloning.PCTRankGlobalMatrixBridge": [
+    "Cloning.PCTRankGlobalChannels"
+  ],
+  "Cloning.PCTRankGlobalPhysical": [
+    "Cloning.PCTRankGlobalRecovery",
+    "Cloning.PCTRankGlobalWerner"
+  ],
+  "Cloning.PCTRankGlobalRecovery": [
+    "Cloning.PCTRankGlobalMatrixBridge"
+  ],
+  "Cloning.PCTRankGlobalWerner": [
+    "Cloning.PCTGlobalWerner",
+    "Cloning.PCTRankGlobalMatrixBridge"
+  ],
+  "Cloning.PCTRankOneAction": [
+    "Cloning.PCTRankOneWerner",
+    "Cloning.PhysicalFlatPCTAction"
+  ],
+  "Cloning.PCTRankOnePureInput": [
+    "Cloning.PCTRankOneAction"
+  ],
+  "Cloning.PCTRankOneWerner": [
+    "Cloning.PCTRankAdaptedProduct"
+  ],
+  "Cloning.PCTRankPurificationBlockAlgebra": [
+    "Cloning.PCTRankPurificationFunctional"
+  ],
+  "Cloning.PCTRankPurificationBlockCoordinate": [
+    "Cloning.PCTRankPurificationBlockMatrices"
+  ],
+  "Cloning.PCTRankPurificationBlockHaar": [
+    "Cloning.PCTRankPurificationBlockMatrices",
+    "Cloning.PCTRankPurificationCoefficients"
+  ],
+  "Cloning.PCTRankPurificationBlockMatrices": [
+    "Cloning.PCTRankPurificationMatrices",
+    "Cloning.PCTRankPurificationBlockAlgebra"
+  ],
+  "Cloning.PCTRankPurificationBlockSupport": [
+    "Cloning.PCTRankPurificationBlockHaar"
+  ],
+  "Cloning.PCTRankPurificationCoefficients": [
+    "Cloning.PCTRankPurificationMatrices",
+    "Cloning.TensorSchurHaarCompression"
+  ],
+  "Cloning.PCTRankPurificationCompletion": [
+    "Cloning.PCTPurificationChannel"
+  ],
+  "Cloning.PCTRankPurificationCompression": [
+    "Cloning.PCTRankPurificationMomentComparison",
+    "Cloning.PCTRankPurificationBlockHaar"
+  ],
+  "Cloning.PCTRankPurificationCovariance": [
+    "Cloning.PCTRankPurificationInvariant"
+  ],
+  "Cloning.PCTRankPurificationFlatAction": [
+    "Cloning.PCTRankPurificationCompression",
+    "Cloning.PCTRankPurificationBlockSupport",
+    "Cloning.PCTRankPurificationBlockCoordinate",
+    "Cloning.PCTRankPurificationInvariant"
+  ],
+  "Cloning.PCTRankPurificationFlatOrbit": [
+    "Cloning.PCTRankPurificationFlatAction",
+    "Cloning.PCTRankPurificationFlatScalar",
+    "Cloning.PCTRankPurificationCovariance"
+  ],
+  "Cloning.PCTRankPurificationFlatScalar": [
+    "Cloning.PCTRankPurificationMoment"
+  ],
+  "Cloning.PCTRankPurificationFlatState": [
+    "Cloning.PCTRankPurificationFlatOrbit",
+    "Cloning.PhysicalFlatGrassmannIsometry"
+  ],
+  "Cloning.PCTRankPurificationFrames": [
+    "Cloning.PCTRankPurificationVectorization",
+    "Cloning.PCTRankPurificationCoefficients",
+    "Cloning.PCTRankPurificationBlockMatrices"
+  ],
+  "Cloning.PCTRankPurificationFunctional": [
+    "Cloning.PCTRankPurificationNormalization"
+  ],
+  "Cloning.PCTRankPurificationGeneralAction": [
+    "Cloning.PCTRankPurificationFlatOrbit"
+  ],
+  "Cloning.PCTRankPurificationGeneralEmbedding": [
+    "Cloning.PhysicalFlatGrassmannEmbedding"
+  ],
+  "Cloning.PCTRankPurificationGeneralFinite": [
+    "Cloning.PCTRankPurificationGeneralTheorem",
+    "Cloning.PCTRankPurificationGeneralHaar",
+    "Cloning.SampleRatioFinite"
+  ],
+  "Cloning.PCTRankPurificationGeneralHaar": [
+    "Cloning.PCTRankPurificationGeneralPurification",
+    "Cloning.PCTRankPurificationGeneralEmbedding"
+  ],
+  "Cloning.PCTRankPurificationGeneralOrbit": [
+    "Cloning.PCTRankPurificationGeneralAction",
+    "Cloning.PhysicalFlatGrassmannIsometry"
+  ],
+  "Cloning.PCTRankPurificationGeneralPhysical": [
+    "Cloning.PCTRankPurificationGeneralOrbit",
+    "Cloning.PCTRankGlobalEmbedding",
+    "Cloning.PCTWernerLower"
+  ],
+  "Cloning.PCTRankPurificationGeneralPurification": [
+    "Cloning.PCTRankPurificationGeneralPhysical",
+    "Cloning.TensorHighestGramIsometry"
+  ],
+  "Cloning.PCTRankPurificationGeneralTheorem": [
+    "Cloning.PCTRankPurificationGeneralPhysical",
+    "Cloning.PCTRankPurificationGeneralEmbedding"
+  ],
+  "Cloning.PCTRankPurificationInvariant": [
+    "Cloning.PCTRankPurificationFunctional",
+    "Cloning.PCTPurificationChannelAction"
+  ],
+  "Cloning.PCTRankPurificationMatrices": [
+    "Cloning.PCTRankPurificationSectors",
+    "Cloning.TensorFlatProjectorMatrix",
+    "Cloning.PCTRankPurificationMoment"
+  ],
+  "Cloning.PCTRankPurificationMoment": [
+    "Cloning.PCTRankPurificationCompletion",
+    "Cloning.PCTPurificationChannelHaar"
+  ],
+  "Cloning.PCTRankPurificationMomentComparison": [
+    "Cloning.PCTRankPurificationFrames"
+  ],
+  "Cloning.PCTRankPurificationNormalization": [
+    "Cloning.PCTRankPurificationMoment",
+    "Cloning.MatrixPartialTraceCovariance"
+  ],
+  "Cloning.PCTRankPurificationSectors": [
+    "Cloning.TensorFlatProjectorSectorSupport",
+    "Cloning.TensorSchurDecompositionTrace"
+  ],
+  "Cloning.PCTRankPurificationVectorization": [
+    "Cloning.PCTRankPurificationMoment",
+    "Cloning.PCTRankPurificationBlockAlgebra",
+    "Cloning.TensorSchurHaarOrthogonality"
+  ],
+  "Cloning.PCTReducedGaussian": [
+    "Cloning.PCTGaussianAssembly",
+    "Cloning.MatrixFidelityBounds"
+  ],
+  "Cloning.PCTTangentChart": [
+    "Cloning.PCTLocalChartInverse",
+    "Cloning.PCTGaussianCovarianceOrbital"
+  ],
+  "Cloning.PCTTangentChartAdmissible": [
+    "Cloning.PCTTangentChartFrame"
+  ],
+  "Cloning.PCTTangentChartFrame": [
+    "Cloning.PCTTangentChartSamples"
+  ],
+  "Cloning.PCTTangentChartSamples": [
+    "Cloning.PCTLocalChartCoordinates"
+  ],
+  "Cloning.PCTTangentNormalization": [
+    "Cloning.PCTGaussianCovariance"
+  ],
+  "Cloning.PCTTensorFrame": [
+    "Cloning.PCTPartialTrace"
+  ],
+  "Cloning.PCTUnitaryTransport": [
+    "Cloning.PCTPhysicalState",
+    "Cloning.FiniteKrausLift",
+    "Cloning.MatrixFidelityEmbedding"
+  ],
+  "Cloning.PCTUnitaryTransportChannels": [
+    "Cloning.PCTUnitaryTransport"
+  ],
+  "Cloning.PCTWernerCovariance": [
+    "Cloning.PCTPurificationFrame",
+    "Cloning.PCTPurificationInvariance"
+  ],
+  "Cloning.PCTWernerLower": [
+    "Cloning.PCTWernerLowerBasis",
+    "Cloning.PCTRankAdaptedProduct",
+    "Cloning.InfiniteFidelityTransition",
+    "Cloning.HybridGaussianAttainmentFidelity"
+  ],
+  "Cloning.PCTWernerLowerBasis": [
+    "Cloning.PCTRankAdaptedFactor",
+    "Cloning.PCTWernerCovariance"
+  ],
+  "Cloning.PCTWernerMixture": [
+    "Cloning.GeneralCoherentMixture",
+    "Cloning.WernerPhysicalAgreement"
+  ],
+  "Cloning.PhysicalAllStateMinimax": [
+    "Cloning.PCTPrescribedFull",
+    "Cloning.PCTRankAdaptedFlat",
+    "Cloning.PhysicalCloningUniversalTheorem"
+  ],
+  "Cloning.PhysicalAllStateMinimaxBounds": [
+    "Cloning.PhysicalAllStateMinimaxLower",
+    "Cloning.CloningValueComparisonInfimum"
+  ],
+  "Cloning.PhysicalAllStateMinimaxLower": [
+    "Cloning.PhysicalAllStateMinimax",
+    "Cloning.PCTWernerLower"
+  ],
+  "Cloning.PhysicalCloningConverseAdmissible": [
+    "Cloning.PhysicalCloningConverseSpectrum",
+    "Cloning.TensorLANEmbeddingLocalSpectrum"
+  ],
+  "Cloning.PhysicalCloningConverseChart": [
+    "Cloning.PCTPhysicalFidelityLAN",
+    "Cloning.PCTJointGaussianChart",
+    "Cloning.TensorCloningPayoff",
+    "Cloning.TensorGibbsLocalUnitary"
+  ],
+  "Cloning.PhysicalCloningConverseKnown": [
+    "Cloning.PhysicalCloningConverseUnknown",
+    "Cloning.PhysicalCloningConverseQuantumReduction"
+  ],
+  "Cloning.PhysicalCloningConversePreparation": [
+    "Cloning.PhysicalCloningConverseChart",
+    "Cloning.HybridClassicalConvolution"
+  ],
+  "Cloning.PhysicalCloningConverseQuantumReduction": [
+    "Cloning.PhysicalCloningConversePreparation",
+    "Cloning.PCTUnitaryTransportChannels"
+  ],
+  "Cloning.PhysicalCloningConverseSpectrum": [
+    "Cloning.PhysicalCloningConverseChart"
+  ],
+  "Cloning.PhysicalCloningConverseTransfer": [
+    "Cloning.PhysicalCloningConverseChart",
+    "Cloning.MixedGaussianConverse"
+  ],
+  "Cloning.PhysicalCloningConverseUnconditional": [
+    "Cloning.PhysicalCloningConverseKnown",
+    "Cloning.TensorLANEmbeddingCompactLAN"
+  ],
+  "Cloning.PhysicalCloningConverseUnknown": [
+    "Cloning.PhysicalCloningConverseWindows",
+    "Cloning.PhysicalCloningConverseTransfer",
+    "Cloning.HybridFlatBox"
+  ],
+  "Cloning.PhysicalCloningConverseWindows": [
+    "Cloning.PhysicalCloningConverseAdmissible"
+  ],
+  "Cloning.PhysicalCloningKnownTheorem": [
+    "Cloning.TensorLANEmbeddingCompactLAN",
+    "Cloning.PhysicalCloningConverseKnown",
+    "Cloning.TensorCloningAchievability"
+  ],
+  "Cloning.PhysicalCloningPCTTheorem": [
+    "Cloning.PCTPhysicalFidelityUnconditional"
+  ],
+  "Cloning.PhysicalCloningSmallError": [
+    "Cloning.CloningValueExpansionTarget",
+    "Cloning.PhysicalCloningKnownTheorem",
+    "Cloning.PhysicalCloningPCTTheorem",
+    "Cloning.TensorCloningUniversalAchievability",
+    "Cloning.TensorCloningPrescribedLimits"
+  ],
+  "Cloning.PhysicalCloningUniversalTheorem": [
+    "Cloning.TensorCloningUniversalAchievability",
+    "Cloning.PhysicalCloningConverseUnconditional"
+  ],
+  "Cloning.PhysicalFlatCloningTheorem": [
+    "Cloning.PhysicalFlatConverseLimit",
+    "Cloning.TensorFlatProjectorAchievability"
+  ],
+  "Cloning.PhysicalFlatConverseCommutant": [
+    "Cloning.TensorLocalUnitaryCoordinates",
+    "Cloning.TensorCyclicSectorOperators",
+    "Cloning.TensorCyclicSectorCovariance"
+  ],
+  "Cloning.PhysicalFlatConverseFinite": [
+    "Cloning.PhysicalFlatConverseReduction",
+    "Cloning.PhysicalFlatConverseOrbitAverage",
+    "Cloning.PhysicalFlatConverseMoments",
+    "Cloning.PhysicalFlatPinchingBlocks"
+  ],
+  "Cloning.PhysicalFlatConverseHaar": [
+    "Cloning.PhysicalFlatConverseCommutant",
+    "Cloning.TensorFlatProjectorMatrix",
+    "Cloning.PCTPurificationChannelHaar"
+  ],
+  "Cloning.PhysicalFlatConverseJensen": [
+    "Cloning.PhysicalFlatConverseHaar",
+    "Cloning.MatrixFidelityMixtures",
+    "Cloning.MatrixFidelityBounds",
+    "Cloning.MatrixFidelityEmbedding"
+  ],
+  "Cloning.PhysicalFlatConverseLimit": [
+    "Cloning.PhysicalFlatConverseFinite"
+  ],
+  "Cloning.PhysicalFlatConverseMoments": [
+    "Cloning.TensorFlatProjectorMoments",
+    "Cloning.YoungFlatFidelity"
+  ],
+  "Cloning.PhysicalFlatConverseOrbit": [
+    "Cloning.TensorFlatProjectorRankLaw",
+    "Cloning.TensorCloningPayoff"
+  ],
+  "Cloning.PhysicalFlatConverseOrbitAverage": [
+    "Cloning.PhysicalFlatConverseJensen"
+  ],
+  "Cloning.PhysicalFlatConverseReduction": [
+    "Cloning.PhysicalFlatPinchingOrbit",
+    "Cloning.InfiniteFidelityHilbertSum",
+    "Cloning.InfiniteFidelityTransition"
+  ],
+  "Cloning.PhysicalFlatGrassmannEmbedding": [
+    "Cloning.PhysicalFlatGrassmannOrbit",
+    "Cloning.PCTRankAdaptedFlat"
+  ],
+  "Cloning.PhysicalFlatGrassmannIsometry": [
+    "Cloning.PhysicalFlatGrassmannEmbedding"
+  ],
+  "Cloning.PhysicalFlatGrassmannOrbit": [
+    "Cloning.PhysicalFlatGrassmannSpectral",
+    "Cloning.PhysicalFlatConverseOrbit"
+  ],
+  "Cloning.PhysicalFlatGrassmannSpectral": [
+    "Cloning.PCTPhysicalStateSpectrum"
+  ],
+  "Cloning.PhysicalFlatGrassmannTheorem": [
+    "Cloning.PhysicalFlatGrassmannOrbit",
+    "Cloning.PhysicalFlatCloningTheorem",
+    "Cloning.WernerAsymptotics"
+  ],
+  "Cloning.PhysicalFlatGrassmannUniform": [
+    "Cloning.PhysicalFlatGrassmannTheorem",
+    "Cloning.TensorCloningUniformCovariance"
+  ],
+  "Cloning.PhysicalFlatPCTAction": [
+    "Cloning.PCTRankPurificationFlatState",
+    "Cloning.PhysicalFlatPCTProtocol"
+  ],
+  "Cloning.PhysicalFlatPCTBound": [
+    "Cloning.PCTRankAdaptedFlat",
+    "Cloning.PCTCountPhysical"
+  ],
+  "Cloning.PhysicalFlatPCTFinite": [
+    "Cloning.PCTWernerLower",
+    "Cloning.SampleRatioFinite",
+    "Cloning.PhysicalFlatPCTTheorem",
+    "Cloning.PCTPrescribedRank"
+  ],
+  "Cloning.PhysicalFlatPCTProtocol": [
+    "Cloning.PCTRankGlobalEmbedding",
+    "Cloning.PhysicalFlatGrassmannIsometry"
+  ],
+  "Cloning.PhysicalFlatPCTTheorem": [
+    "Cloning.PhysicalFlatPCTAction",
+    "Cloning.PhysicalFlatPCTBound"
+  ],
+  "Cloning.PhysicalFlatPinching": [
+    "Cloning.InfiniteFiniteInstrument",
+    "Cloning.TensorLANEmbeddingBlocks",
+    "Cloning.InfiniteChannelFidelity",
+    "Cloning.HybridStates"
+  ],
+  "Cloning.PhysicalFlatPinchingBlocks": [
+    "Cloning.PhysicalFlatPinchingMoments",
+    "Cloning.TensorFlatProjectorMatrix"
+  ],
+  "Cloning.PhysicalFlatPinchingCovariance": [
+    "Cloning.PhysicalFlatPinchingInflation"
+  ],
+  "Cloning.PhysicalFlatPinchingInflation": [
+    "Cloning.PhysicalFlatPinching",
+    "Cloning.TensorFlatProjectorRankLaw"
+  ],
+  "Cloning.PhysicalFlatPinchingMoments": [
+    "Cloning.PhysicalFlatPinchingTrace"
+  ],
+  "Cloning.PhysicalFlatPinchingOrbit": [
+    "Cloning.PhysicalFlatPinchingCovariance",
+    "Cloning.PhysicalFlatConverseOrbit"
+  ],
+  "Cloning.PhysicalFlatPinchingTrace": [
+    "Cloning.PhysicalFlatPinchingInflation",
+    "Cloning.TensorCloningAchievabilityProbability",
+    "Cloning.YoungFlatFidelityBounds"
+  ],
+  "Cloning.PhysicalFlatRate": [
+    "Cloning.YoungDimensionMomentRate",
+    "Cloning.PhysicalFlatConverseFinite"
+  ],
+  "Cloning.PhysicalFlatRateBounded": [
+    "Cloning.PhysicalFlatRateRounded"
+  ],
+  "Cloning.PhysicalFlatRateRounded": [
+    "Cloning.PhysicalFlatRate"
+  ],
+  "Cloning.PoissonApproximation": [
+    "Cloning.CountableScheffe"
+  ],
+  "Cloning.Projector": [],
+  "Cloning.PurificationSupport": [
+    "Cloning.PCTPurificationChannelPhysical"
+  ],
+  "Cloning.QubitDegeneracy": [
+    "Cloning.PhysicalCloningKnownTheorem",
+    "Cloning.TensorCloningUniformCovariance",
+    "Cloning.InfiniteFidelityHilbertSum"
+  ],
+  "Cloning.Rounding": [],
+  "Cloning.SampleRatioExpansion": [
+    "Cloning.SampleRatioThreshold",
+    "Cloning.ScalarTaylorInverse",
+    "Cloning.ScalarPowerExpansion"
+  ],
+  "Cloning.SampleRatioFinite": [
+    "Cloning.SampleRatioThreshold",
+    "Cloning.PCTRankAdaptedFactor"
+  ],
+  "Cloning.SampleRatioLimit": [
+    "Cloning.SampleRatioExpansion"
+  ],
+  "Cloning.SampleRatioThreshold": [],
+  "Cloning.ScalarPowerExpansion": [
+    "Cloning.ScalarTaylorRemainder"
+  ],
+  "Cloning.ScalarTaylorInverse": [
+    "Cloning.ScalarTaylorRemainder"
+  ],
+  "Cloning.ScalarTaylorRemainder": [],
+  "Cloning.ScoreReferenceMeasure": [
+    "Cloning.PCTJointGaussianChart"
+  ],
+  "Cloning.SpectralAffineTheorem": [
+    "Cloning.SpectralAffineTopology",
+    "Cloning.PhysicalCloningUniversalTheorem"
+  ],
+  "Cloning.SpectralAffineTopology": [
+    "Cloning.PhysicalCloningConverseSpectrum"
+  ],
+  "Cloning.SpectralGapCompact": [
+    "Cloning.SpectralAffineTheorem"
+  ],
+  "Cloning.SpectralGapThreshold": [
+    "Cloning.SpectralGapCompact"
+  ],
+  "Cloning.SpectralRatioMajorization": [
+    "Cloning.Main"
+  ],
+  "Cloning.SpectralRatioMajorizationCounterexample": [
+    "Cloning.SpectralRatioMajorization"
+  ],
+  "Cloning.SymmetricOccupation": [
+    "Cloning.InfinitePureStateContinuity"
+  ],
+  "Cloning.TensorCCR": [
+    "Cloning.TensorRootBounds"
+  ],
+  "Cloning.TensorCCRBounds": [
+    "Cloning.TensorCCR",
+    "Cloning.TensorCCRScalar",
+    "Cloning.TensorCyclicError"
+  ],
+  "Cloning.TensorCCRScalar": [],
+  "Cloning.TensorCartanChannel": [
+    "Cloning.TensorCartanScalarity",
+    "Cloning.TensorCartanLieBalance",
+    "Cloning.FiniteKrausLift"
+  ],
+  "Cloning.TensorCartanChannelCovariance": [
+    "Cloning.TensorCartanStateCovariance"
+  ],
+  "Cloning.TensorCartanCoordinates": [
+    "Cloning.TensorCartanFrame",
+    "Cloning.TensorCartanIntertwiner"
+  ],
+  "Cloning.TensorCartanCutoffAmplitude": [
+    "Cloning.TensorCartanCutoffMatrixLimit",
+    "Cloning.TensorCartanOccupationAmplitude"
+  ],
+  "Cloning.TensorCartanCutoffFrame": [
+    "Cloning.TensorPBWCutoffBasis",
+    "Cloning.TensorWeightFrameLimit",
+    "Cloning.TensorCartanMatrixLimit"
+  ],
+  "Cloning.TensorCartanCutoffMatrixLimit": [
+    "Cloning.TensorCartanCutoffFrame"
+  ],
+  "Cloning.TensorCartanFrame": [
+    "Cloning.TensorCartanProduct"
+  ],
+  "Cloning.TensorCartanInclusion": [
+    "Cloning.TensorCartanProduct",
+    "Cloning.TensorHighestGramIsometry"
+  ],
+  "Cloning.TensorCartanIntertwiner": [
+    "Cloning.TensorCartanInclusion",
+    "Cloning.TensorHighestGramIntertwiner"
+  ],
+  "Cloning.TensorCartanLieBalance": [
+    "Cloning.MatrixCovariantBalance"
+  ],
+  "Cloning.TensorCartanMatrixLimit": [
+    "Cloning.TensorCartanSplitCoefficients",
+    "Cloning.TensorCyclicGramLimit"
+  ],
+  "Cloning.TensorCartanOccupationAmplitude": [
+    "Cloning.TensorCartanOccupationLimit"
+  ],
+  "Cloning.TensorCartanOccupationLimit": [
+    "Cloning.TensorCartanMatrixLimit",
+    "Cloning.TensorCartanSplitMultiplicity",
+    "Cloning.Occupation"
+  ],
+  "Cloning.TensorCartanProduct": [
+    "Cloning.TensorCyclicSector",
+    "Cloning.TensorLieProduct"
+  ],
+  "Cloning.TensorCartanScalarity": [
+    "Cloning.TensorCartanCoordinates"
+  ],
+  "Cloning.TensorCartanSplitCoefficients": [
+    "Cloning.TensorCartanWordSplit"
+  ],
+  "Cloning.TensorCartanSplitMultiplicity": [
+    "Cloning.TensorCartanWordSplit"
+  ],
+  "Cloning.TensorCartanStateCoefficients": [
+    "Cloning.TensorCartanStateProduct",
+    "Cloning.TensorGibbsStateLimit",
+    "Cloning.TensorFlatProjectorDimensionLimit"
+  ],
+  "Cloning.TensorCartanStateCovariance": [
+    "Cloning.TensorCartanTensorAction",
+    "Cloning.TensorCartanStateProduct",
+    "Cloning.TensorGibbsState"
+  ],
+  "Cloning.TensorCartanStateCutoff": [
+    "Cloning.TensorCartanChannel",
+    "Cloning.TensorCartanCutoffAmplitude",
+    "Cloning.TensorGibbsCutoffState"
+  ],
+  "Cloning.TensorCartanStateFidelity": [
+    "Cloning.TensorCartanStateLimit",
+    "Cloning.TensorCartanStateThermalFidelity"
+  ],
+  "Cloning.TensorCartanStateLimit": [
+    "Cloning.TensorCartanStateCoefficients",
+    "Cloning.TensorCartanStateOccupation"
+  ],
+  "Cloning.TensorCartanStateOccupation": [
+    "Cloning.TensorCartanCutoffAmplitude",
+    "Cloning.TensorGibbsThermalCutoff"
+  ],
+  "Cloning.TensorCartanStateOperator": [
+    "Cloning.TensorCartanStateCutoff"
+  ],
+  "Cloning.TensorCartanStateProduct": [
+    "Cloning.TensorCartanStateOperator"
+  ],
+  "Cloning.TensorCartanStateThermal": [
+    "Cloning.TensorCartanStateOccupation",
+    "Cloning.TensorGibbsThermalIdentification"
+  ],
+  "Cloning.TensorCartanStateThermalFidelity": [
+    "Cloning.TensorCartanStateThermal",
+    "Cloning.InfiniteFidelityCornerLimit"
+  ],
+  "Cloning.TensorCartanTensorAction": [
+    "Cloning.TensorCartanIntertwiner",
+    "Cloning.TensorHighestGramCovariance"
+  ],
+  "Cloning.TensorCartanWordSplit": [
+    "Cloning.TensorCartanIntertwiner",
+    "Cloning.TensorPBWNormalization",
+    "Cloning.TensorPBWOrder"
+  ],
+  "Cloning.TensorCloningAchievability": [
+    "Cloning.TensorCloningAchievabilitySector",
+    "Cloning.TensorCloningAchievabilityUniform"
+  ],
+  "Cloning.TensorCloningAchievabilityCompatibility": [
+    "Cloning.TensorCloningAchievabilityProbability",
+    "Cloning.YoungCompatibility"
+  ],
+  "Cloning.TensorCloningAchievabilityMixture": [
+    "Cloning.TensorCloningChannel",
+    "Cloning.TensorCloningPayoff",
+    "Cloning.TensorLANEmbeddingSchurState",
+    "Cloning.InfiniteFidelityFiniteMixture"
+  ],
+  "Cloning.TensorCloningAchievabilityProbability": [
+    "Cloning.TensorCloningChannel",
+    "Cloning.TensorLANEmbeddingSchurWeights",
+    "Cloning.TensorLANEmbeddingTypical"
+  ],
+  "Cloning.TensorCloningAchievabilitySector": [
+    "Cloning.TensorCloningSectorCovariance",
+    "Cloning.TensorCartanStateFidelity",
+    "Cloning.TensorCloningAchievabilityCompatibility",
+    "Cloning.TensorCloningAchievabilityValue"
+  ],
+  "Cloning.TensorCloningAchievabilityTypical": [
+    "Cloning.TensorCloningAchievabilityMixture",
+    "Cloning.TensorCloningAchievabilityProbability"
+  ],
+  "Cloning.TensorCloningAchievabilityUniform": [
+    "Cloning.TensorCloningAchievabilityTypical",
+    "Cloning.TensorCloningAchievabilityCompatibility"
+  ],
+  "Cloning.TensorCloningAchievabilityValue": [
+    "Cloning.TensorCartanStateThermal",
+    "Cloning.Main"
+  ],
+  "Cloning.TensorCloningBlockFidelity": [
+    "Cloning.TensorCloningUniversalMixture",
+    "Cloning.InfiniteFidelityMixtureNormalization"
+  ],
+  "Cloning.TensorCloningBlockTrimming": [
+    "Cloning.TensorCloningBlockFidelity",
+    "Cloning.InfiniteFidelityMixtureRestriction"
+  ],
+  "Cloning.TensorCloningChannel": [
+    "Cloning.InfiniteFiniteInstrument",
+    "Cloning.TensorCartanChannel",
+    "Cloning.TensorLANEmbeddingSchur",
+    "Cloning.TensorSchurDecompositionTrace",
+    "Cloning.TensorCloningGlobalCovarianceState"
+  ],
+  "Cloning.TensorCloningCopyAffinity": [
+    "Cloning.TensorCloningKernelLabels",
+    "Cloning.TensorLANEmbeddingSchurWeights",
+    "Cloning.YoungPhysicalRoundingLabels"
+  ],
+  "Cloning.TensorCloningGlobalCovariance": [
+    "Cloning.TensorCloningGlobalCovarianceSector",
+    "Cloning.TensorCloningKernel",
+    "Cloning.TensorCloningGlobalCovarianceInstrument"
+  ],
+  "Cloning.TensorCloningGlobalCovarianceAlgebra": [
+    "Cloning.TensorCloningGlobalCovarianceState",
+    "Cloning.TensorCartanTensorAction",
+    "Cloning.InfiniteIsometricChannel"
+  ],
+  "Cloning.TensorCloningGlobalCovarianceInstrument": [
+    "Cloning.InfiniteFiniteInstrument",
+    "Cloning.InfiniteIsometricChannel"
+  ],
+  "Cloning.TensorCloningGlobalCovarianceSector": [
+    "Cloning.TensorCloningGlobalCovarianceAlgebra",
+    "Cloning.TensorCloningTransitionCovariance"
+  ],
+  "Cloning.TensorCloningGlobalCovarianceState": [
+    "Cloning.TensorGibbsState",
+    "Cloning.TensorPartitionHighest"
+  ],
+  "Cloning.TensorCloningKernel": [
+    "Cloning.TensorCloningChannel",
+    "Cloning.TensorSchurDecompositionMultiplicity",
+    "Cloning.YoungHookVandermonde",
+    "Cloning.YoungCompatibilityFallback"
+  ],
+  "Cloning.TensorCloningKernelLabels": [
+    "Cloning.TensorCloningKernel"
+  ],
+  "Cloning.TensorCloningLiftedFactorization": [
+    "Cloning.TensorCloningShrinkingMixture",
+    "Cloning.TensorCloningUniformBlocks",
+    "Cloning.TensorCloningUniformCovariance"
+  ],
+  "Cloning.TensorCloningPayoff": [
+    "Cloning.PCTUnitaryTransportChannels",
+    "Cloning.Main"
+  ],
+  "Cloning.TensorCloningPrescribed": [
+    "Cloning.TensorCloningPrescribedRestriction",
+    "Cloning.TensorFlatProjectorAchievability"
+  ],
+  "Cloning.TensorCloningPrescribedLimits": [
+    "Cloning.TensorCloningPrescribed",
+    "Cloning.TensorCloningUniformKnown",
+    "Cloning.TensorCloningUniformUniversal",
+    "Cloning.PhysicalFlatGrassmannUniform"
+  ],
+  "Cloning.TensorCloningPrescribedRestriction": [
+    "Cloning.TensorCloningPrescribedTrace",
+    "Cloning.TensorCloningGlobalCovariance",
+    "Cloning.PCTPhysicalState"
+  ],
+  "Cloning.TensorCloningPrescribedTrace": [
+    "Cloning.PCTCountMeasurementChannel",
+    "Cloning.PCTRankAdaptedPartialTrace",
+    "Cloning.MatrixPartialTraceCovariance"
+  ],
+  "Cloning.TensorCloningRetainedCoefficients": [
+    "Cloning.TensorCloningAchievabilitySector",
+    "Cloning.TensorCloningAchievabilityUniform"
+  ],
+  "Cloning.TensorCloningRetainedMixture": [
+    "Cloning.TensorCloningRetainedCoefficients",
+    "Cloning.InfiniteFidelityCornerMixture"
+  ],
+  "Cloning.TensorCloningRetainedTypical": [
+    "Cloning.TensorCloningRetainedMixture",
+    "Cloning.PhysicalCloningConverseSpectrum"
+  ],
+  "Cloning.TensorCloningRetainedUniversal": [
+    "Cloning.TensorCloningRetainedTypical",
+    "Cloning.TensorCloningUniversalFrequencies"
+  ],
+  "Cloning.TensorCloningSectorCovariance": [
+    "Cloning.TensorCloningTransitionCovariance"
+  ],
+  "Cloning.TensorCloningShrinkingMixture": [
+    "Cloning.TensorCloningShrinkingWindows"
+  ],
+  "Cloning.TensorCloningShrinkingWindows": [
+    "Cloning.TensorCloningRetainedTypical",
+    "Cloning.PhysicalCloningConverseUnknown"
+  ],
+  "Cloning.TensorCloningTransitionCovariance": [
+    "Cloning.TensorCartanChannelCovariance",
+    "Cloning.TensorCloningAchievabilityMixture"
+  ],
+  "Cloning.TensorCloningUniformBlocks": [
+    "Cloning.TensorCloningBlockTrimming",
+    "Cloning.TensorCloningRetainedUniversal"
+  ],
+  "Cloning.TensorCloningUniformCovariance": [
+    "Cloning.TensorCloningGlobalCovariance",
+    "Cloning.TensorCloningSectorCovariance",
+    "Cloning.PCTUnitaryTransportChannels"
+  ],
+  "Cloning.TensorCloningUniformKnown": [
+    "Cloning.TensorCloningUniformBlocks",
+    "Cloning.TensorCloningUniformCovariance",
+    "Cloning.TensorCloningUniversalError",
+    "Cloning.PhysicalCloningConverseUnknown"
+  ],
+  "Cloning.TensorCloningUniformUniversal": [
+    "Cloning.TensorCloningUniformBlocks",
+    "Cloning.TensorCloningUniformCovariance",
+    "Cloning.TensorCloningUniversalClassical",
+    "Cloning.PhysicalCloningConverseUnknown"
+  ],
+  "Cloning.TensorCloningUniversalAchievability": [
+    "Cloning.TensorCloningUniversalClassical",
+    "Cloning.TensorCloningUniversalSector",
+    "Cloning.PhysicalCloningConverseUnknown"
+  ],
+  "Cloning.TensorCloningUniversalClassical": [
+    "Cloning.TensorCloningUniversalError",
+    "Cloning.PhysicalCloningConverseSpectrum"
+  ],
+  "Cloning.TensorCloningUniversalError": [
+    "Cloning.TensorCloningUniversalProbability"
+  ],
+  "Cloning.TensorCloningUniversalFrequencies": [
+    "Cloning.TensorCloningUniversalSupport"
+  ],
+  "Cloning.TensorCloningUniversalMixture": [
+    "Cloning.TensorCloningAchievabilityMixture",
+    "Cloning.TensorCloningCopyAffinity",
+    "Cloning.InfiniteFidelityTransitionWeights",
+    "Cloning.YoungPhysicalRounding"
+  ],
+  "Cloning.TensorCloningUniversalProbability": [
+    "Cloning.TensorCloningUniversalMixture",
+    "Cloning.TensorCloningAchievabilityProbability"
+  ],
+  "Cloning.TensorCloningUniversalSector": [
+    "Cloning.TensorCloningUniversalFrequencies",
+    "Cloning.TensorCloningAchievabilitySector",
+    "Cloning.PhysicalCloningConverseSpectrum"
+  ],
+  "Cloning.TensorCloningUniversalSupport": [
+    "Cloning.TensorCloningUniversalProbability",
+    "Cloning.TensorCloningAchievabilityCompatibility"
+  ],
+  "Cloning.TensorCyclicError": [
+    "Cloning.TensorRootBounds"
+  ],
+  "Cloning.TensorCyclicFiltration": [
+    "Cloning.TensorLieRelations"
+  ],
+  "Cloning.TensorCyclicGramLimit": [
+    "Cloning.TensorCyclicPBW"
+  ],
+  "Cloning.TensorCyclicIndependence": [
+    "Cloning.TensorCyclicGramLimit"
+  ],
+  "Cloning.TensorCyclicOccupancy": [
+    "Cloning.TensorCyclicFiltration"
+  ],
+  "Cloning.TensorCyclicPBW": [
+    "Cloning.TensorCyclicPartition",
+    "Cloning.TensorCyclicError",
+    "Cloning.TensorCCRBounds"
+  ],
+  "Cloning.TensorCyclicPartition": [
+    "Cloning.TensorPartitionHighest",
+    "Cloning.TensorRootBounds"
+  ],
+  "Cloning.TensorCyclicSector": [
+    "Cloning.TensorCyclicFiltration",
+    "Cloning.TensorPartitionHighest"
+  ],
+  "Cloning.TensorCyclicSectorCovariance": [
+    "Cloning.TensorCyclicSectorDiagonal",
+    "Cloning.TensorCyclicSectorTransvection"
+  ],
+  "Cloning.TensorCyclicSectorDiagonal": [
+    "Cloning.TensorCyclicSectorTensorPower",
+    "Cloning.PCTPurificationInvariance"
+  ],
+  "Cloning.TensorCyclicSectorIrreducible": [
+    "Cloning.TensorCyclicSector"
+  ],
+  "Cloning.TensorCyclicSectorOperators": [
+    "Cloning.TensorCyclicSectorIrreducible"
+  ],
+  "Cloning.TensorCyclicSectorTensorPower": [
+    "Cloning.TensorCyclicSectorOperators",
+    "Cloning.PCTPurificationChannel"
+  ],
+  "Cloning.TensorCyclicSectorTransvection": [
+    "Cloning.TensorCyclicSectorTensorPower"
+  ],
+  "Cloning.TensorCyclicSectorWeightTrace": [
+    "Cloning.TensorLieRelations"
+  ],
+  "Cloning.TensorFlatProjectorAchievability": [
+    "Cloning.TensorFlatProjectorChannel"
+  ],
+  "Cloning.TensorFlatProjectorCasimirMoment": [
+    "Cloning.TensorFlatProjectorCasimirTrace",
+    "Cloning.Projector"
+  ],
+  "Cloning.TensorFlatProjectorCasimirTrace": [
+    "Cloning.TensorFlatProjectorLaw",
+    "Cloning.TensorSchurDecompositionRadialEquation"
+  ],
+  "Cloning.TensorFlatProjectorChannel": [
+    "Cloning.TensorFlatProjectorCopyCoupling",
+    "Cloning.TensorFlatProjectorTransitionCovariance",
+    "Cloning.TensorFlatProjectorCouplingPadding",
+    "Cloning.YoungFlatCouplingRank",
+    "Cloning.PhysicalFlatConverseOrbit"
+  ],
+  "Cloning.TensorFlatProjectorCompression": [
+    "Cloning.TensorFlatProjectorMatrix",
+    "Cloning.TensorCartanChannel"
+  ],
+  "Cloning.TensorFlatProjectorCopyCoupling": [
+    "Cloning.TensorFlatProjectorMixture",
+    "Cloning.TensorLANEmbeddingSelector"
+  ],
+  "Cloning.TensorFlatProjectorCouplingPadding": [
+    "Cloning.TensorFlatProjectorRankLaw",
+    "Cloning.YoungFlatFidelityBounds"
+  ],
+  "Cloning.TensorFlatProjectorDimensionLimit": [
+    "Cloning.WeylCharacterDimensionPhysical",
+    "Cloning.TensorCartanSplitCoefficients"
+  ],
+  "Cloning.TensorFlatProjectorDimensions": [
+    "Cloning.TensorFlatProjectorDimensionLimit",
+    "Cloning.YoungDimensionRatio"
+  ],
+  "Cloning.TensorFlatProjectorEmbedding": [
+    "Cloning.TensorFlatProjectorLaw"
+  ],
+  "Cloning.TensorFlatProjectorFidelity": [
+    "Cloning.TensorFlatProjectorCompression"
+  ],
+  "Cloning.TensorFlatProjectorGibbs": [
+    "Cloning.TensorFlatProjectorTraceClass",
+    "Cloning.TensorLANEmbeddingSchurState"
+  ],
+  "Cloning.TensorFlatProjectorGibbsState": [
+    "Cloning.TensorFlatProjectorGibbs",
+    "Cloning.TensorCloningTransitionCovariance"
+  ],
+  "Cloning.TensorFlatProjectorLaw": [
+    "Cloning.TensorSchurDecompositionMultiplicity",
+    "Cloning.TensorSchurDecompositionConcentration",
+    "Cloning.WeylCharacterDimensionPhysical",
+    "Cloning.YoungGeneralMoments"
+  ],
+  "Cloning.TensorFlatProjectorMatrix": [
+    "Cloning.TensorFlatProjectorState",
+    "Cloning.TensorCartanTensorAction",
+    "Cloning.MatrixFidelityProjector"
+  ],
+  "Cloning.TensorFlatProjectorMixture": [
+    "Cloning.TensorFlatProjectorGibbs",
+    "Cloning.TensorCloningAchievabilityMixture"
+  ],
+  "Cloning.TensorFlatProjectorMoments": [
+    "Cloning.TensorFlatProjectorLaw"
+  ],
+  "Cloning.TensorFlatProjectorNaturality": [
+    "Cloning.TensorFlatProjectorEmbedding",
+    "Cloning.TensorFlatProjectorDimensions"
+  ],
+  "Cloning.TensorFlatProjectorPadding": [
+    "Cloning.TensorFlatProjectorState"
+  ],
+  "Cloning.TensorFlatProjectorProduct": [
+    "Cloning.TensorFlatProjectorRestriction"
+  ],
+  "Cloning.TensorFlatProjectorRankLaw": [
+    "Cloning.TensorFlatProjectorPadding"
+  ],
+  "Cloning.TensorFlatProjectorRestriction": [
+    "Cloning.TensorFlatProjectorSector",
+    "Cloning.TensorHighestGramCovariance"
+  ],
+  "Cloning.TensorFlatProjectorSector": [
+    "Cloning.TensorFlatProjectorSupport"
+  ],
+  "Cloning.TensorFlatProjectorSectorSupport": [
+    "Cloning.TensorFlatProjectorRestriction"
+  ],
+  "Cloning.TensorFlatProjectorState": [
+    "Cloning.TensorFlatProjectorSectorSupport"
+  ],
+  "Cloning.TensorFlatProjectorStateFidelity": [
+    "Cloning.TensorFlatProjectorGibbsState",
+    "Cloning.TensorCloningTransitionCovariance"
+  ],
+  "Cloning.TensorFlatProjectorSupport": [
+    "Cloning.TensorFlatProjectorNaturality"
+  ],
+  "Cloning.TensorFlatProjectorTraceClass": [
+    "Cloning.TensorFlatProjectorFidelity",
+    "Cloning.TensorCartanStateOperator",
+    "Cloning.HybridStates"
+  ],
+  "Cloning.TensorFlatProjectorTransitionCovariance": [
+    "Cloning.TensorFlatProjectorRankLaw",
+    "Cloning.TensorFlatProjectorMoments",
+    "Cloning.TensorFlatProjectorMixture",
+    "Cloning.TensorFlatProjectorStateFidelity",
+    "Cloning.TensorCloningSectorCovariance"
+  ],
+  "Cloning.TensorFundamentalBranchingExistence": [
+    "Cloning.TensorFundamentalBranchingTransport",
+    "Cloning.TensorFundamentalBranchingWedge",
+    "Cloning.TensorFundamentalBranchingShape",
+    "Cloning.TensorPartitionHighest"
+  ],
+  "Cloning.TensorFundamentalBranchingHighest": [
+    "Cloning.TensorFundamentalBranchingSlices",
+    "Cloning.YoungBranchingStandard"
+  ],
+  "Cloning.TensorFundamentalBranchingLift": [
+    "Cloning.TensorFundamentalBranchingSlices",
+    "Cloning.TensorHighestGramIntertwiner",
+    "Cloning.TensorCyclicSectorIrreducible"
+  ],
+  "Cloning.TensorFundamentalBranchingMultiplicity": [
+    "Cloning.TensorFundamentalBranchingHighest"
+  ],
+  "Cloning.TensorFundamentalBranchingShape": [
+    "Cloning.YoungBranchingStandard"
+  ],
+  "Cloning.TensorFundamentalBranchingSlices": [
+    "Cloning.TensorCartanFrame",
+    "Cloning.TensorCyclicSector"
+  ],
+  "Cloning.TensorFundamentalBranchingTransport": [
+    "Cloning.TensorFundamentalBranchingLift"
+  ],
+  "Cloning.TensorFundamentalBranchingWedge": [
+    "Cloning.TensorFundamentalBranchingSlices",
+    "Cloning.TensorWedgeHighest"
+  ],
+  "Cloning.TensorGibbsBosonicPartition": [
+    "Cloning.TensorGibbsHeightSpectrum",
+    "Cloning.Thermal"
+  ],
+  "Cloning.TensorGibbsCenteredLAN": [
+    "Cloning.TensorGibbsStateLimit",
+    "Cloning.TensorGibbsThermalIdentification",
+    "Cloning.TensorLANEmbeddingDiagonal"
+  ],
+  "Cloning.TensorGibbsCutoffState": [
+    "Cloning.TensorGibbsTruncation",
+    "Cloning.TensorGibbsPartitionLimit"
+  ],
+  "Cloning.TensorGibbsDecay": [
+    "Cloning.TensorGibbsWeights"
+  ],
+  "Cloning.TensorGibbsDisplacedState": [
+    "Cloning.TensorGibbsDisplacedTransfer",
+    "Cloning.TensorGibbsThermalIdentification",
+    "Cloning.TensorLANEmbeddingTotal"
+  ],
+  "Cloning.TensorGibbsDisplacedTransfer": [
+    "Cloning.TensorGibbsPureTransfer",
+    "Cloning.TensorGibbsStateTransfer"
+  ],
+  "Cloning.TensorGibbsHeight": [
+    "Cloning.TensorWeightFrameOrthogonal",
+    "Cloning.TensorPBWSpanning",
+    "Cloning.TensorCyclicOccupancy"
+  ],
+  "Cloning.TensorGibbsHeightBasis": [
+    "Cloning.TensorGibbsTrace",
+    "Cloning.TensorPBWCutoffBasis"
+  ],
+  "Cloning.TensorGibbsHeightSpectrum": [
+    "Cloning.TensorGibbsHeightBasis",
+    "Cloning.TensorGibbsTail"
+  ],
+  "Cloning.TensorGibbsLocalUnitary": [
+    "Cloning.TensorGibbsDisplacedState",
+    "Cloning.TensorLocalUnitaryCoordinates",
+    "Cloning.TensorLocalUnitaryFockPolynomial"
+  ],
+  "Cloning.TensorGibbsPartitionLimit": [
+    "Cloning.TensorGibbsBosonicPartition"
+  ],
+  "Cloning.TensorGibbsPhysicalDisplacement": [
+    "Cloning.TensorGibbsLocalUnitary",
+    "Cloning.TensorGibbsStateLimit",
+    "Cloning.TensorLocalUnitaryPhysicalWeyl",
+    "Cloning.WeylMultimodeChannel"
+  ],
+  "Cloning.TensorGibbsPhysicalLAN": [
+    "Cloning.TensorGibbsPhysicalDisplacement"
+  ],
+  "Cloning.TensorGibbsPhysicalLANUniform": [
+    "Cloning.TensorGibbsPhysicalLAN",
+    "Cloning.TensorLocalUnitaryWeylUniform"
+  ],
+  "Cloning.TensorGibbsPureTransfer": [
+    "Cloning.TensorGibbsTruncation"
+  ],
+  "Cloning.TensorGibbsSchurBridge": [
+    "Cloning.TensorGibbsPhysicalLANUniform",
+    "Cloning.TensorLANEmbeddingSchurState"
+  ],
+  "Cloning.TensorGibbsState": [
+    "Cloning.TensorCyclicSectorCovariance",
+    "Cloning.InfiniteTraceClassSeries",
+    "Cloning.InfiniteTraceClassPositive"
+  ],
+  "Cloning.TensorGibbsStateLimit": [
+    "Cloning.TensorGibbsStateTransfer"
+  ],
+  "Cloning.TensorGibbsStateTransfer": [
+    "Cloning.TensorGibbsThermalCutoff",
+    "Cloning.TensorLANEmbeddingTotal"
+  ],
+  "Cloning.TensorGibbsTail": [
+    "Cloning.TensorGibbsTrace",
+    "Cloning.TensorGibbsDecay"
+  ],
+  "Cloning.TensorGibbsThermalCutoff": [
+    "Cloning.TensorGibbsCutoffState"
+  ],
+  "Cloning.TensorGibbsThermalIdentification": [
+    "Cloning.TensorGibbsThermalCutoff",
+    "Cloning.InfiniteDiagonalFidelity",
+    "Cloning.ThermalWitness"
+  ],
+  "Cloning.TensorGibbsTrace": [
+    "Cloning.TensorGibbsHeight"
+  ],
+  "Cloning.TensorGibbsTruncation": [
+    "Cloning.InfiniteFiniteCorner",
+    "Cloning.TensorLANEmbeddingAction"
+  ],
+  "Cloning.TensorGibbsWeights": [
+    "Cloning.TensorGibbsState",
+    "Cloning.TensorPBWWeight"
+  ],
+  "Cloning.TensorHighestExtraction": [
+    "Cloning.TensorHighestExtractionBasic"
+  ],
+  "Cloning.TensorHighestExtractionBasic": [
+    "Cloning.TensorCyclicSectorCovariance",
+    "Cloning.TensorRootBounds"
+  ],
+  "Cloning.TensorHighestGram": [
+    "Cloning.TensorHighestGramAction",
+    "Cloning.TensorRootBounds"
+  ],
+  "Cloning.TensorHighestGramAction": [
+    "Cloning.TensorCyclicFiltration"
+  ],
+  "Cloning.TensorHighestGramCovariance": [
+    "Cloning.TensorHighestGramIntertwiner",
+    "Cloning.TensorCyclicSectorCovariance",
+    "Cloning.TensorCyclicSectorWeightTrace"
+  ],
+  "Cloning.TensorHighestGramIntertwiner": [
+    "Cloning.TensorHighestGramIsometry",
+    "Cloning.TensorCyclicSectorOperators"
+  ],
+  "Cloning.TensorHighestGramIsometry": [
+    "Cloning.TensorHighestGram",
+    "Cloning.TensorCyclicSector"
+  ],
+  "Cloning.TensorLANEmbeddingAction": [
+    "Cloning.TensorLANEmbeddingPhysical",
+    "Cloning.InfiniteTraceClassNormalPart"
+  ],
+  "Cloning.TensorLANEmbeddingAverageUniform": [
+    "Cloning.TensorLANEmbeddingStateBounds",
+    "Cloning.TensorLANEmbeddingCopyTail",
+    "Cloning.TensorLANEmbeddingMixtureError"
+  ],
+  "Cloning.TensorLANEmbeddingBlocks": [
+    "Cloning.TensorLANEmbeddingSchur",
+    "Cloning.TensorGibbsState",
+    "Cloning.PCTPhysicalState"
+  ],
+  "Cloning.TensorLANEmbeddingCellError": [
+    "Cloning.TensorLANEmbeddingCellRecovery",
+    "Cloning.TensorLANEmbeddingSchurState"
+  ],
+  "Cloning.TensorLANEmbeddingCellProtocol": [
+    "Cloning.TensorLANEmbeddingWhiteningGaussian",
+    "Cloning.TensorLANEmbeddingSelector"
+  ],
+  "Cloning.TensorLANEmbeddingCellRecovery": [
+    "Cloning.TensorLANEmbeddingSelectorRecovery",
+    "Cloning.TensorLANEmbeddingMixtureError"
+  ],
+  "Cloning.TensorLANEmbeddingCellWeights": [
+    "Cloning.TensorLANEmbeddingSchurWeights",
+    "Cloning.TensorLANEmbeddingClassicalLimit"
+  ],
+  "Cloning.TensorLANEmbeddingChannel": [
+    "Cloning.InfiniteIsometricChannel",
+    "Cloning.InfinitePureStateContinuity"
+  ],
+  "Cloning.TensorLANEmbeddingClassicalCenter": [
+    "Cloning.YoungUniformLocalQuantization"
+  ],
+  "Cloning.TensorLANEmbeddingClassicalLimit": [
+    "Cloning.TensorLANEmbeddingWhiteningGaussian",
+    "Cloning.PCTLocalChartCoordinates"
+  ],
+  "Cloning.TensorLANEmbeddingClassicalUniform": [
+    "Cloning.TensorLANEmbeddingClassicalLimit",
+    "Cloning.TensorLANEmbeddingLocalSpectrum"
+  ],
+  "Cloning.TensorLANEmbeddingCompactLAN": [
+    "Cloning.TensorLANEmbeddingWindow",
+    "Cloning.TensorLANEmbeddingDiagonal"
+  ],
+  "Cloning.TensorLANEmbeddingCompression": [
+    "Cloning.TensorLANEmbeddingTotal"
+  ],
+  "Cloning.TensorLANEmbeddingCopyTail": [
+    "Cloning.TensorLANEmbeddingSchurWeights",
+    "Cloning.TensorLANEmbeddingTypical"
+  ],
+  "Cloning.TensorLANEmbeddingDiagonal": [],
+  "Cloning.TensorLANEmbeddingFockCoordinates": [
+    "Cloning.TensorLANEmbeddingFockReindex"
+  ],
+  "Cloning.TensorLANEmbeddingFockProtocol": [
+    "Cloning.TensorLANEmbeddingFockStateCoordinates",
+    "Cloning.TensorLANEmbeddingCellProtocol",
+    "Cloning.HybridGaussianAttainmentChannel",
+    "Cloning.IsometricRecovery"
+  ],
+  "Cloning.TensorLANEmbeddingFockReindex": [
+    "Cloning.TensorLANEmbeddingPhysical",
+    "Cloning.WeylMultimodeDisplacement",
+    "Cloning.TensorGibbsThermalIdentification"
+  ],
+  "Cloning.TensorLANEmbeddingFockStateCoordinates": [
+    "Cloning.TensorLANEmbeddingFockCoordinates",
+    "Cloning.TensorGibbsThermalIdentification",
+    "Cloning.TensorGibbsPhysicalDisplacement",
+    "Cloning.PhysicalCloningConversePreparation"
+  ],
+  "Cloning.TensorLANEmbeddingFrame": [
+    "Cloning.TensorLANEmbeddingChannel"
+  ],
+  "Cloning.TensorLANEmbeddingLocalSpectrum": [
+    "Cloning.TensorLANEmbeddingTypical",
+    "Cloning.PCTTangentChartSamples"
+  ],
+  "Cloning.TensorLANEmbeddingMixtureError": [
+    "Cloning.TensorLANEmbeddingSchur",
+    "Cloning.MixedChannelsBounded"
+  ],
+  "Cloning.TensorLANEmbeddingPhysical": [
+    "Cloning.TensorLANEmbeddingFrame",
+    "Cloning.TensorCartanCutoffFrame",
+    "Cloning.MultimodeCoherentGaussianMixture"
+  ],
+  "Cloning.TensorLANEmbeddingProtocolError": [
+    "Cloning.TensorLANEmbeddingCellError",
+    "Cloning.TensorLANEmbeddingAverageUniform",
+    "Cloning.TensorLANEmbeddingFockProtocol",
+    "Cloning.TensorLANEmbeddingClassicalUniform"
+  ],
+  "Cloning.TensorLANEmbeddingSchur": [
+    "Cloning.TensorLANEmbeddingTotal",
+    "Cloning.TensorSchurMultiplicityDecomposition",
+    "Cloning.TensorSchurDecompositionIsometry",
+    "Cloning.MixedChannelsSectorInstrument",
+    "Cloning.MixedChannelsFiniteSelector"
+  ],
+  "Cloning.TensorLANEmbeddingSchurState": [
+    "Cloning.TensorLANEmbeddingSchurWeights",
+    "Cloning.TensorGibbsCutoffState"
+  ],
+  "Cloning.TensorLANEmbeddingSchurWeights": [
+    "Cloning.TensorLANEmbeddingBlocks",
+    "Cloning.TensorLANEmbeddingCellProtocol"
+  ],
+  "Cloning.TensorLANEmbeddingSectorUniform": [
+    "Cloning.TensorLANEmbeddingLocalSpectrum",
+    "Cloning.TensorGibbsPhysicalLANUniform",
+    "Cloning.WeylMultimodeChannel"
+  ],
+  "Cloning.TensorLANEmbeddingSelector": [
+    "Cloning.TensorLANEmbeddingSchur",
+    "Cloning.TensorSchurDecompositionMultiplicity"
+  ],
+  "Cloning.TensorLANEmbeddingSelectorRecovery": [
+    "Cloning.TensorLANEmbeddingCellWeights"
+  ],
+  "Cloning.TensorLANEmbeddingStateBounds": [
+    "Cloning.TensorLANEmbeddingSectorUniform",
+    "Cloning.TensorGibbsSchurBridge"
+  ],
+  "Cloning.TensorLANEmbeddingTotal": [
+    "Cloning.TensorLANEmbeddingAction"
+  ],
+  "Cloning.TensorLANEmbeddingTypical": [
+    "Cloning.TensorSchurDecompositionConcentration",
+    "Cloning.TensorLANEmbeddingTotal"
+  ],
+  "Cloning.TensorLANEmbeddingWhitening": [
+    "Cloning.TensorLANEmbeddingClassicalCenter",
+    "Cloning.PCTJointGaussianChart"
+  ],
+  "Cloning.TensorLANEmbeddingWhiteningGaussian": [
+    "Cloning.TensorLANEmbeddingWhitening"
+  ],
+  "Cloning.TensorLANEmbeddingWindow": [
+    "Cloning.TensorLANEmbeddingProtocolError"
+  ],
+  "Cloning.TensorLieFiltration": [
+    "Cloning.TensorLieHighestWeight"
+  ],
+  "Cloning.TensorLieGenerators": [
+    "Cloning.PCTTensorFrame",
+    "Cloning.InfiniteFiniteCorner"
+  ],
+  "Cloning.TensorLieHighestWeight": [
+    "Cloning.TensorLieRelations"
+  ],
+  "Cloning.TensorLieLeibniz": [
+    "Cloning.TensorLieFiltration"
+  ],
+  "Cloning.TensorLieProduct": [
+    "Cloning.TensorLieHighestWeight"
+  ],
+  "Cloning.TensorLieRelations": [
+    "Cloning.TensorLieGenerators"
+  ],
+  "Cloning.TensorLocalUnitaryApproximation": [
+    "Cloning.TensorLocalUnitaryFockPolynomial"
+  ],
+  "Cloning.TensorLocalUnitaryCompression": [
+    "Cloning.TensorLocalUnitaryFrameMatrix"
+  ],
+  "Cloning.TensorLocalUnitaryCoordinates": [
+    "Cloning.TensorLocalUnitaryPhysical",
+    "Cloning.PCTTangentChartSamples"
+  ],
+  "Cloning.TensorLocalUnitaryFockPolynomial": [
+    "Cloning.TensorLocalUnitaryPolynomial",
+    "Cloning.TensorLANEmbeddingPhysical"
+  ],
+  "Cloning.TensorLocalUnitaryFrameMatrix": [
+    "Cloning.TensorLocalUnitaryMatrixElements"
+  ],
+  "Cloning.TensorLocalUnitaryGenerator": [
+    "Cloning.TensorLocalUnitaryTaylor",
+    "Cloning.TensorCyclicPBW"
+  ],
+  "Cloning.TensorLocalUnitaryMatrixElements": [
+    "Cloning.TensorLocalUnitaryTail",
+    "Cloning.TensorCartanCutoffMatrixLimit"
+  ],
+  "Cloning.TensorLocalUnitaryPhysical": [
+    "Cloning.TensorLocalUnitaryGenerator",
+    "Cloning.TensorCyclicSectorTransvection"
+  ],
+  "Cloning.TensorLocalUnitaryPhysicalWeyl": [
+    "Cloning.TensorLocalUnitaryWeyl",
+    "Cloning.TensorLocalUnitaryCoordinates"
+  ],
+  "Cloning.TensorLocalUnitaryPolynomial": [
+    "Cloning.TensorLocalUnitaryCompression"
+  ],
+  "Cloning.TensorLocalUnitaryReverse": [
+    "Cloning.TensorLocalUnitaryFockPolynomial"
+  ],
+  "Cloning.TensorLocalUnitaryTail": [
+    "Cloning.TensorLocalUnitaryGenerator"
+  ],
+  "Cloning.TensorLocalUnitaryTaylor": [
+    "Cloning.TensorRootBounds"
+  ],
+  "Cloning.TensorLocalUnitaryWeyl": [
+    "Cloning.TensorLocalUnitaryApproximation",
+    "Cloning.TensorLocalUnitaryReverse",
+    "Cloning.TensorWeylMatrixPowers"
+  ],
+  "Cloning.TensorLocalUnitaryWeylUniform": [
+    "Cloning.TensorLocalUnitaryPhysicalWeyl"
+  ],
+  "Cloning.TensorPBWCutoffBasis": [
+    "Cloning.TensorPBWSpanning",
+    "Cloning.TensorPBWNormalization"
+  ],
+  "Cloning.TensorPBWDominance": [
+    "Cloning.TensorPBWSpanning"
+  ],
+  "Cloning.TensorPBWFiniteSector": [
+    "Cloning.TensorPBWDominance"
+  ],
+  "Cloning.TensorPBWHighestLine": [
+    "Cloning.TensorPBWWeight",
+    "Cloning.TensorCyclicSector"
+  ],
+  "Cloning.TensorPBWNormalization": [
+    "Cloning.TensorCyclicIndependence",
+    "Cloning.TensorPBWWeight"
+  ],
+  "Cloning.TensorPBWOccupations": [
+    "Cloning.TensorPBWOrder",
+    "Cloning.TensorPBWWeight"
+  ],
+  "Cloning.TensorPBWOrder": [
+    "Cloning.TensorCyclicFiltration"
+  ],
+  "Cloning.TensorPBWSpanning": [
+    "Cloning.TensorPBWStraightening",
+    "Cloning.TensorPBWOccupations",
+    "Cloning.TensorCyclicSector"
+  ],
+  "Cloning.TensorPBWStraightening": [
+    "Cloning.TensorPBWOrder",
+    "Cloning.TensorPBWWeight"
+  ],
+  "Cloning.TensorPBWWeight": [
+    "Cloning.TensorCyclicFiltration"
+  ],
+  "Cloning.TensorPartitionHighest": [
+    "Cloning.TensorWedgeHighest",
+    "Cloning.TensorLieProduct"
+  ],
+  "Cloning.TensorPositiveSpectrumCompression": [
+    "Cloning.TensorFlatProjectorGibbs"
+  ],
+  "Cloning.TensorPositiveSpectrumCompressionFidelity": [
+    "Cloning.TensorRankCartanCompression",
+    "Cloning.TensorPositiveSpectrumCompressionMatrix"
+  ],
+  "Cloning.TensorPositiveSpectrumCompressionMatrix": [
+    "Cloning.TensorPositiveSpectrumCompression",
+    "Cloning.TensorRankCartanRestriction",
+    "Cloning.TensorFlatProjectorGibbsState"
+  ],
+  "Cloning.TensorRankCartanCompression": [
+    "Cloning.TensorRankCartanRestriction",
+    "Cloning.MatrixRankCompressionFidelity"
+  ],
+  "Cloning.TensorRankCartanRestriction": [
+    "Cloning.TensorFlatProjectorProduct",
+    "Cloning.TensorFlatProjectorFidelity",
+    "Cloning.TensorCartanWordSplit"
+  ],
+  "Cloning.TensorRankOneCartan": [
+    "Cloning.TensorRankOneProduct"
+  ],
+  "Cloning.TensorRankOneCopy": [
+    "Cloning.TensorRankOneCartan",
+    "Cloning.TensorRankOnePhase"
+  ],
+  "Cloning.TensorRankOneCoupling": [
+    "Cloning.TensorFlatProjectorAchievability"
+  ],
+  "Cloning.TensorRankOneDimension": [
+    "Cloning.WeylCharacterDimensionPhysical",
+    "Cloning.TensorCloningKernel"
+  ],
+  "Cloning.TensorRankOneGibbs": [
+    "Cloning.TensorRankOneHighest",
+    "Cloning.TensorFlatProjectorMixture"
+  ],
+  "Cloning.TensorRankOneGlobal": [
+    "Cloning.TensorRankOneTransition",
+    "Cloning.TensorRankOneCoupling",
+    "Cloning.TensorRankOneWernerCovariance"
+  ],
+  "Cloning.TensorRankOneHighest": [
+    "Cloning.TensorRankOneSector",
+    "Cloning.TensorCartanIntertwiner"
+  ],
+  "Cloning.TensorRankOnePhase": [
+    "Cloning.TensorRankOneProduct"
+  ],
+  "Cloning.TensorRankOneProduct": [
+    "Cloning.TensorRankOneHighest",
+    "Cloning.TensorCartanStateProduct",
+    "Cloning.PCTCoordinateFrame",
+    "Cloning.PCTGaussianAssembly"
+  ],
+  "Cloning.TensorRankOneSector": [
+    "Cloning.TensorRankOneDimension",
+    "Cloning.PCTPhysicalWerner",
+    "Cloning.GeneralSymmetricDimension",
+    "Cloning.TensorLieHighestWeight"
+  ],
+  "Cloning.TensorRankOneTransition": [
+    "Cloning.TensorRankOneCopy",
+    "Cloning.TensorCloningTransitionCovariance",
+    "Cloning.TensorRankOneCoupling"
+  ],
+  "Cloning.TensorRankOneWernerCovariance": [
+    "Cloning.PCTRankOnePureInput",
+    "Cloning.TensorRankOneGibbs",
+    "Cloning.TensorCloningGlobalCovariance",
+    "Cloning.PhysicalFlatPinchingOrbit"
+  ],
+  "Cloning.TensorRootBounds": [
+    "Cloning.TensorCyclicOccupancy",
+    "Cloning.PBWRootGram"
+  ],
+  "Cloning.TensorSchurDecomposition": [
+    "Cloning.TensorSchurDecompositionData"
+  ],
+  "Cloning.TensorSchurDecompositionBounds": [
+    "Cloning.TensorSchurDecompositionMultiplicity",
+    "Cloning.TensorGibbsHeight",
+    "Cloning.TensorPBWFiniteSector"
+  ],
+  "Cloning.TensorSchurDecompositionCasimir": [
+    "Cloning.TensorSchurDecompositionBounds"
+  ],
+  "Cloning.TensorSchurDecompositionCharacter": [
+    "Cloning.TensorSchurDecompositionCasimir"
+  ],
+  "Cloning.TensorSchurDecompositionCharacterDegree": [
+    "Cloning.TensorSchurDecompositionCharacter"
+  ],
+  "Cloning.TensorSchurDecompositionCharacterHighest": [
+    "Cloning.TensorSchurDecompositionCharacter",
+    "Cloning.TensorPBWHighestLine"
+  ],
+  "Cloning.TensorSchurDecompositionCharacterLeading": [
+    "Cloning.TensorSchurDecompositionRadialEquation",
+    "Cloning.TensorSchurDecompositionCharacterHighest"
+  ],
+  "Cloning.TensorSchurDecompositionCharacterSpectrum": [
+    "Cloning.TensorSchurDecompositionRadialEquation"
+  ],
+  "Cloning.TensorSchurDecompositionCharacterSymmetry": [
+    "Cloning.TensorSchurDecompositionCharacter"
+  ],
+  "Cloning.TensorSchurDecompositionConcentration": [
+    "Cloning.TensorSchurDecompositionBounds",
+    "Cloning.YoungGeneralPMF"
+  ],
+  "Cloning.TensorSchurDecompositionData": [
+    "Cloning.TensorHighestExtraction",
+    "Cloning.TensorHighestGramCovariance"
+  ],
+  "Cloning.TensorSchurDecompositionFundamental": [
+    "Cloning.TensorSchurDecomposition",
+    "Cloning.TensorFundamentalBranchingMultiplicity"
+  ],
+  "Cloning.TensorSchurDecompositionHighest": [
+    "Cloning.TensorSchurDecompositionFundamental"
+  ],
+  "Cloning.TensorSchurDecompositionIsometry": [
+    "Cloning.TensorSchurDecomposition"
+  ],
+  "Cloning.TensorSchurDecompositionMultiplicity": [
+    "Cloning.TensorSchurDecompositionPMF",
+    "Cloning.TensorSchurMultiplicityDecomposition",
+    "Cloning.YoungBranchingStandard"
+  ],
+  "Cloning.TensorSchurDecompositionPMF": [
+    "Cloning.TensorSchurDecompositionTrace",
+    "Cloning.YoungGeneralTableaux"
+  ],
+  "Cloning.TensorSchurDecompositionRadial": [
+    "Cloning.TensorSchurDecompositionRadialTrace"
+  ],
+  "Cloning.TensorSchurDecompositionRadialEquation": [
+    "Cloning.TensorSchurDecompositionRadial",
+    "Cloning.TensorSchurDecompositionRootSum",
+    "Cloning.TensorSchurDecompositionCharacterDegree",
+    "Cloning.WeylCharacterAlternantDenominator"
+  ],
+  "Cloning.TensorSchurDecompositionRadialTrace": [
+    "Cloning.TensorSchurDecompositionCharacter"
+  ],
+  "Cloning.TensorSchurDecompositionRootSum": [
+    "Cloning.TensorSchurDecompositionRadialTrace"
+  ],
+  "Cloning.TensorSchurDecompositionSharpConcentration": [
+    "Cloning.TensorSchurDecompositionConcentration",
+    "Cloning.YoungGeneralSharpConcentration"
+  ],
+  "Cloning.TensorSchurDecompositionTrace": [
+    "Cloning.TensorSchurDecompositionIsometry",
+    "Cloning.TensorCartanCoordinates",
+    "Cloning.TensorGibbsState"
+  ],
+  "Cloning.TensorSchurDecompositionWeylCharacter": [
+    "Cloning.TensorSchurDecompositionCharacterLeading",
+    "Cloning.TensorSchurDecompositionCharacterSpectrum",
+    "Cloning.TensorSchurDecompositionCharacterSymmetry",
+    "Cloning.WeylCharacterAlternantProduct"
+  ],
+  "Cloning.TensorSchurHaarCompression": [
+    "Cloning.TensorSchurHaarOrthogonality"
+  ],
+  "Cloning.TensorSchurHaarIntertwiner": [
+    "Cloning.PhysicalFlatConverseHaar"
+  ],
+  "Cloning.TensorSchurHaarOrthogonality": [
+    "Cloning.TensorSchurHaarIntertwiner"
+  ],
+  "Cloning.TensorSchurMultiplicityBranching": [
+    "Cloning.TensorFundamentalBranchingExistence",
+    "Cloning.TensorSchurDecompositionFundamental",
+    "Cloning.TensorSchurDecompositionHighest"
+  ],
+  "Cloning.TensorSchurMultiplicityDecomposition": [
+    "Cloning.TensorSchurMultiplicityRefinement"
+  ],
+  "Cloning.TensorSchurMultiplicityRefinement": [
+    "Cloning.TensorSchurMultiplicityBranching"
+  ],
+  "Cloning.TensorWedge": [
+    "Cloning.TensorLieLeibniz"
+  ],
+  "Cloning.TensorWedgeHighest": [
+    "Cloning.TensorWedge"
+  ],
+  "Cloning.TensorWeightFrameLimit": [
+    "Cloning.TensorWeightFrameOrthogonal"
+  ],
+  "Cloning.TensorWeightFrameOrthogonal": [
+    "Cloning.TensorGibbsWeights"
+  ],
+  "Cloning.TensorWeylMatrixEntries": [
+    "Cloning.WeylNumberTaylorLimit",
+    "Cloning.TensorLocalUnitaryPolynomial",
+    "Cloning.TensorLANEmbeddingPhysical"
+  ],
+  "Cloning.TensorWeylMatrixPowers": [
+    "Cloning.TensorWeylMatrixSupport"
+  ],
+  "Cloning.TensorWeylMatrixSupport": [
+    "Cloning.TensorWeylMatrixEntries"
+  ],
+  "Cloning.Thermal": [],
+  "Cloning.ThermalIdlerFidelity": [
+    "Cloning.ThermalWitness",
+    "Cloning.BosonicIdlerChannel"
+  ],
+  "Cloning.ThermalNearPure": [
+    "Cloning.Thermal"
+  ],
+  "Cloning.ThermalParameterContinuity": [
+    "Cloning.AmplifierWeylThermal",
+    "Cloning.WeylFlatPriorThermal"
+  ],
+  "Cloning.ThermalWitness": [
+    "Cloning.BosonicNumberLaw",
+    "Cloning.InfiniteDiagonalFidelity",
+    "Cloning.InfiniteTraceClassPairing",
+    "Cloning.InfiniteFidelityRegularized"
+  ],
+  "Cloning.ThermalWitnessGeometric": [
+    "Cloning.ThermalWitness"
+  ],
+  "Cloning.UniformCoherent": [
+    "Cloning.CoherentContinuity"
+  ],
+  "Cloning.UniformCoherentChannels": [
+    "Cloning.UniformCoherent",
+    "Cloning.OccupationRecovery"
+  ],
+  "Cloning.UniversalGaussianBoundary": [
+    "Cloning.UniversalGaussianRealBox",
+    "Cloning.ThermalParameterContinuity"
+  ],
+  "Cloning.UniversalGaussianConverse": [
+    "Cloning.UniversalLeastNoiseThermalTest",
+    "Cloning.ThermalWitnessGeometric",
+    "Cloning.GaussianConverseReduction"
+  ],
+  "Cloning.UniversalGaussianRealBox": [
+    "Cloning.UniversalGaussianConverse"
+  ],
+  "Cloning.UniversalLeastNoiseGaussian": [
+    "Cloning.UniversalLeastNoiseQuantumKernel",
+    "Cloning.UniversalLeastNoiseRecursion",
+    "Cloning.WeylGaussianTwistedConvolution"
+  ],
+  "Cloning.UniversalLeastNoiseKernel": [
+    "Cloning.WeylQuantumPositiveBounds"
+  ],
+  "Cloning.UniversalLeastNoiseQuantumKernel": [
+    "Cloning.UniversalLeastNoiseKernel",
+    "Cloning.WeylQuantumPositiveBounds"
+  ],
+  "Cloning.UniversalLeastNoiseRecursion": [],
+  "Cloning.UniversalLeastNoiseThermalTest": [
+    "Cloning.UniversalLeastNoiseGaussian",
+    "Cloning.WeylThermalFourierChannel"
+  ],
+  "Cloning.WernerAsymptotics": [
+    "Cloning.Occupation",
+    "Cloning.CountableScheffe",
+    "Cloning.WernerNormalization"
+  ],
+  "Cloning.WernerDimensionIdentity": [
+    "Cloning.WernerNormalization"
+  ],
+  "Cloning.WernerMultivariateConvolution": [
+    "Cloning.WernerNormalization",
+    "Cloning.WernerDimensionIdentity"
+  ],
+  "Cloning.WernerNormalization": [
+    "Cloning.Occupation"
+  ],
+  "Cloning.WernerPhysicalAgreement": [
+    "Cloning.WernerPhysicalChannel",
+    "Cloning.WernerPhysicalPullback",
+    "Cloning.InfiniteFiniteCorner"
+  ],
+  "Cloning.WernerPhysicalChannel": [
+    "Cloning.GeneralSymmetricBalance"
+  ],
+  "Cloning.WernerPhysicalOperator": [
+    "Cloning.GeneralSymmetricProjector",
+    "Cloning.GeneralSymmetricCounting",
+    "Cloning.GeneralSymmetricDimension",
+    "Cloning.WernerDimensionIdentity"
+  ],
+  "Cloning.WernerPhysicalPullback": [
+    "Cloning.WernerPhysicalOperator",
+    "Cloning.IsometricRecovery",
+    "Cloning.InfiniteOccupationStates"
+  ],
+  "Cloning.WeylChannel": [
+    "Cloning.WeylContinuity",
+    "Cloning.InfiniteIsometricChannel"
+  ],
+  "Cloning.WeylCharacterAlternantDenominator": [
+    "Cloning.WeylCharacterAlternantPolynomial",
+    "Cloning.TensorCyclicFiltration"
+  ],
+  "Cloning.WeylCharacterAlternantDominance": [],
+  "Cloning.WeylCharacterAlternantPolynomial": [
+    "Cloning.WeylCharacterAlternantSubsets"
+  ],
+  "Cloning.WeylCharacterAlternantProduct": [
+    "Cloning.WeylCharacterAlternantUniqueness"
+  ],
+  "Cloning.WeylCharacterAlternantSubsets": [
+    "Cloning.WeylCharacterAlternantDominance"
+  ],
+  "Cloning.WeylCharacterAlternantUniqueness": [
+    "Cloning.WeylCharacterAlternantDenominator"
+  ],
+  "Cloning.WeylCharacterDimension": [
+    "Cloning.WeylCharacterDimensionSpecialization"
+  ],
+  "Cloning.WeylCharacterDimensionPhysical": [
+    "Cloning.WeylCharacterDimension",
+    "Cloning.TensorSchurDecompositionWeylCharacter"
+  ],
+  "Cloning.WeylCharacterDimensionSpecialization": [
+    "Cloning.WeylCharacterAlternantDenominator"
+  ],
+  "Cloning.WeylContinuity": [
+    "Cloning.WeylDisplacement",
+    "Cloning.CoherentContinuity"
+  ],
+  "Cloning.WeylCovariantMultiplier": [
+    "Cloning.WeylEigenoperators"
+  ],
+  "Cloning.WeylCovariantization": [
+    "Cloning.WeylMultimodeChannel",
+    "Cloning.ChannelAveraging"
+  ],
+  "Cloning.WeylDensity": [
+    "Cloning.CoherentGaussianMixture",
+    "Cloning.CoherentKernel"
+  ],
+  "Cloning.WeylDiagonalIdler": [
+    "Cloning.WeylDiagonalQuantumPositive",
+    "Cloning.WeylIdlerKernel"
+  ],
+  "Cloning.WeylDiagonalMultiplier": [
+    "Cloning.HeisenbergDualContinuity"
+  ],
+  "Cloning.WeylDiagonalQuantumPositive": [
+    "Cloning.WeylDiagonalMultiplier",
+    "Cloning.WeylQuantumPositiveBounds"
+  ],
+  "Cloning.WeylDiagonalRepresentation": [
+    "Cloning.WeylDiagonalIdler",
+    "Cloning.WeylQuantumBochner"
+  ],
+  "Cloning.WeylDisplacement": [
+    "Cloning.WeylKernel",
+    "Cloning.WeylDensity"
+  ],
+  "Cloning.WeylEigenoperators": [
+    "Cloning.WeylIrreducibleMultimode"
+  ],
+  "Cloning.WeylFlatBox": [
+    "Cloning.WeylFlatPrior"
+  ],
+  "Cloning.WeylFlatPrior": [
+    "Cloning.WeylFoelner"
+  ],
+  "Cloning.WeylFlatPriorLimit": [
+    "Cloning.WeylFoelnerPayoff",
+    "Cloning.WeylFlatPrior"
+  ],
+  "Cloning.WeylFlatPriorThermal": [
+    "Cloning.WeylFlatPriorLimit",
+    "Cloning.WeylFlatBox",
+    "Cloning.MultimodeCoherentGaussianMixture"
+  ],
+  "Cloning.WeylFockDecomposition": [
+    "Cloning.WeylFockVacuum",
+    "Cloning.WeylGaussianTotality"
+  ],
+  "Cloning.WeylFockRepresentation": [
+    "Cloning.WeylFockDecomposition",
+    "Cloning.WeylFockState"
+  ],
+  "Cloning.WeylFockState": [
+    "Cloning.HeisenbergDual"
+  ],
+  "Cloning.WeylFockVacuum": [
+    "Cloning.WeylGaussianVacuumSpace"
+  ],
+  "Cloning.WeylFoelner": [
+    "Cloning.WeylGaussianPrior"
+  ],
+  "Cloning.WeylFoelnerLimit": [
+    "Cloning.WeylFoelner",
+    "Cloning.InfiniteCompletelyPositiveCompactness"
+  ],
+  "Cloning.WeylFoelnerPayoff": [
+    "Cloning.WeylFoelnerLimit",
+    "Cloning.HybridJensenSigmaFinite",
+    "Cloning.ThermalWitness"
+  ],
+  "Cloning.WeylGNSAction": [
+    "Cloning.WeylGNSKernel"
+  ],
+  "Cloning.WeylGNSKernel": [
+    "Cloning.WeylGNSRegular",
+    "Cloning.WeylIdlerKernel",
+    "Cloning.UniversalLeastNoiseQuantumKernel"
+  ],
+  "Cloning.WeylGNSRegular": [
+    "Cloning.WeylMultimodeContinuity"
+  ],
+  "Cloning.WeylGaussianApproximation": [
+    "Cloning.WeylGaussianProjection"
+  ],
+  "Cloning.WeylGaussianPrior": [
+    "Cloning.WeylCovariantization",
+    "Cloning.CoherentGaussianMixture"
+  ],
+  "Cloning.WeylGaussianProjection": [
+    "Cloning.WeylGNSRegular",
+    "Cloning.WeylGaussianSandwichNormalized"
+  ],
+  "Cloning.WeylGaussianProjectionSandwich": [
+    "Cloning.WeylGaussianProjection"
+  ],
+  "Cloning.WeylGaussianSandwich": [
+    "Cloning.WeylGaussianTwistedConvolution"
+  ],
+  "Cloning.WeylGaussianSandwichNormalized": [
+    "Cloning.WeylGaussianSandwich",
+    "Cloning.WeylIrreducibleMultimode"
+  ],
+  "Cloning.WeylGaussianThermal": [
+    "Cloning.WeylIrreducibleGaussian",
+    "Cloning.WeylIrreducible",
+    "Cloning.HeisenbergDualContinuity",
+    "Cloning.CoherentGaussianMixture"
+  ],
+  "Cloning.WeylGaussianTotality": [
+    "Cloning.WeylGaussianTwirl",
+    "Cloning.WeylGaussianApproximation"
+  ],
+  "Cloning.WeylGaussianTotalityScalar": [
+    "Cloning.WeylGaussianSandwichNormalized"
+  ],
+  "Cloning.WeylGaussianTwirl": [
+    "Cloning.WeylGaussianProjection",
+    "Cloning.WeylGaussianTotalityScalar"
+  ],
+  "Cloning.WeylGaussianTwistedConvolution": [
+    "Cloning.WeylGaussianThermal",
+    "Cloning.WeylQuantumPositive"
+  ],
+  "Cloning.WeylGaussianVacuumSpace": [
+    "Cloning.WeylGaussianProjectionSandwich"
+  ],
+  "Cloning.WeylIdlerKernel": [
+    "Cloning.WeylQuantumPositiveBounds"
+  ],
+  "Cloning.WeylIdlerUniqueness": [
+    "Cloning.HeisenbergDualContinuity"
+  ],
+  "Cloning.WeylIrreducible": [
+    "Cloning.WeylIrreducibleAverage"
+  ],
+  "Cloning.WeylIrreducibleAverage": [
+    "Cloning.WeylIrreducibleGaussian"
+  ],
+  "Cloning.WeylIrreducibleGaussian": [
+    "Cloning.WeylContinuity"
+  ],
+  "Cloning.WeylIrreducibleMultimode": [
+    "Cloning.WeylIrreducible",
+    "Cloning.WeylMultimodeContinuity"
+  ],
+  "Cloning.WeylIrreducibleRepresentation": [
+    "Cloning.WeylFockDecomposition",
+    "Cloning.WeylGaussianTotality",
+    "Cloning.IsometricRecovery"
+  ],
+  "Cloning.WeylKernel": [
+    "Cloning.CoherentKernel"
+  ],
+  "Cloning.WeylMultimodeChannel": [
+    "Cloning.WeylMultimodeContinuity",
+    "Cloning.WeylChannel",
+    "Cloning.InfiniteIsometricChannel"
+  ],
+  "Cloning.WeylMultimodeContinuity": [
+    "Cloning.WeylMultimodeDisplacement",
+    "Cloning.WeylContinuity"
+  ],
+  "Cloning.WeylMultimodeDensity": [
+    "Cloning.MultimodeCoherentGaussianMixture",
+    "Cloning.WeylDensity"
+  ],
+  "Cloning.WeylMultimodeDisplacement": [
+    "Cloning.WeylMultimodeKernel",
+    "Cloning.WeylMultimodeDensity",
+    "Cloning.WeylDisplacement"
+  ],
+  "Cloning.WeylMultimodeKernel": [
+    "Cloning.WeylKernel",
+    "Cloning.MultimodeCoherent"
+  ],
+  "Cloning.WeylNumberBounds": [
+    "Cloning.WeylNumberTaylor"
+  ],
+  "Cloning.WeylNumberDerivative": [
+    "Cloning.WeylNumberKernelDerivative"
+  ],
+  "Cloning.WeylNumberKernel": [
+    "Cloning.WeylMultimodeContinuity",
+    "Cloning.MultimodeCoherentGaussianMixture"
+  ],
+  "Cloning.WeylNumberKernelDerivative": [
+    "Cloning.WeylNumberKernel"
+  ],
+  "Cloning.WeylNumberTaylor": [
+    "Cloning.WeylNumberDerivative"
+  ],
+  "Cloning.WeylNumberTaylorLimit": [
+    "Cloning.WeylNumberBounds",
+    "Cloning.TensorLocalUnitaryTail"
+  ],
+  "Cloning.WeylQuantumBochner": [
+    "Cloning.WeylGNSAction",
+    "Cloning.WeylFockRepresentation",
+    "Cloning.WeylIdlerUniqueness"
+  ],
+  "Cloning.WeylQuantumBochnerReflection": [
+    "Cloning.WeylDiagonalRepresentation"
+  ],
+  "Cloning.WeylQuantumPositive": [
+    "Cloning.WeylCovariantMultiplier",
+    "Cloning.WeylMultimodeChannel"
+  ],
+  "Cloning.WeylQuantumPositiveBlocks": [
+    "Cloning.HeisenbergDual",
+    "Cloning.InfiniteIsometricChannel",
+    "Cloning.WeylQuantumPositive"
+  ],
+  "Cloning.WeylQuantumPositiveBounds": [
+    "Cloning.WeylQuantumPositiveDual",
+    "Cloning.HeisenbergDualContinuity"
+  ],
+  "Cloning.WeylQuantumPositiveDual": [
+    "Cloning.WeylQuantumPositiveBlocks"
+  ],
+  "Cloning.WeylSqueezerChannel": [
+    "Cloning.WeylSqueezerPreparation",
+    "Cloning.WeylSqueezerPartialTrace",
+    "Cloning.WeylSqueezerUnitaryChannel"
+  ],
+  "Cloning.WeylSqueezerIdlerState": [
+    "Cloning.HeisenbergDual",
+    "Cloning.MultimodeCoherent"
+  ],
+  "Cloning.WeylSqueezerIrreducible": [
+    "Cloning.WeylSqueezerPhase",
+    "Cloning.WeylIrreducibleMultimode"
+  ],
+  "Cloning.WeylSqueezerKraus": [
+    "Cloning.InfiniteRectangularKraus",
+    "Cloning.HeisenbergDual"
+  ],
+  "Cloning.WeylSqueezerPartialTrace": [
+    "Cloning.WeylSqueezerProductSlices",
+    "Cloning.WeylSqueezerKraus"
+  ],
+  "Cloning.WeylSqueezerPhase": [
+    "Cloning.WeylGNSRegular"
+  ],
+  "Cloning.WeylSqueezerPreparation": [
+    "Cloning.WeylSqueezerProductDisplacement",
+    "Cloning.WeylSqueezerIdlerState",
+    "Cloning.WeylSqueezerKraus"
+  ],
+  "Cloning.WeylSqueezerProduct": [
+    "Cloning.WeylMultimodeDisplacement",
+    "Cloning.MultimodeIdler"
+  ],
+  "Cloning.WeylSqueezerProductDisplacement": [
+    "Cloning.WeylSqueezerProduct"
+  ],
+  "Cloning.WeylSqueezerProductSlices": [
+    "Cloning.WeylSqueezerProductDisplacement"
+  ],
+  "Cloning.WeylSqueezerRepresentation": [
+    "Cloning.WeylSqueezerChannel",
+    "Cloning.WeylDiagonalRepresentation"
+  ],
+  "Cloning.WeylSqueezerUnitary": [
+    "Cloning.WeylSqueezerIrreducible",
+    "Cloning.WeylIrreducibleRepresentation"
+  ],
+  "Cloning.WeylSqueezerUnitaryChannel": [
+    "Cloning.WeylSqueezerUnitary",
+    "Cloning.WeylQuantumPositiveBlocks"
+  ],
+  "Cloning.WeylThermalCharacteristic": [
+    "Cloning.WeylGaussianThermal",
+    "Cloning.MultimodeCoherentGaussianMixture",
+    "Cloning.ThermalWitness"
+  ],
+  "Cloning.WeylThermalFourier": [
+    "Cloning.WeylIdlerUniqueness",
+    "Cloning.MultimodeCoherentGaussianMixture"
+  ],
+  "Cloning.WeylThermalFourierChannel": [
+    "Cloning.WeylThermalFourierWitness",
+    "Cloning.WeylThermalCharacteristic",
+    "Cloning.WeylGaussianTwistedConvolution"
+  ],
+  "Cloning.WeylThermalFourierWitness": [
+    "Cloning.WeylThermalFourier",
+    "Cloning.WeylGaussianThermal"
+  ],
+  "Cloning.YoungBranchingContent": [
+    "Cloning.YoungBranchingStandard"
+  ],
+  "Cloning.YoungBranchingStandard": [
+    "Cloning.YoungGeneralTableaux"
+  ],
+  "Cloning.YoungCompatibility": [
+    "Cloning.YoungRounding"
+  ],
+  "Cloning.YoungCompatibilityFallback": [
+    "Cloning.YoungCompatibility",
+    "Cloning.YoungCompatibilityPMF"
+  ],
+  "Cloning.YoungCompatibilityPMF": [
+    "Cloning.CountableScheffe"
+  ],
+  "Cloning.YoungDimensionMomentRate": [
+    "Cloning.YoungDimensionMomentRateAlgebra",
+    "Cloning.TensorFlatProjectorCasimirMoment",
+    "Cloning.TensorFlatProjectorMoments"
+  ],
+  "Cloning.YoungDimensionMomentRateAlgebra": [
+    "Cloning.YoungDimensionSecondOrder",
+    "Cloning.YoungGeneralMoments"
+  ],
+  "Cloning.YoungDimensionMomentRateAsymptotics": [
+    "Cloning.YoungDimensionMomentRate"
+  ],
+  "Cloning.YoungDimensionRatio": [],
+  "Cloning.YoungDimensionSecondOrder": [
+    "Cloning.YoungDimensionRatio"
+  ],
+  "Cloning.YoungFlatCells": [
+    "Cloning.YoungFlatCorrection",
+    "Cloning.YoungUniformLocalSampleShape"
+  ],
+  "Cloning.YoungFlatCompatibility": [
+    "Cloning.YoungFlatCells",
+    "Cloning.TensorCloningChannel"
+  ],
+  "Cloning.YoungFlatCorrection": [
+    "Cloning.YoungFlatMass"
+  ],
+  "Cloning.YoungFlatCouplingConvergence": [
+    "Cloning.YoungFlatCouplingEvents"
+  ],
+  "Cloning.YoungFlatCouplingDensity": [
+    "Cloning.YoungFlatCouplingFinite",
+    "Cloning.YoungUniformLocalScheffe"
+  ],
+  "Cloning.YoungFlatCouplingEvents": [
+    "Cloning.YoungFlatCouplingDensity"
+  ],
+  "Cloning.YoungFlatCouplingFinite": [
+    "Cloning.YoungCompatibilityPMF"
+  ],
+  "Cloning.YoungFlatCouplingLimit": [
+    "Cloning.YoungFlatCouplingPhysical"
+  ],
+  "Cloning.YoungFlatCouplingPhysical": [
+    "Cloning.YoungFlatCouplingQuantizer",
+    "Cloning.YoungFlatCouplingConvergence",
+    "Cloning.YoungFlatLimit",
+    "Cloning.YoungFlatSupport",
+    "Cloning.YoungFlatCompatibility",
+    "Cloning.YoungFlatFidelity"
+  ],
+  "Cloning.YoungFlatCouplingQuantizer": [
+    "Cloning.YoungFlatCouplingDensity",
+    "Cloning.YoungFlatSmoothing"
+  ],
+  "Cloning.YoungFlatCouplingRank": [
+    "Cloning.YoungFlatCouplingLimit"
+  ],
+  "Cloning.YoungFlatFidelity": [
+    "Cloning.YoungFlatFidelityBounds",
+    "Cloning.TensorFlatProjectorMoments",
+    "Cloning.TensorCloningChannel"
+  ],
+  "Cloning.YoungFlatFidelityBounds": [
+    "Cloning.ClassicalFidelity"
+  ],
+  "Cloning.YoungFlatIntegrability": [
+    "Cloning.YoungFlatUniform"
+  ],
+  "Cloning.YoungFlatLimit": [
+    "Cloning.YoungFlatTightness",
+    "Cloning.YoungFlatIntegrability"
+  ],
+  "Cloning.YoungFlatLocal": [
+    "Cloning.YoungFlatCells",
+    "Cloning.YoungUniformLocalScheffe"
+  ],
+  "Cloning.YoungFlatMass": [
+    "Cloning.TensorFlatProjectorLaw",
+    "Cloning.YoungUniformLocalDensity",
+    "Cloning.YoungHookRatio"
+  ],
+  "Cloning.YoungFlatMoment": [
+    "Cloning.YoungFlatSmoothing",
+    "Cloning.TensorFlatProjectorCasimirMoment"
+  ],
+  "Cloning.YoungFlatSmoothing": [
+    "Cloning.YoungFlatLocal",
+    "Cloning.YoungUniformLocalQuantization"
+  ],
+  "Cloning.YoungFlatSupport": [
+    "Cloning.YoungFlatUniform"
+  ],
+  "Cloning.YoungFlatTightness": [
+    "Cloning.YoungFlatMoment"
+  ],
+  "Cloning.YoungFlatUniform": [
+    "Cloning.YoungFlatLocal"
+  ],
+  "Cloning.YoungGeneralConcentration": [],
+  "Cloning.YoungGeneralFallback": [
+    "Cloning.YoungGeneralPMF",
+    "Cloning.YoungCompatibilityFallback"
+  ],
+  "Cloning.YoungGeneralLimit": [
+    "Cloning.YoungGeneralTableaux"
+  ],
+  "Cloning.YoungGeneralMoments": [
+    "Cloning.YoungGeneralPMF",
+    "Cloning.YoungCompatibilityPMF",
+    "Cloning.YoungDimensionRatio"
+  ],
+  "Cloning.YoungGeneralPMF": [
+    "Cloning.YoungGeneralLimit"
+  ],
+  "Cloning.YoungGeneralSharpConcentration": [
+    "Cloning.YoungGeneralConcentration"
+  ],
+  "Cloning.YoungGeneralTableaux": [
+    "Cloning.YoungGeneralConcentration"
+  ],
+  "Cloning.YoungHookCount": [
+    "Cloning.YoungHookDeterminant"
+  ],
+  "Cloning.YoungHookDeterminant": [
+    "Cloning.YoungBranchingStandard"
+  ],
+  "Cloning.YoungHookRatio": [
+    "Cloning.YoungHookVandermonde"
+  ],
+  "Cloning.YoungHookRatioLimit": [
+    "Cloning.YoungHookRatio"
+  ],
+  "Cloning.YoungHookVandermonde": [
+    "Cloning.YoungHookCount"
+  ],
+  "Cloning.YoungHyperplane": [
+    "Cloning.YoungCompatibilityFallback"
+  ],
+  "Cloning.YoungHyperplaneCovariance": [
+    "Cloning.YoungHyperplaneSampling"
+  ],
+  "Cloning.YoungHyperplaneSampling": [
+    "Cloning.YoungHyperplaneVolume"
+  ],
+  "Cloning.YoungHyperplaneVolume": [
+    "Cloning.YoungHyperplane"
+  ],
+  "Cloning.YoungMultinomialLocal": [
+    "Cloning.YoungMultinomialLocalEntropy",
+    "Cloning.YoungMultinomialLocalStirling"
+  ],
+  "Cloning.YoungMultinomialLocalEntropy": [],
+  "Cloning.YoungMultinomialLocalLimit": [
+    "Cloning.YoungMultinomialLocal"
+  ],
+  "Cloning.YoungMultinomialLocalStirling": [],
+  "Cloning.YoungNormalization": [
+    "Cloning.YoungRSKPieri",
+    "Cloning.YoungNormalizationBranching",
+    "Cloning.YoungGeneralPMF"
+  ],
+  "Cloning.YoungNormalizationBranching": [
+    "Cloning.YoungBranchingContent"
+  ],
+  "Cloning.YoungNormalizationLimits": [
+    "Cloning.YoungNormalization",
+    "Cloning.YoungGeneralMoments",
+    "Cloning.YoungGeneralFallback"
+  ],
+  "Cloning.YoungPhysicalRounding": [
+    "Cloning.YoungPhysicalRoundingAffinity"
+  ],
+  "Cloning.YoungPhysicalRoundingAffinity": [
+    "Cloning.YoungPhysicalRoundingGaussian",
+    "Cloning.YoungPhysicalRoundingLabels"
+  ],
+  "Cloning.YoungPhysicalRoundingAnalysis": [
+    "Cloning.YoungPhysicalRoundingCoordinates",
+    "Cloning.HybridIntegralBounds",
+    "Cloning.ClassicalFidelity"
+  ],
+  "Cloning.YoungPhysicalRoundingCoordinates": [
+    "Cloning.YoungUniformLocalPhysicalL1"
+  ],
+  "Cloning.YoungPhysicalRoundingFallback": [
+    "Cloning.TensorSchurDecompositionConcentration",
+    "Cloning.YoungGeneralFallback"
+  ],
+  "Cloning.YoungPhysicalRoundingGaussian": [
+    "Cloning.YoungPhysicalRoundingLimit"
+  ],
+  "Cloning.YoungPhysicalRoundingLabels": [
+    "Cloning.YoungPhysicalRoundingCoordinates",
+    "Cloning.YoungPhysicalRoundingFallback"
+  ],
+  "Cloning.YoungPhysicalRoundingLimit": [
+    "Cloning.YoungPhysicalRoundingAnalysis"
+  ],
+  "Cloning.YoungPhysicalRoundingUniformDensity": [
+    "Cloning.YoungPhysicalRoundingLimit"
+  ],
+  "Cloning.YoungRSKContent": [
+    "Cloning.YoungRSKTableau",
+    "Cloning.YoungBranchingContent"
+  ],
+  "Cloning.YoungRSKInsertion": [
+    "Cloning.YoungGeneralTableaux"
+  ],
+  "Cloning.YoungRSKInterlacing": [
+    "Cloning.YoungRSKInsertion"
+  ],
+  "Cloning.YoungRSKPieri": [
+    "Cloning.YoungRSKShape",
+    "Cloning.YoungRSKTableauReverse"
+  ],
+  "Cloning.YoungRSKReverse": [
+    "Cloning.YoungRSKInsertion"
+  ],
+  "Cloning.YoungRSKShape": [
+    "Cloning.YoungRSKContent"
+  ],
+  "Cloning.YoungRSKTableau": [
+    "Cloning.YoungRSKInterlacing"
+  ],
+  "Cloning.YoungRSKTableauReverse": [
+    "Cloning.YoungRSKReverse",
+    "Cloning.YoungRSKTableau"
+  ],
+  "Cloning.YoungRounding": [
+    "Cloning.Rounding",
+    "Cloning.CountableScheffe"
+  ],
+  "Cloning.YoungTwoRowAsymptotics": [
+    "Cloning.YoungTwoRowMoment",
+    "Cloning.YoungDimensionSecondOrder"
+  ],
+  "Cloning.YoungTwoRowConcentration": [
+    "Cloning.YoungTwoRowAsymptotics"
+  ],
+  "Cloning.YoungTwoRowMoment": [
+    "Cloning.Projector"
+  ],
+  "Cloning.YoungUniformCharacterWindows": [
+    "Cloning.YoungUniformLocalCharacter",
+    "Cloning.PhysicalCloningConverseSpectrum"
+  ],
+  "Cloning.YoungUniformLocalCells": [
+    "Cloning.YoungHyperplaneSampling",
+    "Cloning.YoungMultinomialLocalLimit"
+  ],
+  "Cloning.YoungUniformLocalCharacter": [
+    "Cloning.TensorGibbsPartitionLimit",
+    "Cloning.YoungUniformLocalPhysicalMass",
+    "Cloning.YoungCompatibility"
+  ],
+  "Cloning.YoungUniformLocalDensity": [
+    "Cloning.YoungUniformLocalGaussian",
+    "Cloning.YoungUniformLocalMultinomial"
+  ],
+  "Cloning.YoungUniformLocalGaussian": [
+    "Cloning.YoungHyperplaneCovariance",
+    "Cloning.GaussianAffinity"
+  ],
+  "Cloning.YoungUniformLocalGaussianTails": [
+    "Cloning.YoungUniformLocalGaussian"
+  ],
+  "Cloning.YoungUniformLocalLabels": [
+    "Cloning.YoungUniformLocalCells",
+    "Cloning.YoungUniformLocalPhysicalLattice"
+  ],
+  "Cloning.YoungUniformLocalMultinomial": [
+    "Cloning.YoungMultinomialLocalLimit"
+  ],
+  "Cloning.YoungUniformLocalPhysicalL1": [
+    "Cloning.YoungUniformLocalPhysicalLimit"
+  ],
+  "Cloning.YoungUniformLocalPhysicalLattice": [
+    "Cloning.TensorSchurDecompositionMultiplicity",
+    "Cloning.YoungHyperplaneSampling"
+  ],
+  "Cloning.YoungUniformLocalPhysicalLimit": [
+    "Cloning.YoungUniformLocalCharacter",
+    "Cloning.YoungUniformLocalSampleShape",
+    "Cloning.YoungUniformLocalDensity",
+    "Cloning.YoungUniformLocalScheffe"
+  ],
+  "Cloning.YoungUniformLocalPhysicalMass": [
+    "Cloning.TensorSchurDecompositionMultiplicity",
+    "Cloning.YoungHookRatioLimit",
+    "Cloning.YoungMultinomialLocal"
+  ],
+  "Cloning.YoungUniformLocalQuantization": [
+    "Cloning.YoungUniformLocalPhysicalL1"
+  ],
+  "Cloning.YoungUniformLocalSampleShape": [
+    "Cloning.YoungUniformLocalLabels"
+  ],
+  "Cloning.YoungUniformLocalScheffe": [
+    "Cloning.YoungUniformLocalGaussian"
+  ],
+  "CoherentGaussianMixtures": [
+    "Cloning.PCTPrescribedRankGuarantee",
+    "Cloning.PCTProjectorPurityTargets",
+    "Cloning.PCTHybridMixtureChannel",
+    "Cloning.PCTTangentChartAdmissible",
+    "Cloning.MultimodeCoherentGaussianMixture",
+    "Cloning.InfiniteDiagonalFidelity",
+    "Cloning.PCTGaussianAssembly",
+    "Cloning.PCTPurificationChannelPhysical",
+    "Cloning.ThermalParameterContinuity",
+    "Cloning.PCTGlobalPhysical",
+    "Cloning.PCTGaussianCovarianceJoint",
+    "Cloning.PCTGaussianOutput",
+    "Cloning.PCTGaussianOutputTangent",
+    "Cloning.PCTTangentNormalization",
+    "Cloning.PCTPhysicalStateSpectrum",
+    "Cloning.PhysicalCloningPCTTheorem",
+    "Cloning.PhysicalFlatPCTTheorem",
+    "Cloning.PhysicalFlatPCTFinite",
+    "Cloning.SampleRatioLimit"
+  ],
+  "CompactCPLimits": [
+    "Cloning.HybridGaussianScoreOptimum",
+    "Cloning.InfiniteAsymptoticCPCompactness",
+    "Cloning.InfiniteCutoffChannels",
+    "Cloning.ChannelAveraging",
+    "Cloning.WeylFoelnerLimit",
+    "Cloning.WeylFlatPriorThermal",
+    "Cloning.HeisenbergDualResidual",
+    "Cloning.UniversalGaussianRealBox",
+    "Cloning.HybridGaussianBoundary",
+    "Cloning.UniversalGaussianBoundary"
+  ],
+  "ConditionalCloningTheorems": [
+    "Cloning.QubitDegeneracy",
+    "Cloning.CloningValueComparisonInfimum",
+    "Cloning.CloningValueComparisonLargeGain",
+    "Cloning.SpectralRatioMajorizationCounterexample",
+    "Cloning.PhysicalAllStateMinimaxBounds",
+    "Cloning.SpectralGapThreshold",
+    "Cloning.PhysicalCloningSmallError",
+    "Cloning.CloningValueBoundaryCoefficients",
+    "Cloning.ThermalNearPure",
+    "Cloning.CloningValueExpansionTarget",
+    "Cloning.Main",
+    "Cloning.PCTGaussianAssembly",
+    "Cloning.UniversalGaussianRealBox",
+    "Cloning.OrbitalGaussianAttainmentBoundary",
+    "Cloning.HybridGaussianAttainmentBoundary",
+    "Cloning.PCTPurificationChannelPhysical",
+    "Cloning.PCTGlobalPhysical",
+    "Cloning.PCTGaussianCovarianceJoint",
+    "Cloning.PCTPhysicalStateSpectrum",
+    "Cloning.PhysicalCloningKnownTheorem",
+    "Cloning.PhysicalCloningUniversalTheorem",
+    "Cloning.PhysicalCloningPCTTheorem",
+    "Cloning.TensorCloningUniformKnown",
+    "Cloning.TensorCloningUniformUniversal",
+    "Cloning.PhysicalFlatGrassmannTheorem",
+    "Cloning.PhysicalFlatPCTTheorem",
+    "Cloning.PCTClosedForm",
+    "Cloning.PCTPrescribedFull",
+    "Cloning.PCTPrescribedRankTheorem",
+    "Cloning.TensorCloningPrescribedLimits",
+    "Cloning.SpectralAffineTheorem"
+  ],
+  "LANTransfer": [
+    "Cloning.PCTJointGaussianChart",
+    "Cloning.PCTMixedMixtureTransfer",
+    "Cloning.HybridCoordinateTransport",
+    "Cloning.InfiniteLANTransfer",
+    "Cloning.GeneralCoherentChannels",
+    "Cloning.HybridJensenSigmaFinite",
+    "Cloning.UniversalGaussianRealBox",
+    "Cloning.OrbitalGaussianAttainmentBoundary",
+    "Cloning.HybridGaussianAttainmentBoundary",
+    "Cloning.MixedLANTransfer",
+    "Cloning.MixedGaussianConverse",
+    "Cloning.MixedChannelsFiniteSelector",
+    "Cloning.PCTPhysicalFidelityLAN",
+    "Cloning.TensorLANEmbeddingCompactLAN"
+  ],
+  "LiftedSectorFidelity": [
+    "Cloning.TensorCloningLiftedFactorization",
+    "Cloning.PBWSymmetricFrameRateGram",
+    "Cloning.PBWSymmetricFrameRateCartan",
+    "Cloning.TensorCloningShrinkingWindows",
+    "Cloning.YoungUniformCharacterWindows",
+    "Cloning.TensorCartanChannel",
+    "Cloning.MatrixLiftedCPTPPhysical",
+    "Cloning.TensorCyclicSectorIrreducible",
+    "Cloning.TensorHighestGramCovariance",
+    "Cloning.TensorCartanIntertwiner",
+    "Cloning.MatrixCovariantBalance",
+    "Cloning.MatrixFidelityAsymptotics",
+    "Cloning.MatrixTransitionAchievability",
+    "Cloning.PBWRootGram",
+    "Cloning.PBWGramLimit",
+    "Cloning.TensorLieFiltration",
+    "Cloning.TensorCyclicIndependence",
+    "Cloning.TensorSchurDecompositionIsometry",
+    "Cloning.TensorFundamentalBranchingExistence",
+    "Cloning.TensorPBWCutoffBasis",
+    "Cloning.TensorCartanMatrixLimit",
+    "Cloning.TensorWeightFrameLimit",
+    "Cloning.TensorSchurDecompositionMultiplicity",
+    "Cloning.TensorCartanStateFidelity",
+    "Cloning.TensorCloningGlobalCovariance",
+    "Cloning.InfiniteFidelityHilbertSum"
+  ],
+  "OccupationLimits": [
+    "Cloning.InfiniteOccupationStates",
+    "Cloning.WernerPhysicalPullback",
+    "Cloning.WernerPhysicalAgreement",
+    "Cloning.GeneralCoherentChannels",
+    "Cloning.UniformCoherentChannels",
+    "Cloning.PCTGaussianAssembly",
+    "Cloning.PCTPurificationChannelPhysical",
+    "Cloning.PCTGlobalPhysical"
+  ],
+  "ProjectorBounds": [
+    "Cloning.TensorPositiveSpectrumCompressionFidelity",
+    "Cloning.MatrixFidelityProjector",
+    "Cloning.YoungDimensionRatio",
+    "Cloning.YoungDimensionSecondOrder",
+    "Cloning.YoungGeneralMoments",
+    "Cloning.YoungNormalizationLimits",
+    "Cloning.PhysicalFlatGrassmannTheorem",
+    "Cloning.PhysicalFlatGrassmannUniform",
+    "Cloning.PhysicalFlatCloningTheorem",
+    "Cloning.TensorFlatProjectorAchievability",
+    "Cloning.YoungDimensionMomentRateAsymptotics",
+    "Cloning.PhysicalFlatRateBounded",
+    "Cloning.TensorRankOneGlobal"
+  ],
+  "QuantumFidelity": [
+    "Cloning.HybridWeightedFidelityLimit",
+    "Cloning.InfiniteChannelFidelity",
+    "Cloning.InfiniteFidelityContinuity",
+    "Cloning.InfiniteFidelityRegularized",
+    "Cloning.InfiniteFidelityConcavity",
+    "Cloning.HybridWeightedFidelity",
+    "Cloning.HybridJensenSigmaFinite",
+    "Cloning.HybridThermalWitness",
+    "Cloning.HybridWeightedTrace",
+    "Cloning.HybridGaussianMass",
+    "Cloning.HybridL1Jensen",
+    "Cloning.HybridGaussianAttainmentBoundary",
+    "Cloning.MixedChannelsFidelity",
+    "Cloning.MixedChannelsPreparation",
+    "Cloning.MixedChannelsBounded",
+    "Cloning.MixedChannelsReverseFidelity"
+  ]
+}

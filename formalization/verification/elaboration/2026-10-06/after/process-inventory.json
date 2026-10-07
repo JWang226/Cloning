@@ -1,0 +1,3599 @@
+{
+  "note": "Derived per-sample counts only; unrelated process paths and command lines are omitted.",
+  "omitted_original": "process-samples.json",
+  "samples": [
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 0,
+        "unresolved": 2
+      },
+      "total": 2,
+      "utc": "2026-10-07T02:51:09.414610+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T02:51:19.526260+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T02:51:29.607411+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T02:51:39.713561+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T02:51:49.817545+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T02:51:59.920729+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T02:52:10.029501+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T02:52:20.133551+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T02:52:30.236726+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T02:52:40.359200+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T02:52:50.463406+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T02:53:00.566287+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T02:53:10.687895+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T02:53:20.772815+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T02:53:30.902416+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T02:53:41.016068+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T02:53:51.131460+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 1,
+        "unresolved": 2
+      },
+      "total": 3,
+      "utc": "2026-10-07T02:54:01.275927+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T02:54:11.390755+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T02:54:21.480564+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T02:54:31.596909+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T02:54:41.702204+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T02:54:51.795311+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T02:55:01.910357+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T02:55:11.994649+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T02:55:22.090755+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T02:55:32.244476+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T02:55:42.370964+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T02:55:52.517290+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T02:56:02.637427+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T02:56:12.744395+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T02:56:22.875283+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T02:56:32.988956+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T02:56:43.147212+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T02:56:53.254155+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T02:57:03.366546+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T02:57:13.458624+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T02:57:23.580691+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T02:57:33.694563+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T02:57:43.776682+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 1,
+        "unresolved": 2
+      },
+      "total": 3,
+      "utc": "2026-10-07T02:57:53.870984+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T02:58:03.985799+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T02:58:14.123815+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T02:58:24.203936+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T02:58:34.294975+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T02:58:44.413752+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T02:58:54.544988+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T02:59:04.666370+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T02:59:14.778216+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T02:59:24.889741+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 3
+      },
+      "total": 5,
+      "utc": "2026-10-07T02:59:35.050634+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T02:59:45.164613+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T02:59:55.290887+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:00:05.400663+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:00:15.536459+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:00:25.637001+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:00:35.754632+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:00:45.867192+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:00:56.017539+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:01:06.137010+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:01:16.271849+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:01:26.367822+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:01:36.505106+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:01:46.620178+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:01:56.744556+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:02:06.840406+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:02:17.006178+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:02:27.095979+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:02:37.195575+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:02:47.279355+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:02:57.393745+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:03:07.490590+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:03:17.583241+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:03:27.690763+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 1,
+        "unresolved": 2
+      },
+      "total": 3,
+      "utc": "2026-10-07T03:03:37.784147+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:03:47.880497+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:03:57.984342+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:04:08.090018+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:04:18.203965+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:04:28.303895+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:04:38.421257+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:04:48.530896+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:04:58.646669+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:05:08.748159+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:05:18.842791+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:05:28.986936+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:05:39.094825+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:05:49.249574+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:05:59.366483+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:06:09.505957+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:06:19.621393+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:06:29.762020+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:06:39.872853+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 1,
+        "unresolved": 2
+      },
+      "total": 3,
+      "utc": "2026-10-07T03:06:49.956817+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 1,
+        "unresolved": 2
+      },
+      "total": 3,
+      "utc": "2026-10-07T03:07:00.073287+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:07:10.231607+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:07:20.342063+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:07:30.446223+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:07:40.532675+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:07:50.674026+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:08:00.787002+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:08:10.911727+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:08:21.014404+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:08:31.173635+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:08:41.278981+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:08:51.447972+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:09:01.542426+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:09:11.698642+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:09:21.824450+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:09:31.967926+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:09:42.086142+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:09:52.191338+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:10:02.294713+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:10:12.369446+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:10:22.484476+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:10:32.593002+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:10:42.683098+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:10:52.798761+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:11:02.915541+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:11:13.039037+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:11:23.152205+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:11:33.241251+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:11:43.353336+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:11:53.470000+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:12:03.592312+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:12:13.724940+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:12:23.872515+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 1,
+        "unresolved": 2
+      },
+      "total": 3,
+      "utc": "2026-10-07T03:12:33.994078+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:12:44.168111+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:12:54.323286+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:13:04.479108+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:13:14.599277+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:13:24.712628+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:13:34.839277+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:13:44.980398+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:13:55.098692+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:14:05.238786+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:14:15.344314+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:14:25.452458+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 1,
+        "unresolved": 2
+      },
+      "total": 3,
+      "utc": "2026-10-07T03:14:35.549927+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:14:45.638661+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:14:55.737875+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:15:05.870565+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:15:15.973653+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:15:26.115339+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:15:36.268632+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:15:46.375616+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:15:56.470978+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 1,
+        "unresolved": 2
+      },
+      "total": 3,
+      "utc": "2026-10-07T03:16:06.648854+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:16:16.799652+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:16:26.909394+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:16:37.014366+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:16:47.167070+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:16:57.627399+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:17:07.810300+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:17:17.949483+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:17:28.074299+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 1,
+        "unresolved": 2
+      },
+      "total": 3,
+      "utc": "2026-10-07T03:17:38.212668+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:17:48.382281+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:17:58.493150+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:18:08.594228+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:18:18.714357+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:18:28.916853+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:18:39.016899+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:18:49.288779+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:18:59.418283+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:19:09.585643+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:19:19.724384+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:19:30.186175+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:19:40.324757+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 1,
+        "unresolved": 2
+      },
+      "total": 3,
+      "utc": "2026-10-07T03:19:50.445549+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:20:00.563498+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:20:10.705537+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:20:20.871170+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:20:31.007696+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:20:41.219257+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:20:51.360238+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:21:01.493257+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:21:11.626053+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:21:21.853524+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:21:31.987528+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:21:42.108085+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:21:52.300972+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:22:02.402321+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:22:12.516926+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:22:22.643135+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:22:32.782287+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 1,
+        "unresolved": 2
+      },
+      "total": 3,
+      "utc": "2026-10-07T03:22:42.885333+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:22:52.985307+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:23:03.097572+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:23:13.212135+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:23:23.306193+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:23:33.516285+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:23:43.642196+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 1,
+        "unresolved": 2
+      },
+      "total": 3,
+      "utc": "2026-10-07T03:23:53.753637+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:24:03.898479+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:24:14.019638+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:24:24.134124+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:24:34.233317+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:24:44.351412+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:24:54.581118+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:25:04.827087+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:25:14.989500+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:25:25.278350+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:25:35.715792+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:25:45.861929+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:25:55.967199+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:26:06.179288+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:26:16.565962+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:26:26.830710+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:26:36.967303+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 1,
+        "unresolved": 2
+      },
+      "total": 3,
+      "utc": "2026-10-07T03:26:47.094677+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:26:57.288254+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:27:07.427460+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:27:17.519831+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:27:27.694776+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:27:37.951478+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:27:48.113018+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:27:58.225349+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:28:08.365955+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:28:18.517423+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:28:28.650301+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:28:38.769297+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:28:48.890863+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:28:59.002964+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:29:09.128213+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:29:19.262062+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:29:29.371015+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:29:39.530067+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:29:49.632402+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:29:59.774887+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:30:09.911047+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:30:20.070087+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:30:30.179372+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:30:40.490994+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:30:50.575722+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:31:00.718408+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:31:10.822359+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:31:20.951893+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 1,
+        "unresolved": 2
+      },
+      "total": 3,
+      "utc": "2026-10-07T03:31:31.057384+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 1,
+        "unresolved": 2
+      },
+      "total": 3,
+      "utc": "2026-10-07T03:31:41.181251+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:31:51.306393+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:32:01.402450+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:32:11.507528+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 1,
+        "unresolved": 2
+      },
+      "total": 3,
+      "utc": "2026-10-07T03:32:21.613769+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:32:31.724021+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:32:41.830242+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:32:52.113883+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:33:02.222711+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:33:12.337997+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:33:22.461114+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:33:32.549737+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:33:42.638611+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:33:52.741820+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:34:02.837139+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:34:12.964157+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:34:23.064281+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 1,
+        "unresolved": 2
+      },
+      "total": 3,
+      "utc": "2026-10-07T03:34:33.170650+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:34:43.310072+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:34:53.444233+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:35:03.570283+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:35:13.684027+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:35:23.806154+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:35:33.973753+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:35:44.096836+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:35:54.226941+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:36:04.330144+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:36:14.450132+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:36:24.583901+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:36:34.701971+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:36:44.838659+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 1,
+        "unresolved": 2
+      },
+      "total": 3,
+      "utc": "2026-10-07T03:36:54.974005+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:37:05.091338+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:37:15.212426+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:37:25.333345+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:37:35.478390+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:37:45.643406+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:37:55.764057+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 1,
+        "unresolved": 2
+      },
+      "total": 3,
+      "utc": "2026-10-07T03:38:05.921470+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:38:16.078075+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:38:26.248903+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:38:36.394003+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:38:46.559631+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:38:56.707905+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:39:06.845503+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:39:16.957769+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:39:27.091191+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:39:37.259955+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:39:47.396378+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:39:57.499109+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:40:07.598202+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:40:17.708331+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:40:27.821463+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:40:37.975632+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:40:48.096460+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:40:58.211928+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:41:08.308470+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:41:18.403689+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:41:28.494635+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:41:38.585178+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:41:48.670346+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:41:58.753412+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:42:08.848062+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:42:18.962388+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:42:29.064956+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:42:39.192459+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:42:49.287749+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:42:59.392385+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:43:09.516735+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:43:19.619065+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:43:29.725262+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:43:39.818138+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:43:49.974257+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:44:00.090422+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:44:10.232820+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:44:20.323986+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:44:30.484740+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:44:40.598470+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:44:50.692172+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:45:00.791446+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:45:10.976196+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:45:21.077937+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:45:31.218092+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:45:41.353423+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:45:51.467090+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:46:01.566426+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:46:11.718888+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:46:21.844478+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:46:31.954787+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:46:42.045398+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:46:52.134230+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:47:02.244097+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:47:12.338337+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:47:22.460549+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:47:32.561092+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:47:42.685978+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:47:52.815015+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:48:02.934768+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:48:13.040911+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:48:23.145385+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:48:33.268870+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:48:43.402378+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:48:53.555689+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 1,
+        "unresolved": 2
+      },
+      "total": 3,
+      "utc": "2026-10-07T03:49:03.657006+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:49:13.787410+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:49:23.920262+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:49:34.037473+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 1,
+        "unresolved": 2
+      },
+      "total": 3,
+      "utc": "2026-10-07T03:49:44.129082+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:49:54.228836+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 1,
+        "unresolved": 2
+      },
+      "total": 3,
+      "utc": "2026-10-07T03:50:04.312876+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:50:14.417569+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:50:24.523691+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:50:34.618207+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:50:44.714784+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:50:54.832555+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:51:04.976889+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:51:15.082834+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:51:25.182097+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:51:35.294003+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:51:45.374458+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:51:55.486424+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:52:05.596438+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:52:15.754314+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:52:25.874861+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:52:35.976718+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:52:46.071117+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:52:56.176798+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:53:06.282834+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:53:16.420877+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:53:26.519688+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:53:36.647172+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:53:46.749185+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:53:56.860362+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:54:06.970157+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 1,
+        "unresolved": 2
+      },
+      "total": 3,
+      "utc": "2026-10-07T03:54:17.067106+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:54:27.175390+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:54:37.281635+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:54:47.387656+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:54:57.530693+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:55:07.628034+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:55:17.802916+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:55:27.936088+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:55:38.071495+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:55:48.191121+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:55:58.322084+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:56:08.450108+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 1,
+        "unresolved": 2
+      },
+      "total": 3,
+      "utc": "2026-10-07T03:56:18.547494+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:56:28.638213+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:56:38.773758+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:56:48.880081+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:56:58.978275+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:57:09.092114+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:57:19.194672+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:57:29.307868+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:57:39.425979+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:57:49.538818+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 2,
+        "unresolved": 2
+      },
+      "total": 4,
+      "utc": "2026-10-07T03:57:59.711488+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 1,
+        "unresolved": 2
+      },
+      "total": 3,
+      "utc": "2026-10-07T03:58:09.805779+00:00"
+    },
+    {
+      "counts": {
+        "other_source": 0,
+        "owned_source": 1,
+        "unresolved": 2
+      },
+      "total": 3,
+      "utc": "2026-10-07T03:58:19.890397+00:00"
+    }
+  ],
+  "schema": "cloning-redacted-process-inventory-v1",
+  "source_file_sha256": "cd661cfdaa3d5939c31a6005206a399de3621ae4d9fe2bc77c14d611bce94d70"
+}

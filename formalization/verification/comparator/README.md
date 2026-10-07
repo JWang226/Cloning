@@ -32,8 +32,8 @@ the checker lock; source changes require a new passed full audit and an explicit
 lock update.
 
 The [current status](status.json) records a successful full
-[Comparator run](records/20261004T055545.209379Z/run.json) bound to the
-[kernel-compatible audit](../kernel-compatible-pass/run.json). All 27 explicit
+[Comparator run](records/20261007T042117.504957Z/run.json) bound to the
+[cleanup audit](../cleanup-pass/run.json). All 27 explicit
 statements and their proof dependencies passed statement comparison, axiom
 checking, and Lean kernel replay using trusted local execution, no sandbox.
 Earlier failed and passed attempts remain in the status history.
@@ -134,16 +134,16 @@ axioms are only `propext`, `Quot.sound`, and `Classical.choice`.
 Comparator's scope is the selected 27 statements and their proof dependencies.
 It does not automatically replay every unrelated declaration merely because a
 module was imported. The [Nanoda reproducer](../nanoda/README.md) separately
-targets **all 14,345 audited project constants and their dependencies** with an
+targets **all 14,344 audited project constants and their dependencies** with an
 independent Rust kernel. Neither check establishes that a human specification
 faithfully describes the manuscript; the explicit statements and
 `../../PROOF_MAP.md` remain the material for that review.
 
 ## Runtime and evidence
 
-The current archived run records 348.8 seconds between its start and completion timestamps.
-The archived [macOS `/usr/bin/time -l` report](records/20261004T055545.209379Z/resources.json) recorded 3,614,605,312 bytes (3.37 GiB) maximum resident set size for the timed runner command. This is not simultaneous aggregate memory across all processes.
-These are observations of this run, not resource estimates for another machine or workload.
+The [current archived run](records/20261007T042117.504957Z/run.json) records 293.4 seconds between its native runner start and completion timestamps. Its [archive](records/20261007T042117.504957Z/archive.json) retains exact native inputs, outputs, pinned harness and outer wrapper evidence. CPU and maximum resident memory were not measured for this fresh run.
+
+The earlier [macOS `/usr/bin/time -l` report](records/20261004T055545.209379Z/resources.json) recorded 3,614,605,312 bytes (3.37 GiB) maximum resident set size and 348.8 seconds between runner timestamps at the earlier source snapshot. This is not simultaneous aggregate memory across all processes. These historical observations are not resource estimates for another machine or workload.
 Export and replay can take substantial memory and time. This runner imposes no
 guessed memory cap and does not silently omit declarations to finish sooner. Use an adequately
 resourced machine and retain the complete new run directory, including failure

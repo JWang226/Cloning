@@ -1,0 +1,67 @@
+{
+  "benchmark_commit": "cbb2fd2007ae367e201d4a6ac7c069899db90dbd",
+  "build_trace_sha256": "d5f95cbae7f59e8f69ea4c3c3bf0892e94aa9401dd367a891a13971d5252cac0",
+  "config_sha256": {
+    "formalization/lake-manifest.json": "e4630915680b82b58c6a005e1ba1e515e865e5541c7e665d4a2d57f783eeadb4",
+    "formalization/lakefile.toml": "ddeb0d2c8217676fc393afd24c13629993c580f35f9d8ad15240c6a167b020c1",
+    "formalization/lean-toolchain": "dc6d65016fad3123d44bf17b5bf0598286284ab16ba75d5c17eb22ed11f47361"
+  },
+  "current_commit": "f66714d5f0b21c248696d833f35f86f364ae413a",
+  "environment_overrides": {
+    "LAKE_ARTIFACT_CACHE": "false",
+    "LEAN_NUM_THREADS": "2"
+  },
+  "notes": [
+    "Both A/B arms use the same experimental entry path and setup module name.",
+    "Profiles use pp=false in both arms to avoid pretty-printer costs; repository profiles use pp=true.",
+    "Bare pairs omit profile, trace and statistics; their native GNU CPU is the compiler control.",
+    "The single sorry diagnostic exists only in ignored evidence and is not an accepted proof."
+  ],
+  "order": [
+    "diagnostic-profile",
+    "A1-profile",
+    "B1-profile",
+    "A2-profile",
+    "B2-profile",
+    "A3-profile",
+    "B3-profile",
+    "A1-bare",
+    "B1-bare",
+    "A2-bare",
+    "B2-bare",
+    "A3-bare",
+    "B3-bare"
+  ],
+  "publication": {
+    "omitted_environment_fields": [
+      "toolchain.environment.LEAN_PATH",
+      "toolchain.environment.LEAN_SYSROOT",
+      "toolchain.environment.PATH"
+    ],
+    "original_sha256": "8e01a6d2cc1cddf9160a19113a59a97b57a4092a0646dd8fdfa4f9af1409dbbe",
+    "transformation": "Removed inherited environment path fields; experimental plan/decision retained"
+  },
+  "schema": "cloning-werner-trace-bridge-ab-plan-v1",
+  "script_sha256": "157a0754b435b8e74bae29c73745d9b37b7d106bb8514e88ffe60965e2c5b670",
+  "setup_sha256": "257a5dac9e7fe1bbab5b94c1ba93c2d89f6dab60d06e820de4773673e43324c5",
+  "toolchain": {
+    "environment": {
+      "LAKE_ARTIFACT_CACHE": "false",
+      "LAKE_NO_CACHE": "false",
+      "LANG": "C.UTF-8",
+      "LC_ALL": "C.UTF-8",
+      "LEAN_GITHASH": "00659f8e6071d7e46131ed643bf8003b99b044e9",
+      "LEAN_NUM_THREADS": "2"
+    },
+    "lake_version": "Lake version 5.0.0-src+00659f8 (Lean version 4.29.0-rc6)",
+    "lean_binary": "/Users/jw/.elan/toolchains/leanprover--lean4---v4.29.0-rc6/bin/lean",
+    "lean_binary_sha256": "2974847fff2e2621502841f4c2dbac4035b4847d6060a4f2087cbc0d04005e37",
+    "lean_libdir": "/Users/jw/.elan/toolchains/leanprover--lean4---v4.29.0-rc6/lib/lean",
+    "lean_version": "Lean (version 4.29.0-rc6, arm64-apple-darwin24.6.0, commit 00659f8e6071d7e46131ed643bf8003b99b044e9, Release)"
+  },
+  "variant_sha256": {
+    "A": "815e8e1962e901e11ae9fbd73bd3988bd0cc58ec6c953685b05fa25226aa17ea",
+    "B": "328dd36bde83e302e13d99f6168651cb90f5a10b39811339590e645822c5b30b",
+    "diagnostic": "72968e4e209fca14912a5223b9b1bd6c1563a11227c2c9793e09752675ba49d2"
+  }
+}

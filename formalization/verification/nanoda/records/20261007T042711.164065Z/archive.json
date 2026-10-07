@@ -1,0 +1,137 @@
+{
+  "schema_version": 1,
+  "recorded_utc": "2026-10-07T04:36:48.701725+00:00",
+  "scope": "archive of actual completed bound checker run",
+  "archived_from": ".verify-work/run-20261007T042658.104812Z-rfy46ocv/nanoda/run-20261007T042711.164065Z",
+  "run_record": "formalization/verification/nanoda/records/20261007T042711.164065Z/run.json",
+  "source_audit_sha256": "cd6735524ed4f60d02fded4b846eaa349d36fc3d151df5768ddc5fcfe4ada61b",
+  "tools_lock_sha256": "f33906cf7dbb9f76b8a70651b497c3a0dd43fae83748db50976ea863b9f1aaf7",
+  "files": {
+    "binding.json": {
+      "sha256": "5d4556c8e742fde02ffa1ae1433d35a0de5611a2e2c8ae6c6fb3d61d42491f74",
+      "bytes": 113126
+    },
+    "compiled-before.json": {
+      "sha256": "3274dde1d9783bce58e80e5ccdbe021b6815a76682950570a60fcf7c2be36ea4",
+      "bytes": 110303
+    },
+    "export.json": {
+      "sha256": "4974121511f5169c2d4177fef9cf256a77485ea158b211e9096aadb68483509e",
+      "bytes": 685
+    },
+    "export.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "exporter-build.log": {
+      "sha256": "9f0a62ca3ce798a7a4507b1be79e1d2451e87055cfe5f1a77130c26d52dcc8b1",
+      "bytes": 203
+    },
+    "harness/formalization/scripts/check_checkpoint.py": {
+      "sha256": "9dd054826892f7f4dc988737696b15a13df0f63edab327c920c030a84e1df1e5",
+      "bytes": 18479
+    },
+    "harness/formalization/scripts/shared_audit.py": {
+      "sha256": "3a039570d48206f741b83bbea4d4003cf3361b00604c33239d0af2bab5f53540",
+      "bytes": 23364
+    },
+    "harness/formalization/verification/nanoda/ExportCloning.lean": {
+      "sha256": "4187326f3133ba7c4ae9c6845dc779b03a5eaba363c4bb1affda0eb5042149b9",
+      "bytes": 1177
+    },
+    "harness/formalization/verification/nanoda/nanoda-config.json": {
+      "sha256": "83baa2035f2bd5c5d53e461f220a3f8d777cc0d11bdfd8c92257a1851acd23d2",
+      "bytes": 385
+    },
+    "harness/formalization/verification/nanoda/reproduce.py": {
+      "sha256": "11bbaa629eb5ce95f9ff8ca6715dbc7cfdd922f4c69dd1d87a1cbb97e4ac5bde",
+      "bytes": 21141
+    },
+    "harness/formalization/verification/tools-lock.json": {
+      "sha256": "f33906cf7dbb9f76b8a70651b497c3a0dd43fae83748db50976ea863b9f1aaf7",
+      "bytes": 2667
+    },
+    "lean-version.log": {
+      "sha256": "c70f7ec7c5c5e8c4a86e9c6c3e9c7372f29814001c7efe3c38d7058e3bc93a69",
+      "bytes": 110
+    },
+    "lean4export-checkout.log": {
+      "sha256": "639610cab6b67f35a8fbd17612a1105823ac48e0d08d0d55397f14fdb0613f44",
+      "bytes": 82
+    },
+    "lean4export-clone.log": {
+      "sha256": "35d1783ee0af3fc36eb8742c789fb5daa2f63c8ff3bd0fc205aad42db295e3ab",
+      "bytes": 178
+    },
+    "nanoda-build.log": {
+      "sha256": "9d4ae9b1f74fc54f770c56f0547bc93f17b651ecbf879fbb9096600925600a26",
+      "bytes": 856
+    },
+    "nanoda-checkout.log": {
+      "sha256": "cc27b6b497353cbead63df66f76fa0b29534285929c329f0dc87a9027513b5e8",
+      "bytes": 73
+    },
+    "nanoda-clone.log": {
+      "sha256": "6abc977bfab6e5cb561d292496f37fb21e5682d93cfeeb901ec64524eab37210",
+      "bytes": 173
+    },
+    "nanoda-config.json": {
+      "sha256": "e9610f806c3a9c062743f7877f591982bc42141e8bcc65879ab0c67f51a749ba",
+      "bytes": 573
+    },
+    "nanoda.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "nanoda.stdout": {
+      "sha256": "3ca800633175561b12a690cf4f7f39bae9844bd060450137cebc606ebf861931",
+      "bytes": 269
+    },
+    "previous-status.json": {
+      "sha256": "a4802b91f3fa153a8763d9c919030d9b47ebd2f70364045bea6ab8fcafa0e695",
+      "bytes": 4634
+    },
+    "project-build.log": {
+      "sha256": "d68d5a7adb798ff367a39f4a9e8bb54ad77175fe427b0bbb3631e3df58b5c6cd",
+      "bytes": 417764
+    },
+    "roots.txt": {
+      "sha256": "1cc00d36d72e71fe0a520766fca436622b9e24f354d8a21f5e16eb796a3e0ab4",
+      "bytes": 738601
+    },
+    "run.json": {
+      "sha256": "9911e35a13e8f053301152298909c9604b7b6751abe9e1270e3efd022fbd5152",
+      "bytes": 4967
+    },
+    "rust-version.log": {
+      "sha256": "a09c3fc26c9b56a9da361644dc642164492d8ac440d6330c74c7c989bd0d2099",
+      "bytes": 192
+    },
+    "wrapper-evidence/dependency-cache.log": {
+      "sha256": "fdd0c7f55236d37304306a8b768702333ac58676ed6594700c1f61b94d193f07",
+      "bytes": 139
+    },
+    "wrapper-evidence/nanoda.log": {
+      "sha256": "8b9ec849f301a54b0bdcf510624e1a2954d26494d72928108adcfc772fb2a89c",
+      "bytes": 3670
+    },
+    "wrapper-evidence/run.json": {
+      "sha256": "e2b7de5706b9719fbddfcbc11a36c0fa5adec8ddccfe25758e5fc3a35870e213",
+      "bytes": 4712
+    },
+    "wrapper-evidence/rust-toolchain.log": {
+      "sha256": "449b9a0ac5d1f1c0ea36c2f0b340e918d8824b6257035b756e4a9b87d5e6e472",
+      "bytes": 199
+    },
+    "wrapper-evidence/wrapper.log": {
+      "sha256": "c77b32f1e3c495bb855d84b2c29497eaa8e4beb6c3bf991325fa6d545cd0e676",
+      "bytes": 5119
+    }
+  },
+  "retained_ignored_export": {
+    "path": ".verify-work/run-20261007T042658.104812Z-rfy46ocv/nanoda/run-20261007T042711.164065Z/cloning.ndjson",
+    "absolute_path": "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/run-20261007T042658.104812Z-rfy46ocv/nanoda/run-20261007T042711.164065Z/cloning.ndjson",
+    "sha256": "b7fe8d0fc17be7a582f38627b4283b36a53f1bbdf9892680ede580d60d0ce5bd",
+    "bytes": 777714324
+  }
+}

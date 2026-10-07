@@ -1,0 +1,170 @@
+import Cloning.TensorCloningPrescribedLimits
+import Cloning.SpectralAffineTheorem
+import Lean
+
+/- Reproducible bounded semantic probes for paper Theorem 1.2.
+   Copy to a temporary .lean file outside Cloning/ and run lake env lean.
+   No assumptions are added to the project endpoints. -/
+noncomputable section
+open scoped BigOperators Topology Matrix Classical
+open Filter
+open Cloning Cloning.TensorCloning Cloning.TensorLie
+open Cloning.PCT Cloning.InfiniteTraceClass Cloning.Hybrid
+open Lean Elab Command Meta
+set_option autoImplicit false
+set_option maxHeartbeats 0
+
+-- Actual exported types, including all implicit parameters.
+#check @eventually_uniform_prescribedUniversalChannel_payoff
+#check @prescribedUniversalChannel_covariant
+#check @unknownSpectrumValue_tendsto_affine
+#check @SimpleSpectrum.mk
+#check @SpectralAffine
+#check @QuantumChannel.mk
+#check @PositiveTracePreservingMap.mk
+#check @IsCompletelyPositive
+#check @Cloning.MatrixFidelity.State.mk
+
+-- Exact source-shaped uniform payoff type, with one global channel.
+example {d : ℕ} (hd : 1 ≤ d) (K : Set (SimpleSpectrum (d+1)))
+    (hK : IsCompact K) (m : ℕ → ℕ) (γ : ℝ) (hγ : 1 < γ)
+    (hgain : Tendsto (fun n => (m n : ℝ) / n) atTop (𝓝 γ))
+    (ε : ℝ) (hε : 0 < ε) :
+    ∀ᶠ n in atTop, ∀ p ∈ K,
+      ∀ U : unitary (Matrix (Fin (d+1)) (Fin (d+1)) ℂ),
+        |spectrumPayoff n (m n) (prescribedUniversalChannel n (m n) d) p U
+          - universalValue γ p| < ε :=
+  eventually_uniform_prescribedUniversalChannel_payoff hd K hK m γ hγ hgain ε hε
+
+-- Singleton K is admissible in part (a); no regular-closure assumption.
+example {d : ℕ} (hd : 1 ≤ d) (p : SimpleSpectrum (d+1))
+    (m : ℕ → ℕ) (γ : ℝ) (hγ : 1 < γ)
+    (hgain : Tendsto (fun n => (m n : ℝ) / n) atTop (𝓝 γ))
+    (ε : ℝ) (hε : 0 < ε) :
+    ∀ᶠ n in atTop, ∀ q ∈ ({p} : Set (SimpleSpectrum (d+1))),
+      ∀ U : unitary (Matrix (Fin (d+1)) (Fin (d+1)) ℂ),
+        |spectrumPayoff n (m n) (prescribedUniversalChannel n (m n) d) q U
+          - universalValue γ q| < ε :=
+  eventually_uniform_prescribedUniversalChannel_payoff hd {p}
+    isCompact_singleton m γ hγ hgain ε hε
+
+-- Covariance is all-input, not just an equality on the model states.
+example (n m d : ℕ)
+    (U : Matrix (Fin (d+1)) (Fin (d+1)) ℂ) (hU : Uᴴ * U = 1)
+    (X : TraceClass (TensorRegister n (Fin (d+1)))) :
+    (prescribedUniversalChannel n m d).toLinearMap
+      (conjugationLinearMap (tensorOperator n U) X) =
+    conjugationLinearMap (tensorOperator m U)
+      ((prescribedUniversalChannel n m d).toLinearMap X) :=
+  prescribedUniversalChannel_covariant n m d U hU X
+
+-- Actual producer-to-consumer covariance application used by the endpoint.
+example (n m d : ℕ)
+    (U : Matrix (Fin (d+1)) (Fin (d+1)) ℂ) (hU : Uᴴ * U = 1)
+    (X : TraceClass (TensorRegister n (Fin (d+1)))) :
+    (prescribedUniversalChannel n m d).toLinearMap
+      (conjugationLinearMap (tensorOperator n U) X) =
+    conjugationLinearMap (tensorOperator m U)
+      ((prescribedUniversalChannel n m d).toLinearMap X) :=
+  prescribedChannel_covariant n m (d+1) _ U hU
+    (universalChannel_covariant n m d U hU) X
+
+-- Exact part (b) type uses full affine interior, before selecting a channel.
+example {d : ℕ} (hd : 1 ≤ d) (K : Set (SimpleSpectrum (d+1)))
+    (hK : IsCompact K) (hKne : K.Nonempty)
+    (hregular : closure (interior (SimpleSpectrum.toAffine '' K)) =
+      SimpleSpectrum.toAffine '' K)
+    (m : ℕ → ℕ) (γ : ℝ) (hγ : 1 < γ)
+    (hgain : Tendsto (fun n => (m n : ℝ) / n) atTop (𝓝 γ)) :
+    Tendsto (fun n => unknownSpectrumValue n (m n) K) atTop
+      (𝓝 (⨅ p : K, universalValue γ p.val)) :=
+  unknownSpectrumValue_tendsto_affine hd K hK hKne hregular m γ hγ hgain
+
+-- Actual affine-topology producer supplies the consumer's regular closure.
+example {d : ℕ} (hd : 1 ≤ d) (K : Set (SimpleSpectrum (d+1)))
+    (hK : IsCompact K) (hKne : K.Nonempty)
+    (hregular : closure (interior (SimpleSpectrum.toAffine '' K)) =
+      SimpleSpectrum.toAffine '' K)
+    (m : ℕ → ℕ) (γ : ℝ) (hγ : 1 < γ)
+    (hgain : Tendsto (fun n => (m n : ℝ) / n) atTop (𝓝 γ)) :
+    Tendsto (fun n => unknownSpectrumValue n (m n) K) atTop
+      (𝓝 (⨅ p : K, universalValue γ p.val)) :=
+  unknownSpectrumValue_tendsto hd K hK hKne
+    (SimpleSpectrum.regularClosure_of_affine K hregular) m γ hγ hgain
+
+-- The interior converse consumes the constructed compact-window LAN maps.
+example {k s : ℕ} (S : Set (SimpleSpectrum (k+1))) (p : SimpleSpectrum (k+1))
+    (hp : p ∈ interior S)
+    (b : OrthonormalBasis (Fin (k+1)) ℝ (EuclideanSpace ℝ (Fin (k+1))))
+    (hb : b 0 = Cloning.PCTJointGaussianWhitening.sqrtSpectrum p.eigenvalue)
+    (e : Fin s ≃ PairIndex (k+1)) (m : ℕ → ℕ) (γ : ℝ) (hγ : 1 < γ)
+    (hgain : Tendsto (fun n => (m n : ℝ) / n) atTop (𝓝 γ)) :
+    limsup (fun n => unknownSpectrumValue n (m n) S) atTop ≤ universalValue γ p :=
+  Cloning.PhysicalCloningConverse.limsup_unknownSpectrumValue_le_of_compactWindowLAN
+    S p hp b hb e (Cloning.TensorLAN.physicalCompactWindowLAN p b hb e) m γ hγ hgain
+
+-- Literal definitions: one spectrum-independent sequence and the early-size convention.
+example (n m d : ℕ) : prescribedUniversalChannel n m d =
+    prescribedChannel n m (d+1) (universalChannel n m d) := rfl
+example (n m d : ℕ) (h : n < m) : prescribedUniversalChannel n m d =
+    universalChannel n m d := prescribedChannel_of_lt n m (d+1) _ h
+example (n m d : ℕ) (h : m ≤ n) : prescribedUniversalChannel n m d =
+    restrictionChannel n m (d+1) h := prescribedChannel_of_le n m (d+1) _ h
+
+-- The channel variable is a genuine CPTP map and precedes p and U.
+example {d : ℕ} (n m : ℕ) (K : Set (SimpleSpectrum (d+1))) :
+    unknownSpectrumValue n m K =
+      ⨆ Φ : QuantumChannel (TensorRegister n (Fin (d+1)))
+        (TensorRegister m (Fin (d+1))),
+        ⨅ θ : K × unitary (Matrix (Fin (d+1)) (Fin (d+1)) ℂ),
+          spectrumPayoff n m Φ θ.1.val θ.2 := rfl
+
+-- Whole-product payoff uses unsquared analytic trace-class fidelity.
+example {d : ℕ} (n m : ℕ)
+    (Φ : QuantumChannel (TensorRegister n (Fin (d+1))) (TensorRegister m (Fin (d+1))))
+    (p : SimpleSpectrum (d+1)) (U : unitary (Matrix (Fin (d+1)) (Fin (d+1)) ℂ)) :
+    spectrumPayoff n m Φ p U =
+      ((Cloning.PCTPhysicalState.tensorState (orbitState p U) n).map
+        Φ.toPositiveTracePreservingMap).rootFidelity
+          (Cloning.PCTPhysicalState.tensorState (orbitState p U) m) := rfl
+
+-- Formula with physical dimension D=d+1 and each i<j pair exactly once.
+example {d : ℕ} (p : SimpleSpectrum (d+1))
+    (U : unitary (Matrix (Fin (d+1)) (Fin (d+1)) ℂ)) :
+    (orbitState p U).matrix = (U : Matrix (Fin (d+1)) (Fin (d+1)) ℂ) *
+      Matrix.diagonal (fun i => (p.eigenvalue i : ℂ)) *
+        (U : Matrix (Fin (d+1)) (Fin (d+1)) ℂ)ᴴ := rfl
+example {d : ℕ} (γ : ℝ) (p : SimpleSpectrum (d+1)) : universalValue γ p =
+    (2 * Real.sqrt γ / (1+γ)) ^ ((((d+1 : ℕ) : ℝ)-1)/2) *
+      ∏ ij : PairIndex (d+1),
+        (Real.sqrt γ + Real.sqrt (p.ratio ij * (γ-1+p.ratio ij))) / (γ+p.ratio ij) := rfl
+example (d : ℕ) : SpectralAffine d = {p : Fin d → ℝ // ∑ i, p i = 1} := rfl
+example {d : ℕ} (p : SimpleSpectrum d) :
+    SimpleSpectrum.toAffine p = ⟨p.eigenvalue, p.normalized⟩ := rfl
+
+-- Complete outer binder inventory and syntactic compiled proof references.
+run_cmd do
+  let names := #[`Cloning.TensorCloning.eventually_uniform_prescribedUniversalChannel_payoff,
+    `Cloning.TensorCloning.prescribedUniversalChannel_covariant,
+    `Cloning.TensorCloning.unknownSpectrumValue_tendsto_affine,
+    `Cloning.TensorCloning.unknownSpectrumValue_tendsto,
+    `Cloning.PhysicalCloningConverse.limsup_unknownSpectrumValue_le,
+    `Cloning.TensorCloning.eventually_uniform_universalChannel_payoff]
+  for name in names do
+    let some info := (← getEnv).find? name | throwError "Missing audited export {name}"
+    liftTermElabM do
+      forallTelescope info.type fun args _ => do
+        for arg in args do
+          let decl ← arg.fvarId!.getDecl
+          logInfo m!"BINDER {name}: {decl.userName} [{repr decl.binderInfo}] : {← ppExpr decl.type}"
+    let some value := info.value? true | throwError "Missing compiled proof {name}"
+    let refs ← IO.mkRef NameSet.empty
+    value.forEach fun term => do
+      if let .const ref _ := term then
+        if (`Cloning).isPrefixOf ref then refs.modify (·.insert ref)
+    let sorted := (← refs.get).toList.toArray.qsort Name.lt
+    logInfo m!"PROOF_REFS {name}: {Json.compress (toJson (sorted.map Name.toString))}"
+
+#print axioms Cloning.TensorCloning.eventually_uniform_prescribedUniversalChannel_payoff
+#print axioms Cloning.TensorCloning.prescribedUniversalChannel_covariant
+#print axioms Cloning.TensorCloning.unknownSpectrumValue_tendsto_affine

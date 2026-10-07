@@ -13,11 +13,13 @@ The guides connect paper sections and informal arguments to exact Lean declarati
 
 All three checks passed against the same pinned source snapshot:
 
-- **Lean:** 982 implementation modules; complete axiom audit of **14,345 project constants**, using only `propext`, `Classical.choice`, and `Quot.sound`. [Audit record](formalization/verification/kernel-compatible-pass/run.json).
-- **Comparator:** all **27 explicit statements** and their proof dependencies matched; axiom checking and Lean kernel replay passed. The recorded run used trusted local execution without a sandbox. [Run record](formalization/verification/comparator/records/20261004T055545.209379Z/run.json).
-- **Nanoda:** the pinned, unmodified independent Rust kernel checked **83,433 exported declarations**, covering every project constant and its dependencies. [Run record](formalization/verification/nanoda/records/20261004T055629.624926Z/run.json).
+- **Lean:** 982 implementation modules; shared axiom audit of **14,344 project constants**, with aggregate axioms `propext`, `Classical.choice`, and `Quot.sound`. [Audit record](formalization/verification/cleanup-pass/run.json).
+- **Comparator:** all **27 explicit statements** and their proof dependencies matched; axiom checking and Lean kernel replay passed. The recorded run used trusted local execution without a sandbox. [Run record](formalization/verification/comparator/records/20261007T042117.504957Z/run.json).
+- **Nanoda:** the pinned, unmodified independent Rust kernel checked **83,432 exported declarations**, covering every project constant and its dependencies. [Run record](formalization/verification/nanoda/records/20261007T042711.164065Z/run.json).
 
-A [recorded macOS run](formalization/verification/shared-audit-check.json) with compiled caches passed the shared Lean build + audit in **36 seconds**, versus **65 minutes** for the earlier auditor, with identical declaration coverage and aggregate axioms. The [earlier combined run](formalization/verification/reproducer-check.json) records all three checkers.
+An [earlier macOS run](formalization/verification/shared-audit-check.json) with compiled caches passed the shared Lean build + audit in **36 seconds**, versus **65 minutes** for the previous auditor, with identical coverage and aggregate axioms at that earlier source snapshot. The [earlier combined run](formalization/verification/reproducer-check.json) records all three checkers.
+
+The [cleanup and elaboration report](ELABORATION_REPORT_2026-10-06.md) records both tests and repeated compiler controls; the [dead-code report](DEAD_CODE_REPORT_2026-10-06.md) records the preceding sweep. Current verification above is bound to the cleanup sources.
 
 The proof library contains no `sorry` or additional axioms. Comparator's deliberate challenge placeholders are outside that library. [Machine-readable status](formalization.yaml) and the [compiler compatibility report](formalization/verification/kernel-compatibility.md) preserve the scope and historical evidence.
 

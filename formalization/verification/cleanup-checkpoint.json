@@ -1,0 +1,19 @@
+{
+  "status": "passed",
+  "checkpoint": "verification/cleanup-pass",
+  "modules": 982,
+  "source_theorems_and_lemmas": 6349,
+  "audited_constants": 14344,
+  "manifest_files_checked": 993,
+  "lean_invoked": false,
+  "audit_engine": "shared",
+  "axiom_report_scope": "aggregate union; no per-root axiom attribution",
+  "scope": "saved full-project certificate integrity and exact current source/config match",
+  "recorded_utc": "2026-10-07T04:40:50.733815+00:00",
+  "source_audit_sha256": "cd6735524ed4f60d02fded4b846eaa349d36fc3d151df5768ddc5fcfe4ada61b",
+  "command": [
+    "python3",
+    "formalization/scripts/check_checkpoint.py"
+  ],
+  "checker_sha256": "9dd054826892f7f4dc988737696b15a13df0f63edab327c920c030a84e1df1e5"
+}

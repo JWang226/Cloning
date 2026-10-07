@@ -1,0 +1,74 @@
+{
+  "commit": "70bb859295edc2abb9ad81f8f6e31ab2adf8ca07",
+  "copies": [
+    {
+      "content_modified": false,
+      "content_status": "unmodified",
+      "filename_renamed": false,
+      "local_copy": "count_lean_lines.py",
+      "original_path": "skills/lean-elaboration-test/scripts/count_lean_lines.py",
+      "raw_source_url": "https://raw.githubusercontent.com/scottnarmstrong/LeanAutoformalizationSkills/70bb859295edc2abb9ad81f8f6e31ab2adf8ca07/skills/lean-elaboration-test/scripts/count_lean_lines.py",
+      "sha256": "6690ea76cf6031fa082bf5b1f85f3606db19508df511d0bb8d934048fa583220",
+      "source_url": "https://github.com/scottnarmstrong/LeanAutoformalizationSkills/blob/70bb859295edc2abb9ad81f8f6e31ab2adf8ca07/skills/lean-elaboration-test/scripts/count_lean_lines.py"
+    },
+    {
+      "content_modified": false,
+      "content_status": "unmodified",
+      "filename_renamed": true,
+      "local_copy": "lean-elaboration-test.md",
+      "original_path": "skills/lean-elaboration-test/SKILL.md",
+      "raw_source_url": "https://raw.githubusercontent.com/scottnarmstrong/LeanAutoformalizationSkills/70bb859295edc2abb9ad81f8f6e31ab2adf8ca07/skills/lean-elaboration-test/SKILL.md",
+      "sha256": "ea9fa6123d8c3a5085d480eb7fa1f87e497c3bd5f5e7bfd9e4f4d0b8d12bd284",
+      "source_url": "https://github.com/scottnarmstrong/LeanAutoformalizationSkills/blob/70bb859295edc2abb9ad81f8f6e31ab2adf8ca07/skills/lean-elaboration-test/SKILL.md"
+    },
+    {
+      "content_modified": false,
+      "content_status": "unmodified",
+      "filename_renamed": true,
+      "local_copy": "lean-elaboration.md",
+      "original_path": "skills/lean-elaboration/SKILL.md",
+      "raw_source_url": "https://raw.githubusercontent.com/scottnarmstrong/LeanAutoformalizationSkills/70bb859295edc2abb9ad81f8f6e31ab2adf8ca07/skills/lean-elaboration/SKILL.md",
+      "sha256": "f7a3ed0be7bfed0535122a11878b57331d59b464122158339ab9445a12beb608",
+      "source_url": "https://github.com/scottnarmstrong/LeanAutoformalizationSkills/blob/70bb859295edc2abb9ad81f8f6e31ab2adf8ca07/skills/lean-elaboration/SKILL.md"
+    },
+    {
+      "content_modified": false,
+      "content_status": "unmodified",
+      "filename_renamed": false,
+      "local_copy": "evidence.md",
+      "original_path": "skills/lean-elaboration/references/evidence.md",
+      "raw_source_url": "https://raw.githubusercontent.com/scottnarmstrong/LeanAutoformalizationSkills/70bb859295edc2abb9ad81f8f6e31ab2adf8ca07/skills/lean-elaboration/references/evidence.md",
+      "sha256": "065d9495d5f95a4770ec888d47ab763fced7be88f4385a83daadb2d011a500bc",
+      "source_url": "https://github.com/scottnarmstrong/LeanAutoformalizationSkills/blob/70bb859295edc2abb9ad81f8f6e31ab2adf8ca07/skills/lean-elaboration/references/evidence.md"
+    },
+    {
+      "content_modified": false,
+      "content_status": "unmodified",
+      "filename_renamed": false,
+      "local_copy": "LICENSE",
+      "original_path": "LICENSE",
+      "raw_source_url": "https://raw.githubusercontent.com/scottnarmstrong/LeanAutoformalizationSkills/70bb859295edc2abb9ad81f8f6e31ab2adf8ca07/LICENSE",
+      "sha256": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411",
+      "source_url": "https://github.com/scottnarmstrong/LeanAutoformalizationSkills/blob/70bb859295edc2abb9ad81f8f6e31ab2adf8ca07/LICENSE"
+    }
+  ],
+  "creator": {
+    "github": "scottnarmstrong",
+    "name": "Scott Armstrong",
+    "url": "https://github.com/scottnarmstrong"
+  },
+  "license": {
+    "canonical_url": "https://creativecommons.org/licenses/by/4.0/",
+    "identifier": "CC-BY-4.0",
+    "local_copy": "LICENSE",
+    "sha256": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411",
+    "source_url": "https://github.com/scottnarmstrong/LeanAutoformalizationSkills/blob/70bb859295edc2abb9ad81f8f6e31ab2adf8ca07/LICENSE"
+  },
+  "notes": [
+    "Saved contents were byte-compared with the pinned upstream raw sources during attribution preparation.",
+    "The two SKILL.md copies have descriptive local filenames; file contents are unmodified.",
+    "This is attribution and source provenance, not an endorsement or a benchmark result."
+  ],
+  "repository": "https://github.com/scottnarmstrong/LeanAutoformalizationSkills",
+  "schema": "cloning-elaboration-external-skills-provenance-v1"
+}

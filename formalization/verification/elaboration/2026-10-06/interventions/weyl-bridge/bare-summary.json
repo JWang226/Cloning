@@ -1,0 +1,782 @@
+{
+  "generated_utc": "2026-10-07T04:45:45.369762+00:00",
+  "original_bare_index_sha256": "4023253553439c4a327972459f3ef51d27c9a12e8e90a660c6d5633dc5e01c32",
+  "record_count": 6,
+  "records": [
+    {
+      "input_sha256": {
+        "import_context": "fbb6948557c4982ac822f2507cff96988353ba17e9f815f813dcec9e1712e56b",
+        "log": "bef74b241006f41f6cdd921bd8fac5f2a1122faca0656489a62b828d56a06672",
+        "resources": "ae1d2bfba0bfe4b5d5c23171436569a2dcb16899b409feb993c111a9dfe66dd7",
+        "setup_snapshot": "7398bb862731937c44e19ae7c44ceaddba2e487349b4e5739978e15bcbc015c6",
+        "source_snapshot": "c3ad276535f7e0b776dae495c8a0a8e42e9967d8a36f8ed7d5a8ef55193ac80d",
+        "trace_snapshot": "a10ee1b6ac0c37190e7c25e320a2456888fcde210e08d982e778540d4c07af4f"
+      },
+      "native_gnu_time": {
+        "cpu": 110.05,
+        "cpu_percent": "102%",
+        "rss_kib": 2879680.0,
+        "system": 2.49,
+        "user": 107.56,
+        "wall": 106.84
+      },
+      "notes": [
+        "No profiler/statistics/Firefox instrumentation was requested.",
+        "GNU log/resource hashes are captured during publication; they were not recorded by the timed runner.",
+        "CPU is user plus system; GNU RSS is a maximum process peak in KiB."
+      ],
+      "record": {
+        "arm": "A",
+        "benchmark_commit": "cbb2fd2007ae367e201d4a6ac7c069899db90dbd",
+        "build_setup_unchanged": true,
+        "build_trace_unchanged": true,
+        "command": [
+          "/opt/homebrew/bin/gtime",
+          "-v",
+          "-o",
+          "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/weyl-bridge-ab/A-1-bare.resources.txt",
+          "/Users/jw/.elan/bin/lake",
+          "env",
+          "lean",
+          "-DautoImplicit=false",
+          "--setup",
+          "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/weyl-bridge-ab/setup.json",
+          "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/weyl-bridge-ab/WeylIdlerUniqueness.lean"
+        ],
+        "commit": "80e4b7ca1aa43969f85105171bfd80bf662d6b32",
+        "config_hashes_unchanged": true,
+        "config_matches_benchmark": true,
+        "config_sha256": {
+          "formalization/lake-manifest.json": "e4630915680b82b58c6a005e1ba1e515e865e5541c7e665d4a2d57f783eeadb4",
+          "formalization/lakefile.toml": "ddeb0d2c8217676fc393afd24c13629993c580f35f9d8ad15240c6a167b020c1",
+          "formalization/lean-toolchain": "dc6d65016fad3123d44bf17b5bf0598286284ab16ba75d5c17eb22ed11f47361"
+        },
+        "end_utc": "2026-10-07T02:34:23.829051+00:00",
+        "entry_path": "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/weyl-bridge-ab/WeylIdlerUniqueness.lean",
+        "environment": {
+          "LAKE_ARTIFACT_CACHE": "false",
+          "LAKE_NO_CACHE": "false",
+          "LANG": "C.UTF-8",
+          "LC_ALL": "C.UTF-8",
+          "LEAN_GITHASH": "00659f8e6071d7e46131ed643bf8003b99b044e9",
+          "LEAN_NUM_THREADS": "2"
+        },
+        "environment_overrides": {
+          "LAKE_ARTIFACT_CACHE": "false",
+          "LEAN_NUM_THREADS": "2"
+        },
+        "exit_code": 0,
+        "import_artifacts_unchanged": true,
+        "import_context": "A-1-bare.import-context.json",
+        "import_context_sha256": "fbb6948557c4982ac822f2507cff96988353ba17e9f815f813dcec9e1712e56b",
+        "inputs_stable": true,
+        "log": "A-1-bare.log",
+        "measurement_valid": true,
+        "mode": "bare",
+        "module": "Cloning.WeylIdlerUniqueness",
+        "publication": {
+          "diagnostic_outside_production": false,
+          "evidence_role": "baseline-control-bare",
+          "omitted_environment_fields": [
+            "environment.LEAN_PATH",
+            "environment.LEAN_SYSROOT",
+            "environment.PATH",
+            "toolchain.environment.LEAN_PATH",
+            "toolchain.environment.LEAN_SYSROOT",
+            "toolchain.environment.PATH"
+          ],
+          "original_index": "bare.json",
+          "original_index_sha256": "4023253553439c4a327972459f3ef51d27c9a12e8e90a660c6d5633dc5e01c32",
+          "original_record_index": 0,
+          "receipt_identity": [
+            "Cloning.WeylIdlerUniqueness",
+            "A",
+            "bare",
+            1
+          ],
+          "receipt_label": "A-1-bare",
+          "transformations": [
+            "Preserved an identical source snapshot bound to source_sha256.",
+            "Removed inherited path-valued environment fields; exact task setup/import paths remain."
+          ]
+        },
+        "repetition": 1,
+        "resources": "A-1-bare.resources.txt",
+        "setup_sha256": "7398bb862731937c44e19ae7c44ceaddba2e487349b4e5739978e15bcbc015c6",
+        "setup_snapshot": "setup.json",
+        "source": "Cloning/WeylIdlerUniqueness.lean",
+        "source_hash_unchanged": true,
+        "source_matches_benchmark": true,
+        "source_matches_commit": true,
+        "source_sha256": "c3ad276535f7e0b776dae495c8a0a8e42e9967d8a36f8ed7d5a8ef55193ac80d",
+        "source_snapshot": "A.source.lean.txt",
+        "start_utc": "2026-10-07T02:32:33.837602+00:00",
+        "toolchain": {
+          "environment": {
+            "LAKE_ARTIFACT_CACHE": "false",
+            "LAKE_NO_CACHE": "false",
+            "LANG": "C.UTF-8",
+            "LC_ALL": "C.UTF-8",
+            "LEAN_GITHASH": "00659f8e6071d7e46131ed643bf8003b99b044e9",
+            "LEAN_NUM_THREADS": "2"
+          },
+          "lake_version": "Lake version 5.0.0-src+00659f8 (Lean version 4.29.0-rc6)",
+          "lean_binary": "/Users/jw/.elan/toolchains/leanprover--lean4---v4.29.0-rc6/bin/lean",
+          "lean_binary_sha256": "2974847fff2e2621502841f4c2dbac4035b4847d6060a4f2087cbc0d04005e37",
+          "lean_libdir": "/Users/jw/.elan/toolchains/leanprover--lean4---v4.29.0-rc6/lib/lean",
+          "lean_version": "Lean (version 4.29.0-rc6, arm64-apple-darwin24.6.0, commit 00659f8e6071d7e46131ed643bf8003b99b044e9, Release)"
+        },
+        "trace_sha256": "a10ee1b6ac0c37190e7c25e320a2456888fcde210e08d982e778540d4c07af4f",
+        "trace_snapshot": "build-trace.json",
+        "tracked_source_unchanged": true,
+        "wall_seconds": 106.88540804200238
+      }
+    },
+    {
+      "input_sha256": {
+        "import_context": "fbb6948557c4982ac822f2507cff96988353ba17e9f815f813dcec9e1712e56b",
+        "log": "43d0c0d7d7d5711cad2c2d5d40813d00461f919416ddb1f032a6442575964d83",
+        "resources": "0afa6731b901a59b69c9e283b3244e085314915c25598e4cbd01db9526fdc0a4",
+        "setup_snapshot": "7398bb862731937c44e19ae7c44ceaddba2e487349b4e5739978e15bcbc015c6",
+        "source_snapshot": "e1413287599caab0c36d5cf8625f327b319f75c097fe6cc33d4351f22cff5dc7",
+        "trace_snapshot": "a10ee1b6ac0c37190e7c25e320a2456888fcde210e08d982e778540d4c07af4f"
+      },
+      "native_gnu_time": {
+        "cpu": 9.79,
+        "cpu_percent": "150%",
+        "rss_kib": 2920336.0,
+        "system": 2.12,
+        "user": 7.67,
+        "wall": 6.51
+      },
+      "notes": [
+        "No profiler/statistics/Firefox instrumentation was requested.",
+        "GNU log/resource hashes are captured during publication; they were not recorded by the timed runner.",
+        "CPU is user plus system; GNU RSS is a maximum process peak in KiB."
+      ],
+      "record": {
+        "arm": "B",
+        "benchmark_commit": "cbb2fd2007ae367e201d4a6ac7c069899db90dbd",
+        "build_setup_unchanged": true,
+        "build_trace_unchanged": true,
+        "command": [
+          "/opt/homebrew/bin/gtime",
+          "-v",
+          "-o",
+          "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/weyl-bridge-ab/B-1-bare.resources.txt",
+          "/Users/jw/.elan/bin/lake",
+          "env",
+          "lean",
+          "-DautoImplicit=false",
+          "--setup",
+          "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/weyl-bridge-ab/setup.json",
+          "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/weyl-bridge-ab/WeylIdlerUniqueness.lean"
+        ],
+        "commit": "80e4b7ca1aa43969f85105171bfd80bf662d6b32",
+        "config_hashes_unchanged": true,
+        "config_matches_benchmark": true,
+        "config_sha256": {
+          "formalization/lake-manifest.json": "e4630915680b82b58c6a005e1ba1e515e865e5541c7e665d4a2d57f783eeadb4",
+          "formalization/lakefile.toml": "ddeb0d2c8217676fc393afd24c13629993c580f35f9d8ad15240c6a167b020c1",
+          "formalization/lean-toolchain": "dc6d65016fad3123d44bf17b5bf0598286284ab16ba75d5c17eb22ed11f47361"
+        },
+        "end_utc": "2026-10-07T02:34:34.744492+00:00",
+        "entry_path": "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/weyl-bridge-ab/WeylIdlerUniqueness.lean",
+        "environment": {
+          "LAKE_ARTIFACT_CACHE": "false",
+          "LAKE_NO_CACHE": "false",
+          "LANG": "C.UTF-8",
+          "LC_ALL": "C.UTF-8",
+          "LEAN_GITHASH": "00659f8e6071d7e46131ed643bf8003b99b044e9",
+          "LEAN_NUM_THREADS": "2"
+        },
+        "environment_overrides": {
+          "LAKE_ARTIFACT_CACHE": "false",
+          "LEAN_NUM_THREADS": "2"
+        },
+        "exit_code": 0,
+        "import_artifacts_unchanged": true,
+        "import_context": "B-1-bare.import-context.json",
+        "import_context_sha256": "fbb6948557c4982ac822f2507cff96988353ba17e9f815f813dcec9e1712e56b",
+        "inputs_stable": true,
+        "log": "B-1-bare.log",
+        "measurement_valid": true,
+        "mode": "bare",
+        "module": "Cloning.WeylIdlerUniqueness",
+        "publication": {
+          "diagnostic_outside_production": false,
+          "evidence_role": "candidate-bare",
+          "omitted_environment_fields": [
+            "environment.LEAN_PATH",
+            "environment.LEAN_SYSROOT",
+            "environment.PATH",
+            "toolchain.environment.LEAN_PATH",
+            "toolchain.environment.LEAN_SYSROOT",
+            "toolchain.environment.PATH"
+          ],
+          "original_index": "bare.json",
+          "original_index_sha256": "4023253553439c4a327972459f3ef51d27c9a12e8e90a660c6d5633dc5e01c32",
+          "original_record_index": 1,
+          "receipt_identity": [
+            "Cloning.WeylIdlerUniqueness",
+            "B",
+            "bare",
+            1
+          ],
+          "receipt_label": "B-1-bare",
+          "transformations": [
+            "Preserved an identical source snapshot bound to source_sha256.",
+            "Removed inherited path-valued environment fields; exact task setup/import paths remain."
+          ]
+        },
+        "repetition": 1,
+        "resources": "B-1-bare.resources.txt",
+        "setup_sha256": "7398bb862731937c44e19ae7c44ceaddba2e487349b4e5739978e15bcbc015c6",
+        "setup_snapshot": "setup.json",
+        "source": "Cloning/WeylIdlerUniqueness.lean",
+        "source_hash_unchanged": true,
+        "source_matches_benchmark": false,
+        "source_matches_commit": false,
+        "source_sha256": "e1413287599caab0c36d5cf8625f327b319f75c097fe6cc33d4351f22cff5dc7",
+        "source_snapshot": "B.source.lean.txt",
+        "start_utc": "2026-10-07T02:34:25.961956+00:00",
+        "toolchain": {
+          "environment": {
+            "LAKE_ARTIFACT_CACHE": "false",
+            "LAKE_NO_CACHE": "false",
+            "LANG": "C.UTF-8",
+            "LC_ALL": "C.UTF-8",
+            "LEAN_GITHASH": "00659f8e6071d7e46131ed643bf8003b99b044e9",
+            "LEAN_NUM_THREADS": "2"
+          },
+          "lake_version": "Lake version 5.0.0-src+00659f8 (Lean version 4.29.0-rc6)",
+          "lean_binary": "/Users/jw/.elan/toolchains/leanprover--lean4---v4.29.0-rc6/bin/lean",
+          "lean_binary_sha256": "2974847fff2e2621502841f4c2dbac4035b4847d6060a4f2087cbc0d04005e37",
+          "lean_libdir": "/Users/jw/.elan/toolchains/leanprover--lean4---v4.29.0-rc6/lib/lean",
+          "lean_version": "Lean (version 4.29.0-rc6, arm64-apple-darwin24.6.0, commit 00659f8e6071d7e46131ed643bf8003b99b044e9, Release)"
+        },
+        "trace_sha256": "a10ee1b6ac0c37190e7c25e320a2456888fcde210e08d982e778540d4c07af4f",
+        "trace_snapshot": "build-trace.json",
+        "tracked_source_unchanged": true,
+        "wall_seconds": 6.548654124999302
+      }
+    },
+    {
+      "input_sha256": {
+        "import_context": "fbb6948557c4982ac822f2507cff96988353ba17e9f815f813dcec9e1712e56b",
+        "log": "bef74b241006f41f6cdd921bd8fac5f2a1122faca0656489a62b828d56a06672",
+        "resources": "ee570e9a8624c193c3d3350fd5349127cb779d07d37b7269885668a9896ab66f",
+        "setup_snapshot": "7398bb862731937c44e19ae7c44ceaddba2e487349b4e5739978e15bcbc015c6",
+        "source_snapshot": "c3ad276535f7e0b776dae495c8a0a8e42e9967d8a36f8ed7d5a8ef55193ac80d",
+        "trace_snapshot": "a10ee1b6ac0c37190e7c25e320a2456888fcde210e08d982e778540d4c07af4f"
+      },
+      "native_gnu_time": {
+        "cpu": 109.89,
+        "cpu_percent": "102%",
+        "rss_kib": 2917984.0,
+        "system": 2.36,
+        "user": 107.53,
+        "wall": 106.78999999999999
+      },
+      "notes": [
+        "No profiler/statistics/Firefox instrumentation was requested.",
+        "GNU log/resource hashes are captured during publication; they were not recorded by the timed runner.",
+        "CPU is user plus system; GNU RSS is a maximum process peak in KiB."
+      ],
+      "record": {
+        "arm": "A",
+        "benchmark_commit": "cbb2fd2007ae367e201d4a6ac7c069899db90dbd",
+        "build_setup_unchanged": true,
+        "build_trace_unchanged": true,
+        "command": [
+          "/opt/homebrew/bin/gtime",
+          "-v",
+          "-o",
+          "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/weyl-bridge-ab/A-2-bare.resources.txt",
+          "/Users/jw/.elan/bin/lake",
+          "env",
+          "lean",
+          "-DautoImplicit=false",
+          "--setup",
+          "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/weyl-bridge-ab/setup.json",
+          "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/weyl-bridge-ab/WeylIdlerUniqueness.lean"
+        ],
+        "commit": "80e4b7ca1aa43969f85105171bfd80bf662d6b32",
+        "config_hashes_unchanged": true,
+        "config_matches_benchmark": true,
+        "config_sha256": {
+          "formalization/lake-manifest.json": "e4630915680b82b58c6a005e1ba1e515e865e5541c7e665d4a2d57f783eeadb4",
+          "formalization/lakefile.toml": "ddeb0d2c8217676fc393afd24c13629993c580f35f9d8ad15240c6a167b020c1",
+          "formalization/lean-toolchain": "dc6d65016fad3123d44bf17b5bf0598286284ab16ba75d5c17eb22ed11f47361"
+        },
+        "end_utc": "2026-10-07T02:36:26.799852+00:00",
+        "entry_path": "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/weyl-bridge-ab/WeylIdlerUniqueness.lean",
+        "environment": {
+          "LAKE_ARTIFACT_CACHE": "false",
+          "LAKE_NO_CACHE": "false",
+          "LANG": "C.UTF-8",
+          "LC_ALL": "C.UTF-8",
+          "LEAN_GITHASH": "00659f8e6071d7e46131ed643bf8003b99b044e9",
+          "LEAN_NUM_THREADS": "2"
+        },
+        "environment_overrides": {
+          "LAKE_ARTIFACT_CACHE": "false",
+          "LEAN_NUM_THREADS": "2"
+        },
+        "exit_code": 0,
+        "import_artifacts_unchanged": true,
+        "import_context": "A-2-bare.import-context.json",
+        "import_context_sha256": "fbb6948557c4982ac822f2507cff96988353ba17e9f815f813dcec9e1712e56b",
+        "inputs_stable": true,
+        "log": "A-2-bare.log",
+        "measurement_valid": true,
+        "mode": "bare",
+        "module": "Cloning.WeylIdlerUniqueness",
+        "publication": {
+          "diagnostic_outside_production": false,
+          "evidence_role": "baseline-control-bare",
+          "omitted_environment_fields": [
+            "environment.LEAN_PATH",
+            "environment.LEAN_SYSROOT",
+            "environment.PATH",
+            "toolchain.environment.LEAN_PATH",
+            "toolchain.environment.LEAN_SYSROOT",
+            "toolchain.environment.PATH"
+          ],
+          "original_index": "bare.json",
+          "original_index_sha256": "4023253553439c4a327972459f3ef51d27c9a12e8e90a660c6d5633dc5e01c32",
+          "original_record_index": 2,
+          "receipt_identity": [
+            "Cloning.WeylIdlerUniqueness",
+            "A",
+            "bare",
+            2
+          ],
+          "receipt_label": "A-2-bare",
+          "transformations": [
+            "Preserved an identical source snapshot bound to source_sha256.",
+            "Removed inherited path-valued environment fields; exact task setup/import paths remain."
+          ]
+        },
+        "repetition": 2,
+        "resources": "A-2-bare.resources.txt",
+        "setup_sha256": "7398bb862731937c44e19ae7c44ceaddba2e487349b4e5739978e15bcbc015c6",
+        "setup_snapshot": "setup.json",
+        "source": "Cloning/WeylIdlerUniqueness.lean",
+        "source_hash_unchanged": true,
+        "source_matches_benchmark": true,
+        "source_matches_commit": true,
+        "source_sha256": "c3ad276535f7e0b776dae495c8a0a8e42e9967d8a36f8ed7d5a8ef55193ac80d",
+        "source_snapshot": "A.source.lean.txt",
+        "start_utc": "2026-10-07T02:34:36.871263+00:00",
+        "toolchain": {
+          "environment": {
+            "LAKE_ARTIFACT_CACHE": "false",
+            "LAKE_NO_CACHE": "false",
+            "LANG": "C.UTF-8",
+            "LC_ALL": "C.UTF-8",
+            "LEAN_GITHASH": "00659f8e6071d7e46131ed643bf8003b99b044e9",
+            "LEAN_NUM_THREADS": "2"
+          },
+          "lake_version": "Lake version 5.0.0-src+00659f8 (Lean version 4.29.0-rc6)",
+          "lean_binary": "/Users/jw/.elan/toolchains/leanprover--lean4---v4.29.0-rc6/bin/lean",
+          "lean_binary_sha256": "2974847fff2e2621502841f4c2dbac4035b4847d6060a4f2087cbc0d04005e37",
+          "lean_libdir": "/Users/jw/.elan/toolchains/leanprover--lean4---v4.29.0-rc6/lib/lean",
+          "lean_version": "Lean (version 4.29.0-rc6, arm64-apple-darwin24.6.0, commit 00659f8e6071d7e46131ed643bf8003b99b044e9, Release)"
+        },
+        "trace_sha256": "a10ee1b6ac0c37190e7c25e320a2456888fcde210e08d982e778540d4c07af4f",
+        "trace_snapshot": "build-trace.json",
+        "tracked_source_unchanged": true,
+        "wall_seconds": 106.83245562499724
+      }
+    },
+    {
+      "input_sha256": {
+        "import_context": "fbb6948557c4982ac822f2507cff96988353ba17e9f815f813dcec9e1712e56b",
+        "log": "43d0c0d7d7d5711cad2c2d5d40813d00461f919416ddb1f032a6442575964d83",
+        "resources": "aeefdc71567fbfe079a29321faae487f992357dd0fa972a77c042560ed6cd04f",
+        "setup_snapshot": "7398bb862731937c44e19ae7c44ceaddba2e487349b4e5739978e15bcbc015c6",
+        "source_snapshot": "e1413287599caab0c36d5cf8625f327b319f75c097fe6cc33d4351f22cff5dc7",
+        "trace_snapshot": "a10ee1b6ac0c37190e7c25e320a2456888fcde210e08d982e778540d4c07af4f"
+      },
+      "native_gnu_time": {
+        "cpu": 9.62,
+        "cpu_percent": "146%",
+        "rss_kib": 2929904.0,
+        "system": 2.11,
+        "user": 7.51,
+        "wall": 6.58
+      },
+      "notes": [
+        "No profiler/statistics/Firefox instrumentation was requested.",
+        "GNU log/resource hashes are captured during publication; they were not recorded by the timed runner.",
+        "CPU is user plus system; GNU RSS is a maximum process peak in KiB."
+      ],
+      "record": {
+        "arm": "B",
+        "benchmark_commit": "cbb2fd2007ae367e201d4a6ac7c069899db90dbd",
+        "build_setup_unchanged": true,
+        "build_trace_unchanged": true,
+        "command": [
+          "/opt/homebrew/bin/gtime",
+          "-v",
+          "-o",
+          "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/weyl-bridge-ab/B-2-bare.resources.txt",
+          "/Users/jw/.elan/bin/lake",
+          "env",
+          "lean",
+          "-DautoImplicit=false",
+          "--setup",
+          "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/weyl-bridge-ab/setup.json",
+          "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/weyl-bridge-ab/WeylIdlerUniqueness.lean"
+        ],
+        "commit": "80e4b7ca1aa43969f85105171bfd80bf662d6b32",
+        "config_hashes_unchanged": true,
+        "config_matches_benchmark": true,
+        "config_sha256": {
+          "formalization/lake-manifest.json": "e4630915680b82b58c6a005e1ba1e515e865e5541c7e665d4a2d57f783eeadb4",
+          "formalization/lakefile.toml": "ddeb0d2c8217676fc393afd24c13629993c580f35f9d8ad15240c6a167b020c1",
+          "formalization/lean-toolchain": "dc6d65016fad3123d44bf17b5bf0598286284ab16ba75d5c17eb22ed11f47361"
+        },
+        "end_utc": "2026-10-07T02:36:37.828312+00:00",
+        "entry_path": "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/weyl-bridge-ab/WeylIdlerUniqueness.lean",
+        "environment": {
+          "LAKE_ARTIFACT_CACHE": "false",
+          "LAKE_NO_CACHE": "false",
+          "LANG": "C.UTF-8",
+          "LC_ALL": "C.UTF-8",
+          "LEAN_GITHASH": "00659f8e6071d7e46131ed643bf8003b99b044e9",
+          "LEAN_NUM_THREADS": "2"
+        },
+        "environment_overrides": {
+          "LAKE_ARTIFACT_CACHE": "false",
+          "LEAN_NUM_THREADS": "2"
+        },
+        "exit_code": 0,
+        "import_artifacts_unchanged": true,
+        "import_context": "B-2-bare.import-context.json",
+        "import_context_sha256": "fbb6948557c4982ac822f2507cff96988353ba17e9f815f813dcec9e1712e56b",
+        "inputs_stable": true,
+        "log": "B-2-bare.log",
+        "measurement_valid": true,
+        "mode": "bare",
+        "module": "Cloning.WeylIdlerUniqueness",
+        "publication": {
+          "diagnostic_outside_production": false,
+          "evidence_role": "candidate-bare",
+          "omitted_environment_fields": [
+            "environment.LEAN_PATH",
+            "environment.LEAN_SYSROOT",
+            "environment.PATH",
+            "toolchain.environment.LEAN_PATH",
+            "toolchain.environment.LEAN_SYSROOT",
+            "toolchain.environment.PATH"
+          ],
+          "original_index": "bare.json",
+          "original_index_sha256": "4023253553439c4a327972459f3ef51d27c9a12e8e90a660c6d5633dc5e01c32",
+          "original_record_index": 3,
+          "receipt_identity": [
+            "Cloning.WeylIdlerUniqueness",
+            "B",
+            "bare",
+            2
+          ],
+          "receipt_label": "B-2-bare",
+          "transformations": [
+            "Preserved an identical source snapshot bound to source_sha256.",
+            "Removed inherited path-valued environment fields; exact task setup/import paths remain."
+          ]
+        },
+        "repetition": 2,
+        "resources": "B-2-bare.resources.txt",
+        "setup_sha256": "7398bb862731937c44e19ae7c44ceaddba2e487349b4e5739978e15bcbc015c6",
+        "setup_snapshot": "setup.json",
+        "source": "Cloning/WeylIdlerUniqueness.lean",
+        "source_hash_unchanged": true,
+        "source_matches_benchmark": false,
+        "source_matches_commit": false,
+        "source_sha256": "e1413287599caab0c36d5cf8625f327b319f75c097fe6cc33d4351f22cff5dc7",
+        "source_snapshot": "B.source.lean.txt",
+        "start_utc": "2026-10-07T02:36:28.959567+00:00",
+        "toolchain": {
+          "environment": {
+            "LAKE_ARTIFACT_CACHE": "false",
+            "LAKE_NO_CACHE": "false",
+            "LANG": "C.UTF-8",
+            "LC_ALL": "C.UTF-8",
+            "LEAN_GITHASH": "00659f8e6071d7e46131ed643bf8003b99b044e9",
+            "LEAN_NUM_THREADS": "2"
+          },
+          "lake_version": "Lake version 5.0.0-src+00659f8 (Lean version 4.29.0-rc6)",
+          "lean_binary": "/Users/jw/.elan/toolchains/leanprover--lean4---v4.29.0-rc6/bin/lean",
+          "lean_binary_sha256": "2974847fff2e2621502841f4c2dbac4035b4847d6060a4f2087cbc0d04005e37",
+          "lean_libdir": "/Users/jw/.elan/toolchains/leanprover--lean4---v4.29.0-rc6/lib/lean",
+          "lean_version": "Lean (version 4.29.0-rc6, arm64-apple-darwin24.6.0, commit 00659f8e6071d7e46131ed643bf8003b99b044e9, Release)"
+        },
+        "trace_sha256": "a10ee1b6ac0c37190e7c25e320a2456888fcde210e08d982e778540d4c07af4f",
+        "trace_snapshot": "build-trace.json",
+        "tracked_source_unchanged": true,
+        "wall_seconds": 6.621327791999647
+      }
+    },
+    {
+      "input_sha256": {
+        "import_context": "fbb6948557c4982ac822f2507cff96988353ba17e9f815f813dcec9e1712e56b",
+        "log": "bef74b241006f41f6cdd921bd8fac5f2a1122faca0656489a62b828d56a06672",
+        "resources": "ba7bd21096d8b980c0769e8de7220efd117047faae7b5b04737c8a22812e1c24",
+        "setup_snapshot": "7398bb862731937c44e19ae7c44ceaddba2e487349b4e5739978e15bcbc015c6",
+        "source_snapshot": "c3ad276535f7e0b776dae495c8a0a8e42e9967d8a36f8ed7d5a8ef55193ac80d",
+        "trace_snapshot": "a10ee1b6ac0c37190e7c25e320a2456888fcde210e08d982e778540d4c07af4f"
+      },
+      "native_gnu_time": {
+        "cpu": 110.58,
+        "cpu_percent": "102%",
+        "rss_kib": 2919808.0,
+        "system": 2.57,
+        "user": 108.01,
+        "wall": 107.58
+      },
+      "notes": [
+        "No profiler/statistics/Firefox instrumentation was requested.",
+        "GNU log/resource hashes are captured during publication; they were not recorded by the timed runner.",
+        "CPU is user plus system; GNU RSS is a maximum process peak in KiB."
+      ],
+      "record": {
+        "arm": "A",
+        "benchmark_commit": "cbb2fd2007ae367e201d4a6ac7c069899db90dbd",
+        "build_setup_unchanged": true,
+        "build_trace_unchanged": true,
+        "command": [
+          "/opt/homebrew/bin/gtime",
+          "-v",
+          "-o",
+          "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/weyl-bridge-ab/A-3-bare.resources.txt",
+          "/Users/jw/.elan/bin/lake",
+          "env",
+          "lean",
+          "-DautoImplicit=false",
+          "--setup",
+          "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/weyl-bridge-ab/setup.json",
+          "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/weyl-bridge-ab/WeylIdlerUniqueness.lean"
+        ],
+        "commit": "80e4b7ca1aa43969f85105171bfd80bf662d6b32",
+        "config_hashes_unchanged": true,
+        "config_matches_benchmark": true,
+        "config_sha256": {
+          "formalization/lake-manifest.json": "e4630915680b82b58c6a005e1ba1e515e865e5541c7e665d4a2d57f783eeadb4",
+          "formalization/lakefile.toml": "ddeb0d2c8217676fc393afd24c13629993c580f35f9d8ad15240c6a167b020c1",
+          "formalization/lean-toolchain": "dc6d65016fad3123d44bf17b5bf0598286284ab16ba75d5c17eb22ed11f47361"
+        },
+        "end_utc": "2026-10-07T02:38:30.724731+00:00",
+        "entry_path": "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/weyl-bridge-ab/WeylIdlerUniqueness.lean",
+        "environment": {
+          "LAKE_ARTIFACT_CACHE": "false",
+          "LAKE_NO_CACHE": "false",
+          "LANG": "C.UTF-8",
+          "LC_ALL": "C.UTF-8",
+          "LEAN_GITHASH": "00659f8e6071d7e46131ed643bf8003b99b044e9",
+          "LEAN_NUM_THREADS": "2"
+        },
+        "environment_overrides": {
+          "LAKE_ARTIFACT_CACHE": "false",
+          "LEAN_NUM_THREADS": "2"
+        },
+        "exit_code": 0,
+        "import_artifacts_unchanged": true,
+        "import_context": "A-3-bare.import-context.json",
+        "import_context_sha256": "fbb6948557c4982ac822f2507cff96988353ba17e9f815f813dcec9e1712e56b",
+        "inputs_stable": true,
+        "log": "A-3-bare.log",
+        "measurement_valid": true,
+        "mode": "bare",
+        "module": "Cloning.WeylIdlerUniqueness",
+        "publication": {
+          "diagnostic_outside_production": false,
+          "evidence_role": "baseline-control-bare",
+          "omitted_environment_fields": [
+            "environment.LEAN_PATH",
+            "environment.LEAN_SYSROOT",
+            "environment.PATH",
+            "toolchain.environment.LEAN_PATH",
+            "toolchain.environment.LEAN_SYSROOT",
+            "toolchain.environment.PATH"
+          ],
+          "original_index": "bare.json",
+          "original_index_sha256": "4023253553439c4a327972459f3ef51d27c9a12e8e90a660c6d5633dc5e01c32",
+          "original_record_index": 4,
+          "receipt_identity": [
+            "Cloning.WeylIdlerUniqueness",
+            "A",
+            "bare",
+            3
+          ],
+          "receipt_label": "A-3-bare",
+          "transformations": [
+            "Preserved an identical source snapshot bound to source_sha256.",
+            "Removed inherited path-valued environment fields; exact task setup/import paths remain."
+          ]
+        },
+        "repetition": 3,
+        "resources": "A-3-bare.resources.txt",
+        "setup_sha256": "7398bb862731937c44e19ae7c44ceaddba2e487349b4e5739978e15bcbc015c6",
+        "setup_snapshot": "setup.json",
+        "source": "Cloning/WeylIdlerUniqueness.lean",
+        "source_hash_unchanged": true,
+        "source_matches_benchmark": true,
+        "source_matches_commit": true,
+        "source_sha256": "c3ad276535f7e0b776dae495c8a0a8e42e9967d8a36f8ed7d5a8ef55193ac80d",
+        "source_snapshot": "A.source.lean.txt",
+        "start_utc": "2026-10-07T02:36:39.994697+00:00",
+        "toolchain": {
+          "environment": {
+            "LAKE_ARTIFACT_CACHE": "false",
+            "LAKE_NO_CACHE": "false",
+            "LANG": "C.UTF-8",
+            "LC_ALL": "C.UTF-8",
+            "LEAN_GITHASH": "00659f8e6071d7e46131ed643bf8003b99b044e9",
+            "LEAN_NUM_THREADS": "2"
+          },
+          "lake_version": "Lake version 5.0.0-src+00659f8 (Lean version 4.29.0-rc6)",
+          "lean_binary": "/Users/jw/.elan/toolchains/leanprover--lean4---v4.29.0-rc6/bin/lean",
+          "lean_binary_sha256": "2974847fff2e2621502841f4c2dbac4035b4847d6060a4f2087cbc0d04005e37",
+          "lean_libdir": "/Users/jw/.elan/toolchains/leanprover--lean4---v4.29.0-rc6/lib/lean",
+          "lean_version": "Lean (version 4.29.0-rc6, arm64-apple-darwin24.6.0, commit 00659f8e6071d7e46131ed643bf8003b99b044e9, Release)"
+        },
+        "trace_sha256": "a10ee1b6ac0c37190e7c25e320a2456888fcde210e08d982e778540d4c07af4f",
+        "trace_snapshot": "build-trace.json",
+        "tracked_source_unchanged": true,
+        "wall_seconds": 107.61899633299981
+      }
+    },
+    {
+      "input_sha256": {
+        "import_context": "fbb6948557c4982ac822f2507cff96988353ba17e9f815f813dcec9e1712e56b",
+        "log": "43d0c0d7d7d5711cad2c2d5d40813d00461f919416ddb1f032a6442575964d83",
+        "resources": "2767c9593128838730d3857593d77c8f47b187d5818d400c7fafb411ae322b54",
+        "setup_snapshot": "7398bb862731937c44e19ae7c44ceaddba2e487349b4e5739978e15bcbc015c6",
+        "source_snapshot": "e1413287599caab0c36d5cf8625f327b319f75c097fe6cc33d4351f22cff5dc7",
+        "trace_snapshot": "a10ee1b6ac0c37190e7c25e320a2456888fcde210e08d982e778540d4c07af4f"
+      },
+      "native_gnu_time": {
+        "cpu": 9.14,
+        "cpu_percent": "121%",
+        "rss_kib": 2924496.0,
+        "system": 2.12,
+        "user": 7.02,
+        "wall": 7.5
+      },
+      "notes": [
+        "No profiler/statistics/Firefox instrumentation was requested.",
+        "GNU log/resource hashes are captured during publication; they were not recorded by the timed runner.",
+        "CPU is user plus system; GNU RSS is a maximum process peak in KiB."
+      ],
+      "record": {
+        "arm": "B",
+        "benchmark_commit": "cbb2fd2007ae367e201d4a6ac7c069899db90dbd",
+        "build_setup_unchanged": true,
+        "build_trace_unchanged": true,
+        "command": [
+          "/opt/homebrew/bin/gtime",
+          "-v",
+          "-o",
+          "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/weyl-bridge-ab/B-3-bare.resources.txt",
+          "/Users/jw/.elan/bin/lake",
+          "env",
+          "lean",
+          "-DautoImplicit=false",
+          "--setup",
+          "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/weyl-bridge-ab/setup.json",
+          "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/weyl-bridge-ab/WeylIdlerUniqueness.lean"
+        ],
+        "commit": "80e4b7ca1aa43969f85105171bfd80bf662d6b32",
+        "config_hashes_unchanged": true,
+        "config_matches_benchmark": true,
+        "config_sha256": {
+          "formalization/lake-manifest.json": "e4630915680b82b58c6a005e1ba1e515e865e5541c7e665d4a2d57f783eeadb4",
+          "formalization/lakefile.toml": "ddeb0d2c8217676fc393afd24c13629993c580f35f9d8ad15240c6a167b020c1",
+          "formalization/lean-toolchain": "dc6d65016fad3123d44bf17b5bf0598286284ab16ba75d5c17eb22ed11f47361"
+        },
+        "end_utc": "2026-10-07T02:38:42.665620+00:00",
+        "entry_path": "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/weyl-bridge-ab/WeylIdlerUniqueness.lean",
+        "environment": {
+          "LAKE_ARTIFACT_CACHE": "false",
+          "LAKE_NO_CACHE": "false",
+          "LANG": "C.UTF-8",
+          "LC_ALL": "C.UTF-8",
+          "LEAN_GITHASH": "00659f8e6071d7e46131ed643bf8003b99b044e9",
+          "LEAN_NUM_THREADS": "2"
+        },
+        "environment_overrides": {
+          "LAKE_ARTIFACT_CACHE": "false",
+          "LEAN_NUM_THREADS": "2"
+        },
+        "exit_code": 0,
+        "import_artifacts_unchanged": true,
+        "import_context": "B-3-bare.import-context.json",
+        "import_context_sha256": "fbb6948557c4982ac822f2507cff96988353ba17e9f815f813dcec9e1712e56b",
+        "inputs_stable": true,
+        "log": "B-3-bare.log",
+        "measurement_valid": true,
+        "mode": "bare",
+        "module": "Cloning.WeylIdlerUniqueness",
+        "publication": {
+          "diagnostic_outside_production": false,
+          "evidence_role": "candidate-bare",
+          "omitted_environment_fields": [
+            "environment.LEAN_PATH",
+            "environment.LEAN_SYSROOT",
+            "environment.PATH",
+            "toolchain.environment.LEAN_PATH",
+            "toolchain.environment.LEAN_SYSROOT",
+            "toolchain.environment.PATH"
+          ],
+          "original_index": "bare.json",
+          "original_index_sha256": "4023253553439c4a327972459f3ef51d27c9a12e8e90a660c6d5633dc5e01c32",
+          "original_record_index": 5,
+          "receipt_identity": [
+            "Cloning.WeylIdlerUniqueness",
+            "B",
+            "bare",
+            3
+          ],
+          "receipt_label": "B-3-bare",
+          "transformations": [
+            "Preserved an identical source snapshot bound to source_sha256.",
+            "Removed inherited path-valued environment fields; exact task setup/import paths remain."
+          ]
+        },
+        "repetition": 3,
+        "resources": "B-3-bare.resources.txt",
+        "setup_sha256": "7398bb862731937c44e19ae7c44ceaddba2e487349b4e5739978e15bcbc015c6",
+        "setup_snapshot": "setup.json",
+        "source": "Cloning/WeylIdlerUniqueness.lean",
+        "source_hash_unchanged": true,
+        "source_matches_benchmark": false,
+        "source_matches_commit": false,
+        "source_sha256": "e1413287599caab0c36d5cf8625f327b319f75c097fe6cc33d4351f22cff5dc7",
+        "source_snapshot": "B.source.lean.txt",
+        "start_utc": "2026-10-07T02:38:32.909625+00:00",
+        "toolchain": {
+          "environment": {
+            "LAKE_ARTIFACT_CACHE": "false",
+            "LAKE_NO_CACHE": "false",
+            "LANG": "C.UTF-8",
+            "LC_ALL": "C.UTF-8",
+            "LEAN_GITHASH": "00659f8e6071d7e46131ed643bf8003b99b044e9",
+            "LEAN_NUM_THREADS": "2"
+          },
+          "lake_version": "Lake version 5.0.0-src+00659f8 (Lean version 4.29.0-rc6)",
+          "lean_binary": "/Users/jw/.elan/toolchains/leanprover--lean4---v4.29.0-rc6/bin/lean",
+          "lean_binary_sha256": "2974847fff2e2621502841f4c2dbac4035b4847d6060a4f2087cbc0d04005e37",
+          "lean_libdir": "/Users/jw/.elan/toolchains/leanprover--lean4---v4.29.0-rc6/lib/lean",
+          "lean_version": "Lean (version 4.29.0-rc6, arm64-apple-darwin24.6.0, commit 00659f8e6071d7e46131ed643bf8003b99b044e9, Release)"
+        },
+        "trace_sha256": "a10ee1b6ac0c37190e7c25e320a2456888fcde210e08d982e778540d4c07af4f",
+        "trace_snapshot": "build-trace.json",
+        "tracked_source_unchanged": true,
+        "wall_seconds": 7.534638958997675
+      }
+    }
+  ],
+  "schema": "cloning-elaboration-bare-control-summary-v1"
+}

@@ -1,0 +1,52 @@
+info: cloningVerification: no previous manifest, creating one from scratch
+info: toolchain not updated; already up-to-date
+Building Challenge
+⚠ [2/3] Built Challenge (12s)
+warning: Challenge.lean:64:8: declaration uses `sorry`
+warning: Challenge.lean:75:8: declaration uses `sorry`
+warning: Challenge.lean:91:8: declaration uses `sorry`
+warning: Challenge.lean:101:8: declaration uses `sorry`
+warning: Challenge.lean:121:8: declaration uses `sorry`
+warning: Challenge.lean:128:8: declaration uses `sorry`
+warning: Challenge.lean:153:8: declaration uses `sorry`
+warning: Challenge.lean:171:8: declaration uses `sorry`
+warning: Challenge.lean:197:8: declaration uses `sorry`
+warning: Challenge.lean:210:8: declaration uses `sorry`
+warning: Challenge.lean:223:8: declaration uses `sorry`
+warning: Challenge.lean:242:8: declaration uses `sorry`
+warning: Challenge.lean:258:8: declaration uses `sorry`
+warning: Challenge.lean:272:8: declaration uses `sorry`
+warning: Challenge.lean:297:8: declaration uses `sorry`
+warning: Challenge.lean:302:8: declaration uses `sorry`
+warning: Challenge.lean:321:8: declaration uses `sorry`
+warning: Challenge.lean:330:8: declaration uses `sorry`
+warning: Challenge.lean:338:8: declaration uses `sorry`
+warning: Challenge.lean:355:8: declaration uses `sorry`
+warning: Challenge.lean:377:8: declaration uses `sorry`
+warning: Challenge.lean:397:8: declaration uses `sorry`
+warning: Challenge.lean:410:8: declaration uses `sorry`
+warning: Challenge.lean:426:8: declaration uses `sorry`
+warning: Challenge.lean:440:8: declaration uses `sorry`
+warning: Challenge.lean:455:8: declaration uses `sorry`
+warning: Challenge.lean:465:8: declaration uses `sorry`
+Build completed successfully (3 jobs).
+Exporting #[CloningVerification.known_optimum, CloningVerification.unknown_optimum, CloningVerification.grassmann, CloningVerification.pct_comparison, CloningVerification.young_concentration, CloningVerification.lifted_kernel_bound, CloningVerification.sector_fidelity, CloningVerification.young_rounding, CloningVerification.lifted_fidelity_factorization, CloningVerification.gaussian_amplification, CloningVerification.lan_full, CloningVerification.lan_orbital, CloningVerification.lan_fidelity_transfer, CloningVerification.exact_compression, CloningVerification.grassmann_finite_converse, CloningVerification.pbw_fixed_height, CloningVerification.character_normalization, CloningVerification.young_local_limit, CloningVerification.randomized_dilation, CloningVerification.weighted_fidelity, CloningVerification.compact_cp_limit, CloningVerification.covariant_amplifier_representation, CloningVerification.least_noise_moment, CloningVerification.flat_prior_converse, CloningVerification.werner_fock, CloningVerification.grassmann_pct_factorization, CloningVerification.pct_projector_small_error, propext, Quot.sound, Classical.choice, Nat.add, Nat.sub, Nat.mul, Nat.pow, Nat.gcd, Nat.div, Nat.mod, Nat.beq, Nat.ble, Nat.land, Nat.lor, Nat.xor, Nat.shiftLeft, Nat.shiftRight, String.ofList] from Challenge
+Building Solution
+⚠ [2/3] Built Solution (11s)
+warning: Solution.lean:119:18: unused variable `hr`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Solution.lean:232:32: unused variable `hK`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Solution.lean:336:22: unused variable `hp`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: Solution.lean:426:49: unused variable `hW`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+Build completed successfully (3 jobs).
+Exporting #[CloningVerification.known_optimum, CloningVerification.unknown_optimum, CloningVerification.grassmann, CloningVerification.pct_comparison, CloningVerification.young_concentration, CloningVerification.lifted_kernel_bound, CloningVerification.sector_fidelity, CloningVerification.young_rounding, CloningVerification.lifted_fidelity_factorization, CloningVerification.gaussian_amplification, CloningVerification.lan_full, CloningVerification.lan_orbital, CloningVerification.lan_fidelity_transfer, CloningVerification.exact_compression, CloningVerification.grassmann_finite_converse, CloningVerification.pbw_fixed_height, CloningVerification.character_normalization, CloningVerification.young_local_limit, CloningVerification.randomized_dilation, CloningVerification.weighted_fidelity, CloningVerification.compact_cp_limit, CloningVerification.covariant_amplifier_representation, CloningVerification.least_noise_moment, CloningVerification.flat_prior_converse, CloningVerification.werner_fock, CloningVerification.grassmann_pct_factorization, CloningVerification.pct_projector_small_error, propext, Quot.sound, Classical.choice, Nat.add, Nat.sub, Nat.mul, Nat.pow, Nat.gcd, Nat.div, Nat.mod, Nat.beq, Nat.ble, Nat.land, Nat.lor, Nat.xor, Nat.shiftLeft, Nat.shiftRight, String.ofList] from Solution
+Running Lean default kernel on solution.
+Lean default kernel accepts the solution
+Your solution is okay!

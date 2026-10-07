@@ -1,0 +1,225 @@
+{
+  "identity_fields": [
+    "module",
+    "arm",
+    "mode",
+    "repetition"
+  ],
+  "notes": [
+    "Raw measured repetitions, arm/mode labels, chronological order and hashes are retained.",
+    "Diagnostic sorry source is navigation evidence outside production, not an accepted proof.",
+    "Traced and bare measurements have separate summaries; bare controls have no Firefox events."
+  ],
+  "record_count": 13,
+  "records": [
+    {
+      "diagnostic_outside_production": true,
+      "evidence_role": "diagnostic-sorry-outside-production",
+      "identity": [
+        "Cloning.WeylIdlerUniqueness",
+        "diagnostic",
+        "profile",
+        1
+      ],
+      "index": "profiles.json",
+      "label": "diagnostic-1-profile",
+      "original_index_sha256": "830f5ac29d91113439da4fa8bc92a0effe54bc7dfe88b396bc21314d345671c3",
+      "record_index": 0,
+      "source_sha256": "97e8c10e8a4d524400259627e0d5c6567e1406518b88654e08f7ac0d2a9196c2",
+      "start_utc": "2026-10-07T02:25:45.859962+00:00"
+    },
+    {
+      "diagnostic_outside_production": false,
+      "evidence_role": "baseline-control-profile",
+      "identity": [
+        "Cloning.WeylIdlerUniqueness",
+        "A",
+        "profile",
+        1
+      ],
+      "index": "profiles.json",
+      "label": "A-1-profile",
+      "original_index_sha256": "830f5ac29d91113439da4fa8bc92a0effe54bc7dfe88b396bc21314d345671c3",
+      "record_index": 1,
+      "source_sha256": "c3ad276535f7e0b776dae495c8a0a8e42e9967d8a36f8ed7d5a8ef55193ac80d",
+      "start_utc": "2026-10-07T02:26:00.014225+00:00"
+    },
+    {
+      "diagnostic_outside_production": false,
+      "evidence_role": "candidate-profile",
+      "identity": [
+        "Cloning.WeylIdlerUniqueness",
+        "B",
+        "profile",
+        1
+      ],
+      "index": "profiles.json",
+      "label": "B-1-profile",
+      "original_index_sha256": "830f5ac29d91113439da4fa8bc92a0effe54bc7dfe88b396bc21314d345671c3",
+      "record_index": 2,
+      "source_sha256": "e1413287599caab0c36d5cf8625f327b319f75c097fe6cc33d4351f22cff5dc7",
+      "start_utc": "2026-10-07T02:27:58.960861+00:00"
+    },
+    {
+      "diagnostic_outside_production": false,
+      "evidence_role": "baseline-control-profile",
+      "identity": [
+        "Cloning.WeylIdlerUniqueness",
+        "A",
+        "profile",
+        2
+      ],
+      "index": "profiles.json",
+      "label": "A-2-profile",
+      "original_index_sha256": "830f5ac29d91113439da4fa8bc92a0effe54bc7dfe88b396bc21314d345671c3",
+      "record_index": 3,
+      "source_sha256": "c3ad276535f7e0b776dae495c8a0a8e42e9967d8a36f8ed7d5a8ef55193ac80d",
+      "start_utc": "2026-10-07T02:28:14.549131+00:00"
+    },
+    {
+      "diagnostic_outside_production": false,
+      "evidence_role": "candidate-profile",
+      "identity": [
+        "Cloning.WeylIdlerUniqueness",
+        "B",
+        "profile",
+        2
+      ],
+      "index": "profiles.json",
+      "label": "B-2-profile",
+      "original_index_sha256": "830f5ac29d91113439da4fa8bc92a0effe54bc7dfe88b396bc21314d345671c3",
+      "record_index": 4,
+      "source_sha256": "e1413287599caab0c36d5cf8625f327b319f75c097fe6cc33d4351f22cff5dc7",
+      "start_utc": "2026-10-07T02:30:13.204902+00:00"
+    },
+    {
+      "diagnostic_outside_production": false,
+      "evidence_role": "baseline-control-profile",
+      "identity": [
+        "Cloning.WeylIdlerUniqueness",
+        "A",
+        "profile",
+        3
+      ],
+      "index": "profiles.json",
+      "label": "A-3-profile",
+      "original_index_sha256": "830f5ac29d91113439da4fa8bc92a0effe54bc7dfe88b396bc21314d345671c3",
+      "record_index": 5,
+      "source_sha256": "c3ad276535f7e0b776dae495c8a0a8e42e9967d8a36f8ed7d5a8ef55193ac80d",
+      "start_utc": "2026-10-07T02:30:26.070995+00:00"
+    },
+    {
+      "diagnostic_outside_production": false,
+      "evidence_role": "candidate-profile",
+      "identity": [
+        "Cloning.WeylIdlerUniqueness",
+        "B",
+        "profile",
+        3
+      ],
+      "index": "profiles.json",
+      "label": "B-3-profile",
+      "original_index_sha256": "830f5ac29d91113439da4fa8bc92a0effe54bc7dfe88b396bc21314d345671c3",
+      "record_index": 6,
+      "source_sha256": "e1413287599caab0c36d5cf8625f327b319f75c097fe6cc33d4351f22cff5dc7",
+      "start_utc": "2026-10-07T02:32:21.718711+00:00"
+    },
+    {
+      "diagnostic_outside_production": false,
+      "evidence_role": "baseline-control-bare",
+      "identity": [
+        "Cloning.WeylIdlerUniqueness",
+        "A",
+        "bare",
+        1
+      ],
+      "index": "bare.json",
+      "label": "A-1-bare",
+      "original_index_sha256": "4023253553439c4a327972459f3ef51d27c9a12e8e90a660c6d5633dc5e01c32",
+      "record_index": 0,
+      "source_sha256": "c3ad276535f7e0b776dae495c8a0a8e42e9967d8a36f8ed7d5a8ef55193ac80d",
+      "start_utc": "2026-10-07T02:32:33.837602+00:00"
+    },
+    {
+      "diagnostic_outside_production": false,
+      "evidence_role": "candidate-bare",
+      "identity": [
+        "Cloning.WeylIdlerUniqueness",
+        "B",
+        "bare",
+        1
+      ],
+      "index": "bare.json",
+      "label": "B-1-bare",
+      "original_index_sha256": "4023253553439c4a327972459f3ef51d27c9a12e8e90a660c6d5633dc5e01c32",
+      "record_index": 1,
+      "source_sha256": "e1413287599caab0c36d5cf8625f327b319f75c097fe6cc33d4351f22cff5dc7",
+      "start_utc": "2026-10-07T02:34:25.961956+00:00"
+    },
+    {
+      "diagnostic_outside_production": false,
+      "evidence_role": "baseline-control-bare",
+      "identity": [
+        "Cloning.WeylIdlerUniqueness",
+        "A",
+        "bare",
+        2
+      ],
+      "index": "bare.json",
+      "label": "A-2-bare",
+      "original_index_sha256": "4023253553439c4a327972459f3ef51d27c9a12e8e90a660c6d5633dc5e01c32",
+      "record_index": 2,
+      "source_sha256": "c3ad276535f7e0b776dae495c8a0a8e42e9967d8a36f8ed7d5a8ef55193ac80d",
+      "start_utc": "2026-10-07T02:34:36.871263+00:00"
+    },
+    {
+      "diagnostic_outside_production": false,
+      "evidence_role": "candidate-bare",
+      "identity": [
+        "Cloning.WeylIdlerUniqueness",
+        "B",
+        "bare",
+        2
+      ],
+      "index": "bare.json",
+      "label": "B-2-bare",
+      "original_index_sha256": "4023253553439c4a327972459f3ef51d27c9a12e8e90a660c6d5633dc5e01c32",
+      "record_index": 3,
+      "source_sha256": "e1413287599caab0c36d5cf8625f327b319f75c097fe6cc33d4351f22cff5dc7",
+      "start_utc": "2026-10-07T02:36:28.959567+00:00"
+    },
+    {
+      "diagnostic_outside_production": false,
+      "evidence_role": "baseline-control-bare",
+      "identity": [
+        "Cloning.WeylIdlerUniqueness",
+        "A",
+        "bare",
+        3
+      ],
+      "index": "bare.json",
+      "label": "A-3-bare",
+      "original_index_sha256": "4023253553439c4a327972459f3ef51d27c9a12e8e90a660c6d5633dc5e01c32",
+      "record_index": 4,
+      "source_sha256": "c3ad276535f7e0b776dae495c8a0a8e42e9967d8a36f8ed7d5a8ef55193ac80d",
+      "start_utc": "2026-10-07T02:36:39.994697+00:00"
+    },
+    {
+      "diagnostic_outside_production": false,
+      "evidence_role": "candidate-bare",
+      "identity": [
+        "Cloning.WeylIdlerUniqueness",
+        "B",
+        "bare",
+        3
+      ],
+      "index": "bare.json",
+      "label": "B-3-bare",
+      "original_index_sha256": "4023253553439c4a327972459f3ef51d27c9a12e8e90a660c6d5633dc5e01c32",
+      "record_index": 5,
+      "source_sha256": "e1413287599caab0c36d5cf8625f327b319f75c097fe6cc33d4351f22cff5dc7",
+      "start_utc": "2026-10-07T02:38:32.909625+00:00"
+    }
+  ],
+  "schema": "cloning-elaboration-intervention-receipts-v1"
+}

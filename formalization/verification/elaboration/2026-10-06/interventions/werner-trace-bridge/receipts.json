@@ -1,0 +1,225 @@
+{
+  "identity_fields": [
+    "module",
+    "arm",
+    "mode",
+    "repetition"
+  ],
+  "notes": [
+    "Raw measured repetitions, arm/mode labels, chronological order and hashes are retained.",
+    "Diagnostic sorry source is navigation evidence outside production, not an accepted proof.",
+    "Traced and bare measurements have separate summaries; bare controls have no Firefox events."
+  ],
+  "record_count": 13,
+  "records": [
+    {
+      "diagnostic_outside_production": true,
+      "evidence_role": "diagnostic-sorry-outside-production",
+      "identity": [
+        "Cloning.WernerPhysicalPullback",
+        "diagnostic",
+        "profile",
+        1
+      ],
+      "index": "profiles.json",
+      "label": "diagnostic-1-profile",
+      "original_index_sha256": "ab672dda23b2c5bc5f6178dcc7bf26580ce275f2af74a312d9cdb89bd17ae4de",
+      "record_index": 0,
+      "source_sha256": "72968e4e209fca14912a5223b9b1bd6c1563a11227c2c9793e09752675ba49d2",
+      "start_utc": "2026-10-07T02:42:34.218399+00:00"
+    },
+    {
+      "diagnostic_outside_production": false,
+      "evidence_role": "baseline-control-profile",
+      "identity": [
+        "Cloning.WernerPhysicalPullback",
+        "A",
+        "profile",
+        1
+      ],
+      "index": "profiles.json",
+      "label": "A-1-profile",
+      "original_index_sha256": "ab672dda23b2c5bc5f6178dcc7bf26580ce275f2af74a312d9cdb89bd17ae4de",
+      "record_index": 1,
+      "source_sha256": "815e8e1962e901e11ae9fbd73bd3988bd0cc58ec6c953685b05fa25226aa17ea",
+      "start_utc": "2026-10-07T02:42:50.830994+00:00"
+    },
+    {
+      "diagnostic_outside_production": false,
+      "evidence_role": "candidate-profile",
+      "identity": [
+        "Cloning.WernerPhysicalPullback",
+        "B",
+        "profile",
+        1
+      ],
+      "index": "profiles.json",
+      "label": "B-1-profile",
+      "original_index_sha256": "ab672dda23b2c5bc5f6178dcc7bf26580ce275f2af74a312d9cdb89bd17ae4de",
+      "record_index": 2,
+      "source_sha256": "328dd36bde83e302e13d99f6168651cb90f5a10b39811339590e645822c5b30b",
+      "start_utc": "2026-10-07T02:43:38.431239+00:00"
+    },
+    {
+      "diagnostic_outside_production": false,
+      "evidence_role": "baseline-control-profile",
+      "identity": [
+        "Cloning.WernerPhysicalPullback",
+        "A",
+        "profile",
+        2
+      ],
+      "index": "profiles.json",
+      "label": "A-2-profile",
+      "original_index_sha256": "ab672dda23b2c5bc5f6178dcc7bf26580ce275f2af74a312d9cdb89bd17ae4de",
+      "record_index": 3,
+      "source_sha256": "815e8e1962e901e11ae9fbd73bd3988bd0cc58ec6c953685b05fa25226aa17ea",
+      "start_utc": "2026-10-07T02:43:50.088820+00:00"
+    },
+    {
+      "diagnostic_outside_production": false,
+      "evidence_role": "candidate-profile",
+      "identity": [
+        "Cloning.WernerPhysicalPullback",
+        "B",
+        "profile",
+        2
+      ],
+      "index": "profiles.json",
+      "label": "B-2-profile",
+      "original_index_sha256": "ab672dda23b2c5bc5f6178dcc7bf26580ce275f2af74a312d9cdb89bd17ae4de",
+      "record_index": 4,
+      "source_sha256": "328dd36bde83e302e13d99f6168651cb90f5a10b39811339590e645822c5b30b",
+      "start_utc": "2026-10-07T02:44:37.148342+00:00"
+    },
+    {
+      "diagnostic_outside_production": false,
+      "evidence_role": "baseline-control-profile",
+      "identity": [
+        "Cloning.WernerPhysicalPullback",
+        "A",
+        "profile",
+        3
+      ],
+      "index": "profiles.json",
+      "label": "A-3-profile",
+      "original_index_sha256": "ab672dda23b2c5bc5f6178dcc7bf26580ce275f2af74a312d9cdb89bd17ae4de",
+      "record_index": 5,
+      "source_sha256": "815e8e1962e901e11ae9fbd73bd3988bd0cc58ec6c953685b05fa25226aa17ea",
+      "start_utc": "2026-10-07T02:44:48.609291+00:00"
+    },
+    {
+      "diagnostic_outside_production": false,
+      "evidence_role": "candidate-profile",
+      "identity": [
+        "Cloning.WernerPhysicalPullback",
+        "B",
+        "profile",
+        3
+      ],
+      "index": "profiles.json",
+      "label": "B-3-profile",
+      "original_index_sha256": "ab672dda23b2c5bc5f6178dcc7bf26580ce275f2af74a312d9cdb89bd17ae4de",
+      "record_index": 6,
+      "source_sha256": "328dd36bde83e302e13d99f6168651cb90f5a10b39811339590e645822c5b30b",
+      "start_utc": "2026-10-07T02:45:35.705336+00:00"
+    },
+    {
+      "diagnostic_outside_production": false,
+      "evidence_role": "baseline-control-bare",
+      "identity": [
+        "Cloning.WernerPhysicalPullback",
+        "A",
+        "bare",
+        1
+      ],
+      "index": "bare.json",
+      "label": "A-1-bare",
+      "original_index_sha256": "d415f7d39e1f0065c5c305776259e5e60f361d922b998621e9753ea202e782be",
+      "record_index": 0,
+      "source_sha256": "815e8e1962e901e11ae9fbd73bd3988bd0cc58ec6c953685b05fa25226aa17ea",
+      "start_utc": "2026-10-07T02:45:47.228737+00:00"
+    },
+    {
+      "diagnostic_outside_production": false,
+      "evidence_role": "candidate-bare",
+      "identity": [
+        "Cloning.WernerPhysicalPullback",
+        "B",
+        "bare",
+        1
+      ],
+      "index": "bare.json",
+      "label": "B-1-bare",
+      "original_index_sha256": "d415f7d39e1f0065c5c305776259e5e60f361d922b998621e9753ea202e782be",
+      "record_index": 1,
+      "source_sha256": "328dd36bde83e302e13d99f6168651cb90f5a10b39811339590e645822c5b30b",
+      "start_utc": "2026-10-07T02:46:31.140061+00:00"
+    },
+    {
+      "diagnostic_outside_production": false,
+      "evidence_role": "baseline-control-bare",
+      "identity": [
+        "Cloning.WernerPhysicalPullback",
+        "A",
+        "bare",
+        2
+      ],
+      "index": "bare.json",
+      "label": "A-2-bare",
+      "original_index_sha256": "d415f7d39e1f0065c5c305776259e5e60f361d922b998621e9753ea202e782be",
+      "record_index": 2,
+      "source_sha256": "815e8e1962e901e11ae9fbd73bd3988bd0cc58ec6c953685b05fa25226aa17ea",
+      "start_utc": "2026-10-07T02:46:42.059468+00:00"
+    },
+    {
+      "diagnostic_outside_production": false,
+      "evidence_role": "candidate-bare",
+      "identity": [
+        "Cloning.WernerPhysicalPullback",
+        "B",
+        "bare",
+        2
+      ],
+      "index": "bare.json",
+      "label": "B-2-bare",
+      "original_index_sha256": "d415f7d39e1f0065c5c305776259e5e60f361d922b998621e9753ea202e782be",
+      "record_index": 3,
+      "source_sha256": "328dd36bde83e302e13d99f6168651cb90f5a10b39811339590e645822c5b30b",
+      "start_utc": "2026-10-07T02:47:26.316854+00:00"
+    },
+    {
+      "diagnostic_outside_production": false,
+      "evidence_role": "baseline-control-bare",
+      "identity": [
+        "Cloning.WernerPhysicalPullback",
+        "A",
+        "bare",
+        3
+      ],
+      "index": "bare.json",
+      "label": "A-3-bare",
+      "original_index_sha256": "d415f7d39e1f0065c5c305776259e5e60f361d922b998621e9753ea202e782be",
+      "record_index": 4,
+      "source_sha256": "815e8e1962e901e11ae9fbd73bd3988bd0cc58ec6c953685b05fa25226aa17ea",
+      "start_utc": "2026-10-07T02:47:37.319033+00:00"
+    },
+    {
+      "diagnostic_outside_production": false,
+      "evidence_role": "candidate-bare",
+      "identity": [
+        "Cloning.WernerPhysicalPullback",
+        "B",
+        "bare",
+        3
+      ],
+      "index": "bare.json",
+      "label": "B-3-bare",
+      "original_index_sha256": "d415f7d39e1f0065c5c305776259e5e60f361d922b998621e9753ea202e782be",
+      "record_index": 5,
+      "source_sha256": "328dd36bde83e302e13d99f6168651cb90f5a10b39811339590e645822c5b30b",
+      "start_utc": "2026-10-07T02:48:21.475102+00:00"
+    }
+  ],
+  "schema": "cloning-elaboration-intervention-receipts-v1"
+}

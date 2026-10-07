@@ -56,6 +56,19 @@ def semantic_probe_commands(review):
             "done")
 
 
+def statement_review_record(review):
+    """Keep original semantic judgment separate from fresh probe execution."""
+    original = ('<p>Original semantic review ' if review.get("revalidation_revision") else '<p>Reviewed ')
+    original += (f'{esc(review["date"])} against source revision <code>{esc(review["reviewed_revision"])}</code>. ')
+    if review.get("revalidation_revision"):
+        original += ('The paper correspondence judgments retain this original review provenance.</p>'
+                     f'<p>The three unchanged Lean probes were re-executed {esc(review["revalidation_date"])} '
+                     f'against revision <code>{esc(review["revalidation_revision"])}</code>, bound to the current shared audit. '
+                     'This revalidation checks the native Lean applications; it does not repeat the full semantic review. ')
+    return (original + 'The site builder checks the manuscript, saved Lean audit, and review-artifact hashes before displaying this record. '
+            '<a href="data/statement-review.json">Download the record</a>.</p>')
+
+
 def offline_proof_map(text):
     """Link the paper on arXiv and keep proof/evidence links offline."""
     pages = {
@@ -307,6 +320,13 @@ class Wiki:
             raise ValueError("Statement review manuscript hash differs")
         if set(review["results"]) != {"thm:known-optimum", "thm:unknown-optimum", "thm:grassmann"}:
             raise ValueError("Statement review must identify its three reviewed theorem families")
+        revalidated = any(key in review for key in ("revalidation_revision", "revalidation_date", "original_review"))
+        if revalidated:
+            original = review.get("original_review", {})
+            if (not re.fullmatch(r"[0-9a-f]{40}", review.get("revalidation_revision", ""))
+                    or not re.fullmatch(r"\d{4}-\d{2}-\d{2}", review.get("revalidation_date", ""))
+                    or any(original.get(key) != review.get(key) for key in ("date", "reviewed_revision"))):
+                raise ValueError("Statement review revalidation provenance is incomplete or inconsistent")
         evidence_root = "formalization/verification/semantic-pilot/"
         for path, expected in review["artifacts"].items():
             if not path.startswith(evidence_root) or ".." in PurePosixPath(path).parts:
@@ -325,6 +345,15 @@ class Wiki:
             if (run.get("log_sha256") != review["artifacts"][result["log"]]
                     or run.get("source_audit_sha256") != review["source_audit_sha256"]):
                 raise ValueError("Statement review run has a different log or source audit: " + label)
+            if revalidated:
+                original_probe = run.get("original_probe", "")
+                if (not original_probe.startswith(evidence_root) or ".." in PurePosixPath(original_probe).parts
+                        or run.get("revalidation_revision") != review["revalidation_revision"]
+                        or run.get("review_base_head") != review["reviewed_revision"]
+                        or run.get("source_config_hashes_unchanged") is not True
+                        or run.get("original_probe_sha256") != run.get("probe_sha256")
+                        or sha(self.read(ROOT / original_probe)) != run["original_probe_sha256"]):
+                    raise ValueError("Statement review revalidation run differs from its original probe or revision: " + label)
             for pointer in result["lean"]:
                 self.resolve(pointer["name"], pointer["file"])
 
@@ -894,9 +923,7 @@ class Wiki:
                  '<p>A successful probe confirms the included Lean applications. The English correspondence judgments require reading the paper and definitions; '
                  'these probes do not automate that judgment or recheck every upstream proof.</p>'
                  '<h2>Review record</h2>'
-                 f'<p>Reviewed {esc(review["date"])} against source revision <code>{esc(review["reviewed_revision"])}</code>. '
-                 'The site builder checks the manuscript, saved Lean audit, and review-artifact hashes before displaying this record. '
-                 '<a href="data/statement-review.json">Download the record</a>.</p>'
+                 + statement_review_record(review) +
                  '<p>The review adapts the binder, definition, and quantifier checklist from '
                  '<a href="https://github.com/scottnarmstrong/LeanAutoformalizationSkills/blob/main/skills/lean-statement-audit/SKILL.md">LeanAutoformalizationSkills: lean-statement-audit</a>. '
                  'It applies those checks to this completed library; it does not claim completion of that skill’s full draft-and-approval workflow.</p>'

@@ -1,0 +1,9 @@
+{
+  "schema": "cloning-publication-note-provenance-v1",
+  "original_name": "profiler-heartbeat-exception.md",
+  "original_sha256": "da3a94efc1a893a438b1bcbd9da1a022c0f4ac43f602c63e9922c94012681d65",
+  "public_name": "profiler-heartbeat-exception-public.md",
+  "public_sha256": "b5aec248bd308aa5fd96363215eb990446434ffedcbc17089cf58ba64ce5583b",
+  "transformation": "Added explicit historical/publication note and percent-encoded System URL segment as %53ystem; no local host paths were present. Original bytes remain unchanged locally.",
+  "evidence_role": "historical-analysis-not-independent-verification"
+}

@@ -1,0 +1,350 @@
+{
+  "attempts": [
+    {
+      "binding_form": "derived-public-index",
+      "evidence_role": "failed-profile-attempt",
+      "expected_missing_inputs": [
+        "events"
+      ],
+      "input_prefix": "",
+      "original_index": "profiles-attempt-1.json",
+      "original_index_sha256": "f7945f3d1c011035c355fc5c9ef04d2618690ce66f9d3bda1dc6710930dfd07f",
+      "original_record_index": 11,
+      "profile": {
+        "benchmark_commit": "3eb587e0f00748c3a9b63f9eeedc1646e4cb77be",
+        "build_setup_unchanged": true,
+        "build_trace_unchanged": true,
+        "command": [
+          "/opt/homebrew/bin/gtime",
+          "-v",
+          "-o",
+          "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/profiles-after/Cloning.PhysicalFlatConverseReduction-1.resources.txt",
+          "/Users/jw/.elan/bin/lake",
+          "env",
+          "lean",
+          "-DautoImplicit=false",
+          "--profile",
+          "--stats",
+          "-Dtrace.profiler=true",
+          "-Dtrace.profiler.output.pp=true",
+          "-Dtrace.profiler.output=/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/profiles-after/Cloning.PhysicalFlatConverseReduction-1.json",
+          "--setup",
+          "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/profiles-after/Cloning.PhysicalFlatConverseReduction-1.setup.json",
+          "Cloning/PhysicalFlatConverseReduction.lean"
+        ],
+        "commit": "3eb587e0f00748c3a9b63f9eeedc1646e4cb77be",
+        "config_hashes_unchanged": true,
+        "config_matches_benchmark": true,
+        "config_sha256": {
+          "formalization/lake-manifest.json": "e4630915680b82b58c6a005e1ba1e515e865e5541c7e665d4a2d57f783eeadb4",
+          "formalization/lakefile.toml": "ddeb0d2c8217676fc393afd24c13629993c580f35f9d8ad15240c6a167b020c1",
+          "formalization/lean-toolchain": "dc6d65016fad3123d44bf17b5bf0598286284ab16ba75d5c17eb22ed11f47361"
+        },
+        "end_utc": "2026-10-07T04:05:50.696114+00:00",
+        "environment": {
+          "LAKE_ARTIFACT_CACHE": "false",
+          "LAKE_NO_CACHE": "false",
+          "LANG": "C.UTF-8",
+          "LC_ALL": "C.UTF-8",
+          "LEAN_GITHASH": "00659f8e6071d7e46131ed643bf8003b99b044e9",
+          "LEAN_NUM_THREADS": "2"
+        },
+        "environment_capture": "Selected effective Lake environment values; the complete inherited environment is not recorded.",
+        "environment_overrides": {
+          "LAKE_ARTIFACT_CACHE": "false",
+          "LEAN_NUM_THREADS": "2"
+        },
+        "events": "Cloning.PhysicalFlatConverseReduction-1.json",
+        "exit_code": 1,
+        "import_artifacts_unchanged": true,
+        "import_context": "Cloning.PhysicalFlatConverseReduction-1.import-context.json",
+        "import_context_sha256": "18312450251bf15791c22c530cef48cd669909fb432ab7a814130a29421bb2cb",
+        "inputs_stable": true,
+        "log": "Cloning.PhysicalFlatConverseReduction-1.log",
+        "measurement_valid": false,
+        "module": "Cloning.PhysicalFlatConverseReduction",
+        "post_guard_error": null,
+        "publication": {
+          "omitted_environment_fields": [
+            "environment.LEAN_PATH",
+            "environment.LEAN_SYSROOT",
+            "environment.PATH",
+            "toolchain.environment.LEAN_PATH",
+            "toolchain.environment.LEAN_SYSROOT",
+            "toolchain.environment.PATH"
+          ],
+          "original_index_sha256": "f7945f3d1c011035c355fc5c9ef04d2618690ce66f9d3bda1dc6710930dfd07f",
+          "original_record_index": 11,
+          "transformations": [
+            "Preserved an identical source snapshot bound to source_sha256.",
+            "Removed inherited path-valued environment fields; exact task setup/import paths remain."
+          ]
+        },
+        "repetition": 1,
+        "resources": "Cloning.PhysicalFlatConverseReduction-1.resources.txt",
+        "setup_sha256": "ee1ef19b7a810033b80250ba62e10a98dc958263b764649d5d37345624320b12",
+        "setup_snapshot": "Cloning.PhysicalFlatConverseReduction-1.setup.json",
+        "source": "Cloning/PhysicalFlatConverseReduction.lean",
+        "source_hash_unchanged": true,
+        "source_matches_benchmark": true,
+        "source_matches_commit": true,
+        "source_sha256": "bca45225c36db32c7041c1ebcbafd5bf974abc6bc9fc0172ace4d773088e037f",
+        "source_snapshot": "attempts/attempt-0001.source.lean.txt",
+        "start_utc": "2026-10-07T04:04:48.339950+00:00",
+        "toolchain": {
+          "environment": {
+            "LAKE_ARTIFACT_CACHE": "false",
+            "LAKE_NO_CACHE": "false",
+            "LANG": "C.UTF-8",
+            "LC_ALL": "C.UTF-8",
+            "LEAN_GITHASH": "00659f8e6071d7e46131ed643bf8003b99b044e9",
+            "LEAN_NUM_THREADS": "2"
+          },
+          "lake_version": "Lake version 5.0.0-src+00659f8 (Lean version 4.29.0-rc6)",
+          "lean_binary": "/Users/jw/.elan/toolchains/leanprover--lean4---v4.29.0-rc6/bin/lean",
+          "lean_binary_sha256": "2974847fff2e2621502841f4c2dbac4035b4847d6060a4f2087cbc0d04005e37",
+          "lean_libdir": "/Users/jw/.elan/toolchains/leanprover--lean4---v4.29.0-rc6/lib/lean",
+          "lean_version": "Lean (version 4.29.0-rc6, arm64-apple-darwin24.6.0, commit 00659f8e6071d7e46131ed643bf8003b99b044e9, Release)"
+        },
+        "trace_sha256": "b925afe9c22d9edb615e5b8579514c42225a935340524f18c8ea5f2f84ab65d0",
+        "trace_snapshot": "Cloning.PhysicalFlatConverseReduction-1.build-trace.json",
+        "wall_seconds": 62.35547720800241
+      },
+      "public_index_sha256": "19b30aa366ce05a8ab6e29b72ea6a4b204924a5360694d9b01ccebd0621b9450",
+      "reason": "Untouched module passed the full cold build, but Firefox trace collection hit its existing typeclass and elaboration heartbeat limits. No Firefox export occurred after errors. Excluded from successful cohort."
+    },
+    {
+      "binding_form": "derived-public-index",
+      "evidence_role": "failed-profile-attempt",
+      "expected_missing_inputs": [
+        "events"
+      ],
+      "input_prefix": "continuation",
+      "original_index": "continuation/profiles.json",
+      "original_index_sha256": "8b87f18cf769d016e8885d495623c950791d071a033b8512ea3783482eb90684",
+      "original_record_index": 2,
+      "profile": {
+        "benchmark_commit": "3eb587e0f00748c3a9b63f9eeedc1646e4cb77be",
+        "build_setup_unchanged": true,
+        "build_trace_unchanged": true,
+        "command": [
+          "/opt/homebrew/bin/gtime",
+          "-v",
+          "-o",
+          "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/profiles-after-continuation/Cloning.PhysicalFlatPinchingInflation-1.resources.txt",
+          "/Users/jw/.elan/bin/lake",
+          "env",
+          "lean",
+          "-DautoImplicit=false",
+          "--profile",
+          "--stats",
+          "-Dtrace.profiler=true",
+          "-Dtrace.profiler.output.pp=true",
+          "-Dtrace.profiler.output=/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/profiles-after-continuation/Cloning.PhysicalFlatPinchingInflation-1.json",
+          "--setup",
+          "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/profiles-after-continuation/Cloning.PhysicalFlatPinchingInflation-1.setup.json",
+          "Cloning/PhysicalFlatPinchingInflation.lean"
+        ],
+        "commit": "3eb587e0f00748c3a9b63f9eeedc1646e4cb77be",
+        "config_hashes_unchanged": true,
+        "config_matches_benchmark": true,
+        "config_sha256": {
+          "formalization/lake-manifest.json": "e4630915680b82b58c6a005e1ba1e515e865e5541c7e665d4a2d57f783eeadb4",
+          "formalization/lakefile.toml": "ddeb0d2c8217676fc393afd24c13629993c580f35f9d8ad15240c6a167b020c1",
+          "formalization/lean-toolchain": "dc6d65016fad3123d44bf17b5bf0598286284ab16ba75d5c17eb22ed11f47361"
+        },
+        "end_utc": "2026-10-07T04:15:34.409038+00:00",
+        "environment": {
+          "LAKE_ARTIFACT_CACHE": "false",
+          "LAKE_NO_CACHE": "false",
+          "LANG": "C.UTF-8",
+          "LC_ALL": "C.UTF-8",
+          "LEAN_GITHASH": "00659f8e6071d7e46131ed643bf8003b99b044e9",
+          "LEAN_NUM_THREADS": "2"
+        },
+        "environment_capture": "Selected effective Lake environment values; the complete inherited environment is not recorded.",
+        "environment_overrides": {
+          "LAKE_ARTIFACT_CACHE": "false",
+          "LEAN_NUM_THREADS": "2"
+        },
+        "events": "continuation/Cloning.PhysicalFlatPinchingInflation-1.json",
+        "exit_code": 1,
+        "import_artifacts_unchanged": true,
+        "import_context": "continuation/Cloning.PhysicalFlatPinchingInflation-1.import-context.json",
+        "import_context_sha256": "bbe2d587cc8c982e3c9bdc1eda9da638ef9216ab606bfc6b07cb4615dace5a75",
+        "inputs_stable": true,
+        "log": "continuation/Cloning.PhysicalFlatPinchingInflation-1.log",
+        "measurement_valid": false,
+        "module": "Cloning.PhysicalFlatPinchingInflation",
+        "post_guard_error": null,
+        "publication": {
+          "omitted_environment_fields": [
+            "environment.LEAN_PATH",
+            "environment.LEAN_SYSROOT",
+            "environment.PATH",
+            "toolchain.environment.LEAN_PATH",
+            "toolchain.environment.LEAN_SYSROOT",
+            "toolchain.environment.PATH"
+          ],
+          "original_index_sha256": "8b87f18cf769d016e8885d495623c950791d071a033b8512ea3783482eb90684",
+          "original_record_index": 2,
+          "transformations": [
+            "Preserved an identical source snapshot bound to source_sha256.",
+            "Removed inherited path-valued environment fields; exact task setup/import paths remain."
+          ]
+        },
+        "repetition": 1,
+        "resources": "continuation/Cloning.PhysicalFlatPinchingInflation-1.resources.txt",
+        "setup_sha256": "10aebcde63ad07877061ccfdf8b08719b2fffb04b58b70860c9f9d79fc9c3565",
+        "setup_snapshot": "continuation/Cloning.PhysicalFlatPinchingInflation-1.setup.json",
+        "source": "Cloning/PhysicalFlatPinchingInflation.lean",
+        "source_hash_unchanged": true,
+        "source_matches_benchmark": true,
+        "source_matches_commit": true,
+        "source_sha256": "ec819ddc2ab205994ecc7801f948b9af02e042e5a79928b0d04a9ea16dc786b4",
+        "source_snapshot": "attempts/attempt-0002.source.lean.txt",
+        "start_utc": "2026-10-07T04:15:03.670769+00:00",
+        "toolchain": {
+          "environment": {
+            "LAKE_ARTIFACT_CACHE": "false",
+            "LAKE_NO_CACHE": "false",
+            "LANG": "C.UTF-8",
+            "LC_ALL": "C.UTF-8",
+            "LEAN_GITHASH": "00659f8e6071d7e46131ed643bf8003b99b044e9",
+            "LEAN_NUM_THREADS": "2"
+          },
+          "lake_version": "Lake version 5.0.0-src+00659f8 (Lean version 4.29.0-rc6)",
+          "lean_binary": "/Users/jw/.elan/toolchains/leanprover--lean4---v4.29.0-rc6/bin/lean",
+          "lean_binary_sha256": "2974847fff2e2621502841f4c2dbac4035b4847d6060a4f2087cbc0d04005e37",
+          "lean_libdir": "/Users/jw/.elan/toolchains/leanprover--lean4---v4.29.0-rc6/lib/lean",
+          "lean_version": "Lean (version 4.29.0-rc6, arm64-apple-darwin24.6.0, commit 00659f8e6071d7e46131ed643bf8003b99b044e9, Release)"
+        },
+        "trace_sha256": "e5d18d90192e5b2afcbcc317d067447dfc8e37372e7919d50029a16f9ea32ab6",
+        "trace_snapshot": "continuation/Cloning.PhysicalFlatPinchingInflation-1.build-trace.json",
+        "wall_seconds": 30.737925375000486
+      },
+      "public_index_sha256": "53395674a8e1a345a4e1210070370a4548225934407cdd050c06f0c563d33d22",
+      "reason": "Untouched module passed the full cold build, but Firefox trace collection hit its existing typeclass heartbeat limit. No Firefox export occurred after errors. Excluded from successful cohort."
+    },
+    {
+      "binding_form": "derived-public-index",
+      "evidence_role": "diagnostic-native-control",
+      "expected_missing_inputs": [],
+      "input_prefix": "native-exploratory",
+      "original_index": "native-exploratory/profiles.json",
+      "original_index_sha256": "01a1caf1c94710e055ddff3cbf3ace555230c8813687a47b9ede2094c3ba7060",
+      "original_record_index": 0,
+      "profile": {
+        "benchmark_commit": "3eb587e0f00748c3a9b63f9eeedc1646e4cb77be",
+        "build_setup_unchanged": true,
+        "build_trace_unchanged": true,
+        "command": [
+          "/opt/homebrew/bin/gtime",
+          "-v",
+          "-o",
+          "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/native-profile-control/Cloning.PhysicalFlatConverseReduction-native-1.resources.txt",
+          "/Users/jw/.elan/bin/lake",
+          "env",
+          "lean",
+          "-DautoImplicit=false",
+          "--profile",
+          "--stats",
+          "--setup",
+          "/Users/jw/.codex/.chatgpt-projects/g-p-6abc3124021c8191aa9668c86db9f180/Cloning-github/.verify-work/elaboration-campaign/native-profile-control/Cloning.PhysicalFlatConverseReduction-1.setup.json",
+          "Cloning/PhysicalFlatConverseReduction.lean"
+        ],
+        "commit": "3eb587e0f00748c3a9b63f9eeedc1646e4cb77be",
+        "config_hashes_unchanged": true,
+        "config_matches_benchmark": true,
+        "config_sha256": {
+          "formalization/lake-manifest.json": "e4630915680b82b58c6a005e1ba1e515e865e5541c7e665d4a2d57f783eeadb4",
+          "formalization/lakefile.toml": "ddeb0d2c8217676fc393afd24c13629993c580f35f9d8ad15240c6a167b020c1",
+          "formalization/lean-toolchain": "dc6d65016fad3123d44bf17b5bf0598286284ab16ba75d5c17eb22ed11f47361"
+        },
+        "end_utc": "2026-10-07T04:09:15.411884+00:00",
+        "environment": {
+          "LAKE_ARTIFACT_CACHE": "false",
+          "LAKE_NO_CACHE": "false",
+          "LANG": "C.UTF-8",
+          "LC_ALL": "C.UTF-8",
+          "LEAN_GITHASH": "00659f8e6071d7e46131ed643bf8003b99b044e9",
+          "LEAN_NUM_THREADS": "2"
+        },
+        "environment_capture": "Selected effective Lake environment values; the complete inherited environment is not recorded.",
+        "environment_overrides": {
+          "LAKE_ARTIFACT_CACHE": "false",
+          "LEAN_NUM_THREADS": "2"
+        },
+        "events": null,
+        "exit_code": 0,
+        "import_artifacts_unchanged": true,
+        "import_context": "native-exploratory/Cloning.PhysicalFlatConverseReduction-native-1.import-context.json",
+        "import_context_sha256": "393dd3030bb9d5f3c1d3c8faf6969c874a5bcf980302c5514318afacc201aa1c",
+        "inputs_stable": true,
+        "log": "native-exploratory/Cloning.PhysicalFlatConverseReduction-native-1.log",
+        "measurement_valid": true,
+        "module": "Cloning.PhysicalFlatConverseReduction",
+        "native_control_driver_sha256": "b09aa5b3c8ddf66537fae5dc6c4d8581c78ce45a14a0b607e45983c6e60ef8b5",
+        "notes": [
+          "No proof, heartbeat, or source option changed; omitted only Firefox trace flags."
+        ],
+        "original_failed_index_sha256": "f7945f3d1c011035c355fc5c9ef04d2618690ce66f9d3bda1dc6710930dfd07f",
+        "original_failed_record_position": 11,
+        "post_guard_error": null,
+        "publication": {
+          "omitted_environment_fields": [
+            "environment.LEAN_PATH",
+            "environment.LEAN_SYSROOT",
+            "environment.PATH",
+            "toolchain.environment.LEAN_PATH",
+            "toolchain.environment.LEAN_SYSROOT",
+            "toolchain.environment.PATH"
+          ],
+          "original_index_sha256": "01a1caf1c94710e055ddff3cbf3ace555230c8813687a47b9ede2094c3ba7060",
+          "original_record_index": 0,
+          "transformations": [
+            "Preserved an identical source snapshot bound to source_sha256.",
+            "Removed inherited path-valued environment fields; exact task setup/import paths remain."
+          ]
+        },
+        "repetition": 1,
+        "resources": "native-exploratory/Cloning.PhysicalFlatConverseReduction-native-1.resources.txt",
+        "setup_sha256": "ee1ef19b7a810033b80250ba62e10a98dc958263b764649d5d37345624320b12",
+        "setup_snapshot": "native-exploratory/Cloning.PhysicalFlatConverseReduction-1.setup.json",
+        "source": "Cloning/PhysicalFlatConverseReduction.lean",
+        "source_hash_unchanged": true,
+        "source_matches_benchmark": true,
+        "source_matches_commit": true,
+        "source_sha256": "bca45225c36db32c7041c1ebcbafd5bf974abc6bc9fc0172ace4d773088e037f",
+        "source_snapshot": "attempts/attempt-0003.source.lean.txt",
+        "start_utc": "2026-10-07T04:08:14.796713+00:00",
+        "toolchain": {
+          "environment": {
+            "LAKE_ARTIFACT_CACHE": "false",
+            "LAKE_NO_CACHE": "false",
+            "LANG": "C.UTF-8",
+            "LC_ALL": "C.UTF-8",
+            "LEAN_GITHASH": "00659f8e6071d7e46131ed643bf8003b99b044e9",
+            "LEAN_NUM_THREADS": "2"
+          },
+          "lake_version": "Lake version 5.0.0-src+00659f8 (Lean version 4.29.0-rc6)",
+          "lean_binary": "/Users/jw/.elan/toolchains/leanprover--lean4---v4.29.0-rc6/bin/lean",
+          "lean_binary_sha256": "2974847fff2e2621502841f4c2dbac4035b4847d6060a4f2087cbc0d04005e37",
+          "lean_libdir": "/Users/jw/.elan/toolchains/leanprover--lean4---v4.29.0-rc6/lib/lean",
+          "lean_version": "Lean (version 4.29.0-rc6, arm64-apple-darwin24.6.0, commit 00659f8e6071d7e46131ed643bf8003b99b044e9, Release)"
+        },
+        "trace_mode": "native",
+        "trace_sha256": "b925afe9c22d9edb615e5b8579514c42225a935340524f18c8ea5f2f84ab65d0",
+        "trace_snapshot": "native-exploratory/Cloning.PhysicalFlatConverseReduction-1.build-trace.json",
+        "wall_seconds": 60.614335750000464
+      },
+      "public_index_sha256": "50031c9797870f03289d164ab48c8b11ea1e85cf533dd57d4789e2807d18e4a5",
+      "reason": "Exploratory native-only control passed, but setup/trace unchanged flags were inherited from the failed record, not remeasured by this driver. Excluded from canonical cohort; the fresh guarded native run is canonical."
+    }
+  ],
+  "publication": {
+    "original_sha256": "04a3de02c9466225cd0791fbcc8c28a755f68bd8dbcdc3e8185829e82c370ff6",
+    "transformation": "Rebased archived inputs and source copies; removed inherited environment paths; roles and reasons preserved"
+  },
+  "schema": "cloning-elaboration-profile-attempts-v1"
+}
