@@ -207,6 +207,24 @@ class ReportTests(unittest.TestCase):
         self.assertIn("A | 1 | 0 | 10.00 | 7.00 | import", output)
         self.assertIn("simp | 1.000", output)
 
+    def test_profiles_render_actual_hash_bound_declaration_pointer_schema(self):
+        # Pointer copied from the completed before summary, not an invented shape.
+        pointer = {"column": 9,
+                   "declaration": "Cloning.MultimodeCoherent.integral_weighted_characteristic",
+                   "file": "formalization/Cloning/WeylIdlerUniqueness.lean", "kind": "theorem",
+                   "line": 82, "position_origin": "lexical_declaration_in_hash_bound_source"}
+        ranked = {"name": "Elab.definition.value: " + pointer["declaration"],
+                  "self_ms": 1200, "inclusive_ms": 1600, "declaration_pointers": [pointer]}
+        profiles = {"profiles": [{
+            "profile": {"module": "Cloning.WeylIdlerUniqueness", "exit_code": 0,
+                        "wall_seconds": 10, "command": ["lean", "--profile", "Cloning/WeylIdlerUniqueness.lean"]},
+            "text_profile": {"exclusive_phase_ms": {"elaboration": 2000}, "events_over_threshold": []},
+            "firefox_profile": {"top_self_functions": [ranked], "top_inclusive_functions": [ranked]},
+            "warnings": []}]}
+        output = report.profile_section(profiles)
+        self.assertEqual(output.count(pointer["declaration"] + " at " + pointer["file"] + ":82"), 2)
+        self.assertIn("Largest inclusive trace labels (overlap)", output)
+
     def test_comparison_discloses_mismatch_without_assigning_cause(self):
         with tempfile.TemporaryDirectory() as tmp:
             current = fixture(Path(tmp))

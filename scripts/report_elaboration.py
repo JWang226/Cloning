@@ -508,7 +508,7 @@ def profile_section(profiles, report_directory=None):
                 details.append(title + ":\n\n" + table(
                     ["Trace label (first 300 characters)", "Self s", "Inclusive s", "Declaration pointer"],
                     [[row["name"][:300], number(row["self_ms"] / 1000, 3), number(row["inclusive_ms"] / 1000, 3),
-                      "; ".join(p["declaration"] + " at " + p["source"] + ":" + str(p["line"])
+                      "; ".join(p["declaration"] + " at " + p["file"] + ":" + str(p["line"])
                                 for p in row.get("declaration_pointers", [])) or "unattributed"]
                      for row in ranked]))
         unattributed = parsed.get("unattributed_elaboration_events", [])
