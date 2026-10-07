@@ -1,6 +1,6 @@
 {
   "generator": "tools/docs-site/build.py",
-  "generator_sha256": "0476d2249e8596258c52962ac3d57d2dfb42e84d5191203ac1f7f94dee309f80",
+  "generator_sha256": "5ba595f869d4a1c83c3a1e68fa8f7b63fad949de72e33f1ab1a3142281a345ec",
   "recorded_lean_audit": {
     "directory": "verification/cleanup-pass",
     "run_sha256": "cd6735524ed4f60d02fded4b846eaa349d36fc3d151df5768ddc5fcfe4ada61b"
@@ -1755,7 +1755,7 @@
     "guides/spectral-comparison.html": "7dd826d50ef27a39a4be03f4e4757af902bf798b9a6120ff901beb1b307785de",
     "guides/unknown-spectrum.html": "4286b3b1926e16007e4d84e3be1bcb382d0b79dbeb16a87a56a99bad68c81e33",
     "guides/young-laws.html": "b84d1e99e5ff159c6e2daba1afd88e39a0532dc5f872d90f1a7ed660f7e4212b",
-    "index.html": "ab56a9c5e57544b4dfefe3a1c7185e0602b6dcf8a6ce391e8cf6e1a57ea7f50b",
+    "index.html": "1c2eb7e7af5e941481ba4f9052e09b33d983769f99e47be238d0943290934297",
     "reference/PROOF_MAP.md": "db9ae5ca651b0da0c23073672a3d4eab8b3c0b0fade79d3c1c6a9356778f0d03",
     "reference/VERIFICATION.md": "460f89e4da747e24e89e95d38f4293d2b44a8053f588cce624d95a5239579e0d",
     "reference/cloning.tex": "6f2453656031201968aef5cc9c043f7116bb7a1ed1cd2cebb2b905e3df94038d",
@@ -3769,6 +3769,6 @@
     "source/raw/Cloning.YoungUniformLocalSampleShape.lean": "62d071a1449eb706155171b89f4f1bf54d089d6ac3ff2554b67748b67b712f80",
     "source/raw/Cloning.YoungUniformLocalScheffe.lean": "b193953c8c415dc0d6ec843029e4a19d782abfd9e4dc641da6ecac7ce641f3cd",
     "statement-review.html": "596e52d297a54584589b2ed8aa3ca7a9c27f7f5b3f7fcf137c4b739b7293dae3",
-    "verification.html": "e1e07a1fb20991d6f23ded1b5fb1ac50066c4c9e1d3f8c68bebaa03ac51b5f88"
+    "verification.html": "16fa2f984526f1ca68d888da491f3c972fbb9061d7d44d69e62ad4b7c843d981"
   }
 }

@@ -26,6 +26,8 @@ from check_checkpoint import shared_inventory
 OUT = ROOT / "docs"
 ASSETS = Path(__file__).parent / "assets"
 GITHUB = "https://github.com/JWang226/Cloning/blob/main/"
+RELEASE_TAG = "v1.0.0"
+RELEASE_URL = f"https://github.com/JWang226/Cloning/releases/tag/{RELEASE_TAG}"
 ARXIV = "https://arxiv.org/abs/2609.35986"
 GENERATED_MARKER = ".proof-wiki-generated"
 TICK = chr(96)
@@ -707,7 +709,9 @@ class Wiki:
                 '<div class="actions"><a class="button" href="guides/index.html">Start the proof guide →</a>'
                 '<a class="button secondary" href="results/index.html">Browse all 27 results</a>'
                 '<a class="button secondary" href="correspondence.html">Paper ↔ Lean correspondence</a>'
-                f'<a class="button secondary" href="{ARXIV}">Read the paper on arXiv ↗</a></div></section>'
+                f'<a class="button secondary" href="{ARXIV}">Read the paper on arXiv ↗</a></div>'
+                f'<p class="small"><a href="{RELEASE_URL}">Release {RELEASE_TAG} ↗</a> · '
+                '<a href="verification.html">Verification and reproduction</a></p></section>'
                 '<section class="stats" aria-label="Verification snapshot">'
                 f'<div class="stat"><span class="stat-value">27</span><span class="stat-label">named manuscript results</span></div>'
                 f'<div class="stat"><span class="stat-value">{a["modules"]:,}</span><span class="stat-label">audited Lean modules</span></div>'
@@ -1218,6 +1222,7 @@ class Wiki:
         ]
         body = ('<div class="eyebrow">Evidence and reproducibility</div><h1>Verification</h1>'
                 '<p class="lead">The wiki is generated from a recorded passing Lean build and full declaration axiom audit. Its builder checks source hashes before displaying that evidence.</p>'
+                f'<p><a href="{RELEASE_URL}">Release {RELEASE_TAG}</a> contains the verified proof sources, reproducer instructions, and downloadable elaboration reports with checksums.</p>'
                 '<div class="table-wrap"><table><tbody>' + "".join(f'<tr><th>{esc(k)}</th><td><code>{esc(v)}</code></td></tr>' for k, v in rows) + "</tbody></table></div>"
                 '<h2>Three distinct checks</h2><ol>'
                 '<li><strong>Lean build:</strong> the formal statements and proof terms elaborate under the pinned toolchain.</li>'
@@ -1232,12 +1237,13 @@ class Wiki:
                 '<p>Open <code>docs/index.html</code> directly in a browser, or serve the directory with any static web server. Search, mathematics, navigation, and source pages use bundled assets and relative URLs; no network request is needed.</p>'
                 '<h2>Check it yourself</h2>'
                 '<p>Use macOS or Linux with Git, curl, tar, Python 3.10+, native C/C++ compiler tools, <a href="https://github.com/leanprover/elan">elan</a>, and <a href="https://rustup.rs/">Rustup</a>. Initial setup needs internet access. The wrapper prepares the pinned tools and runs all three checks:</p>'
-                '<pre class="code-block"><code>git clone https://github.com/JWang226/Cloning.git\ncd Cloning\nbash scripts/verify.sh all</code></pre>'
+                f'<pre class="code-block"><code>git clone https://github.com/JWang226/Cloning.git\ncd Cloning\ngit checkout {RELEASE_TAG}\nbash scripts/verify.sh all</code></pre>'
                 '<p>Success ends with <code>VERIFICATION PASSED: all</code>. Any failed check returns a nonzero exit code. Lean audits every compiled project declaration in one shared dependency traversal. Build time depends on caches and hardware; fresh logs and reports are saved in the printed <code>.verify-work/run-*</code> directory.</p>'
                 '<p>For individual layers, run from the repository root:</p>'
                 '<pre class="code-block"><code>bash scripts/verify.sh lean        # build + complete axiom audit\nbash scripts/verify.sh comparator  # 27 statements + Lean kernel replay\nbash scripts/verify.sh nanoda      # independent Rust kernel</code></pre>'
                 f'<p>These commands execute fresh trusted local checks without a sandbox. The <a href="{GITHUB}formalization/verification/comparator/README.md">Comparator guide</a> also gives the Linux sandboxed procedure; the <a href="{GITHUB}formalization/verification/nanoda/README.md">Nanoda guide</a> describes its complete export scope. The <a href="reference/VERIFICATION.md">audit guide</a> distinguishes a new proof check from validation of saved evidence.</p>'
                 '<h2>Inspect the evidence</h2><ul>'
+                f'<li><a href="https://github.com/JWang226/Cloning/blob/{RELEASE_TAG}/ELABORATION_REPORT_2026-10-06.md">Cleanup and elaboration: before/after report ↗</a></li>'
                 f'<li><a href="{GITHUB}formalization/verification/shared-audit-check.json">Shared audit: exact coverage comparison and measured runtime ↗</a></li>'
                 f'<li><a href="{GITHUB}formalization/verification/reproducer-check.json">Earlier combined verification run on macOS ↗</a></li>'
                 '<li><a href="data/audit-summary.json">Audit summary copied into this wiki</a></li>'
