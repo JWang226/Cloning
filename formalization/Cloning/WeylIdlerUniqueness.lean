@@ -87,6 +87,7 @@ theorem integral_weighted_characteristic (T : TraceClass (Fock d)) :
         (InnerProductSpace.rankOne ℂ (coherentVector 0) (coherentVector 0)) := by
     apply traceClass_functional_ext
     intro x
+    rw [show vectorProjector x = rankOneOperator x x from rfl]
     change (∫ a : Fin d → ℂ,
       (weylGaussianWeight a : ℂ) * tracePairing (rankOneOperator x x) (displacement a)) =
       tracePairing (rankOneOperator x x)
