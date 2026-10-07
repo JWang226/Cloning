@@ -9,6 +9,63 @@ benchmark = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(benchmark)
 
 
+class HeaderImportTests(unittest.TestCase):
+    def test_legacy_header_skips_nested_and_line_comments_then_stops_at_body(self):
+        text = """/- Copyright. /- import Cloning.Fake -/ -/
+-- import Cloning.AlsoFake
+import Cloning.Thermal -- a real edge
+import Mathlib.Analysis.SpecialFunctions.Pow.Real
+/-! Module documentation. import Cloning.NotAnEdge -/
+import Cloning.AfterBody
+"""
+        self.assertEqual(benchmark.header_imports(text),
+                         ["Cloning.Thermal", "Mathlib.Analysis.SpecialFunctions.Pow.Real"])
+
+    def test_modern_multiline_import_flags_preserve_every_owned_graph_edge(self):
+        sources = {
+            "All": "module\npublic import Cloning.Consumer\n",
+            "Cloning.Consumer": """\ufeff/- License /- nested -/ -/ module
+prelude
+public /- across tokens -/ meta import
+  Cloning.Public
+meta import all Cloning.Private
+import Cloning.Other import Mathlib.Data.Real.Basic
+public section
+/- import Cloning.BodyComment -/
+""",
+            "Cloning.Public": "module\nprelude\n",
+            "Cloning.Private": "module\n",
+            "Cloning.Other": "import Cloning.Public\nnamespace Cloning\n",
+        }
+        graph = {module: [name for name in benchmark.header_imports(text) if name in sources]
+                 for module, text in sources.items()}
+        self.assertEqual(graph, {"All": ["Cloning.Consumer"],
+                                 "Cloning.Consumer": ["Cloning.Public", "Cloning.Private", "Cloning.Other"],
+                                 "Cloning.Public": [], "Cloning.Private": [],
+                                 "Cloning.Other": ["Cloning.Public"]})
+
+    def test_escaped_identifier_components_normalize_without_losing_literal_dots(self):
+        text = "module\nimport «Cloning».«Thermal»\nimport Cloning.«A.B»\nimport Cloning.α₁\n"
+        self.assertEqual(benchmark.header_imports(text), ["Cloning.Thermal", "Cloning.«A.B»", "Cloning.α₁"])
+
+    def test_doc_comment_is_a_body_token_even_before_first_import(self):
+        self.assertEqual(benchmark.header_imports("/-- Documentation -/\nimport Cloning.NotAHeader\n"), [])
+
+    def test_declaration_body_strings_and_comments_are_not_scanned(self):
+        text = 'import Cloning.Real\ndef fake := "import Cloning.Fake"\n/- import Cloning.Fake2 -/\n'
+        self.assertEqual(benchmark.header_imports(text), ["Cloning.Real"])
+
+    def test_each_rc6_import_directive_has_exactly_one_identifier(self):
+        # Parser.Module.import has one identWithPartialTrailingDot, not a list.
+        self.assertEqual(benchmark.header_imports("import Cloning.A Cloning.B\nimport Cloning.C\n"),
+                         ["Cloning.A"])
+
+    def test_unterminated_header_tokens_and_missing_import_names_fail(self):
+        for text in ("/- missing end", "import «missing end", "module\nimport all\n"):
+            with self.subTest(text=text), self.assertRaises(ValueError):
+                benchmark.header_imports(text)
+
+
 class InvalidationTests(unittest.TestCase):
     def test_only_exact_owned_modules_are_removed(self):
         with tempfile.TemporaryDirectory() as tmp:

@@ -36,6 +36,113 @@ def owned_sources(commit):
             and (n.count("/") == 1 or n.startswith("formalization/Cloning/"))]
 
 
+def header_imports(text):
+    """Read explicit rc6 header imports without interpreting any body commands.
+
+    Grammar: Lean/Parser/Module.lean, pinned Lean 00659f8. Each directive has one
+    identifier; directives and their tokens may span lines. Ordinary nested
+    comments are whitespace, while /-- and /-! begin body commands. Import flags
+    affect visibility/loading, not static owned graph edges. Implicit Init is not
+    returned because this graph contains only explicitly imported owned modules.
+    """
+    keywords = {"module", "prelude", "public", "meta", "import", "all"}
+    position = int(text.startswith("\ufeff"))
+
+    def first(c):
+        n = ord(c)
+        # Init/Meta/Defs.lean isIdFirst/isLetterLike; Char.isAlpha is ASCII.
+        return ("a" <= c <= "z" or "A" <= c <= "Z" or c == "_"
+                or 0x3B1 <= n <= 0x3C9 and n != 0x3BB
+                or 0x391 <= n <= 0x3A9 and n not in (0x3A0, 0x3A3)
+                or any(lo <= n <= hi for lo, hi in ((0x3CA, 0x3FB), (0x1F00, 0x1FFE),
+                                                     (0x2100, 0x214F), (0x1D49C, 0x1D59F),
+                                                     (0x100, 0x17F)))
+                or 0xC0 <= n <= 0xFF and n not in (0xD7, 0xF7))
+
+    def rest(c):
+        n = ord(c)
+        return (first(c) or "0" <= c <= "9" or c in "'!?"
+                or any(lo <= n <= hi for lo, hi in ((0x2080, 0x2089), (0x2090, 0x209C),
+                                                     (0x1D62, 0x1D6A))) or n == 0x2C7C)
+
+    def token():
+        nonlocal position
+        while position < len(text):
+            if text[position] in " \t\r\n":
+                position += 1
+            elif text.startswith("--", position):
+                end = text.find("\n", position + 2)
+                position = len(text) if end < 0 else end + 1
+            elif text.startswith("/-", position) and not text.startswith(("/--", "/-!"), position):
+                depth = 1
+                position += 2
+                while depth and position < len(text):
+                    if text.startswith("/-", position):
+                        depth += 1
+                        position += 2
+                    elif text.startswith("-/", position):
+                        depth -= 1
+                        position += 2
+                    else:
+                        position += 1
+                if depth:
+                    raise ValueError("Unterminated comment in Lean import header")
+            else:
+                break
+        parts = []
+        escaped = False
+        while position < len(text):
+            part_start = position
+            if text[position] == "«":
+                end = text.find("»", position + 1)
+                if end < 0:
+                    raise ValueError("Unterminated escaped identifier in Lean import header")
+                part = text[position + 1:end]
+                position = end + 1
+                escaped = True
+            elif first(text[position]):
+                position += 1
+                while position < len(text) and rest(text[position]):
+                    position += 1
+                part = text[part_start:position]
+            else:
+                break
+            # Match Name.toString's escaping so «Cloning».«Thermal» is Cloning.Thermal.
+            parts.append(part if part and first(part[0]) and all(rest(c) for c in part[1:])
+                         else "«" + part + "»")
+            if (position + 1 < len(text) and text[position] == "."
+                    and (first(text[position + 1]) or text[position + 1] == "«")):
+                position += 1
+            else:
+                break
+        if not parts:
+            return None  # EOF, doc comment, punctuation, string, or another body token
+        name = ".".join(parts)
+        return (name, not escaped and len(parts) == 1 and name in keywords)
+
+    current = token()
+    if current == ("module", True):
+        current = token()
+    if current == ("prelude", True):
+        current = token()
+    imports = []
+    while current is not None:
+        if current == ("public", True):
+            current = token()
+        if current == ("meta", True):
+            current = token()
+        if current != ("import", True):
+            break
+        current = token()
+        if current == ("all", True):
+            current = token()
+        if current is None or current[1]:
+            raise ValueError("Missing module identifier in Lean import header")
+        imports.append(current[0])
+        current = token()
+    return imports
+
+
 def dependency_snapshot():
     # A stat digest catches changes without adding gigabytes of read I/O to a run.
     digest = hashlib.sha256()
@@ -111,7 +218,7 @@ def main():
             size.append({"module": module, "source": source, "lines": len(text.splitlines()),
                          "code_lines": sum(flags), "module_header": counter.has_module_header(text),
                          "source_sha256": hashlib.sha256(text.encode()).hexdigest()})
-            graph[module] = [m for m in re.findall(r"^import\s+(\S+)", text, re.M) if m in modules]
+            graph[module] = [m for m in header_imports(text) if m in modules]
     reachable = set()
     def visit(m):
         if m not in reachable:
