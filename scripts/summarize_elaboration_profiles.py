@@ -12,6 +12,7 @@ from collections import defaultdict
 from datetime import datetime, timezone
 import hashlib
 import json
+import math
 from pathlib import Path
 import re
 import subprocess
@@ -294,14 +295,111 @@ def input_path(directory, name):
     return path
 
 
+def profile_trace_mode(record):
+    """Missing legacy mode means Firefox; absent events never imply native."""
+    mode = record.get("trace_mode", "firefox")
+    if mode not in {"firefox", "native"}:
+        raise ValueError("Unknown profile trace mode")
+    if mode == "native":
+        command = record.get("command", [])
+        if ("events" not in record or record["events"] is not None
+                or "--profile" not in command or "--stats" not in command
+                or any(token.startswith("-Dtrace.profiler") for token in command)):
+            raise ValueError("Native profile requires explicit null events and timer/stats-only command")
+    elif not isinstance(record.get("events"), str) or not record["events"]:
+        raise ValueError("Firefox profile requires recorded events")
+    return mode
+
+
+def parse_native_resources(text):
+    """GNU time process resources; independent of Lean elapsed trace timers."""
+    labels = ("User time (seconds)", "System time (seconds)",
+              "Elapsed (wall clock) time (h:mm:ss or m:ss)", "Percent of CPU this job got",
+              "Maximum resident set size (kbytes)")
+    values = {}
+    for label in labels:
+        matches = re.findall(r"(?m)^\s*" + re.escape(label) + r":\s*([^\n]*)$", text)
+        if len(matches) > 1:
+            raise ValueError("Duplicate GNU resource field: " + label)
+        if matches:
+            values[label] = matches[0].strip()
+    def numeric(label):
+        return float(values[label]) if label in values else None
+    wall = values.get(labels[2])
+    if wall is not None:
+        parts = [float(part) for part in wall.split(":")]
+        if not 1 <= len(parts) <= 3 or any(part < 0 for part in parts):
+            raise ValueError("Invalid GNU elapsed resource field")
+        wall = sum(part * 60 ** position for position, part in enumerate(reversed(parts)))
+    user, system = numeric(labels[0]), numeric(labels[1])
+    result = {"wall": wall, "user": user, "system": system,
+              "cpu": user + system if user is not None and system is not None else None,
+              "cpu_percent": values.get(labels[3], "unavailable"), "rss_kib": numeric(labels[4])}
+    if any(value is not None and (not math.isfinite(value) or value < 0)
+           for key, value in result.items() if key != "cpu_percent"):
+        raise ValueError("Invalid GNU native resource value")
+    return result
+
+
+def profile_attempts_view(directory):
+    """Expose saved diagnostics without treating them as completed profiles."""
+    path = directory / "profile-attempts.json"
+    if not path.is_file():
+        return None, set()
+    raw = json.loads(path.read_text())
+    if raw.get("schema") != "cloning-elaboration-profile-attempts-v1":
+        raise ValueError("Unknown diagnostic profile-attempt schema")
+    attempts, protected = [], {path}
+    for attempt in raw["attempts"]:
+        record = attempt["profile"]
+        protected.add(input_path(directory, attempt["original_index"]))
+        expected_missing = attempt["expected_missing_inputs"]
+        if not isinstance(expected_missing, list) or any(key != "events" for key in expected_missing):
+            raise ValueError("Only explicitly missing diagnostic events can be omitted")
+        prefix = attempt.get("input_prefix", "") if attempt.get("binding_form") != "derived-public-index" else ""
+        for key in ("log", "events", "resources", "setup_snapshot", "trace_snapshot", "import_context", "source_snapshot"):
+            if record.get(key):
+                name = prefix + "/" + record[key] if prefix else record[key]
+                candidate = (directory / name).resolve()
+                if not candidate.is_relative_to(directory.resolve()):
+                    raise ValueError("Escaping diagnostic profile input")
+                if key in expected_missing and not candidate.exists():
+                    continue
+                protected.add(input_path(directory, name))
+        attempts.append({"module": record["module"], "trace_mode": record.get("trace_mode", "firefox"),
+                         "exit_code": record["exit_code"], "wall_seconds": record.get("wall_seconds"),
+                         "measurement_valid_as_recorded": record.get("measurement_valid"),
+                         "evidence_role": attempt["evidence_role"], "reason": attempt["reason"],
+                         "original_index": attempt["original_index"],
+                         "original_index_sha256": attempt["original_index_sha256"],
+                         "original_record_index": attempt["original_record_index"],
+                         "expected_missing_inputs": attempt["expected_missing_inputs"]})
+    return {"schema": "cloning-elaboration-profile-attempts-view-v1", "attempt_count": len(attempts),
+            "original_attempts_sha256": raw.get("publication", {}).get("original_sha256")
+                or hashlib.sha256(path.read_bytes()).hexdigest(), "attempts": attempts,
+            "note": "Diagnostic attempts are excluded from completed-profile coverage and comparisons; recorded guard flags are not promoted to independent validation."}, protected
+
+
 def summarize(directory, limit=50, threshold_ms=100):
     directory = directory.resolve()
     records = json.loads((directory / "profiles.json").read_text())
     results, raw_paths = [], {directory / "profiles.json"}
     for record in records:
+        if record.get("receipt_origin"):
+            raw_paths.add(input_path(directory, record["receipt_origin"]["index"]))
         log_path = input_path(directory, record["log"])
-        events_path = input_path(directory, record["events"])
-        raw_paths.update((log_path, events_path))
+        mode = profile_trace_mode(record)
+        native_setup_absent = None
+        if mode == "native":
+            setup = json.loads(input_path(directory, record.get("setup_snapshot", "")).read_text())
+            options = setup.get("options", {})
+            if not isinstance(options, dict) or any(key.startswith("trace.profiler") for key in options):
+                raise ValueError("Native captured setup contains trace.profiler options")
+            native_setup_absent = True
+        events_path = input_path(directory, record["events"]) if mode == "firefox" else None
+        raw_paths.add(log_path)
+        if events_path is not None:
+            raw_paths.add(events_path)
         input_hashes = {}
         for key in ("log", "events", "resources", "source_snapshot", "setup_snapshot", "trace_snapshot", "import_context"):
             if record.get(key):
@@ -318,8 +416,9 @@ def summarize(directory, limit=50, threshold_ms=100):
         text = parse_text_profile(log_text, threshold_ms)
         for event in text["events_over_threshold"]:
             event["declaration_pointers"] = source_pointers(event["text"], declarations, event["declaration"])
-        trace = parse_firefox_profile(json.loads(events_path.read_text()), declarations, limit)
+        trace = parse_firefox_profile(json.loads(events_path.read_text()), declarations, limit) if events_path else None
         stats = parse_environment_stats(log_text)
+        native = parse_native_resources(input_path(directory, record["resources"]).read_text()) if record.get("resources") else None
         warnings = [source_warning] if source_warning else []
         if record.get("exit_code") != 0:
             warnings.append("This profile did not complete successfully; timings are partial evidence.")
@@ -329,15 +428,23 @@ def summarize(directory, limit=50, threshold_ms=100):
             warnings.append("The command requested --stats but no environment statistics were found.")
         if not text["cumulative_blocks"]:
             warnings.append("No cumulative --profile totals found.")
-        if not trace["exported_position_count"]:
-            warnings.append("This Lean exporter provides no source positions; pointers identify declarations only.")
-        if trace["negative_weight_count"]:
-            warnings.append("Negative trace intervals retained; trace rankings require timeline inspection.")
-        if all(row["name"] in ("Import", "runFrontend") for row in trace["top_self_functions"]):
-            warnings.append("No detailed timed trace nodes; enable trace.profiler=true for attribution.")
+        if trace is None:
+            warnings.append("Firefox CLI flags are omitted and the captured setup has no trace.profiler options; source-level overrides are not generally audited.")
+            warnings.append("No Firefox rankings or per-declaration trace attribution are available for this timer/stats-only fallback.")
+            warnings.append("These timer/stats-only process timings are not matched to Firefox-instrumented runs.")
+        else:
+            if not trace["exported_position_count"]:
+                warnings.append("This Lean exporter provides no source positions; pointers identify declarations only.")
+            if trace["negative_weight_count"]:
+                warnings.append("Negative trace intervals retained; trace rankings require timeline inspection.")
+            if all(row["name"] in ("Import", "runFrontend") for row in trace["top_self_functions"]):
+                warnings.append("No detailed timed trace nodes; enable trace.profiler=true for attribution.")
         results.append({"profile": record, "input_sha256": input_hashes,
             "text_profile": text, "environment_stats": stats,
-            "firefox_profile": trace, "warnings": warnings})
+            "firefox_profile": trace, "native_resources": native,
+            "native_setup_trace_options_absent": native_setup_absent, "warnings": warnings})
+    attempts, protected = profile_attempts_view(directory)
+    raw_paths.update(protected)
     return {"schema": "cloning-elaboration-profile-summary-v1",
             "generated_utc": datetime.now(timezone.utc).isoformat(),
             "threshold_ms": threshold_ms, "ranking_limit": limit,
@@ -356,7 +463,7 @@ def summarize(directory, limit=50, threshold_ms=100):
                                "duration_display": SOURCE_URL + "util/timeit.cpp",
                                "environment_statistics": SOURCE_URL + "Lean/Environment.lean",
                                "firefox_exporter": SOURCE_URL + "Lean/Util/Profiler.lean"},
-            "profile_count": len(results), "profiles": results}, raw_paths
+            "profile_count": len(results), "profiles": results, "profile_attempts": attempts}, raw_paths
 
 
 def main():

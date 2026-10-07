@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import argparse
 from collections import Counter, defaultdict
+from copy import deepcopy
 from dataclasses import dataclass, field
 from datetime import datetime
 import hashlib
@@ -299,6 +300,28 @@ def load_profiles(path):
     if result.get("schema") != "cloning-elaboration-profile-summary-v1":
         raise ValueError("Supply the completed profile-summary utility output")
     result["report_input_path"] = str((path / "summary.json" if path.is_dir() else path).resolve())
+    return derive_native_setup_guards(result, Path(result["report_input_path"]).parent)
+
+
+def derive_native_setup_guards(profiles, directory):
+    """Validate legacy native summaries using their unchanged hash-bound setup."""
+    result = deepcopy(profiles)
+    for row in result["profiles"]:
+        record = row["profile"]
+        if record.get("trace_mode") != "native" or row.get("native_setup_trace_options_absent") is not None:
+            continue
+        path = (directory / record["setup_snapshot"]).resolve()
+        if not path.is_relative_to(directory.resolve()) or not path.is_file():
+            raise ValueError("Missing or escaping native captured setup")
+        data = path.read_bytes()
+        digest = hashlib.sha256(data).hexdigest()
+        if digest != record.get("setup_sha256") or digest != row.get("input_sha256", {}).get("setup_snapshot"):
+            raise ValueError("Native captured setup hash differs")
+        options = json.loads(data).get("options", {})
+        if not isinstance(options, dict) or any(key.startswith("trace.profiler") for key in options):
+            raise ValueError("Native captured setup enables profiler options")
+        row["native_setup_trace_options_absent"] = True
+        row["native_setup_guard_derivation"] = "Parsed unchanged hash-bound setup during validation; original summary bytes preserved."
     return result
 
 
@@ -401,13 +424,48 @@ def require_complete_measurement(snapshot, profiles):
         raise ValueError("Completed profiles of the five worst logged modules are required")
     for result in profiles["profiles"]:
         record = result["profile"]
+        hashes = result.get("input_sha256", {})
+        keys = ("log", "resources", "setup_snapshot", "trace_snapshot", "import_context")
+        guards = ("inputs_stable", "source_hash_unchanged", "config_hashes_unchanged",
+                  "import_artifacts_unchanged", "build_setup_unchanged", "build_trace_unchanged")
         if (record.get("exit_code") != 0 or record.get("measurement_valid") is not True
                 or record.get("source_matches_benchmark") is not True
                 or record.get("config_matches_benchmark") is not True
                 or record.get("benchmark_commit") != summary["commit"]
                 or not record.get("source") or not record.get("source_sha256")
-                or record.get("config_sha256") != provenance.get("config_sha256")):
+                or record.get("config_sha256") != provenance.get("config_sha256")
+                or any(record.get(key) is not True for key in guards)
+                or any(not record.get(key) or not re.fullmatch(r"[0-9a-f]{64}", hashes.get(key, "")) for key in keys)
+                or any(hashes.get(key) != record.get(bound) for key, bound in (
+                    ("setup_snapshot", "setup_sha256"), ("trace_snapshot", "trace_sha256"),
+                    ("import_context", "import_context_sha256")))):
             raise ValueError("Profiles must be completed, valid, and bound to the measured source/config")
+        mode = record.get("trace_mode", "firefox")
+        if mode not in {"firefox", "native"}:
+            raise ValueError("Unknown profile trace mode")
+        if mode == "firefox" and (not isinstance(record.get("events"), str) or not record["events"]
+                or not re.fullmatch(r"[0-9a-f]{64}", hashes.get("events", ""))
+                or not isinstance(result.get("firefox_profile"), dict) or not result["firefox_profile"]):
+            raise ValueError("Firefox profiles require events and a hash-bound parsed trace")
+        if mode == "native":
+            command = record.get("command", [])
+            native = result.get("native_resources") or {}
+            if ("events" not in record or record["events"] is not None
+                    or result.get("firefox_profile") is not None
+                    or "--profile" not in command or "--stats" not in command
+                    or any(token.startswith("-Dtrace.profiler") for token in command)
+                    or any(record.get(key) is not True for key in guards)
+                    or any(not record.get(key) or not re.fullmatch(r"[0-9a-f]{64}", hashes.get(key, "")) for key in keys)
+                    or any(hashes.get(key) != record.get(bound) for key, bound in (
+                        ("setup_snapshot", "setup_sha256"), ("trace_snapshot", "trace_sha256"),
+                        ("import_context", "import_context_sha256")))
+                    or not result.get("text_profile", {}).get("cumulative_blocks")
+                    or not result.get("environment_stats")
+                    or result.get("native_setup_trace_options_absent") is not True
+                    or any(not isinstance(native.get(key), (int, float))
+                           or not math.isfinite(native[key]) or native[key] < 0
+                           for key in ("wall", "user", "system", "cpu", "rss_kib"))):
+                raise ValueError("Native profiles require explicit timer/stats-only mode and stable hash-bound inputs")
 
 
 def comparison(current, prior):
@@ -476,6 +534,7 @@ def profile_section(profiles, report_directory=None):
             ["Configuration matches benchmark", record.get("config_matches_benchmark", "unavailable")],
             ["Source/config/artifact/setup inputs stable", record.get("inputs_stable", "unavailable")],
             ["Measurement valid", record.get("measurement_valid", "unavailable")],
+            ["Profile mode", record.get("trace_mode", "firefox")],
             ["Import context", record.get("import_context", "unavailable")]]))
         if record.get("environment"):
             environment = (record.get("environment_overrides") or
@@ -500,7 +559,12 @@ def profile_section(profiles, report_directory=None):
         if events:
             details.append(table(["Largest event (>100 ms)", "Exclusive seconds", "Log line"],
                                  [[e["text"], number(e["exclusive_ms"] / 1000, 3), e["log_line"]] for e in events]))
-        trace = result.get("firefox_profile", {})
+        trace = result.get("firefox_profile") or {}
+        if record.get("trace_mode") == "native":
+            details.append("Firefox CLI flags are omitted and the captured setup has no trace.profiler options for this timer/stats-only fallback. "
+                           "No Firefox rankings or per-declaration trace attribution are available; "
+                           "its process timings are not matched to Firefox-instrumented runs. "
+                           "This setup guard does not generally audit source-level option overrides.")
         for ranking, title in (("top_self_functions", "Largest self trace labels"),
                                ("top_inclusive_functions", "Largest inclusive trace labels (overlap)")):
             ranked = trace.get(ranking, [])[:10]
@@ -514,7 +578,9 @@ def profile_section(profiles, report_directory=None):
         unattributed = parsed.get("unattributed_elaboration_events", [])
         if unattributed:
             details.append(f"Unattributed elaboration events above threshold: {len(unattributed)}; "
-                           "the detailed trace rankings supply attribution where their labels identify declarations.")
+                           + ("no detailed Firefox attribution is available for this native fallback."
+                              if record.get("trace_mode") == "native" else
+                              "the detailed trace rankings supply attribution where their labels identify declarations."))
         details.append("Recorded command:\n\n```sh\n" + shlex.join(record["command"]) + "\n```")
         if result.get("warnings"):
             details.append("\n".join("- " + w for w in result["warnings"]))
@@ -526,6 +592,15 @@ def profile_section(profiles, report_directory=None):
             "fall back to the recorded search path; their nonmapped transitive closure is not inventoried. "
             "The dominant-phase screen requires >5 s and >25% of the displayed phase sum. "
             "Declaration pointers identify declarations, not automatically an exact costly tactic.")
+    attempts = profiles.get("profile_attempts")
+    if attempts:
+        details.append("### Diagnostic profiling attempts")
+        details.append("These attempts are preserved separately and excluded from completed-profile coverage and comparisons. "
+                       "The full cold build result is independent of a diagnostic instrumentation failure.")
+        details.append(table(["Module", "Role", "Exit", "Reason", "Original receipt"],
+                             [[row["module"], row["evidence_role"], row["exit_code"], row["reason"],
+                               row["original_index"] + " #" + str(row["original_record_index"])]
+                              for row in attempts["attempts"]]))
     return note + "\n\n" + table(["Module", "Run", "Exit", "Process wall s", "Phase sum s", "Dominant screen", ">100 ms events"], rows) + "\n\n" + "\n\n".join(details)
 
 
@@ -746,15 +821,16 @@ def main():
     validate_profile_binding(current, profiles)
     if args.require_complete:
         require_complete_measurement(current, profiles)
-    raw_inputs = {p.resolve() for p in current.directory.iterdir() if p.is_file()}
+    # Rebased profile receipts can reference nested native/continuation inputs.
+    # Scan only the explicit measurement directories; rglob does not follow
+    # directory symlinks into unrelated trees.
+    raw_inputs = {p.resolve() for p in current.directory.rglob("*") if p.is_file()}
     if prior:
-        raw_inputs.update(p.resolve() for p in prior.directory.iterdir() if p.is_file())
+        raw_inputs.update(p.resolve() for p in prior.directory.rglob("*") if p.is_file())
     if args.profiles:
         p = args.profiles.resolve()
-        if p.is_dir():
-            raw_inputs.update(x.resolve() for x in p.iterdir() if x.is_file())
-        else:
-            raw_inputs.add(p)
+        profile_directory = p if p.is_dir() else p.parent
+        raw_inputs.update(x.resolve() for x in profile_directory.rglob("*") if x.is_file())
     if args.notes:
         raw_inputs.add(args.notes.resolve())
     if args.output.resolve() in raw_inputs:

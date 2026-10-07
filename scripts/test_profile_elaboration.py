@@ -2,7 +2,7 @@
 import copy
 import unittest
 
-from profile_elaboration import deps_json_imports
+from profile_elaboration import deps_json_imports, profiling_flags, validate_native_setup
 
 
 RC6_HEADER = {"imports": [{"errors": [], "result": {
@@ -14,6 +14,21 @@ RC6_HEADER = {"imports": [{"errors": [], "result": {
 
 
 class HeaderEnvelopeTests(unittest.TestCase):
+    def test_native_setup_cannot_enable_profiler_through_saved_options(self):
+        validate_native_setup({"options": {}})
+        for options in ({"trace.profiler": True}, {"trace.profiler.output": "hidden.json"},
+                        {"trace.profiler.output.pp": True}, []):
+            with self.subTest(options=options), self.assertRaises(ValueError):
+                validate_native_setup({"options": options})
+
+    def test_trace_modes_preserve_default_flags_and_native_has_no_firefox_output(self):
+        self.assertEqual(profiling_flags("firefox", "fixture.json"), [
+            "--profile", "--stats", "-Dtrace.profiler=true", "-Dtrace.profiler.output.pp=true",
+            "-Dtrace.profiler.output=fixture.json"])
+        self.assertEqual(profiling_flags("native", "unused.json"), ["--profile", "--stats"])
+        with self.assertRaises(ValueError):
+            profiling_flags("guess", "unused.json")
+
     def test_real_rc6_result_preserves_import_names_and_modifiers(self):
         self.assertEqual(deps_json_imports(RC6_HEADER), RC6_HEADER["imports"][0]["result"]["imports"])
 

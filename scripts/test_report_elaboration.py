@@ -57,16 +57,68 @@ def completed_profiles(current):
     current.provenance.update(built_in_stability=True, manifest_verified=True, config_sha256=configs)
     profiles = []
     for row in current.sizes:
-        profiles.append({"profile": {
+        record = {
             "module": row["module"], "source": row["source"],
             "benchmark_commit": current.summary["commit"],
             "source_sha256": hashlib.sha256(current.sources[row["source"]].encode()).hexdigest(),
             "source_matches_benchmark": True, "config_matches_benchmark": True,
-            "config_sha256": dict(configs), "measurement_valid": True, "exit_code": 0}})
+            "config_sha256": dict(configs), "measurement_valid": True, "exit_code": 0,
+            "events": "events.json", "log": "run.log", "resources": "resources.txt",
+            "setup_snapshot": "setup.json", "trace_snapshot": "trace.json", "import_context": "context.json",
+            "setup_sha256": "e"*64, "trace_sha256": "e"*64, "import_context_sha256": "e"*64}
+        for guard in ("inputs_stable", "source_hash_unchanged", "config_hashes_unchanged",
+                      "import_artifacts_unchanged", "build_setup_unchanged", "build_trace_unchanged"):
+            record[guard] = True
+        profiles.append({"profile": record, "input_sha256": {key:"e"*64 for key in
+            ("log","events","resources","setup_snapshot","trace_snapshot","import_context")},
+            "firefox_profile": {"top_self_functions":[]}})
     return {"profile_count": len(profiles), "profiles": profiles}
 
 
 class ReportTests(unittest.TestCase):
+    def test_native_completion_requires_explicit_mode_stability_and_bound_inputs(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            current = fixture(Path(temporary))
+            profiles = completed_profiles(current)
+            row = profiles["profiles"][0]
+            record = row["profile"]
+            record.update(trace_mode="native", events=None, command=["lean", "--profile", "--stats"],
+                          repetition=1, wall_seconds=1.0, log="native.log", resources="native.resources.txt",
+                          setup_snapshot="native.setup.json", trace_snapshot="native.trace.json", import_context="native.context.json")
+            for guard in ("inputs_stable", "source_hash_unchanged", "config_hashes_unchanged",
+                          "import_artifacts_unchanged", "build_setup_unchanged", "build_trace_unchanged"):
+                record[guard] = True
+            row["input_sha256"] = {key: "e" * 64 for key in ("log", "resources", "setup_snapshot", "trace_snapshot", "import_context")}
+            record.update(setup_sha256="e" * 64, trace_sha256="e" * 64, import_context_sha256="e" * 64)
+            row.update(firefox_profile=None, environment_stats={"imported_regions": 1},
+                       native_setup_trace_options_absent=True,
+                       native_resources={"wall": 1.0, "user": 2.0, "system": 0.1, "cpu": 2.1, "rss_kib": 1024},
+                       text_profile={"cumulative_blocks": 1, "exclusive_phase_ms": {"elaboration": 1000}, "events_over_threshold": []})
+            report.require_complete_measurement(current, profiles)
+            rendered = report.profile_section({"profiles": [row]})
+            self.assertIn("Profile mode", rendered)
+            self.assertIn("No Firefox rankings", rendered)
+            self.assertNotIn("Largest self trace labels", rendered)
+            for target, key, value in (("profile", "events", "fake.json"), ("profile", "inputs_stable", False),
+                                       ("result", "firefox_profile", {}), ("result", "input_sha256", {}),
+                                       ("result", "native_resources", {}), ("result", "native_setup_trace_options_absent", False)):
+                changed = copy.deepcopy(profiles)
+                (changed["profiles"][0]["profile"] if target == "profile" else changed["profiles"][0])[key] = value
+                with self.subTest(key=key), self.assertRaises(ValueError):
+                    report.require_complete_measurement(current, changed)
+
+    def test_firefox_cannot_bypass_common_stability_or_raw_input_bindings(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            current = fixture(Path(temporary))
+            profiles = completed_profiles(current)
+            for target,key,value in (("profile","inputs_stable",False), ("profile","source_hash_unchanged",False),
+                                     ("profile","events",None), ("result","firefox_profile",None),
+                                     ("result","input_sha256",{})):
+                changed=copy.deepcopy(profiles)
+                (changed["profiles"][0]["profile"] if target=="profile" else changed["profiles"][0])[key]=value
+                with self.subTest(key=key),self.assertRaises(ValueError):
+                    report.require_complete_measurement(current,changed)
+
     def test_redacted_inventory_regenerates_counts_and_portable_evidence(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp).resolve()
@@ -260,6 +312,29 @@ class ReportTests(unittest.TestCase):
                     report.main()
             self.assertEqual(stopped.exception.code, 2)
             self.assertEqual((Path(tmp) / "summary.json").read_bytes(), sentinel)
+
+    def test_main_protects_nested_profile_inputs_for_directory_and_summary_file(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            benchmark = root / "before"
+            benchmark.mkdir()
+            current = fixture(benchmark)
+            profile_directory = root / "profiles"
+            nested = profile_directory / "native-guarded"
+            nested.mkdir(parents=True)
+            source = nested / "native.log"
+            source.write_bytes(b"preserved measurement log\n")
+            summary = profile_directory / "summary.json"
+            summary.write_text("{}")
+            for profile_argument in (profile_directory, summary):
+                with self.subTest(argument=profile_argument), patch.object(report.Snapshot, "read", return_value=current), \
+                        patch.object(report, "load_profiles", return_value=None), patch.object(sys, "argv", [
+                            "report_elaboration.py", "--benchmark", str(benchmark), "--profiles", str(profile_argument),
+                            "--output", str(source)]):
+                    with self.assertRaises(SystemExit) as stopped:
+                        report.main()
+                    self.assertEqual(stopped.exception.code, 2)
+                    self.assertEqual(source.read_bytes(), b"preserved measurement log\n")
 
 
 if __name__ == "__main__":

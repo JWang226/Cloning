@@ -35,6 +35,24 @@ def git_source(commit, source):
     return subprocess.check_output(["git", "show", f"{commit}:formalization/{source}"], cwd=REPO)
 
 
+def profiling_flags(trace_mode, events):
+    """C++ timers/stats in both modes; Firefox instrumentation is explicit."""
+    if trace_mode not in {"firefox", "native"}:
+        raise ValueError("Unknown profile trace mode")
+    flags = ["--profile", "--stats"]
+    if trace_mode == "firefox":
+        flags += ["-Dtrace.profiler=true", "-Dtrace.profiler.output.pp=true",
+                  "-Dtrace.profiler.output=" + str(events)]
+    return flags
+
+
+def validate_native_setup(setup):
+    options = setup.get("options", {})
+    if (not isinstance(options, dict)
+            or any(key.startswith("trace.profiler") for key in options)):
+        raise ValueError("Native mode requires no trace.profiler options in its saved Lake setup")
+
+
 def effective_environment(lake, env):
     # Capture relevant effective values, never the complete inherited environment.
     code = ("import json,os,shutil; "
@@ -133,6 +151,8 @@ def main():
     p.add_argument("--repeat", type=int, default=1)
     p.add_argument("--threads", type=int, default=2)
     p.add_argument("--time", default="/opt/homebrew/bin/gtime")
+    p.add_argument("--trace-mode", choices=("firefox", "native"), default="firefox",
+                   help="Default Firefox trace; native keeps --profile/--stats with no Firefox instrumentation")
     args = p.parse_args()
     summary = json.loads((args.benchmark / "summary.json").read_text())
     if (summary["exit_code"] != 0 or not summary["dependency_artifacts_unchanged"]
@@ -184,6 +204,8 @@ def main():
             setup = json.loads(setup_bytes)
             if setup.get("name") != module or setup.get("imports") is not None:
                 p.error("Expected a matching Lake setup that lets the current source header determine imports")
+            if args.trace_mode == "native":
+                validate_native_setup(setup)
             setup_snapshot, trace_snapshot = label + ".setup.json", label + ".build-trace.json"
             (output / setup_snapshot).write_bytes(setup_bytes)
             (output / trace_snapshot).write_bytes(trace_bytes)
@@ -195,9 +217,7 @@ def main():
             effective = effective_environment(lake, env)
             context_before, mapped_rows = import_context(lake, source, setup, effective, env)
             command = [args.time, "-v", "-o", str(resources), lake, "env", "lean",
-                       "-DautoImplicit=false", "--profile", "--stats",
-                       "-Dtrace.profiler=true", "-Dtrace.profiler.output.pp=true",
-                       "-Dtrace.profiler.output=" + str(events),
+                       "-DautoImplicit=false", *profiling_flags(args.trace_mode, events),
                        "--setup", str(output / setup_snapshot), source]
             print(f"Profiling {module} ({repetition}/{args.repeat})", flush=True)
             start = datetime.now(timezone.utc).isoformat()
@@ -246,7 +266,8 @@ def main():
                       "measurement_valid": completed.returncode == 0 and source_stable and configs_stable and imports_stable and setup_stable and trace_stable,
                       "command": command, "start_utc": start, "exit_code": completed.returncode,
                       "end_utc": end, "wall_seconds": wall,
-                      "log": log.name, "events": events.name, "resources": resources.name}
+                      "log": log.name, "events": events.name if args.trace_mode == "firefox" else None,
+                      "trace_mode": args.trace_mode, "resources": resources.name}
             results.append(result)
             write_json(output / "profiles.json", results)
             if not result["inputs_stable"]:
