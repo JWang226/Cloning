@@ -205,9 +205,10 @@ theorem wernerOutput_nonneg {L s : ℕ} (S : Finset (Fin L)) :
 /-- Unit trace follows from the exact CPTP pullback and the proved Werner law. -/
 theorem wernerOutput_trace_one {L s : ℕ} (hs : 1 ≤ s) (S : Finset (Fin L)) :
     traceCLM (wernerOutput (s := s) S) = 1 := by
-  have htp := (occupationRecovery L s).trace_preserving (wernerOutput (s := s) S)
-  change traceCLM ((occupationRecovery L s).toLinearMap (wernerOutput (s := s) S)) =
-    traceCLM (wernerOutput (s := s) S) at htp
+  have htp :=
+    (traceCLM_apply ((occupationRecovery L s).toLinearMap (wernerOutput (s := s) S))).trans
+      (((occupationRecovery L s).trace_preserving (wernerOutput (s := s) S)).trans
+        (traceCLM_apply (wernerOutput (s := s) S)).symm)
   rw [← htp, occupationRecovery_wernerOutput]
   change traceCLM (vectorMixture (@numberVector s)
     (Cloning.WernerNormalization.occupationLaw S.card L s)) = 1
