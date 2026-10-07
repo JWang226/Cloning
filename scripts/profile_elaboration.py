@@ -79,16 +79,30 @@ def stat_artifacts(paths):
     return {"artifact_count": len(rows), "path_size_mtime_sha256": digest.hexdigest()}, rows
 
 
+def deps_json_imports(parsed):
+    """Validate the pinned rc6 --deps-json result envelope before resolving paths."""
+    headers = parsed.get("imports") if isinstance(parsed, dict) else None
+    if not isinstance(headers, list) or len(headers) != 1 or not isinstance(headers[0], dict):
+        raise ValueError("Expected one Lean import-header result")
+    header = headers[0]
+    result = header.get("result")
+    if header.get("errors") or not isinstance(result, dict):
+        raise ValueError("Cannot parse profile import header: " + str(header))
+    imports = result.get("imports")
+    if (not isinstance(imports, list)
+            or any(not isinstance(row, dict) or not isinstance(row.get("module"), str)
+                   or not row["module"] for row in imports)):
+        raise ValueError("Invalid Lean direct-import list")
+    return imports
+
+
 def import_context(lake, source, setup, effective, env):
     # --deps-json parses the header and returns before elaboration. --deps alone
     # ignores --setup in this Lean version, so resolve its names against the saved
     # setup map first and use the effective search path only for unmapped names.
     parsed = json.loads(subprocess.check_output([lake, "env", "lean", "--deps-json", source],
                                                cwd=PROJECT, env=env, text=True))
-    header = parsed["imports"][0]
-    if header.get("errors") or header.get("result?") is None:
-        raise ValueError("Cannot parse profile import header: " + str(header))
-    imports = header["result?"]["imports"]
+    imports = deps_json_imports(parsed)
     mapped = setup.get("importArts", {})
     search = [project_path(p) for p in (effective["environment"].get("LEAN_PATH") or "").split(os.pathsep) if p]
     search.append(project_path(effective["lean_libdir"]))
