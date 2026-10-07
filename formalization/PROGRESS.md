@@ -1,6 +1,6 @@
 # Mixed-state cloning formalization: completion record
 
-The remaining proof obligations are closed. The current library contains **982 implementation modules**; the complete `lake build All` passed (**4,563 jobs**) and the all-declaration axiom audit passed for **14,345 unique compiled project constants**. Source/artifact stability passed. Comparator and the unmodified independent Nanoda kernel passed against this same audited source.
+The remaining proof obligations are closed. The current library contains **982 implementation modules**; the complete `lake build All` passed (**4,563 jobs**) and the all-declaration shared axiom audit passed for **14,344 unique compiled project constants**. Source/artifact stability passed. Comparator and the unmodified independent Nanoda kernel passed against this same audited source.
 
 The [manuscript-to-Lean map](PROOF_MAP.md) reconciles **all 27 named theorem, proposition, lemma and corollary statements** of the frozen working manuscript snapshot. It records concrete declarations, dimension offsets, root-versus-squared fidelity, uniformity and order of limits. The [completion semantic review](verification/completion-semantic-review.md) records the statement differences found and resolved. Read the [paper](https://arxiv.org/abs/2609.35986); the audited snapshot remains the one identified in [SOURCE.json](SOURCE.json).
 
@@ -24,17 +24,18 @@ The [manuscript-to-Lean map](PROOF_MAP.md) reconciles **all 27 named theorem, pr
 - Pinned Lean: `leanprover/lean4:v4.29.0-rc6`.
 - Pinned Mathlib: `f156f7abd91ac67adb22bf999e5a71ba22e22e41`.
 - Fresh integrated build: passed, 4,563 jobs.
-- Complete compiled-declaration axiom audit: passed in [kernel-compatible-pass](verification/kernel-compatible-pass/run.json), covering 14,345 unique constants and 6,350 source theorems/lemmas.
-- Allowed axioms: only `propext`, `Classical.choice`, `Quot.sound`; no placeholders or added project axioms.
+- Complete compiled-declaration shared axiom audit: passed in [cleanup-pass](verification/cleanup-pass/run.json), covering 14,344 unique constants and 6,349 source theorems/lemmas.
+- Aggregate axioms: only `propext`, `Classical.choice`, `Quot.sound`; no placeholders or added project axioms. The shared audit records the aggregate union, without per-root axiom attribution.
 - Source and compiled-artifact stability checks: passed.
-- [Saved-evidence validation](verification/kernel-compatible-checkpoint.json): passed against the current source/configuration inventory.
-- Audit completed (UTC): `2026-10-04T05:54:37.522297+00:00`.
-- [Comparator run](verification/comparator/records/20261004T055545.209379Z/run.json): passed for 27 named-result statements and proof dependencies; trusted local execution, no sandbox.
-- [Nanoda run](verification/nanoda/records/20261004T055629.624926Z/run.json): passed for every audited project root and its dependencies; 83,433 declarations checked.
+- [Saved-evidence validation](verification/cleanup-checkpoint.json): passed against the current source/configuration inventory.
+- Audit completed (UTC): `2026-10-07T04:19:48.873134+00:00`.
+- [Comparator run](verification/comparator/records/20261007T042117.504957Z/run.json): passed for 27 named-result statements and proof dependencies; trusted local execution, no sandbox.
+- [Nanoda run](verification/nanoda/records/20261007T042711.164065Z/run.json): passed for every audited project root and its dependencies; 83,432 declarations checked.
+- [Current statement review](https://jwang226.github.io/Cloning/statement-review.html): preserves the original AI-assisted endpoint review and records fresh revalidation of three unchanged native Lean type/application probes. This is not a new full semantic review or external peer review.
 
 Reproduce the audit using [scripts/README.md](scripts/README.md) and the [concise reproducer commands](../README.md#check-it-yourself). Comparator's [statement comparison and Lean replay](verification/comparator/README.md) and Nanoda's [independent Rust kernel check](verification/nanoda/README.md) remain distinct from the Lean build, axiom audit, and saved-evidence validation. Cached compiled-input provenance remains trusted.
 
-The [compiler compatibility repair](verification/kernel-compatibility.md) adds 30 `noncomputable` prefixes across 15 files, retaining every old safe project declaration. The historical [completion audit](verification/completion-pass/run.json) covered 14,375 constants; the current full inventory has 14,345 after the 30 generated partial runtime helpers ceased to be generated. No root filtering or checker patch is used.
+The [compiler compatibility repair](verification/kernel-compatibility.md) adds 30 `noncomputable` prefixes across 15 files, retaining every old safe project declaration. The historical [completion audit](verification/completion-pass/run.json) covered 14,375 constants; the subsequent [compatibility audit](verification/kernel-compatible-pass/run.json) covered 14,345 after the 30 generated partial runtime helpers ceased to be generated. The [dead-code sweep](../DEAD_CODE_REPORT_2026-10-06.md) removed one unused private theorem, leaving the current 14,344-constant inventory. The [elaboration report](../ELABORATION_REPORT_2026-10-06.md) records the two measured proof-body changes. No root filtering or checker patch is used.
 
 The initial [Comparator failure](verification/comparator/records/20261004T035736.789819Z/run.json) and [Nanoda export-safety failure](verification/nanoda/records/20261004T040757.497668Z/run.json) remain preserved as historical attempts.
 
