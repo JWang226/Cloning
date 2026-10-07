@@ -1,5 +1,6 @@
 """Synthetic checks for measurement units, provenance, and report safeguards."""
 import copy
+import hashlib
 import importlib.util
 import json
 from pathlib import Path
@@ -50,7 +51,87 @@ def fixture(directory):
                            report.resource_metrics(resources))
 
 
+def completed_profiles(current):
+    """A small fully recorded snapshot, with both of its heavy-tail modules."""
+    configs = {name: hashlib.sha256(name.encode()).hexdigest() for name in report.CONFIGS}
+    current.provenance.update(built_in_stability=True, manifest_verified=True, config_sha256=configs)
+    profiles = []
+    for row in current.sizes:
+        profiles.append({"profile": {
+            "module": row["module"], "source": row["source"],
+            "benchmark_commit": current.summary["commit"],
+            "source_sha256": hashlib.sha256(current.sources[row["source"]].encode()).hexdigest(),
+            "source_matches_benchmark": True, "config_matches_benchmark": True,
+            "config_sha256": dict(configs), "measurement_valid": True, "exit_code": 0}})
+    return {"profile_count": len(profiles), "profiles": profiles}
+
+
 class ReportTests(unittest.TestCase):
+    def test_redacted_inventory_regenerates_counts_and_portable_evidence(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp).resolve()
+            directory = root / "evidence" / "before"
+            directory.mkdir(parents=True)
+            current = fixture(directory)
+            samples = [{"utc": current.summary["start_utc"], "processes": [
+                "100 00:10 0:01 10.0 lean " + str(report.REPO / "formalization/Cloning/A.lean"),
+                "101 00:11 0:02 20.0 lean /unrelated/private-project/B.lean",
+                "102 00:12 0:03 30.0 lake build All"]}]
+            original = json.dumps(samples).encode()
+            digest = hashlib.sha256(original).hexdigest()
+            inventory = report.redact_process_inventory(samples, digest)
+            self.assertNotIn("/unrelated/", json.dumps(inventory))
+            (directory / "process-inventory.json").write_text(json.dumps(inventory))
+            (directory / "process-samples.json").unlink()
+            with patch.object(report, "archive_sources", return_value=current.sources):
+                loaded = report.Snapshot.read(directory)
+            census = report.process_census(loaded.samples)
+            self.assertEqual(census["maxima"], {"owned_source": 1, "other_source": 1, "unresolved": 1})
+            self.assertEqual(census["samples_with_other_source"], 1)
+            self.assertEqual(loaded.provenance["process_inventory"]["original_sha256"], digest)
+            output = report.render(loaded, report_directory=root / "reports")
+            self.assertEqual(output.count("\n## "), 11)
+            self.assertNotIn("/unrelated/", output)
+            self.assertIn("omitted original; counts published separately", output)
+            self.assertIn("[summary.json](../evidence/before/summary.json)", output)
+            inventory["samples"][0]["total"] += 1
+            (directory / "process-inventory.json").write_text(json.dumps(inventory))
+            with self.assertRaisesRegex(ValueError, "counts"):
+                report.read_process_inventory(directory)
+
+    def test_publication_rejects_wrong_benchmark_source_and_config_bindings(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            current = fixture(Path(tmp))
+            profiles = completed_profiles(current)
+            report.require_complete_measurement(current, profiles)
+            for field, value in (("benchmark_commit", "b" * 40),
+                                 ("source_sha256", "0" * 64), ("config_sha256", {})):
+                with self.subTest(field=field):
+                    changed = copy.deepcopy(profiles)
+                    changed["profiles"][0]["profile"][field] = value
+                    with self.assertRaises(ValueError):
+                        report.require_complete_measurement(current, changed)
+
+    def test_publication_rejects_partial_build_or_profiles(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            current = fixture(Path(tmp))
+            profiles = completed_profiles(current)
+            partial_build = copy.deepcopy(current)
+            partial_build.compiled.remove("All")
+            with self.assertRaisesRegex(ValueError, "complete valid project-only build"):
+                report.require_complete_measurement(partial_build, profiles)
+            with self.assertRaisesRegex(ValueError, "profile summary"):
+                report.require_complete_measurement(current, None)
+            partial_profiles = copy.deepcopy(profiles)
+            partial_profiles["profiles"] = partial_profiles["profiles"][:1]
+            partial_profiles["profile_count"] = 1
+            with self.assertRaisesRegex(ValueError, "worst logged modules"):
+                report.require_complete_measurement(current, partial_profiles)
+            failed_profile = copy.deepcopy(profiles)
+            failed_profile["profiles"][0]["profile"]["measurement_valid"] = False
+            with self.assertRaisesRegex(ValueError, "completed, valid"):
+                report.require_complete_measurement(current, failed_profile)
+
     def test_elapsed_hours_minutes_and_fraction(self):
         self.assertEqual(report.elapsed_seconds("1:02:03.50"), 3723.5)
         self.assertEqual(report.elapsed_seconds("4:05.25"), 245.25)

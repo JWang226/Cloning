@@ -14,11 +14,13 @@ import hashlib
 import io
 import json
 import math
+import os
 from pathlib import Path
 import re
 import shlex
 import subprocess
 import tarfile
+from urllib.parse import quote
 
 REPO = Path(__file__).resolve().parents[1]
 SKILL_PIN = "70bb859295edc2abb9ad81f8f6e31ab2adf8ca07"
@@ -174,6 +176,29 @@ def stability_status(snapshot):
     return "unavailable; no source/config stability check recorded"
 
 
+def read_process_inventory(directory):
+    raw = directory / "process-samples.json"
+    if raw.is_file():
+        data = raw.read_bytes()
+        return json.loads(data), {"form": "raw", "original_sha256": hashlib.sha256(data).hexdigest()}
+    redacted = directory / "process-inventory.json"
+    inventory = load_json(redacted)
+    if (inventory.get("schema") != "cloning-redacted-process-inventory-v1"
+            or not re.fullmatch(r"[0-9a-f]{64}", inventory.get("source_file_sha256", ""))
+            or inventory.get("omitted_original") != "process-samples.json"):
+        raise ValueError("Invalid redacted process inventory provenance")
+    samples = inventory["samples"]
+    for sample in samples:
+        counts = sample.get("counts", {})
+        if (set(counts) != {"owned_source", "other_source", "unresolved"}
+                or any(type(value) is not int or value < 0 for value in counts.values())
+                or type(sample.get("total")) is not int or sum(counts.values()) != sample["total"]):
+            raise ValueError("Invalid redacted process inventory counts")
+    return samples, {"form": "redacted counts; original omitted",
+                     "original_sha256": inventory["source_file_sha256"],
+                     "redacted_sha256": hashlib.sha256(redacted.read_bytes()).hexdigest()}
+
+
 def timing_rows(summary, log, modules):
     """Keep displayed durations as estimates and reject duplicate module times."""
     timings = {}
@@ -247,11 +272,12 @@ class Snapshot:
             raise ValueError("All does not reach every recorded owned source")
         log = (directory / "build.log").read_text()
         timings, compiled = timing_rows(summary, log, modules)
-        samples = load_json(directory / "process-samples.json")
+        samples, inventory = read_process_inventory(directory)
         sources = archive_sources(summary["commit"], [row["source"] for row in sizes])
         if any(len(sources[row["source"]].splitlines()) != row["lines"] for row in sizes):
             raise ValueError("Measured source line counts differ from recorded sizes")
         provenance = source_provenance(directory, summary, sizes, sources)
+        provenance["process_inventory"] = inventory
         return cls(directory, summary, sizes, graph, log, samples, sources,
                    timings, compiled, resource_metrics(summary["resources"]), provenance)
 
@@ -286,8 +312,8 @@ def process_census(samples, repo=REPO):
     foreign_sources = set()
     foreign_samples = 0
     for sample in samples:
-        counts = Counter()
-        for line in sample["processes"]:
+        counts = Counter(sample.get("counts", {}))
+        for line in sample.get("processes", []):
             fields = line.split(None, 4)
             command = fields[4] if len(fields) == 5 else line
             try:
@@ -309,6 +335,79 @@ def process_census(samples, repo=REPO):
             maxima[group] = max(maxima[group], counts[group])
     return {"maxima": dict(maxima), "foreign_source_paths": sorted(foreign_sources),
             "samples_with_other_source": foreign_samples}
+
+
+def redact_process_inventory(samples, original_sha256, repo=REPO):
+    """Derive count-only evidence; never alter the original process samples."""
+    if not re.fullmatch(r"[0-9a-f]{64}", original_sha256):
+        raise ValueError("Expected original process-sample SHA-256")
+    rows = []
+    for sample in samples:
+        census = process_census([sample], repo)
+        counts = {key: census["maxima"].get(key, 0) for key in ("owned_source", "other_source", "unresolved")}
+        rows.append({"utc": sample.get("utc"), "counts": counts, "total": sum(counts.values())})
+    return {"schema": "cloning-redacted-process-inventory-v1", "source_file_sha256": original_sha256,
+            "omitted_original": "process-samples.json", "samples": rows,
+            "note": "Derived per-sample counts only; unrelated process paths and command lines are omitted."}
+
+
+def evidence_link(path, report_directory, label=None):
+    if report_directory is None:
+        return "`" + str(path) + "`"
+    relative = os.path.relpath(path, report_directory).replace(os.sep, "/")
+    return "[" + (label or relative) + "](" + quote(relative, safe="/.") + ")"
+
+
+def validate_profile_binding(snapshot, profiles):
+    if profiles is None:
+        return
+    rows = profiles["profiles"]
+    if profiles.get("profile_count", len(rows)) != len(rows):
+        raise ValueError("Profile summary count differs from its recorded profiles")
+    sources = {row["module"]: row["source"] for row in snapshot.sizes}
+    for result in rows:
+        record = result["profile"]
+        if record.get("benchmark_commit") and record["benchmark_commit"] != snapshot.summary["commit"]:
+            raise ValueError("Profile belongs to a different benchmark commit")
+        if record["module"] not in sources:
+            raise ValueError("Profile module is outside the recorded benchmark scope")
+        source = record.get("source")
+        if source:
+            source = source if source.startswith("formalization/") else "formalization/" + source
+            if source != sources[record["module"]]:
+                raise ValueError("Profile source differs from its benchmark module")
+            expected = hashlib.sha256(snapshot.sources[source].encode()).hexdigest()
+            if record.get("source_matches_benchmark") is True and record.get("source_sha256") != expected:
+                raise ValueError("Profile source hash contradicts its benchmark-match flag")
+
+
+def require_complete_measurement(snapshot, profiles):
+    """Gate publishable full snapshots; diagnostic reports can omit this gate."""
+    summary, provenance = snapshot.summary, snapshot.provenance
+    stable = provenance.get("built_in_stability")
+    if stable is None and provenance.get("supplemental_stability"):
+        stable = provenance["supplemental_stability"]["unchanged"]
+    if (summary["exit_code"] != 0 or summary["errors"] or summary["sorry_messages"]
+            or summary["upstream_compilations"] or not summary["dependency_artifacts_unchanged"]
+            or stable is not True or not provenance.get("manifest_verified")
+            or snapshot.compiled != {row["module"] for row in snapshot.sizes}):
+        raise ValueError("A complete valid project-only build with stable inputs is required")
+    if profiles is None or not profiles["profiles"]:
+        raise ValueError("Completed own-file profile summary is required")
+    validate_profile_binding(snapshot, profiles)
+    profiled = {result["profile"]["module"] for result in profiles["profiles"]}
+    required = {row["module"] for row in summary["timings"][:5]}
+    if not required.issubset(profiled):
+        raise ValueError("Completed profiles of the five worst logged modules are required")
+    for result in profiles["profiles"]:
+        record = result["profile"]
+        if (record.get("exit_code") != 0 or record.get("measurement_valid") is not True
+                or record.get("source_matches_benchmark") is not True
+                or record.get("config_matches_benchmark") is not True
+                or record.get("benchmark_commit") != summary["commit"]
+                or not record.get("source") or not record.get("source_sha256")
+                or record.get("config_sha256") != provenance.get("config_sha256")):
+            raise ValueError("Profiles must be completed, valid, and bound to the measured source/config")
 
 
 def comparison(current, prior):
@@ -353,7 +452,7 @@ def comparison(current, prior):
                    "heuristics do not identify the cause of a timing change. Two snapshots cannot establish a three-report monotonic trend.")
 
 
-def profile_section(profiles):
+def profile_section(profiles, report_directory=None):
     if profiles is None:
         return "No warm own-file profiles supplied. Local phase costs and cleanup causes remain unestablished."
     rows, details = [], []
@@ -373,13 +472,17 @@ def profile_section(profiles):
             ["Benchmark commit", record.get("benchmark_commit", "unavailable")],
             ["Source matches recorded profile commit", record.get("source_matches_commit", "unavailable")],
             ["Source matches benchmark commit", record.get("source_matches_benchmark", "unavailable")],
-            ["Preserved variant source", record.get("source_snapshot") or "none"],
+            ["Preserved profile source", record.get("source_snapshot") or "none"],
             ["Configuration matches benchmark", record.get("config_matches_benchmark", "unavailable")],
             ["Source/config/artifact/setup inputs stable", record.get("inputs_stable", "unavailable")],
             ["Measurement valid", record.get("measurement_valid", "unavailable")],
             ["Import context", record.get("import_context", "unavailable")]]))
         if record.get("environment"):
-            details.append("Selected effective profile environment: `" + markdown(record["environment"]) + "`.")
+            environment = (record.get("environment_overrides") or
+                           {key: value for key, value in record["environment"].items()
+                            if key in {"LEAN_NUM_THREADS", "LAKE_ARTIFACT_CACHE", "LANG", "LC_ALL"}})
+            details.append("Controlled profile environment: `" + markdown(environment) + "`. "
+                           "The raw metadata records selected effective environment and import paths.")
         if record.get("config_sha256"):
             details.append(table(["Configuration input", "SHA-256"], sorted(record["config_sha256"].items())))
         stats = result.get("environment_stats", {})
@@ -426,7 +529,7 @@ def profile_section(profiles):
     return note + "\n\n" + table(["Module", "Run", "Exit", "Process wall s", "Phase sum s", "Dominant screen", ">100 ms events"], rows) + "\n\n" + "\n\n".join(details)
 
 
-def render(current, profiles=None, prior=None, notes=None):
+def render(current, profiles=None, prior=None, notes=None, report_directory=None):
     s, r = current.summary, current.resources
     old = prior.summary if prior else {}
     oldr = prior.resources if prior else {}
@@ -438,7 +541,8 @@ def render(current, profiles=None, prior=None, notes=None):
     census = process_census(current.samples)
     load_note = table(["Global process inventory", "Observed"], [
         ["Samples", len(current.samples)],
-        ["Maximum total Lean/Lake lines", max((len(x["processes"]) for x in current.samples), default=0)],
+        ["Maximum total Lean/Lake lines", max((x.get("total", len(x.get("processes", [])))
+                                              for x in current.samples), default=0)],
         ["Maximum compiler lines with owned absolute .lean source", census["maxima"].get("owned_source", 0)],
         ["Maximum compiler lines with another absolute .lean source", census["maxima"].get("other_source", 0)],
         ["Maximum lines with unresolved source/cwd", census["maxima"].get("unresolved", 0)],
@@ -456,7 +560,11 @@ def render(current, profiles=None, prior=None, notes=None):
         "The raw inventory can include this run and concurrent projects. "
         "Absolute source paths support the limited attribution above; a Lake command alone does not disclose its cwd. "
         "Presence alone is informational; "
-        "it neither invalidates the run nor establishes artifact mutation or causality.\n\n" + comparison(current, prior)))
+        "it neither invalidates the run nor establishes artifact mutation or causality. "
+        + ("This report uses redacted count evidence; the original process samples are omitted from the public bundle. "
+           if current.provenance.get("process_inventory", {}).get("form") != "raw"
+           and current.provenance.get("process_inventory") else "")
+        + "\n\n" + comparison(current, prior)))
     excluded = re.search(r"comment-only files \(excluded\):\s*(\d+)",
                          (current.directory / "skill-size.txt").read_text())
     sections.append(("2. Size snapshot", table(["Metric", "Measured", "Prior", "Δ"], [
@@ -561,7 +669,7 @@ def render(current, profiles=None, prior=None, notes=None):
         "facades without one are grouped at root. A module may later open other namespaces. "
         "This grouping aggregates rounded elapsed job durations, not CPU.\n\n" +
         table(["First declared namespace", "Modules", "Code lines", "Logged elapsed s", "Prior s", "Δ s"], group_rows)))
-    sections.append(("7. Own-file profiles", profile_section(profiles)))
+    sections.append(("7. Own-file profiles", profile_section(profiles, report_directory)))
     findings = (notes.strip() if notes else
                 "Measurement only: no cleanup intervention or mathematical change is claimed by this generator. "
                 "Screen the heavy tail with serial warm profiles. Apply a named lever only after phase attribution "
@@ -577,16 +685,19 @@ def render(current, profiles=None, prior=None, notes=None):
         "comparator/nanoda certificates or their historical pins."))
     env = " ".join(shlex.quote(k + "=" + v) for k, v in sorted(s["environment"].items()))
     command = env + " " + shlex.join(s["command"])
+    helper = current.directory.parent / "skills/count_lean_lines.py"
+    helper_path = (str(helper.relative_to(REPO)) if helper.is_relative_to(REPO)
+                   else "EVIDENCE_DIRECTORY/skills/count_lean_lines.py")
     repeat_command = shlex.join(["python3", "scripts/benchmark_elaboration.py", "--output",
         ".verify-work/elaboration-campaign/NEW_MEASUREMENT", "--threads",
         s["environment"].get("LEAN_NUM_THREADS", "2"), "--size-helper",
-        ".verify-work/elaboration-campaign/skills/count_lean_lines.py", "--time", s["command"][0]])
+        helper_path, "--time", "gtime"])
     methodology = ("Recorded timed command (working directory: `formalization`):\n\n```sh\n" + command + "\n```\n\n"
         "The project-only wrapper records the commit, rejects uncommitted owned proof/config changes, "
         "archives source sizes, guards dependency artifacts, invalidates only exact owned module artifacts, "
         "and records process samples. For a repeat, choose a fresh output directory:\n\n```sh\n"
         + repeat_command + "\n```\n\n"
-        "Both snapshots use `LAKE_ARTIFACT_CACHE=false`; upstream oleans remain inputs. "
+        f"Recorded Lake artifact-cache setting: `{s['environment'].get('LAKE_ARTIFACT_CACHE', 'unavailable')}`; upstream oleans remain inputs. "
         "Record the same host, GNU-time version, and thread setting. Profile serially after the build, "
         "then summarize the raw text/trace files before rendering this report.\n\n"
         "```sh\npython3 scripts/report_elaboration.py --benchmark BENCHMARK_DIRECTORY "
@@ -594,18 +705,23 @@ def render(current, profiles=None, prior=None, notes=None):
     sections.append(("10. Methodology", methodology))
     artifacts = []
     for filename in ("summary.json", "size.json", "imports.json", "skill-size.txt", "build.log",
-                     "resources.txt", "process-samples.json", "dependencies-before.json", "dependencies-after.json", "invalidated.json",
+                     "resources.txt", "process-samples.json", "process-inventory.json", "dependencies-before.json", "dependencies-after.json", "invalidated.json",
                      "source-config-hashes.json", "source-config-stability.json", "benchmark-runner.py"):
         path = current.directory / filename
         if path.is_file():
-            artifacts.append([filename, hashlib.sha256(path.read_bytes()).hexdigest()])
-    pointers = f"Measurement directory: `{current.directory}`. "
-    pointers += (f"Prior benchmark: `{prior.directory}` at `{prior.summary['commit']}`; role: prior measurement for trend comparison."
+            artifacts.append([evidence_link(path, report_directory, filename) if report_directory else filename,
+                              hashlib.sha256(path.read_bytes()).hexdigest()])
+    inventory = current.provenance.get("process_inventory", {})
+    if inventory.get("form") != "raw" and inventory.get("original_sha256"):
+        artifacts.append(["process-samples.json (omitted original; counts published separately)", inventory["original_sha256"]])
+    pointers = "Measurement directory: " + evidence_link(current.directory, report_directory) + ". "
+    pointers += ("Prior benchmark: " + evidence_link(prior.directory, report_directory) +
+                 f" at `{prior.summary['commit']}`; role: prior measurement for trend comparison."
                  if prior else "No prior benchmark supplied.")
     pointers += "\n\n" + table(["Evidence file", "SHA-256"], artifacts)
     if profiles and profiles.get("report_input_path"):
         profile_path = Path(profiles["report_input_path"])
-        pointers += (f"\n\nProfile summary: `{profile_path}`; SHA-256: "
+        pointers += ("\n\nProfile summary: " + evidence_link(profile_path, report_directory) + "; SHA-256: "
                      f"`{hashlib.sha256(profile_path.read_bytes()).hexdigest()}`. "
                      "Its per-profile input hashes bind the raw text and trace evidence.")
     sections.append(("11. Pointers", pointers))
@@ -621,10 +737,15 @@ def main():
     parser.add_argument("--prior", type=Path, help="Prior benchmark directory")
     parser.add_argument("--notes", type=Path, help="Reviewed findings/cleanup notes in Markdown")
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--portable", action="store_true", help="Use evidence links relative to the output report")
+    parser.add_argument("--require-complete", action="store_true", help="Require a valid full build and completed matching profiles")
     args = parser.parse_args()
     current = Snapshot.read(args.benchmark)
     prior = Snapshot.read(args.prior) if args.prior else None
     profiles = load_profiles(args.profiles)
+    validate_profile_binding(current, profiles)
+    if args.require_complete:
+        require_complete_measurement(current, profiles)
     raw_inputs = {p.resolve() for p in current.directory.iterdir() if p.is_file()}
     if prior:
         raw_inputs.update(p.resolve() for p in prior.directory.iterdir() if p.is_file())
@@ -638,7 +759,8 @@ def main():
         raw_inputs.add(args.notes.resolve())
     if args.output.resolve() in raw_inputs:
         parser.error("Refusing to overwrite measurement inputs or reviewed notes")
-    report = render(current, profiles, prior, args.notes.read_text() if args.notes else None)
+    report = render(current, profiles, prior, args.notes.read_text() if args.notes else None,
+                    args.output.parent.resolve() if args.portable else None)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(report)
     print(f"Rendered elaboration report: {args.output}")

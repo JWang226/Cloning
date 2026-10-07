@@ -13,6 +13,7 @@ from html.parser import HTMLParser
 import json
 from pathlib import Path, PurePosixPath
 import re
+import shlex
 import sys
 from urllib.parse import unquote, urlsplit, urlunsplit
 from paper import RESULT_ARGUMENTS, paper_structure
@@ -44,6 +45,15 @@ def sha(data):
 
 def slug(value):
     return re.sub(r"[^a-z0-9]+", "-", value.lower()).strip("-")
+
+
+def semantic_probe_commands(review):
+    """Replay the same probe files selected by the validated review record."""
+    paths = [shlex.quote(entry["probe"]) for entry in review["results"].values()]
+    return ("for probe in " + " \\\n  ".join(paths) + "; do\n"
+            '  cp "$probe" "/tmp/cloning-semantic-probe.lean" || exit 1\n'
+            '  (cd formalization && lake env lean -DautoImplicit=false "/tmp/cloning-semantic-probe.lean") || exit 1\n'
+            "done")
 
 
 def offline_proof_map(text):
@@ -880,10 +890,7 @@ class Wiki:
                      f'<a href="reference/semantic-pilot/{PurePosixPath(entry["log"]).name}">Recorded output</a></p></section>')
         body += ('<h2>Reproduce the probes</h2><p>After preparing the project with '
                  '<code>bash scripts/verify.sh lean</code>, run from the repository root with <code>lake</code> on your PATH:</p>'
-                 '<pre class="code-block"><code>for name in known-spectrum unknown-spectrum projector; do\n'
-                 '  cp "formalization/verification/semantic-pilot/$name.lean.txt" "/tmp/cloning-semantic-$name.lean" || exit 1\n'
-                 '  (cd formalization &amp;&amp; lake env lean -DautoImplicit=false "/tmp/cloning-semantic-$name.lean") || exit 1\n'
-                 'done</code></pre>'
+                 '<pre class="code-block"><code>' + esc(semantic_probe_commands(review)) + '</code></pre>'
                  '<p>A successful probe confirms the included Lean applications. The English correspondence judgments require reading the paper and definitions; '
                  'these probes do not automate that judgment or recheck every upstream proof.</p>'
                  '<h2>Review record</h2>'

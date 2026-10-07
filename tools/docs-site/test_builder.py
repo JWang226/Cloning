@@ -5,7 +5,7 @@ import json
 import re
 from unittest.mock import patch
 
-from build import ARXIV, ROOT, Wiki, checker_verdict, lean_mask, offline_proof_map, sha, statement_end, validate_links
+from build import ARXIV, ROOT, Wiki, checker_verdict, lean_mask, offline_proof_map, semantic_probe_commands, sha, statement_end, validate_links
 from paper import paper_structure
 
 
@@ -159,6 +159,23 @@ class GuideCorrespondenceTests(unittest.TestCase):
 
 
 class StatementReviewTests(unittest.TestCase):
+    def test_reproducer_uses_selected_cleanup_probe_paths(self):
+        base = "formalization/verification/semantic-pilot/cleanup-pass/"
+        paths = [base + "cleanup-" + name + ".lean.txt"
+                 for name in ("known-spectrum", "unknown-spectrum", "projector")]
+        review = {"results": {str(i): {"probe": path} for i, path in enumerate(paths)}}
+        commands = semantic_probe_commands(review)
+        for path in paths:
+            self.assertIn(path, commands)
+        self.assertNotIn("semantic-pilot/$name", commands)
+        self.assertIn('cp "$probe"', commands)
+        self.assertIn("lake env lean -DautoImplicit=false", commands)
+
+    def test_reproducer_quotes_selected_paths_for_shell(self):
+        path = "formalization/verification/semantic-pilot/probe $(touch unsafe).lean.txt"
+        commands = semantic_probe_commands({"results": {"example": {"probe": path}}})
+        self.assertIn("'" + path + "'", commands)
+
     def wiki(self):
         wiki = Wiki.__new__(Wiki)
         base = "formalization/verification/semantic-pilot/"
