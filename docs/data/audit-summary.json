@@ -23,7 +23,7 @@
   "independent_checkers": {
     "comparator": {
       "recorded_status": "passed",
-      "displayed_verdict": "Passed: 27 statements and proof dependencies, Lean kernel replay"
+      "displayed_verdict": "Passed: 27 target types and their defining constants; proof axiom audit and Lean kernel replay"
     },
     "nanoda": {
       "recorded_status": "passed",

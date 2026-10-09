@@ -1,6 +1,6 @@
 {
   "generator": "tools/docs-site/build.py",
-  "generator_sha256": "5ba595f869d4a1c83c3a1e68fa8f7b63fad949de72e33f1ab1a3142281a345ec",
+  "generator_sha256": "c4e5e880d31bbc45376f9e6ad7152bd23e73757ec9ca3d390f80a6710fd9ae59",
   "recorded_lean_audit": {
     "directory": "verification/cleanup-pass",
     "run_sha256": "cd6735524ed4f60d02fded4b846eaa349d36fc3d151df5768ddc5fcfe4ada61b"
@@ -15,7 +15,7 @@
     "paper_sections": 35,
     "guides_with_paper_correspondence": 12,
     "guide_steps_with_paper_references": 53,
-    "validated_guide_and_map_declarations": 133,
+    "validated_guide_and_map_declarations": 138,
     "search_entries": 8883
   },
   "inputs": {
@@ -1005,12 +1005,13 @@
     "formalization/Cloning/YoungUniformLocalQuantization.lean": "3c8cb6d60b1907b7cfa0f597d4beb90c9ac583c1a8b8cd933c06a4234428495c",
     "formalization/Cloning/YoungUniformLocalSampleShape.lean": "62d071a1449eb706155171b89f4f1bf54d089d6ac3ff2554b67748b67b712f80",
     "formalization/Cloning/YoungUniformLocalScheffe.lean": "b193953c8c415dc0d6ec843029e4a19d782abfd9e4dc641da6ecac7ce641f3cd",
-    "formalization/PROOF_MAP.md": "086472d5eaea26854553112dee9bc584ac57a8ced4e63ecbbc73831b883c2cdf",
+    "formalization/PROOF_MAP.md": "9613a7a93eebb7402e6ab53ff39356090bf934672edeef9b371b974b71ea99a5",
     "formalization/lean-toolchain": "dc6d65016fad3123d44bf17b5bf0598286284ab16ba75d5c17eb22ed11f47361",
     "formalization/reference/cloning.tex": "6f2453656031201968aef5cc9c043f7116bb7a1ed1cd2cebb2b905e3df94038d",
     "formalization/scripts/README.md": "460f89e4da747e24e89e95d38f4293d2b44a8053f588cce624d95a5239579e0d",
     "formalization/scripts/check_checkpoint.py": "9dd054826892f7f4dc988737696b15a13df0f63edab327c920c030a84e1df1e5",
     "formalization/scripts/shared_audit.py": "3a039570d48206f741b83bbea4d4003cf3361b00604c33239d0af2bab5f53540",
+    "formalization/verification/arxiv-v1-provenance-2026-10-08.json": "856cddd95174a32b6c5221f2900ce16940fba3f59db41ea87a3850c18d8aa559",
     "formalization/verification/cleanup-pass/Audit.lean": "8dfba344f72aa69b20f4c4aba72ca7a04789b1f1a8e9303ace46f1d32c66da77",
     "formalization/verification/cleanup-pass/audit-inputs.json": "004eae3e72851f64e1190a72acb0982893308c796bade6097609918cf31963dd",
     "formalization/verification/cleanup-pass/audit-inventory.json": "140c18b327db207d74041257d2a6cc8b822dbf46d64157712ec31bb6a009f9ea",
@@ -1122,6 +1123,16 @@
       "name": "Cloning.MultimodeCoherent.quantumChannel_diagonal_existsUnique_idler",
       "file": "formalization/Cloning/WeylDiagonalRepresentation.lean",
       "line": 31
+    },
+    {
+      "name": "Cloning.PCTGlobal.channel_matrix_apply",
+      "file": "formalization/Cloning/PCTGlobalPhysical.lean",
+      "line": 83
+    },
+    {
+      "name": "Cloning.PCTGlobal.sectorChannel_physical_sandwich",
+      "file": "formalization/Cloning/PCTGlobalWerner.lean",
+      "line": 156
     },
     {
       "name": "Cloning.PCTJointGaussianWhitening.normalized_score_integral_eq_intrinsic",
@@ -1509,9 +1520,24 @@
       "line": 43
     },
     {
+      "name": "Cloning.TensorLie.partitionCharacterPolynomial_weyl",
+      "file": "formalization/Cloning/TensorSchurDecompositionWeylCharacter.lean",
+      "line": 62
+    },
+    {
       "name": "Cloning.TensorLie.physicalCartanMatrixChannel_rank_supported_compression",
       "file": "formalization/Cloning/TensorRankCartanCompression.lean",
       "line": 53
+    },
+    {
+      "name": "Cloning.TensorLie.recursivePhysicalDecomposition_copyCount",
+      "file": "formalization/Cloning/TensorSchurDecompositionMultiplicity.lean",
+      "line": 94
+    },
+    {
+      "name": "Cloning.TensorLie.recursivePhysicalDecomposition_is_decomposition",
+      "file": "formalization/Cloning/TensorSchurMultiplicityDecomposition.lean",
+      "line": 67
     },
     {
       "name": "Cloning.TensorLie.sectorGibbsDensity_padSpectrum",
@@ -1731,8 +1757,9 @@
     "assets/vendor/katex/LICENSE": "6d1e989da2c3ac139dc1439143968d201485c6895f1cd5f6c0791bbcdef6296a",
     "assets/vendor/katex/README.md": "4415574dcc535d242e7747694ffb4c3ca663c3d09612cc7fc5fd1279406950ab",
     "assets/vendor/katex/katex.min.js": "403aa468599d531038314eeb0c40bd70f692ed8a62a87914ccd7584ad810f99f",
-    "correspondence.html": "476f8ba8f8c98ad758a8814768ae27baa6c8e52cc11eb74f226fa9cf1df09694",
-    "data/audit-summary.json": "1bb3f7cfaf913fbe1951a666f41070e8de87f91fa4cb80248209802078453407",
+    "correspondence.html": "bfb64b07c066f10cd5990857d0ceeee96bfa67df12c067b54eff17eb03524149",
+    "data/arxiv-v1-provenance.json": "856cddd95174a32b6c5221f2900ce16940fba3f59db41ea87a3850c18d8aa559",
+    "data/audit-summary.json": "181098ab29ad5bd06602fd68a1006f0c77b492e205631f83de6fa31a2624dfa4",
     "data/comparator-run.json": "90446abcf031bf2b76f350cf2f96d080108adacf153eec6c66a719e868e684f3",
     "data/comparator-status.json": "55b6dd8af165099d7509fa098968041483b9442369f66e2ed3b38269db8157bf",
     "data/dependencies.json": "b350c96def49f05cc87a31bb04a00eb760444792e1c7fdf8b23ca3943df4f97c",
@@ -1756,7 +1783,7 @@
     "guides/unknown-spectrum.html": "4286b3b1926e16007e4d84e3be1bcb382d0b79dbeb16a87a56a99bad68c81e33",
     "guides/young-laws.html": "b84d1e99e5ff159c6e2daba1afd88e39a0532dc5f872d90f1a7ed660f7e4212b",
     "index.html": "1c2eb7e7af5e941481ba4f9052e09b33d983769f99e47be238d0943290934297",
-    "reference/PROOF_MAP.md": "db9ae5ca651b0da0c23073672a3d4eab8b3c0b0fade79d3c1c6a9356778f0d03",
+    "reference/PROOF_MAP.md": "18087af3e06d3c169e4b44218975a25ce13c65613af7f0f7235082b16404a05b",
     "reference/VERIFICATION.md": "460f89e4da747e24e89e95d38f4293d2b44a8053f588cce624d95a5239579e0d",
     "reference/cloning.tex": "6f2453656031201968aef5cc9c043f7116bb7a1ed1cd2cebb2b905e3df94038d",
     "reference/semantic-pilot/cleanup-known-spectrum-run.json": "323edcb5a8ffb9e0f08c43f6b7f22c6c606f3397498aa6297c979c61d795bbe2",
@@ -3768,7 +3795,7 @@
     "source/raw/Cloning.YoungUniformLocalQuantization.lean": "3c8cb6d60b1907b7cfa0f597d4beb90c9ac583c1a8b8cd933c06a4234428495c",
     "source/raw/Cloning.YoungUniformLocalSampleShape.lean": "62d071a1449eb706155171b89f4f1bf54d089d6ac3ff2554b67748b67b712f80",
     "source/raw/Cloning.YoungUniformLocalScheffe.lean": "b193953c8c415dc0d6ec843029e4a19d782abfd9e4dc641da6ecac7ce641f3cd",
-    "statement-review.html": "596e52d297a54584589b2ed8aa3ca7a9c27f7f5b3f7fcf137c4b739b7293dae3",
-    "verification.html": "16fa2f984526f1ca68d888da491f3c972fbb9061d7d44d69e62ad4b7c843d981"
+    "statement-review.html": "0b89e608743a2b9fd1d3245f66e6f9b8365b8b5749b55a0e79a984ab21bd59aa",
+    "verification.html": "920b9c8a303a91413db601583959bda82da408b4804cbac94b536f37933c5201"
   }
 }

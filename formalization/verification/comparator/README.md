@@ -33,9 +33,10 @@ lock update.
 
 The [current status](status.json) records a successful full
 [Comparator run](records/20261007T042117.504957Z/run.json) bound to the
-[cleanup audit](../cleanup-pass/run.json). All 27 explicit
-statements and their proof dependencies passed statement comparison, axiom
-checking, and Lean kernel replay using trusted local execution, no sandbox.
+[cleanup audit](../cleanup-pass/run.json). All 27 explicit target types and the
+constants defining those types matched. The solution proofs and their
+dependencies passed axiom checking and Lean kernel replay using trusted local
+execution, no sandbox.
 Earlier failed and passed attempts remain in the status history.
 
 ## Prerequisites and platforms
@@ -112,8 +113,11 @@ and its proofs are not the candidate solution. The solution gives real proofs.
 The challenge does not obtain its type by inspecting a target theorem or
 defining a synonym for that theorem's inferred type.
 
-The challenge uses this project's mathematical definitions. Their trusted
-reference is the exact source/config inventory in the **hash-pinned passed
+This comparison is project-relative: the challenge and solution share this
+project's mathematical definitions. Explicit target types do not constitute
+independent authorship or independent review of the manuscript correspondence.
+The definitions' trusted reference is the exact source/config inventory in the
+**hash-pinned passed
 full audit selected by tools-lock.json**, not a fresh snapshot silently accepted at runtime.
 Changes to those sources, project configuration, or pinned challenge files
 cause rejection. Dependency source checkouts must match the immutable Lake
@@ -131,12 +135,15 @@ comparison walks definitions and their dependencies, so merely substituting a
 different mathematical definition in the solution does not pass. The allowed
 axioms are only `propext`, `Quot.sound`, and `Classical.choice`.
 
-Comparator's scope is the selected 27 statements and their proof dependencies.
+Comparator compares the selected 27 target types and the constants defining
+those types. It checks the axioms used by the solution proofs and their
+dependencies, then replays them in Lean's kernel.
 It does not automatically replay every unrelated declaration merely because a
 module was imported. The [Nanoda reproducer](../nanoda/README.md) separately
 targets **all 14,344 audited project constants and their dependencies** with an
-independent Rust kernel. Neither check establishes that a human specification
-faithfully describes the manuscript; the explicit statements and
+independent Rust kernel. Neither check establishes that the shared definitions
+or target statements faithfully describe the manuscript; the explicit
+statements and
 `../../PROOF_MAP.md` remain the material for that review.
 
 ## Runtime and evidence

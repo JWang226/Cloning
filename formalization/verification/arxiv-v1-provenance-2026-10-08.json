@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-08",
+  "paper_url": "https://arxiv.org/abs/2609.35986v1",
+  "source_package_endpoint": "https://arxiv.org/src/2609.35986v1",
+  "retrieval": "HTTPS download with certificate verification; archive inspected as data without executing its contents",
+  "archive_bytes": 61635,
+  "archive_sha256": "08a6a2aa1a815632b023cdfbc5835c448cb3f2c7ce4087a931a381f2caa5b08d",
+  "archive_format": "tar.gz",
+  "archive_member": "cloning.tex",
+  "member_bytes": 197184,
+  "member_sha256": "6f2453656031201968aef5cc9c043f7116bb7a1ed1cd2cebb2b905e3df94038d",
+  "frozen_file": "formalization/reference/cloning.tex",
+  "frozen_bytes": 197184,
+  "frozen_sha256": "6f2453656031201968aef5cc9c043f7116bb7a1ed1cd2cebb2b905e3df94038d",
+  "direct_byte_comparison": "equal",
+  "scope": "Resolves identity of the frozen working manuscript with official arXiv v1. Does not establish identity with the original uploaded attachment or later manuscript versions; SOURCE.json remains unchanged."
+}

@@ -1,20 +1,20 @@
 # Mixed-state quantum cloning
 
-Lean proofs for **all 27 named results** in the frozen reference snapshot: known- and unknown-spectrum cloning, projector-state optimality, purify–clone–trace comparisons, and supporting estimates. Read the [paper](https://arxiv.org/abs/2609.35986); the audited manuscript snapshot is identified in [SOURCE.json](formalization/SOURCE.json).
+Lean proofs for mixed-state quantum cloning: known- and unknown-spectrum cloning, projector-state optimality, purify–clone–trace comparisons, and supporting estimates. Read the [paper](https://arxiv.org/abs/2609.35986); the audited manuscript snapshot is identified in [SOURCE.json](formalization/SOURCE.json).
 
 [Proof website](https://jwang226.github.io/Cloning/) ·
 [Paper → Lean proof](https://jwang226.github.io/Cloning/correspondence.html) ·
 [Dependency map](https://jwang226.github.io/Cloning/dependencies.html) ·
 [Verification guide](https://jwang226.github.io/Cloning/verification.html)
 
-The guides connect paper sections and informal arguments to exact Lean declarations. The [proof map](formalization/PROOF_MAP.md) records the correspondence, assumptions, and scope; the [bundled website](docs/index.html) also works offline. A focused [statement review](https://jwang226.github.io/Cloning/statement-review.html) checks Theorems 1.1–1.3 and explains the projector cloner’s different finite coupling construction.
+The guides connect paper sections and informal arguments to exact Lean declarations. The [proof map](formalization/PROOF_MAP.md) covers **27 named results** and records assumptions and differences in scope; the [bundled website](docs/index.html) also works offline. The projector optimum is proved with a uniformly attaining overlap-coupling cloner; its identification with the paper’s finite transportation-LP construction remains unproved. The [statement review](https://jwang226.github.io/Cloning/statement-review.html) and [follow-up definition trace](formalization/verification/statement-audit-response-2026-10-08.md) explain this gap and the existing physical Schur and PCT bridges.
 
 ## How it was verified
 
 All three checks passed against the same pinned source snapshot:
 
 - **Lean:** 982 implementation modules; shared axiom audit of **14,344 project constants**, with aggregate axioms `propext`, `Classical.choice`, and `Quot.sound`. [Audit record](formalization/verification/cleanup-pass/run.json).
-- **Comparator:** all **27 explicit statements** and their proof dependencies matched; axiom checking and Lean kernel replay passed. The recorded run used trusted local execution without a sandbox. [Run record](formalization/verification/comparator/records/20261007T042117.504957Z/run.json).
+- **Comparator:** all **27 explicit target types** and the constants defining those types matched. Their solution proofs passed the three-axiom audit and Lean kernel replay. The recorded run used trusted local execution without a sandbox. [Run record](formalization/verification/comparator/records/20261007T042117.504957Z/run.json).
 - **Nanoda:** the pinned, unmodified independent Rust kernel checked **83,432 exported declarations**, covering every project constant and its dependencies. [Run record](formalization/verification/nanoda/records/20261007T042711.164065Z/run.json).
 
 An [earlier macOS run](formalization/verification/shared-audit-check.json) with compiled caches passed the shared Lean build + audit in **36 seconds**, versus **65 minutes** for the previous auditor, with identical coverage and aggregate axioms at that earlier source snapshot. The [earlier combined run](formalization/verification/reproducer-check.json) records all three checkers.
@@ -22,6 +22,8 @@ An [earlier macOS run](formalization/verification/shared-audit-check.json) with 
 The [cleanup and elaboration report](ELABORATION_REPORT_2026-10-06.md) records both tests and repeated compiler controls; the [dead-code report](DEAD_CODE_REPORT_2026-10-06.md) records the preceding sweep. Current verification above is bound to the cleanup sources.
 
 The proof library contains no `sorry` or additional axioms. Comparator's deliberate challenge placeholders are outside that library. [Machine-readable status](formalization.yaml) and the [compiler compatibility report](formalization/verification/kernel-compatibility.md) preserve the scope and historical evidence.
+
+Comparator checks a project-relative specification using shared mathematical definitions. It does not independently establish the English paper’s correspondence with Lean; the proof map and statement reviews address that separate question.
 
 ## Check it yourself
 

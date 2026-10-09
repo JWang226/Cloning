@@ -76,6 +76,7 @@ def offline_proof_map(text):
     pages = {
         "PROGRESS.md": "../verification.html",
         "verification/latest.json": "../data/audit-summary.json",
+        "verification/statement-audit-response-2026-10-08.md": GITHUB + "formalization/verification/statement-audit-response-2026-10-08.md",
     }
 
     def rewrite(match):
@@ -126,7 +127,7 @@ def checker_verdict(name, summary, record, audit_sha256, project_constants,
         require(record.get("lock_sha256") == lock_sha256, "run tool lock differs")
         require(summary.get("mode") == record.get("mode") and record.get("mode") in
                 ("trusted-local-no-sandbox", "linux-landrun"), "run mode differs or is unknown")
-        return "Passed: 27 statements and proof dependencies, Lean kernel replay"
+        return "Passed: 27 target types and their defining constants; proof axiom audit and Lean kernel replay"
 
     require(name == "nanoda", "unknown checker")
     for data in (summary, record):
@@ -281,6 +282,17 @@ class Wiki:
         self.manuscript = self.parse_manuscript()
         self.paper = self.read_json(ROOT / "docs-src/paper.json")
         self.validate_paper()
+        self.arxiv_provenance = self.read_json(FORMAL / "verification/arxiv-v1-provenance-2026-10-08.json")
+        provenance = self.arxiv_provenance
+        frozen = (ROOT / provenance["frozen_file"]).read_bytes()
+        if (provenance["frozen_file"] != "formalization/reference/cloning.tex" or
+                provenance["paper_url"] != self.paper["version_url"] or
+                provenance["direct_byte_comparison"] != "equal" or
+                provenance["member_bytes"] != provenance["frozen_bytes"] or
+                provenance["frozen_bytes"] != len(frozen) or
+                provenance["member_sha256"] != provenance["frozen_sha256"] or
+                provenance["frozen_sha256"] != sha(frozen)):
+            raise ValueError("Recorded arXiv v1 byte comparison differs from the frozen manuscript")
         self.results = self.parse_map()
         expected = set(self.manuscript)
         if len(expected) != 27 or set(self.results) != expected:
@@ -819,7 +831,8 @@ class Wiki:
         body = ('<div class="eyebrow">Paper → Lean proof</div><h1>From the paper to Lean</h1>'
                 '<p class="lead">Find each of the paper’s 27 numbered results, read its informal argument, and inspect the Lean declarations that formalize it.</p>'
                 '<p>The paper states its four main theorems in §1.1 and develops their arguments later. The guide combines those sections and appendices into twelve chapters. '
-                f'Section and result numbers below refer to <a href="{esc(self.paper["version_url"])}">arXiv v1</a>.</p>'
+                f'Paper links and numbering use <a href="{esc(self.paper["version_url"])}">arXiv v1</a>, '
+                'matched byte-for-byte to the frozen manuscript in the <a href="data/arxiv-v1-provenance.json">8 October provenance check</a>.</p>'
                 '<p><a href="guides/index.html#paper-correspondence">How every guide chapter relates to the paper →</a></p>'
                 '<div class="paper-guide-table" tabindex="0" aria-label="Paper to Lean correspondence; scroll horizontally on a narrow screen">'
                 '<table><thead><tr><th>Paper statement</th><th>Paper argument</th><th>Informal proof guide</th><th>Lean proof endpoints</th></tr></thead><tbody>')
@@ -932,9 +945,27 @@ class Wiki:
                  '<a href="https://github.com/scottnarmstrong/LeanAutoformalizationSkills/blob/main/skills/lean-statement-audit/SKILL.md">LeanAutoformalizationSkills: lean-statement-audit</a>. '
                  'It applies those checks to this completed library; it does not claim completion of that skill’s full draft-and-approval workflow.</p>'
                  '<p><a href="correspondence.html">← Paper → Lean proof</a></p>')
+        body += ('<section class="callout"><h2>Follow-up definition trace · 8 October 2026</h2>'
+                 '<p>A source trace of the later statement comments found existing physical Schur-decomposition and PCT identifications. '
+                 'It does not extend the earlier probe review to all 27 results or record a new kernel run.</p>')
+        for name, file, description in (
+            ("Cloning.TensorLie.recursivePhysicalDecomposition_is_decomposition", "formalization/Cloning/TensorSchurMultiplicityDecomposition.lean", "Orthogonal, exhaustive decomposition of the actual tensor register"),
+            ("Cloning.TensorLie.recursivePhysicalDecomposition_copyCount", "formalization/Cloning/TensorSchurDecompositionMultiplicity.lean", "Exact standard-tableau multiplicities"),
+            ("Cloning.TensorLie.partitionCharacterPolynomial_weyl", "formalization/Cloning/TensorSchurDecompositionWeylCharacter.lean", "Physical character’s Weyl alternant identity"),
+            ("Cloning.PCTGlobal.sectorChannel_physical_sandwich", "formalization/Cloning/PCTGlobalWerner.lean", "Literal Werner symmetric-projector sandwich"),
+            ("Cloning.PCTGlobal.channel_matrix_apply", "formalization/Cloning/PCTGlobalPhysical.lean", "Full PCT action on arbitrary complex input matrices"),
+        ):
+            pointer = self.resolve(name, file)
+            body += f'<p>{esc(description)}: <a href="{esc(pointer["url"])}"><code>{esc(name)}</code></a>.</p>'
+        body += ('<p>The projector cloner’s identification with the paper’s finite LP minimizer remains unproved. '
+                 'The library also does not explicitly identify a Specht-module action on the multiplicity space or equate the physical character with its separate semistandard polynomial definition.</p>'
+                 '<p>A new <a href="data/arxiv-v1-provenance.json">provenance check</a> matched the frozen manuscript byte-for-byte to official arXiv v1. '
+                 'The earlier record’s uncertainty about the original uploaded attachment remains unchanged.</p>'
+                 f'<p><a href="{GITHUB}formalization/verification/statement-audit-response-2026-10-08.md">Read the follow-up findings and scope ↗</a></p></section>')
         for path in review["artifacts"]:
             self.put("reference/semantic-pilot/" + PurePosixPath(path).name, self.read(ROOT / path))
         self.put("data/statement-review.json", json.dumps(review, indent=2, ensure_ascii=False) + "\n")
+        self.put("data/arxiv-v1-provenance.json", json.dumps(self.arxiv_provenance, indent=2, ensure_ascii=False) + "\n")
         self.page("statement-review.html", "Statement review", body, "correspondence")
         self.search.append({"title": "Statement review", "subtitle": "Theorems 1.1–1.3: assumptions, definitions, and construction differences",
                             "kind": "Page", "url": "statement-review.html", "text": "semantic review root fidelity uniformity coupling projector known unknown spectrum"})
@@ -1229,9 +1260,10 @@ class Wiki:
                 '<li><strong>Axiom audit:</strong> every compiled declaration exported by the imported implementation modules is checked against the three standard logical axioms listed above. A shared audit reports their aggregate axiom union without per-declaration attribution.</li>'
                 '<li><strong>Wiki integrity:</strong> manuscript labels, editorial pointers, source line anchors, local links, and deterministic generated files are checked by the site builder.</li></ol>'
                 '<p>The site builder does not rerun the Lean build or the axiom audit. It verifies that its source files match the selected audit’s recorded hashes, and that referenced declarations occur in both source and compiled inventory.</p>'
-                '<section class="callout"><h2>Independent checker status</h2>'
+                '<section class="callout"><h2>Additional checker results</h2>'
                 '<div class="table-wrap"><table><tbody>' + "".join(checker_rows) + '</tbody></table></div>'
-                '<p>These are recorded checker results, separate from the Lean build and axiom audit above. Preparation, readiness, failure, and incomplete execution provide no completed certificate. A displayed pass requires a hash-matched archived full-run record bound to this exact audit; the site builder does not execute either checker.</p></section>'
+                '<p>Comparator compares a project-relative specification using shared definitions; it does not independently establish correspondence with the English paper. Nanoda is the separate independent Rust kernel check. '
+                'These recorded results require hash-matched archived full runs bound to this exact audit; the site builder does not execute either checker. Preparation, readiness, failure, and incomplete execution provide no completed certificate.</p></section>'
                 '<h2>Rebuild or check this wiki</h2><p>From the repository root, using Python 3.10 or newer:</p>'
                 '<pre class="code-block"><code>python3 tools/docs-site/build.py\npython3 tools/docs-site/build.py --check</code></pre>'
                 '<p>Open <code>docs/index.html</code> directly in a browser, or serve the directory with any static web server. Search, mathematics, navigation, and source pages use bundled assets and relative URLs; no network request is needed.</p>'

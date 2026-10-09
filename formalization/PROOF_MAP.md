@@ -2,7 +2,7 @@
 
 Paper: [Asymptotically Optimal Mixed-State Cloning](https://arxiv.org/abs/2609.35986). This map records statement correspondence against the frozen audited manuscript snapshot, not merely import coverage. Names below are actual declarations; linked files contain their full hypotheses. The current build and axiom-audit evidence is recorded separately in [PROGRESS.md](PROGRESS.md) and [verification/latest.json](verification/latest.json).
 
-The four main physical theorem families are instantiated for the constructed channels and actual CPTP competitors. The reconciliation covers all 27 named theorem, proposition, lemma and corollary statements, including their uniformity, support and rate requirements. Historical `*_of_compactWindowLAN` results and the generic assembly theorems in `Main.lean` remain conditional interfaces; they are not the final physical certificate.
+The four main physical theorem families are instantiated for the constructed channels and actual CPTP competitors. The reconciliation covers all 27 named theorem, proposition, lemma and corollary statements, including their uniformity, support and rate requirements. Coverage does not assert that every finite construction is identical: Theorem 1.3’s named transportation-LP cloner is not identified with the Lean overlap-coupling cloner. Historical `*_of_compactWindowLAN` results and the generic assembly theorems in `Main.lean` remain conditional interfaces; they are not the final physical certificate.
 
 ## Conventions and objects
 
@@ -17,6 +17,16 @@ The four main physical theorem families are instantiated for the constructed cha
 | Prescribed output sizes | `m : ℕ → ℕ`, `m(n)/n → γ > 1`. `TensorCloningPrescribedLimits` and `PCTPrescribed*` handle initial indices with `m≤n` by exact restriction. |
 | Unknown-spectrum regularity | `closure (interior (SimpleSpectrum.toAffine '' K)) = SimpleSpectrum.toAffine '' K` in the full trace-one affine hyperplane, not the relative interior of an arbitrary lower-dimensional set. |
 | PCT error asymptotics | An iterated limit: fixed positive additional-copy ratio first, then that ratio tends to zero. Projector PCT uses liminf/limsup envelopes and does not assume a fixed-gain fidelity limit. |
+
+## Physical definition bridges
+
+The [follow-up definition trace](verification/statement-audit-response-2026-10-08.md) checks the identifications raised in the October 8 statement comments. It is a source trace, separate from the earlier three-family semantic review and the saved kernel checks.
+
+| Identification | Existing Lean evidence and remaining boundary |
+|---|---|
+| Physical tensor decomposition | `Cloning.TensorLie.recursivePhysicalDecomposition_is_decomposition` in [TensorSchurMultiplicityDecomposition.lean](Cloning/TensorSchurMultiplicityDecomposition.lean) proves orthogonal, exhaustive sectors of the actual tensor register. `PhysicalHighestTensor.canonicalIsometry_tensorOperator` in [TensorSchurDecompositionData.lean](Cloning/TensorSchurDecompositionData.lean) intertwines every matrix tensor power with the canonical partition sector. |
+| Multiplicity and character | `Cloning.TensorLie.recursivePhysicalDecomposition_copyCount` in [TensorSchurDecompositionMultiplicity.lean](Cloning/TensorSchurDecompositionMultiplicity.lean) proves the exact standard-tableau count. `partitionCharacterPolynomial_weyl` in [TensorSchurDecompositionWeylCharacter.lean](Cloning/TensorSchurDecompositionWeylCharacter.lean) proves the physical character’s Weyl alternant identity; `eval_physicalCharacterPolynomial_nonneg` in [TensorSchurDecompositionCharacter.lean](Cloning/TensorSchurDecompositionCharacter.lean) identifies evaluation for nonnegative spectra. A separately constructed Specht module and simultaneous symmetric-group action are not identified here; neither is a direct equality to the separate semistandard `YoungGeneral.schurPolynomial`. |
+| Literal PCT protocol | `Cloning.PCTGlobal.sectorChannel_physical_sandwich` in [PCTGlobalWerner.lean](Cloning/PCTGlobalWerner.lean) identifies the sector channel with the physical Werner sandwich on every complex occupation input. `channel_matrix_apply` in [PCTGlobalPhysical.lean](Cloning/PCTGlobalPhysical.lean) identifies the full fixed channel with the constructed Haar-moment purifier, physical cloning and partial trace on arbitrary inputs; `channel_tensorPower` supplies the literal purification-mixture action on density tensor powers. `Cloning.PCTRankPurification.channel_of_purification` in [PCTRankPurificationGeneralHaar.lean](Cloning/PCTRankPurificationGeneralHaar.lean) supplies the rank-bound version for any supported purification. |
 
 ## Main named theorems
 
@@ -83,4 +93,4 @@ The score-window coordinate change is measure-exact: `scoreReferenceMeasure_eq_i
 
 The conjectured degenerate-orbit formula `eq:conjectured-degenerate-orbit` and fixed-rank local formula `eq:conjectured-fixed-rank-local` are conjectures in the manuscript. The exact all-state asymptotic minimax value, including whether PCT attains it, remains open. No module count, successful build, scalar expansion, or conditional wrapper proves these claims.
 
-The proved named statements are reconciled above. Conjectures, external literature attributions, and speculative discussion are not promoted to proved results. The audit and build records certify the exact source snapshot separately from this statement review.
+The named statements and their qualifications are reconciled above. In particular, the projector optimum and a uniformly attaining channel are proved, while the paper’s particular finite LP-selected channel remains outside that identification. Conjectures, external literature attributions, and speculative discussion are not promoted to proved results. The audit and build records certify the exact source snapshot separately from this statement review.
